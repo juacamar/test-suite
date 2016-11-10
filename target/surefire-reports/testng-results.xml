@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="6" passed="6">
+  <reporter-output>
+  </reporter-output>
+  <suite name="CrafterSuite" duration-ms="147566" started-at="2016-11-09T23:10:00Z" finished-at="2016-11-09T23:12:27Z">
+    <groups>
+    </groups>
+    <test name="Block 1" duration-ms="79448" started-at="2016-11-09T23:10:00Z" finished-at="2016-11-09T23:11:19Z">
+      <class name="org.craftercms.studio.testing.cases.AddNewContentTest">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:org.craftercms.studio.testing.cases.AddNewContentTest@6aaa5eb0]" name="beforeTest" is-config="true" duration-ms="2671" started-at="2016-11-09T17:10:00Z" finished-at="2016-11-09T17:10:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:org.craftercms.studio.testing.cases.CreateSiteTest@64616ca2]" name="beforeTest" is-config="true" duration-ms="2047" started-at="2016-11-09T17:10:02Z" finished-at="2016-11-09T17:10:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:org.craftercms.studio.testing.cases.DeleteSiteTest@3b81a1bc]" name="beforeTest" is-config="true" duration-ms="1888" started-at="2016-11-09T17:10:04Z" finished-at="2016-11-09T17:10:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="Add_New_Content_test()[pri:0, instance:org.craftercms.studio.testing.cases.AddNewContentTest@6aaa5eb0]" name="Add_New_Content_test" duration-ms="30177" started-at="2016-11-09T17:10:35Z" finished-at="2016-11-09T17:11:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Add_New_Content_test -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:org.craftercms.studio.testing.cases.AddNewContentTest@6aaa5eb0]" name="afterTest" is-config="true" duration-ms="626" started-at="2016-11-09T17:11:17Z" finished-at="2016-11-09T17:11:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:org.craftercms.studio.testing.cases.CreateSiteTest@64616ca2]" name="afterTest" is-config="true" duration-ms="637" started-at="2016-11-09T17:11:18Z" finished-at="2016-11-09T17:11:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:org.craftercms.studio.testing.cases.DeleteSiteTest@3b81a1bc]" name="afterTest" is-config="true" duration-ms="624" started-at="2016-11-09T17:11:18Z" finished-at="2016-11-09T17:11:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- org.craftercms.studio.testing.cases.AddNewContentTest -->
+      <class name="org.craftercms.studio.testing.cases.CreateSiteTest">
+        <test-method status="PASS" signature="create_site()[pri:0, instance:org.craftercms.studio.testing.cases.CreateSiteTest@64616ca2]" name="create_site" duration-ms="28367" started-at="2016-11-09T17:10:06Z" finished-at="2016-11-09T17:10:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- create_site -->
+      </class> <!-- org.craftercms.studio.testing.cases.CreateSiteTest -->
+      <class name="org.craftercms.studio.testing.cases.DeleteSiteTest">
+        <test-method status="PASS" signature="delete_site()[pri:0, instance:org.craftercms.studio.testing.cases.DeleteSiteTest@3b81a1bc]" name="delete_site" duration-ms="12400" started-at="2016-11-09T17:11:05Z" finished-at="2016-11-09T17:11:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- delete_site -->
+      </class> <!-- org.craftercms.studio.testing.cases.DeleteSiteTest -->
+    </test> <!-- Block 1 -->
+    <test name="Block 2" duration-ms="67828" started-at="2016-11-09T23:11:19Z" finished-at="2016-11-09T23:12:27Z">
+      <class name="org.craftercms.studio.testing.cases.CreateSiteTest">
+        <test-method status="PASS" signature="create_site()[pri:0, instance:org.craftercms.studio.testing.cases.CreateSiteTest@47f6473]" name="create_site" duration-ms="29186" started-at="2016-11-09T17:11:26Z" finished-at="2016-11-09T17:11:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- create_site -->
+      </class> <!-- org.craftercms.studio.testing.cases.CreateSiteTest -->
+      <class name="org.craftercms.studio.testing.cases.AddNewFolderTest">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:org.craftercms.studio.testing.cases.AddNewFolderTest@4157f54e]" name="beforeTest" is-config="true" duration-ms="2523" started-at="2016-11-09T17:11:19Z" finished-at="2016-11-09T17:11:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:org.craftercms.studio.testing.cases.CreateSiteTest@47f6473]" name="beforeTest" is-config="true" duration-ms="1966" started-at="2016-11-09T17:11:22Z" finished-at="2016-11-09T17:11:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:org.craftercms.studio.testing.cases.DeleteSiteTest@90f6bfd]" name="beforeTest" is-config="true" duration-ms="2012" started-at="2016-11-09T17:11:24Z" finished-at="2016-11-09T17:11:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="Add_New_Folder_test()[pri:0, instance:org.craftercms.studio.testing.cases.AddNewFolderTest@4157f54e]" name="Add_New_Folder_test" duration-ms="17839" started-at="2016-11-09T17:11:55Z" finished-at="2016-11-09T17:12:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Add_New_Folder_test -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:org.craftercms.studio.testing.cases.AddNewFolderTest@4157f54e]" name="afterTest" is-config="true" duration-ms="622" started-at="2016-11-09T17:12:25Z" finished-at="2016-11-09T17:12:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:org.craftercms.studio.testing.cases.CreateSiteTest@47f6473]" name="afterTest" is-config="true" duration-ms="632" started-at="2016-11-09T17:12:26Z" finished-at="2016-11-09T17:12:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:org.craftercms.studio.testing.cases.DeleteSiteTest@90f6bfd]" name="afterTest" is-config="true" duration-ms="624" started-at="2016-11-09T17:12:27Z" finished-at="2016-11-09T17:12:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- org.craftercms.studio.testing.cases.AddNewFolderTest -->
+      <class name="org.craftercms.studio.testing.cases.DeleteSiteTest">
+        <test-method status="PASS" signature="delete_site()[pri:0, instance:org.craftercms.studio.testing.cases.DeleteSiteTest@90f6bfd]" name="delete_site" duration-ms="12422" started-at="2016-11-09T17:12:13Z" finished-at="2016-11-09T17:12:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- delete_site -->
+      </class> <!-- org.craftercms.studio.testing.cases.DeleteSiteTest -->
+    </test> <!-- Block 2 -->
+  </suite> <!-- CrafterSuite -->
+</testng-results>
