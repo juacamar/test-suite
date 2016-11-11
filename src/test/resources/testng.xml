@@ -4,24 +4,24 @@
 <suite name="CrafterSuite">
  <test name="Login">
   <classes>
-    <class name="org.craftercms.studio.testing.cases.LoginTest" />
-    <class name="org.craftercms.studio.testing.cases.LogOutTest" />
+    <class name="org.craftercms.studio.test.cases.LoginTest" />
+    <class name="org.craftercms.studio.test.cases.LogOutTest" />
   </classes>
   </test> <!-- Test -->
   
   <test name="Block 1">
   <classes>
-    <class name="org.craftercms.studio.testing.cases.CreateSiteTest" />
-    <class name="org.craftercms.studio.testing.cases.AddNewContentTest" />
-    <class name="org.craftercms.studio.testing.cases.DeleteSiteTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteTest" />
+    <class name="org.craftercms.studio.test.cases.AddNewContentTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
   
   <test name="Block 2">
   <classes>
-    <class name="org.craftercms.studio.testing.cases.CreateSiteTest" />
-    <class name="org.craftercms.studio.testing.cases.AddNewFolderTest" />
-    <class name="org.craftercms.studio.testing.cases.DeleteSiteTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteTest" />
+    <class name="org.craftercms.studio.test.cases.AddNewFolderTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
   
