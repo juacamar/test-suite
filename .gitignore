@@ -1,15 +1,51 @@
-*.class
+# Created by .ignore support plugin (hsz.mobi)
+.data/
+temp/
+classes/
+deploy/
+javadoc/
+cwallet.sso.lck### Eclipse template
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
 .project
+.externalToolBuilders/
+*.launch
+*.pydevproject
+.cproject
+.classpath
+.factorypath
+.buildpath
+.target
+.tern-project
+.texlipse
+.springBeans
+.recommenders/
+*.class
+.mtj.tmp/
+*.jar
+*.war
+*.ear
+hs_err_pid*
+.idea/
+.iml
+*.class
 target/*
-
-
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
 # Package Files #
 *.jar
 *.war
 *.ear
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+*.log
+test-output/

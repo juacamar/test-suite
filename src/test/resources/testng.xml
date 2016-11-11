@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="CrafterSuite">
+ <test name="Login">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.LoginTest" />
+    <class name="org.craftercms.studio.test.cases.LogOutTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Block 1">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteTest" />
+    <class name="org.craftercms.studio.test.cases.AddNewContentTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Block 2">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteTest" />
+    <class name="org.craftercms.studio.test.cases.AddNewFolderTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
