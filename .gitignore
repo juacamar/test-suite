@@ -49,3 +49,4 @@ target/*
 hs_err_pid*
 *.log
 test-output/
+/target/
