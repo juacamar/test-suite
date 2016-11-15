@@ -27,6 +27,7 @@ public class CreatePage {
 	private String blueprintCombo;
 	private String plutonBlueprint;
 	private String createSiteButton;
+	private String cancelButton;
 
     /**
      * 
@@ -41,6 +42,7 @@ public class CreatePage {
         blueprintCombo = uIElementsManager.getSharedUIElementsLocators().getProperty("create.blueprint_combo");
         plutonBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.pluton_blueprint");
         createSiteButton = uIElementsManager.getSharedUIElementsLocators().getProperty("create.create_button");
+        cancelButton = uIElementsManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
 
         
  
@@ -154,6 +156,26 @@ public class CreatePage {
 			// Press on create site
 	 		
 	 		this.CreateButton();
+	 		
+	 	}
+		
+		// Press on Cancel button of the create site process.
+
+	 	public void CancelButton() {
+
+	 		 WebElement createButton = driver.findElement(By.xpath(cancelButton));
+	 		 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	 		createButton.click();
+	 		
+
+	 	}
+	 	
+		public void clickOnCancelButtonOfTheCreateSiteProcess(){
+	 		
+			
+			// Press on Cancel button of the create site.
+	 		
+	 		this.CancelButton();
 	 		
 	 	}
  	
