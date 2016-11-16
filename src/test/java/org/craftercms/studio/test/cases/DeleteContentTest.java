@@ -68,10 +68,10 @@ public class DeleteContentTest {
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
 	}
 
-	// @AfterTest
-	// public void afterTest() {
-	// driverManager.closeConnection();
-	// }
+	 @AfterTest
+	 public void afterTest() {
+	 driverManager.closeConnection();
+	 }
 
 	@Test(priority = 0)
 
