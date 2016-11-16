@@ -1,13 +1,19 @@
 package org.craftercms.studio.test.cases;
 
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
+import org.craftercms.studio.test.pages.AdminConsolePage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.PreviewPage;
@@ -18,12 +24,11 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * Costa Rica Crafter Software team
- * 
- * @author Gustavo Andrei Ortiz Alfaro
+ * @author Gustavo Andrei Ortiz Alfaro 
  *
  */
 
-public class DeleteContentTest {
+public class PublishingSiteTest {
 
 	WebDriver driver;
 
@@ -39,7 +44,7 @@ public class DeleteContentTest {
 
 	private PreviewPage previewPage;
 
-	private DashboardPage dashboardPage;
+	private AdminConsolePage adminConsolePage;
 
 	// The following code is for the QA needs to execute the test with phantomJS
 
@@ -57,7 +62,7 @@ public class DeleteContentTest {
 	// This code shows the UI and the QA can see the steps executing in real
 	// time.
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
@@ -65,74 +70,29 @@ public class DeleteContentTest {
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager);
+		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
 	}
 
-	// @AfterTest
-	// public void afterTest() {
-	// driverManager.closeConnection();
-	// }
+	@AfterTest
+	public void afterTest() {
+		driverManager.closeConnection();
+	}
 
 	@Test(priority = 0)
 
-	public void Delete_Content() {
+	public void Publishing_Site() {
 
 		// login to application
 
 		loginPage.loginToCrafter("admin", "1234");
 
-		// wait for element is clickeable
+		// wait for element
 
 		homePage.getDriverManager().driverWait();
 
-		// go to dashboard page
-
-		homePage.GoToDashboardPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// expand pages folder
-
-		dashboardPage.ExpandPagesTree();
-
-		// expand global entry content
-
-		dashboardPage.ClickGlobalEntryTree();
-
-		// expand home content
-
-		dashboardPage.ClickHomeTree();
-
-		// right click to delete
-
-		dashboardPage.RightClickToDeleteContent();
-
-		// confirmation
-
-		dashboardPage.ClicktoDeleteContent();
-
-		// submittal complete ok
-
-		dashboardPage.ClickOKSubmittalComplete();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
+		// go to preview page
+		homePage.GoToPreviewPage();
 
 		// wait for element is clickeable
 
@@ -141,22 +101,40 @@ public class DeleteContentTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-
+	
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
+		// approve and publish
+		
+		previewPage.ApprovePublish();
+		
+		// submit 
+		
+		previewPage.ClickOnSubmitButtonOfApprovePublish();
+		
+		// wait for element is clickeable
+		
+		previewPage.getDriverManager().driverWait();
+		
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
+		
+		// wait for element is clickeable
+		
+		previewPage.getDriverManager().driverWait();
+		
+		// reload page
 
-		// Assert of the test case is fine
-
-		WebElement deletedIcon = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[3]/div[4]/table/tbody/tr[2]/td[2]/div/span"));
-
-		Assert.assertTrue(deletedIcon.isDisplayed());
-
+		driverManager.getDriver().navigate().refresh();
+		
+		// assert
+		
+		String siteStatus = driverManager.getDriver()
+				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
+		Assert.assertEquals(siteStatus, "Live :");
 	}
 
 }
