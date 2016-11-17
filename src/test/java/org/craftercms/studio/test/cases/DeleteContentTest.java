@@ -17,8 +17,9 @@ import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
- * Costa Rica Crafter Software team
- * @author Gustavo Andrei Ortiz Alfaro 
+ * 
+ * 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -67,10 +68,10 @@ public class DeleteContentTest {
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
 	}
 
-	@AfterTest
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
+	 @AfterTest
+	 public void afterTest() {
+	 driverManager.closeConnection();
+	 }
 
 	@Test(priority = 0)
 
@@ -120,32 +121,42 @@ public class DeleteContentTest {
 		// right click to delete
 
 		dashboardPage.RightClickToDeleteContent();
-		
-		// confirmation 
-		
+
+		// confirmation
+
 		dashboardPage.ClicktoDeleteContent();
-		
+
 		// submittal complete ok
-		
+
 		dashboardPage.ClickOKSubmittalComplete();
-		
+
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-		
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert of the test case is fine
-		
-	    
-		
-	    //  Assert.assertTrue(validation.());
 
-		//String contentURL = driverManager.getDriver()
-		//	.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
-		//Assert.assertTrue(contentURL.contains(contentURL));
+		WebElement deletedIcon = driverManager.getDriver()
+				.findElement(By.xpath("/html/body/section/div/div[3]/div[4]/table/tbody/tr[2]/td[2]/div/span"));
+
+		Assert.assertTrue(deletedIcon.isDisplayed());
+
 	}
 
 }

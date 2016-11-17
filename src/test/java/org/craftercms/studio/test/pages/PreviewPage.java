@@ -9,7 +9,8 @@ import org.openqa.selenium.WebElement;
 
 /**
  * Costa Rica Crafter Software team
- * @author Gustavo Andrei Ortiz Alfaro 
+ * 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -23,6 +24,8 @@ public class PreviewPage {
 	private String clickPreviewTools;
 	private String expandInContextEditing;
 	private String clickInContextEdit;
+	private String approvePublish;
+	private String submitButtonApprovePublish;
 
 	/**
 	 * 
@@ -36,7 +39,11 @@ public class PreviewPage {
 		clickPreviewTools = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.preview_tools");
 		expandInContextEditing = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("preview.expand_in_context_editing");
-		clickInContextEdit = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.enable_disable_in_context_edit");
+		clickInContextEdit = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("preview.enable_disable_in_context_edit");
+		approvePublish = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.approve&publish");
+		submitButtonApprovePublish = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.approve&publish_submit");
+
 
 	}
 
@@ -80,7 +87,6 @@ public class PreviewPage {
 
 	// Click on preview tools icon
 
-
 	public void PreviewTools() {
 
 		WebElement toolsIcon = driverManager.getDriver().findElement(By.id(clickPreviewTools));
@@ -96,8 +102,7 @@ public class PreviewPage {
 
 	}
 
-
-	// Expand the In Context Menu 
+	// Expand the In Context Menu
 
 	public void ExpandInContextEditing() {
 
@@ -108,14 +113,14 @@ public class PreviewPage {
 
 	public void ClickToExpandInContextEditing() {
 
-		// Expand the In Context Menu 
+		// Expand the In Context Menu
 
 		this.ExpandInContextEditing();
 
 	}
-	
-	// Enable/Diseble In-Context Editing 
-	
+
+	// Enable/Diseble In-Context Editing
+
 	public void InContextEditing() {
 
 		WebElement inContextEditingOption = driverManager.getDriver().findElement(By.xpath(clickInContextEdit));
@@ -125,10 +130,48 @@ public class PreviewPage {
 
 	public void ClickToEnableDisableInContextEditing() {
 
-		// Enable/Diseble In-Context Editing 
+		// Enable/Diseble In-Context Editing
 
 		this.InContextEditing();
 
+	}
+
+	// Click on Approve&Publish option
+
+	public void ApprovePublish() {
+
+		WebElement toolsIcon = driverManager.getDriver().findElement(By.xpath(approvePublish));
+		toolsIcon.click();
+
+	}
+
+	public void ClickOnApprovePublish() {
+
+		// Click on Approve&Publish option
+
+		this.ApprovePublish();
+
+	}
+
+	// Click on submit button of Approve&Publish
+
+	public void SubmitApprovePublish() {
+
+		WebElement toolsIcon = driverManager.getDriver().findElement(By.id(submitButtonApprovePublish));
+		toolsIcon.click();
+
+	}
+
+	public void ClickOnSubmitButtonOfApprovePublish() {
+
+		// Click on submit button of Approve&Publish
+
+		this.SubmitApprovePublish();
+
+	}
+
+	public WebDriverManager getDriverManager() {
+		return driverManager;
 	}
 
 }

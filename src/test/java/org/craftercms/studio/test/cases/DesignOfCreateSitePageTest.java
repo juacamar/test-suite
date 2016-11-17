@@ -17,7 +17,7 @@ import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
- * Costa Rica Crafter Software team
+ * 
  * 
  * @author Gustavo Andrei Ortiz Alfaro
  *
