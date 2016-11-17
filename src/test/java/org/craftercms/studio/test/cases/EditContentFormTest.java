@@ -26,7 +26,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Costa Rica Crafter Software team
+ * 
  * 
  * @author Gustavo Andrei Ortiz Alfaro
  *
