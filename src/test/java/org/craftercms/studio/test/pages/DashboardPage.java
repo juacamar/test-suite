@@ -64,6 +64,7 @@ public class DashboardPage {
 	private String editOption;
 	private String ediPagetUrl;
 	private String pageUrlField;
+	private String previewSync;
 
 	/**
 	 * 
@@ -129,6 +130,8 @@ public class DashboardPage {
 		editOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_iframe");
 		ediPagetUrl = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_url_button");
 		pageUrlField = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.page_url_field");
+		previewSync = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
+		
 
 	}
 
@@ -930,5 +933,22 @@ public class DashboardPage {
 		this.URLPageName(strNewURL);
 
 	}
+	
+	// click on preview sync option
+
+		public void PreviewSyncOption() {
+
+			WebElement previewSyncOpt = driverManager.getDriver().findElement(By.cssSelector(previewSync));
+			previewSyncOpt.click();
+
+		}
+
+		public void ClickOnPreviewSyncOption() {
+
+			// click on preview sync option
+
+			this.PreviewSyncOption();
+
+		}
 
 }
