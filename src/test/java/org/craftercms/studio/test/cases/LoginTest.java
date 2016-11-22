@@ -2,6 +2,7 @@ package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -15,7 +16,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -80,11 +81,12 @@ public class LoginTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Verify login is fine
+		// Assert create button is present.
 
-		String bodyText = driverManager.getDriver().findElement(By.xpath("/html/body/ui-view/section/div/header/h1"))
-				.getText();
-		Assert.assertNotNull(bodyText.contains(bodyText));
+		WebElement createButton = driverManager.getDriver()
+				.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
+
+		Assert.assertTrue(createButton.isDisplayed());
 
 	}
 

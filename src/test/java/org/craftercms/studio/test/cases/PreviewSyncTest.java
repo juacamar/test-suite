@@ -2,7 +2,6 @@ package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -20,11 +19,11 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro
+ * @author Gustavo Andrei Ortiz Alfaro 
  *
  */
 
-public class CopyPasteFolderTest {
+public class PreviewSyncTest {
 
 	WebDriver driver;
 
@@ -70,14 +69,14 @@ public class CopyPasteFolderTest {
 
 	}
 
-	@AfterTest
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
+//	@AfterTest
+//	public void afterTest() {
+//		driverManager.closeConnection();
+//	}
 
 	@Test(priority = 0)
 
-	public void Copy_Folder_test() {
+	public void Preview_Sync() {
 
 		// login to application
 
@@ -91,10 +90,6 @@ public class CopyPasteFolderTest {
 
 		homePage.GoToDashboardPage();
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -107,115 +102,19 @@ public class CopyPasteFolderTest {
 
 		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 				.click();
-
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// expand pages folder
+		// click on preview sync option
+		
+		dashboardPage.ClickOnPreviewSyncOption();
+		
+		// Ok for the dialog window when appears
 
-		dashboardPage.ExpandPagesTree();
-
-		// expand global entry content
-
-		dashboardPage.ClickGlobalEntryTree();
-
-		// expand home content
-
-		dashboardPage.ClickHomeTree();
-
-		// right click to see the the menu
-
-		dashboardPage.RightClickNewFolder();
-
-		// Set the name of the folder
-
-		dashboardPage.FolderName("FolderToCopy");
-
-		// Create folder button
-
-		dashboardPage.ClickCreateButton();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// expand home content
-
-		// dashboardPage.ClickHomeTree();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Copy the about us page to the new folder created
-
-		dashboardPage.RightClickToCopyAboutUsToNewFolder();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// paste the content in the new folder created
-
-		dashboardPage.RightClickToPasteToNewFolder();
-
-		// Copy the services page to the new folder created
-
-		dashboardPage.RightClickToCopyServicesToNewFolder();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// paste the content in the new folder created
-
-		dashboardPage.RightClickToPasteToNewFolder();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// copy about us option
-
-		dashboardPage.RightClickToCopyOptionAboutUs();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// paste about us to about us.
-
-		dashboardPage.RightClickToPasteOptionAboutUsToAboutUs();
-
-		// Asserts of the new content created
-
-		WebElement aboutUsInToServices = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]"));
-
-		Assert.assertTrue(aboutUsInToServices.isDisplayed());
-
-		WebElement servicesInToFolderCopied = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[2]/td[4]"));
-
-		Assert.assertTrue(servicesInToFolderCopied.isDisplayed());
-
-		WebElement aboutUsInToFolderCopied = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[3]/td[4]"));
-
-		Assert.assertTrue(aboutUsInToFolderCopied.isDisplayed());
+		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
+		driverManager.getDriver().switchTo().alert().accept();
 
 	}
 
