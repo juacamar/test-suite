@@ -27,7 +27,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CreateSiteTest {
+public class CreateSiteAngMemGam {
 
 	WebDriver driver;
 
@@ -90,7 +90,7 @@ public class CreateSiteTest {
 
 	@Test(priority = 0)
 
-	public void create_site() {
+	public void create_site_angular_memory_game() {
 
 		// login to application
 
@@ -126,7 +126,7 @@ public class CreateSiteTest {
 
 		// Select pluton blueprint
 
-		createPage.selectPlutonBlueprint();
+		createPage.selectAngMemGamBlueprint();
 
 		// Click on Create button
 

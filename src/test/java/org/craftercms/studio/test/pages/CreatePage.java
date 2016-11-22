@@ -12,15 +12,16 @@ import org.openqa.selenium.WebElement;
 
 /**
  * Costa Rica Crafter Software team
- * @author Gustavo Andrei Ortiz Alfaro 
+ * 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
 public class CreatePage {
 
 	private WebDriverManager driverManager;
-    private UIElementsPropertiesManager uIElementsManager;
-    private WebDriver driver;
+	private UIElementsPropertiesManager uIElementsManager;
+	private WebDriver driver;
 	private String siteName;
 	private String siteID;
 	private String descriptionSite;
@@ -28,32 +29,37 @@ public class CreatePage {
 	private String plutonBlueprint;
 	private String createSiteButton;
 	private String cancelButton;
+	private String emptyBlueprint;
+	private String corporateBlueprint;
+	private String AngMemGamBlueprint;
 
-    /**
-     * 
-     */
-    public CreatePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
-        this.driverManager = driverManager;
-        this.uIElementsManager = UIElementsPropertiesManager;
-        this.driver = this.driverManager.getDriver();
-        siteName = uIElementsManager.getSharedUIElementsLocators().getProperty("create.site_name");
-        siteID = uIElementsManager.getSharedUIElementsLocators().getProperty("create.id_name");
-        descriptionSite = uIElementsManager.getSharedUIElementsLocators().getProperty("create.description_site");
-        blueprintCombo = uIElementsManager.getSharedUIElementsLocators().getProperty("create.blueprint_combo");
-        plutonBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.pluton_blueprint");
-        createSiteButton = uIElementsManager.getSharedUIElementsLocators().getProperty("create.create_button");
-        cancelButton = uIElementsManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
+	/**
+	 * 
+	 */
+	public CreatePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+		this.driverManager = driverManager;
+		this.uIElementsManager = UIElementsPropertiesManager;
+		this.driver = this.driverManager.getDriver();
+		siteName = uIElementsManager.getSharedUIElementsLocators().getProperty("create.site_name");
+		siteID = uIElementsManager.getSharedUIElementsLocators().getProperty("create.id_name");
+		descriptionSite = uIElementsManager.getSharedUIElementsLocators().getProperty("create.description_site");
+		blueprintCombo = uIElementsManager.getSharedUIElementsLocators().getProperty("create.blueprint_combo");
+		plutonBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.pluton_blueprint");
+		createSiteButton = uIElementsManager.getSharedUIElementsLocators().getProperty("create.create_button");
+		cancelButton = uIElementsManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
+		emptyBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.empty_blueprint");
+		corporateBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.corporate_blueprint");
+		AngMemGamBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.ang_mem_gam_blueprint");
 
-        
- 
-    }
+	}
+
 	public CreatePage(WebDriver driver) {
 
 		this.driver = driver;
 
 	}
-    
-   // Set site name
+
+	// Set site name
 
 	public void setSiteName(String strSiteName) {
 
@@ -70,128 +76,179 @@ public class CreatePage {
 
 	}
 
- 	// Set site ID 
+	// Set site ID
 
- 	public void setSiteId(String strSiteID) {
+	public void setSiteId(String strSiteID) {
 
- 		 WebElement idSite = driver.findElement(By.cssSelector(siteID));
- 		idSite.sendKeys(strSiteID);
+		WebElement idSite = driver.findElement(By.cssSelector(siteID));
+		idSite.sendKeys(strSiteID);
 
- 	}
- 	
- 	public void fillIdSite(String strSiteID){
- 		
- 		// Set site ID 
- 		
- 		this.setSiteId(strSiteID);
- 		
- 	}
- 	
-	// Set description 
+	}
 
- 	public void setDescription(String strDescription) {
+	public void fillIdSite(String strSiteID) {
 
- 		 WebElement description = driver.findElement(By.cssSelector(descriptionSite));
- 		description.sendKeys(strDescription);
+		// Set site ID
 
- 	}
- 	
-	public void fillDescription(String strDescription){
- 		
- 		// Set description
- 		
- 		this.setDescription(strDescription);
- 		
- 	}
-	
+		this.setSiteId(strSiteID);
+
+	}
+
+	// Set description
+
+	public void setDescription(String strDescription) {
+
+		WebElement description = driver.findElement(By.cssSelector(descriptionSite));
+		description.sendKeys(strDescription);
+
+	}
+
+	public void fillDescription(String strDescription) {
+
+		// Set description
+
+		this.setDescription(strDescription);
+
+	}
+
 	// Open blueprint combo
 
- 	public void BlueprintCombo() {
+	public void BlueprintCombo() {
 
- 		 WebElement comboBlueprint = driver.findElement(By.cssSelector(blueprintCombo));
- 		comboBlueprint.click();
+		WebElement comboBlueprint = driver.findElement(By.cssSelector(blueprintCombo));
+		comboBlueprint.click();
 
- 	}
- 	
-	public void openBlueprintCombo(){
- 		
- 		// Open blueprint combo
- 		
- 		this.BlueprintCombo();
- 		
- 	}
-	
+	}
+
+	public void openBlueprintCombo() {
+
+		// Open blueprint combo
+
+		this.BlueprintCombo();
+
+	}
+
 	// select blue pluton print
 
-	 	public void PlutonBlueprint() {
+	public void PlutonBlueprint() {
 
-	 		 WebElement blueprintPluton = driver.findElement(By.xpath(plutonBlueprint));
-	 		 
-	 		blueprintPluton.click();
+		WebElement blueprintPluton = driver.findElement(By.xpath(plutonBlueprint));
 
-	 	}
-	 	
-		public void selectPlutonBlueprint(){
-	 		
-			// select blue pluton print
-	 		
-	 		this.PlutonBlueprint();
-	 		
-	 	}
+		blueprintPluton.click();
+
+	}
+
+	public void selectPlutonBlueprint() {
+
+		// select blue pluton print
+
+		this.PlutonBlueprint();
+
+	}
+
+	// select blue empty print
+
+	public void EmptyBlueprint() {
+
+		WebElement blueprintEmpty = driver.findElement(By.xpath(emptyBlueprint));
+
+		blueprintEmpty.click();
+
+	}
+
+	public void selectEmptyBlueprint() {
+
+		// select blue empty print
+
+		this.EmptyBlueprint();
+
+	}
+
+	// select blue corporate print
+
+	public void CorporateBlueprint() {
+
+		WebElement blueprintCorporate = driver.findElement(By.xpath(corporateBlueprint));
+
+		blueprintCorporate.click();
+
+	}
+
+	public void selectComporateBlueprint() {
+
+		// select blue corporate print
+
+		this.CorporateBlueprint();
+
+	}
+	
+	// select blue angular memory game print
+
+	public void AngMemGamBlueprint() {
+
+		WebElement blueprintCorporate = driver.findElement(By.xpath(AngMemGamBlueprint));
+
+		blueprintCorporate.click();
+
+	}
+
+	public void selectAngMemGamBlueprint() {
+
+		// select blue angular memory game print
+
+		this.AngMemGamBlueprint();
+
+	}
+
+	// Press on create site
+
+	public void CreateButton() {
+
+		WebElement createButton = driver.findElement(By.cssSelector(createSiteButton));
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		createButton.click();
+
+	}
+
+	public void clickOnCreateSiteButton() {
 
 		// Press on create site
 
-	 	public void CreateButton() {
+		this.CreateButton();
 
-	 		 WebElement createButton = driver.findElement(By.cssSelector(createSiteButton));
-	 		 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	 		createButton.click();
-	 		
+	}
 
-	 	}
-	 	
-		public void clickOnCreateSiteButton(){
-	 		
-			
-			// Press on create site
-	 		
-	 		this.CreateButton();
-	 		
-	 	}
-		
-		// Press on Cancel button of the create site process.
+	// Press on Cancel button of the create site process.
 
-	 	public void CancelButton() {
+	public void CancelButton() {
 
-	 		 WebElement createButton = driver.findElement(By.xpath(cancelButton));
-	 		 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	 		createButton.click();
-	 		
+		WebElement createButton = driver.findElement(By.xpath(cancelButton));
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		createButton.click();
 
-	 	}
-	 	
-		public void clickOnCancelButtonOfTheCreateSiteProcess(){
-	 		
-			
-			// Press on Cancel button of the create site.
-	 		
-	 		this.CancelButton();
-	 		
-	 	}
- 	
+	}
 
+	public void clickOnCancelButtonOfTheCreateSiteProcess() {
+
+		// Press on Cancel button of the create site.
+
+		this.CancelButton();
+
+	}
 
 	public WebDriverManager getDriverManager() {
 		return driverManager;
 	}
+
 	public void setDriverManager(WebDriverManager driverManager) {
 		this.driverManager = driverManager;
 	}
+
 	public WebDriver getDriver() {
 		return driver;
 	}
+
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
 	}
-	
+
 }

@@ -95,6 +95,10 @@ public class CopyPasteContentTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 
@@ -134,6 +138,7 @@ public class CopyPasteContentTest {
 		homePage.getDriverManager().driverWait();
 
 		// Click on edit option of recent activity section
+		
 		homePage.ClickEditOptionOfRecentActivitySection();
 
 		// Switch to the iframe
@@ -173,12 +178,14 @@ public class CopyPasteContentTest {
 
 		// click delete option of the panel
 	    dashboardPage.RightClickToDeleteOption();
+	    
+	    // wait for element
+	 	homePage.getDriverManager().driverWait();
 
 		// Click on delete button
 		dashboardPage.ClickDelete();
 
 		// wait for element
-
 		homePage.getDriverManager().driverWait();
 		
 		// Confirm delete
