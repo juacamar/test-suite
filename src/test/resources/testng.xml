@@ -11,7 +11,7 @@
   
   <test name="Block 1">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSiteTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
     <class name="org.craftercms.studio.test.cases.AddNewContentTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
@@ -19,7 +19,7 @@
   
   <test name="Block 2">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSiteTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
     <class name="org.craftercms.studio.test.cases.AddNewFolderTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
