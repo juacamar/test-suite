@@ -26,6 +26,11 @@ public class PreviewPage {
 	private String clickInContextEdit;
 	private String approvePublish;
 	private String submitButtonApprovePublish;
+	private String previewDuplicate;
+	private String duplicateName;
+	private String saveAndClose;
+	private String pagesTree;
+	private String expandGlobalEntryContent;
 
 	/**
 	 * 
@@ -42,8 +47,13 @@ public class PreviewPage {
 		clickInContextEdit = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("preview.enable_disable_in_context_edit");
 		approvePublish = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.approve&publish");
-		submitButtonApprovePublish = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.approve&publish_submit");
-
+		submitButtonApprovePublish = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("preview.approve&publish_submit");
+		previewDuplicate = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.duplicate");
+		duplicateName = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.duplicate_name");
+		saveAndClose = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.save_close");
+		pagesTree = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.expand_pages");
+		expandGlobalEntryContent = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.expand_GlobalEntry_Tree");
 
 	}
 
@@ -170,8 +180,93 @@ public class PreviewPage {
 
 	}
 
+	// Click on duplicate button of the menu
+
+	public void DuplicateButton() {
+
+		WebElement duplicateOption = driverManager.getDriver().findElement(By.xpath(previewDuplicate));
+		duplicateOption.click();
+
+	}
+
+	public void ClickOnDuplicateOption() {
+
+		// Click on duplicate button of the menu
+
+		this.DuplicateButton();
+
+	}
+
 	public WebDriverManager getDriverManager() {
 		return driverManager;
+	}
+
+	// Set the new name of the URL
+
+	public void DuplicateName(String strDuplicateName) {
+
+		WebElement internalName = driverManager.getDriver().findElement(By.xpath(duplicateName));
+		internalName.sendKeys(strDuplicateName);
+
+	}
+
+	public void SetDuplicateName(String strDuplicateName) {
+
+		// Set the new name of the URL
+
+		this.DuplicateName(strDuplicateName);
+
+	}
+
+	// Click on save and close
+
+	public void SaveAndClose() {
+
+		WebElement saveClose = driverManager.getDriver().findElement(By.cssSelector(saveAndClose));
+		saveClose.click();
+
+	}
+	
+	// Expand pages tree
+
+	public void ClickPagesTree() {
+
+		WebElement expandPagesTree = driverManager.getDriver().findElement(By.cssSelector(pagesTree));
+		expandPagesTree.click();
+
+	}
+
+	public void ExpandPagesTree() {
+
+		// Expand pages tree
+
+		this.ClickPagesTree();
+
+	}
+	
+	// Expand global entry content
+
+		public void ClickGlobalEntryContent() {
+
+			WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(expandGlobalEntryContent));
+			globalEntry.click();
+	
+		}
+
+		public void ClickGlobalEntryTree() {
+
+			// Expand global entry content
+
+			this.ClickGlobalEntryContent();
+
+		}
+
+	public void ClickOnSaveAndClose() {
+
+		// Click on save and close
+
+		this.SaveAndClose();
+
 	}
 
 }

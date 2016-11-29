@@ -1,11 +1,19 @@
 package org.craftercms.studio.test.cases;
 
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.craftercms.studio.test.pages.AdminConsolePage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
@@ -17,11 +25,11 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
-public class AddNewFolderTest {
+public class DuplicateOptionTest {
 
 	WebDriver driver;
 
@@ -36,6 +44,8 @@ public class AddNewFolderTest {
 	private HomePage homePage;
 
 	private PreviewPage previewPage;
+
+	private AdminConsolePage adminConsolePage;
 
 	private DashboardPage dashboardPage;
 
@@ -55,7 +65,7 @@ public class AddNewFolderTest {
 	// This code shows the UI and the QA can see the steps executing in real
 	// time.
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
@@ -63,38 +73,35 @@ public class AddNewFolderTest {
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager);
+		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
 
 	}
 
-	@AfterTest
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
+	 @AfterTest
+	 public void afterTest() {
+	 driverManager.closeConnection();
+	 }
 
 	@Test(priority = 0)
 
-	public void Add_New_Folder_test() {
+	public void Publishing_Site() {
 
 		// login to application
 
 		loginPage.loginToCrafter("admin", "1234");
 
-		// wait for element is clickeable
+		// wait for element
 
 		homePage.getDriverManager().driverWait();
 
-		// go to dashboard page
-
-		homePage.GoToDashboardPage();
+		// go to preview page
+		homePage.GoToPreviewPage();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
 
@@ -107,37 +114,61 @@ public class AddNewFolderTest {
 
 		// expand pages folder
 
-		dashboardPage.ExpandPagesTree();
+		previewPage.ExpandPagesTree();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// expand global entry content
 
-		dashboardPage.ClickGlobalEntryTree();
+	   previewPage.ClickGlobalEntryTree();
 
-		// expand home content
+		// Select the content to duplicate.
 
-		dashboardPage.ClickHomeTree();
-
-		// right click to see the the menu
-
-		dashboardPage.RightClickNewFolder();
-
-		// Set the name of the folder
-
-		dashboardPage.FolderName("addnewfolder");
-
-		// Create folder button
-
-		dashboardPage.ClickCreateButton();
+		driverManager.getDriver()
+				.findElement(By
+						.id("ygtvlabelel11"))
+				.click();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Assert find the new folder created
+		// click on duplicate
 
-		String folderName = driverManager.getDriver()
-				.findElement(By.cssSelector("span.status-icon.folder.no-preview.no-preview.over-effect-set")).getText();
-		Assert.assertEquals(folderName, "addnewfolder *");
+		previewPage.ClickOnDuplicateOption();
+
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+		// wait for element is clickeable
+
+		previewPage.getDriverManager().driverWait();
+
+		// set the name of the duplicate content
+
+		previewPage.DuplicateName("contentduplicated");
+
+		// click on save&close
+
+		previewPage.ClickOnSaveAndClose();
+
+		// Switch back to the preview page
+
+		driverManager.getDriver().switchTo().defaultContent();
+		
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// Assert
+		
+		String duplicate = driverManager.getDriver()
+		.findElement(By.id("ygtvlabelel12")).getText();
+		Assert.assertEquals(duplicate, "Home | English (US)contentduplicated *");
 
 	}
 

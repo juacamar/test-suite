@@ -2,14 +2,13 @@ package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
@@ -17,13 +16,17 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
-public class AddNewFolderTest {
+public class WrongLoginTest {
 
 	WebDriver driver;
+
+	LoginPage objLogin;
+
+	HomePage objHomePage;
 
 	private WebDriverManager driverManager;
 
@@ -34,10 +37,6 @@ public class AddNewFolderTest {
 	private ConstantsPropertiesManager constantsPropertiesManager;
 
 	private HomePage homePage;
-
-	private PreviewPage previewPage;
-
-	private DashboardPage dashboardPage;
 
 	// The following code is for the QA needs to execute the test with phantomJS
 
@@ -63,8 +62,6 @@ public class AddNewFolderTest {
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-
 	}
 
 	@AfterTest
@@ -74,70 +71,35 @@ public class AddNewFolderTest {
 
 	@Test(priority = 0)
 
-	public void Add_New_Folder_test() {
+	public void login_Test() {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("WrongUser", "1234");
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// go to dashboard page
+		// Assert No login for invalid user.
 
-		homePage.GoToDashboardPage();
+		WebElement signInWrongUser = driverManager.getDriver().findElement(By.id(".btn.btn-primary"));
 
-		// wait for element is clickeable
+		Assert.assertTrue(signInWrongUser.isDisplayed());
 
-		homePage.getDriverManager().driverWait();
+		// login to application
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
+		loginPage.loginToCrafter("Admin", "WrongPwd");
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// expand pages folder
+		// Assert No login for invalid password.
 
-		dashboardPage.ExpandPagesTree();
+		WebElement signInWrongPwd = driverManager.getDriver().findElement(By.id(".btn.btn-primary"));
 
-		// expand global entry content
-
-		dashboardPage.ClickGlobalEntryTree();
-
-		// expand home content
-
-		dashboardPage.ClickHomeTree();
-
-		// right click to see the the menu
-
-		dashboardPage.RightClickNewFolder();
-
-		// Set the name of the folder
-
-		dashboardPage.FolderName("addnewfolder");
-
-		// Create folder button
-
-		dashboardPage.ClickCreateButton();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Assert find the new folder created
-
-		String folderName = driverManager.getDriver()
-				.findElement(By.cssSelector("span.status-icon.folder.no-preview.no-preview.over-effect-set")).getText();
-		Assert.assertEquals(folderName, "addnewfolder *");
+		Assert.assertTrue(signInWrongPwd.isDisplayed());
 
 	}
 
