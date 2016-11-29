@@ -21,7 +21,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CreateTreeContentTest {
+public class CreateTreeSameContentTest {
 
 	WebDriver driver;
 
