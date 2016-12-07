@@ -9,7 +9,7 @@
   </classes>
   </test> <!-- Test -->
   
-  <test name="Block 1">
+  <test name="Add New Content">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
     <class name="org.craftercms.studio.test.cases.AddNewContentTest" />
@@ -17,7 +17,7 @@
   </classes>
   </test> <!-- Test -->
   
-  <test name="Block 2">
+  <test name="Add New Folder">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
     <class name="org.craftercms.studio.test.cases.AddNewFolderTest" />
