@@ -20,9 +20,9 @@ public class WebDriverManager {
 
 		if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
 
-			System.setProperty("webdriver.chrome.driver",
-					constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeExec"));
-			driver = new ChromeDriver();
+			System.setProperty("phantomjs.binary.path",
+					constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomJSExec"));
+			driver = new PhantomJSDriver();
 		} else if (webBrowserProperty.equalsIgnoreCase("FireFox"))
 			driver = new FirefoxDriver();
 		else if (webBrowserProperty.equalsIgnoreCase("Safari"))

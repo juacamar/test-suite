@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 /**
- * Costa Rica Crafter Software team
+ *
  * @author Gustavo Andrei Ortiz Alfaro 
  *
  */
