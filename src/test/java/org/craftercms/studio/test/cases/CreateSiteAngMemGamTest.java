@@ -27,7 +27,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CreateSiteAngMemGam {
+public class CreateSiteAngMemGamTest {
 
 	WebDriver driver;
 

@@ -18,13 +18,20 @@ public class WebDriverManager {
 		constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		String webBrowserProperty = constantsPropertiesManager.getSharedExecutionConstants().getProperty("webBrowser");
 
-		if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
+		if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
 
 			System.setProperty("phantomjs.binary.path",
 					constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomJSExec"));
 			driver = new PhantomJSDriver();
-		} else if (webBrowserProperty.equalsIgnoreCase("FireFox"))
-			driver = new FirefoxDriver();
+		}
+		
+		else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
+
+			System.setProperty("webdriver.chrome.driver",
+					constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeExec"));
+			driver = new ChromeDriver();
+		}
+		
 		else if (webBrowserProperty.equalsIgnoreCase("Safari"))
 			driver = new SafariDriver();
 		else {
