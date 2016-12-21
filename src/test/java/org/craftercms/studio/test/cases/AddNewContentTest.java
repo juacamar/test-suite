@@ -39,21 +39,6 @@ public class AddNewContentTest {
 
 	private DashboardPage dashboardPage;
 
-	// The following code is for the QA needs to execute the test with phantomJS
-
-	
-//	  @BeforeTest public void setup() throws Exception { 
-//	  //Set phantomjs.exe executable file path using DesiredCapabilities. 
-//	  DesiredCapabilities capability = new DesiredCapabilities();
-//	  capability.setCapability(PhantomJSDriverService.
-//	  PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-//	  "/Users/gustavoortizalfaro/Documents/workspace/phantomjs-2.1.1-macosx/bin/phantomjs"
-//	  ); driver = new PhantomJSDriver(capability);
-//	  driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS); }
-	 
-
-	// This code shows the UI and the QA can see the steps executing in real
-	// time.
 
 	@BeforeTest
 	public void beforeTest() {
@@ -97,7 +82,7 @@ public class AddNewContentTest {
 
 		// Show site content panel
 
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		driverManager.getDriver().findElement(By.cssSelector("#acn-dropdown-toggler.acn-dropdown-toggler.acn-drop-arrow"))
 				.click();
 
 		// wait for element is clickeable
