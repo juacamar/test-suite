@@ -82,7 +82,7 @@ public class AddNewContentTest {
 
 		// Show site content panel
 
-		driverManager.getDriver().findElement(By.cssSelector("#acn-dropdown-toggler.acn-dropdown-toggler.acn-drop-arrow"))
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 				.click();
 
 		// wait for element is clickeable
