@@ -22,7 +22,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DuplicateOptionTest {
+public class DeleteOptionTest {
 
 	WebDriver driver;
 
@@ -65,7 +65,7 @@ public class DuplicateOptionTest {
 
 	@Test(priority = 0)
 
-	public void duplicate_option() {
+	public void Delete_option() {
 
 		// login to application
 
@@ -114,40 +114,27 @@ public class DuplicateOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// click on duplicate
+		// click on delete option
 
-		previewPage.ClickOnDuplicateOption();
+		previewPage.ClickOnDeleteOption();
+		
+		// Click on Delete dependencies
+		
+		previewPage.ClickOnDeleteDependencies();
+		
+		// Click nn OK Delete dependencies
 
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-
+		previewPage.ClickOnOKDeleteDependencies();
+		
 		// wait for element is clickeable
 
 		previewPage.getDriverManager().driverWait();
-
-		// set the name of the duplicate content
-
-		previewPage.DuplicateName("contentduplicated");
-
-		// click on save&close
-
-		previewPage.ClickOnSaveAndClose();
-
-		// Switch back to the preview page
-
-		driverManager.getDriver().switchTo().defaultContent();
 		
-		// reload page
 
-		driverManager.getDriver().navigate().refresh();
-
-		// Assert
 		
-		String duplicate = driverManager.getDriver()
-		.findElement(By.id("ygtvlabelel12")).getText();
-		Assert.assertEquals(duplicate, "Home | English (US)contentduplicated *");
+		String deleted = driverManager.getDriver()
+		.findElement(By.cssSelector(".status-icon.deleted-lock.context-nav-title-element.navbar-text")).getText();
+		Assert.assertEquals(deleted, "Deleted :");
 
 	}
 

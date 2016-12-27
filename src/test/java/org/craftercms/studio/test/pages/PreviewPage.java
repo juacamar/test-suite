@@ -31,6 +31,9 @@ public class PreviewPage {
 	private String saveAndClose;
 	private String pagesTree;
 	private String expandGlobalEntryContent;
+	private String previewDelete;
+	private String deleteDependencies;
+	private String OKdeleteDependencies;
 
 	/**
 	 * 
@@ -54,7 +57,11 @@ public class PreviewPage {
 		saveAndClose = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.save_close");
 		pagesTree = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.expand_pages");
 		expandGlobalEntryContent = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.expand_GlobalEntry_Tree");
+		previewDelete = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.delete");
+		deleteDependencies = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.delete_dependencies");
+		OKdeleteDependencies = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.ok_delete_dependencies");
 
+		
 	}
 
 	public PreviewPage(WebDriver driver2) {
@@ -200,6 +207,57 @@ public class PreviewPage {
 	public WebDriverManager getDriverManager() {
 		return driverManager;
 	}
+	
+	// Click on delete button of the menu
+
+		public void DeleteButton() {
+
+			WebElement deleteOption = driverManager.getDriver().findElement(By.xpath(previewDelete));
+			deleteOption.click();
+
+		}
+
+		public void ClickOnDeleteOption() {
+
+			// Click on delete button of the menu
+
+			this.DeleteButton();
+
+		}
+		
+		// Click on delete dependencies
+
+				public void DeleteDependencies() {
+
+					WebElement deleteDepen = driverManager.getDriver().findElement(By.id(deleteDependencies));
+					deleteDepen.click();
+
+				}
+
+				public void ClickOnDeleteDependencies() {
+
+					// Click on delete dependencies
+
+					this.DeleteDependencies();
+
+				}
+				
+				// Click on OK to delete dependencies
+
+				public void OKDeleteDependencies() {
+
+					WebElement OKdeleteDepen = driverManager.getDriver().findElement(By.cssSelector(OKdeleteDependencies));
+					OKdeleteDepen.click();
+
+				}
+
+				public void ClickOnOKDeleteDependencies() {
+
+					// Click on OK to delete dependencies
+
+					this.OKDeleteDependencies();
+
+				}
 
 	// Set the new name of the URL
 
