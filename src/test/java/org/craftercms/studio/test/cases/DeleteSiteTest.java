@@ -1,12 +1,6 @@
 package org.craftercms.studio.test.cases;
 
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.BeforeClass;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
