@@ -22,7 +22,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DeleteOptionTest {
+public class EditOptionTest {
 
 	WebDriver driver;
 
@@ -114,27 +114,19 @@ public class DeleteOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// click on delete option
+		// click on edit option
 
-		previewPage.ClickOnDeleteOption();
-		
-		// Click on Delete dependencies
-		
-		previewPage.ClickOnDeleteDependencies();
-		
-		// Click nn OK Delete dependencies
-
-		previewPage.ClickOnOKDeleteDependencies();
+		previewPage.ClickOnEditOption();
 		
 		// wait for element is clickeable
 
 		previewPage.getDriverManager().driverWait();
 		
-
+		//Assert
 		
-		String deleted = driverManager.getDriver()
-		.findElement(By.cssSelector(".status-icon.deleted-lock.context-nav-title-element.navbar-text")).getText();
-		Assert.assertEquals(deleted, "Deleted :");
+//		String deleted = driverManager.getDriver()
+//		.findElement(By.cssSelector(".status-icon.deleted-lock.context-nav-title-element.navbar-text")).getText();
+//		Assert.assertEquals(deleted, "Deleted :");
 
 	}
 

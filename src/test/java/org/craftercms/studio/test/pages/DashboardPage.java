@@ -366,9 +366,9 @@ public class DashboardPage {
 
 	}
 
-	// Press right click and press copy option
+	// Press right click and press copy option (about us page)
 
-	public void RightClickCopyOption() {
+	public void RightClickCopyOptionAboutUs() {
 
 		WebElement copypasteContent = driverManager.getDriver().findElement(By.id(aboutUsOption));
 
@@ -384,9 +384,31 @@ public class DashboardPage {
 
 		// Press right click and press copy option
 
-		this.RightClickCopyOption();
+		this.RightClickCopyOptionAboutUs();
 
 	}
+	
+	// Press right click and press copy option (service page)
+
+		public void RightClickCopyOptionService() {
+
+			WebElement copypasteContent = driverManager.getDriver().findElement(By.id(servicesOption));
+
+			Actions action = new Actions(driverManager.getDriver());
+			action.contextClick(copypasteContent).build().perform();
+
+			WebElement copyContent = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
+			copyContent.click();
+
+		}
+
+		public void RightClickToCopyOptionService() {
+
+			// Press right click and press copy option
+
+			this.RightClickCopyOptionService();
+
+		}
 
 	// Press right click and press paste option
 
