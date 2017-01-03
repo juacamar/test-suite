@@ -59,7 +59,7 @@ public class CreateTreeDifferentContentTest {
 
 	@Test(priority = 0)
 
-	public void Create_Tree_Content_Test() {
+	public void Create_Tree_Different_Content_Test() {
 
 		// login to application
 
@@ -104,7 +104,7 @@ public class CreateTreeDifferentContentTest {
 
 		// Right click and copy content.
 
-		dashboardPage.RightClickToCopyOptionAboutUs();
+		dashboardPage.RightClickToCopyOptionService();
 
 		// Right click and paste content.
 
@@ -189,8 +189,8 @@ public class CreateTreeDifferentContentTest {
 		// Assert of the tree created
 
 		String contentCopied = driverManager.getDriver()
-				.findElement(By.xpath("//tr/td[contains(span, 'About usTREE')]")).getText();
-		Assert.assertEquals(contentCopied, "About usTREE *");
+				.findElement(By.xpath("//tr/td[contains(span, 'ServicesTREE')]")).getText();
+		Assert.assertEquals(contentCopied, "ServicesTREE *");
 		
 	}
 

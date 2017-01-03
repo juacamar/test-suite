@@ -60,7 +60,7 @@ public class CreateTreeSameContentTest {
 
 	@Test(priority = 0)
 
-	public void Create_Tree_Content_Test() {
+	public void Create_Tree_Same_Content_Test() {
 
 		// login to application
 

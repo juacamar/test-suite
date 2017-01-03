@@ -34,6 +34,7 @@ public class PreviewPage {
 	private String previewDelete;
 	private String deleteDependencies;
 	private String OKdeleteDependencies;
+	private String previewEdit;
 
 	/**
 	 * 
@@ -56,12 +57,15 @@ public class PreviewPage {
 		duplicateName = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.duplicate_name");
 		saveAndClose = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.save_close");
 		pagesTree = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.expand_pages");
-		expandGlobalEntryContent = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.expand_GlobalEntry_Tree");
+		expandGlobalEntryContent = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("preview.expand_GlobalEntry_Tree");
 		previewDelete = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.delete");
 		deleteDependencies = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.delete_dependencies");
-		OKdeleteDependencies = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.ok_delete_dependencies");
+		OKdeleteDependencies = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("preview.ok_delete_dependencies");
+		previewEdit = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("preview.edit");
 
-		
 	}
 
 	public PreviewPage(WebDriver driver2) {
@@ -207,57 +211,74 @@ public class PreviewPage {
 	public WebDriverManager getDriverManager() {
 		return driverManager;
 	}
-	
+
 	// Click on delete button of the menu
 
-		public void DeleteButton() {
+	public void DeleteButton() {
 
-			WebElement deleteOption = driverManager.getDriver().findElement(By.xpath(previewDelete));
-			deleteOption.click();
+		WebElement deleteOption = driverManager.getDriver().findElement(By.xpath(previewDelete));
+		deleteOption.click();
 
-		}
+	}
 
-		public void ClickOnDeleteOption() {
+	public void ClickOnDeleteOption() {
 
-			// Click on delete button of the menu
+		// Click on delete button of the menu
 
-			this.DeleteButton();
+		this.DeleteButton();
 
-		}
-		
+	}
+
+	// Click on delete dependencies
+
+	public void DeleteDependencies() {
+
+		WebElement deleteDepen = driverManager.getDriver().findElement(By.id(deleteDependencies));
+		deleteDepen.click();
+
+	}
+
+	public void ClickOnDeleteDependencies() {
+
 		// Click on delete dependencies
 
-				public void DeleteDependencies() {
+		this.DeleteDependencies();
 
-					WebElement deleteDepen = driverManager.getDriver().findElement(By.id(deleteDependencies));
-					deleteDepen.click();
+	}
 
-				}
+	// Click on OK to delete dependencies
 
-				public void ClickOnDeleteDependencies() {
+	public void OKDeleteDependencies() {
 
-					// Click on delete dependencies
+		WebElement OKdeleteDepen = driverManager.getDriver().findElement(By.cssSelector(OKdeleteDependencies));
+		OKdeleteDepen.click();
 
-					this.DeleteDependencies();
+	}
 
-				}
-				
-				// Click on OK to delete dependencies
+	public void ClickOnOKDeleteDependencies() {
 
-				public void OKDeleteDependencies() {
+		// Click on OK to delete dependencies
 
-					WebElement OKdeleteDepen = driverManager.getDriver().findElement(By.cssSelector(OKdeleteDependencies));
-					OKdeleteDepen.click();
+		this.OKDeleteDependencies();
 
-				}
+	}
 
-				public void ClickOnOKDeleteDependencies() {
+	// Click on edit button of the menu
 
-					// Click on OK to delete dependencies
+	public void EditButton() {
 
-					this.OKDeleteDependencies();
+		WebElement editOption = driverManager.getDriver().findElement(By.xpath(previewEdit));
+		editOption.click();
 
-				}
+	}
+
+	public void ClickOnEditOption() {
+
+		// Click on edit button of the menu
+
+		this.EditButton();
+
+	}
 
 	// Set the new name of the URL
 
@@ -284,7 +305,7 @@ public class PreviewPage {
 		saveClose.click();
 
 	}
-	
+
 	// Expand pages tree
 
 	public void ClickPagesTree() {
@@ -301,23 +322,23 @@ public class PreviewPage {
 		this.ClickPagesTree();
 
 	}
-	
+
 	// Expand global entry content
 
-		public void ClickGlobalEntryContent() {
+	public void ClickGlobalEntryContent() {
 
-			WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(expandGlobalEntryContent));
-			globalEntry.click();
-	
-		}
+		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(expandGlobalEntryContent));
+		globalEntry.click();
 
-		public void ClickGlobalEntryTree() {
+	}
 
-			// Expand global entry content
+	public void ClickGlobalEntryTree() {
 
-			this.ClickGlobalEntryContent();
+		// Expand global entry content
 
-		}
+		this.ClickGlobalEntryContent();
+
+	}
 
 	public void ClickOnSaveAndClose() {
 
