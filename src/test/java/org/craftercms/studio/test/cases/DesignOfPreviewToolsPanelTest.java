@@ -66,7 +66,7 @@ public class DesignOfPreviewToolsPanelTest {
 
 		// go to dashboard page
 
-		homePage.GoToPreviewPage();
+		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
@@ -74,7 +74,7 @@ public class DesignOfPreviewToolsPanelTest {
 
 		// Click on Preview Tools icon (show)
 
-		previewPage.ClickOnPreviewTools();
+		previewPage.clickOnPreviewTools();
 
 		// Assert
 
@@ -85,7 +85,7 @@ public class DesignOfPreviewToolsPanelTest {
 
 		// Click on Preview Tools icon (hide)
 
-		previewPage.ClickOnPreviewTools();
+		previewPage.clickOnPreviewTools();
 
 		// Assert
 

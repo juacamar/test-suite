@@ -75,7 +75,7 @@ public class CopyPasteFolderTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
 		// reload page
 
@@ -100,35 +100,31 @@ public class CopyPasteFolderTest {
 
 		// expand pages folder
 
-		dashboardPage.ExpandPagesTree();
+		dashboardPage.expandPagesTree();
 
 		// expand global entry content
 
-		dashboardPage.ClickGlobalEntryTree();
+		dashboardPage.clickGlobalEntryTree();
 
 		// expand home content
 
-		dashboardPage.ClickHomeTree();
+		dashboardPage.clickHomeTree();
 
 		// right click to see the the menu
 
-		dashboardPage.RightClickNewFolder();
+		dashboardPage.rightClickNewFolder();
 
 		// Set the name of the folder
 
-		dashboardPage.FolderName("FolderToCopy");
+		dashboardPage.setFolderName("FolderToCopy");
 
 		// Create folder button
 
-		dashboardPage.ClickCreateButton();
+		dashboardPage.clickCreateButton();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// expand home content
-
-		// dashboardPage.ClickHomeTree();
 
 		// reload page
 
@@ -136,7 +132,7 @@ public class CopyPasteFolderTest {
 
 		// Copy the about us page to the new folder created
 
-		dashboardPage.RightClickToCopyAboutUsToNewFolder();
+		dashboardPage.rightClickToCopyAboutUsToNewFolder();
 
 		// wait for element is clickeable
 
@@ -144,11 +140,11 @@ public class CopyPasteFolderTest {
 
 		// paste the content in the new folder created
 
-		dashboardPage.RightClickToPasteToNewFolder();
+		dashboardPage.rightClickToPasteToNewFolder();
 
 		// Copy the services page to the new folder created
 
-		dashboardPage.RightClickToCopyServicesToNewFolder();
+		dashboardPage.rightClickToCopyServicesToNewFolder();
 
 		// wait for element is clickeable
 
@@ -156,7 +152,7 @@ public class CopyPasteFolderTest {
 
 		// paste the content in the new folder created
 
-		dashboardPage.RightClickToPasteToNewFolder();
+		dashboardPage.rightClickToPasteToNewFolder();
 
 		// reload page
 
@@ -172,7 +168,7 @@ public class CopyPasteFolderTest {
 
 		// copy about us option
 
-		dashboardPage.RightClickToCopyOptionAboutUs();
+		dashboardPage.rightClickToCopyOptionAboutUs();
 
 		// wait for element is clickeable
 
@@ -184,7 +180,7 @@ public class CopyPasteFolderTest {
 
 		// paste about us to about us.
 
-		dashboardPage.RightClickToPasteOptionAboutUsToAboutUs();
+		dashboardPage.rightClickToPasteOptionAboutUsToAboutUs();
 
 		// Asserts of the new content created
 

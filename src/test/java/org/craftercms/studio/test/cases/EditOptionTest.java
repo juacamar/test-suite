@@ -76,7 +76,7 @@ public class EditOptionTest {
 		homePage.getDriverManager().driverWait();
 
 		// go to preview page
-		homePage.GoToPreviewPage();
+		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
@@ -93,7 +93,7 @@ public class EditOptionTest {
 
 		// expand pages folder
 
-		previewPage.ExpandPagesTree();
+		previewPage.expandPagesTree();
 		
 		// wait for element is clickeable
 
@@ -101,7 +101,7 @@ public class EditOptionTest {
 
 		// expand global entry content
 
-	   previewPage.ClickGlobalEntryTree();
+	   previewPage.clickGlobalEntryTree();
 
 		// Select the content to delete.
 

@@ -70,7 +70,7 @@ public class AddNewContentTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
 		// wait for element is clickeable
 
@@ -91,19 +91,19 @@ public class AddNewContentTest {
 
 		// expand pages folder
 
-		dashboardPage.ExpandPagesTree();
+		dashboardPage.expandPagesTree();
 
 		// expand global entry content
 
-		dashboardPage.ClickGlobalEntryTree();
+		dashboardPage.clickGlobalEntryTree();
 
 		// expand home content
 
-		dashboardPage.ClickHomeTree();
+		dashboardPage.clickHomeTree();
 
 		// right click to see the the menu
 
-		dashboardPage.RightClickToSeeMenu();
+		dashboardPage.rightClickToSeeMenu();
 
 		// wait for element is clickeable
 
@@ -111,11 +111,11 @@ public class AddNewContentTest {
 
 		// Select Generic Content Type
 
-		dashboardPage.ClickGenericCT();
+		dashboardPage.clickGenericCT();
 
 		// Confirm the Content Type selected
 
-		dashboardPage.ClickOKButton();
+		dashboardPage.clickOKButton();
 
 		// wait for element is clickeable
 

@@ -58,52 +58,52 @@ public class HomePage {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void ClickPreviewOption() {
+	public void clickPreviewOption() {
 
 		WebElement previewLink = driverManager.getDriver().findElement(By.xpath(previewSite1));
 		previewLink.click();
 
 	}
 
-	public void GoToPreviewPage() {
+	public void goToPreviewPage() {
 
 		// Click on preview link
 
-		this.ClickPreviewOption();
+		this.clickPreviewOption();
 
 	}
 
 	// Click on dashboard link
 
-	public void ClickDashboardOption() {
+	public void clickDashboardOption() {
 
 		WebElement dashboardLink = driver.findElement(By.xpath(dashboardSite2));
 		dashboardLink.click();
 
 	}
 
-	public void GoToDashboardPage() {
+	public void goToDashboardPage() {
 
 		// Click on dashboard link
 
-		this.ClickDashboardOption();
+		this.clickDashboardOption();
 
 	}
 
 	// Click on edit option of my recent activity senction
 
-	public void ClickEditOptionOfRecentActivitySection() {
+	public void clickEditOptionOfRecentActivitySection() {
 
 		WebElement editOptionMyRecentActivity = driver.findElement(By.xpath(editRecentActivity));
 		editOptionMyRecentActivity.click();
 
 	}
 
-	public void ClickOnEditOptionRecentActivity() {
+	public void clickOnEditOptionRecentActivity() {
 
 		// Click on edit option of my recent activity senction
 
-		this.ClickEditOptionOfRecentActivitySection();
+		this.clickEditOptionOfRecentActivitySection();
 
 	}
 
@@ -142,52 +142,52 @@ public class HomePage {
 
 	// Click on Create Site button
 
-	public void ClickCreateSiteButton() {
+	public void clickCreateSiteButton() {
 
 		WebElement createSiteOption = driver.findElement(By.cssSelector(createSiteButton));
 		createSiteOption.click();
 
 	}
 
-	public void ClickOnCreateSiteButton() {
+	public void clickOnCreateSiteButton() {
 
 		// Click on Create Site button
 
-		this.ClickCreateSiteButton();
+		this.clickCreateSiteButton();
 
 	}
 
 	// Click on Delete icon to the site
 
-	public void ClickDeleteSiteIcon() {
+	public void clickDeleteSiteIcon() {
 
 		WebElement deleteIcon = driver.findElement(By.xpath(deleteSiteIcon));
 		deleteIcon.click();
 
 	}
 
-	public void ClickOnDeleteSiteIcon() {
+	public void clickOnDeleteSiteIcon() {
 
 		// Click on Delete icon to the site
 
-		this.ClickDeleteSiteIcon();
+		this.clickDeleteSiteIcon();
 
 	}
 
 	// Click on YES button
 
-	public void ClickYesButton() {
+	public void clickYesButton() {
 
 		WebElement yesButton = driver.findElement(By.cssSelector(yesDeleteButton));
 		yesButton.click();
 
 	}
 
-	public void ClickOnYesToDeleteSite() {
+	public void clickOnYesToDeleteSite() {
 
 		// Click on YES button
 
-		this.ClickYesButton();
+		this.clickYesButton();
 
 	}
 	
@@ -200,7 +200,7 @@ public class HomePage {
 			
 		}
 		
-		public void ClickSignOut() {
+		public void clickSignOut() {
 
 			
 			WebElement signOut = driver.findElement(By.xpath(signOutLink));
@@ -208,7 +208,7 @@ public class HomePage {
 
 		}
 
-		public void ClickLogoutOutCrafter() {
+		public void clickLogoutOutCrafter() {
 
 			//Expand account
 
@@ -216,7 +216,7 @@ public class HomePage {
 			
 			//Click on SignOut
 			
-			this.ClickSignOut();
+			this.clickSignOut();
 			
 
 		}

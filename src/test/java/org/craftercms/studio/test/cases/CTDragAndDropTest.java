@@ -76,7 +76,7 @@ public class CTDragAndDropTest {
 		homePage.getDriverManager().driverWait();
 
 		// go to preview page
-		homePage.GoToPreviewPage();
+		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
@@ -96,18 +96,18 @@ public class CTDragAndDropTest {
 
 		// go to admin console page
 
-		previewPage.GoToAdminConsolePage();
+		previewPage.goToAdminConsolePage();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
 		// select content types
-		adminConsolePage.SelectContentTypeOption();
+		adminConsolePage.selectContentTypeOption();
 
 		// open content types
 
-		adminConsolePage.ClickExistingTypeOption();
+		adminConsolePage.clickExistingTypeOption();
 
 		// wait for element is clickeable
 
@@ -115,11 +115,11 @@ public class CTDragAndDropTest {
 
 		// Select the generic content type
 
-		adminConsolePage.SelectGenericContentType();
+		adminConsolePage.selectGenericContentType();
 
 		// Confirm the content type selected
 
-		adminConsolePage.ConfirmContentTypeSelected();
+		adminConsolePage.confirmContentTypeSelected();
 
 		// wait for element is clickeable
 
@@ -150,12 +150,12 @@ public class CTDragAndDropTest {
 
 		// Save the drag and drop process
 
-		adminConsolePage.SaveDragAndDropProcess();
+		adminConsolePage.saveDragAndDropProcess();
 
 		// Ok for the dialog window when appears
 
-		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
-		driverManager.getDriver().switchTo().alert().accept();
+//		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
+//		driverManager.getDriver().switchTo().alert().accept();
 
 		// validate the control added
 

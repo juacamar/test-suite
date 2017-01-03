@@ -76,7 +76,7 @@ public class DeleteOptionTest {
 		homePage.getDriverManager().driverWait();
 
 		// go to preview page
-		homePage.GoToPreviewPage();
+		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
@@ -93,7 +93,7 @@ public class DeleteOptionTest {
 
 		// expand pages folder
 
-		previewPage.ExpandPagesTree();
+		previewPage.expandPagesTree();
 		
 		// wait for element is clickeable
 
@@ -101,7 +101,7 @@ public class DeleteOptionTest {
 
 		// expand global entry content
 
-	   previewPage.ClickGlobalEntryTree();
+	   previewPage.clickGlobalEntryTree();
 
 		// Select the content to delete.
 
@@ -116,15 +116,15 @@ public class DeleteOptionTest {
 
 		// click on delete option
 
-		previewPage.ClickOnDeleteOption();
+		previewPage.clickOnDeleteOption();
 		
 		// Click on Delete dependencies
 		
-		previewPage.ClickOnDeleteDependencies();
+		previewPage.clickOnDeleteDependencies();
 		
 		// Click nn OK Delete dependencies
 
-		previewPage.ClickOnOKDeleteDependencies();
+		previewPage.clickOnOKDeleteDependencies();
 		
 		// wait for element is clickeable
 

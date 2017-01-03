@@ -65,7 +65,7 @@ public class EnableDisableEditingInContextTest {
 
 		// go to dashboard page
 
-		homePage.GoToPreviewPage();
+		homePage.goToPreviewPage();
 		
 		// wait for element is clickeable
 
@@ -73,15 +73,15 @@ public class EnableDisableEditingInContextTest {
 		
 		// Click on Preview Tools icon
 		
-		previewPage.ClickOnPreviewTools();
+		previewPage.clickOnPreviewTools();
 		
 		// Expand context editing section
 		
-		previewPage.ClickToExpandInContextEditing();
+		previewPage.clickToExpandInContextEditing();
 		
 		// Enable/disable In Context edit
 		
-		previewPage.ClickToEnableDisableInContextEditing();
+		previewPage.clickToEnableDisableInContextEditing();
 		
 		//Assert 
 		

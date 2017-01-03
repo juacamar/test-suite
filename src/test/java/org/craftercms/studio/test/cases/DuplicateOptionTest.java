@@ -76,7 +76,7 @@ public class DuplicateOptionTest {
 		homePage.getDriverManager().driverWait();
 
 		// go to preview page
-		homePage.GoToPreviewPage();
+		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
@@ -93,7 +93,7 @@ public class DuplicateOptionTest {
 
 		// expand pages folder
 
-		previewPage.ExpandPagesTree();
+		previewPage.expandPagesTree();
 		
 		// wait for element is clickeable
 
@@ -101,7 +101,7 @@ public class DuplicateOptionTest {
 
 		// expand global entry content
 
-	   previewPage.ClickGlobalEntryTree();
+	   previewPage.clickGlobalEntryTree();
 
 		// Select the content to duplicate.
 
@@ -116,7 +116,7 @@ public class DuplicateOptionTest {
 
 		// click on duplicate
 
-		previewPage.ClickOnDuplicateOption();
+		previewPage.clickOnDuplicateOption();
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
@@ -129,11 +129,11 @@ public class DuplicateOptionTest {
 
 		// set the name of the duplicate content
 
-		previewPage.DuplicateName("contentduplicated");
+		previewPage.setDuplicateName("contentduplicated");
 
 		// click on save&close
 
-		previewPage.ClickOnSaveAndClose();
+		previewPage.clickOnSaveAndClose();
 
 		// Switch back to the preview page
 

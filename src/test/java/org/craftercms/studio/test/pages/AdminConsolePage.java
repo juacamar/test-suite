@@ -61,86 +61,86 @@ public class AdminConsolePage {
 
 	// Click on Content Type option
 
-	public void ClickContentTypeOption() {
+	public void clickContentTypeOption() {
 
 		 WebElement contentTypeOpt = driver.findElement(By.xpath(contentTypeOption));
 		 contentTypeOpt.click();
 
 	}
 
-	public void SelectContentTypeOption() {
+	public void selectContentTypeOption() {
 
 		// Click on Content Type option
 
-		this.ClickContentTypeOption();
+		this.clickContentTypeOption();
 
 	}
 
 	// Click on open existing Type option
 
-	public void ClickOpenExistingTypeOption() {
+	public void clickOpenExistingTypeOption() {
 
 		WebElement openExistingTypeOpt = driver.findElement(By.id(openExistingTypeOption));
 		openExistingTypeOpt.click();
 
 	}
 
-	public void ClickExistingTypeOption() {
+	public void clickExistingTypeOption() {
 
 		// Click on open existing Type option
 
-		this.ClickOpenExistingTypeOption();
+		this.clickOpenExistingTypeOption();
 
 	}
 
 	// Select the generic content type
 
-	public void SelectContentType() {
+	public void selectContentType() {
 
 		WebElement selectGenericOption = driver.findElement(By.xpath(genericContentTypeOption));
 		selectGenericOption.click();
 
 	}
 
-	public void SelectGenericContentType() {
+	public void selectGenericContentType() {
 
 		// Select the generic content type
 
-		this.SelectContentType();
+		this.selectContentType();
 
 	}
 
 	// Confirm the content type selected
 
-	public void OkContentTypeSelected() {
+	public void okContentTypeSelected() {
 
 		WebElement okButtonOpt = driver.findElement(By.id(okButton));
 		okButtonOpt.click();
 
 	}
 
-	public void ConfirmContentTypeSelected() {
+	public void confirmContentTypeSelected() {
 
 		// Confirm the content type selected
 
-		this.OkContentTypeSelected();
+		this.okContentTypeSelected();
 
 	}
 
 	// Save the section dropped.
 
-	public void SaveSectionDropped() {
+	public void saveSectionDropped() {
 
 		WebElement okButtonOpt = driver.findElement(By.xpath(saveButton));
 		okButtonOpt.click();
 
 	}
 
-	public void SaveDragAndDropProcess() {
+	public void saveDragAndDropProcess() {
 
 		// Save the section dropped.
 
-		this.SaveSectionDropped();
+		this.saveSectionDropped();
 
 	}
 

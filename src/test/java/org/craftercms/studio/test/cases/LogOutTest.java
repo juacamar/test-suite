@@ -66,7 +66,7 @@ public class LogOutTest {
 		
 		// LogOut
 		
-		homePage.ClickLogoutOutCrafter();
+		homePage.clickLogoutOutCrafter();
 		
 		// wait for element is clickeable
 
