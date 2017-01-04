@@ -112,7 +112,7 @@ public class CreatePage {
 
 	// Open blueprint combo
 
-	public void BlueprintCombo() {
+	public void blueprintCombo() {
 
 		WebElement comboBlueprint = driver.findElement(By.cssSelector(blueprintCombo));
 		comboBlueprint.click();
@@ -123,13 +123,13 @@ public class CreatePage {
 
 		// Open blueprint combo
 
-		this.BlueprintCombo();
+		this.blueprintCombo();
 
 	}
 
 	// select blue pluton print
 
-	public void PlutonBlueprint() {
+	public void plutonBlueprint() {
 
 		WebElement blueprintPluton = driver.findElement(By.xpath(plutonBlueprint));
 
@@ -141,13 +141,13 @@ public class CreatePage {
 
 		// select blue pluton print
 
-		this.PlutonBlueprint();
+		this.plutonBlueprint();
 
 	}
 
 	// select blue empty print
 
-	public void EmptyBlueprint() {
+	public void emptyBlueprint() {
 
 		WebElement blueprintEmpty = driver.findElement(By.xpath(emptyBlueprint));
 
@@ -159,13 +159,13 @@ public class CreatePage {
 
 		// select blue empty print
 
-		this.EmptyBlueprint();
+		this.emptyBlueprint();
 
 	}
 
 	// select blue corporate print
 
-	public void CorporateBlueprint() {
+	public void corporateBlueprint() {
 
 		WebElement blueprintCorporate = driver.findElement(By.xpath(corporateBlueprint));
 
@@ -177,13 +177,13 @@ public class CreatePage {
 
 		// select blue corporate print
 
-		this.CorporateBlueprint();
+		this.corporateBlueprint();
 
 	}
 	
 	// select blue angular memory game print
 
-	public void AngMemGamBlueprint() {
+	public void angMemGamBlueprint() {
 
 		WebElement blueprintCorporate = driver.findElement(By.xpath(AngMemGamBlueprint));
 
@@ -195,13 +195,13 @@ public class CreatePage {
 
 		// select blue angular memory game print
 
-		this.AngMemGamBlueprint();
+		this.angMemGamBlueprint();
 
 	}
 
 	// Press on create site
 
-	public void CreateButton() {
+	public void createButton() {
 
 		WebElement createButton = driver.findElement(By.cssSelector(createSiteButton));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -213,13 +213,13 @@ public class CreatePage {
 
 		// Press on create site
 
-		this.CreateButton();
+		this.createButton();
 
 	}
 
 	// Press on Cancel button of the create site process.
 
-	public void CancelButton() {
+	public void cancelButton() {
 
 		WebElement createButton = driver.findElement(By.xpath(cancelButton));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -231,7 +231,7 @@ public class CreatePage {
 
 		// Press on Cancel button of the create site.
 
-		this.CancelButton();
+		this.cancelButton();
 
 	}
 

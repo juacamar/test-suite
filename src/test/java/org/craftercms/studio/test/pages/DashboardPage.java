@@ -143,58 +143,58 @@ public class DashboardPage {
 
 	// Expand pages tree
 
-	public void ClickPagesTree() {
+	public void clickPagesTree() {
 
 		WebElement expandPagesTree = driverManager.getDriver().findElement(By.cssSelector(pagesTree));
 		expandPagesTree.click();
 
 	}
 
-	public void ExpandPagesTree() {
+	public void expandPagesTree() {
 
 		// Expand pages tree
 
-		this.ClickPagesTree();
+		this.clickPagesTree();
 
 	}
 
 	// Expand global entry content
 
-	public void ClickGlobalEntryContent() {
+	public void clickGlobalEntryContent() {
 
 		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(globalEntryContentTree));
 		globalEntry.click();
 
 	}
 
-	public void ClickGlobalEntryTree() {
+	public void clickGlobalEntryTree() {
 
 		// Expand global entry content
 
-		this.ClickGlobalEntryContent();
+		this.clickGlobalEntryContent();
 
 	}
 
 	// Expand home content
 
-	public void ClickHomeContent() {
+	public void clickHomeContent() {
 
 		WebElement home = driverManager.getDriver().findElement(By.cssSelector(homeContentTree));
 		home.click();
 
 	}
 
-	public void ClickHomeTree() {
+	public void clickHomeTree() {
 
 		// Expand home content
 
-		this.ClickHomeContent();
+		this.clickHomeContent();
 
 	}
 
 	// Press right click and select new content
 
-	public void RightClickHome() {
+	public void rightClickHome() {
 
 		WebElement newContent = driverManager.getDriver().findElement(By.id(homeContent));
 
@@ -206,17 +206,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToSeeMenu() {
+	public void rightClickToSeeMenu() {
 
 		// Press right click and select new content
 
-		this.RightClickHome();
+		this.rightClickHome();
 
 	}
 
 	// Press right click select new folder
 
-	public void RightClickNewFolder() {
+	public void rightClickNewFolder() {
 
 		WebElement newFolder = driverManager.getDriver().findElement(By.id(homeContent));
 
@@ -228,45 +228,45 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToNewContent() {
+	public void rightClickToNewContent() {
 
 		// Press right click select new folder
 
-		this.RightClickNewFolder();
+		this.rightClickNewFolder();
 
 	}
 
 	// Select Generic Content type
 
-	public void SelectGenericCT() {
+	public void selectGenericCT() {
 
 		WebElement genericCT = driverManager.getDriver().findElement(By.xpath(selectGenericCT));
 		genericCT.click();
 
 	}
 
-	public void ClickGenericCT() {
+	public void clickGenericCT() {
 
 		// Select Generic Content type
 
-		this.SelectGenericCT();
+		this.selectGenericCT();
 
 	}
 
 	// Confirm the CT selected
 
-	public void ConfirmCTSelected() {
+	public void confirmCTSelected() {
 
 		WebElement okButton = driverManager.getDriver().findElement(By.id(okButton1));
 		okButton.click();
 
 	}
 
-	public void ClickOKButton() {
+	public void clickOKButton() {
 
 		// Confirm the CT selected
 
-		this.ConfirmCTSelected();
+		this.confirmCTSelected();
 
 	}
 
@@ -334,41 +334,41 @@ public class DashboardPage {
 
 	// Set the name of the folder
 
-	public void FolderName(String strFolderName) {
+	public void folderName(String strFolderName) {
 
 		WebElement folderName = driverManager.getDriver().findElement(By.id(setFolderName1));
 		folderName.sendKeys(strFolderName);
 
 	}
 
-	public void SetFolderName(String strFolderName) {
+	public void setFolderName(String strFolderName) {
 
 		// Set the name of the folder
 
-		this.FolderName(strFolderName);
+		this.folderName(strFolderName);
 
 	}
 
 	// create button
 
-	public void CreateButton() {
+	public void createButton() {
 
 		WebElement buttonCreate = driverManager.getDriver().findElement(By.id(createButton1));
 		buttonCreate.click();
 
 	}
 
-	public void ClickCreateButton() {
+	public void clickCreateButton() {
 
 		// create button
 
-		this.CreateButton();
+		this.createButton();
 
 	}
 
 	// Press right click and press copy option (about us page)
 
-	public void RightClickCopyOptionAboutUs() {
+	public void rightClickCopyOptionAboutUs() {
 
 		WebElement copypasteContent = driverManager.getDriver().findElement(By.id(aboutUsOption));
 
@@ -380,17 +380,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToCopyOptionAboutUs() {
+	public void rightClickToCopyOptionAboutUs() {
 
 		// Press right click and press copy option
 
-		this.RightClickCopyOptionAboutUs();
+		this.rightClickCopyOptionAboutUs();
 
 	}
 	
 	// Press right click and press copy option (service page)
 
-		public void RightClickCopyOptionService() {
+		public void rightClickCopyOptionService() {
 
 			WebElement copypasteContent = driverManager.getDriver().findElement(By.id(servicesOption));
 
@@ -402,17 +402,17 @@ public class DashboardPage {
 
 		}
 
-		public void RightClickToCopyOptionService() {
+		public void rightClickToCopyOptionService() {
 
 			// Press right click and press copy option
 
-			this.RightClickCopyOptionService();
+			this.rightClickCopyOptionService();
 
 		}
 
 	// Press right click and press paste option
 
-	public void RightClickPasteOption() {
+	public void rightClickPasteOption() {
 
 		WebElement copypasteContent = driverManager.getDriver().findElement(By.id(globalEntry));
 
@@ -424,17 +424,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToPasteOption() {
+	public void rightClickToPasteOption() {
 
 		// Press right click and press paste option
 
-		this.RightClickPasteOption();
+		this.rightClickPasteOption();
 
 	}
 
 	// Delete content copied
 
-	public void RightClickDeleteOption() {
+	public void rightClickDeleteOption() {
 
 		WebElement delete = driverManager.getDriver().findElement(By.xpath(aboutUsOptionCopied));
 
@@ -446,11 +446,11 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToDeleteOption() {
+	public void rightClickToDeleteOption() {
 
 		// Delete content copied
 
-		this.RightClickDeleteOption();
+		this.rightClickDeleteOption();
 
 	}
 
@@ -491,41 +491,41 @@ public class DashboardPage {
 
 	// Delete option
 
-	public void DeleteContentCopied() {
+	public void deleteContentCopied() {
 
 		WebElement deleteOption = driverManager.getDriver().findElement(By.id(deleteOptionCopiedPopup));
 		deleteOption.click();
 
 	}
 
-	public void ClickDelete() {
+	public void clickDelete() {
 
 		// Delete option
 
-		this.DeleteContentCopied();
+		this.deleteContentCopied();
 
 	}
 
 	// Ok delete option
 
-	public void DeleteContentCopiedOK() {
+	public void deleteContentCopiedOK() {
 
 		WebElement confirmDelete = driverManager.getDriver().findElement(By.cssSelector(deleteOK));
 		confirmDelete.click();
 
 	}
 
-	public void ClicktoDelete() {
+	public void clickToDelete() {
 
 		// Ok delete option
 
-		this.DeleteContentCopiedOK();
+		this.deleteContentCopiedOK();
 
 	}
 
 	// Press right click and press cut option
 
-	public void RightClickCutOption() {
+	public void rightClickCutOption() {
 
 		WebElement cutpasteContent = driverManager.getDriver().findElement(By.id(aboutUsOption));
 
@@ -537,17 +537,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToCutOption() {
+	public void rightClickToCutOption() {
 
 		// Press right click and press cut option
 
-		this.RightClickCutOption();
+		this.rightClickCutOption();
 
 	}
 
 	// Press right click and press cut option
 
-	public void RightClickCutOptionAgain() {
+	public void rightClickCutOptionAgain() {
 
 		WebElement cutpasteContent = driverManager.getDriver().findElement(By.id(aboutUsOptionCut));
 
@@ -559,17 +559,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToCutOptionAgain() {
+	public void rightClickToCutOptionAgain() {
 
 		// Press right click and press cut option
 
-		this.RightClickCutOptionAgain();
+		this.rightClickCutOptionAgain();
 
 	}
 
 	// Press right click and press paste option
 
-	public void RightClickPasteOptionCut() {
+	public void rightClickPasteOptionCut() {
 
 		WebElement pasteCutContent = driverManager.getDriver().findElement(By.id(homeContent));
 
@@ -581,17 +581,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToPasteOptionCut() {
+	public void rightClickToPasteOptionCut() {
 
 		// Press right click and press paste option
 
-		this.RightClickPasteOptionCut();
+		this.rightClickPasteOptionCut();
 
 	}
 
 	// Press right click and copy about us
 
-	public void RightClickCopyAboutUs() {
+	public void rightClickCopyAboutUs() {
 
 		WebElement copyAbout = driverManager.getDriver().findElement(By.id(aboutUsOption));
 
@@ -603,17 +603,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToCopyAboutUsToNewFolder() {
+	public void rightClickToCopyAboutUsToNewFolder() {
 
 		// Press right click and copy about us page
 
-		this.RightClickCopyAboutUs();
+		this.rightClickCopyAboutUs();
 
 	}
 
 	// Press right click and copy services page
 
-	public void RightClickCopyServices() {
+	public void rightClickCopyServices() {
 
 		WebElement copyServices = driverManager.getDriver().findElement(By.id(servicesOption));
 
@@ -625,17 +625,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToCopyServicesToNewFolder() {
+	public void rightClickToCopyServicesToNewFolder() {
 
 		// Press right click and copy services page
 
-		this.RightClickCopyServices();
+		this.rightClickCopyServices();
 
 	}
 
 	// Press right click and press paste option to the new folder
 
-	public void RightClickPaste() {
+	public void rightClickPaste() {
 
 		WebElement pasteAllContent = driverManager.getDriver().findElement(By.cssSelector(folderToCopy));
 
@@ -647,11 +647,11 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToPasteToNewFolder() {
+	public void rightClickToPasteToNewFolder() {
 
 		// Press right click and press paste option to the new folder
 
-		this.RightClickPaste();
+		this.rightClickPaste();
 
 	}
 
@@ -674,7 +674,7 @@ public class DashboardPage {
 
 	// Press right click and press paste option
 
-	public void RightClickPasteOption1() {
+	public void rightClickPasteOption1() {
 
 		WebElement pasteAboutContent = driverManager.getDriver().findElement(By.id(servicesOption)); // aboutUSFolderToCopy
 
@@ -686,16 +686,16 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToPasteOptionAboutUsToAboutUs() {
+	public void rightClickToPasteOptionAboutUsToAboutUs() {
 
 		// Press right click and press paste option
 
-		this.RightClickPasteOption1();
+		this.rightClickPasteOption1();
 
 	}
 
 	// Press right click and press copy option to the tree
-	public void RightClickCopyOptionTree() {
+	public void rightClickCopyOptionTree() {
 
 		WebElement copypasteContent = driverManager.getDriver().findElement(By.id(aboutUsOptionToTree1));
 
@@ -705,20 +705,20 @@ public class DashboardPage {
 		WebElement copyContent = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
 		copyContent.click();
 
-	}//// is ready >
+	}//// is ready 
 
-	public void RightClickToCopyOptionAboutUsToTree() {
+	public void rightClickToCopyOptionAboutUsToTree() {
 
 		// Press right click and press copy option to the tree
 
-		this.RightClickCopyOptionTree();
+		this.rightClickCopyOptionTree();
 
 	}
 
 	// Press right click and press paste option to the "aboutoptionCOPY" to
 	// start to create a tree
 
-	public void RightClickPasteTreeLevel1() {
+	public void rightClickPasteTreeLevel1() {
 		WebElement pasteContentTree1 = driverManager.getDriver().findElement(By.id(aboutUsOptionTreeLevel1));
 
 		Actions action = new Actions(driverManager.getDriver());
@@ -729,19 +729,19 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToPasteToTheTree1() {
+	public void rightClickToPasteToTheTree1() {
 
 		// Press right click and press paste option to the "aboutoptionCOPY" to
 		// start to create a tree
 
-		this.RightClickPasteTreeLevel1();
+		this.rightClickPasteTreeLevel1();
 
 	}
 
 	// Press right click and press paste option to the "aboutoptionCOPY" to
 	// start to create a tree
 
-	public void RightClickPasteTreeLevel2() {
+	public void rightClickPasteTreeLevel2() {
 		WebElement pasteContentTree2 = driverManager.getDriver().findElement(By.id(aboutUsOptionTreeLevel2));
 
 		Actions action = new Actions(driverManager.getDriver());
@@ -752,19 +752,19 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToPasteToTheTree2() {
+	public void rightClickToPasteToTheTree2() {
 
 		// Press right click and press paste option to the "aboutoptionCOPY" to
 		// start to create a tree
 
-		this.RightClickPasteTreeLevel2();
+		this.rightClickPasteTreeLevel2();
 
 	}
 
 	// Press right click and press paste option to the "aboutoptionCOPY" to
 	// start to create a tree
 
-	public void RightClickPasteTreeLevel3() {
+	public void rightClickPasteTreeLevel3() {
 		WebElement pasteContentTree3 = driverManager.getDriver().findElement(By.id(aboutUsOptionTreeLevel2));
 
 		Actions action = new Actions(driverManager.getDriver());
@@ -775,19 +775,19 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToPasteToTheTree3() {
+	public void rightClickToPasteToTheTree3() {
 
 		// Press right click and press paste option to the "aboutoptionCOPY" to
 		// start to create a tree
 
-		this.RightClickPasteTreeLevel3();
+		this.rightClickPasteTreeLevel3();
 
 	}
 
 	// Press right click and press paste option to the "aboutoptionCOPY" to
 	// start to create a tree
 
-	public void RightClickPasteTreeLevel4() {
+	public void rightClickPasteTreeLevel4() {
 		WebElement pasteContentTree4 = driverManager.getDriver().findElement(By.id(aboutUsOptionTreeLevel1));
 
 		Actions action = new Actions(driverManager.getDriver());
@@ -798,12 +798,12 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToPasteToTheTree4() {
+	public void rightClickToPasteToTheTree4() {
 
 		// Press right click and press paste option to the "aboutoptionCOPY" to
 		// start to create a tree
 
-		this.RightClickPasteTreeLevel4();
+		this.rightClickPasteTreeLevel4();
 
 	}
 
@@ -846,7 +846,7 @@ public class DashboardPage {
 
 	// Press right click and select new content
 
-	public void DeleteContent() {
+	public void deleteContent() {
 
 		WebElement showMenu = driverManager.getDriver().findElement(By.id(homeContent));
 
@@ -858,51 +858,51 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToDeleteContent() {
+	public void rightClickToDeleteContent() {
 
 		// Press right click and select new content
 
-		this.DeleteContent();
+		this.deleteContent();
 
 	}
 
 	// Ok delete content option
 
-	public void DeleteContentOK() {
+	public void deleteContentOK() {
 
 		WebElement confirmDelete = driverManager.getDriver().findElement(By.id(deleteContentOK));
 		confirmDelete.click();
 
 	}
 
-	public void ClicktoDeleteContent() {
+	public void clicktoDeleteContent() {
 
 		// Ok delete content option
 
-		this.DeleteContentOK();
+		this.deleteContentOK();
 
 	}
 
 	// Ok submittal complete
 
-	public void SubmittalCompleteOK() {
+	public void submittalCompleteOK() {
 
 		WebElement submittalComplete = driverManager.getDriver().findElement(By.cssSelector(submittalCompleteOK));
 		submittalComplete.click();
 
 	}
 
-	public void ClickOKSubmittalComplete() {
+	public void clickOKSubmittalComplete() {
 
 		// Ok submittal complete
 
-		this.SubmittalCompleteOK();
+		this.submittalCompleteOK();
 
 	}
 
 	// Press right click and select edit
 
-	public void EditMenu() {
+	public void editMenu() {
 
 		WebElement showMenu = driverManager.getDriver().findElement(By.id(homeContent));
 
@@ -914,28 +914,28 @@ public class DashboardPage {
 
 	}
 
-	public void GoToEditIframe() {
+	public void goToEditIframe() {
 
 		// Press right click and select edit
 
-		this.EditMenu();
+		this.editMenu();
 
 	}
 
 	// click on edit page button
 
-	public void EditURLbutton() {
+	public void editURLbutton() {
 
 		WebElement editURLButton = driverManager.getDriver().findElement(By.cssSelector(ediPagetUrl));
 		editURLButton.click();
 
 	}
 
-	public void ClickOnEditPageURLButton() {
+	public void clickOnEditPageURLButton() {
 
 		// click on edit page button
 
-		this.EditURLbutton();
+		this.editURLbutton();
 
 	}
 	
@@ -948,7 +948,7 @@ public class DashboardPage {
 
 	}
 
-	public void SetNewPageURL(String strNewURL) {
+	public void setNewPageURL(String strNewURL) {
 
 		// Set the new name of the URL
 
@@ -958,18 +958,18 @@ public class DashboardPage {
 	
 	// click on preview sync option
 
-		public void PreviewSyncOption() {
+		public void previewSyncOption() {
 
 			WebElement previewSyncOpt = driverManager.getDriver().findElement(By.cssSelector(previewSync));
 			previewSyncOpt.click();
 
 		}
 
-		public void ClickOnPreviewSyncOption() {
+		public void clickOnPreviewSyncOption() {
 
 			// click on preview sync option
 
-			this.PreviewSyncOption();
+			this.previewSyncOption();
 
 		}
 

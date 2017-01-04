@@ -73,7 +73,7 @@ public class ShowHideSiteContentTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
         //Expand the site content panel
 		

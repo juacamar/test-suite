@@ -72,7 +72,7 @@ public class CutPasteContentTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
 		// wait for element is clickeable
 
@@ -93,23 +93,23 @@ public class CutPasteContentTest {
 
 		// expand pages folder
 
-		dashboardPage.ExpandPagesTree();
+		dashboardPage.expandPagesTree();
 
 		// expand global entry content
 
-		dashboardPage.ClickGlobalEntryTree();
+		dashboardPage.clickGlobalEntryTree();
 
 		// expand home content
 
-		dashboardPage.ClickHomeTree();
+		dashboardPage.clickHomeTree();
 
 		// Right click and copy content.
 
-		dashboardPage.RightClickToCutOption();
+		dashboardPage.rightClickToCutOption();
 
 		// Right click and paste content.
 
-		dashboardPage.RightClickToPasteOption();
+		dashboardPage.rightClickToPasteOption();
 
 		// reload page
 
@@ -131,11 +131,11 @@ public class CutPasteContentTest {
 
 		// Cut the content to move it to the original location.
 
-		dashboardPage.RightClickToCutOptionAgain();
+		dashboardPage.rightClickToCutOptionAgain();
 
 		// Paste the content in the original location.
 
-		dashboardPage.RightClickToPasteOptionCut();
+		dashboardPage.rightClickToPasteOptionCut();
 
 	}
 

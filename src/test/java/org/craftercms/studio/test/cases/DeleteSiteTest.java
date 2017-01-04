@@ -76,7 +76,7 @@ public class DeleteSiteTest {
 
 		// Click on Delete icon
 
-		homePage.ClickOnDeleteSiteIcon();
+		homePage.clickOnDeleteSiteIcon();
 
 		// wait for element is clickeable
 
@@ -84,7 +84,7 @@ public class DeleteSiteTest {
 
 		// Click on YES to confirm the delete.
 
-		homePage.ClickOnYesToDeleteSite();
+		homePage.clickOnYesToDeleteSite();
 
 		// wait for element is clickeable
 

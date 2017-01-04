@@ -71,7 +71,7 @@ public class CreateTreeDifferentContentTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
 		// wait for element is clickeable
 
@@ -92,23 +92,23 @@ public class CreateTreeDifferentContentTest {
 
 		// expand pages folder
 
-		dashboardPage.ExpandPagesTree();
+		dashboardPage.expandPagesTree();
 
 		// expand global entry content
 
-		dashboardPage.ClickGlobalEntryTree();
+		dashboardPage.clickGlobalEntryTree();
 
 		// expand home content
 
-		dashboardPage.ClickHomeTree();
+		dashboardPage.clickHomeTree();
 
 		// Right click and copy content.
 
-		dashboardPage.RightClickToCopyOptionService();
+		dashboardPage.rightClickToCopyOptionService();
 
 		// Right click and paste content.
 
-		dashboardPage.RightClickToPasteOption();
+		dashboardPage.rightClickToPasteOption();
 
 		// reload page
 
@@ -119,7 +119,7 @@ public class CreateTreeDifferentContentTest {
 		homePage.getDriverManager().driverWait();
 
 		// Click on edit option of recent activity section
-		homePage.ClickEditOptionOfRecentActivitySection();
+		homePage.clickOnEditOptionRecentActivity();
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
@@ -152,35 +152,35 @@ public class CreateTreeDifferentContentTest {
 
 		// Right click and copy content.
 
-		dashboardPage.RightClickToCopyOptionAboutUsToTree();
+		dashboardPage.rightClickToCopyOptionAboutUsToTree();
 
 		// Paste the about us to the tree 1
 
-		dashboardPage.RightClickToPasteToTheTree1();
+		dashboardPage.rightClickToPasteToTheTree1();
 
 		// Right click and copy content.
 
-		dashboardPage.RightClickToCopyOptionAboutUsToTree();
+		dashboardPage.rightClickToCopyOptionAboutUsToTree();
 
 		// Paste the about us to the tree 2
 
-		dashboardPage.RightClickToPasteToTheTree2();
+		dashboardPage.rightClickToPasteToTheTree2();
 
 		// Right click and copy content.
 
-		dashboardPage.RightClickToCopyOptionAboutUsToTree();
+		dashboardPage.rightClickToCopyOptionAboutUsToTree();
 
 		// Paste the about us to the tree 3
 
-		dashboardPage.RightClickToPasteToTheTree3();
+		dashboardPage.rightClickToPasteToTheTree3();
 
 		// Right click and copy content.
 
-		dashboardPage.RightClickToCopyOptionAboutUsToTree();
+		dashboardPage.rightClickToCopyOptionAboutUsToTree();
 
 		// Paste the about us to the tree 4
 
-		dashboardPage.RightClickToPasteToTheTree4();
+		dashboardPage.rightClickToPasteToTheTree4();
 
 		// reload page
 

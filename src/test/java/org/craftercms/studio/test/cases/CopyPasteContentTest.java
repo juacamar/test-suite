@@ -72,7 +72,7 @@ public class CopyPasteContentTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
 		// wait for element is clickeable
 
@@ -97,23 +97,23 @@ public class CopyPasteContentTest {
 
 		// expand pages folder
 
-		dashboardPage.ExpandPagesTree();
+		dashboardPage.expandPagesTree();
 
 		// expand global entry content
 
-		dashboardPage.ClickGlobalEntryTree();
+		dashboardPage.clickGlobalEntryTree();
 
 		// expand home content
 
-		dashboardPage.ClickHomeTree();
+		dashboardPage.clickHomeTree();
 
 		// Right click and copy content.
 
-		dashboardPage.RightClickToCopyOptionAboutUs();
+		dashboardPage.rightClickToCopyOptionAboutUs();
 
 		// Right click and paste content.
 
-		dashboardPage.RightClickToPasteOption();
+		dashboardPage.rightClickToPasteOption();
 
 		// reload page
 
@@ -125,7 +125,7 @@ public class CopyPasteContentTest {
 
 		// Click on edit option of recent activity section
 		
-		homePage.ClickEditOptionOfRecentActivitySection();
+		homePage.clickOnEditOptionRecentActivity();
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
@@ -163,19 +163,19 @@ public class CopyPasteContentTest {
 		Assert.assertEquals(contentCopied, "About usCOPY *");
 
 		// click delete option of the panel
-	    dashboardPage.RightClickToDeleteOption();
+	    dashboardPage.rightClickToDeleteOption();
 	    
 	    // wait for element
 	 	homePage.getDriverManager().driverWait();
 
 		// Click on delete button
-		dashboardPage.ClickDelete();
+		dashboardPage.clickDelete();
 
 		// wait for element
 		homePage.getDriverManager().driverWait();
 		
 		// Confirm delete
-		dashboardPage.ClicktoDelete();
+		dashboardPage.clickToDelete();
 
 	}
 

@@ -72,7 +72,7 @@ public class PublishingSiteTest {
 		homePage.getDriverManager().driverWait();
 
 		// go to preview page
-		homePage.GoToPreviewPage();
+		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
@@ -88,11 +88,11 @@ public class PublishingSiteTest {
 
 		// approve and publish
 		
-		previewPage.ApprovePublish();
+		previewPage.clickOnApprovePublish();
 		
 		// submit 
 		
-		previewPage.ClickOnSubmitButtonOfApprovePublish();
+		previewPage.clickOnSubmitButtonOfApprovePublish();
 		
 		// wait for element is clickeable
 		

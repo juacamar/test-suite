@@ -74,7 +74,7 @@ public class EditURLTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
 		// wait for element is clickeable
 
@@ -95,19 +95,19 @@ public class EditURLTest {
 
 		// expand pages folder
 
-		dashboardPage.ExpandPagesTree();
+		dashboardPage.expandPagesTree();
 
 		// expand global entry content
 
-		dashboardPage.ClickGlobalEntryTree();
+		dashboardPage.clickGlobalEntryTree();
 
 		// expand home content
 
-		dashboardPage.ClickHomeTree();
+		dashboardPage.clickHomeTree();
 
 		// right click to delete
 
-		dashboardPage.GoToEditIframe();
+		dashboardPage.goToEditIframe();
 		
 		// Switch to the iframe
 		
@@ -121,7 +121,7 @@ public class EditURLTest {
 		
 		// Click on Edit page URL button
 		
-		dashboardPage.ClickOnEditPageURLButton();
+		dashboardPage.clickOnEditPageURLButton();
 		
 		// Ok for the dialog window when appears
 
@@ -130,7 +130,7 @@ public class EditURLTest {
 		
 		// Set the new url
 		
-		dashboardPage.SetNewPageURL("urledited");
+		dashboardPage.setNewPageURL("urledited");
 		
 		// Save and close
 		
@@ -148,7 +148,7 @@ public class EditURLTest {
 		// Assert of the test case is fine
 
 		String UrlName = driverManager.getDriver()
-		.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[4]/td[4]")).getText();
+		.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]")).getText();
 		Assert.assertEquals(UrlName, "/enurledited");
 	
 	}

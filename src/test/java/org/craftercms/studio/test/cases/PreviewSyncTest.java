@@ -55,10 +55,10 @@ public class PreviewSyncTest {
 
 	}
 
-//	@AfterTest
-//	public void afterTest() {
-//		driverManager.closeConnection();
-//	}
+	@AfterTest
+	public void afterTest() {
+		driverManager.closeConnection();
+	}
 
 	@Test(priority = 0)
 
@@ -74,7 +74,7 @@ public class PreviewSyncTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
 		// wait for element is clickeable
 
@@ -95,7 +95,7 @@ public class PreviewSyncTest {
 
 		// click on preview sync option
 		
-		dashboardPage.ClickOnPreviewSyncOption();
+		dashboardPage.clickOnPreviewSyncOption();
 		
 		// Ok for the dialog window when appears
 

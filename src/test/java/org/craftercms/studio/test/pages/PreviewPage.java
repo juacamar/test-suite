@@ -74,18 +74,18 @@ public class PreviewPage {
 
 	// Click on admin console link
 
-	public void ClickAdminConsoleOption() {
+	public void clickAdminConsoleOption() {
 
 		WebElement adminConsoleOption = driverManager.getDriver().findElement(By.cssSelector(adminConsole));
 		adminConsoleOption.click();
 
 	}
 
-	public void GoToAdminConsolePage() {
+	public void goToAdminConsolePage() {
 
 		// Click on admin console link
 
-		this.ClickAdminConsoleOption();
+		this.clickAdminConsoleOption();
 
 	}
 
@@ -108,103 +108,103 @@ public class PreviewPage {
 
 	// Click on preview tools icon
 
-	public void PreviewTools() {
+	public void previewTools() {
 
 		WebElement toolsIcon = driverManager.getDriver().findElement(By.id(clickPreviewTools));
 		toolsIcon.click();
 
 	}
 
-	public void ClickOnPreviewTools() {
+	public void clickOnPreviewTools() {
 
 		// Click on preview tools icon
 
-		this.PreviewTools();
+		this.previewTools();
 
 	}
 
 	// Expand the In Context Menu
 
-	public void ExpandInContextEditing() {
+	public void expandInContextEditing() {
 
 		WebElement expandInContextMenu = driverManager.getDriver().findElement(By.xpath(expandInContextEditing));
 		expandInContextMenu.click();
 
 	}
 
-	public void ClickToExpandInContextEditing() {
+	public void clickToExpandInContextEditing() {
 
 		// Expand the In Context Menu
 
-		this.ExpandInContextEditing();
+		this.expandInContextEditing();
 
 	}
 
 	// Enable/Diseble In-Context Editing
 
-	public void InContextEditing() {
+	public void inContextEditing() {
 
 		WebElement inContextEditingOption = driverManager.getDriver().findElement(By.xpath(clickInContextEdit));
 		inContextEditingOption.click();
 
 	}
 
-	public void ClickToEnableDisableInContextEditing() {
+	public void clickToEnableDisableInContextEditing() {
 
 		// Enable/Diseble In-Context Editing
 
-		this.InContextEditing();
+		this.inContextEditing();
 
 	}
 
 	// Click on Approve&Publish option
 
-	public void ApprovePublish() {
+	public void approvePublish() {
 
 		WebElement toolsIcon = driverManager.getDriver().findElement(By.xpath(approvePublish));
 		toolsIcon.click();
 
 	}
 
-	public void ClickOnApprovePublish() {
+	public void clickOnApprovePublish() {
 
 		// Click on Approve&Publish option
 
-		this.ApprovePublish();
+		this.approvePublish();
 
 	}
 
 	// Click on submit button of Approve&Publish
 
-	public void SubmitApprovePublish() {
+	public void submitApprovePublish() {
 
 		WebElement toolsIcon = driverManager.getDriver().findElement(By.id(submitButtonApprovePublish));
 		toolsIcon.click();
 
 	}
 
-	public void ClickOnSubmitButtonOfApprovePublish() {
+	public void clickOnSubmitButtonOfApprovePublish() {
 
 		// Click on submit button of Approve&Publish
 
-		this.SubmitApprovePublish();
+		this.submitApprovePublish();
 
 	}
 
 	// Click on duplicate button of the menu
 
-	public void DuplicateButton() {
+	public void duplicateButton() {
 
 		WebElement duplicateOption = driverManager.getDriver().findElement(By.xpath(previewDuplicate));
 		duplicateOption.click();
 
 	}
 
-	public void ClickOnDuplicateOption() {
+	public void clickOnDuplicateOption() {
 
 		// Click on duplicate button of the menu
 
-		this.DuplicateButton();
+		this.duplicateButton();
 
 	}
 
@@ -214,52 +214,52 @@ public class PreviewPage {
 
 	// Click on delete button of the menu
 
-	public void DeleteButton() {
+	public void deleteButton() {
 
 		WebElement deleteOption = driverManager.getDriver().findElement(By.xpath(previewDelete));
 		deleteOption.click();
 
 	}
 
-	public void ClickOnDeleteOption() {
+	public void clickOnDeleteOption() {
 
 		// Click on delete button of the menu
 
-		this.DeleteButton();
+		this.deleteButton();
 
 	}
 
 	// Click on delete dependencies
 
-	public void DeleteDependencies() {
+	public void deleteDependencies() {
 
 		WebElement deleteDepen = driverManager.getDriver().findElement(By.id(deleteDependencies));
 		deleteDepen.click();
 
 	}
 
-	public void ClickOnDeleteDependencies() {
+	public void clickOnDeleteDependencies() {
 
 		// Click on delete dependencies
 
-		this.DeleteDependencies();
+		this.deleteDependencies();
 
 	}
 
 	// Click on OK to delete dependencies
 
-	public void OKDeleteDependencies() {
+	public void okDeleteDependencies() {
 
 		WebElement OKdeleteDepen = driverManager.getDriver().findElement(By.cssSelector(OKdeleteDependencies));
 		OKdeleteDepen.click();
 
 	}
 
-	public void ClickOnOKDeleteDependencies() {
+	public void clickOnOKDeleteDependencies() {
 
 		// Click on OK to delete dependencies
 
-		this.OKDeleteDependencies();
+		this.okDeleteDependencies();
 
 	}
 
@@ -282,18 +282,18 @@ public class PreviewPage {
 
 	// Set the new name of the URL
 
-	public void DuplicateName(String strDuplicateName) {
+	public void duplicateName(String strDuplicateName) {
 
 		WebElement internalName = driverManager.getDriver().findElement(By.xpath(duplicateName));
 		internalName.sendKeys(strDuplicateName);
 
 	}
 
-	public void SetDuplicateName(String strDuplicateName) {
+	public void setDuplicateName(String strDuplicateName) {
 
 		// Set the new name of the URL
 
-		this.DuplicateName(strDuplicateName);
+		this.duplicateName(strDuplicateName);
 
 	}
 
@@ -308,39 +308,39 @@ public class PreviewPage {
 
 	// Expand pages tree
 
-	public void ClickPagesTree() {
+	public void clickPagesTree() {
 
 		WebElement expandPagesTree = driverManager.getDriver().findElement(By.cssSelector(pagesTree));
 		expandPagesTree.click();
 
 	}
 
-	public void ExpandPagesTree() {
+	public void expandPagesTree() {
 
 		// Expand pages tree
 
-		this.ClickPagesTree();
+		this.clickPagesTree();
 
 	}
 
 	// Expand global entry content
 
-	public void ClickGlobalEntryContent() {
+	public void clickGlobalEntryContent() {
 
 		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(expandGlobalEntryContent));
 		globalEntry.click();
 
 	}
 
-	public void ClickGlobalEntryTree() {
+	public void clickGlobalEntryTree() {
 
 		// Expand global entry content
 
-		this.ClickGlobalEntryContent();
+		this.clickGlobalEntryContent();
 
 	}
 
-	public void ClickOnSaveAndClose() {
+	public void clickOnSaveAndClose() {
 
 		// Click on save and close
 

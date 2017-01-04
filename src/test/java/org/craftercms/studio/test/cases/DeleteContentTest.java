@@ -73,7 +73,7 @@ public class DeleteContentTest {
 
 		// go to dashboard page
 
-		homePage.GoToDashboardPage();
+		homePage.goToDashboardPage();
 
 		// wait for element is clickeable
 
@@ -94,27 +94,27 @@ public class DeleteContentTest {
 
 		// expand pages folder
 
-		dashboardPage.ExpandPagesTree();
+		dashboardPage.expandPagesTree();
 
 		// expand global entry content
 
-		dashboardPage.ClickGlobalEntryTree();
+		dashboardPage.clickGlobalEntryTree();
 
 		// expand home content
 
-		dashboardPage.ClickHomeTree();
+		dashboardPage.clickHomeTree();
 
 		// right click to delete
 
-		dashboardPage.RightClickToDeleteContent();
+		dashboardPage.rightClickToDeleteContent();
 
 		// confirmation
 
-		dashboardPage.ClicktoDeleteContent();
+		dashboardPage.clicktoDeleteContent();
 
 		// submittal complete ok
 
-		dashboardPage.ClickOKSubmittalComplete();
+		dashboardPage.clickOKSubmittalComplete();
 
 		// reload page
 

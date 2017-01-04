@@ -89,7 +89,7 @@ public class CreateSiteEmptyTest {
 
 		// Click on the create site button
 
-		homePage.ClickOnCreateSiteButton();
+		homePage.clickOnCreateSiteButton();
 
 		// wait for element is clickeable
 
