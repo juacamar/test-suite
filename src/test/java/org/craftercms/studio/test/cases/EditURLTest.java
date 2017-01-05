@@ -140,6 +140,10 @@ public class EditURLTest {
 
 		driverManager.getDriver().switchTo().defaultContent();
 		
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+		
 				
 		// wait for element is clickeable
 
