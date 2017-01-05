@@ -35,6 +35,8 @@ public class PreviewPage {
 	private String deleteDependencies;
 	private String OKdeleteDependencies;
 	private String previewEdit;
+	private String internalName;
+	private String saveAndCloseiFrame;
 
 	/**
 	 * 
@@ -65,7 +67,13 @@ public class PreviewPage {
 				.getProperty("preview.ok_delete_dependencies");
 		previewEdit = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("preview.edit");
-
+		internalName = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("frame1.internal_Name");
+		saveAndCloseiFrame = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("frame1.save_close");
+				
+				
+				
 	}
 
 	public PreviewPage(WebDriver driver2) {
@@ -347,5 +355,40 @@ public class PreviewPage {
 		this.SaveAndClose();
 
 	}
+	
+	
+	// Set the new name of the URL
+
+		public void changeInternalName(String strNewInternalName) {
+
+			WebElement URLName = driverManager.getDriver().findElement(By.xpath(internalName));
+			URLName.sendKeys(strNewInternalName);
+
+		}
+
+		public void setNewInternalName(String strNewInternalName) {
+
+			// Set the new name of the URL
+
+			this.changeInternalName(strNewInternalName);
+
+		}
+		
+		// Click save and close
+		
+		public void saveAndCloseButton() {
+
+			WebElement saveClose = driverManager.getDriver().findElement(By.cssSelector(saveAndCloseiFrame));
+			saveClose.click();
+
+		}
+
+		public void clickOnSaveAndCloseButton() {
+
+			// Click save and close
+
+			this.saveAndCloseButton();
+
+		}
 
 }

@@ -42,8 +42,6 @@ public class EditOptionTest {
 
 	private DashboardPage dashboardPage;
 
-	
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -65,7 +63,7 @@ public class EditOptionTest {
 
 	@Test(priority = 0)
 
-	public void Delete_option() {
+	public void edit_option() {
 
 		// login to application
 
@@ -94,21 +92,18 @@ public class EditOptionTest {
 		// expand pages folder
 
 		previewPage.expandPagesTree();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
 		// expand global entry content
 
-	   previewPage.clickGlobalEntryTree();
+		previewPage.clickGlobalEntryTree();
 
-		// Select the content to delete.
+		// Select the content to edit.
 
-		driverManager.getDriver()
-				.findElement(By
-						.id("ygtvlabelel11"))
-				.click();
+		driverManager.getDriver().findElement(By.id("ygtvlabelel11")).click();
 
 		// wait for element is clickeable
 
@@ -117,16 +112,38 @@ public class EditOptionTest {
 		// click on edit option
 
 		previewPage.ClickOnEditOption();
-		
+
 		// wait for element is clickeable
 
 		previewPage.getDriverManager().driverWait();
+
+		// Switch to the iframe
+
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 		
-		//Assert
+		// Edit the Internal Name
 		
-//		String deleted = driverManager.getDriver()
-//		.findElement(By.cssSelector(".status-icon.deleted-lock.context-nav-title-element.navbar-text")).getText();
-//		Assert.assertEquals(deleted, "Deleted :");
+		previewPage.setNewInternalName("Testing");
+		
+		// Save and close
+		
+		previewPage.clickOnSaveAndCloseButton();
+		
+		// Switch back to the dashboard page
+
+		driverManager.getDriver().switchTo().defaultContent();
+
+		// Assert
+
+		String deleted = driverManager.getDriver()
+		.findElement(By.id("ygtvlabelel11")).getText();
+		Assert.assertEquals(deleted, "Home | English (US) *");
 
 	}
 
