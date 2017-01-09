@@ -37,6 +37,7 @@ public class PreviewPage {
 	private String previewEdit;
 	private String internalName;
 	private String saveAndCloseiFrame;
+	private String previewHistory;
 
 	/**
 	 * 
@@ -71,8 +72,9 @@ public class PreviewPage {
 				.getProperty("frame1.internal_Name");
 		saveAndCloseiFrame = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("frame1.save_close");
-				
-				
+		previewHistory = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("preview.history");		
+		
 				
 	}
 
@@ -280,11 +282,28 @@ public class PreviewPage {
 
 	}
 
-	public void ClickOnEditOption() {
+	public void clickOnEditOption() {
 
 		// Click on edit button of the menu
 
 		this.EditButton();
+
+	}
+	
+	// Click on history button of the menu
+
+	public void historyButton() {
+
+		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewHistory));
+		historyOption.click();
+
+	}
+
+	public void clickOnHistoryOption() {
+
+		// Click on history button of the menu
+
+		this.historyButton();
 
 	}
 

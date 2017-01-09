@@ -22,7 +22,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class EditOptionTest {
+public class HistoryOptionTest {
 
 	WebDriver driver;
 
@@ -63,7 +63,7 @@ public class EditOptionTest {
 
 	@Test(priority = 0)
 
-	public void edit_option() {
+	public void history_option() {
 
 		// login to application
 
@@ -101,7 +101,7 @@ public class EditOptionTest {
 
 		previewPage.clickGlobalEntryTree();
 
-		// Select the content to edit.
+		// Select the content to view the history.
 
 		driverManager.getDriver().findElement(By.id("ygtvlabelel11")).click();
 
@@ -109,41 +109,19 @@ public class EditOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// click on edit option
+		// click on history option
 
-		previewPage.clickOnEditOption();
+		previewPage.clickOnHistoryOption();
 
 		// wait for element is clickeable
 
 		previewPage.getDriverManager().driverWait();
 
-		// Switch to the iframe
-
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-		
-		// Edit the Internal Name
-		
-		previewPage.setNewInternalName("Testing");
-		
-		// Save and close
-		
-		previewPage.clickOnSaveAndCloseButton();
-		
-		// Switch back to the dashboard page
-
-		driverManager.getDriver().switchTo().defaultContent();
-
 		// Assert
 
-		String deleted = driverManager.getDriver()
-		.findElement(By.id("ygtvlabelel11")).getText();
-		Assert.assertEquals(deleted, "Home | English (US) *");
+		String historyPage = driverManager.getDriver()
+		.findElement(By.cssSelector(".view-title")).getText();
+		Assert.assertEquals(historyPage, "Version History");
 
 	}
 
