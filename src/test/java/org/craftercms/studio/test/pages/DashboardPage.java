@@ -65,6 +65,8 @@ public class DashboardPage {
 	private String ediPagetUrl;
 	private String pageUrlField;
 	private String previewSync;
+	private String contentRecentlyCreated;
+	private String editRecentlyContentCreated;
 
 	/**
 	 * 
@@ -131,6 +133,9 @@ public class DashboardPage {
 		ediPagetUrl = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_url_button");
 		pageUrlField = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.page_url_field");
 		previewSync = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
+		contentRecentlyCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.recently_content_created");
+		editRecentlyContentCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_recently_content_created");
+		
 		
 
 	}
@@ -970,6 +975,27 @@ public class DashboardPage {
 			// click on preview sync option
 
 			this.previewSyncOption();
+
+		}
+		
+		// Press right click and select edit to the content created
+
+		public void rightClickToEdit() {
+
+			WebElement editContent = driverManager.getDriver().findElement(By.id("ygtvcontentel15")); //contentRecentlyCreated
+			Actions action = new Actions(driverManager.getDriver());
+			action.contextClick(editContent).build().perform();
+
+			WebElement editOption = driverManager.getDriver().findElement(By.cssSelector(editRecentlyContentCreated)); 
+			editOption.click();
+
+		}
+
+		public void rightClickToSelectEditOption() {
+
+			// Press right click and select edit to the content created
+
+			this.rightClickToEdit();
 
 		}
 

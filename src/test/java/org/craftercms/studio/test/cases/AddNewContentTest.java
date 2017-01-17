@@ -17,7 +17,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -38,7 +38,6 @@ public class AddNewContentTest {
 	private PreviewPage previewPage;
 
 	private DashboardPage dashboardPage;
-
 
 	@BeforeTest
 	public void beforeTest() {
@@ -133,6 +132,14 @@ public class AddNewContentTest {
 		// Set basics fields of the new content created
 
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Tesing1");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Cancel button because path field is requeried
+
+		driverManager.getDriver().findElement(By.id("cancelBtn")).click();
 
 		// wait for element is clickeable
 

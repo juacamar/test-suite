@@ -128,6 +128,7 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait();
 
 		// Select the generic content type
+		
 		adminConsolePage.selectGenericContentType();
 
 		// Confirm the content type selected

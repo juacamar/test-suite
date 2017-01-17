@@ -2,9 +2,6 @@ package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -24,7 +21,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class EditURLTest {
+public class EditContentRecentlyCreatedTest {
 
 	WebDriver driver;
 
@@ -43,7 +40,6 @@ public class EditURLTest {
 	private DashboardPage dashboardPage;
 
 
-
 	@BeforeTest
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -55,14 +51,14 @@ public class EditURLTest {
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
 	}
 
-	@AfterTest
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
+//	@AfterTest
+//	public void afterTest() {
+//		driverManager.closeConnection();
+//	}
 
 	@Test(priority = 0)
 
-	public void Edit_Url() {
+	public void Edit_Content_Recently_Created_test() {
 
 		// login to application
 
@@ -105,56 +101,69 @@ public class EditURLTest {
 
 		dashboardPage.clickHomeTree();
 
-		// go to edit
+		// right click to see  the menu
 
-		dashboardPage.goToEditIframe();
-		
+		dashboardPage.rightClickToSeeMenu();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select Generic Content Type
+
+		dashboardPage.clickGenericCT();
+
+		// Confirm the Content Type selected
+
+		dashboardPage.clickOKButton();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
 		// Switch to the iframe
-		
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
 				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-		
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Set basics fields of the new content created
+
+		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 		
-		// Click on Edit page URL button
+		// Cancel button because path field is requeried
 		
-		dashboardPage.clickOnEditPageURLButton();
+		driverManager.getDriver().findElement(By.id("cancelBtn"))
+		.click();
 		
-		// Ok for the dialog window when appears
+		// wait for element is clickeable
 
-		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
-		driverManager.getDriver().switchTo().alert().accept();
-		
-		// Set the new url
-		
-		dashboardPage.setNewPageURL("urledited");
-		
-		// Save and close
-		
-		dashboardPage.clickSaveClose();
+		homePage.getDriverManager().driverWait();
 		
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
 		
-		// reload page
+		// expand home content
 
-		driverManager.getDriver().navigate().refresh();
+		dashboardPage.clickHomeTree();
 		
-				
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 		
-		// Assert of the test case is fine
+		// right click to see  the menu
 
-		String UrlName = driverManager.getDriver()
-		.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]")).getText();
-		Assert.assertEquals(UrlName, "/enurledited");
-	
+		dashboardPage.rightClickToSelectEditOption();
+
+		
 	}
 
 }
