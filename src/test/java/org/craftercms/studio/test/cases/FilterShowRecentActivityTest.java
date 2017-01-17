@@ -1,7 +1,10 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -17,7 +20,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -39,7 +42,6 @@ public class FilterShowRecentActivityTest {
 
 	private DashboardPage dashboardPage;
 
-
 	@BeforeTest
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -49,16 +51,17 @@ public class FilterShowRecentActivityTest {
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+
 	}
 
-	@AfterTest
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
+	 @AfterTest
+	 public void afterTest() {
+	 driverManager.closeConnection();
+	 }
 
 	@Test(priority = 0)
 
-	public void show_recent_activity_test() {
+	public void Filter_Show_Recent_Activity_test() {
 
 		// login to application
 
@@ -79,6 +82,10 @@ public class FilterShowRecentActivityTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 
@@ -101,27 +108,61 @@ public class FilterShowRecentActivityTest {
 
 		dashboardPage.clickHomeTree();
 
-		// right click to see the the menu
+		// Right click and copy content.
 
-		dashboardPage.rightClickToSeeMenu();
+		dashboardPage.rightClickToCopyOptionAboutUs();
 
-		// wait for element is clickeable
+		// Right click and paste content.
 
-		homePage.getDriverManager().driverWait();
+		dashboardPage.rightClickToPasteOption();
 
-		// Select Generic Content Type
+		// reload page
 
-		dashboardPage.clickGenericCT();
+		driverManager.getDriver().navigate().refresh();
 
-		// Confirm the Content Type selected
-
-		dashboardPage.clickOKButton();
-
-		// wait for element is clickeable
+		// wait for element
 
 		homePage.getDriverManager().driverWait();
+
+		// Click on edit option of recent activity section
+
+		homePage.clickOnEditOptionRecentActivity();
 
 		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// edit internal name
+
+		dashboardPage.editInternalName("Edit");
+
+		// Switch back to the dashboard page
+
+		driverManager.getDriver().switchTo().defaultContent();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// go to edit
+
+		dashboardPage.goToEditIframe();
+
+		// Switch to the iframe
+
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
 				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
@@ -130,25 +171,92 @@ public class FilterShowRecentActivityTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Set basics fields of the new content created
+		// Click on Edit page URL button
 
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Tesing1");
+		dashboardPage.clickOnEditPageURLButton();
 
-		// wait for element is clickeable
+		// Ok for the dialog window when appears
+
+		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
+		driverManager.getDriver().switchTo().alert().accept();
+
+		// Set the new url
+
+		dashboardPage.setNewPageURL("urledited");
+
+		// wait for element
 
 		homePage.getDriverManager().driverWait();
+
+		// Save and close
+
+		dashboardPage.clickSaveClose();
 
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
 
-		// Assert of the test case is fine
+		// wait for element
 
-		String contentURL = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
-		Assert.assertTrue(contentURL.contains(contentURL));
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// clean filter
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector("#widget-showitems-MyRecentActivity.form-control.input-sm")).clear();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// Show only 1 item edited
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector("#widget-showitems-MyRecentActivity.form-control.input-sm"))
+				.sendKeys("1", Keys.ENTER);
 		
-		//Filter to show the recent activity
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// Assert filter 1
+
+		String edit1 = driverManager.getDriver()
+				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]")).getText();
+		Assert.assertEquals(edit1, "/en");
+		
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// clean filter
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector("#widget-showitems-MyRecentActivity.form-control.input-sm")).clear();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// Show only 1 item edited
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector("#widget-showitems-MyRecentActivity.form-control.input-sm"))
+				.sendKeys("2", Keys.ENTER);
+		
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// Assert filter 1
+
+		String edit2 = driverManager.getDriver()
+				.findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(2) > td:nth-child(4)")).getText();
+		Assert.assertEquals(edit2, "/about-us");
 	}
 
 }
