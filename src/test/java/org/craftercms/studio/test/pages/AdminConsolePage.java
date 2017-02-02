@@ -97,12 +97,12 @@ public class AdminConsolePage {
 
 	public void selectContentType() {
 
-		WebElement selectGenericOption = driver.findElement(By.xpath(genericContentTypeOption));
+		WebElement selectGenericOption = driver.findElement(By.cssSelector(genericContentTypeOption));
 		selectGenericOption.click();
 
 	}
 
-	public void selectGenericContentType() {
+	public void selectEntryContentType() {
 
 		// Select the generic content type
 

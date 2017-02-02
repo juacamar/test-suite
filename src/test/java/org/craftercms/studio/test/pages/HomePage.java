@@ -203,7 +203,7 @@ public class HomePage {
 		public void clickSignOut() {
 
 			
-			WebElement signOut = driver.findElement(By.xpath(signOutLink));
+			WebElement signOut = driver.findElement(By.cssSelector(signOutLink));
 			signOut.click();
 
 		}

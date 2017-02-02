@@ -71,7 +71,7 @@ public class CTInputTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element
 
@@ -115,8 +115,9 @@ public class CTInputTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Select the generic content type
-		adminConsolePage.selectGenericContentType();
+		// Select the entry content type
+		
+		adminConsolePage.selectEntryContentType();
 
 		// Confirm the content type selected
 

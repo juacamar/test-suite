@@ -149,7 +149,7 @@ public class CreatePage {
 
 	public void emptyBlueprint() {
 
-		WebElement blueprintEmpty = driver.findElement(By.xpath(emptyBlueprint));
+		WebElement blueprintEmpty = driver.findElement(By.cssSelector(emptyBlueprint));
 
 		blueprintEmpty.click();
 
