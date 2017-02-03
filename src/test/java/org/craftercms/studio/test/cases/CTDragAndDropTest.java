@@ -69,7 +69,7 @@ public class CTDragAndDropTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -113,9 +113,9 @@ public class CTDragAndDropTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Select the generic content type
+		// Select the Entry content type
 
-		adminConsolePage.selectGenericContentType();
+		adminConsolePage.selectEntryContentType();
 
 		// Confirm the content type selected
 

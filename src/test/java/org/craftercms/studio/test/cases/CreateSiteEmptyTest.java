@@ -81,7 +81,7 @@ public class CreateSiteEmptyTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -97,7 +97,7 @@ public class CreateSiteEmptyTest {
 
 		// Filling the name of site
 
-		createPage.fillSiteName("AutomationSite");
+		createPage.fillSiteName("Automation");
 
 		// Filling the Id of the site
 
@@ -111,7 +111,7 @@ public class CreateSiteEmptyTest {
 
 		createPage.openBlueprintCombo();
 
-		// Select pluton blueprint
+		// Select empty blueprint
 
 		createPage.selectEmptyBlueprint();
 
