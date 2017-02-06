@@ -129,7 +129,7 @@ public class EditContentFormTest {
 
 		// Select the generic content type
 		
-		adminConsolePage.selectGenericContentType();
+		adminConsolePage.selectEntryContentType();
 
 		// Confirm the content type selected
 
