@@ -56,11 +56,11 @@ public class WrongLoginTest {
 
 	@Test(priority = 0)
 
-	public void login_Test() {
+	public void wrong_login_Test() {
 
 		// login to application
 
-		loginPage.loginToCrafter("WrongUser", "1234");
+		loginPage.loginToCrafter("WrongUser", "admin");
 
 		// wait for element is clickeable
 
@@ -68,7 +68,7 @@ public class WrongLoginTest {
 
 		// Assert No login for invalid user.
 
-		WebElement signInWrongUser = driverManager.getDriver().findElement(By.id(".btn.btn-primary"));
+		WebElement signInWrongUser = driverManager.getDriver().findElement(By.cssSelector(".alert"));
 
 		Assert.assertTrue(signInWrongUser.isDisplayed());
 
@@ -82,7 +82,7 @@ public class WrongLoginTest {
 
 		// Assert No login for invalid password.
 
-		WebElement signInWrongPwd = driverManager.getDriver().findElement(By.id(".btn.btn-primary"));
+		WebElement signInWrongPwd = driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
 
 		Assert.assertTrue(signInWrongPwd.isDisplayed());
 

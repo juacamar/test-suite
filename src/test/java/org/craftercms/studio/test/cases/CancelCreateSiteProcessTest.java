@@ -68,7 +68,7 @@ public class CancelCreateSiteProcessTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -98,17 +98,13 @@ public class CancelCreateSiteProcessTest {
 
 		createPage.openBlueprintCombo();
 
-		// Select pluton blueprint
-
-		createPage.selectPlutonBlueprint();
-
 		// Click on Cancel button
 
 		createPage.clickOnCancelButtonOfTheCreateSiteProcess();
 		
 		// Assert
 
-		WebElement siteName = driverManager.getDriver().findElement(By.xpath("/html/body/ui-view/section/div/div/div[2]/table/thead/tr/th[1]"));
+		WebElement siteName = driverManager.getDriver().findElement(By.cssSelector("th.ng-binding"));
 		  
 		Assert.assertTrue(siteName.isDisplayed());
 

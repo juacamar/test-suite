@@ -131,7 +131,7 @@ public class CreateSiteEmptyTest {
 		// Assert
 
 		String URL = driverManager.getDriver().getCurrentUrl();
-		Assert.assertEquals(URL, "http://localhost:8080/studio/preview/#/?page=/&site=automationsite");
+		Assert.assertEquals(URL, "http://localhost:8080/studio/preview/#/?page=/&site=automation");
 
 	}
 

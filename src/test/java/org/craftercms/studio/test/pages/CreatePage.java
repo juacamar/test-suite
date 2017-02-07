@@ -221,7 +221,7 @@ public class CreatePage {
 
 	public void cancelButton() {
 
-		WebElement createButton = driver.findElement(By.xpath(cancelButton));
+		WebElement createButton = driver.findElement(By.cssSelector(cancelButton));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		createButton.click();
 
