@@ -172,7 +172,7 @@ public class DashboardPage {
 
 	}
 
-	public void clickGlobalEntryTree() {
+	public void expandHomeTree() {
 
 		// Expand global entry content
 
@@ -201,14 +201,13 @@ public class DashboardPage {
 
 	public void rightClickHome() {
 
-		WebElement newContent = driverManager.getDriver().findElement(By.id(homeContent));
+		WebElement newContent = driverManager.getDriver().findElement(By.cssSelector(homeContent));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(newContent).build().perform();
 
-		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent));
+		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent)); 
 		addContent.click();
-
 	}
 
 	public void rightClickToSeeMenu() {
@@ -223,7 +222,7 @@ public class DashboardPage {
 
 	public void rightClickNewFolder() {
 
-		WebElement newFolder = driverManager.getDriver().findElement(By.id(homeContent));
+		WebElement newFolder = driverManager.getDriver().findElement(By.cssSelector(homeContent));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(newFolder).build().perform();

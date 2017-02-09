@@ -101,7 +101,7 @@ public class CopyPasteContentTest {
 
 		// expand global entry content
 
-		dashboardPage.clickGlobalEntryTree();
+		dashboardPage.expandHomeTree();
 
 		// expand home content
 

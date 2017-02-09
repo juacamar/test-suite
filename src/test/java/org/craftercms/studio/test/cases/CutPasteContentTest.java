@@ -97,7 +97,7 @@ public class CutPasteContentTest {
 
 		// expand global entry content
 
-		dashboardPage.clickGlobalEntryTree();
+		dashboardPage.expandHomeTree();
 
 		// expand home content
 
