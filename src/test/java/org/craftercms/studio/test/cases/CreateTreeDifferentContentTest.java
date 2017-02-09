@@ -96,7 +96,7 @@ public class CreateTreeDifferentContentTest {
 
 		// expand global entry content
 
-		dashboardPage.clickGlobalEntryTree();
+		dashboardPage.expandHomeTree();
 
 		// expand home content
 

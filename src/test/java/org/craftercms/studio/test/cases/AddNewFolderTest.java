@@ -63,7 +63,7 @@ public class AddNewFolderTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -93,14 +93,6 @@ public class AddNewFolderTest {
 		// expand pages folder
 
 		dashboardPage.expandPagesTree();
-
-		// expand global entry content
-
-		dashboardPage.clickGlobalEntryTree();
-
-		// expand home content
-
-		dashboardPage.clickHomeTree();
 
 		// right click to see the the menu
 
