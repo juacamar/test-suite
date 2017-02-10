@@ -67,6 +67,8 @@ public class DashboardPage {
 	private String previewSync;
 	private String contentRecentlyCreated;
 	private String editRecentlyContentCreated;
+	private String selectEntryCT;
+	private String homeTree;
 
 	/**
 	 * 
@@ -76,13 +78,13 @@ public class DashboardPage {
 		this.uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
 		pagesTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Pages_Tree");
-		globalEntryContentTree = uIElementsManager.getSharedUIElementsLocators()
+		homeTree = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.expand_GlobalEntry_Tree");
 		homeContentTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Home_Tree");
 		homeContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page");
 		addNewContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content");
 		addNewFolder = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Folder");
-		selectGenericCT = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.generic_Content_Type");
+		selectEntryCT = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.entry_Content_Type");
 		okButton1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.ok_Button");
 		setPageURL1 = uIElementsManager.getSharedUIElementsLocators().getProperty("frame2.page_URL");
 		setInternalName1 = uIElementsManager.getSharedUIElementsLocators().getProperty("frame2.internal_Name");
@@ -167,7 +169,7 @@ public class DashboardPage {
 
 	public void clickGlobalEntryContent() {
 
-		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(globalEntryContentTree));
+		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(homeTree));
 		globalEntry.click();
 
 	}
@@ -240,20 +242,20 @@ public class DashboardPage {
 
 	}
 
-	// Select Generic Content type
+	// Select Entry Content type
 
-	public void selectGenericCT() {
+	public void selectEntryCT() {
 
-		WebElement genericCT = driverManager.getDriver().findElement(By.xpath(selectGenericCT));
+		WebElement genericCT = driverManager.getDriver().findElement(By.cssSelector(selectEntryCT));
 		genericCT.click();
 
 	}
 
-	public void clickGenericCT() {
+	public void clickEntryCT() {
 
 		// Select Generic Content type
 
-		this.selectGenericCT();
+		this.selectEntryCT();
 
 	}
 
@@ -333,6 +335,28 @@ public class DashboardPage {
 		// Click on save and draft button
 
 		this.clickSaveDraft();
+
+	}
+	
+	// Click on save and close button
+
+	public void clickSaveAndDraft() {
+
+		WebElement saveDraftButton = driver.findElement(By.id(saveDraft1));
+		saveDraftButton.click();
+
+	}
+
+	// Set the LEVAL DESCRIPTOR NAME
+	public void setLevelDescriptorName(String strFileName) {
+
+		// Fill page URL
+
+		this.setPageURL1(strFileName);
+
+		// Click on save and draft button
+
+		this.clickSaveAndDraft();
 
 	}
 

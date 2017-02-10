@@ -67,7 +67,7 @@ public class CopyPasteFolderTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -102,13 +102,9 @@ public class CopyPasteFolderTest {
 
 		dashboardPage.expandPagesTree();
 
-		// expand global entry content
-
-		dashboardPage.expandHomeTree();
-
 		// expand home content
 
-		dashboardPage.clickHomeTree();
+		dashboardPage.expandHomeTree();
 
 		// right click to see the the menu
 
