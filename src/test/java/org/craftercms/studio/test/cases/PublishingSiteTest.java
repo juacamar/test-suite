@@ -65,7 +65,7 @@ public class PublishingSiteTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element
 
@@ -89,6 +89,10 @@ public class PublishingSiteTest {
 		// approve and publish
 		
 		previewPage.clickOnApprovePublish();
+		
+		// wait for element is clickeable
+		
+		previewPage.getDriverManager().driverWait();
 		
 		// submit 
 		
