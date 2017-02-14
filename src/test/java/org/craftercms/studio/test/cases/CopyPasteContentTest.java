@@ -64,8 +64,8 @@ public class CopyPasteContentTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
-
+		loginPage.loginToCrafter("admin", "admin");
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -81,10 +81,6 @@ public class CopyPasteContentTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 
@@ -99,14 +95,64 @@ public class CopyPasteContentTest {
 
 		dashboardPage.expandPagesTree();
 
-		// expand global entry content
+		// right click to see the the menu
 
+		dashboardPage.rightClickToSeeMenu();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select Entry Content Type
+
+		dashboardPage.clickEntryCT();
+
+		// Confirm the Content Type selected
+
+		dashboardPage.clickOKButton();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Set basics fields of the new content created
+
+		dashboardPage.setBasicFieldsOfNewContent("test", "About US");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Cancel button because path field is requeried
+
+		driverManager.getDriver().findElement(By.id("cancelBtn")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Switch back to the dashboard page
+
+		driverManager.getDriver().switchTo().defaultContent();
+		
+		// Expand Home Tree
+		
 		dashboardPage.expandHomeTree();
 
-		// expand home content
+		// wait for element is clickeable
 
-		dashboardPage.clickHomeTree();
+		homePage.getDriverManager().driverWait();
 
+		
 		// Right click and copy content.
 
 		dashboardPage.rightClickToCopyOptionAboutUs();
@@ -159,8 +205,8 @@ public class CopyPasteContentTest {
 		// Assert of the content copied
 
 		String contentCopied = driverManager.getDriver()
-				.findElement(By.xpath("//tr/td[contains(span, 'About usCOPY')]")).getText();
-		Assert.assertEquals(contentCopied, "About usCOPY *");
+				.findElement(By.cssSelector("#ygtvcontentel4")).getText();
+		Assert.assertEquals(contentCopied, "About US 1COPY *");
 
 		// click delete option of the panel
 	    dashboardPage.rightClickToDeleteOption();
