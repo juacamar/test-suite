@@ -104,7 +104,7 @@ public class DashboardPage {
 		pasteContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content3");
 		pasteContent4 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content4");
 		aboutUsOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us");
-		aboutUsOptionCopied = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_copied");
+		aboutUsOptionCopied = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_copied"); 
 		deleteOptionCopied = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_about_us_copied");
 		unlockOptionCopied = uIElementsManager.getSharedUIElementsLocators()
@@ -402,12 +402,12 @@ public class DashboardPage {
 
 	public void rightClickCopyOptionAboutUs() {
 
-		WebElement copypasteContent = driverManager.getDriver().findElement(By.id(aboutUsOption));
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(newContentCreated));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(copypasteContent).build().perform();
 
-		WebElement copyContent = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
+		WebElement copyContent = driverManager.getDriver().findElement(By.cssSelector(copyContent3));
 		copyContent.click();
 
 	}
@@ -468,7 +468,7 @@ public class DashboardPage {
 
 	public void rightClickDeleteOption() {
 
-		WebElement delete = driverManager.getDriver().findElement(By.xpath(aboutUsOptionCopied));
+		WebElement delete = driverManager.getDriver().findElement(By.cssSelector(aboutUsOptionCopied));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(delete).build().perform();

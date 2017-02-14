@@ -71,85 +71,85 @@ public class CopyPasteIntoFolderTest {
 		
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// go to dashboard page
+		// go to dashboard page
 
-				homePage.goToDashboardPage();
+		homePage.goToDashboardPage();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// reload page
+		// reload page
 
-				driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().navigate().refresh();
 
-				// Show site content panel
+		// Show site content panel
 
-				driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-						.click();
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// expand pages folder
+		// expand pages folder
 
-				dashboardPage.expandPagesTree();
+		dashboardPage.expandPagesTree();
 
-				// right click to see the the menu
+		// right click to see the the menu
 
-				dashboardPage.rightClickToSeeMenu();
+		dashboardPage.rightClickToSeeMenu();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// Select Entry Content Type
+		// Select Entry Content Type
 
-				dashboardPage.clickEntryCT();
+		dashboardPage.clickEntryCT();
 
-				// Confirm the Content Type selected
+		// Confirm the Content Type selected
 
-				dashboardPage.clickOKButton();
+		dashboardPage.clickOKButton();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// Switch to the iframe
-				driverManager.getDriver().switchTo().defaultContent();
-				driverManager.getDriver().switchTo()
-						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// Set basics fields of the new content created
+		// Set basics fields of the new content created
 
-				dashboardPage.setBasicFieldsOfNewContent("test", "ContentToCopy");
+		dashboardPage.setBasicFieldsOfNewContent("test", "ContentToCopy");
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// Cancel button because path field is requeried
+		// Cancel button because path field is requeried
 
-				driverManager.getDriver().findElement(By.id("cancelBtn")).click();
+		driverManager.getDriver().findElement(By.id("cancelBtn")).click();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// Switch back to the dashboard page
+		// Switch back to the dashboard page
 
-				driverManager.getDriver().switchTo().defaultContent();
-				
-				// Expand Home Tree
-				
-				dashboardPage.expandHomeTree();
+		driverManager.getDriver().switchTo().defaultContent();
+
+		// Expand Home Tree
+
+		dashboardPage.expandHomeTree();
 
 		// right click to see the the menu
 
@@ -209,17 +209,13 @@ public class CopyPasteIntoFolderTest {
 
 		// Asserts of the new content created
 
-		WebElement newContentMoved = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]"));
+		String componentMoved = driverManager.getDriver()
+				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[2]/td[4]")).getText();
+		Assert.assertTrue(componentMoved.contains(componentMoved));
 
-		Assert.assertTrue(newContentMoved.isDisplayed());
-
-		WebElement componentMoved = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[2]/td[4]"));
-
-		Assert.assertTrue(componentMoved.isDisplayed());
-
-		
+		String newContentMoved = driverManager.getDriver()
+				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
+		Assert.assertTrue(newContentMoved.contains(newContentMoved));
 
 	}
 
