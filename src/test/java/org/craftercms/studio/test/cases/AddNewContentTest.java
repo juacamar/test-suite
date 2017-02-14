@@ -61,7 +61,7 @@ public class AddNewContentTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -92,14 +92,6 @@ public class AddNewContentTest {
 
 		dashboardPage.expandPagesTree();
 
-		// expand global entry content
-
-		dashboardPage.clickGlobalEntryTree();
-
-		// expand home content
-
-		dashboardPage.clickHomeTree();
-
 		// right click to see the the menu
 
 		dashboardPage.rightClickToSeeMenu();
@@ -108,9 +100,9 @@ public class AddNewContentTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Select Generic Content Type
+		// Select Entry Content Type
 
-		dashboardPage.clickGenericCT();
+		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
 
@@ -148,6 +140,10 @@ public class AddNewContentTest {
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
+		
+		// Expand Home Tree
+		
+		dashboardPage.expandHomeTree();
 
 		// Assert of the test case is fine
 

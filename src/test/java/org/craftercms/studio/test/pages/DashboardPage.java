@@ -47,7 +47,7 @@ public class DashboardPage {
 	private String folderToCopy;
 	private String copyContentButton;
 	private String pasteContent2;
-	private String servicesOption;
+	private String newContentCreated;
 	private String aboutUSFolderToCopy;
 	private String pasteContent3;
 	private String aboutUsOptionToTree1;
@@ -69,6 +69,9 @@ public class DashboardPage {
 	private String editRecentlyContentCreated;
 	private String selectEntryCT;
 	private String homeTree;
+	private String crafterComponent;
+	private String folderCreated;
+	private String copyContent3;
 
 	/**
 	 * 
@@ -113,7 +116,7 @@ public class DashboardPage {
 		aboutUsOptionCut = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_cut");
 		folderToCopy = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder_created");
 		copyContentButton = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
-		servicesOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.services");
+		newContentCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_content");
 		aboutUSFolderToCopy = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_folderToCopy");
 		aboutUsOptionToTree1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_tree1");
@@ -137,8 +140,9 @@ public class DashboardPage {
 		previewSync = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
 		contentRecentlyCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.recently_content_created");
 		editRecentlyContentCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_recently_content_created");
-		
-		
+		crafterComponent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.crafter_component");
+		folderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_created");
+		copyContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content3");
 
 	}
 
@@ -420,7 +424,7 @@ public class DashboardPage {
 
 		public void rightClickCopyOptionService() {
 
-			WebElement copypasteContent = driverManager.getDriver().findElement(By.id(servicesOption));
+			WebElement copypasteContent = driverManager.getDriver().findElement(By.id(newContentCreated));
 
 			Actions action = new Actions(driverManager.getDriver());
 			action.contextClick(copypasteContent).build().perform();
@@ -617,47 +621,47 @@ public class DashboardPage {
 
 	}
 
-	// Press right click and copy about us
+	// Press right click and copy the component  to new folder created.
 
-	public void rightClickCopyAboutUs() {
+	public void rightClickCopyComponent() {
 
-		WebElement copyAbout = driverManager.getDriver().findElement(By.id(aboutUsOption));
-
-		Actions action = new Actions(driverManager.getDriver());
-		action.contextClick(copyAbout).build().perform();
-
-		WebElement copyAboutToNewFolder = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
-		copyAboutToNewFolder.click();
-
-	}
-
-	public void rightClickToCopyAboutUsToNewFolder() {
-
-		// Press right click and copy about us page
-
-		this.rightClickCopyAboutUs();
-
-	}
-
-	// Press right click and copy services page
-
-	public void rightClickCopyServices() {
-
-		WebElement copyServices = driverManager.getDriver().findElement(By.id(servicesOption));
+		WebElement copyComponent = driverManager.getDriver().findElement(By.cssSelector(crafterComponent)); 
 
 		Actions action = new Actions(driverManager.getDriver());
-		action.contextClick(copyServices).build().perform();
+		action.contextClick(copyComponent).build().perform();
 
-		WebElement copyServicesToNewFolder = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
-		copyServicesToNewFolder.click();
+		WebElement copyComponentToNewFolder = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
+		copyComponentToNewFolder.click();
 
 	}
 
-	public void rightClickToCopyServicesToNewFolder() {
+	public void rightClickToCopyComponentToNewFolder() {
 
-		// Press right click and copy services page
+		// Press right click and copy the component  to new folder created.
 
-		this.rightClickCopyServices();
+		this.rightClickCopyComponent();
+
+	}
+
+	// Press right click and copy the new content to the new folder
+
+	public void rightClickCopyNewContent() {
+
+		WebElement copyNewContent = driverManager.getDriver().findElement(By.cssSelector(newContentCreated));
+
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(copyNewContent).build().perform();
+
+		WebElement copyNewContentToNewFolder = driverManager.getDriver().findElement(By.cssSelector(copyContent3));
+		copyNewContentToNewFolder.click();
+
+	}
+
+	public void rightClickToCopyNewContentToNewFolder() {
+
+		// Press right click and copy the new content to the new folder
+
+		this.rightClickCopyNewContent();
 
 	}
 
@@ -665,7 +669,7 @@ public class DashboardPage {
 
 	public void rightClickPaste() {
 
-		WebElement pasteAllContent = driverManager.getDriver().findElement(By.cssSelector(folderToCopy));
+		WebElement pasteAllContent = driverManager.getDriver().findElement(By.cssSelector(folderCreated));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(pasteAllContent).build().perform();
@@ -704,7 +708,7 @@ public class DashboardPage {
 
 	public void rightClickPasteOption1() {
 
-		WebElement pasteAboutContent = driverManager.getDriver().findElement(By.id(servicesOption)); // aboutUSFolderToCopy
+		WebElement pasteAboutContent = driverManager.getDriver().findElement(By.id(newContentCreated)); //
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(pasteAboutContent).build().perform();

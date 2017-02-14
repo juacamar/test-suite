@@ -24,7 +24,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CopyPasteFolderTest {
+public class CopyPasteIntoFolderTest {
 
 	WebDriver driver;
 
@@ -68,43 +68,88 @@ public class CopyPasteFolderTest {
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
-
+		
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// go to dashboard page
+				// go to dashboard page
 
-		homePage.goToDashboardPage();
+				homePage.goToDashboardPage();
 
-		// reload page
+				// wait for element is clickeable
 
-		driverManager.getDriver().navigate().refresh();
+				homePage.getDriverManager().driverWait();
 
-		// wait for element is clickeable
+				// reload page
 
-		homePage.getDriverManager().driverWait();
+				driverManager.getDriver().navigate().refresh();
 
-		// reload page
+				// Show site content panel
 
-		driverManager.getDriver().navigate().refresh();
+				driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+						.click();
 
-		// Show site content panel
+				// wait for element is clickeable
 
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
+				homePage.getDriverManager().driverWait();
 
-		// wait for element is clickeable
+				// expand pages folder
 
-		homePage.getDriverManager().driverWait();
+				dashboardPage.expandPagesTree();
 
-		// expand pages folder
+				// right click to see the the menu
 
-		dashboardPage.expandPagesTree();
+				dashboardPage.rightClickToSeeMenu();
 
-		// expand home content
+				// wait for element is clickeable
 
-		dashboardPage.expandHomeTree();
+				homePage.getDriverManager().driverWait();
+
+				// Select Entry Content Type
+
+				dashboardPage.clickEntryCT();
+
+				// Confirm the Content Type selected
+
+				dashboardPage.clickOKButton();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Switch to the iframe
+				driverManager.getDriver().switchTo().defaultContent();
+				driverManager.getDriver().switchTo()
+						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Set basics fields of the new content created
+
+				dashboardPage.setBasicFieldsOfNewContent("test", "ContentToCopy");
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Cancel button because path field is requeried
+
+				driverManager.getDriver().findElement(By.id("cancelBtn")).click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Switch back to the dashboard page
+
+				driverManager.getDriver().switchTo().defaultContent();
+				
+				// Expand Home Tree
+				
+				dashboardPage.expandHomeTree();
 
 		// right click to see the the menu
 
@@ -126,9 +171,21 @@ public class CopyPasteFolderTest {
 
 		driverManager.getDriver().navigate().refresh();
 
-		// Copy the about us page to the new folder created
+		// Copy the crafter component to the new folder created
 
-		dashboardPage.rightClickToCopyAboutUsToNewFolder();
+		dashboardPage.rightClickToCopyComponentToNewFolder();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// paste the crafter component in the new folder created
+
+		dashboardPage.rightClickToPasteToNewFolder();
+
+		// Copy the new content  to the new folder created
+
+		dashboardPage.rightClickToCopyNewContentToNewFolder();
 
 		// wait for element is clickeable
 
@@ -138,18 +195,6 @@ public class CopyPasteFolderTest {
 
 		dashboardPage.rightClickToPasteToNewFolder();
 
-		// Copy the services page to the new folder created
-
-		dashboardPage.rightClickToCopyServicesToNewFolder();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// paste the content in the new folder created
-
-		dashboardPage.rightClickToPasteToNewFolder();
-
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
@@ -161,39 +206,20 @@ public class CopyPasteFolderTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-
-		// copy about us option
-
-		dashboardPage.rightClickToCopyOptionAboutUs();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// paste about us to about us.
-
-		dashboardPage.rightClickToPasteOptionAboutUsToAboutUs();
 
 		// Asserts of the new content created
 
-		WebElement aboutUsInToServices = driverManager.getDriver()
+		WebElement newContentMoved = driverManager.getDriver()
 				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]"));
 
-		Assert.assertTrue(aboutUsInToServices.isDisplayed());
+		Assert.assertTrue(newContentMoved.isDisplayed());
 
-		WebElement servicesInToFolderCopied = driverManager.getDriver()
+		WebElement componentMoved = driverManager.getDriver()
 				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[2]/td[4]"));
 
-		Assert.assertTrue(servicesInToFolderCopied.isDisplayed());
+		Assert.assertTrue(componentMoved.isDisplayed());
 
-		WebElement aboutUsInToFolderCopied = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[3]/td[4]"));
-
-		Assert.assertTrue(aboutUsInToFolderCopied.isDisplayed());
+		
 
 	}
 

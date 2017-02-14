@@ -111,7 +111,7 @@ public class EditContentRecentlyCreatedTest {
 
 		// Select Generic Content Type
 
-		dashboardPage.clickGenericCT();
+		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
 
