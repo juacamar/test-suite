@@ -352,18 +352,18 @@ public class PreviewPage {
 
 	// Expand global entry content
 
-	public void clickGlobalEntryContent() {
+	public void clickHomeContent() {
 
-		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(expandGlobalEntryContent));
-		globalEntry.click();
+		WebElement homeContent = driverManager.getDriver().findElement(By.cssSelector(expandGlobalEntryContent));
+		homeContent.click();
 
 	}
 
-	public void clickGlobalEntryTree() {
+	public void expandHomeTree() {
 
 		// Expand global entry content
 
-		this.clickGlobalEntryContent();
+		this.clickHomeContent();
 
 	}
 

@@ -99,7 +99,7 @@ public class EditOptionTest {
 
 		// expand global entry content
 
-		previewPage.clickGlobalEntryTree();
+		previewPage.expandHomeTree();
 
 		// Select the content to edit.
 
