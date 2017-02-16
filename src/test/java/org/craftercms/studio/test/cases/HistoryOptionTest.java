@@ -97,9 +97,9 @@ public class HistoryOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// expand global entry content
+		// expand home content
 
-		previewPage.clickGlobalEntryTree();
+		previewPage.expandHomeTree();
 
 		// Select the content to view the history.
 

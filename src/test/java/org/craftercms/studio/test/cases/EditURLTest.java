@@ -97,13 +97,9 @@ public class EditURLTest {
 
 		dashboardPage.expandPagesTree();
 
-		// expand global entry content
+		// expand home tree 
 
 		dashboardPage.expandHomeTree();
-
-		// expand home content
-
-		dashboardPage.clickHomeTree();
 
 		// go to edit
 
