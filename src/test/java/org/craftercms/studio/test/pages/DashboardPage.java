@@ -72,6 +72,9 @@ public class DashboardPage {
 	private String crafterComponent;
 	private String folderCreated;
 	private String copyContent3;
+	private String cutCrafterComponent;
+	private String folderToPaste;
+	private String cutContent2;
 
 	/**
 	 * 
@@ -113,6 +116,7 @@ public class DashboardPage {
 				.getProperty("dashboard.delete_about_us_panel");
 		deleteOK = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.delete_OK");
 		cutContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content1");
+		cutContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content2");
 		aboutUsOptionCut = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_cut");
 		folderToCopy = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder_created");
 		copyContentButton = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
@@ -141,8 +145,11 @@ public class DashboardPage {
 		contentRecentlyCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.recently_content_created");
 		editRecentlyContentCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_recently_content_created");
 		crafterComponent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.crafter_component");
+		cutCrafterComponent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_crafter_component");
 		folderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_created");
 		copyContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content3");
+		folderToPaste = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_to_paste");
+
 
 	}
 
@@ -446,12 +453,12 @@ public class DashboardPage {
 
 	public void rightClickPasteOption() {
 
-		WebElement copypasteContent = driverManager.getDriver().findElement(By.id(globalEntry));
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(folderToPaste));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(copypasteContent).build().perform();
 
-		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteContent1));
+		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
 		pasteContent.click();
 
 	}
@@ -559,7 +566,7 @@ public class DashboardPage {
 
 	public void rightClickCutOption() {
 
-		WebElement cutpasteContent = driverManager.getDriver().findElement(By.id(aboutUsOption));
+		WebElement cutpasteContent = driverManager.getDriver().findElement(By.cssSelector(cutCrafterComponent));  
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(cutpasteContent).build().perform();
