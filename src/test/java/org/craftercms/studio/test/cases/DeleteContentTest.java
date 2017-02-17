@@ -65,7 +65,7 @@ public class DeleteContentTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -96,21 +96,25 @@ public class DeleteContentTest {
 
 		dashboardPage.expandPagesTree();
 
-		// expand global entry content
-
-		dashboardPage.expandHomeTree();
-
 		// expand home content
 
-		dashboardPage.clickHomeTree();
+		dashboardPage.expandHomeTree();
 
 		// right click to delete
 
 		dashboardPage.rightClickToDeleteContent();
+		
+		// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 
 		// confirmation
 
 		dashboardPage.clicktoDeleteContent();
+		
+		// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 
 		// submittal complete ok
 
@@ -137,11 +141,10 @@ public class DeleteContentTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert of the test case is fine
-
-		WebElement deletedIcon = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[3]/div[4]/table/tbody/tr[2]/td[2]/div/span"));
-
-		Assert.assertTrue(deletedIcon.isDisplayed());
+		
+		String contentCopied = driverManager.getDriver().findElement(By.cssSelector("#MyRecentActivity-tbody > tr > td.urlCol"))
+				.getText();
+		Assert.assertEquals(contentCopied, "/crafter-component.html");
 
 	}
 
