@@ -64,7 +64,7 @@ public class CutPasteContentTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -95,15 +95,32 @@ public class CutPasteContentTest {
 
 		dashboardPage.expandPagesTree();
 
-		// expand global entry content
+		// expand home content
 
 		dashboardPage.expandHomeTree();
 
-		// expand home content
+		// right click to see the the menu
 
-		dashboardPage.clickHomeTree();
+		dashboardPage.rightClickToNewContent();
 
-		// Right click and copy content.
+		// Set the name of the folder
+
+		dashboardPage.setFolderName("addnewfolder");
+
+		// Create folder button
+
+		dashboardPage.clickCreateButton();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+
+		// Right click and cut content.
 
 		dashboardPage.rightClickToCutOption();
 
@@ -118,24 +135,15 @@ public class CutPasteContentTest {
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
+		
+		driverManager.getDriver().findElement(By.cssSelector("#ygtvt4 > a:nth-child(1)")).click();
 
 		// Assert of the content copied
 
-		String contentCopied = driverManager.getDriver().findElement(By.xpath("//tr/td[contains(span, 'About us')]"))
+		String contentCopied = driverManager.getDriver().findElement(By.cssSelector("#ygtvtableel5 > tbody > tr"))
 				.getText();
-		Assert.assertEquals(contentCopied, "About us *");
+		Assert.assertEquals(contentCopied, "  crafter-component.xml *");
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Cut the content to move it to the original location.
-
-		dashboardPage.rightClickToCutOptionAgain();
-
-		// Paste the content in the original location.
-
-		dashboardPage.rightClickToPasteOptionCut();
 
 	}
 

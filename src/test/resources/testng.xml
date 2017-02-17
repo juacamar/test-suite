@@ -11,7 +11,7 @@
   
   <test name="Add New Content">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.AddNewContentTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
@@ -19,7 +19,7 @@
   
   <test name="Add New Folder">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.AddNewFolderTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
@@ -27,7 +27,7 @@
   
   <test name="Cancel Create Site Process">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CancelCreateSiteProcessTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
@@ -35,7 +35,7 @@
   
   <test name="Copy Paste Content">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CopyPasteContentTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
@@ -43,47 +43,24 @@
   
   <test name="Copy Paste Folder">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
-    <class name="org.craftercms.studio.test.cases.CopyPasteFolderTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.CopyPasteIntoFolderTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
   
-  <test name="Create Site Blueprint Angular Memory Game">
-  <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
-    <class name="org.craftercms.studio.test.cases.CreateSiteAngMemGamTest" />
-    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
-  </classes>
-  </test> <!-- Test -->
-  
-  <test name="Create Site Blueprint Corporate">
-  <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
-    <class name="org.craftercms.studio.test.cases.CreateSiteCorporateTest" />
-    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
-  </classes>
-  </test> <!-- Test -->
-  
+   
   <test name="Create Site Blueprint Empty">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
   
-  <test name="Create Site Blueprint Pluton">
-  <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
-    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
-  </classes>
-  </test> <!-- Test -->
   
   <test name="Create Tree with Different Content">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CreateTreeDifferentContentTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
@@ -91,7 +68,7 @@
   
   <test name="Create Tree with Same Content">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CreateTreeSameContentTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
@@ -99,23 +76,16 @@
   
   <test name="Content Type Drag and Drop">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CTDragAndDropTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
+ 
   
   <test name="Content Type Input Data">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
-    <class name="org.craftercms.studio.test.cases.CTInputTest" />
-    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
-  </classes>
-  </test> <!-- Test -->
-  
-  <test name="Content Type Input Data">
-  <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CTInputTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
@@ -123,7 +93,7 @@
   
   <test name="Cut Paste Content">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSitePlutonTest" />
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CutPasteContentTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
