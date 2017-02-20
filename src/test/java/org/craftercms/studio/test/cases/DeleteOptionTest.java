@@ -69,7 +69,7 @@ public class DeleteOptionTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element
 
@@ -101,13 +101,13 @@ public class DeleteOptionTest {
 
 		// expand global entry content
 
-	   previewPage.clickGlobalEntryTree();
+	   previewPage.expandHomeTree();
 
 		// Select the content to delete.
 
 		driverManager.getDriver()
 				.findElement(By
-						.id("ygtvlabelel11"))
+						.cssSelector("#ygtvcontentel11"))
 				.click();
 
 		// wait for element is clickeable
@@ -118,9 +118,17 @@ public class DeleteOptionTest {
 
 		previewPage.clickOnDeleteOption();
 		
+		// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+		
 		// Click on Delete dependencies
 		
 		previewPage.clickOnDeleteDependencies();
+		
+		// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 		
 		// Click nn OK Delete dependencies
 
