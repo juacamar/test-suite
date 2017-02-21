@@ -154,4 +154,20 @@
   </classes>
   </test> <!-- Test -->
   
+   <test name="Duplicate Option Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.DuplicateOptionTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Edit Content Form Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.EditContentFormTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
 </suite> <!-- Suite -->

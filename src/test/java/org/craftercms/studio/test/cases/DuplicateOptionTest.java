@@ -155,6 +155,10 @@ public class DuplicateOptionTest {
 		// expand pages folder
 
 		dashboardPage.expandPagesTree();
+		
+		// expand home content
+
+		dashboardPage.expandHomeTree();
 
 		// right click to see the the menu
 
@@ -209,16 +213,9 @@ public class DuplicateOptionTest {
 
 		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
+		// reload page
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-
-		// expand home content
-
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div/div/div/div/div/div[1]/table/tbody/tr/td[1]"))
-		.click();
+		driverManager.getDriver().navigate().refresh();
 		
 		// wait for element is clickeable
 
@@ -226,7 +223,8 @@ public class DuplicateOptionTest {
 
 		// Select the content to duplicate.
 
-		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel5")).click();
+		driverManager.getDriver().findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[2]/div/a")).click();
+		
 
 		// wait for element is clickeable
 
@@ -235,10 +233,18 @@ public class DuplicateOptionTest {
 		// click on duplicate
 
 		dashboardPage.clickOnDuplicateOption();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// click on duplicate in the popup
 
-		driverManager.getDriver().findElement(By.id("#yui-gen17-button")).click();
+		driverManager.getDriver().findElement(By.id("yui-gen1-button")).click();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// reload page
 
@@ -251,7 +257,7 @@ public class DuplicateOptionTest {
 		// Assert
 
 		String duplicate = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel12")).getText();
-		Assert.assertEquals(duplicate, "Home | English (US)contentduplicated *");
+		Assert.assertEquals(duplicate, "Testing1 1 *");
 
 	}
 
