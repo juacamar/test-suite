@@ -159,6 +159,10 @@ public class DesignOfPreviewPageTest {
 		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 				.click();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Assert all Sites Dropdown option is present.
 

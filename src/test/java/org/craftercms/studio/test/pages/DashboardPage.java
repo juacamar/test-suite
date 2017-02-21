@@ -76,6 +76,10 @@ public class DashboardPage {
 	private String folderToPaste;
 	private String cutContent2;
 	private String deleteCrafterComponent;
+	private String titleMedatata;
+	private String keywordsMetadata;
+	private String previewDuplicate;
+	private String duplicateName;
 
 	/**
 	 * 
@@ -152,6 +156,10 @@ public class DashboardPage {
 		folderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_created");
 		copyContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content3");
 		folderToPaste = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_to_paste");
+		titleMedatata = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_title");
+		keywordsMetadata = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_keywords");
+		previewDuplicate = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate");
+		duplicateName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate_name");
 
 
 	}
@@ -1033,6 +1041,72 @@ public class DashboardPage {
 			// Press right click and select edit to the content created
 
 			this.rightClickToEdit();
+
+		}
+		
+		// Set metadata fields
+
+		public void setTitle(String strTitle) {
+			
+			
+
+			WebElement title = driverManager.getDriver().findElement(By.cssSelector(titleMedatata));
+			title.sendKeys(strTitle);
+			
+
+		}
+		
+       public void setKeywords(String strKeywords) {
+			
+			
+			WebElement keywords = driverManager.getDriver().findElement(By.cssSelector(keywordsMetadata));
+			keywords.sendKeys(strKeywords);
+
+		}
+
+		public void setMetadataFields(String strTitle, String strKeywords) {
+
+			// Set metadata fields
+
+			this.setTitle(strTitle);
+			
+			this.setKeywords(strKeywords);
+			 
+			
+
+		}
+		
+		// Click on duplicate button of the menu
+
+		public void duplicateButton() {
+
+			WebElement duplicateOption = driverManager.getDriver().findElement(By.xpath(previewDuplicate));
+			duplicateOption.click();
+
+		}
+
+		public void clickOnDuplicateOption() {
+
+			// Click on duplicate button of the menu
+
+			this.duplicateButton();
+
+		}
+		
+		// Set the new name duplicated
+
+		public void duplicateName(String strDuplicateName) {
+
+			WebElement internalName = driverManager.getDriver().findElement(By.xpath(duplicateName));
+			internalName.sendKeys(strDuplicateName);
+
+		}
+
+		public void setDuplicateName(String strDuplicateName) {
+
+			// Set the new name duplicated
+
+			this.duplicateName(strDuplicateName);
 
 		}
 
