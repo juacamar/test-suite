@@ -42,8 +42,6 @@ public class DuplicateOptionTest {
 
 	private DashboardPage dashboardPage;
 
-	
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -58,10 +56,10 @@ public class DuplicateOptionTest {
 
 	}
 
-	 @AfterTest
-	 public void afterTest() {
-	 driverManager.closeConnection();
-	 }
+	@AfterTest
+	public void afterTest() {
+		driverManager.closeConnection();
+	}
 
 	@Test(priority = 0)
 
@@ -69,9 +67,9 @@ public class DuplicateOptionTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
-		// wait for element
+		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
@@ -82,8 +80,11 @@ public class DuplicateOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Show site content panel
+		// reload page
 
+		driverManager.getDriver().navigate().refresh();
+
+		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 				.click();
 
@@ -91,32 +92,89 @@ public class DuplicateOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// expand pages folder
+		// go to admin console page
 
-		previewPage.expandPagesTree();
-		
+		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// expand global entry content
+		// select content types
+		adminConsolePage.selectContentTypeOption();
 
-	   previewPage.clickGlobalEntryTree();
+		// open content types
 
-		// Select the content to duplicate.
+		adminConsolePage.clickExistingTypeOption();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select the Entry content type
+
+		adminConsolePage.selectEntryContentType();
+
+		// Confirm the content type selected
+
+		adminConsolePage.confirmContentTypeSelected();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// select main content
+
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen6")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Body not required
 
 		driverManager.getDriver()
-				.findElement(By
-						.id("ygtvlabelel11"))
-				.click();
+				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// click on duplicate
+		// save
 
-		previewPage.clickOnDuplicateOption();
+		adminConsolePage.saveDragAndDropProcess();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+		// expand pages folder
+
+		dashboardPage.expandPagesTree();
+
+		// right click to see the the menu
+
+		dashboardPage.rightClickToSeeMenu();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select Entry Content Type
+
+		dashboardPage.clickEntryCT();
+
+		// Confirm the Content Type selected
+
+		dashboardPage.clickOKButton();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
@@ -125,28 +183,74 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		previewPage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-		// set the name of the duplicate content
+		// Set basics fields of the new content created
 
-		previewPage.setDuplicateName("contentduplicated");
+		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-		// click on save&close
+		// wait for element is clickeable
 
-		previewPage.clickOnSaveAndClose();
+		homePage.getDriverManager().driverWait();
 
-		// Switch back to the preview page
+		// Expand all fields
 
-		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+
+		// Set Main Content
+
+		dashboardPage.setMetadataFields("title", "keywords");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// save and close
+
+		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+
+		// expand home content
+
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div/div/div/div/div/div[1]/table/tbody/tr/td[1]"))
+		.click();
 		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select the content to duplicate.
+
+		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel5")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// click on duplicate
+
+		dashboardPage.clickOnDuplicateOption();
+
+		// click on duplicate in the popup
+
+		driverManager.getDriver().findElement(By.id("#yui-gen17-button")).click();
+
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
 
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
 		// Assert
-		
-		String duplicate = driverManager.getDriver()
-		.findElement(By.id("ygtvlabelel12")).getText();
+
+		String duplicate = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel12")).getText();
 		Assert.assertEquals(duplicate, "Home | English (US)contentduplicated *");
 
 	}

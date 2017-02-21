@@ -307,7 +307,7 @@ public class PreviewPage {
 
 	}
 
-	// Set the new name of the URL
+	// Set the new name duplicated
 
 	public void duplicateName(String strDuplicateName) {
 
@@ -318,7 +318,7 @@ public class PreviewPage {
 
 	public void setDuplicateName(String strDuplicateName) {
 
-		// Set the new name of the URL
+		// Set the new name duplicated
 
 		this.duplicateName(strDuplicateName);
 
