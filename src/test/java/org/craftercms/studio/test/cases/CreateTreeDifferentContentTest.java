@@ -63,7 +63,7 @@ public class CreateTreeDifferentContentTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -94,13 +94,9 @@ public class CreateTreeDifferentContentTest {
 
 		dashboardPage.expandPagesTree();
 
-		// expand global entry content
-
-		dashboardPage.expandHomeTree();
-
 		// expand home content
 
-		dashboardPage.clickHomeTree();
+		dashboardPage.expandHomeTree();
 
 		// Right click and copy content.
 

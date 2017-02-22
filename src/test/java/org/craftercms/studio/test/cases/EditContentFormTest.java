@@ -54,8 +54,6 @@ public class EditContentFormTest {
 
 	private DashboardPage dashboardPage;
 
-	
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -83,7 +81,7 @@ public class EditContentFormTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element
 
@@ -128,7 +126,7 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait();
 
 		// Select the generic content type
-		
+
 		adminConsolePage.selectEntryContentType();
 
 		// Confirm the content type selected
@@ -198,8 +196,9 @@ public class EditContentFormTest {
 
 		// Ok for the dialog window when appears
 
-//		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
-//		driverManager.getDriver().switchTo().alert().accept();
+		// new WebDriverWait(driverManager.getDriver(),
+		// 10).until(ExpectedConditions.alertIsPresent());
+		// driverManager.getDriver().switchTo().alert().accept();
 
 		// wait for element is clickeable
 
