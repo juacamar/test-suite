@@ -1027,7 +1027,7 @@ public class DashboardPage {
 
 		public void rightClickToEdit() {
 
-			WebElement editContent = driverManager.getDriver().findElement(By.id("ygtvcontentel15")); //contentRecentlyCreated
+			WebElement editContent = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")); //contentRecentlyCreated
 			Actions action = new Actions(driverManager.getDriver());
 			action.contextClick(editContent).build().perform();
 
@@ -1109,5 +1109,8 @@ public class DashboardPage {
 			this.duplicateName(strDuplicateName);
 
 		}
+		
+		
+		
 
 }
