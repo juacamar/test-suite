@@ -80,6 +80,8 @@ public class DashboardPage {
 	private String keywordsMetadata;
 	private String previewDuplicate;
 	private String duplicateName;
+	private String homeContent2;
+	private String addNewContent2;
 
 	/**
 	 * 
@@ -93,7 +95,9 @@ public class DashboardPage {
 				.getProperty("dashboard.expand_GlobalEntry_Tree");
 		homeContentTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Home_Tree");
 		homeContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page");
+		homeContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page2");
 		addNewContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content");
+		addNewContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content2");
 		addNewFolder = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Folder");
 		selectEntryCT = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.entry_Content_Type");
 		okButton1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.ok_Button");
@@ -225,10 +229,10 @@ public class DashboardPage {
 
 	public void rightClickHome() {
 
-		WebElement newContent = driverManager.getDriver().findElement(By.cssSelector(homeContent));
+		WebElement home = driverManager.getDriver().findElement(By.cssSelector(homeContent));
 
 		Actions action = new Actions(driverManager.getDriver());
-		action.contextClick(newContent).build().perform();
+		action.contextClick(home).build().perform();
 
 		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent)); 
 		addContent.click();
@@ -241,6 +245,29 @@ public class DashboardPage {
 		this.rightClickHome();
 
 	}
+	
+	
+	// Press right click and select new content
+
+		public void rightClickHome2() {
+
+			WebElement home2 = driverManager.getDriver().findElement(By.cssSelector(homeContent2));
+
+			Actions action = new Actions(driverManager.getDriver());
+			action.contextClick(home2).build().perform();
+
+			WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent2)); 
+			addContent.click();
+		}
+
+		public void rightClickToSeeMenu2() {
+
+			// Press right click and select new content
+
+			this.rightClickHome2();
+
+		}
+		
 
 	// Press right click select new folder
 

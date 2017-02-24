@@ -219,44 +219,151 @@ public class EditContentFormTest {
 
 		dashboardPage.expandHomeTree();
 
-		// expand home content
 
-		dashboardPage.clickHomeTree();
+				// wait for element is clickeable
 
-		// Right click and copy content.
+				homePage.getDriverManager().driverWait();
 
-		dashboardPage.rightClickToCutOption();
+				// go to admin console page
 
-		// Right click and paste content.
+				driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
-		dashboardPage.rightClickToPasteOption();
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// select content types
+				adminConsolePage.selectContentTypeOption();
+
+				// open content types
+
+				adminConsolePage.clickExistingTypeOption();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Select the Entry content type
+
+				adminConsolePage.selectEntryContentType();
+
+				// Confirm the content type selected
+
+				adminConsolePage.confirmContentTypeSelected();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// select main content
+
+				driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Body not required
+
+				driverManager.getDriver()
+						.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// save
+
+				adminConsolePage.saveDragAndDropProcess();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// go to dashboard
+
+				driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+				// expand pages folder
+
+				dashboardPage.expandPagesTree();
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// right click to see the the menu
+
+				dashboardPage.rightClickToSeeMenu2();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Select Entry Content Type
+
+				dashboardPage.clickEntryCT();
+
+				// Confirm the Content Type selected
+
+				dashboardPage.clickOKButton();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Switch to the iframe
+				driverManager.getDriver().switchTo().defaultContent();
+				driverManager.getDriver().switchTo()
+						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Set basics fields of the new content created
+
+				dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Expand all fields
+
+				driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+
+				// Set Main Content
+
+				dashboardPage.setMetadataFields("title", "keywords");
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// save and close
+
+				driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Switch back to the dashboard page
+
+				driverManager.getDriver().switchTo().defaultContent();
+				
+
+				// Assert of the test case is fine
+
+				String contentURL = driverManager.getDriver()
+						.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
+				Assert.assertTrue(contentURL.contains(contentURL));
 
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// Assert of the content copied
-
-		String contentCopied = driverManager.getDriver().findElement(By.xpath("//tr/td[contains(span, 'About us')]"))
-				.getText();
-		Assert.assertEquals(contentCopied, "About us *");
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Cut the content to move it to the original location.
-
-		dashboardPage.rightClickToCutOptionAgain();
-
-		// Paste the content in the original location.
-
-		dashboardPage.rightClickToPasteOptionCut();
-
+		
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
@@ -281,11 +388,19 @@ public class EditContentFormTest {
 		myRecentActivityFramePage1.ExpandDefaultSection();
 
 		// Clealing title text field
-		myRecentActivityFramePage1.CleaningTitleField();
+		driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).clear();
+		
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
 
 		// Typing new text on title text field
-		myRecentActivityFramePage1.TypeNewTextOnBodyField("Text for QA");
+		driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).sendKeys("TestQA");
 
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+		
 		// Save and close button.
 		myRecentActivityFramePage1.ClickOnSaveAndCloseButton();
 
@@ -320,9 +435,9 @@ public class EditContentFormTest {
 
 		// Assert validation
 		String textTitle = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/div/div[2]/div/div[2]/div[2]/div/div[2]/div/input"))
+				.findElement(By.cssSelector("#internal-name > div > input"))
 				.getAttribute("value");
-		Assert.assertEquals(textTitle, "Text for QA");
+		Assert.assertEquals(textTitle, "TestQA");
 
 	}
 }
