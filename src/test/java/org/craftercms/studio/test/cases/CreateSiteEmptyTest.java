@@ -97,7 +97,7 @@ public class CreateSiteEmptyTest {
 
 		// Filling the name of site
 
-		createPage.fillSiteName("Automation");
+		createPage.fillSiteName("AutomationTestSITE");
 
 		// Filling the Id of the site
 

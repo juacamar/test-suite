@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.craftercms.studio.test.pages.AdminConsolePage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
@@ -17,11 +18,11 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
-public class CopyPasteContentTest {
+public class AddNewContentEntryTest {
 
 	WebDriver driver;
 
@@ -38,7 +39,8 @@ public class CopyPasteContentTest {
 	private PreviewPage previewPage;
 
 	private DashboardPage dashboardPage;
-
+	
+	private AdminConsolePage adminConsolePage;
 
 
 	@BeforeTest
@@ -50,6 +52,7 @@ public class CopyPasteContentTest {
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
 
 	}
 
@@ -60,7 +63,7 @@ public class CopyPasteContentTest {
 
 	@Test(priority = 0)
 
-	public void Copy_Paste_Content_test() {
+	public void add_new_content_entry() {
 
 		// login to application
 
@@ -70,9 +73,8 @@ public class CopyPasteContentTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// go to dashboard page
-
-		homePage.goToDashboardPage();
+		// go to preview page
+		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
@@ -83,13 +85,72 @@ public class CopyPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
-
 		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 				.click();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+
+		// go to admin console page
+
+		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// select content types
+		adminConsolePage.selectContentTypeOption();
+
+		// open content types
+
+		adminConsolePage.clickExistingTypeOption();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select the Entry content type
+
+		adminConsolePage.selectEntryContentType();
+
+		// Confirm the content type selected
+
+		adminConsolePage.confirmContentTypeSelected();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// select main content
+
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen6")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Body not required
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// save
+
+		adminConsolePage.saveDragAndDropProcess();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// expand pages folder
 
@@ -126,15 +187,27 @@ public class CopyPasteContentTest {
 
 		// Set basics fields of the new content created
 
-		dashboardPage.setBasicFieldsOfNewContent("test", "About US");
+		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Cancel button because path field is requeried
+		// Expand all fields
 
-		driverManager.getDriver().findElement(By.id("cancelBtn")).click();
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+
+		// Set Main Content
+
+		dashboardPage.setMetadataFields("title", "keywords");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// save and close
+
+		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
 
@@ -148,68 +221,11 @@ public class CopyPasteContentTest {
 		
 		dashboardPage.expandHomeTree();
 
-		// wait for element is clickeable
+		// Assert of the test case is fine
 
-		homePage.getDriverManager().driverWait();
-
-		
-		// Right click and copy content.
-
-		dashboardPage.rightClickToCopyOptionAboutUs();
-
-		// Right click and paste content.
-
-		dashboardPage.rightClickToPasteOption();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on edit option of recent activity section
-		
-		homePage.clickOnEditOptionRecentActivity();
-
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// edit internal name
-
-		dashboardPage.editInternalName("COPY");
-
-		// Switch back to the dashboard page
-
-		driverManager.getDriver().switchTo().defaultContent();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// Assert of the content copied
-
-		String contentCopied = driverManager.getDriver()
-				.findElement(By.cssSelector("#ygtvlabelel3")).getText();
-		Assert.assertEquals(contentCopied, "About USCOPY *");
-
-	
-
+		String contentURL = driverManager.getDriver()
+				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
+		Assert.assertTrue(contentURL.contains(contentURL));
 	}
 
 }

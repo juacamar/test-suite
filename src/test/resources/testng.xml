@@ -9,15 +9,23 @@
   </classes>
   </test> <!-- Test -->
   
-  <test name="Add New Content">
+  <test name="Add New Content Entry Test">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
-    <class name="org.craftercms.studio.test.cases.AddNewContentTest" />
+    <class name="org.craftercms.studio.test.cases.AddNewContentEntryTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
   
-  <test name="Add New Folder">
+   <test name="Add New Content Level Descriptor Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.AddNewContentLevelDescriptorTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Add New Folder Test">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.AddNewFolderTest" />
@@ -25,15 +33,13 @@
   </classes>
   </test> <!-- Test -->
   
-  <test name="Cancel Create Site Process">
+  <test name="Cancel Create Site Process Test">
   <classes>
-    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CancelCreateSiteProcessTest" />
-    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
   
-  <test name="Copy Paste Content">
+  <test name="Copy Paste Content Test">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CopyPasteContentTest" />
@@ -41,7 +47,7 @@
   </classes>
   </test> <!-- Test -->
   
-  <test name="Copy Paste Folder">
+  <test name="Copy Paste Into Folder Test">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.CopyPasteIntoFolderTest" />
@@ -182,6 +188,14 @@
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
     <class name="org.craftercms.studio.test.cases.EditOptionTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Enable Disable Editing In Context Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.EnableDisableEditingInContextTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
