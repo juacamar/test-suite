@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 
 /**
  *
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -80,6 +80,11 @@ public class DashboardPage {
 	private String keywordsMetadata;
 	private String previewDuplicate;
 	private String duplicateName;
+	private String homeContent2;
+	private String addNewContent2;
+	private String levelDescriptorContentType;
+	private String setFileName;
+	private String homeContent3;
 
 	/**
 	 * 
@@ -89,11 +94,12 @@ public class DashboardPage {
 		this.uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
 		pagesTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Pages_Tree");
-		homeTree = uIElementsManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.expand_GlobalEntry_Tree");
+		homeTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_GlobalEntry_Tree");
 		homeContentTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Home_Tree");
 		homeContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page");
+		homeContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page2");
 		addNewContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content");
+		addNewContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content2");
 		addNewFolder = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Folder");
 		selectEntryCT = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.entry_Content_Type");
 		okButton1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.ok_Button");
@@ -112,7 +118,7 @@ public class DashboardPage {
 		pasteContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content3");
 		pasteContent4 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content4");
 		aboutUsOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us");
-		aboutUsOptionCopied = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_copied"); 
+		aboutUsOptionCopied = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_copied");
 		deleteOptionCopied = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_about_us_copied");
 		deleteCrafterComponent = uIElementsManager.getSharedUIElementsLocators()
@@ -149,10 +155,13 @@ public class DashboardPage {
 		ediPagetUrl = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_url_button");
 		pageUrlField = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.page_url_field");
 		previewSync = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
-		contentRecentlyCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.recently_content_created");
-		editRecentlyContentCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_recently_content_created");
+		contentRecentlyCreated = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.recently_content_created");
+		editRecentlyContentCreated = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.edit_recently_content_created");
 		crafterComponent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.crafter_component");
-		cutCrafterComponent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_crafter_component");
+		cutCrafterComponent = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.cut_crafter_component");
 		folderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_created");
 		copyContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content3");
 		folderToPaste = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_to_paste");
@@ -160,7 +169,10 @@ public class DashboardPage {
 		keywordsMetadata = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_keywords");
 		previewDuplicate = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate");
 		duplicateName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate_name");
-
+		levelDescriptorContentType = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.level_descriptor");
+		setFileName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.file_name");
+		homeContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page3");
 
 	}
 
@@ -225,12 +237,12 @@ public class DashboardPage {
 
 	public void rightClickHome() {
 
-		WebElement newContent = driverManager.getDriver().findElement(By.cssSelector(homeContent));
+		WebElement home = driverManager.getDriver().findElement(By.cssSelector(homeContent));
 
 		Actions action = new Actions(driverManager.getDriver());
-		action.contextClick(newContent).build().perform();
+		action.contextClick(home).build().perform();
 
-		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent)); 
+		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent));
 		addContent.click();
 	}
 
@@ -239,6 +251,48 @@ public class DashboardPage {
 		// Press right click and select new content
 
 		this.rightClickHome();
+
+	}
+
+	// Press right click and select new content
+
+	public void rightClickHome2() {
+
+		WebElement home2 = driverManager.getDriver().findElement(By.cssSelector(homeContent2));
+
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(home2).build().perform();
+
+		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent2));
+		addContent.click();
+	}
+
+	public void rightClickToSeeMenu2() {
+
+		// Press right click and select new content
+
+		this.rightClickHome2();
+
+	}
+
+	// Press right click and select new content
+
+	public void rightClickHome3() {
+
+		WebElement home3 = driverManager.getDriver().findElement(By.cssSelector(homeContent3));
+
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(home3).build().perform();
+
+		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent));
+		addContent.click();
+	}
+
+	public void rightClickToSeeMenu3() {
+
+		// Press right click and select new content
+
+		this.rightClickHome3();
 
 	}
 
@@ -268,8 +322,8 @@ public class DashboardPage {
 
 	public void selectEntryCT() {
 
-		WebElement genericCT = driverManager.getDriver().findElement(By.cssSelector(selectEntryCT));
-		genericCT.click();
+		WebElement entryCT = driverManager.getDriver().findElement(By.cssSelector(selectEntryCT));
+		entryCT.click();
 
 	}
 
@@ -278,6 +332,24 @@ public class DashboardPage {
 		// Select Generic Content type
 
 		this.selectEntryCT();
+
+	}
+
+	// Select Level Descriptor Content type
+
+	public void selectLDCT() {
+
+		WebElement levelDescriptorCT = driverManager.getDriver()
+				.findElement(By.cssSelector(levelDescriptorContentType));
+		levelDescriptorCT.click();
+
+	}
+
+	public void clickLevelDescriptorCT() {
+
+		// Select Level Descriptor Content type
+
+		this.selectLDCT();
 
 	}
 
@@ -359,7 +431,7 @@ public class DashboardPage {
 		this.clickSaveDraft();
 
 	}
-	
+
 	// Click on save and close button
 
 	public void clickSaveAndDraft() {
@@ -416,6 +488,23 @@ public class DashboardPage {
 
 	}
 
+	// Set the name of the file
+
+	public void fileName(String strFileName) {
+
+		WebElement fileName = driverManager.getDriver().findElement(By.cssSelector(setFileName));
+		fileName.sendKeys(strFileName);
+
+	}
+
+	public void setFileName(String strFileName) {
+
+		// Set the name of the file
+
+		this.fileName(strFileName);
+
+	}
+
 	// Press right click and press copy option (about us page)
 
 	public void rightClickCopyOptionAboutUs() {
@@ -437,28 +526,28 @@ public class DashboardPage {
 		this.rightClickCopyOptionAboutUs();
 
 	}
-	
+
 	// Press right click and press copy option (service page)
 
-		public void rightClickCopyOptionService() {
+	public void rightClickCopyOptionService() {
 
-			WebElement copypasteContent = driverManager.getDriver().findElement(By.id(newContentCreated));
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.id(newContentCreated));
 
-			Actions action = new Actions(driverManager.getDriver());
-			action.contextClick(copypasteContent).build().perform();
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(copypasteContent).build().perform();
 
-			WebElement copyContent = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
-			copyContent.click();
+		WebElement copyContent = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
+		copyContent.click();
 
-		}
+	}
 
-		public void rightClickToCopyOptionService() {
+	public void rightClickToCopyOptionService() {
 
-			// Press right click and press copy option
+		// Press right click and press copy option
 
-			this.rightClickCopyOptionService();
+		this.rightClickCopyOptionService();
 
-		}
+	}
 
 	// Press right click and press paste option
 
@@ -577,7 +666,7 @@ public class DashboardPage {
 
 	public void rightClickCutOption() {
 
-		WebElement cutpasteContent = driverManager.getDriver().findElement(By.cssSelector(cutCrafterComponent));  
+		WebElement cutpasteContent = driverManager.getDriver().findElement(By.cssSelector(cutCrafterComponent));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(cutpasteContent).build().perform();
@@ -639,11 +728,11 @@ public class DashboardPage {
 
 	}
 
-	// Press right click and copy the component  to new folder created.
+	// Press right click and copy the component to new folder created.
 
 	public void rightClickCopyComponent() {
 
-		WebElement copyComponent = driverManager.getDriver().findElement(By.cssSelector(crafterComponent)); 
+		WebElement copyComponent = driverManager.getDriver().findElement(By.cssSelector(crafterComponent));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(copyComponent).build().perform();
@@ -655,7 +744,7 @@ public class DashboardPage {
 
 	public void rightClickToCopyComponentToNewFolder() {
 
-		// Press right click and copy the component  to new folder created.
+		// Press right click and copy the component to new folder created.
 
 		this.rightClickCopyComponent();
 
@@ -755,7 +844,7 @@ public class DashboardPage {
 		WebElement copyContent = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
 		copyContent.click();
 
-	}//// is ready 
+	}//// is ready
 
 	public void rightClickToCopyOptionAboutUsToTree() {
 
@@ -988,7 +1077,7 @@ public class DashboardPage {
 		this.editURLbutton();
 
 	}
-	
+
 	// Set the new name of the URL
 
 	public void URLPageName(String strNewURL) {
@@ -1005,112 +1094,103 @@ public class DashboardPage {
 		this.URLPageName(strNewURL);
 
 	}
-	
+
 	// click on preview sync option
 
-		public void previewSyncOption() {
+	public void previewSyncOption() {
 
-			WebElement previewSyncOpt = driverManager.getDriver().findElement(By.cssSelector(previewSync));
-			previewSyncOpt.click();
+		WebElement previewSyncOpt = driverManager.getDriver().findElement(By.cssSelector(previewSync));
+		previewSyncOpt.click();
 
-		}
+	}
 
-		public void clickOnPreviewSyncOption() {
+	public void clickOnPreviewSyncOption() {
 
-			// click on preview sync option
+		// click on preview sync option
 
-			this.previewSyncOption();
+		this.previewSyncOption();
 
-		}
-		
+	}
+
+	// Press right click and select edit to the content created
+
+	public void rightClickToEdit() {
+
+		WebElement editContent = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")); // contentRecentlyCreated
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(editContent).build().perform();
+
+		WebElement editOption = driverManager.getDriver().findElement(By.cssSelector(editRecentlyContentCreated));
+		editOption.click();
+
+	}
+
+	public void rightClickToSelectEditOption() {
+
 		// Press right click and select edit to the content created
 
-		public void rightClickToEdit() {
+		this.rightClickToEdit();
 
-			WebElement editContent = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")); //contentRecentlyCreated
-			Actions action = new Actions(driverManager.getDriver());
-			action.contextClick(editContent).build().perform();
+	}
 
-			WebElement editOption = driverManager.getDriver().findElement(By.cssSelector(editRecentlyContentCreated)); 
-			editOption.click();
+	// Set metadata fields
 
-		}
+	public void setTitle(String strTitle) {
 
-		public void rightClickToSelectEditOption() {
+		WebElement title = driverManager.getDriver().findElement(By.cssSelector(titleMedatata));
+		title.sendKeys(strTitle);
 
-			// Press right click and select edit to the content created
+	}
 
-			this.rightClickToEdit();
+	public void setKeywords(String strKeywords) {
 
-		}
-		
+		WebElement keywords = driverManager.getDriver().findElement(By.cssSelector(keywordsMetadata));
+		keywords.sendKeys(strKeywords);
+
+	}
+
+	public void setMetadataFields(String strTitle, String strKeywords) {
+
 		// Set metadata fields
 
-		public void setTitle(String strTitle) {
-			
-			
+		this.setTitle(strTitle);
 
-			WebElement title = driverManager.getDriver().findElement(By.cssSelector(titleMedatata));
-			title.sendKeys(strTitle);
-			
+		this.setKeywords(strKeywords);
 
-		}
-		
-       public void setKeywords(String strKeywords) {
-			
-			
-			WebElement keywords = driverManager.getDriver().findElement(By.cssSelector(keywordsMetadata));
-			keywords.sendKeys(strKeywords);
+	}
 
-		}
+	// Click on duplicate button of the menu
 
-		public void setMetadataFields(String strTitle, String strKeywords) {
+	public void duplicateButton() {
 
-			// Set metadata fields
+		WebElement duplicateOption = driverManager.getDriver().findElement(By.xpath(previewDuplicate));
+		duplicateOption.click();
 
-			this.setTitle(strTitle);
-			
-			this.setKeywords(strKeywords);
-			 
-			
+	}
 
-		}
-		
+	public void clickOnDuplicateOption() {
+
 		// Click on duplicate button of the menu
 
-		public void duplicateButton() {
+		this.duplicateButton();
 
-			WebElement duplicateOption = driverManager.getDriver().findElement(By.xpath(previewDuplicate));
-			duplicateOption.click();
+	}
 
-		}
+	// Set the new name duplicated
 
-		public void clickOnDuplicateOption() {
+	public void duplicateName(String strDuplicateName) {
 
-			// Click on duplicate button of the menu
+		WebElement internalName = driverManager.getDriver().findElement(By.xpath(duplicateName));
+		internalName.sendKeys(strDuplicateName);
 
-			this.duplicateButton();
+	}
 
-		}
-		
+	public void setDuplicateName(String strDuplicateName) {
+
 		// Set the new name duplicated
 
-		public void duplicateName(String strDuplicateName) {
+		this.duplicateName(strDuplicateName);
 
-			WebElement internalName = driverManager.getDriver().findElement(By.xpath(duplicateName));
-			internalName.sendKeys(strDuplicateName);
-
-		}
-
-		public void setDuplicateName(String strDuplicateName) {
-
-			// Set the new name duplicated
-
-			this.duplicateName(strDuplicateName);
-
-		}
-		
-		
-		
+	}
 
 }

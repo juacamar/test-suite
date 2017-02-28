@@ -9,10 +9,12 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.craftercms.studio.test.pages.AdminConsolePage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.PreviewPage;
+import org.craftercms.studio.test.pages.AdminConsolePage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
@@ -41,6 +43,9 @@ public class FilterShowRecentActivityTest {
 	private PreviewPage previewPage;
 
 	private DashboardPage dashboardPage;
+	
+	private AdminConsolePage adminConsolePage;
+
 
 	@BeforeTest
 	public void beforeTest() {
@@ -51,6 +56,9 @@ public class FilterShowRecentActivityTest {
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
+
+		
 
 	}
 
@@ -65,104 +73,196 @@ public class FilterShowRecentActivityTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// go to dashboard page
+				// go to preview page
+				homePage.goToPreviewPage();
 
-		homePage.goToDashboardPage();
+				// wait for element is clickeable
 
-		// wait for element is clickeable
+				homePage.getDriverManager().driverWait();
 
-		homePage.getDriverManager().driverWait();
+				// reload page
 
-		// reload page
+				driverManager.getDriver().navigate().refresh();
 
-		driverManager.getDriver().navigate().refresh();
+				// Show site content panel
+				driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+						.click();
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// Show site content panel
+				// go to admin console page
 
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
+				driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// expand pages folder
+				// select content types
+				adminConsolePage.selectContentTypeOption();
 
-		dashboardPage.expandPagesTree();
+				// open content types
 
-		// expand global entry content
+				adminConsolePage.clickExistingTypeOption();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Select the Entry content type
+
+				adminConsolePage.selectEntryContentType();
+
+				// Confirm the content type selected
+
+				adminConsolePage.confirmContentTypeSelected();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// select main content
+
+				driverManager.getDriver().findElement(By.cssSelector("#yui-gen6")).click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Body not required
+
+				driverManager.getDriver()
+						.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// save
+
+				adminConsolePage.saveDragAndDropProcess();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// go to dashboard
+
+				driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+				// expand pages folder
+
+				dashboardPage.expandPagesTree();
+
+				// right click to see the the menu
+
+				dashboardPage.rightClickToSeeMenu();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Select Entry Content Type
+
+				dashboardPage.clickEntryCT();
+
+				// Confirm the Content Type selected
+
+				dashboardPage.clickOKButton();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Switch to the iframe
+				driverManager.getDriver().switchTo().defaultContent();
+				driverManager.getDriver().switchTo()
+						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Set basics fields of the new content created
+
+				dashboardPage.setBasicFieldsOfNewContent("AboutUs", "AboutUs");
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Expand all fields
+
+				driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+
+				// Set Main Content
+
+				dashboardPage.setMetadataFields("title", "keywords");
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// save and close
+
+				driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Switch back to the dashboard page
+
+				driverManager.getDriver().switchTo().defaultContent();
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				
+		// expand home
 
 		dashboardPage.expandHomeTree();
+		
+		// wait for element is clickeable
 
-		// expand home content
-
-		dashboardPage.clickHomeTree();
-
-		// Right click and copy content.
-
-		dashboardPage.rightClickToCopyOptionAboutUs();
-
-		// Right click and paste content.
-
-		dashboardPage.rightClickToPasteOption();
-
+		homePage.getDriverManager().driverWait();
+		
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
 
-		// wait for element
+		// create a content with level descriptor content type
+		
+		// right click to see the the menu
+
+		dashboardPage.rightClickToSeeMenu3();
+
+		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Click on edit option of recent activity section
+		// Select Entry Content Type
 
-		homePage.clickOnEditOptionRecentActivity();
+		dashboardPage.clickLevelDescriptorCT();
+
+		// Confirm the Content Type selected
+
+		dashboardPage.clickOKButton();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// edit internal name
-
-		dashboardPage.editInternalName("Edit");
-
-		// Switch back to the dashboard page
-
-		driverManager.getDriver().switchTo().defaultContent();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// go to edit
-
-		dashboardPage.goToEditIframe();
-
-		// Switch to the iframe
-
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
 				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
@@ -171,38 +271,36 @@ public class FilterShowRecentActivityTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Click on Edit page URL button
+		// Set basics fields of the new content created
 
-		dashboardPage.clickOnEditPageURLButton();
+		dashboardPage.setFileName("Level");
 
-		// Ok for the dialog window when appears
 
-		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
-		driverManager.getDriver().switchTo().alert().accept();
-
-		// Set the new url
-
-		dashboardPage.setNewPageURL("urledited");
-
-		// wait for element
+		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Save and close
+		// save and close
 
-		dashboardPage.clickSaveClose();
+		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
+		
+		
+				
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
 
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
 
 		// clean filter
 
@@ -227,7 +325,7 @@ public class FilterShowRecentActivityTest {
 
 		String edit1 = driverManager.getDriver()
 				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]")).getText();
-		Assert.assertEquals(edit1, "/en");
+		Assert.assertEquals(edit1, "/level.html");
 		
 		// wait for element
 
@@ -256,7 +354,7 @@ public class FilterShowRecentActivityTest {
 
 		String edit2 = driverManager.getDriver()
 				.findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(2) > td:nth-child(4)")).getText();
-		Assert.assertEquals(edit2, "/about-us");
+		Assert.assertEquals(edit2, "/aboutus");
 	}
 
 }
