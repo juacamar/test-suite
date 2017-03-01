@@ -84,7 +84,7 @@ public class CancelCreateSiteProcessTest {
 
 		// Filling the name of site
 
-		createPage.fillSiteName("AutomationSite");
+		createPage.fillSiteName();
 
 		// Filling the Id of the site
 

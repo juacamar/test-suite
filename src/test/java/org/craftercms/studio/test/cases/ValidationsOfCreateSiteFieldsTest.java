@@ -77,7 +77,7 @@ public class ValidationsOfCreateSiteFieldsTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
@@ -103,13 +103,13 @@ public class ValidationsOfCreateSiteFieldsTest {
 		
 		// Assert name is required.
 		
-		WebElement name = driverManager.getDriver().findElement(By.xpath("/html/body/ui-view/section/div/div/div[2]/div/div/form/div[1]/div/small"));
+		WebElement name = driverManager.getDriver().findElement(By.cssSelector("body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(1) > div > small"));
 		  
 		Assert.assertTrue(name.isDisplayed());
 		
 	    // Assert Id site is required.
 	    
-		WebElement siteID = driverManager.getDriver().findElement(By.xpath("/html/body/ui-view/section/div/div/div[2]/div/div/form/div[2]/div/small"));
+		WebElement siteID = driverManager.getDriver().findElement(By.cssSelector("body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(2) > div:nth-child(3) > small"));
 		  
 		Assert.assertTrue(siteID.isDisplayed());
 	    

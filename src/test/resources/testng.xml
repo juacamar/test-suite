@@ -9,6 +9,14 @@
   </classes>
   </test> <!-- Test -->
   
+  <test name="LogOut Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.LogOutTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
   <test name="Add New Content Entry Test">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
@@ -67,7 +75,6 @@
   <test name="Create Tree with Different Content">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
-    <class name="org.craftercms.studio.test.cases.CreateTreeDifferentContentTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
@@ -75,7 +82,6 @@
   <test name="Create Tree with Same Content">
   <classes>
     <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
-    <class name="org.craftercms.studio.test.cases.CreateTreeSameContentTest" />
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
@@ -200,6 +206,59 @@
   </classes>
   </test> <!-- Test -->
   
+  <test name="Filter Show Recent Activity Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.FilterShowRecentActivityTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
   
+  <test name="History Option Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.HistoryOptionTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="PreviewSync Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.PreviewSyncTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Publishing Site Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Show Hide Site Content Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.ShowHideSiteContentTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+   <test name="Validations Of Create Site Fields Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.ValidationsOfCreateSiteFieldsTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Wrong Login Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.CreateSiteEmptyTest" />
+    <class name="org.craftercms.studio.test.cases.WrongLoginTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
+  </classes>
+  </test> <!-- Test -->
   
 </suite> <!-- Suite -->
