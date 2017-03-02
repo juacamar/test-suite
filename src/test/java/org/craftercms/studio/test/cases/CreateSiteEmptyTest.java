@@ -97,7 +97,7 @@ public class CreateSiteEmptyTest {
 
 		// Filling the name of site
 
-		createPage.fillSiteName("AutomationTestSITE");
+		createPage.fillSiteName();
 
 		// Filling the Id of the site
 
@@ -118,6 +118,18 @@ public class CreateSiteEmptyTest {
 		// Click on Create button
 
 		createPage.clickOnCreateSiteButton();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 
@@ -130,8 +142,9 @@ public class CreateSiteEmptyTest {
 
 		// Assert
 
-		String URL = driverManager.getDriver().getCurrentUrl();
-		Assert.assertEquals(URL, "http://localhost:8080/studio/preview/#/?page=/&site=automation");
+		String head = driverManager.getDriver()
+				.findElement(By.cssSelector("#acn-dropdown-toggler")).getText();
+		Assert.assertEquals(head, "Site Content");
 
 	}
 

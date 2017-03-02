@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import java.util.UUID;
 
 /**
  * 
@@ -32,6 +33,7 @@ public class CreatePage {
 	private String emptyBlueprint;
 	private String corporateBlueprint;
 	private String AngMemGamBlueprint;
+	private String uuid = UUID.randomUUID().toString();
 
 	/**
 	 * 
@@ -61,18 +63,18 @@ public class CreatePage {
 
 	// Set site name
 
-	public void setSiteName(String strSiteName) {
+	public void setSiteName() {
 
 		WebElement nameNewSite = driver.findElement(By.cssSelector(siteName));
-		nameNewSite.sendKeys(strSiteName);
+		nameNewSite.sendKeys(uuid);
 
 	}
 
-	public void fillSiteName(String strSiteName) {
+	public void fillSiteName() {
 
 		// Set site name
 
-		this.setSiteName(strSiteName);
+		this.setSiteName();
 
 	}
 
