@@ -97,10 +97,22 @@ public class PreviewSyncTest {
 		
 		dashboardPage.clickOnPreviewSyncOption();
 		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+				
+		
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen0-button"))
+		.click();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
 		// Ok for the dialog window when appears
 
-		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
-		driverManager.getDriver().switchTo().alert().accept();
+//		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
+//		driverManager.getDriver().switchTo().alert().accept();
 
 	}
 

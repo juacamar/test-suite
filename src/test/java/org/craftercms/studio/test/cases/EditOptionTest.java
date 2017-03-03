@@ -125,7 +125,7 @@ public class EditOptionTest {
 
 		// select main content
 
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen6")).click();
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
 
 		// wait for element is clickeable
 
@@ -199,7 +199,11 @@ public class EditOptionTest {
 
 		// Set Main Content
 
-		dashboardPage.setMetadataFields("title", "keywords");
+		//dashboardPage.setMetadataFields("title", "keywords");
+		
+		// Set the title of main content
+		
+		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
@@ -274,7 +278,7 @@ public class EditOptionTest {
 
 		// Set Main Content
 
-		dashboardPage.setMetadataFields("EditedTitle", "EditedKeywords");
+		//dashboardPage.setMetadataFields("EditedTitle", "EditedKeywords");
 
 		// wait for element is clickeable
 

@@ -93,13 +93,23 @@ public class ValidationsOfCreateSiteFieldsTest {
 
 		// Click on Name field.
 
-		driverManager.getDriver().findElement(By.id("name"))
+		driverManager.getDriver().findElement(By.cssSelector("#name"))
 		.click();
+
 		
 		// Click on Site Id field.
 		
-		driverManager.getDriver().findElement(By.id("siteId"))
-		.click();		
+		driverManager.getDriver().findElement(By.cssSelector("#siteId"))
+		.click();	
+		
+		// Click on description to show the validations  
+		
+		driverManager.getDriver().findElement(By.cssSelector("#description"))
+		.click();	
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 		
 		// Assert name is required.
 		

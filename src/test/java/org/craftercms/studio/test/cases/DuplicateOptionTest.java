@@ -125,89 +125,94 @@ public class DuplicateOptionTest {
 
 		// select main content
 
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen6")).click();
+				driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// Body not required
+				// Body not required
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+				driverManager.getDriver()
+						.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// save
+				// save
 
-		adminConsolePage.saveDragAndDropProcess();
+				adminConsolePage.saveDragAndDropProcess();
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// go to dashboard
+				// go to dashboard
 
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+				driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
-		// expand pages folder
+				// expand pages folder
 
-		dashboardPage.expandPagesTree();
-		
-		// expand home content
+				dashboardPage.expandPagesTree();
+				
+				// expand home content
 
-		dashboardPage.expandHomeTree();
+				dashboardPage.expandHomeTree();
 
-		// right click to see the the menu
+				// right click to see the the menu
 
-		dashboardPage.rightClickToSeeMenu();
+				dashboardPage.rightClickToSeeMenu();
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// Select Entry Content Type
+				// Select Entry Content Type
 
-		dashboardPage.clickEntryCT();
+				dashboardPage.clickEntryCT();
 
-		// Confirm the Content Type selected
+				// Confirm the Content Type selected
 
-		dashboardPage.clickOKButton();
+				dashboardPage.clickOKButton();
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+				// Switch to the iframe
+				driverManager.getDriver().switchTo().defaultContent();
+				driverManager.getDriver().switchTo()
+						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// Set basics fields of the new content created
+				// Set basics fields of the new content created
 
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+				dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
 
-		// Expand all fields
+				// Expand all fields
 
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+				driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
-		// Set Main Content
+				// Set Main Content
 
-		dashboardPage.setMetadataFields("title", "keywords");
+				//dashboardPage.setMetadataFields("title", "keywords");
+				
+				// Set the title of main content
+				
+				driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
+
 
 		// save and close
 

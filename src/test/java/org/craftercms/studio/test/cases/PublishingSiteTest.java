@@ -114,6 +114,14 @@ public class PublishingSiteTest {
 
 		driverManager.getDriver().navigate().refresh();
 		
+		// wait for element is clickeable
+		
+		previewPage.getDriverManager().driverWait();
+		
+		// wait for element is clickeable
+		
+		previewPage.getDriverManager().driverWait();
+		
 		// assert
 		
 		String siteStatus = driverManager.getDriver()
