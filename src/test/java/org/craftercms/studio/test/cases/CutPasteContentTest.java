@@ -102,6 +102,10 @@ public class CutPasteContentTest {
 		// right click to see the the menu
 
 		dashboardPage.rightClickToNewContent();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Set the name of the folder
 
@@ -118,11 +122,18 @@ public class CutPasteContentTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
+		
+		// wait for element is clickeable
 
+		homePage.getDriverManager().driverWait();
 
 		// Right click and cut content.
 
 		dashboardPage.rightClickToCutOption();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Right click and paste content.
 
@@ -137,6 +148,10 @@ public class CutPasteContentTest {
 		homePage.getDriverManager().driverWait();
 		
 		driverManager.getDriver().findElement(By.cssSelector("#ygtvt4 > a:nth-child(1)")).click();
+		
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
 
 		// Assert of the content copied
 

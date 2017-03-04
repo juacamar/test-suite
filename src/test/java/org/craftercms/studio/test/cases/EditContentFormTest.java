@@ -257,7 +257,7 @@ public class EditContentFormTest {
 
 				// select main content
 
-				driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
+				driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
 				// wait for element is clickeable
 
@@ -335,7 +335,11 @@ public class EditContentFormTest {
 
 				// Set Main Content
 
-				dashboardPage.setMetadataFields("title", "keywords");
+				//dashboardPage.setMetadataFields("title", "keywords");
+				
+				// Set the title of main content
+				
+				driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 				// wait for element is clickeable
 

@@ -55,10 +55,10 @@ public class EditContentRecentlyCreatedTest {
 
 	}
 
-	// @AfterTest
-	// public void afterTest() {
-	// driverManager.closeConnection();
-	// }
+	 @AfterTest
+	 public void afterTest() {
+	 driverManager.closeConnection();
+	 }
 
 	@Test(priority = 0)
 
@@ -124,7 +124,7 @@ public class EditContentRecentlyCreatedTest {
 
 		// select main content
 
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen6")).click();
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
 
 		// wait for element is clickeable
 
@@ -198,7 +198,11 @@ public class EditContentRecentlyCreatedTest {
 
 		// Set Main Content
 
-		dashboardPage.setMetadataFields("title", "keywords");
+		//dashboardPage.setMetadataFields("title", "keywords");
+		
+		// Set the title of main content
+		
+		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
@@ -263,7 +267,7 @@ public class EditContentRecentlyCreatedTest {
 
 		// Set Main Content
 
-		dashboardPage.setMetadataFields("EditedTitle", "EditedKeywords");
+		//dashboardPage.setMetadataFields("EditedTitle", "EditedKeywords");
 
 		// wait for element is clickeable
 

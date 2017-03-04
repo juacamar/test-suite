@@ -143,8 +143,8 @@ public class CreateSiteEmptyTest {
 		// Assert
 
 		String head = driverManager.getDriver()
-				.findElement(By.cssSelector("#acn-dropdown-toggler")).getText();
-		Assert.assertEquals(head, "Site Content");
+				.findElement(By.id("acn-logout-link")).getText();
+		Assert.assertEquals(head, "Sign Out");
 
 	}
 

@@ -125,7 +125,7 @@ public class AddNewContentEntryTest {
 
 		// select main content
 
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen6")).click();
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
 
 		// wait for element is clickeable
 
@@ -151,6 +151,10 @@ public class AddNewContentEntryTest {
 		// go to dashboard
 
 		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// expand pages folder
 
@@ -199,7 +203,11 @@ public class AddNewContentEntryTest {
 
 		// Set Main Content
 
-		dashboardPage.setMetadataFields("title", "keywords");
+		//dashboardPage.setMetadataFields("title", "keywords");
+		
+		// Set the title of main content
+		
+		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
@@ -220,6 +228,10 @@ public class AddNewContentEntryTest {
 		// Expand Home Tree
 		
 		dashboardPage.expandHomeTree();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Assert of the test case is fine
 

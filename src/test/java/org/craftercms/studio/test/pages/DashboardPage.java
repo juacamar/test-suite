@@ -1142,22 +1142,22 @@ public class DashboardPage {
 
 	}
 
-	public void setKeywords(String strKeywords) {
-
-		WebElement keywords = driverManager.getDriver().findElement(By.cssSelector(keywordsMetadata));
-		keywords.sendKeys(strKeywords);
-
-	}
-
-	public void setMetadataFields(String strTitle, String strKeywords) {
-
-		// Set metadata fields
-
-		this.setTitle(strTitle);
-
-		this.setKeywords(strKeywords);
-
-	}
+//	public void setKeywords(String strKeywords) {
+//
+//		WebElement keywords = driverManager.getDriver().findElement(By.cssSelector(keywordsMetadata));
+//		keywords.sendKeys(strKeywords);
+//
+//	}
+//
+//	public void setMetadataFields(String strTitle, String strKeywords) {
+//
+//		// Set metadata fields
+//
+//		this.setTitle(strTitle);
+//
+//		this.setKeywords(strKeywords);
+//
+//	}
 
 	// Click on duplicate button of the menu
 

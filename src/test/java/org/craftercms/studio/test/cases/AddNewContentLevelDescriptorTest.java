@@ -176,6 +176,9 @@ public class AddNewContentLevelDescriptorTest {
 		driverManager.getDriver().findElement(By.id("cstudio-logo"))
 		.click();
 
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Assert of the test case is fine
 
