@@ -122,6 +122,14 @@ public class PublishingSiteTest {
 		
 		previewPage.getDriverManager().driverWait();
 		
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+		
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+		
 		// assert
 		
 		String siteStatus = driverManager.getDriver()

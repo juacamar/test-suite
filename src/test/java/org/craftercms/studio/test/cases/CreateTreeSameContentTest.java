@@ -202,7 +202,7 @@ public class CreateTreeSameContentTest {
 
 		// Set Main Content
 
-		dashboardPage.setMetadataFields("title", "keywords");
+		//dashboardPage.setMetadataFields("title", "keywords");
 
 		// wait for element is clickeable
 
