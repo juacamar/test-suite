@@ -85,6 +85,7 @@ public class DashboardPage {
 	private String levelDescriptorContentType;
 	private String setFileName;
 	private String homeContent3;
+	private String pasteContent5;
 
 	/**
 	 * 
@@ -173,6 +174,7 @@ public class DashboardPage {
 				.getProperty("dashboard.level_descriptor");
 		setFileName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.file_name");
 		homeContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page3");
+		pasteContent5 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content5"); 
 
 	}
 
@@ -553,12 +555,12 @@ public class DashboardPage {
 
 	public void rightClickPasteOption() {
 
-		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(folderToPaste));
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(homeContent3)); 
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(copypasteContent).build().perform();
 
-		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
+		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteContent5)); 
 		pasteContent.click();
 
 	}
