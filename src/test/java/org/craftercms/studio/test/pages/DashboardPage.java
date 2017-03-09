@@ -86,6 +86,8 @@ public class DashboardPage {
 	private String setFileName;
 	private String homeContent3;
 	private String pasteContent5;
+	private String foderToPaste2;
+	private String pasteOption;
 
 	/**
 	 * 
@@ -175,6 +177,8 @@ public class DashboardPage {
 		setFileName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.file_name");
 		homeContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page3");
 		pasteContent5 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content5"); 
+		foderToPaste2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder"); 
+		pasteOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_in_new_folder");
 
 	}
 
@@ -555,12 +559,12 @@ public class DashboardPage {
 
 	public void rightClickPasteOption() {
 
-		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(homeContent3)); 
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(foderToPaste2)); 
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(copypasteContent).build().perform();
 
-		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteContent5)); 
+		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteOption)); 
 		pasteContent.click();
 
 	}
@@ -573,7 +577,7 @@ public class DashboardPage {
 
 	}
 
-	// Delete content copied
+	// edit content copied
 
 	public void rightClickDeleteOption() {
 
@@ -589,7 +593,7 @@ public class DashboardPage {
 
 	public void rightClickToDeleteOption() {
 
-		// Delete content copied
+		// edit content copied
 
 		this.rightClickDeleteOption();
 

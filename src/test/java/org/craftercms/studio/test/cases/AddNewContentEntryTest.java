@@ -205,6 +205,10 @@ public class AddNewContentEntryTest {
 
 		//dashboardPage.setMetadataFields("title", "keywords");
 		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
 		// Set the title of main content
 		
 		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
