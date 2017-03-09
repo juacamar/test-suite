@@ -199,7 +199,7 @@ public class DuplicateOptionTest {
 
 				// Expand all fields
 
-				driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+				//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
 				// Set Main Content
 
