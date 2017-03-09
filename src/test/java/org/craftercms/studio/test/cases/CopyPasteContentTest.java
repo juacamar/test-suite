@@ -266,7 +266,14 @@ public class CopyPasteContentTest {
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
+		
+		driverManager.getDriver()
+		.findElement(By.cssSelector("#internal-name > div > input")).clear();
+		
+		// wait for element
 
+		homePage.getDriverManager().driverWait();
+				
 		// edit internal name
 
 		dashboardPage.editInternalName("COPY");
@@ -291,7 +298,7 @@ public class CopyPasteContentTest {
 
 		String contentCopied = driverManager.getDriver()
 				.findElement(By.cssSelector("#ygtvlabelel4")).getText();
-		Assert.assertEquals(contentCopied, "AboutUS 1COPY *");
+		Assert.assertEquals(contentCopied, "COPY *");
 
 	
 
