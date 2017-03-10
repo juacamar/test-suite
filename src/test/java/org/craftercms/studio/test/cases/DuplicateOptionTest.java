@@ -151,6 +151,10 @@ public class DuplicateOptionTest {
 				// go to dashboard
 
 				driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 
 				// expand pages folder
 
@@ -199,7 +203,7 @@ public class DuplicateOptionTest {
 
 				// Expand all fields
 
-				driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+				//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
 				// Set Main Content
 
