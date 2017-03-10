@@ -151,6 +151,10 @@ public class DuplicateOptionTest {
 				// go to dashboard
 
 				driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 
 				// expand pages folder
 
