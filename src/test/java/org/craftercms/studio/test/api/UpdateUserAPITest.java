@@ -16,11 +16,11 @@ import static org.hamcrest.Matchers.*;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class DeleteUserAPITest {
+public class UpdateUserAPITest {
 
 	private JsonTester api;
 
-	public DeleteUserAPITest() {
+	public UpdateUserAPITest() {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
@@ -47,12 +47,16 @@ public class DeleteUserAPITest {
 	}
 	
 	@Test(priority=2)
-	public void testDeleteUser() {
+	public void testUserExist() {
 		Map<String, Object> json = new HashMap<>();
 		json.put("username", "jane.doe");
-		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(204);
+		json.put("first_name", "Jane");
+		json.put("last_name", "Doe");
+		json.put("email", "jane@example.com");
+		api.post("/api/1/services/api/1/user/update.json").json(json).execute().status(409)
+				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
+				.json("$.message", is("User already exists"));
 
 	}
 
-	
 }
