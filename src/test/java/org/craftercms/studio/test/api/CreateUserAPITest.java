@@ -108,8 +108,11 @@ public class CreateUserAPITest {
 		json.put("first_name", "Jane");
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
-		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(401)
-		.json("$.message",is("Unauthorized"));
+		api.post("/studio/api/1/services/api/1/user/create.json")
+		.json(json)
+		.execute()
+		.status(401)
+     	.json("$.message", is("Unauthorized"));
 
 	}
 
