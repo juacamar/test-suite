@@ -16,11 +16,11 @@ import static org.hamcrest.Matchers.*;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class CreateUserAPITest {
+public class UpdateUserAPITest {
 
 	private JsonTester api;
 
-	public CreateUserAPITest() {
+	public UpdateUserAPITest() {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
@@ -50,66 +50,12 @@ public class CreateUserAPITest {
 	public void testUserExist() {
 		Map<String, Object> json = new HashMap<>();
 		json.put("username", "jane.doe");
-		json.put("password", "SuperSecretPassword123#");
 		json.put("first_name", "Jane");
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
-		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(409)
+		api.post("/api/1/services/api/1/user/update.json").json(json).execute().status(409)
 				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
 				.json("$.message", is("User already exists"));
-
-	}
-
-	@Test(priority=3)
-	public void testInvalidParameters() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("usernamed", "jane.doe");
-		 json.put("first_named", "Jane");
-		 json.put("last_named", "Doe");
-		 json.put("emaild", "jane@example.com");
-		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(400)
-				.json("$.message", is("Invalid parameter(s)"));
-
-	}
-	
-	 @Test(priority=4)
-	 public void testInternalServerError(){
-	 Map<String,Object> json=new HashMap<>();
-	 json.put("usernamed", "jane.doe");
-	 json.put("passwordd", "SuperSecretPassword123#");
-	 json.put("first_named", "Jane");
-	 json.put("last_named", "Doe");
-	 json.put("emaild", "jane@example.com");
-	 api.post("/studio/api/1/services/api/1/user/create.json")
-	 .json(json)
-	 .execute()
-	 .status(500)
-	 .header("Location",is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
-	 .json("$.message", is("Internal server error"));
-	
-	
-	 }
-
-	
-	
-	
-	@Test(priority=5)
-	public void testLogout() {
-		Map<String, Object> json = new HashMap<>();
-		api.post("/studio/api/1/services/api/1/user/logout.json").json(json).execute().status(200);
-
-	}
-
-	@Test(priority=6)
-	public void testUnauthorized() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doe");
-		json.put("password", "SuperSecretPassword123#");
-		json.put("first_name", "Jane");
-		json.put("last_name", "Doe");
-		json.put("email", "jane@example.com");
-		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(401)
-		.json("$.message",is("Unauthorized"));
 
 	}
 
