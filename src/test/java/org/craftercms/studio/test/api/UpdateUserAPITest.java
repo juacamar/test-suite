@@ -42,21 +42,69 @@ public class UpdateUserAPITest {
 		json.put("email", "jane@example.com");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(201)
 				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
-				.json("$.message", is("OK"));
+				.json("$.message", is("OK"))
+				.debug();
 
 	}
 	
 	@Test(priority=2)
-	public void testUserExist() {
+	public void testUserUpdate() {
 		Map<String, Object> json = new HashMap<>();
 		json.put("username", "jane.doe");
 		json.put("first_name", "Jane");
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
-		api.post("/api/1/services/api/1/user/update.json").json(json).execute().status(409)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
-				.json("$.message", is("User already exists"));
+		json.put("externally_managed", "false");
+		api.post("/studio/api/1/services/api/1/user/update.json").json(json).execute().status(200)
+				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
+				.json("$.message", is("OK"))
+				.debug();
 
 	}
+	
+//    TODO: pending because need LDAP	
+//	@Test(priority=3)   
+//	public void testExternallyManagedUser() {
+//		Map<String, Object> json = new HashMap<>();
+//		json.put("username", "jane.doe");
+//		json.put("first_name", "Jane");
+//		json.put("last_name", "Doe");
+//		json.put("email", "jane@example.com");
+//		json.put("externally_managed", "true");
+//		api.post("/studio/api/1/services/api/1/user/update.json").json(json).execute().status(403)
+//				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
+//				.json("$.message", is("Externally managed user"))
+//				.debug();
+//
+//	}
+		
+	@Test(priority=3)   
+	public void testUserNotFound() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "jane.doed");
+		json.put("first_name", "Jane");
+		json.put("last_name", "Doe");
+		json.put("email", "jane@example.com");
+		json.put("externally_managed", "true");
+		api.post("/studio/api/1/services/api/1/user/update.json").json(json).execute().status(404)
+				.json("$.message", is("User not found"))
+				.debug();
+
+	}	
+	
+	@Test(priority=4)   
+	public void testInternalServerError() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "jane.doed");
+		json.put("first_name", "Jane");
+		json.put("last_name", "Doe");
+		json.put("email", "jane@example.com");
+		json.put("externally_managed", "true");
+		api.post("/studio/api/1/services/api/1/user/update.json").json(json).execute().status(500)
+				.json("$.message", is("Internal server error"))
+				.debug();
+
+	}	
+
 
 }

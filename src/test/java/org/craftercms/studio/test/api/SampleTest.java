@@ -70,5 +70,6 @@ public class SampleTest {
                 .urlParam("site", siteName)
                 .execute()
                 .json("$.exists",is(true));
+        
     }
 }

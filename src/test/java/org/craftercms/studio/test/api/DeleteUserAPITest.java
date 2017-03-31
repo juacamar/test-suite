@@ -51,6 +51,7 @@ public class DeleteUserAPITest {
 		Map<String, Object> json = new HashMap<>();
 		json.put("username", "jane.doe");
 		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(204);
+		
 
 	}
 
