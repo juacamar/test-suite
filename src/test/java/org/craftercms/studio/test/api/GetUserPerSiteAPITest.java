@@ -16,11 +16,11 @@ import static org.hamcrest.Matchers.*;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class GetUserAPITest {
+public class GetUserPerSiteAPITest {
 
 	private JsonTester api;
 
-	public GetUserAPITest() {
+	public GetUserPerSiteAPITest() {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
@@ -46,43 +46,24 @@ public class GetUserAPITest {
 
 	}
 	
-	@Test(priority=2)
-	public void testUserNotFound() {
+	
+	@Test(priority=3)
+	public void testSiteNotFound() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/user/get.json?username=jane.doeX")
+		api.get("studio/api/1/services/api/1/user/get-per-site.json?site_id=NotExist")
 		.json(json)
 		.execute()
 		.status(404);
-
-	}
-	
-	@Test(priority=3)
-	public void testGetUser() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe")
-		.json(json)
-		.execute()
-		.status(200)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
+		//.json("$.message", is("Site not found")).debug();
 		
 	}
 	
-	@Test(priority=4)
-	public void testInvalidParameters() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/user/login.json")
-		.json(json)
-		.execute()
-		.status(400)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
-		
-	}
 	
 	@Test(priority=4)
 	public void testInternalServerError() {
 		Map<String, Object> json = new HashMap<>();
 		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe")
-		//.json(json)
+		.json(json)
 		.execute()
 		.status(500)
 		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
