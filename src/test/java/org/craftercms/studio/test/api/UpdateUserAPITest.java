@@ -81,7 +81,7 @@ public class UpdateUserAPITest {
 	@Test(priority=3)   
 	public void testUserNotFound() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doed");
+		json.put("username", "jane.doeNOTFOUND");
 		json.put("first_name", "Jane");
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
@@ -95,10 +95,10 @@ public class UpdateUserAPITest {
 	@Test(priority=4)   
 	public void testInternalServerError() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doed");
-		json.put("first_name", "Jane");
-		json.put("last_name", "Doe");
-		json.put("email", "jane@example.com");
+		json.put("usernamed", "jane.doed");
+		json.put("first_named", "Jane");
+		json.put("last_named", "Doe");
+		json.put("emaild", "jane@example.com");
 		json.put("externally_managed", "true");
 		api.post("/studio/api/1/services/api/1/user/update.json").json(json).execute().status(500)
 				.json("$.message", is("Internal server error"))
