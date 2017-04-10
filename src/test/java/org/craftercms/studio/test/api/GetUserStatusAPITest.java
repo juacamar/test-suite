@@ -16,11 +16,11 @@ import static org.hamcrest.Matchers.*;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class DeleteUserAPITest {
+public class GetUserStatusAPITest {
 
 	private JsonTester api;
 
-	public DeleteUserAPITest() {
+	public GetUserStatusAPITest() {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
@@ -47,33 +47,35 @@ public class DeleteUserAPITest {
 	}
 	
 	@Test(priority=2)
-	public void testDeleteUser() {
+	public void testUserNotFound() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doe");
-		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(204).debug();
-		
+		api.get("/studio/api/1/services/api/1/user/status.json?username=jane.doeNOT")
+		.json(json)
+		.execute()
+		.status(404);
 
 	}
 	
 	@Test(priority=3)
-	public void testUserNotFound() {
+	public void testGetUserStatus() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doeNOTFOUND");
-		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(404)
-		.json("$.message", is("User not found"));
-		
-
+		api.get("http://localhost:8080//studio/api/1/services/api/1/user/status.json?username=jane.doe")
+		.json(json)
+		.execute()
+		.status(200)
+		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
 	}
+	
 	
 	@Test(priority=4)
-	public void testInvalidServerError() {
+	public void testInternalServerError() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("usernameERROR", "jane.doe");
-		api.post("/udio/api/1/services/api/1/user/delete.json").json(json).execute().status(500)
-		.json("$.message", is("Internal server error")).debug();
+		api.get("/studio/api/1/services/api/1/user/status.json?username=jane.doe")
+		.json(json)
+		.execute()
+		.status(500)
+		.debug();
 		
-
 	}
 
-	
 }
