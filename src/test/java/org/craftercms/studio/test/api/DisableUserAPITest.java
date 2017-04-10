@@ -16,11 +16,11 @@ import static org.hamcrest.Matchers.*;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class DeleteUserAPITest {
+public class DisableUserAPITest {
 
 	private JsonTester api;
 
-	public DeleteUserAPITest() {
+	public DisableUserAPITest() {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
@@ -40,6 +40,7 @@ public class DeleteUserAPITest {
 		json.put("first_name", "Jane");
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
+		json.put("externally_managed", "false");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(201)
 				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
 				.json("$.message", is("OK"));
@@ -47,10 +48,10 @@ public class DeleteUserAPITest {
 	}
 	
 	@Test(priority=2)
-	public void testDeleteUser() {
+	public void testDisableUser() {
 		Map<String, Object> json = new HashMap<>();
 		json.put("username", "jane.doe");
-		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(204).debug();
+		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(200);
 		
 
 	}
@@ -58,22 +59,30 @@ public class DeleteUserAPITest {
 	@Test(priority=3)
 	public void testUserNotFound() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doeNOTFOUND");
-		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(404)
-		.json("$.message", is("User not found"));
+		json.put("username", "jane.doeNotFound");
+		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(404);
+		
+
+	}
+
+	
+	@Test(priority=5)
+	public void testExternallyManagedUser() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "jane.doe");
+		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(403);
 		
 
 	}
 	
-	@Test(priority=4)
-	public void testInvalidServerError() {
+	@Test(priority=6)
+	public void testInternalServerError() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("usernameERROR", "jane.doe");
-		api.post("/udio/api/1/services/api/1/user/delete.json").json(json).execute().status(500)
-		.json("$.message", is("Internal server error")).debug();
+		json.put("", "jane.doe");
+		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(500)
+		.json("$.message", is("Internal server error"));
 		
 
 	}
-
 	
 }
