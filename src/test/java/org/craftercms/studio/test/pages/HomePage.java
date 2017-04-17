@@ -77,7 +77,7 @@ public class HomePage {
 
 	public void clickDashboardOption() {
 
-		WebElement dashboardLink = driver.findElement(By.xpath(dashboardSite2));
+		WebElement dashboardLink = driver.findElement(By.cssSelector(dashboardSite2));
 		dashboardLink.click();
 
 	}
@@ -161,7 +161,7 @@ public class HomePage {
 
 	public void clickDeleteSiteIcon() {
 
-		WebElement deleteIcon = driver.findElement(By.xpath(deleteSiteIcon));
+		WebElement deleteIcon = driver.findElement(By.cssSelector(deleteSiteIcon));
 		deleteIcon.click();
 
 	}

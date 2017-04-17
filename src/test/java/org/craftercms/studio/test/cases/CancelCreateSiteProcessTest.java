@@ -104,7 +104,7 @@ public class CancelCreateSiteProcessTest {
 		
 		// Assert
 
-		WebElement siteName = driverManager.getDriver().findElement(By.cssSelector("th.ng-binding"));
+		WebElement siteName = driverManager.getDriver().findElement(By.cssSelector("#container > div > header"));
 		  
 		Assert.assertTrue(siteName.isDisplayed());
 

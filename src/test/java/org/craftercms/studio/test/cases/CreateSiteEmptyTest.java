@@ -101,7 +101,7 @@ public class CreateSiteEmptyTest {
 
 		// Filling the Id of the site
 
-		createPage.fillIdSite("");
+		//createPage.fillIdSite("");
 
 		// Filling the description of the site
 
@@ -143,8 +143,8 @@ public class CreateSiteEmptyTest {
 		// Assert
 
 		String head = driverManager.getDriver()
-				.findElement(By.id("acn-logout-link")).getText();
-		Assert.assertEquals(head, "Sign Out");
+				.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();
+		Assert.assertEquals(head, "Live :");
 
 	}
 
