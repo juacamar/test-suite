@@ -110,7 +110,7 @@ public class AddNewContentLevelDescriptorTest {
 
 		// right click to see the the menu
 
-		WebElement home = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel9"));
+		WebElement home = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1"));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(home).build().perform();
