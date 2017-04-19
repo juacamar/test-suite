@@ -302,7 +302,7 @@ public class EditOptionTest {
 
 		// Assert find the new content created edited
 
-		String contentEdited = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel11")).getText();
+		String contentEdited = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
 		Assert.assertEquals(contentEdited, "Testing1EDITED *");
 
 	}

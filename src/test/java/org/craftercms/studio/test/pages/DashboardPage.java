@@ -738,13 +738,13 @@ public class DashboardPage {
 
 	public void rightClickCopyComponent() {
 
-		WebElement copyComponent = driverManager.getDriver().findElement(By.cssSelector(crafterComponent));
+		WebElement copyComponent = driverManager.getDriver().findElement(By.cssSelector(crafterComponent)); 
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(copyComponent).build().perform();
 
 		WebElement copyComponentToNewFolder = driverManager.getDriver().findElement(By.cssSelector(copyContent1));
-		copyComponentToNewFolder.click();
+		copyComponentToNewFolder.click(); 
 
 	}
 

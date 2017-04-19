@@ -127,15 +127,15 @@ public class DesignOfCreateSitePageTest {
 	    
 	    // Assert all sites option is present.
 	    
-	    WebElement allSitesOption = driverManager.getDriver().findElement(By.cssSelector(".list-group-item"));
+	    WebElement sitesPerPage = driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > label"));
 		  
-		Assert.assertTrue(allSitesOption.isDisplayed());
+		Assert.assertTrue(sitesPerPage.isDisplayed());
 	    
 	    // Assert site name is present.
 			    
-	    WebElement siteName = driverManager.getDriver().findElement(By.cssSelector("th.ng-binding"));
+	    WebElement sitesPerPageCombo = driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"));
 		  
-		Assert.assertTrue(siteName.isDisplayed());
+		Assert.assertTrue(sitesPerPageCombo.isDisplayed());
 	    
 	    
 	    

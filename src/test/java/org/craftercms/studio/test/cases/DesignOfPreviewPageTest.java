@@ -124,9 +124,9 @@ public class DesignOfPreviewPageTest {
 
 				homePage.getDriverManager().driverWait();
 				
-		// Assert sign up option is present.
+		// Assert account option is present.
 
-		WebElement signUp = driverManager.getDriver().findElement(By.cssSelector(".navbar-text.navbar-right"));
+		WebElement signUp = driverManager.getDriver().findElement(By.cssSelector("#account-dropdown"));
 
 		Assert.assertTrue(signUp.isDisplayed());
 		
@@ -192,7 +192,7 @@ public class DesignOfPreviewPageTest {
 		// Assert history option is present.
 
 		WebElement historyOption = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[7]/a"));
+				.findElement(By.cssSelector("#activeContentActions > li:nth-child(5) > a"));
 
 		Assert.assertTrue(historyOption.isDisplayed());
 		
@@ -210,20 +210,27 @@ public class DesignOfPreviewPageTest {
 
 		// Assert all Sites Dropdown option is present.
 
-		WebElement allSitesDropdown = driverManager.getDriver().findElement(By.id("acn-site-dropdown"));
+		WebElement dashboard = driverManager.getDriver().findElement(By.cssSelector("#acn-dropdown-menu-inner > div.studio-view"));
 
-		Assert.assertTrue(allSitesDropdown.isDisplayed());
+		Assert.assertTrue(dashboard.isDisplayed());
 		
 		// wait for element is clickeable
 
 				homePage.getDriverManager().driverWait();
 
-		// Assert analytics dashboard option is present.
+		// Assert Users option is present.
 
-		WebElement analyticsDashboardOption = driverManager.getDriver()
-				.findElement(By.cssSelector("#analytics-dashboard.acn-analytics"));
+		WebElement usersOption = driverManager.getDriver()
+				.findElement(By.cssSelector("#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"));
 
-		Assert.assertTrue(analyticsDashboardOption.isDisplayed());
+		Assert.assertTrue(usersOption.isDisplayed());
+		
+		// Assert sites option is present.
+
+				WebElement sitesOption = driverManager.getDriver()
+						.findElement(By.cssSelector("#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"));
+
+				Assert.assertTrue(sitesOption.isDisplayed());
 		
 		// wait for element is clickeable
 
@@ -246,6 +253,13 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.cssSelector("#previewsync.acn-previewsync"));
 
 		Assert.assertTrue(previewSyncOption.isDisplayed());
+		
+		// Assert sync from repository option is present.
+
+				WebElement syncFromRepository = driverManager.getDriver()
+						.findElement(By.cssSelector("#syncrepo"));
+
+				Assert.assertTrue(syncFromRepository.isDisplayed());
 
 	}
 
