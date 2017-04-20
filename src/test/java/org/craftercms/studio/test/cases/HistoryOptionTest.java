@@ -103,7 +103,7 @@ public class HistoryOptionTest {
 
 		// Select the content to view the history.
 
-		driverManager.getDriver().findElement(By.id("ygtvlabelel11")).click();
+		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1")).click();
 
 		// wait for element is clickeable
 
