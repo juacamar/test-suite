@@ -99,7 +99,7 @@ public class CutPasteContentTest {
 
 		dashboardPage.expandHomeTree();
 
-		// right click to see the the menu
+		// right click to see the menu
 
 		dashboardPage.rightClickToNewContent();
 		

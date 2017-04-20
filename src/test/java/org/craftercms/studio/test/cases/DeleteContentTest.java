@@ -3,6 +3,7 @@ package org.craftercms.studio.test.cases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -65,15 +66,122 @@ public class DeleteContentTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
+				loginPage.loginToCrafter("admin", "admin");
 
-		// wait for element is clickeable
+				// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+				homePage.getDriverManager().driverWait();
+				
+				driverManager.maximizeWindow();
+				
+				// go to preview page
+				homePage.goToPreviewPage();
 
-		// go to dashboard page
+				// wait for element is clickeable
 
-		homePage.goToDashboardPage();
+				homePage.getDriverManager().driverWait();
+
+				// reload page
+
+				driverManager.getDriver().navigate().refresh();
+
+				// Show site content panel
+				driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+						.click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// expand pages folder
+
+				dashboardPage.expandPagesTree();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Expand Home Tree
+
+				dashboardPage.expandHomeTree();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// create a content with level descriptor content type
+
+				// right click to see the the menu
+
+				WebElement home = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1"));
+
+				Actions action = new Actions(driverManager.getDriver());
+				action.contextClick(home).build().perform();
+
+				WebElement addContent = driverManager.getDriver().findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(3)"));
+				addContent.click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Select Entry Content Type
+
+				dashboardPage.clickLevelDescriptorCT();
+
+				// Confirm the Content Type selected
+
+				dashboardPage.clickOKButton();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Switch to the iframe
+				driverManager.getDriver().switchTo().defaultContent();
+				driverManager.getDriver().switchTo()
+						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Set basics fields of the new content created
+
+				dashboardPage.setFileName("Level");
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// save and close
+
+				driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+
+				// Switch back to the dashboard page
+
+				driverManager.getDriver().switchTo().defaultContent();
+				
+				// reload page
+
+				driverManager.getDriver().navigate().refresh();
+				
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+				
+				
+				driverManager.getDriver().findElement(By.id("cstudio-logo"))
+				.click();
+
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 
 		// wait for element is clickeable
 
@@ -83,11 +191,6 @@ public class DeleteContentTest {
 
 		driverManager.getDriver().navigate().refresh();
 
-		// Show site content panel
-
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -96,9 +199,6 @@ public class DeleteContentTest {
 
 		dashboardPage.expandPagesTree();
 
-		// expand home content
-
-		dashboardPage.expandHomeTree();
 
 		// right click to delete
 
@@ -142,9 +242,9 @@ public class DeleteContentTest {
 
 		// Assert of the test case is fine
 		
-		String contentCopied = driverManager.getDriver().findElement(By.cssSelector("#MyRecentActivity-tbody > tr > td.urlCol"))
+		String contentCopied = driverManager.getDriver().findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)"))
 				.getText();
-		Assert.assertEquals(contentCopied, "/crafter-component.html");
+		Assert.assertEquals(contentCopied, "/level.html");
 
 	}
 

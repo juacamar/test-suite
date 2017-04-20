@@ -9,6 +9,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.Dimension;
 
 public class WebDriverManager {
 	WebDriver driver;
@@ -45,6 +46,13 @@ public class WebDriverManager {
 	public void closeConnection() {   
 		this.driver.close();
 		this.driver.quit();
+	}
+	
+	public void maximizeWindow() {   
+		//driver.manage().window().maximize(); 
+		 Dimension d = new Dimension(1200,1400);
+         //Resize current window to the set dimension
+         driver.manage().window().setSize(d);
 	}
 
 	public WebDriver getDriver() {
