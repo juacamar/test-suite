@@ -2,6 +2,7 @@ package org.craftercms.studio.test.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -65,8 +66,9 @@ public class CreatePage {
 
 	public void setSiteName() {
 
+		
 		WebElement nameNewSite = driver.findElement(By.cssSelector(siteName));
-		nameNewSite.sendKeys(uuid);
+		nameNewSite.sendKeys(RandomStringUtils.randomAlphabetic(5)); 
 
 	}
 

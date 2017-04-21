@@ -211,11 +211,21 @@ public class AddNewContentEntryTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+	
+
 		
 		// Set the title of main content
 		
 		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		
+		// click necessary to validate all fields required
+		
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
