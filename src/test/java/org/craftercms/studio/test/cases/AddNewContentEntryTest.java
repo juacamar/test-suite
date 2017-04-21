@@ -69,6 +69,9 @@ public class AddNewContentEntryTest {
 
 		loginPage.loginToCrafter("admin", "admin");
 		
+		// MaximizeWindow
+		driverManager.maximizeWindow();
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
