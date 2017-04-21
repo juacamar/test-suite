@@ -16,11 +16,11 @@ import static org.hamcrest.Matchers.*;
  * Created by cortiz on 3/15/17.
  */
 
-public class SampleTest {
+public class SampleTest1 {
 
     private JsonTester api;
 
-    public SampleTest(){
+    public SampleTest1(){
         api = new JsonTester("http","localhost",8080);
     }
 

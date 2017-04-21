@@ -50,7 +50,7 @@ public class WebDriverManager {
 	
 	public void maximizeWindow() {   
 		//driver.manage().window().maximize(); 
-		 Dimension d = new Dimension(1200,1400);
+		 Dimension d = new Dimension(1400,1600);
          //Resize current window to the set dimension
          driver.manage().window().setSize(d);
 	}

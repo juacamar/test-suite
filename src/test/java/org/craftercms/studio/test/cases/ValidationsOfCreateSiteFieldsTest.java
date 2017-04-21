@@ -78,6 +78,9 @@ public class ValidationsOfCreateSiteFieldsTest {
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
+		
+		// MaximizeWindow
+		driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
@@ -90,17 +93,6 @@ public class ValidationsOfCreateSiteFieldsTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// Click on Name field.
-
-		driverManager.getDriver().findElement(By.cssSelector("#name"))
-		.click();
-
-		
-		// Click on Site Id field.
-		
-		driverManager.getDriver().findElement(By.cssSelector("#siteId"))
-		.click();	
 		
 		// Click on description to show the validations  
 		
@@ -111,15 +103,10 @@ public class ValidationsOfCreateSiteFieldsTest {
 
 		homePage.getDriverManager().driverWait();
 		
-		// Assert name is required.
-		
-		WebElement name = driverManager.getDriver().findElement(By.cssSelector("body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(1) > div > small"));
-		  
-		Assert.assertTrue(name.isDisplayed());
 		
 	    // Assert Id site is required.
 	    
-		WebElement siteID = driverManager.getDriver().findElement(By.cssSelector("body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(2) > div:nth-child(3) > small"));
+		WebElement siteID = driverManager.getDriver().findElement(By.cssSelector("body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(1) > div:nth-child(4) > small"));
 		  
 		Assert.assertTrue(siteID.isDisplayed());
 	    
