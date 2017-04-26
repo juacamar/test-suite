@@ -45,8 +45,6 @@ public class CopyPasteIntoFolderTest {
 
 	private AdminConsolePage adminConsolePage;
 
-	
-
 	@BeforeTest
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -57,7 +55,6 @@ public class CopyPasteIntoFolderTest {
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
 		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
-
 
 	}
 
@@ -73,171 +70,177 @@ public class CopyPasteIntoFolderTest {
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
-		
+
+		// MaximizeWindow
+		driverManager.maximizeWindow();
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// go to preview page
-				homePage.goToPreviewPage();
+		// go to preview page
+		homePage.goToPreviewPage();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// reload page
+		// reload page
 
-				driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().navigate().refresh();
 
-				// Show site content panel
-				driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-						.click();
+		// Show site content panel
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// go to admin console page
+		// go to admin console page
 
-				driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// select content types
-				adminConsolePage.selectContentTypeOption();
+		// select content types
+		adminConsolePage.selectContentTypeOption();
 
-				// open content types
+		// open content types
 
-				adminConsolePage.clickExistingTypeOption();
+		adminConsolePage.clickExistingTypeOption();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// Select the Entry content type
+		// Select the Entry content type
 
-				adminConsolePage.selectEntryContentType();
+		adminConsolePage.selectEntryContentType();
 
-				// Confirm the content type selected
+		// Confirm the content type selected
 
-				adminConsolePage.confirmContentTypeSelected();
+		adminConsolePage.confirmContentTypeSelected();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// select main content
+		// select main content
 
-				driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// Body not required
+		// Body not required
 
-				driverManager.getDriver()
-						.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+		driverManager.getDriver()
+				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// save
+		// save
 
-				adminConsolePage.saveDragAndDropProcess();
+		adminConsolePage.saveDragAndDropProcess();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// go to dashboard
+		// go to dashboard
 
-				driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-				
-				// wait for element is clickeable
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
-				homePage.getDriverManager().driverWait();
+		// wait for element is clickeable
 
-				// expand pages folder
+		homePage.getDriverManager().driverWait();
 
-				dashboardPage.expandPagesTree();
+		// expand pages folder
 
-				// right click to see the the menu
+		dashboardPage.expandPagesTree();
 
-				dashboardPage.rightClickToSeeMenu();
+		// right click to see the the menu
 
-				// wait for element is clickeable
+		dashboardPage.rightClickToSeeMenu();
 
-				homePage.getDriverManager().driverWait();
+		// wait for element is clickeable
 
-				// Select Entry Content Type
+		homePage.getDriverManager().driverWait();
 
-				dashboardPage.clickEntryCT();
+		// Select Entry Content Type
 
-				// Confirm the Content Type selected
+		dashboardPage.clickEntryCT();
 
-				dashboardPage.clickOKButton();
+		// Confirm the Content Type selected
 
-				// wait for element is clickeable
+		dashboardPage.clickOKButton();
 
-				homePage.getDriverManager().driverWait();
+		// wait for element is clickeable
 
-				// Switch to the iframe
-				driverManager.getDriver().switchTo().defaultContent();
-				driverManager.getDriver().switchTo()
-						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		homePage.getDriverManager().driverWait();
 
-				// wait for element is clickeable
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
-				homePage.getDriverManager().driverWait();
+		// wait for element is clickeable
 
-				// Set basics fields of the new content created
+		homePage.getDriverManager().driverWait();
 
-				dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+		// Set basics fields of the new content created
 
-				// wait for element is clickeable
+		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-				homePage.getDriverManager().driverWait();
+		// wait for element is clickeable
 
-				// Expand all fields
+		homePage.getDriverManager().driverWait();
 
-				//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+		// Expand all fields
 
-				// Set Main Content
+		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
-				//dashboardPage.setMetadataFields("title", "keywords");
-				
-				// Set the title of main content
-				
-				driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		// Set Main Content
 
-				// wait for element is clickeable
+		// dashboardPage.setMetadataFields("title", "keywords");
 
-				homePage.getDriverManager().driverWait();
+		// Set the title of main content
 
-				// save and close
+		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		
+		// click necessary to validate all fields required
+		
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
-				driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		// wait for element is clickeable
 
-				// wait for element is clickeable
+		homePage.getDriverManager().driverWait();
 
-				homePage.getDriverManager().driverWait();
+		// save and close
 
-				// Switch back to the dashboard page
+		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
-				driverManager.getDriver().switchTo().defaultContent();
-				
-				// Expand Home Tree
-				
-				dashboardPage.expandHomeTree();
-				
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
-				
+		homePage.getDriverManager().driverWait();
+
+		// Switch back to the dashboard page
+
+		driverManager.getDriver().switchTo().defaultContent();
+
+		// Expand Home Tree
+
+		dashboardPage.expandHomeTree();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// right click to see the the menu
 
@@ -271,7 +274,7 @@ public class CopyPasteIntoFolderTest {
 
 		dashboardPage.rightClickToPasteToNewFolder();
 
-		// Copy the new content  to the new folder created
+		// Copy the new content to the new folder created
 
 		dashboardPage.rightClickToCopyNewContentToNewFolder();
 

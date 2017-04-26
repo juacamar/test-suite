@@ -297,7 +297,7 @@ public class CopyPasteContentTest {
 		// Assert of the content copied
 
 		String contentCopied = driverManager.getDriver()
-				.findElement(By.cssSelector("#ygtvcontentel3")).getText();
+				.findElement(By.cssSelector("#ygtvlabelel4")).getText();
 		Assert.assertEquals(contentCopied, "COPY *");
 
 	

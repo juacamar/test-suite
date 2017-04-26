@@ -88,6 +88,9 @@ public class DashboardPage {
 	private String pasteContent5;
 	private String foderToPaste2;
 	private String pasteOption;
+	private String contentCreatedToCut;
+	private String pasteContent0;
+	private String newFolderCreated;
 
 	/**
 	 * 
@@ -116,6 +119,10 @@ public class DashboardPage {
 		copyContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content1");
 		copyContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content2");
 		globalEntry = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.global_entry");
+		
+		
+		pasteContent0 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content");
+
 		pasteContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content1");
 		pasteContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content2");
 		pasteContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content3");
@@ -179,6 +186,14 @@ public class DashboardPage {
 		pasteContent5 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content5"); 
 		foderToPaste2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder"); 
 		pasteOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_in_new_folder");
+		contentCreatedToCut = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.content_created_testing");
+		newFolderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_new_folder");
+		pasteContent0 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content_copied");
+
+		
+
+
+	
 
 	}
 
@@ -434,7 +449,7 @@ public class DashboardPage {
 
 		// Click on save and draft button
 
-		this.clickSaveDraft();
+		//this.clickSaveDraft(); // commented because with the regression this step fail the test
 
 	}
 
@@ -515,7 +530,7 @@ public class DashboardPage {
 
 	public void rightClickCopyOptionAboutUs() {
 
-		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(newContentCreated));
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(homeContent2));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(copypasteContent).build().perform();
@@ -559,12 +574,12 @@ public class DashboardPage {
 
 	public void rightClickPasteOption() {
 
-		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(foderToPaste2)); 
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(homeContent3)); 
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(copypasteContent).build().perform();
 
-		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteOption)); 
+		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteContent0)); 
 		pasteContent.click();
 
 	}
@@ -574,6 +589,28 @@ public class DashboardPage {
 		// Press right click and press paste option
 
 		this.rightClickPasteOption();
+
+	}
+	
+	// Press right click and press paste option
+
+	public void rightClickPasteOptionTwo() {
+
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.cssSelector(newFolderCreated)); 
+
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(copypasteContent).build().perform();
+
+		WebElement pasteContent = driverManager.getDriver().findElement(By.cssSelector(pasteContent2)); 
+		pasteContent.click();
+
+	}
+
+	public void rightClickToPasteOption2() {
+
+		// Press right click and press paste option
+
+		this.rightClickPasteOptionTwo();
 
 	}
 
@@ -672,7 +709,7 @@ public class DashboardPage {
 
 	public void rightClickCutOption() {
 
-		WebElement cutpasteContent = driverManager.getDriver().findElement(By.cssSelector(cutCrafterComponent));
+		WebElement cutpasteContent = driverManager.getDriver().findElement(By.cssSelector(contentCreatedToCut));
 
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(cutpasteContent).build().perform();

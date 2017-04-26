@@ -246,18 +246,52 @@ public class DuplicateOptionTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		
 		// click on duplicate in the popup
 
 		driverManager.getDriver().findElement(By.id("yui-gen1-button")).click();
 		
+		// Switch to the iframe
+				driverManager.getDriver().switchTo().defaultContent();
+				driverManager.getDriver().switchTo()
+						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+				// wait for element
+
+				homePage.getDriverManager().driverWait();
+				
+				driverManager.getDriver()
+				.findElement(By.cssSelector("#internal-name > div > input")).clear();
+				
+				// wait for element
+
+				homePage.getDriverManager().driverWait();
+						
+				// edit internal name
+
+				dashboardPage.editInternalName("COPY");
+				
+				//save and close
+				
+				driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+
+				// Switch back to the dashboard page
+
+				driverManager.getDriver().switchTo().defaultContent();
+
+		
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+		
 
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
+		
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
 
 		// wait for element is clickeable
 
@@ -265,8 +299,8 @@ public class DuplicateOptionTest {
 
 		// Assert
 
-		String duplicate = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel12")).getText();
-		Assert.assertEquals(duplicate, "Testing1 1 *");
+		String duplicate = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
+		Assert.assertEquals(duplicate, "COPY *");
 
 	}
 

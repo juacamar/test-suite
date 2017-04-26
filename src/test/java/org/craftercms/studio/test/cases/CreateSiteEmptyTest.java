@@ -82,6 +82,9 @@ public class CreateSiteEmptyTest {
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
+		
+		// MaximizeWindow
+		driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
