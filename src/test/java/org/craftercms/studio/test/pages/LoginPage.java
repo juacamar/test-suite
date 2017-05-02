@@ -42,7 +42,7 @@ public class LoginPage {
 
 	public void setUserName(String strUserName) {
 		
-    WebElement userCrafter = driver.findElement(By.id(userNameTextBoxLocator));
+    WebElement userCrafter = driver.findElement(By.cssSelector(userNameTextBoxLocator));
     userCrafter.sendKeys(strUserName);
 		
 
