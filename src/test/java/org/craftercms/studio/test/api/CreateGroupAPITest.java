@@ -16,11 +16,11 @@ import static org.hamcrest.Matchers.*;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class CreateGroupAPITest2 {
+public class CreateGroupAPITest {
 
 	private JsonTester api;
 
-	public CreateGroupAPITest2() {
+	public CreateGroupAPITest() {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
@@ -36,15 +36,40 @@ public class CreateGroupAPITest2 {
 	public void testCreateStudioGroup() {
 		Map<String, Object> json = new HashMap<>();
 		json.put("group_name", "contributors");
-		json.put("site_id", "mysite");
+		json.put("site_id", "mySite");
 		json.put("description", "Content Contributors");
-		api.post("/api/1/services/api/1/group/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
+		api.post("studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
+				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
 				.json("$.message", is("OK")).debug();
 
 	}
 	
 	@Test(priority=2)
+	public void testInvalidParameters() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("usernameFAIL", "jane.doe");
+		 json.put("first_named", "Jane");
+		 json.put("last_named", "Doe");
+		 json.put("emaild", "jane@example.com");
+		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(400)
+				.json("$.message", is("Invalid parameter(s)")).debug();
+
+	}
+
+//	@Test(priority=3)
+//	public void testInvalidParameters() {
+//		Map<String, Object> json = new HashMap<>();
+//		json.put("usernamed", "jane.doe");
+//		 json.put("first_named", "Jane");
+//		 json.put("last_named", "Doe");
+//		 json.put("emaild", "jane@example.com");
+//		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(400)
+//				.json("$.message", is("Invalid parameter(s)")).debug();
+//
+//	}
+
+	
+	@Test(priority=4)
 	public void testGroupExist() {
 		Map<String, Object> json = new HashMap<>();
 		json.put("username", "jane.doe");
@@ -58,40 +83,29 @@ public class CreateGroupAPITest2 {
 
 	}
 
-	@Test(priority=3)
-	public void testInvalidParameters() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("usernamed", "jane.doe");
-		 json.put("first_named", "Jane");
-		 json.put("last_named", "Doe");
-		 json.put("emaild", "jane@example.com");
-		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(400)
-				.json("$.message", is("Invalid parameter(s)")).debug();
-
-	}
 	
-	 @Test(priority=4)
-	 public void testInternalServerError(){
-	 Map<String,Object> json=new HashMap<>();
-	 json.put("usernamed", "jane.doe");
-	 json.put("passwordd", "SuperSecretPassword123#");
-	 json.put("first_named", "Jane");
-	 json.put("last_named", "Doe");
-	 json.put("emaild", "jane@example.com");
-	 api.post("/studio/api/1/services/api/1/user/create.json")
-	 .json(json)
-	 .execute()
-	 .status(500)
-	 .header("Location",is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
-	 .json("$.message", is("Internal server error")).debug();
-	
-	
-	 }
+//	 @Test(priority=5)
+//	 public void testInternalServerError(){
+//	 Map<String,Object> json=new HashMap<>();
+//	 json.put("usernamed", "jane.doe");
+//	 json.put("passwordd", "SuperSecretPassword123#");
+//	 json.put("first_named", "Jane");
+//	 json.put("last_named", "Doe");
+//	 json.put("emaild", "jane@example.com");
+//	 api.post("/studio/api/1/services/api/1/user/create.json")
+//	 .json(json)
+//	 .execute()
+//	 .status(500)
+//	 .header("Location",is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
+//	 .json("$.message", is("Internal server error")).debug();
+//	
+//	
+//	 }
 
 	
 	
 	
-	@Test(priority=5)
+	@Test(priority=6)
 	public void testLogout() {
 		Map<String, Object> json = new HashMap<>();
 		api.post("/studio/api/1/services/api/1/user/logout.json").json(json).execute().status(200).debug();
