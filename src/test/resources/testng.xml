@@ -2,6 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="CrafterSuite">
+
+<!-- UI Test Cases -->
+
  <test name="Login">
   <classes>
     <class name="org.craftercms.studio.test.cases.LoginTest" />
@@ -261,5 +264,15 @@
     <class name="org.craftercms.studio.test.cases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
+  
+  <!-- API Test Cases -->
+  
+  <test name="Create Group">
+  <classes>
+    <class name="org.craftercms.studio.test.api.CreateSiteAPITest" />
+    <class name="org.craftercms.studio.test.api.CreateGroupAPITest" />
+  </classes>
+  </test> <!-- Test -->
+  
   
 </suite> <!-- Suite -->
