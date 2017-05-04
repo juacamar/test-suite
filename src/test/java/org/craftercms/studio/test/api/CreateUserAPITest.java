@@ -68,27 +68,27 @@ public class CreateUserAPITest {
 		 json.put("last_named", "Doe");
 		 json.put("emaild", "jane@example.com");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(400)
-				.json("$.message", is("Invalid parameter(s)")).debug();
+				.json("$.message", is("Invalid parameter(s): [username, password, firstname, lastname, email]")).debug();
 
 	}
 	
-	 @Test(priority=4)
-	 public void testInternalServerError(){
-	 Map<String,Object> json=new HashMap<>();
-	 json.put("usernamed", "jane.doe");
-	 json.put("passwordd", "SuperSecretPassword123#");
-	 json.put("first_named", "Jane");
-	 json.put("last_named", "Doe");
-	 json.put("emaild", "jane@example.com");
-	 api.post("/studio/api/1/services/api/1/user/create.json")
-	 .json(json)
-	 .execute()
-	 .status(500)
-	 .header("Location",is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
-	 .json("$.message", is("Internal server error")).debug();
-	
-	
-	 }
+//	 @Test(priority=4)
+//	 public void testInternalServerError(){
+//	 Map<String,Object> json=new HashMap<>();
+//	 json.put("usernamed", "jane.doe");
+//	 json.put("passwordd", "SuperSecretPassword123#");
+//	 json.put("first_named", "Jane");
+//	 json.put("last_named", "Doe");
+//	 json.put("emaild", "jane@example.com");
+//	 api.post("/studio/api/1/services/api/1/user/create.json")
+//	 .json(json)
+//	 .execute()
+//	 .status(500)
+//	 .header("Location",is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
+//	 .json("$.message", is("Internal server error")).debug();
+//	
+//	
+//	 }
 
 	
 	

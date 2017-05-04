@@ -47,12 +47,11 @@ public class CreateGroupAPITest {
 	@Test(priority=2)
 	public void testInvalidParameters() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("usernameFAIL", "jane.doe");
-		 json.put("first_named", "Jane");
-		 json.put("last_named", "Doe");
-		 json.put("emaild", "jane@example.com");
+		json.put("group_nameX", "contributors");
+		 json.put("site_id", "mySite");
+		 json.put("description", "Content Contributors");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(400)
-				.json("$.message", is("Invalid parameter(s)")).debug();
+				.json("$.message", is("Invalid parameter(s): [username, password, firstname, lastname, email]")).debug();
 
 	}
 
