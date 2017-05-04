@@ -274,5 +274,11 @@
   </classes>
   </test> <!-- Test -->
   
+  <test name="Create site">
+  <classes>
+    <class name="org.craftercms.studio.test.api.CreateSiteAPITest" />
+  </classes>
+  </test> <!-- Test -->
+  
   
 </suite> <!-- Suite -->
