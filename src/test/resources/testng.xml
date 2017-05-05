@@ -5,7 +5,13 @@
 
 <!-- UI Test Cases -->
 
- <test name="Login">
+ <test name="Try to delete user connected test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.TryToDeleteUserConnectedTest" />
+  </classes>
+  </test> <!-- Test -->
+
+ <test name="Login Test">
   <classes>
     <class name="org.craftercms.studio.test.cases.LoginTest" />
     <class name="org.craftercms.studio.test.cases.LogOutTest" />
