@@ -91,6 +91,7 @@ public class DashboardPage {
 	private String contentCreatedToCut;
 	private String pasteContent0;
 	private String newFolderCreated;
+	private String deleteCrafterComponent2;
 
 	/**
 	 * 
@@ -133,6 +134,8 @@ public class DashboardPage {
 				.getProperty("dashboard.delete_about_us_copied");
 		deleteCrafterComponent = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_crafter_component");
+		deleteCrafterComponent2 = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.delete_crafter_component2");
 		unlockOptionCopied = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.unlock_about_us_copied");
 		deleteOptionCopiedPopup = uIElementsManager.getSharedUIElementsLocators()
@@ -1035,7 +1038,7 @@ public class DashboardPage {
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(showMenu).build().perform();
 
-		WebElement delContent = driverManager.getDriver().findElement(By.cssSelector(deleteCrafterComponent));
+		WebElement delContent = driverManager.getDriver().findElement(By.cssSelector(deleteCrafterComponent2));
 		delContent.click();
 
 	}

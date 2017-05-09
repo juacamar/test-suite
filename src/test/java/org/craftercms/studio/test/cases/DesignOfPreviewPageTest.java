@@ -243,23 +243,6 @@ public class DesignOfPreviewPageTest {
 
 		Assert.assertTrue(adminConsoleOption.isDisplayed());
 		
-		// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-		// Assert preview sync option is present.
-
-		WebElement previewSyncOption = driverManager.getDriver()
-				.findElement(By.cssSelector("#previewsync.acn-previewsync"));
-
-		Assert.assertTrue(previewSyncOption.isDisplayed());
-		
-		// Assert sync from repository option is present.
-
-				WebElement syncFromRepository = driverManager.getDriver()
-						.findElement(By.cssSelector("#syncrepo"));
-
-				Assert.assertTrue(syncFromRepository.isDisplayed());
 
 	}
 
