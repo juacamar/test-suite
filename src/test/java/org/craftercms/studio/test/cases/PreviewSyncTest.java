@@ -92,6 +92,10 @@ public class PreviewSyncTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+		
+		// go to admin console page
+
+		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// click on preview sync option
 		

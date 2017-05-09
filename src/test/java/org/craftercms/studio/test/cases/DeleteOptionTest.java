@@ -70,12 +70,13 @@ public class DeleteOptionTest {
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
-
+		
+		// MaximizeWindow
+		driverManager.maximizeWindow();
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		driverManager.maximizeWindow();
 
 		// go to preview page
 		homePage.goToPreviewPage();
@@ -96,17 +97,73 @@ public class DeleteOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// expand pages folder
+		// go to admin console page
 
-		dashboardPage.expandPagesTree();
+		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Expand Home Tree
+		// select content types
+		adminConsolePage.selectContentTypeOption();
 
-		dashboardPage.expandHomeTree();
+		// open content types
+
+		adminConsolePage.clickExistingTypeOption();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select the Entry content type
+
+		adminConsolePage.selectEntryContentType();
+
+		// Confirm the content type selected
+
+		adminConsolePage.confirmContentTypeSelected();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// select main content
+
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Body not required
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// save
+
+		adminConsolePage.saveDragAndDropProcess();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// expand pages folder
+
+		dashboardPage.expandPagesTree();
 
 		// wait for element is clickeable
 
@@ -121,8 +178,7 @@ public class DeleteOptionTest {
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(home).build().perform();
 
-		WebElement addContent = driverManager.getDriver()
-				.findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(3)"));
+		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(3)"));
 		addContent.click();
 
 		// wait for element is clickeable
@@ -131,7 +187,7 @@ public class DeleteOptionTest {
 
 		// Select Entry Content Type
 
-		dashboardPage.clickLevelDescriptorCT();
+		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
 
@@ -152,8 +208,38 @@ public class DeleteOptionTest {
 
 		// Set basics fields of the new content created
 
-		dashboardPage.setFileName("Level");
+		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Expand all fields
+
+		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+
+		// Set Main Content
+
+		//dashboardPage.setMetadataFields("title", "keywords");
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+	
+
+		
+		// Set the title of main content
+		
+		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		
+		// click necessary to validate all fields required
+		
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -162,6 +248,7 @@ public class DeleteOptionTest {
 
 		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -169,30 +256,44 @@ public class DeleteOptionTest {
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
-
+		
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
+		
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
+		
+		driverManager.getDriver().findElement(By.id("cstudio-logo"))
+		.click();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// wait for element is clickeable
+// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+homePage.getDriverManager().driverWait();
 
-		// wait for element is clickeable
+// reload page
 
-		homePage.getDriverManager().driverWait();
+driverManager.getDriver().navigate().refresh();
 
-		// reload page
+// wait for element is clickeable
 
-		driverManager.getDriver().navigate().refresh();
+homePage.getDriverManager().driverWait();
 
-		// wait for element is clickeable
+// expand pages folder
 
-		homePage.getDriverManager().driverWait();
+dashboardPage.expandPagesTree();
+
+// Expand Home Tree
+
+dashboardPage.expandHomeTree();
+
 
 		// Select the content to delete.
 
@@ -233,7 +334,7 @@ public class DeleteOptionTest {
 
 		String contentDelete = driverManager.getDriver().findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)"))
 				.getText();
-		Assert.assertEquals(contentDelete, "/level.html");
+		Assert.assertEquals(contentDelete, "/test1");
 
 	}
 

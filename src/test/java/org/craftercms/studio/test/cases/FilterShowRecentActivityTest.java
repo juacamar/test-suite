@@ -256,12 +256,12 @@ public class FilterShowRecentActivityTest {
 
 		// Select Entry Content Type
 
-		dashboardPage.clickLevelDescriptorCT();
+		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
 
 		dashboardPage.clickOKButton();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -277,8 +277,23 @@ public class FilterShowRecentActivityTest {
 
 		// Set basics fields of the new content created
 
-		dashboardPage.setFileName("Level");
+		dashboardPage.setBasicFieldsOfNewContent("AboutUs1", "AboutUs1");
 
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Expand all fields
+
+		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+
+		// Set Main Content
+
+		//dashboardPage.setMetadataFields("title", "keywords");
+		
+		// Set the title of main content
+		
+		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
@@ -329,7 +344,7 @@ public class FilterShowRecentActivityTest {
 
 		String edit1 = driverManager.getDriver()
 				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]")).getText();
-		Assert.assertEquals(edit1, "/level.html");
+		Assert.assertEquals(edit1, "/aboutus1");
 		
 		// wait for element
 

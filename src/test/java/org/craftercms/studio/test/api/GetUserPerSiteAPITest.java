@@ -26,7 +26,7 @@ public class GetUserPerSiteAPITest {
 
 	@BeforeTest
 	public void login() {
-		api.post("/studio/api/1/services/api/1/user/login.json").param("username", "admin").param("password", "admin")
+		api.post("/studio/api/1/services/api/1/security/login.json").param("username", "admin").param("password", "admin")
 				.execute().status(200).header("Content-Language", is("en-US"))
 				.header("Content-Type", is("application/json;charset=UTF-8")).json("$", notNullValue())
 				.json("$.user.email", not(empty())).json("$.user.username", is("admin"));
