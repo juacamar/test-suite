@@ -296,6 +296,10 @@ public class DeleteContentTest {
 		// Expand Home Tree
 		
 		dashboardPage.expandHomeTree();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 
 		// right click to delete

@@ -89,8 +89,8 @@ public class ShowHideSiteContentTest {
 		//	Assert  that the site content is expanded
 
 		String siteContentExpanded = driverManager.getDriver()
-				.findElement(By.cssSelector(".acn-previewsync")).getText();
-		Assert.assertEquals(siteContentExpanded, "Preview Sync");
+				.findElement(By.cssSelector("#admin-console")).getText();
+		Assert.assertEquals(siteContentExpanded, "Site Config");
 		
 		//Collapse the site content panel
 		
@@ -103,7 +103,7 @@ public class ShowHideSiteContentTest {
 		//	Assert  that the site content is Collapsed
 
 		String siteContentCollapsed = driverManager.getDriver()
-				.findElement(By.cssSelector(".acn-previewsync")).getText();
+				.findElement(By.cssSelector("#admin-console")).getText();
 		Assert.assertEquals(siteContentCollapsed, "");
 	}
 	

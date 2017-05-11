@@ -279,6 +279,10 @@ public class CutPasteContentTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+		
+		// expand home content
+
+		dashboardPage.expandHomeTree();
 
 		// Right click and cut content.
 

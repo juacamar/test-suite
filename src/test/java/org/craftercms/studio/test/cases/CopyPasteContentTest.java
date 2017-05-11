@@ -232,6 +232,10 @@ public class CopyPasteContentTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		
 		// Right click and copy content.
@@ -293,6 +297,10 @@ public class CopyPasteContentTest {
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
+		
+		// Expand Home Tree
+		
+		dashboardPage.expandHomeTree();
 
 		// Assert of the content copied
 

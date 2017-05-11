@@ -261,6 +261,10 @@ public class CopyPasteIntoFolderTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
+		
+	    // Expand Home Tree
+		
+		dashboardPage.expandHomeTree();
 
 		// Copy the crafter component to the new folder created
 
