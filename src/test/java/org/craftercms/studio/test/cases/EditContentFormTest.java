@@ -387,9 +387,17 @@ public class EditContentFormTest {
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
+		
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
 
 		// Expand default section
 		myRecentActivityFramePage1.ExpandDefaultSection();
+		
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
 
 		// Clealing title text field
 		driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).clear();

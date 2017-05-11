@@ -240,6 +240,10 @@ public class EditOptionTest {
 
 		homePage.getDriverManager().driverWait();
 		
+		// expand home content
+
+				dashboardPage.expandHomeTree();
+		
 		// Select a content to edit
 		
 		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3"))
@@ -302,6 +306,10 @@ public class EditOptionTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+		
+		// expand home content
+
+				dashboardPage.expandHomeTree();
 
 		// Assert find the new content created edited
 

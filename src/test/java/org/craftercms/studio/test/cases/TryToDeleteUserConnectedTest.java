@@ -62,7 +62,7 @@ public class TryToDeleteUserConnectedTest {
 
 	@Test(priority = 0)
 
-	public void login_Test() {
+	public void try_to_delete_user() {
 
 		// login to application
 
@@ -76,10 +76,18 @@ public class TryToDeleteUserConnectedTest {
 		
 		driverManager.getDriver().findElement(By.cssSelector("body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(1) > a"))
 		.click();
+		
+		// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 
 		// Try to delete the user current connected
 		
 		usersPage.clickOnDeleteUser();
+		
+		// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 		
 		// Confirmation to delete user connected
 		

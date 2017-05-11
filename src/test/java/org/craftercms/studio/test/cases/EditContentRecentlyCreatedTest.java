@@ -238,6 +238,10 @@ public class EditContentRecentlyCreatedTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+		
+		// expand home content
+
+				dashboardPage.expandHomeTree();
 
 		// right click to see the menu and edit
 
@@ -287,6 +291,10 @@ public class EditContentRecentlyCreatedTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
+		
+		// expand home content
+
+				dashboardPage.expandHomeTree();
 		
 		// Assert find the new content created edited
 
