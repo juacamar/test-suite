@@ -16,20 +16,21 @@ import static org.hamcrest.Matchers.*;
  * Created by cortiz on 3/15/17.
  */
 
-public class LoginAPITest {
+public class LogoutAPITest {
 
     private JsonTester api;
 
-    public LoginAPITest(){
+    public LogoutAPITest(){
         api = new JsonTester("http","localhost",8080);
     }
 
     @Test
-    public void login(){
+    public void logout(){
     	Map<String, Object> json = new HashMap<>();
 		json.put("username", "admin");
 		json.put("password", "admin");
-		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
+		api.post("/studio/api/1/services/api/1/security/logout.json").json(json).execute().status(200)
+		.json("$.message", is("OK")).debug();;
     }
 
 
