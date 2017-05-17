@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.*;
 
 
 /**
- * Created by cortiz on 3/15/17.
+ * Created by gustavo ortiz 
  */
 
 public class ValidateSessionAPITest {
