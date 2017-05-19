@@ -241,7 +241,7 @@ public class EditContentRecentlyCreatedTest {
 		
 		// expand home content
 
-				dashboardPage.expandHomeTree();
+				//dashboardPage.expandHomeTree();
 
 		// right click to see the menu and edit
 

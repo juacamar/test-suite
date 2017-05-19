@@ -282,7 +282,7 @@ public class CutPasteContentTest {
 		
 		// expand home content
 
-		dashboardPage.expandHomeTree();
+		//dashboardPage.expandHomeTree();
 
 		// Right click and cut content.
 

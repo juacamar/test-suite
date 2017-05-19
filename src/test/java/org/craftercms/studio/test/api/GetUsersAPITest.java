@@ -26,10 +26,10 @@ public class GetUsersAPITest {
 
 	@BeforeTest
 	public void login() {
-		api.post("/studio/api/1/services/api/1/security/login.json").param("username", "admin").param("password", "admin")
-				.execute().status(200).header("Content-Language", is("en-US"))
-				.header("Content-Type", is("application/json;charset=UTF-8")).json("$", notNullValue())
-				.json("$.user.email", not(empty())).json("$.user.username", is("admin"));
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "admin");
+		json.put("password", "admin");
+		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
 	}
 
 	@Test(priority=1)
@@ -50,7 +50,7 @@ public class GetUsersAPITest {
 	@Test(priority=2)
 	public void testGetUsers() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
+		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
 		.json(json)
 		.execute()
 		.status(200)
@@ -58,27 +58,31 @@ public class GetUsersAPITest {
 		
 	}
 	
+	//Commented until you know how to invoke an internal server error.
+
+//	@Test(priority=3)
+//	public void testInternalServerError() {
+//		Map<String, Object> json = new HashMap<>();
+//		api.get("/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
+//		.json(json)
+//		.execute()
+//		.status(500)
+//		.debug();
+//		
+//	}
 	
-	@Test(priority=3)
-	public void testInternalServerError() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
-		.json(json)
-		.execute()
-		.status(500)
-		.debug();
-		
-	}
+	//Commented until you know how to invoke an Invalid Parameters.
+
 	
-	@Test(priority=4)
-	public void testInvalidParameters() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
-		.json(json)
-		.execute()
-		.status(400)
-		.debug();
-		
-	}
+//	@Test(priority=4)
+//	public void testInvalidParameters() {
+//		Map<String, Object> json = new HashMap<>();
+//		api.get("/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
+//		.json(json)
+//		.execute()
+//		.status(400)
+//		.debug();
+//		
+//	}
 
 }
