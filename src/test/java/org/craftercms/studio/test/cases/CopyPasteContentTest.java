@@ -300,7 +300,7 @@ public class CopyPasteContentTest {
 		
 		// Expand Home Tree
 		
-		dashboardPage.expandHomeTree();
+		//dashboardPage.expandHomeTree();
 
 		// Assert of the content copied
 

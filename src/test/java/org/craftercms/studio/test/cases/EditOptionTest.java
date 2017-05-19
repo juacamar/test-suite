@@ -242,7 +242,7 @@ public class EditOptionTest {
 		
 		// expand home content
 
-				dashboardPage.expandHomeTree();
+				//dashboardPage.expandHomeTree();
 		
 		// Select a content to edit
 		
@@ -309,7 +309,7 @@ public class EditOptionTest {
 		
 		// expand home content
 
-				dashboardPage.expandHomeTree();
+				//dashboardPage.expandHomeTree();
 
 		// Assert find the new content created edited
 

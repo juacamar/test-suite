@@ -26,65 +26,60 @@ public class GetUserPerSiteAPITest {
 
 	@BeforeTest
 	public void login() {
-		api.post("/studio/api/1/services/api/1/security/login.json").param("username", "admin").param("password", "admin")
-				.execute().status(200).header("Content-Language", is("en-US"))
-				.header("Content-Type", is("application/json;charset=UTF-8")).json("$", notNullValue())
-				.json("$.user.email", not(empty())).json("$.user.username", is("admin"));
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "admin");
+		json.put("password", "admin");
+		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
+
 	}
 
-	@Test(priority=1)
-    public void testCreateSite(){
-        Map<String,Object> json=new HashMap<>();
-        json.put("blueprintName","website_editorial");
-        json.put("description", "test");
-        json.put("siteId", "test");
-        json.put("siteName", "test");
-        api.post("/studio/api/1/services/api/1/site/create-site.json")
-                .json(json)
-                .execute()
-                .status(200);
-        api.get("/studio/api/1/services/api/1/site/exists.json")
-                .urlParam("site", "test")
-                .execute()
-                .json("$.exists",is(true));
-        
-    }
-	
+	@Test(priority = 1)
+	public void testCreateSite() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_id", "mySite");
+		json.put("description", "My very first site!");
+		json.put("blueprint", "Empty");
+		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
+				.header("Location",
+						is("http://localhost:8080/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
+				.json("$.message", is("OK")).debug();
+		api.get("/studio/api/1/services/api/1/site/exists.json").urlParam("site", "mySite").execute().json("$.exists",
+				is(true));
 
-	
-	@Test(priority=2)
+	}
+
+	@Test(priority = 2)
 	public void testSiteNotFound() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("studio/api/1/services/api/1/user/get-per-site.json?site_id=NotExist")
-		.json(json)
-		.execute()
-		.status(404);
-		//.json("$.message", is("Site not found")).debug();
-		
+		api.get("studio/api/1/services/api/1/user/get-per-site.json?site_id=NotExist").json(json).execute().status(404)
+		.json("$.message", is("Site not found")).debug();
+
 	}
-	
-	@Test(priority=3)
+
+	@Test(priority = 3)
 	public void testGetUsersPerSite() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=test")
-		.json(json)
-		.execute()
-		.status(200)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=site&start=0&number=25"))
-		.debug();
-		
+		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=test").json(json)
+				.execute().status(200)
+				.header("Location",
+						is("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=site&start=0&number=25"))
+				.debug();
+
 	}
-	
-	@Test(priority=4)
-	public void testInternalServerError() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe")
-		.json(json)
-		.execute()
-		.status(500)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
-		.debug();
-		
-	}
+
+	// Commented until you know how to invoke an internal server error.
+
+	// @Test(priority=4)
+	// public void testInternalServerError() {
+	// Map<String, Object> json = new HashMap<>();
+	// api.get("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe")
+	// .json(json)
+	// .execute()
+	// .status(500)
+	// .header("Location",
+	// is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
+	// .debug();
+	//
+	// }
 
 }

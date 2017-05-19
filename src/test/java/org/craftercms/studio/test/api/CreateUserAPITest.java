@@ -26,10 +26,10 @@ public class CreateUserAPITest {
 
 	@BeforeTest
 	public void login() {
-		api.post("/studio/api/1/services/api/1/security/login.json").param("username", "admin").param("password", "admin")
-				.execute().status(200).header("Content-Language", is("en-US"))
-				.header("Content-Type", is("application/json;charset=UTF-8")).json("$", notNullValue())
-				.json("$.user.email", not(empty())).json("$.user.username", is("admin")).debug();
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "admin");
+		json.put("password", "admin");
+		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
 	}
 
 	@Test(priority=1)
@@ -96,7 +96,10 @@ public class CreateUserAPITest {
 	@Test(priority=5)
 	public void testLogout() {
 		Map<String, Object> json = new HashMap<>();
-		api.post("/studio/api/1/services/api/1/user/logout.json").json(json).execute().status(200).debug();
+		json.put("username", "admin");
+		json.put("password", "admin");
+		api.post("/studio/api/1/services/api/1/security/logout.json").json(json).execute().status(200)
+		.json("$.message", is("OK")).debug();;
 
 	}
 

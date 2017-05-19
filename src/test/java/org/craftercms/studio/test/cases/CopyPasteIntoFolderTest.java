@@ -264,7 +264,7 @@ public class CopyPasteIntoFolderTest {
 		
 	    // Expand Home Tree
 		
-		dashboardPage.expandHomeTree();
+		//dashboardPage.expandHomeTree();
 
 		// Copy the crafter component to the new folder created
 
