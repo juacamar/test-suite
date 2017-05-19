@@ -13,23 +13,22 @@ import static org.hamcrest.Matchers.*;
 
 
 /**
- * Created by gustavo ortiz 
+ * Created by gustavo ortiz
  */
 
-public class LoginAPITest {
+public class VersionAPITest {
 
     private JsonTester api;
 
-    public LoginAPITest(){
+    public VersionAPITest(){
         api = new JsonTester("http","localhost",8080);
     }
 
     @Test
-    public void login(){
+    public void version(){
     	Map<String, Object> json = new HashMap<>();
-		json.put("username", "admin");
-		json.put("password", "admin");
-		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
+		api.get("/studio/api/1/monitor/version.json").json(json).execute().status(200);
+		//.json("$.message", is("OK")).debug();
     }
 
 
