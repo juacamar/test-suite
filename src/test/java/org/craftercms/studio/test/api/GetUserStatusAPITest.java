@@ -26,10 +26,10 @@ public class GetUserStatusAPITest {
 
 	@BeforeTest
 	public void login() {
-		api.post("/studio/api/1/services/api/1/security/login.json").param("username", "admin").param("password", "admin")
-				.execute().status(200).header("Content-Language", is("en-US"))
-				.header("Content-Type", is("application/json;charset=UTF-8")).json("$", notNullValue())
-				.json("$.user.email", not(empty())).json("$.user.username", is("admin"));
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "admin");
+		json.put("password", "admin");
+		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
 	}
 
 	@Test(priority=1)
@@ -47,16 +47,6 @@ public class GetUserStatusAPITest {
 	}
 	
 	@Test(priority=2)
-	public void testUserNotFound() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/user/status.json?username=jane.doeNOT")
-		.json(json)
-		.execute()
-		.status(404);
-
-	}
-	
-	@Test(priority=3)
 	public void testGetUserStatus() {
 		Map<String, Object> json = new HashMap<>();
 		api.get("http://localhost:8080//studio/api/1/services/api/1/user/status.json?username=jane.doe")
@@ -64,18 +54,62 @@ public class GetUserStatusAPITest {
 		.execute()
 		.status(200)
 		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
-	}
-	
-	
-	@Test(priority=4)
-	public void testInternalServerError() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/user/status.json?username=jane.doe")
-		.json(json)
-		.execute()
-		.status(500)
-		.debug();
+	//	.json("$.message", is("OK"));
 		
 	}
+	
+	@Test(priority=3)
+	public void testInvalidParameter() {
+		Map<String, Object> json = new HashMap<>();
+		api.get("/studio/api/1/services/api/1/user/status.json")
+		.json(json)
+		.execute()
+		.status(400)
+		.json("$.message", is("Invalid parameter: username"));
+
+		
+
+	}
+	
+//	@Test(priority=4)
+//	public void testUnauthorized() {
+//		Map<String, Object> json = new HashMap<>();
+//		api.get("/studio/api/1/services/api/1/user/status.json?username=jane.doeNOT")
+//		.json(json)
+//		.execute()
+//		.status(401)
+//		.json("$.message", is("Unauthorized"));
+//
+//
+//	}
+	
+	
+	@Test(priority=5)
+	public void testUserNotFound() {
+		Map<String, Object> json = new HashMap<>();
+		api.get("/studio/api/1/services/api/1/user/status.json?username=jane.doeNOT")
+		.json(json)
+		.execute()
+		.status(404);
+		//.json("$.message", is("User not found"));
+
+
+	}
+	
+	
+	
+	
+//	@Test(priority=6)
+//	public void testInternalServerError() {
+//		Map<String, Object> json = new HashMap<>();
+//		api.get("/studio/api/1/services/api/1/user/status.json?username=jane.doe")
+//		.json(json)
+//		.execute()
+//		.status(500)
+//		.json("$.message", is("Internal server error"))
+//
+//		.debug();
+//		
+//	}
 
 }

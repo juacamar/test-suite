@@ -275,14 +275,14 @@
   
   <test name="Create Group">
   <classes>
-    <class name="org.craftercms.studio.test.api.CreateSiteAPITest" />
-    <class name="org.craftercms.studio.test.api.CreateGroupAPITest" />
+    <!--  <class name="org.craftercms.studio.test.api.CreateSiteAPITest" /> -->
+    <!-- <class name="org.craftercms.studio.test.api.CreateGroupAPITest" /> -->
   </classes>
   </test> <!-- Test -->
   
   <test name="Create site">
   <classes>
-    <class name="org.craftercms.studio.test.api.CreateSiteAPITest" />
+   <!-- <class name="org.craftercms.studio.test.api.CreateSiteAPITest" /> -->
   </classes>
   </test> <!-- Test -->
   

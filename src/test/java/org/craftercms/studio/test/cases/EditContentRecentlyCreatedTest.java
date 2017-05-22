@@ -294,7 +294,7 @@ public class EditContentRecentlyCreatedTest {
 		
 		// expand home content
 
-				dashboardPage.expandHomeTree();
+		//dashboardPage.expandHomeTree();
 		
 		// Assert find the new content created edited
 

@@ -294,7 +294,7 @@ public class DuplicateOptionTest {
 		
 		// expand home content
 
-		dashboardPage.expandHomeTree();
+		//dashboardPage.expandHomeTree();
 
 
 		// wait for element is clickeable
