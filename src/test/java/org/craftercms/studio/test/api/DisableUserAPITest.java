@@ -26,23 +26,23 @@ public class DisableUserAPITest {
 
 	@BeforeTest
 	public void login() {
-		api.post("/studio/api/1/services/api/1/security/login.json").param("username", "admin").param("password", "admin")
-				.execute().status(200).header("Content-Language", is("en-US"))
-				.header("Content-Type", is("application/json;charset=UTF-8")).json("$", notNullValue())
-				.json("$.user.email", not(empty())).json("$.user.username", is("admin"));
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "admin");
+		json.put("password", "admin");
+		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
 	}
 
 	@Test(priority=1)
 	public void testCreateUser() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doe");
+		json.put("username", "newuserDisable");
 		json.put("password", "SuperSecretPassword123#");
 		json.put("first_name", "Jane");
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
 		json.put("externally_managed", "false");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
+				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=newuserDisable"))
 				.json("$.message", is("OK"));
 
 	}
@@ -50,39 +50,69 @@ public class DisableUserAPITest {
 	@Test(priority=2)
 	public void testDisableUser() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doe");
-		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(200);
+		json.put("username", "newuserDisable");
+		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(200)
+		.header("Location", is ("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=newuserDisable"))
+		.json("$.message", is("OK"));
+
 		
 
 	}
+	
 	
 	@Test(priority=3)
-	public void testUserNotFound() {
+	public void testInvalidParameters() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doeNotFound");
-		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(404);
+		json.put("usernameX", "newuserDisable");
+		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(400)
+		.json("$.message", is("Invalid parameter: username"));
 		
 
 	}
-
 	
-	@Test(priority=5)
-	public void testExternallyManagedUser() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("username", "jane.doe");
-		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(403);
-		
 
-	}
+//	@Test(priority=4)
+//	public void testUnauthorized() {
+//		Map<String, Object> json = new HashMap<>();
+//		json.put("username", "jane.doeNotFound");
+//		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(401)
+//		.json("$.message", is("Unauthorized"));
+//
+//		
+//
+//	}
+	
+//	
+//	@Test(priority=5)
+//	public void testExternallyManagedUser() {
+//		Map<String, Object> json = new HashMap<>();
+//		json.put("username", "jane.doe");
+//		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(403);
+//		.json("$.message", is("Externally managed user"));
+//
+//	}
+	
 	
 	@Test(priority=6)
-	public void testInternalServerError() {
+	public void testUserNotFound() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("", "jane.doe");
-		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(500)
-		.json("$.message", is("Internal server error"));
-		
+		json.put("username", "userDisableNotFound");
+		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(404)
+		.json("$.message", is("User not found"));
+
 
 	}
-	
+
+
+//	
+//	@Test(priority=6)
+//	public void testInternalServerError() {
+//		Map<String, Object> json = new HashMap<>();
+//		json.put("", "jane.doe");
+//		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(500)
+//		.json("$.message", is("Internal server error"));
+//		
+//
+//	}
+//	
 }

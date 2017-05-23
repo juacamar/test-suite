@@ -26,10 +26,10 @@ public class ForgotPasswordAPITest {
 
 	@BeforeTest
 	public void login() {
-		api.post("/studio/api/1/services/api/1/security/login.json").param("username", "admin").param("password", "admin")
-				.execute().status(200).header("Content-Language", is("en-US"))
-				.header("Content-Type", is("application/json;charset=UTF-8")).json("$", notNullValue())
-				.json("$.user.email", not(empty())).json("$.user.username", is("admin"));
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "admin");
+		json.put("password", "admin");
+		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
 	}
 
 	@Test(priority=1)
@@ -47,6 +47,18 @@ public class ForgotPasswordAPITest {
 	}
 	
 	@Test(priority=2)
+	public void testForgotPassword() {
+		Map<String, Object> json = new HashMap<>();
+		api.get("/studio/api/1/services/api/1/user/forgot-password.json?username=jane.doe")
+		.json(json)
+		.execute()
+		.status(200)
+		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
+		.json("$.message", is("OK"));
+;
+	}
+	
+	@Test(priority=2)
 	public void testUserNotFound() {
 		Map<String, Object> json = new HashMap<>();
 		api.get("/studio/api/1/services/api/1/user/forgot-password.json?username=jane.doeNOTEXIST")
@@ -57,15 +69,15 @@ public class ForgotPasswordAPITest {
 
 	}
 	
-	@Test(priority=3)
-	public void testForgotPassword() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/user/forgot-password.json?username=jane.doe")
-		.json(json)
-		.execute()
-		.status(200)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
-	}
+//	@Test(priority=3)
+//	public void testForgotPassword() {
+//		Map<String, Object> json = new HashMap<>();
+//		api.get("/studio/api/1/services/api/1/user/forgot-password.json?username=jane.doe")
+//		.json(json)
+//		.execute()
+//		.status(200)
+//		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
+//	}
 	
 	
 	@Test(priority=4)
