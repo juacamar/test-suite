@@ -52,7 +52,7 @@ public class CreateSiteAPITest {
    		json.put("description", "My very first site!");
    		json.put("blueprint", "Empty");
    		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(400)
-   				.json("$.message", is("Invalid parameter(s)")).debug();
+   				.json("$.message", is("Invalid parameter(s): [site_id]")).debug();
 
    	}
     
