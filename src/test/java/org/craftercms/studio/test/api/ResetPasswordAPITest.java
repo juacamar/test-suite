@@ -112,12 +112,6 @@ public class ResetPasswordAPITest {
 //	}
 	
 	
-	@Test(priority=8)
-	public void testLogout() {
-		Map<String, Object> json = new HashMap<>();
-		api.post("/studio/api/1/services/api/1/user/logout.json").json(json).execute().status(200).debug();
-
-	}
 
 
 }
