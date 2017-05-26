@@ -6,12 +6,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.AdminConsolePage;
-import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.PreviewPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -32,27 +29,21 @@ public class HistoryOptionTest {
 
 	private UIElementsPropertiesManager UIElementsPropertiesManager;
 
-	private ConstantsPropertiesManager constantsPropertiesManager;
-
 	private HomePage homePage;
 
 	private PreviewPage previewPage;
 
-	private AdminConsolePage adminConsolePage;
 
-	private DashboardPage dashboardPage;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager);
-		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		
 
 	}
 

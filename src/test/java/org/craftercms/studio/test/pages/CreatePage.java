@@ -3,14 +3,12 @@ package org.craftercms.studio.test.pages;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import java.util.UUID;
 
 /**
  * 
@@ -34,7 +32,6 @@ public class CreatePage {
 	private String emptyBlueprint;
 	private String corporateBlueprint;
 	private String AngMemGamBlueprint;
-	private String uuid = UUID.randomUUID().toString();
 
 	/**
 	 * 
