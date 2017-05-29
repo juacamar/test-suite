@@ -19,11 +19,9 @@ public class DashboardPage {
 	private UIElementsPropertiesManager uIElementsManager;
 	private WebDriver driver;
 	private String pagesTree;
-	private String globalEntryContentTree;
 	private String homeContentTree;
 	private String homeContent;
 	private String addNewContent;
-	private String selectGenericCT;
 	private String okButton1;
 	private String setPageURL1;
 	private String setInternalName1;
@@ -34,9 +32,7 @@ public class DashboardPage {
 	private String createButton1;
 	private String setFolderName1;
 	private String copyContent1;
-	private String globalEntry;
 	private String pasteContent1;
-	private String aboutUsOption;
 	private String aboutUsOptionCopied;
 	private String deleteOptionCopied;
 	private String unlockOptionCopied;
@@ -44,18 +40,13 @@ public class DashboardPage {
 	private String deleteOK;
 	private String cutContent1;
 	private String aboutUsOptionCut;
-	private String folderToCopy;
 	private String copyContentButton;
 	private String pasteContent2;
 	private String newContentCreated;
-	private String aboutUSFolderToCopy;
 	private String pasteContent3;
 	private String aboutUsOptionToTree1;
-	private String copyContent2;
 	private String aboutUsOptionTreeLevel1;
-	private String pasteContent4;
 	private String aboutUsOptionTreeLevel2;
-	private String aboutUsOptionTreeLevel3;
 	private String aboutUsOptionTreeCreated;
 	private String deleteAboutUsTreeCreated;
 	private String clickOnSiteContent;
@@ -65,7 +56,6 @@ public class DashboardPage {
 	private String ediPagetUrl;
 	private String pageUrlField;
 	private String previewSync;
-	private String contentRecentlyCreated;
 	private String editRecentlyContentCreated;
 	private String selectEntryCT;
 	private String homeTree;
@@ -73,11 +63,7 @@ public class DashboardPage {
 	private String folderCreated;
 	private String copyContent3;
 	private String cutCrafterComponent;
-	private String folderToPaste;
-	private String cutContent2;
-	private String deleteCrafterComponent;
 	private String titleMedatata;
-	private String keywordsMetadata;
 	private String previewDuplicate;
 	private String duplicateName;
 	private String homeContent2;
@@ -85,9 +71,6 @@ public class DashboardPage {
 	private String levelDescriptorContentType;
 	private String setFileName;
 	private String homeContent3;
-	private String pasteContent5;
-	private String foderToPaste2;
-	private String pasteOption;
 	private String contentCreatedToCut;
 	private String pasteContent0;
 	private String newFolderCreated;
@@ -118,8 +101,8 @@ public class DashboardPage {
 		createButton1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.create_Button");
 		setFolderName1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
 		copyContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content1");
-		copyContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content2");
-		globalEntry = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.global_entry");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content2");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.global_entry");
 		
 		
 		pasteContent0 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content");
@@ -127,12 +110,12 @@ public class DashboardPage {
 		pasteContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content1");
 		pasteContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content2");
 		pasteContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content3");
-		pasteContent4 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content4");
-		aboutUsOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content4");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us");
 		aboutUsOptionCopied = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_copied");
 		deleteOptionCopied = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_about_us_copied");
-		deleteCrafterComponent = uIElementsManager.getSharedUIElementsLocators()
+		uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_crafter_component");
 		deleteCrafterComponent2 = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_crafter_component2");
@@ -142,19 +125,19 @@ public class DashboardPage {
 				.getProperty("dashboard.delete_about_us_panel");
 		deleteOK = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.delete_OK");
 		cutContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content1");
-		cutContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content2");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content2");
 		aboutUsOptionCut = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_cut");
-		folderToCopy = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder_created");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder_created");
 		copyContentButton = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
 		newContentCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_content");
-		aboutUSFolderToCopy = uIElementsManager.getSharedUIElementsLocators()
+		uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_folderToCopy");
 		aboutUsOptionToTree1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_tree1");
 		aboutUsOptionTreeLevel1 = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_to_the_tree_leve1");
 		aboutUsOptionTreeLevel2 = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_to_the_tree_leve2");
-		aboutUsOptionTreeLevel3 = uIElementsManager.getSharedUIElementsLocators()
+		uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_to_the_tree_leve3");
 		aboutUsOptionTreeCreated = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_tree");
@@ -168,7 +151,7 @@ public class DashboardPage {
 		ediPagetUrl = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_url_button");
 		pageUrlField = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.page_url_field");
 		previewSync = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
-		contentRecentlyCreated = uIElementsManager.getSharedUIElementsLocators()
+		uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.recently_content_created");
 		editRecentlyContentCreated = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.edit_recently_content_created");
@@ -177,18 +160,18 @@ public class DashboardPage {
 				.getProperty("dashboard.cut_crafter_component");
 		folderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_created");
 		copyContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content3");
-		folderToPaste = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_to_paste");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_to_paste");
 		titleMedatata = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_title");
-		keywordsMetadata = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_keywords");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_keywords");
 		previewDuplicate = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate");
 		duplicateName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate_name");
 		levelDescriptorContentType = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.level_descriptor");
 		setFileName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.file_name");
 		homeContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page3");
-		pasteContent5 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content5"); 
-		foderToPaste2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder"); 
-		pasteOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_in_new_folder");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content5"); 
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder"); 
+		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_in_new_folder");
 		contentCreatedToCut = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.content_created_testing");
 		newFolderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_new_folder");
 		pasteContent0 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content_copied");

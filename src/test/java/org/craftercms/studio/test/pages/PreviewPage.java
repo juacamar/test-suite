@@ -18,7 +18,6 @@ public class PreviewPage {
 
 	private WebDriverManager driverManager;
 	private UIElementsPropertiesManager uIElementsManager;
-	private WebDriver driver;
 	private String adminConsole;
 	private String openComboSites;
 	private String clickPreviewTools;
@@ -45,7 +44,7 @@ public class PreviewPage {
 	public PreviewPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.uIElementsManager = UIElementsPropertiesManager;
-		this.driver = this.driverManager.getDriver();
+		this.driverManager.getDriver();
 		adminConsole = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.admin_console_link");
 		openComboSites = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.open_combo_sites");
 		clickPreviewTools = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.preview_tools");

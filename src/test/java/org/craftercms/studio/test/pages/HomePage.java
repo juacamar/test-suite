@@ -18,7 +18,6 @@ public class HomePage {
 	private WebDriverManager driverManager;
 	private UIElementsPropertiesManager uIElementsManager;
 	private WebDriver driver;
-	private String homePageUserName;
 	private String previewSite1;
 	private String dashboardSite2;
 	private String editRecentActivity;
@@ -36,7 +35,7 @@ public class HomePage {
 		this.driverManager = driverManager;
 		this.uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
-		homePageUserName = uIElementsManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
+		uIElementsManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
 		previewSite1 = uIElementsManager.getSharedUIElementsLocators().getProperty("home.preview_link");
 		dashboardSite2 = uIElementsManager.getSharedUIElementsLocators().getProperty("home.dashboard_link");
 		editRecentActivity = uIElementsManager.getSharedUIElementsLocators().getProperty("home.edit_my_recent_activty");

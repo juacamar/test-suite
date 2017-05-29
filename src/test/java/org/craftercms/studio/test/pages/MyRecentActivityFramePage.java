@@ -4,7 +4,6 @@ import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -17,7 +16,6 @@ public class MyRecentActivityFramePage {
 
 	private WebDriverManager driverManager;
     private UIElementsPropertiesManager uIElementsManager;
-    private WebDriver driver;
     private String expandDefaultSection;
     private String tittleField1;
     private String saveCloseButton;
@@ -27,7 +25,7 @@ public class MyRecentActivityFramePage {
     public MyRecentActivityFramePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
         this.driverManager = driverManager;
         this.uIElementsManager = UIElementsPropertiesManager;
-        this.driver = this.driverManager.getDriver();
+        this.driverManager.getDriver();
         expandDefaultSection = uIElementsManager.getSharedUIElementsLocators().getProperty("frame1.expand_Default_Section");
         tittleField1 = uIElementsManager.getSharedUIElementsLocators().getProperty("frame1.tittle_Field1");
         saveCloseButton = uIElementsManager.getSharedUIElementsLocators().getProperty("frame1.save_Close_Button");
