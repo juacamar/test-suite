@@ -11,10 +11,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.AbstractHttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.FormBodyPart;
 import org.apache.http.entity.mime.FormBodyPartBuilder;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.StringBody;
@@ -51,7 +49,6 @@ public class JsonRequest {
     private Map<String, String> headers;
     private Map<String, File> files;
     private Object jsonParam;
-    private String raw;
 
     public JsonRequest(String schema, String host, int port, String path, String type, CloseableHttpClient httpClient,
                        BasicCookieStore cookies) {

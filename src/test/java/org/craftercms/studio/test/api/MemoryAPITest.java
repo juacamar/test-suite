@@ -14,11 +14,11 @@ import static org.hamcrest.Matchers.*;
  * Created by gustavo ortiz 
  */
 
-public class ValidateSessionAPITest {
+public class MemoryAPITest {
 
     private JsonTester api;
 
-    public ValidateSessionAPITest(){
+    public MemoryAPITest(){
         api = new JsonTester("http","localhost",8080);
     }
 
@@ -31,26 +31,18 @@ public class ValidateSessionAPITest {
     }
     
     @Test(priority=2)
-    public void validateSession(){
+    public void testMemory(){
     	Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/security/validate-session.json").json(json).execute().status(200)
+		api.get("http://localhost:8080/studio/api/1/monitor/memory.json").json(json).execute().status(200)
 		.json("$.message", is("OK")).debug();;
     }
+    
     
     @Test(priority=3)
-    public void logout(){
+    public void testInternalServerError(){
     	Map<String, Object> json = new HashMap<>();
-		json.put("username", "admin");
-		json.put("password", "admin");
-		api.post("/studio/api/1/services/api/1/security/logout.json").json(json).execute().status(200)
-		.json("$.message", is("OK")).debug();;
-    }
-    
-    @Test(priority=4)
-    public void validateSessionUnauthorized(){
-    	Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/security/validate-session.json").json(json).execute().status(401)
-		.json("$.message", is("Unauthorized")).debug();;
+    	api.get("http://localhost:8080/studio/api/1/monitor/memory.json").json(json).execute().status(200)
+		.json("$.message", is("Internal server error")).debug();;
     }
 
  

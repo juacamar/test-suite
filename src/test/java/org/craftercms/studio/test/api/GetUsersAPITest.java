@@ -1,9 +1,6 @@
 package org.craftercms.studio.test.api;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.hamcrest.Matchers;
-import org.hamcrest.core.Is;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
