@@ -13,11 +13,11 @@ import static org.hamcrest.Matchers.*;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class GetUserPerSiteAPITest {
+public class GetUsersPerGroupAPITest {
 
 	private JsonTester api;
 
-	public GetUserPerSiteAPITest() {
+	public GetUsersPerGroupAPITest() {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
@@ -43,48 +43,37 @@ public class GetUserPerSiteAPITest {
 	}
 	
 	@Test(priority=2)
-	public void testCreateStudioGroup01() {
+	public void testCreateStudioGroup() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", "contributors01");
+		json.put("group_name", "mygroup");
 		json.put("site_id", "mySite");
 		json.put("description", "Content Contributors");
 		api.post("studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=contributors01"))
+				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=mygroup"))
 				.json("$.message", is("OK")).debug();
 
 	}
+	
 	
 	@Test(priority=3)
-	public void testCreateStudioGroup02() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", "contributors02");
-		json.put("site_id", "mySite");
-		json.put("description", "Content Contributors");
-		api.post("studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=contributors02"))
-				.json("$.message", is("OK")).debug();
-
-	}
-	
-	@Test(priority=4)
 	public void testGetGroupsPerSite() {
 		Map<String, Object> json = new HashMap<>();
 		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=mySite").json(json).execute().status(200)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=mySite&start=0&number=25"));
+				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=mygroup"));
 				//.json("$.message", is("OK")).debug();
 
 	}
 	
-//	@Test(priority=5)
+//	@Test(priority=4)
 //	public void testInvalidParameters() {
 //		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?").json(json).execute().status(400)
+//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=mySite").json(json).execute().status(400)
 //		.json("$.message", is("Invalid parameter(s)")).debug();
 //
 //	}
 
 	
-//	@Test(priority=6)
+//	@Test(priority=5)
 //	public void testUnauthorized() {
 //		Map<String, Object> json = new HashMap<>();
 //		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=mySite").json(json).execute().status(401)
@@ -93,19 +82,20 @@ public class GetUserPerSiteAPITest {
 //	}
 	
 	
+	@Test(priority=6)
+	public void testSiteNotFound() {
+		Map<String, Object> json = new HashMap<>();
+		api.get("/studio/api/1/services/api/1/user/get-per-site.json?site_id=mySite").json(json).execute().status(404)
+		//.json("$.message", is("Group not found"))
+		.debug();
+
+	}
+	
+	
 //	@Test(priority=7)
-//	public void testSiteNotFound() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=gfgfdgfdgfdfgd").json(json).execute().status(404)
-//		.json("$.message", is("Site not found")).debug();
-//
-//	}
-	
-	
-//	@Test(priority=8)
 //	public void testInternalServerError() {
 //		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=`````").json(json).execute().status(500)
+//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=mySite").json(json).execute().status(500)
 //		.json("$.message", is("Internal server error")).debug();
 //
 //	}
