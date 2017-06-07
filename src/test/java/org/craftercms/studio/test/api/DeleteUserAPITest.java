@@ -51,10 +51,33 @@ public class DeleteUserAPITest {
 		.json(json)
 		.execute()
 		.status(204)
+		.json("isEmpty()", is(true))
+
 		.debug();
 		
 
 	}
+	
+	@Test(priority=3)
+	public void testInvalidParameters() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("usernameInvalid", "jane.doe");
+		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(400)
+		.json("$.message", is("Invalid parameter: username"));
+		
+
+	}
+	
+	
+//	@Test(priority=4)
+//	public void testUnauthorized() {
+//		Map<String, Object> json = new HashMap<>();
+//		json.put("usernameInvalid", "jane.doe");
+//		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(401)
+//		.json("$.message", is("Unauthorized"));
+//		
+//
+//	}
 	
 	@Test(priority=3)
 	public void testUserNotFound() {

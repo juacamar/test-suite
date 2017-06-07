@@ -273,18 +273,12 @@
   
   <!-- API Test Cases -->
   
-  <test name="Create Group">
+  <test name="Create User">
   <classes>
-    <!--  <class name="org.craftercms.studio.test.api.CreateSiteAPITest" /> -->
-    <!-- <class name="org.craftercms.studio.test.api.CreateGroupAPITest" /> -->
+      <class name="org.craftercms.studio.test.api.CreateUserAPITest" />
   </classes>
   </test> <!-- Test -->
   
-  <test name="Create site">
-  <classes>
-   <!-- <class name="org.craftercms.studio.test.api.CreateSiteAPITest" /> -->
-  </classes>
-  </test> <!-- Test -->
   
   
 </suite> <!-- Suite -->
