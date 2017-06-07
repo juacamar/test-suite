@@ -32,14 +32,14 @@ public class DisableUserAPITest {
 	@Test(priority=1)
 	public void testCreateUser() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "newuserDisable");
+		json.put("username", "jane.doe");
 		json.put("password", "SuperSecretPassword123#");
 		json.put("first_name", "Jane");
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
 		json.put("externally_managed", "false");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=newuserDisable"))
+				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
 				.json("$.message", is("OK"));
 
 	}
@@ -47,9 +47,9 @@ public class DisableUserAPITest {
 	@Test(priority=2)
 	public void testDisableUser() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "newuserDisable");
+		json.put("username", "jane.doe");
 		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(200)
-		.header("Location", is ("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=newuserDisable"))
+		.header("Location", is ("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
 		.json("$.message", is("OK"));
 
 		
@@ -60,7 +60,7 @@ public class DisableUserAPITest {
 	@Test(priority=3)
 	public void testInvalidParameters() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("usernameX", "newuserDisable");
+		json.put("usernameX", "jane.doe");
 		api.post("/studio/api/1/services/api/1/user/disable.json").json(json).execute().status(400)
 		.json("$.message", is("Invalid parameter: username"));
 		

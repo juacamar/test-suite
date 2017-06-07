@@ -140,6 +140,9 @@ public class RemoveUserFromGroupAPITest {
 
 	}
 	
+
+	
+	
 	@Test(priority=9)
 	public void testUserNotFound() {
 		Map<String, Object> json = new HashMap<>();
@@ -152,6 +155,19 @@ public class RemoveUserFromGroupAPITest {
 		.json("$.message", is("User not found"));
 
 	}
+	
+//	@Test(priority=10)
+//	public void testInternalServerError() {
+//		Map<String, Object> json = new HashMap<>();
+//		json.put("username", "jane.doeNotExist");
+//		json.put("group_name", "contributors");
+//		json.put("site_id", "mysite");
+//		api.post("/studio/api/1/services/api/1/group/remove-user.json").json(json)
+//		.execute()
+//		.status(500)
+//		.json("$.message", is("Internal server error"));
+//
+//	}
 	
 	
 	

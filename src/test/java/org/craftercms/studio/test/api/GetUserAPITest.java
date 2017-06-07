@@ -44,16 +44,6 @@ public class GetUserAPITest {
 	}
 	
 	@Test(priority=2)
-	public void testUserNotFound() {
-		Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/user/get.json?username=jane.doeX")
-		.json(json)
-		.execute()
-		.status(404);
-
-	}
-	
-	@Test(priority=3)
 	public void testGetUser() {
 		Map<String, Object> json = new HashMap<>();
 		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe")
@@ -64,16 +54,43 @@ public class GetUserAPITest {
 		
 	}
 	
-	@Test(priority=4)
+	@Test(priority=3)
 	public void testInvalidParameters() {
 		Map<String, Object> json = new HashMap<>();
 		api.get("/studio/api/1/services/api/1/user/login.json")
 		.json(json)
 		.execute()
 		.status(400)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
+		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
+		.json("$.message", is("Invalid parameter(s)"));
+
 		
 	}
+	
+//	@Test(priority=4)
+//	public void testUnauthorized() {
+//		Map<String, Object> json = new HashMap<>();
+//		api.get("/studio/api/1/services/api/1/user/login.json")
+//		.json(json)
+//		.execute()
+//		.status(401)
+//		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
+//		.json("$.message", is("Unauthorized"));
+//
+//		
+//	}
+	
+	@Test(priority=5)
+	public void testUserNotFound() {
+		Map<String, Object> json = new HashMap<>();
+		api.get("/studio/api/1/services/api/1/user/get.json?username=jane.doeX")
+		.json(json)
+		.execute()
+		.status(404);
+
+	}
+	
+	
 	
 
 	//Commented until you know how to invoke an internal server error.

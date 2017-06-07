@@ -13,11 +13,11 @@ import static org.hamcrest.Matchers.*;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class GetUsersAPITest {
+public class DeleteSiteAPITest {
 
 	private JsonTester api;
 
-	public GetUsersAPITest() {
+	public DeleteSiteAPITest() {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
@@ -43,59 +43,64 @@ public class GetUsersAPITest {
 
 	}
 	
-	
 	@Test(priority=2)
-	public void testGetUsers() {
+	public void testDeleteUser() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
+		json.put("username", "jane.doe");
+		api.post("/studio/api/1/services/api/1/user/delete.json")
 		.json(json)
 		.execute()
-		.status(200)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get-all.json?start=0&number=25"));
+		.status(204)
+		.json("isEmpty()", is(true))
+
+		.debug();
 		
+
 	}
-//	
-//	@Test(priority=3)
-//	public void testInvalidParameters() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
-//		.json(json)
-//		.execute()
-//		.status(400)
-//		.debug();
-//		
-//	}
 	
-	
-	//Commented until you know how to invoke an internal server error.
+	@Test(priority=3)
+	public void testInvalidParameters() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("usernameInvalid", "jane.doe");
+		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(400)
+		.json("$.message", is("Invalid parameter: username"));
+		
 
+	}
+	
+	
 //	@Test(priority=4)
-//	public void Unauthorized() {
+//	public void testUnauthorized() {
 //		Map<String, Object> json = new HashMap<>();
-//		api.get("/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
-//		.json(json)
-//		.execute()
-//		.status(401)
-//		.debug();
+//		json.put("usernameInvalid", "jane.doe");
+//		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(401)
+//		.json("$.message", is("Unauthorized"));
 //		
+//
 //	}
 	
-	//Commented until you know how to invoke an internal server error.
+	@Test(priority=3)
+	public void testUserNotFound() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "jane.doeNOTFOUND");
+		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute().status(404)
+		.json("$.message", is("User not found"));
+		
 
-//	@Test(priority=5)
-//	public void testInternalServerError() {
+	}
+	
+	
+//  TODO:  Commented until you know how to invoke an internal server error.
+	
+//	@Test(priority=4)
+//	public void testInvalidServerError() {
 //		Map<String, Object> json = new HashMap<>();
-//		api.get("/studio/api/1/services/api/1/user/get-all.json?start=0&number=25")
-//		.json(json)
-//		.execute()
-//		.status(500)
-//		.debug();
+//		json.put("usernameERROR", "jane.doe");
+//		api.post("/udio/api/1/services/api/1/user/delete.json").json(json).execute().status(500)
+//		.json("$.message", is("Internal server error")).debug();
 //		
+//
 //	}
-	
-
 
 	
-
-
 }

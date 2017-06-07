@@ -32,13 +32,13 @@ public class EnableUserAPITest {
 	@Test(priority=1)
 	public void testCreateUser() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "newuser");
+		json.put("username", "jane.doe");
 		json.put("password", "SuperSecretPassword123#");
 		json.put("first_name", "Jane");
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=newuser"))
+				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
 				.json("$.message", is("OK"));
 
 	}
@@ -46,9 +46,9 @@ public class EnableUserAPITest {
 	@Test(priority=2)
 	public void testEnableUser() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "newuser");
+		json.put("username", "jane.doe");
 		api.post("/studio/api/1/services/api/1/user/enable.json").json(json).execute().status(200)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=newuser"))
+		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
 		.json("$.message", is("OK")).debug();
 		
 		
@@ -57,7 +57,7 @@ public class EnableUserAPITest {
 	@Test(priority=3)
 	public void testInvalidParameters() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("usernameX", "newuser");
+		json.put("usernameX", "jane.doe");
 		api.post("/studio/api/1/services/api/1/user/enable.json").json(json).execute().status(400)
 		.json("$.message", is("Invalid parameter: username")).debug();
 		
@@ -69,7 +69,7 @@ public class EnableUserAPITest {
 //	@Test(priority=4)
 //	public void testUnauthorized() {
 //		Map<String, Object> json = new HashMap<>();
-//		json.put("username", "newuserNotFound");
+//		json.put("username", "jane.doeNotFound");
 //		api.post("/studio/api/1/services/api/1/user/enable.json").json(json).execute().status(401)
 //		.json("$.message", is("Unauthorized")).debug();
 //
@@ -81,7 +81,7 @@ public class EnableUserAPITest {
 //	@Test(priority=5)
 //	public void testExternallyManagedUser() {
 //		Map<String, Object> json = new HashMap<>();
-//		json.put("username", "newuserNotFound");
+//		json.put("username", "jane.doeNotFound");
 //		api.post("/studio/api/1/services/api/1/user/enable.json").json(json).execute().status(403)
 //     	.json("$.message", is("Externally managed user")).debug();
 //
@@ -93,7 +93,7 @@ public class EnableUserAPITest {
 	@Test(priority=6)
 	public void testUserNotFound() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "newuserNotFound");
+		json.put("username", "jane.doeNotFound");
 		api.post("/studio/api/1/services/api/1/user/enable.json").json(json).execute().status(404)
 		.json("$.message", is("User not found")).debug();
 
@@ -106,7 +106,7 @@ public class EnableUserAPITest {
 //	@Test(priority=7)
 //	public void testInternalServerError() {
 //		Map<String, Object> json = new HashMap<>();
-//		json.put("", "newuser");
+//		json.put("", "jane.doe");
 //		api.post("/studio/api/1/services/api/1/user/enable.json").json(json).execute().status(500)
 //		.json("$.message", is("Internal server error"));
 //		
