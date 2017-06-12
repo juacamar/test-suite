@@ -250,7 +250,7 @@ public class EditContentFormTest {
 
 				// select main content
 
-				driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
+				driverManager.getDriver().findElement(By.cssSelector("#yui-gen9")).click();
 
 				// wait for element is clickeable
 

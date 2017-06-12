@@ -121,7 +121,7 @@ public class FilterShowRecentActivityTest {
 
 				// select main content
 
-				driverManager.getDriver().findElement(By.cssSelector("#yui-gen7")).click();
+				driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
 				// wait for element is clickeable
 
