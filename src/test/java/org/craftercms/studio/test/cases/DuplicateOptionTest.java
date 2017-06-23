@@ -296,7 +296,7 @@ public class DuplicateOptionTest {
 		// Assert
 
 		String duplicate = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
-		Assert.assertEquals(duplicate, "COPY *");
+		Assert.assertEquals(duplicate, "COPY");
 
 	}
 

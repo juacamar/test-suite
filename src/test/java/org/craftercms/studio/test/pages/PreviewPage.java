@@ -37,6 +37,7 @@ public class PreviewPage {
 	private String internalName;
 	private String saveAndCloseiFrame;
 	private String previewHistory;
+	private String previewDependecies;
 
 	/**
 	 * 
@@ -72,7 +73,9 @@ public class PreviewPage {
 		saveAndCloseiFrame = uIElementsManager.getSharedUIElementsLocators()
 				.getProperty("frame1.save_close");
 		previewHistory = uIElementsManager.getSharedUIElementsLocators()
-				.getProperty("preview.history");		
+				.getProperty("preview.history");
+		previewDependecies = uIElementsManager.getSharedUIElementsLocators()
+				.getProperty("preview.dependencies");
 		
 				
 	}
@@ -293,7 +296,7 @@ public class PreviewPage {
 
 	public void historyButton() {
 
-		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewHistory));
+		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(14)"));   //previewHistory
 		historyOption.click();
 
 	}
@@ -305,6 +308,24 @@ public class PreviewPage {
 		this.historyButton();
 
 	}
+	
+	
+	// Click on history button of the menu
+
+		public void dependenciesButton() {
+
+			WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewDependecies));
+			historyOption.click();
+
+		}
+
+		public void clickOnDependenciesOption() {
+
+			// Click on history button of the menu
+
+			this.historyButton();
+
+		}
 
 	// Set the new name duplicated
 

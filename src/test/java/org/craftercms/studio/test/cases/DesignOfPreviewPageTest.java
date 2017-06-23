@@ -167,10 +167,10 @@ public class DesignOfPreviewPageTest {
 
 				homePage.getDriverManager().driverWait();
 
-		// Assert duplicate option is present.
+		// Assert dependencies option is present.
 
 		WebElement duplicateOption = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[6]/a"));
+				.findElement(By.cssSelector("#activeContentActions > li:nth-child(5) > a"));
 
 		Assert.assertTrue(duplicateOption.isDisplayed());
 		
