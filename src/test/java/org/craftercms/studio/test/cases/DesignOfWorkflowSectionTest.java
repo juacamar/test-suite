@@ -89,7 +89,7 @@ public class DesignOfWorkflowSectionTest {
 		// Assert edited is present.
 
 		WebElement edited = driverManager.getDriver()
-				.findElement(By.cssSelector("div.col-xs-6:nth-child(7) > div:nth-child(2)"));
+				.findElement(By.cssSelector("#iconGuide > div.panel-body > div > div:nth-child(6) > div"));
 
 		Assert.assertTrue(edited.isDisplayed());
 
@@ -102,7 +102,7 @@ public class DesignOfWorkflowSectionTest {
 		// Assert in workflow is present.
 
 		WebElement inWorkflow = driverManager.getDriver()
-				.findElement(By.cssSelector("div.col-xs-6:nth-child(8) > div:nth-child(2)"));
+				.findElement(By.cssSelector("#iconGuide > div.panel-body > div > div:nth-child(7) > div"));
 
 		Assert.assertTrue(inWorkflow.isDisplayed());
 
@@ -115,7 +115,7 @@ public class DesignOfWorkflowSectionTest {
 		// Assert scheduled is present.
 
 		WebElement scheduled = driverManager.getDriver()
-				.findElement(By.cssSelector("div.col-xs-6:nth-child(9) > div:nth-child(2)"));
+				.findElement(By.cssSelector("#iconGuide > div.panel-body > div > div:nth-child(8) > div"));
 
 		Assert.assertTrue(scheduled.isDisplayed());
 
@@ -151,7 +151,7 @@ public class DesignOfWorkflowSectionTest {
 
 		// Assert Locked for edit is present.
 
-		WebElement locked = driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(12)"));
+		WebElement locked = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div > div:nth-child(11) > div"));
 
 		Assert.assertTrue(locked.isDisplayed());
 

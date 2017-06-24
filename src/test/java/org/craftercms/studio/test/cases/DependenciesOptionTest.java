@@ -4,22 +4,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
-public class AddNewFolderTest {
+public class DependenciesOptionTest {
 
 	WebDriver driver;
 
@@ -31,48 +31,45 @@ public class AddNewFolderTest {
 
 	private HomePage homePage;
 
-	private DashboardPage dashboardPage;
+	private PreviewPage previewPage;
 
 
-	@BeforeTest
+
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager);
+		
 
 	}
 
-	@AfterTest
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
+	 @AfterTest
+	 public void afterTest() {
+	 driverManager.closeConnection();
+	 }
 
 	@Test(priority = 0)
 
-	public void Add_New_Folder_test() {
+	public void history_option() {
 
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
 
-		// wait for element is clickeable
+		// wait for element
 
 		homePage.getDriverManager().driverWait();
 
-		// go to dashboard page
-
-		homePage.goToDashboardPage();
+		// go to preview page
+		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
 
@@ -85,29 +82,37 @@ public class AddNewFolderTest {
 
 		// expand pages folder
 
-		dashboardPage.expandPagesTree();
-
-		// right click to see the the menu
-
-		dashboardPage.rightClickToNewContent();
-
-		// Set the name of the folder
-
-		dashboardPage.setFolderName("addnewfolder");
-
-		// Create folder button
-
-		dashboardPage.clickCreateButton();
+		previewPage.expandPagesTree();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Assert find the new folder created
+		// expand home content
 
-		String folderName = driverManager.getDriver()
-				.findElement(By.cssSelector("span.status-icon.folder.no-preview.no-preview.over-effect-set")).getText();
-		Assert.assertEquals(folderName, "addnewfolder");
+		previewPage.expandHomeTree();
+
+		// Select the content to view the history.
+
+		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// click on history option
+
+		previewPage.clickOnDependenciesOption();
+
+		// wait for element is clickeable
+
+		previewPage.getDriverManager().driverWait();
+
+		// Assert
+
+		String historyPage = driverManager.getDriver()
+		.findElement(By.cssSelector(".view-title")).getText();
+		Assert.assertEquals(historyPage, "Dependencies");
 
 	}
 
