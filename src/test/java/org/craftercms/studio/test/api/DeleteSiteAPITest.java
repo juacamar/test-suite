@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hamcrest.Matchers.*;
 
 /**
  * Created by Gustavo Ortiz Alfaro.

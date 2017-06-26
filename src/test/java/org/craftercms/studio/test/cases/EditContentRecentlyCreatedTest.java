@@ -293,7 +293,7 @@ public class EditContentRecentlyCreatedTest {
 
 				String contentEdited = driverManager.getDriver()
 						.findElement(By.cssSelector("#ygtvlabelel3")).getText();
-				Assert.assertEquals(contentEdited, "Testing1EDITED *");
+				Assert.assertEquals(contentEdited, "Testing1EDITED");
 
 	}
 
