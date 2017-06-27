@@ -296,7 +296,7 @@ public class PreviewPage {
 
 	public void historyButton() {
 
-		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(14)"));   //previewHistory
+		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewHistory));   
 		historyOption.click();
 
 	}
@@ -310,7 +310,7 @@ public class PreviewPage {
 	}
 	
 	
-	// Click on history button of the menu
+	// Click on dependencies button of the menu
 
 		public void dependenciesButton() {
 
@@ -321,9 +321,9 @@ public class PreviewPage {
 
 		public void clickOnDependenciesOption() {
 
-			// Click on history button of the menu
+			// Click on dependencies button of the menu
 
-			this.historyButton();
+			this.dependenciesButton();
 
 		}
 
