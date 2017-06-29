@@ -32,6 +32,7 @@ public class CreatePage {
 	private String emptyBlueprint;
 	private String corporateBlueprint;
 	private String AngMemGamBlueprint;
+	private String usersOption;
 
 	/**
 	 * 
@@ -50,6 +51,9 @@ public class CreatePage {
 		emptyBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.empty_blueprint");
 		corporateBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.corporate_blueprint");
 		AngMemGamBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.ang_mem_gam_blueprint");
+		usersOption = uIElementsManager.getSharedUIElementsLocators().getProperty("create.users_option");
+				
+				
 
 	}
 
@@ -217,6 +221,23 @@ public class CreatePage {
 		this.createButton();
 
 	}
+	
+	// Press on users option
+
+		public void usersOption() {
+
+			WebElement users = driver.findElement(By.xpath(usersOption));
+			users.click();
+
+		}
+
+		public void clickOnUsersOption() {
+
+			// Press on users option
+
+			this.usersOption();
+
+		}
 
 	// Press on Cancel button of the create site process.
 

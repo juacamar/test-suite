@@ -4,8 +4,6 @@ import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.jayway.restassured.http.ContentType;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +52,7 @@ public class DeleteUserAPITest {
 		.execute();	
 		
 	}
+	
 		
 
 	

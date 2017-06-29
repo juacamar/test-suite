@@ -8,27 +8,32 @@ import org.openqa.selenium.WebElement;
 
 /**
  *
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
 public class UsersPage {
 
 	private WebDriverManager driverManager;
-    private UIElementsPropertiesManager uIElementsManager;
-    private WebDriver driver;
+	private UIElementsPropertiesManager uIElementsManager;
+	private WebDriver driver;
 	private String deleteUserOption;
+	private String newUserOption;
+	private String saveNewUserOption;
 
-    /**
-     * 
-     */
-    public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
-        this.driverManager = driverManager;
-        this.uIElementsManager = UIElementsPropertiesManager;
-        this.driver = this.driverManager.getDriver();
-        deleteUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.delete_option");
-    
-    }
+	/**
+	 * 
+	 */
+	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+		this.driverManager = driverManager;
+		this.uIElementsManager = UIElementsPropertiesManager;
+		this.driver = this.driverManager.getDriver();
+		deleteUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.delete_option");
+		newUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.new_user");
+		saveNewUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.save_new_user");
+
+	}
+
 	public UsersPage(WebDriver driver) {
 
 		this.driver = driver;
@@ -43,9 +48,8 @@ public class UsersPage {
 		previewLink.click();
 
 	}
-	
-	// Try to delete the user connected
 
+	// Try to delete the user connected
 
 	public void clickOnDeleteUser() {
 
@@ -55,18 +59,58 @@ public class UsersPage {
 
 	}
 
+	// Click on New User Button
+
+	public void clickNewUserButton() {
+
+		WebElement newUserButton = driverManager.getDriver().findElement(By.cssSelector(newUserOption));
+		newUserButton.click();
+
+	}
+
+	// Click on New User Button
+
+	public void clickOnNewUser() {
+
+		// Click on New User Button
+
+		this.clickNewUserButton();
+
+	}
+
+	// Click on Save New User Button
+
+	public void clickSaveNewUserButton() {
+
+		WebElement saveNewUser = driverManager.getDriver().findElement(By.cssSelector(saveNewUserOption));
+		saveNewUser.click();
+
+	}
+
+	// Click on Save New User Button
+
+	public void clickOnSaveNewUser() {
+
+		// Click on Save New User Button
+
+		this.clickSaveNewUserButton();
+
+	}
+
 	public WebDriverManager getDriverManager() {
 		return driverManager;
 	}
+
 	public void setDriverManager(WebDriverManager driverManager) {
 		this.driverManager = driverManager;
 	}
+
 	public WebDriver getDriver() {
 		return driver;
 	}
+
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
 	}
-	
 
 }

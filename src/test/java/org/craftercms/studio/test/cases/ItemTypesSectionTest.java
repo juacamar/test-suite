@@ -1,7 +1,6 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -22,8 +21,6 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class ItemTypesSectionTest {
 
-	WebDriver driver;
-
 	LoginPage objLogin;
 
 	HomePage objHomePage;
@@ -36,8 +33,6 @@ public class ItemTypesSectionTest {
 
 	private HomePage homePage;
 
-
-
 	@BeforeTest
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -45,7 +40,6 @@ public class ItemTypesSectionTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-
 
 	}
 
@@ -57,7 +51,7 @@ public class ItemTypesSectionTest {
 	@Test(priority = 0)
 
 	public void design_item_types_section() {
-		
+
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
@@ -76,104 +70,121 @@ public class ItemTypesSectionTest {
 
 		// Assert Item Types tittle is present.
 
-		WebElement itemTypes = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div.col-md-12.title > p"));
+		WebElement itemTypes = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div.col-md-12.title > p"));
 
 		Assert.assertTrue(itemTypes.isDisplayed());
 
-		// Assert  Navigation Page icon is present.
+		// Assert Navigation Page icon is present.
 
-				WebElement  navigationPage = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(2) > div"));
+		WebElement navigationPage = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(2) > div"));
 
-				Assert.assertTrue(navigationPage.isDisplayed());
-				
-				// Assert  video icon is present.
+		Assert.assertTrue(navigationPage.isDisplayed());
 
-				WebElement  video = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(8) > div"));
+		// Assert video icon is present.
 
-				Assert.assertTrue(video.isDisplayed());
-				
-				// Assert  excel icon is present.
+		WebElement video = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(8) > div"));
 
-				WebElement  excel = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(14) > div"));
+		Assert.assertTrue(video.isDisplayed());
 
-				Assert.assertTrue(excel.isDisplayed());
-				
-				// Assert  floating page icon is present.
+		// Assert excel icon is present.
 
-				WebElement  floatingPage = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(3) > div"));
+		WebElement excel = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(14) > div"));
 
-				Assert.assertTrue(floatingPage.isDisplayed());
-		
-				// Assert  css icon is present.
+		Assert.assertTrue(excel.isDisplayed());
 
-				WebElement  css = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(9) > div"));
+		// Assert floating page icon is present.
 
-				Assert.assertTrue(css.isDisplayed());
-				
-				// Assert  zip icon is present.
+		WebElement floatingPage = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(3) > div"));
 
-				WebElement  zip = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(15) > div"));
+		Assert.assertTrue(floatingPage.isDisplayed());
 
-				Assert.assertTrue(zip.isDisplayed());
-				
-				// Assert  component icon is present.
+		// Assert css icon is present.
 
-				WebElement  component = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(4) > div"));
+		WebElement css = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(9) > div"));
 
-				Assert.assertTrue(component.isDisplayed());
-				
-				// Assert  font icon is present.
+		Assert.assertTrue(css.isDisplayed());
 
-				WebElement  font = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(10) > div"));
+		// Assert zip icon is present.
 
-				Assert.assertTrue(font.isDisplayed());
-				
-				// Assert  groovy icon is present.
+		WebElement zip = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(15) > div"));
 
-				WebElement  groovy = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(16) > div"));
+		Assert.assertTrue(zip.isDisplayed());
 
-				Assert.assertTrue(groovy.isDisplayed());
-				
-				// Assert  Template/Script icon is present.
+		// Assert component icon is present.
 
-				WebElement  templateScript = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(5) > div"));
+		WebElement component = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(4) > div"));
 
-				Assert.assertTrue(templateScript.isDisplayed());
-				
-				// Assert  pdf icon is present.
+		Assert.assertTrue(component.isDisplayed());
 
-				WebElement  pdf = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(11) > div"));
+		// Assert font icon is present.
 
-				Assert.assertTrue(pdf.isDisplayed());
-				
-				// Assert  other files icon is present.
+		WebElement font = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(10) > div"));
 
-				WebElement  otherFiles = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(17) > div"));
+		Assert.assertTrue(font.isDisplayed());
 
-				Assert.assertTrue(otherFiles.isDisplayed());
-				
-				// Assert taxonomy icon is present.
+		// Assert groovy icon is present.
 
-				WebElement  taxonomy = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(6) > div"));
+		WebElement groovy = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(16) > div"));
 
-				Assert.assertTrue(taxonomy.isDisplayed());
-				
-				// Assert power point icon is present.
+		Assert.assertTrue(groovy.isDisplayed());
 
-				WebElement  powerPoint = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(12) > div"));
+		// Assert Template/Script icon is present.
 
-				Assert.assertTrue(powerPoint.isDisplayed());
-				
-				// Assert image icon is present.
+		WebElement templateScript = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(5) > div"));
 
-				WebElement  image = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(7) > div"));
+		Assert.assertTrue(templateScript.isDisplayed());
 
-				Assert.assertTrue(image.isDisplayed());
-				
-				// Assert word icon is present.
+		// Assert pdf icon is present.
 
-				WebElement  word = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(13) > div"));
+		WebElement pdf = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(11) > div"));
 
-				Assert.assertTrue(word.isDisplayed());
+		Assert.assertTrue(pdf.isDisplayed());
+
+		// Assert other files icon is present.
+
+		WebElement otherFiles = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(17) > div"));
+
+		Assert.assertTrue(otherFiles.isDisplayed());
+
+		// Assert taxonomy icon is present.
+
+		WebElement taxonomy = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(6) > div"));
+
+		Assert.assertTrue(taxonomy.isDisplayed());
+
+		// Assert power point icon is present.
+
+		WebElement powerPoint = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(12) > div"));
+
+		Assert.assertTrue(powerPoint.isDisplayed());
+
+		// Assert image icon is present.
+
+		WebElement image = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(7) > div"));
+
+		Assert.assertTrue(image.isDisplayed());
+
+		// Assert word icon is present.
+
+		WebElement word = driverManager.getDriver().findElement(
+				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(13) > div"));
+
+		Assert.assertTrue(word.isDisplayed());
 	}
 }
