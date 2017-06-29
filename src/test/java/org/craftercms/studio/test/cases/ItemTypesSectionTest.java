@@ -21,10 +21,6 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class ItemTypesSectionTest {
 
-	LoginPage objLogin;
-
-	HomePage objHomePage;
-
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
@@ -50,7 +46,7 @@ public class ItemTypesSectionTest {
 
 	@Test(priority = 0)
 
-	public void design_item_types_section() {
+	public void designItemTypesSection() {
 
 		// login to application
 

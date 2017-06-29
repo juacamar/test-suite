@@ -23,8 +23,6 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class AddNewUserTest {
 
-	WebDriver driver;
-
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
