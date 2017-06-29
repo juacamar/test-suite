@@ -1,7 +1,6 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -59,7 +58,7 @@ public class AddNewUserTest {
 
 	@Test(priority = 0)
 
-	public void Add_New_User_test() {
+	public void addNewUser() {
 
 		// login to application
 
