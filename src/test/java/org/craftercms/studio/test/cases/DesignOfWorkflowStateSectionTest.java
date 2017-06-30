@@ -1,7 +1,6 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -21,12 +20,6 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  */
 
 public class DesignOfWorkflowStateSectionTest {
-
-	WebDriver driver;
-
-	LoginPage objLogin;
-
-	HomePage objHomePage;
 
 	private WebDriverManager driverManager;
 
@@ -56,7 +49,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 	@Test(priority = 0)
 
-	public void design_workflow_section() {
+	public void workflowSection() {
 		
 		// login to application
 
