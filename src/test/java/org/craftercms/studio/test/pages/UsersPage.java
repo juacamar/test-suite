@@ -20,6 +20,7 @@ public class UsersPage {
 	private String deleteUserOption;
 	private String newUserOption;
 	private String saveNewUserOption;
+	private String deleteUserOption2;
 
 	/**
 	 * 
@@ -31,6 +32,8 @@ public class UsersPage {
 		deleteUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.delete_option");
 		newUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.new_user");
 		saveNewUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.save_new_user");
+		deleteUserOption2 = uIElementsManager.getSharedUIElementsLocators().getProperty("users.delete_option2");
+
 
 	}
 
@@ -94,6 +97,25 @@ public class UsersPage {
 		// Click on Save New User Button
 
 		this.clickSaveNewUserButton();
+
+	}
+
+	// Delete User
+
+	public void clickDeleteOptionCreated() {
+
+		WebElement previewLink = driverManager.getDriver().findElement(By.cssSelector(deleteUserOption2));
+		previewLink.click();
+
+	}
+
+	// Delete User
+
+	public void clickOnDeleteUserCreated() {
+
+		// Delete User
+
+		this.clickDeleteOptionCreated();
 
 	}
 

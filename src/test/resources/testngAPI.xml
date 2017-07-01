@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="CrafterSuite">
+
+  
+  <!-- API Test Cases -->
+    <!-- User Management -->
+ 
+  <test name="Create User">
+  <classes>
+      <class name="org.craftercms.studio.test.api.CreateUserAPITest" />
+      <class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+  </classes>
+  </test> <!-- Test -->
+   <test name="Get User">
+  <classes>
+      <class name="org.craftercms.studio.test.api.GetUserAPITest" />
+      <class name="org.craftercms.studio.test.api.DeleteUserAPITest" /> 
+  </classes>
+  </test> <!-- Test -->
+  <test name="Get Users">
+  <classes>
+      <class name="org.craftercms.studio.test.api.GetUsersAPITest" />
+      <class name="org.craftercms.studio.test.api.DeleteUserAPITest" /> 
+  </classes>
+  </test> <!-- Test -->
+  <test name="Get Users per Site">
+  <classes>
+      <class name="org.craftercms.studio.test.api.GetUserPerSiteAPITest" />
+      <class name="org.craftercms.studio.test.api.DeleteUserAPITest" /> 
+  </classes>
+    </test> <!-- Test -->
+      
+  </suite> <!-- Suite -->

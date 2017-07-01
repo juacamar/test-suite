@@ -279,14 +279,12 @@
   </classes>
   </test> <!-- Test -->
   
-  <!-- API Test Cases -->
-  
-  <test name="Create User">
+  <test name="New User Test">
   <classes>
-      <class name="org.craftercms.studio.test.api.CreateUserAPITest" />
+    <class name="org.craftercms.studio.test.cases.AddNewUserTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteUserTest" /> 
   </classes>
   </test> <!-- Test -->
-  
   
   
 </suite> <!-- Suite -->
