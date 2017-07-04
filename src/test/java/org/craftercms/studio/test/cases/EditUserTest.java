@@ -53,7 +53,7 @@ public class EditUserTest {
 
 	@Test(priority = 0)
 
-	public void addNewUser() {
+	public void editUser() {
 
 		// login to application
 

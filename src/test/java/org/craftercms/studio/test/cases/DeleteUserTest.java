@@ -53,7 +53,7 @@ public class DeleteUserTest {
 
 	@Test(priority = 0)
 
-	public void addNewUser() {
+	public void deleteUser() {
 
 		// login to application
 

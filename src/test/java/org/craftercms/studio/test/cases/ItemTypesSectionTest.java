@@ -46,7 +46,7 @@ public class ItemTypesSectionTest {
 
 	@Test(priority = 0)
 
-	public void ItemTypes() {
+	public void itemTypes() {
 
 		// login to application
 
