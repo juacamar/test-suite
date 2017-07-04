@@ -26,8 +26,6 @@ public class AddNewUserTest {
 
 	private LoginPage loginPage;
 
-	private UIElementsPropertiesManager uIElementsPropertiesManager;
-
 	private HomePage homePage;
 	
 	private CreatePage createPage;
@@ -40,13 +38,12 @@ public class AddNewUserTest {
 	@BeforeTest
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.uIElementsPropertiesManager);
-		this.createPage = new CreatePage(driverManager,
-				 this.uIElementsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, this.uIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.createPage = new CreatePage(driverManager, uIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
 		
 	}
@@ -76,7 +73,6 @@ public class AddNewUserTest {
 		
 		usersPage.clickOnNewUser();
 		
-		
 		// Follow the form
 		
 		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
@@ -104,13 +100,7 @@ public class AddNewUserTest {
 				WebElement newUserCreated = driverManager.getDriver()
 						.findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a"));
 
-				Assert.assertTrue(newUserCreated.isDisplayed());
-		
-
-
-
-
-
+				Assert.assertTrue(newUserCreated.isDisplayed());		
 		
 	}
 }
