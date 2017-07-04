@@ -13,23 +13,6 @@
       <class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
   </classes>
   </test> <!-- Test -->
-   <test name="Get User">
-  <classes>
-      <class name="org.craftercms.studio.test.api.GetUserAPITest" />
-      <class name="org.craftercms.studio.test.api.DeleteUserAPITest" /> 
-  </classes>
-  </test> <!-- Test -->
-  <test name="Get Users">
-  <classes>
-      <class name="org.craftercms.studio.test.api.GetUsersAPITest" />
-      <class name="org.craftercms.studio.test.api.DeleteUserAPITest" /> 
-  </classes>
-  </test> <!-- Test -->
-  <test name="Get Users per Site">
-  <classes>
-      <class name="org.craftercms.studio.test.api.GetUserPerSiteAPITest" />
-      <class name="org.craftercms.studio.test.api.DeleteUserAPITest" /> 
-  </classes>
-    </test> <!-- Test -->
+
       
   </suite> <!-- Suite -->

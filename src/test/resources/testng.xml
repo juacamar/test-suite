@@ -286,5 +286,19 @@
   </classes>
   </test> <!-- Test -->
   
+  <test name="Delete User Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.AddNewUserTest" />
+    <class name="org.craftercms.studio.test.cases.DeleteUserTest" /> 
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Edit User Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.AddNewUserTest" />
+    <class name="org.craftercms.studio.test.cases.EditUserTest" /> 
+  </classes>
+  </test> <!-- Test -->
+  
   
 </suite> <!-- Suite -->

@@ -263,13 +263,29 @@ public class DuplicateOptionTest {
 
 				dashboardPage.editInternalName("COPY");
 				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+				
 				//save and close
 				
 				driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 
 				// Switch back to the dashboard page
 
 				driverManager.getDriver().switchTo().defaultContent();
+				
+				// wait for element is clickeable
+
+				homePage.getDriverManager().driverWait();
 
 		
 		

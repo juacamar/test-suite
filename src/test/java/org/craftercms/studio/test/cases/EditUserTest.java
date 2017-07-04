@@ -20,7 +20,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DeleteUserTest {
+public class EditUserTest {
 
 	private WebDriverManager driverManager;
 
@@ -45,11 +45,11 @@ public class DeleteUserTest {
 		this.usersPage = new UsersPage(driverManager, this.UIElementsPropertiesManager);
 
 	}
-
-	@AfterTest
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
+	
+	 @AfterTest
+	 public void afterTest() {
+	 driverManager.closeConnection();
+	 }
 
 	@Test(priority = 0)
 
@@ -66,6 +66,70 @@ public class DeleteUserTest {
 		// click On Users option
 
 		createPage.clickOnUsersOption();
+
+		// click on new user button
+
+		usersPage.clickOnNewUser();
+
+		// Follow the form
+
+		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
+
+		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
+
+		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
+
+		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
+
+		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
+
+		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
+
+		// Save Button
+
+		usersPage.clickOnSaveNewUser();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Click on edit option
+
+		usersPage.clickOnEditUserCreated();
+
+		// Editing
+
+		// Follow the form
+
+		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Test");
+
+		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Test");
+
+		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("Test");
+
+		// driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("Test");
+
+		driverManager.getDriver().findElement(By.cssSelector("#newPassword")).sendKeys("passwordEdited");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Save Button
+
+		usersPage.clickOnSaveNewUser();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Assert
+
+		String contentCopied = driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)"))
+				.getText();
+		Assert.assertEquals(contentCopied, "NameTest");
 
 		// Click on delete user
 
@@ -85,12 +149,13 @@ public class DeleteUserTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+
 		// Assert new users created is deteled
 
-		 WebElement onlyAdminUserExist = driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody"));
-		  
-			Assert.assertTrue(onlyAdminUserExist.isDisplayed());
+		WebElement onlyAdminUserExist = driverManager.getDriver()
+				.findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody"));
+
+		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
 
 	}
 }
