@@ -26,7 +26,7 @@ public class DeleteUserTest {
 
 	private LoginPage loginPage;
 
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
+	private UIElementsPropertiesManager uIElementsPropertiesManager;
 
 	private HomePage homePage;
 
@@ -37,12 +37,12 @@ public class DeleteUserTest {
 	@BeforeTest
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		this.uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.createPage = new CreatePage(driverManager, this.UIElementsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, this.UIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, this.uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, this.uIElementsPropertiesManager);
+		this.createPage = new CreatePage(driverManager, this.uIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, this.uIElementsPropertiesManager);
 
 	}
 
