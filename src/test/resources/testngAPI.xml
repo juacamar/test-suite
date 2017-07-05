@@ -3,16 +3,65 @@
 
 <suite name="CrafterSuite">
 
-  
-  <!-- API Test Cases -->
-    <!-- User Management -->
- 
-  <test name="Create User">
-  <classes>
-      <class name="org.craftercms.studio.test.api.CreateUserAPITest" />
-      <class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
-  </classes>
-  </test> <!-- Test -->
 
-      
-  </suite> <!-- Suite -->
+	<!-- API Test Cases -->
+	<!-- User Management -->
+
+	<test name="Create User">
+		<classes>
+			<class name="org.craftercms.studio.test.api.CreateUserAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Get User">
+		<classes>
+			<class name="org.craftercms.studio.test.api.GetUserAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+	
+		<test name="Get Users">
+		<classes>
+			<class name="org.craftercms.studio.test.api.GetUsersAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Get Users Per Site">
+		<classes>
+			<class name="org.craftercms.studio.test.api.GetUserPerSiteAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteSiteAPITest" />		
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Update User">
+		<classes>
+			<class name="org.craftercms.studio.test.api.UpdateUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Delete User">
+		<classes>
+			<class name="org.craftercms.studio.test.api.CreateUserAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Enable User">
+		<classes>
+			<class name="org.craftercms.studio.test.api.EnableUserAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Disable User">
+		<classes>
+			<class name="org.craftercms.studio.test.api.DisableUserAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+
+
+</suite> <!-- Suite -->
