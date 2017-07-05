@@ -28,7 +28,7 @@ public class UsersPage {
 	 */
 	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
-		this.uIElementsManager = UIElementsPropertiesManager;
+		uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
 		deleteUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.delete_option");
 		newUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.new_user");
