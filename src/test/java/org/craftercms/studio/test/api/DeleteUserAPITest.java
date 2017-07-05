@@ -1,9 +1,9 @@
 package org.craftercms.studio.test.api;
 
-
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,16 +29,13 @@ public class DeleteUserAPITest {
 		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
 	}
 
-	 @Test(priority=2)
-	 public void testDeleteUser() {
-	 Map<String, Object> json = new HashMap<>();
-	 json.put("username", "jane.doe");
-	 api.post("/studio/api/1/services/api/1/user/delete.json")
-	.json(json)
-	.execute();
-	
-	 }
+	@Test(priority = 2)
+	public void testDeleteUser() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "jane.doe");
+		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute();
 
+	}
 
 	@Test(priority = 3)
 	public void testInvalidParameters() {

@@ -15,7 +15,6 @@ import org.openqa.selenium.WebElement;
 public class UsersPage {
 
 	private WebDriverManager driverManager;
-	private UIElementsPropertiesManager uIElementsManager;
 	private WebDriver driver;
 	private String deleteUserOption;
 	private String newUserOption;
@@ -28,14 +27,14 @@ public class UsersPage {
 	 */
 	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
-		uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
-		deleteUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.delete_option");
-		newUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.new_user");
-		saveNewUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.save_new_user");
-		deleteUserOption2 = uIElementsManager.getSharedUIElementsLocators().getProperty("users.delete_option2");
-		editUserOption = uIElementsManager.getSharedUIElementsLocators().getProperty("users.edit_option");
-
+		deleteUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.delete_option");
+		newUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user");
+		saveNewUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("users.save_new_user");
+		deleteUserOption2 = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("users.delete_option2");
+		editUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.edit_option");
 
 	}
 
@@ -120,8 +119,7 @@ public class UsersPage {
 		this.clickDeleteOptionCreated();
 
 	}
-	
-	
+
 	// edit User
 
 	public void clickEditOptionCreated() {
