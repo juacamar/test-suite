@@ -218,8 +218,8 @@ public class EditOptionTest {
 
 		// Expand Home Tree
 
-		dashboardPage.expandHomeTree();
-
+		dashboardPage.expandHomeTree2();
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();

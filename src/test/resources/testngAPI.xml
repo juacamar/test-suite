@@ -20,46 +20,99 @@
 			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
-	
-		<test name="Get Users">
+
+	<test name="Get Users">
 		<classes>
 			<class name="org.craftercms.studio.test.api.GetUsersAPITest" />
 			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
-	
+
 	<test name="Get Users Per Site">
 		<classes>
 			<class name="org.craftercms.studio.test.api.GetUserPerSiteAPITest" />
 			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
-			<class name="org.craftercms.studio.test.api.DeleteSiteAPITest" />		
+			<class name="org.craftercms.studio.test.api.DeleteSiteAPITest" />
 		</classes>
 	</test> <!-- Test -->
-	
+
 	<test name="Update User">
 		<classes>
 			<class name="org.craftercms.studio.test.api.UpdateUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
-	
+
 	<test name="Delete User">
 		<classes>
 			<class name="org.craftercms.studio.test.api.CreateUserAPITest" />
 			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
-	
+
 	<test name="Enable User">
 		<classes>
 			<class name="org.craftercms.studio.test.api.EnableUserAPITest" />
 			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
-	
+
 	<test name="Disable User">
 		<classes>
 			<class name="org.craftercms.studio.test.api.DisableUserAPITest" />
 			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Get User Status">
+		<classes>
+			<class name="org.craftercms.studio.test.api.GetUserStatusAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Forgot Password">
+		<classes>
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Validate Token">
+		<classes>
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Set Password">
+		<classes>
+			<!-- <class name="org.craftercms.studio.test.api.SetPasswordAPITest" /> -->
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Change Password">
+		<classes>
+			<class name="org.craftercms.studio.test.api.ChangePasswordAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Reset Password">
+		<classes>
+			<class name="org.craftercms.studio.test.api.ResetPasswordAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<!-- Group Management -->
+
+	<test name="Create Group">
+		<classes>
+			<class name="org.craftercms.studio.test.api.CreateGroupAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteSiteAPITest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Get Group">
+		<classes>
+			<class name="org.craftercms.studio.test.api.GetGroupAPITest" />
+			<class name="org.craftercms.studio.test.api.DeleteSiteAPITest" />
 		</classes>
 	</test> <!-- Test -->
 

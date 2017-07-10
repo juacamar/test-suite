@@ -67,7 +67,10 @@ public class GetGroupAPITest {
 	@Test(priority = 4)
 	public void testInvalidParameter() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=gh").json(json).execute().status(400)
+		api.get("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=contributorssite_id=mysite")
+		.json(json)
+		.execute()
+		.status(400)
 				.json("$.message", is("Invalid parameter(s): [site_id]")).debug();
 
 	}
@@ -83,7 +86,7 @@ public class GetGroupAPITest {
 	@Test(priority = 6)
 	public void testGroupNotFound() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=gh&site_id=mysite").json(json).execute().status(404)
+		api.get("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=gh&site_id=mysiteNOTFOUND").json(json).execute().status(404)
 				.json("$.message", is("Group not found")).debug();
 
 	}

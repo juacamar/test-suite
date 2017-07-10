@@ -75,6 +75,7 @@ public class DashboardPage {
 	private String pasteContent0;
 	private String newFolderCreated;
 	private String deleteCrafterComponent2;
+	private String homeTreeDashbard;
 
 	/**
 	 * 
@@ -85,6 +86,7 @@ public class DashboardPage {
 		this.driver = this.driverManager.getDriver();
 		pagesTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Pages_Tree");
 		homeTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_GlobalEntry_Tree");
+		homeTreeDashbard = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Home_Tree2");
 		homeContentTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Home_Tree");
 		homeContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page");
 		homeContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page2");
@@ -210,7 +212,7 @@ public class DashboardPage {
 
 	public void clickGlobalEntryContent() {
 
-		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(homeTree));
+		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(homeTree)); 
 		globalEntry.click();
 
 	}
@@ -222,6 +224,23 @@ public class DashboardPage {
 		this.clickGlobalEntryContent();
 
 	}
+	
+	// Expand home tree
+
+		public void clicHomeTree2() {
+
+			WebElement homeTree = driverManager.getDriver().findElement(By.cssSelector(homeTreeDashbard)); 
+			homeTree.click();
+
+		}
+
+		public void expandHomeTree2() {
+
+			// Expand home tree
+			
+			this.clicHomeTree2();
+
+		}
 
 	// Expand home content
 
