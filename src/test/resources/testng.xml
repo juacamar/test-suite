@@ -299,5 +299,17 @@
   </classes>
   </test> <!-- Test -->
   
+   <test name="Design of Users Page Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.DesignOfUsersPageTest" /> 
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Users Per Page Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.UsersPerPageTest" /> 
+  </classes>
+  </test> <!-- Test -->
+  
   
 </suite> <!-- Suite -->
