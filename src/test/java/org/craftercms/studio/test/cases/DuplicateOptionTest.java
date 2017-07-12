@@ -48,9 +48,167 @@ public class DuplicateOptionTest {
 		driverManager.closeConnection();
 	}
 
+	public void selectContentTypeToTheTest() {
+		// go to admin console page
+
+		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// select content types
+		adminConsolePage.selectContentTypeOption();
+
+		// open content types
+
+		adminConsolePage.clickExistingTypeOption();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select the Entry content type
+
+		adminConsolePage.selectEntryContentType();
+
+		// Confirm the content type selected
+
+		adminConsolePage.confirmContentTypeSelected();
+
+	}
+
+	public void bodyNotRequired() {
+		// select main content
+
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Body not required
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// save
+
+		adminConsolePage.saveDragAndDropProcess();
+	}
+
+	public void createNewContent() {
+		// right click to see the the menu
+
+		dashboardPage.rightClickToSeeMenu();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Select Entry Content Type
+
+		dashboardPage.clickEntryCT();
+
+		// Confirm the Content Type selected
+
+		dashboardPage.clickOKButton();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Set basics fields of the new content created
+
+		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Set the title of main content
+
+		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// save and close
+
+		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+
+	}
+
+	public void duplicateContentCreated() {
+		// click on duplicate
+
+		dashboardPage.clickOnDuplicateOption();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// click on duplicate in the popup
+
+		driverManager.getDriver().findElement(By.id("yui-gen1-button")).click();
+
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).clear();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// edit internal name
+
+		dashboardPage.editInternalName("COPY");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// save and close
+
+		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Switch back to the dashboard page
+
+		driverManager.getDriver().switchTo().defaultContent();
+	}
+
 	@Test(priority = 0)
 
-	public void duplicateOption() {
+	public void duplicateMenuOption() {
 
 		// login to application
 
@@ -79,226 +237,76 @@ public class DuplicateOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// go to admin console page
+		// select the content type to the test
 
-		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// select content types
-		adminConsolePage.selectContentTypeOption();
-
-		// open content types
-
-		adminConsolePage.clickExistingTypeOption();
+		selectContentTypeToTheTest();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Select the Entry content type
+		// Body Not requiered
 
-		adminConsolePage.selectEntryContentType();
-
-		// Confirm the content type selected
-
-		adminConsolePage.confirmContentTypeSelected();
+		bodyNotRequired();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// select main content
+		// go to dashboard
 
-				driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
-				// wait for element is clickeable
+		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
-				// Body not required
+		// expand pages folder
 
-				driverManager.getDriver()
-						.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+		dashboardPage.expandPagesTree();
 
-				// wait for element is clickeable
+		// expand home content
 
-				homePage.getDriverManager().driverWait();
+		dashboardPage.expandHomeTree();
 
-				// save
+		// create a new content
 
-				adminConsolePage.saveDragAndDropProcess();
-
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-				// go to dashboard
-
-				driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-				
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-				// expand pages folder
-
-				dashboardPage.expandPagesTree();
-				
-				// expand home content
-
-				dashboardPage.expandHomeTree();
-
-				// right click to see the the menu
-
-				dashboardPage.rightClickToSeeMenu();
-
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-				// Select Entry Content Type
-
-				dashboardPage.clickEntryCT();
-
-				// Confirm the Content Type selected
-
-				dashboardPage.clickOKButton();
-
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-				// Switch to the iframe
-				driverManager.getDriver().switchTo().defaultContent();
-				driverManager.getDriver().switchTo()
-						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-				// Set basics fields of the new content created
-
-				dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
-
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-				// Expand all fields
-
-				//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-				// Set Main Content
-
-				//dashboardPage.setMetadataFields("title", "keywords");
-				
-				// Set the title of main content
-				
-				driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
-
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-
-		// save and close
-
-		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		createNewContent();
 
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
 		// Select the content to duplicate.
 
-		driverManager.getDriver().findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[2]/div/a")).click();
-		
+		driverManager.getDriver()
+				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[2]/div/a")).click();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// click on duplicate
-
-		dashboardPage.clickOnDuplicateOption();
+		// Duplicate content created
 		
+		duplicateContentCreated();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
-		// click on duplicate in the popup
 
-		driverManager.getDriver().findElement(By.id("yui-gen1-button")).click();
-		
-		// Switch to the iframe
-				driverManager.getDriver().switchTo().defaultContent();
-				driverManager.getDriver().switchTo()
-						.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-
-				// wait for element
-
-				homePage.getDriverManager().driverWait();
-				
-				driverManager.getDriver()
-				.findElement(By.cssSelector("#internal-name > div > input")).clear();
-				
-				// wait for element
-
-				homePage.getDriverManager().driverWait();
-						
-				// edit internal name
-
-				dashboardPage.editInternalName("COPY");
-				
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-				
-				//save and close
-				
-				driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
-				
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-				
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-				// Switch back to the dashboard page
-
-				driverManager.getDriver().switchTo().defaultContent();
-				
-				// wait for element is clickeable
-
-				homePage.getDriverManager().driverWait();
-
-		
-		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
 
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-		
-		// expand home content
-
-		//dashboardPage.expandHomeTree();
-
 
 		// wait for element is clickeable
 

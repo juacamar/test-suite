@@ -51,7 +51,7 @@ public class UsersPerPageTest {
 
 	@Test(priority = 0)
 
-	public void addNewUser() {
+	public void usersPerPage() {
 
 		// login to application
 

@@ -51,7 +51,7 @@ public class FilterShowRecentActivityTest {
 
 	@Test(priority = 0)
 
-	public void filterShowRecentActivityTest() {
+	public void filterShowRecentActivity() {
 
 		// login to application
 

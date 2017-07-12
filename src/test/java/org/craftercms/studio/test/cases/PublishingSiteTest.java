@@ -54,7 +54,7 @@ public class PublishingSiteTest {
 
 	@Test(priority = 0)
 
-	public void PublishingSite() {
+	public void publishingSite() {
 
 		// login to application
 		

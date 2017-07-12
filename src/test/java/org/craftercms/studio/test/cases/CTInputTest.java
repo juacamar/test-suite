@@ -20,7 +20,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -35,8 +35,6 @@ public class CTInputTest {
 	private PreviewPage previewPage;
 
 	private AdminConsolePage adminConsolePage;
-
-	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -54,67 +52,7 @@ public class CTInputTest {
 		driverManager.closeConnection();
 	}
 
-	@Test(priority = 0)
-
-	public void cTInputTest() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// go to preview page
-		homePage.goToPreviewPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// go to admin console page
-
-		previewPage.goToAdminConsolePage();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// select content types
-		adminConsolePage.selectContentTypeOption();
-
-		// open content types
-
-		adminConsolePage.clickExistingTypeOption();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// Select the entry content type
-		
-		adminConsolePage.selectEntryContentType();
-
-		// Confirm the content type selected
-
-		adminConsolePage.confirmContentTypeSelected();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
+	public void dragAndDrop() {
 
 		// Drag and drop Form Section
 
@@ -173,10 +111,81 @@ public class CTInputTest {
 
 		adminConsolePage.saveDragAndDropProcess();
 
-		// Ok for the dialog window when appears
+	}
 
-//		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
-//		driverManager.getDriver().switchTo().alert().accept();
+	public void selectContentTypeToTheTest() {
+
+		// go to admin console page
+
+		previewPage.goToAdminConsolePage();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// select content types
+		adminConsolePage.selectContentTypeOption();
+
+		// open content types
+
+		adminConsolePage.clickExistingTypeOption();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// Select the entry content type
+
+		adminConsolePage.selectEntryContentType();
+
+		// Confirm the content type selected
+
+		adminConsolePage.confirmContentTypeSelected();
+
+	}
+
+	@Test(priority = 0)
+
+	public void contentTypeInputData() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// go to preview page
+		homePage.goToPreviewPage();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// Show site content panel
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// Select the content type to the test
+
+		selectContentTypeToTheTest();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// drag and drop
+
+		dragAndDrop();
 
 		// open content types
 

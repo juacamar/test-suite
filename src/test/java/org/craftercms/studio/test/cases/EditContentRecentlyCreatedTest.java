@@ -50,7 +50,7 @@ public class EditContentRecentlyCreatedTest {
 
 	@Test(priority = 0)
 
-	public void editContentRecentlyCreatedTest() {
+	public void editContentRecentlyCreated() {
 
 		// login to application
 
