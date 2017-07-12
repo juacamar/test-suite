@@ -2,7 +2,6 @@ package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -23,13 +22,9 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class FilterShowRecentActivityTest {
 
-	WebDriver driver;
-
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
 
 	private HomePage homePage;
 
@@ -40,12 +35,12 @@ public class FilterShowRecentActivityTest {
 	@BeforeTest
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
+		this.adminConsolePage = new AdminConsolePage(driverManager, uIElementsPropertiesManager);
 
 	}
 
@@ -56,7 +51,7 @@ public class FilterShowRecentActivityTest {
 
 	@Test(priority = 0)
 
-	public void Filter_Show_Recent_Activity_test() {
+	public void filterShowRecentActivityTest() {
 
 		// login to application
 
