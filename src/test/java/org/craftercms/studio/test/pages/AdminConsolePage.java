@@ -17,7 +17,6 @@ import org.openqa.selenium.WebElement;
 public class AdminConsolePage {
 
 	private WebDriverManager driverManager;
-    private UIElementsPropertiesManager uIElementsManager;
     private WebDriver driver;
     private String contentTypeOption;
     private String openExistingTypeOption;
@@ -37,21 +36,20 @@ public class AdminConsolePage {
      */
     public AdminConsolePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
         this.driverManager = driverManager;
-        this.uIElementsManager = UIElementsPropertiesManager;
         this.driver = this.driverManager.getDriver();
-        contentTypeOption = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.content_type_option");
-        openExistingTypeOption = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.open_Existing_Type_Option");
-        genericContentTypeOption = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.generic_Content_Type_Option");
-        okButton = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.ok_Button");
-        saveButton = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.save_Button");
-        genericTitle = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.generic_title");
-        displayTemplateField = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.display_Template_Field");
-        editFTLOption = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.edit_FTL_Option");
-        inputTitle = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Title");
-        inputIceGroup = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Ice_Group");
-        inputDescription = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Description");
-        inputDefaultValue = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Default_Value");
-        clickOnInputSection = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.click_On_Input_Section");
+        contentTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.content_type_option");
+        openExistingTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.open_Existing_Type_Option");
+        genericContentTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.generic_Content_Type_Option");
+        okButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.ok_Button");
+        saveButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.save_Button");
+        genericTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.generic_title");
+        displayTemplateField = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.display_Template_Field");
+        editFTLOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.edit_FTL_Option");
+        inputTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Title");
+        inputIceGroup = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Ice_Group");
+        inputDescription = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Description");
+        inputDefaultValue = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Default_Value");
+        clickOnInputSection = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.click_On_Input_Section");
     }
 	public AdminConsolePage(WebDriver driver) {
 

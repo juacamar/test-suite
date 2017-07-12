@@ -15,7 +15,6 @@ import org.openqa.selenium.WebElement;
 public class LoginPage {
 
 	private WebDriverManager driverManager;
-    private UIElementsPropertiesManager uIElementsManager;
     private WebDriver driver;
     private String userNameTextBoxLocator;
     private String passwordTextBoxLocator;
@@ -26,11 +25,10 @@ public class LoginPage {
     public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
         this.driverManager = driverManager;
         this.driverManager.openConnection();
-        this.uIElementsManager = UIElementsPropertiesManager;
         this.driver = this.driverManager.getDriver();
-        userNameTextBoxLocator = uIElementsManager.getSharedUIElementsLocators().getProperty("login.txtbox_UserName");
-        passwordTextBoxLocator = uIElementsManager.getSharedUIElementsLocators().getProperty("login.txtbox_Password");
-        loginButtonLocator = uIElementsManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
+        userNameTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_UserName");
+        passwordTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_Password");
+        loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
     }
 	public LoginPage(WebDriver driver) {
 
