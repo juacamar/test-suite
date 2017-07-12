@@ -30,24 +30,24 @@ public class MyRecentActivityFramePage {
     }
 	// Expand default section
 
-	public void ClickExpandOption() {
+	public void clickExpandOption() {
 		
 		WebElement expandOpt = driverManager.getDriver().findElement(By.id(expandDefaultSection));
 		expandOpt.click();
 
 	}
 
-	public void ExpandDefaultSection() {
+	public void expandDefaultSection() {
 
 		// Expand default section
 
-		this.ClickExpandOption();
+		this.clickExpandOption();
 
 	}
 
 	// Clear title field
 
-	public void ClearTitleField() {
+	public void clearTitleField() {
 
 		WebElement clearTitleField = driverManager.getDriver().findElement(By.xpath(tittleField1));
 		clearTitleField.clear();
@@ -55,17 +55,17 @@ public class MyRecentActivityFramePage {
 
 	}
 
-	public void CleaningTitleField() {
+	public void cleaningTitleField() {
 
 		// Clear title field
 
-		this.ClearTitleField();
+		this.clearTitleField();
 
 	}
 
 	// Type new content on title text field.
 
-	public void TypeNewTextOnBodyField(String newText1) {
+	public void typeNewTextOnBodyField(String newText1) {
 
 		WebElement clearTitleField = driverManager.getDriver().findElement(By.xpath(tittleField1));
 		clearTitleField.sendKeys(newText1);
@@ -74,28 +74,28 @@ public class MyRecentActivityFramePage {
 
 	// Type new content on title text field.
 
-	public void TypingNewTextOnBodyField(String newText1) {
+	public void typingNewTextOnBodyField(String newText1) {
 
 		// Typing
 
-		this.TypeNewTextOnBodyField(newText1);
+		this.typeNewTextOnBodyField(newText1);
 
 	}
 
 	// Save and close
 
-	public void SaveAndClose() {
+	public void saveAndClose() {
 
 		WebElement clearTitleField = driverManager.getDriver().findElement(By.id(saveCloseButton));
 		clearTitleField.click();
 
 	}
 
-	public void ClickOnSaveAndCloseButton() {
+	public void clickOnSaveAndCloseButton() {
 
 		// Save and close
 
-		this.SaveAndClose();
+		this.saveAndClose();
 
 	}
 }

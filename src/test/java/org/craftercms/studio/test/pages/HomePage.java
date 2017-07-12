@@ -50,9 +50,7 @@ public class HomePage {
 
 	// Click on preview link
 
-	public HomePage(WebDriver driver2) {
-		// TODO Auto-generated constructor stub
-	}
+
 
 	public void clickPreviewOption() {
 
@@ -105,18 +103,18 @@ public class HomePage {
 
 	// See the page edited
 
-	public void DisplayPageEdited() {
+	public void displayPageEdited() {
 
 		WebElement seeThePageMyRecentActivity = driver.findElement(By.xpath(seeThePageEdited));
 		seeThePageMyRecentActivity.click();
 
 	}
 
-	public void SeeThePageEdited() {
+	public void seeThePageEdited() {
 
 		// See the page edited
 
-		this.DisplayPageEdited();
+		this.displayPageEdited();
 
 	}
 
@@ -189,7 +187,7 @@ public class HomePage {
 	
 	// Logout to the crafter
 
-		public void ExpandAccount() {
+		public void expandAccount() {
 
 			WebElement expandAccount = driver.findElement(By.cssSelector(logOutLink));
 			expandAccount.click();
@@ -208,7 +206,7 @@ public class HomePage {
 
 			//Expand account
 
-			this.ExpandAccount();
+			this.expandAccount();
 			
 			//Click on SignOut
 			

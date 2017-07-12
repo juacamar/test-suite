@@ -172,7 +172,7 @@ public class CTInputTest {
 
 		// Complete the input fields basics
 
-		adminConsolePage.CompleteInputFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaultValue");
+		adminConsolePage.completeInputFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaultValue");
 
 		// Save the data
 

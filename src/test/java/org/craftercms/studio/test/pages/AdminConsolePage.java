@@ -144,52 +144,52 @@ public class AdminConsolePage {
 
 	// Click on generic title to edit the context type selected.
 
-	public void ClickOnGenericTitle() {
+	public void clickOnGenericTitle() {
 
 		WebElement ClickTitle = driver.findElement(By.cssSelector(genericTitle));
 		ClickTitle.click();
 
 	}
 
-	public void DoClickOnGenericTitle() {
+	public void doClickOnGenericTitle() {
 
 		// Click on generic title to edit the context type selected.
 
-		this.ClickOnGenericTitle();
+		this.clickOnGenericTitle();
 
 	}
 
 	// Click on display template field.
 
-	public void ClickOnDisplayTemplateField() {
+	public void clickOnDisplayTemplateField() {
 
 		WebElement showTemplate = driver.findElement(By.cssSelector(displayTemplateField));
 		showTemplate.click();
 
 	}
 
-	public void DoClickOnDisplayTemplateField() {
+	public void doClickOnDisplayTemplateField() {
 
 		// Click on display template field.
 
-		this.ClickOnDisplayTemplateField();
+		this.clickOnDisplayTemplateField();
 
 	}
 
 	// Edit ftl option
 
-	public void ClickOnEditFTLOption() {
+	public void clickOnEditFTLOption() {
 
 		WebElement editFLTopt = driver.findElement(By.cssSelector(editFTLOption));
 		editFLTopt.click();
 
 	}
 
-	public void DoClickOnEditFTLOption() {
+	public void doClickOnEditFTLOption() {
 
 		// Edit ftl option
 
-		this.ClickOnEditFTLOption();
+		this.clickOnEditFTLOption();
 
 	}
 
@@ -231,7 +231,7 @@ public class AdminConsolePage {
 	
 	// Complete input fields basics
 	
-	public void CompleteInputFieldsBasics(String strTitle, String strICEGroup, String strDescription, String strDefaultValue) {
+	public void completeInputFieldsBasics(String strTitle, String strICEGroup, String strDescription, String strDefaultValue) {
 
 		// Fill title
 

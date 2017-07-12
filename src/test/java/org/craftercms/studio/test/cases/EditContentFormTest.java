@@ -181,7 +181,7 @@ public class EditContentFormTest {
 
 		// Complete the input fields basics
 
-		adminConsolePage.CompleteInputFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaultValue");
+		adminConsolePage.completeInputFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaultValue");
 
 		// Save the data
 
@@ -386,7 +386,7 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait();
 
 		// Expand default section
-		myRecentActivityFramePage1.ExpandDefaultSection();
+		myRecentActivityFramePage1.expandDefaultSection();
 		
 		// wait for element
 
@@ -407,7 +407,7 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait();
 		
 		// Save and close button.
-		myRecentActivityFramePage1.ClickOnSaveAndCloseButton();
+		myRecentActivityFramePage1.clickOnSaveAndCloseButton();
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -436,7 +436,7 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait();
 
 		// Expand default section
-		myRecentActivityFramePage1.ExpandDefaultSection();
+		myRecentActivityFramePage1.expandDefaultSection();
 
 		// Assert validation
 		String textTitle = driverManager.getDriver()
