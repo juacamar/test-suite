@@ -1,7 +1,6 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -22,13 +21,9 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class EditContentRecentlyCreatedTest {
 
-	WebDriver driver;
-
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
 
 	private HomePage homePage;
 
@@ -39,12 +34,12 @@ public class EditContentRecentlyCreatedTest {
 	@BeforeTest
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
+		this.adminConsolePage = new AdminConsolePage(driverManager, uIElementsPropertiesManager);
 
 	}
 
@@ -55,7 +50,7 @@ public class EditContentRecentlyCreatedTest {
 
 	@Test(priority = 0)
 
-	public void Edit_Content_Recently_Created_test() {
+	public void EditContentRecentlyCreatedTest() {
 
 		// login to application
 
