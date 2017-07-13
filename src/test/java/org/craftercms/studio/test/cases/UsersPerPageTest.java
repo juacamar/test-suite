@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.pages.CreatePage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
@@ -49,17 +50,7 @@ public class UsersPerPageTest {
 		driverManager.closeConnection();
 	}
 
-	@Test(priority = 0)
-
-	public void usersPerPage() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void createUserRandom() {
 
 		// click On Users option
 
@@ -77,7 +68,8 @@ public class UsersPerPageTest {
 
 		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
 
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
+		driverManager.getDriver().findElement(By.cssSelector("#username"))
+				.sendKeys(RandomStringUtils.randomAlphabetic(5));
 
 		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
 
@@ -90,268 +82,9 @@ public class UsersPerPageTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+	}
 
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username2");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username3");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username4");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username5");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username6");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username7");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username8");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username9");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username10");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click on new user button
-
-		usersPage.clickOnNewUser();
-
-		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username11");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-
-		// Save Button
-
-		usersPage.clickOnSaveNewUser();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Some filters ramdom
+	public void filters() {
 
 		// Show 8 users
 
@@ -441,6 +174,24 @@ public class UsersPerPageTest {
 
 		Assert.assertTrue(user11.isDisplayed());
 
+	}
+
+	public void deleteUserBlockOne() {
+		// Click on delete user
+
+		usersPage.clickOnDeleteUserCreated();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Confirmation to delete user connected
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+				.click();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -460,9 +211,62 @@ public class UsersPerPageTest {
 						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
 				.click();
 
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
+
+		// Click on delete user
+
+		usersPage.clickOnDeleteUserCreated();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Confirmation to delete user connected
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+				.click();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Click on delete user
+
+		usersPage.clickOnDeleteUserCreated();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Confirmation to delete user connected
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+				.click();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+	}
+
+	public void deleteUsersBlockTwo() {
 
 		// Click on delete user
 
@@ -556,28 +360,9 @@ public class UsersPerPageTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Click on delete user
+	}
 
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void deleteUsersBlockThree() {
 
 		// Click on delete user
 
@@ -648,52 +433,87 @@ public class UsersPerPageTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Click on delete user
+	}
 
-		usersPage.clickOnDeleteUserCreated();
+	@Test(priority = 0)
 
-		// wait for element is clickeable
+	public void usersPerPage() {
 
-		homePage.getDriverManager().driverWait();
+		// login to application
 
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Click on delete user
+		// Create user 1
 
-		usersPage.clickOnDeleteUserCreated();
+		createUserRandom();
+
+		// Create user 2
+
+		createUserRandom();
+
+		// Create user 3
+
+		createUserRandom();
+
+		// Create user 4
+
+		createUserRandom();
+
+		// Create user 5
+
+		createUserRandom();
+
+		// Create user 6
+
+		createUserRandom();
+
+		// Create user 7
+
+		createUserRandom();
+
+		// Create user 8
+
+		createUserRandom();
+
+		// Create user 9
+
+		createUserRandom();
+
+		// Create user 10
+
+		createUserRandom();
+
+		// Create user 11
+
+		createUserRandom();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Confirmation to delete user connected
+		// filters
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
+		filters();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
+		// Delete users block 1
+
+		deleteUserBlockOne();
+
+		// delete users block 2
+
+		deleteUsersBlockTwo();
+
+		// delete users block 3
+
+		deleteUsersBlockThree();
 	}
 
 }

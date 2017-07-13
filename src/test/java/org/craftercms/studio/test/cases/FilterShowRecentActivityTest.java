@@ -49,36 +49,7 @@ public class FilterShowRecentActivityTest {
 		driverManager.closeConnection();
 	}
 
-	@Test(priority = 0)
-
-	public void filterShowRecentActivity() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to preview page
-		homePage.goToPreviewPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void bodyNotRequiered() {
 
 		// go to admin console page
 
@@ -131,18 +102,9 @@ public class FilterShowRecentActivityTest {
 		// save
 
 		adminConsolePage.saveDragAndDropProcess();
+	}
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-
-		// expand pages folder
-
-		dashboardPage.expandPagesTree();
+	public void createContent() {
 
 		// right click to see the the menu
 
@@ -181,14 +143,6 @@ public class FilterShowRecentActivityTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Expand all fields
-
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// Set Main Content
-
-		// dashboardPage.setMetadataFields("title", "keywords");
-
 		// Set the title of main content
 
 		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
@@ -209,24 +163,9 @@ public class FilterShowRecentActivityTest {
 
 		driverManager.getDriver().switchTo().defaultContent();
 
-		// wait for element is clickeable
+	}
 
-		homePage.getDriverManager().driverWait();
-
-		// expand home
-
-		dashboardPage.expandHomeTree2();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// create a content with level descriptor content type
-
+	public void createSecondContent() {
 		// right click to see the the menu
 
 		dashboardPage.rightClickToSeeMenu3();
@@ -264,14 +203,6 @@ public class FilterShowRecentActivityTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Expand all fields
-
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// Set Main Content
-
-		// dashboardPage.setMetadataFields("title", "keywords");
-
 		// Set the title of main content
 
 		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
@@ -291,14 +222,9 @@ public class FilterShowRecentActivityTest {
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
+	}
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
+	public void filtersAndAsserts() {
 
 		// clean filter
 
@@ -353,6 +279,91 @@ public class FilterShowRecentActivityTest {
 		String edit2 = driverManager.getDriver()
 				.findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(2) > td:nth-child(4)")).getText();
 		Assert.assertEquals(edit2, "/aboutus");
+	}
+
+	@Test(priority = 0)
+
+	public void filterShowRecentActivity() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to preview page
+		homePage.goToPreviewPage();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// Show site content panel
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// body not requiered
+
+		bodyNotRequiered();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+		// expand pages folder
+
+		dashboardPage.expandPagesTree();
+
+		// create content
+
+		createContent();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// expand home
+
+		dashboardPage.expandHomeTree2();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// create a content with level descriptor content type
+
+		// create another content to use a filter
+
+		createSecondContent();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// filters and asserts
+
 	}
 
 }

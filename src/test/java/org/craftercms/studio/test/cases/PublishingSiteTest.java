@@ -52,39 +52,7 @@ public class PublishingSiteTest {
 		driverManager.closeConnection();
 	}
 
-	@Test(priority = 0)
-
-	public void publishingSite() {
-
-		// login to application
-		
-		loginPage.loginToCrafter("admin", "admin");
-		
-		// MaximizeWindow
-		driverManager.maximizeWindow();
-		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to preview page
-		homePage.goToPreviewPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void bodyNotRequiered() {
 
 		// go to admin console page
 
@@ -137,22 +105,9 @@ public class PublishingSiteTest {
 		// save
 
 		adminConsolePage.saveDragAndDropProcess();
+	}
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// expand pages folder
-
-		dashboardPage.expandPagesTree();
+	public void createContent() {
 
 		// right click to see the the menu
 
@@ -191,14 +146,6 @@ public class PublishingSiteTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Expand all fields
-
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// Set Main Content
-
-		// dashboardPage.setMetadataFields("title", "keywords");
-
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -223,20 +170,9 @@ public class PublishingSiteTest {
 
 		driverManager.getDriver().switchTo().defaultContent();
 
-		// Expand Home Tree
+	}
 
-		dashboardPage.expandHomeTree();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-		
-		driverManager.getDriver()
-		.findElement(By.cssSelector("#ygtvlabelel3")).click();
-		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void approveAndPublish() {
 
 		// approve and publish
 
@@ -253,7 +189,9 @@ public class PublishingSiteTest {
 		// wait for element is clickeable
 
 		previewPage.getDriverManager().driverWait();
+	}
 
+	public void reloadPage() {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
@@ -278,23 +216,102 @@ public class PublishingSiteTest {
 
 		homePage.getDriverManager().driverWait();
 
-//		// Show site content panel
-//				driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-//						.click();
-				
 		// reload page
 
-		driverManager.getDriver().navigate().refresh();	
-				
+		driverManager.getDriver().navigate().refresh();
+
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
 
-		// assert
+	}
+
+	@Test(priority = 0)
+
+	public void publishingSite() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// MaximizeWindow
+		driverManager.maximizeWindow();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to preview page
+		homePage.goToPreviewPage();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// Show site content panel
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// body not requiered
+
+		bodyNotRequiered();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// expand pages folder
+
+		dashboardPage.expandPagesTree();
+
+		// create content
+
+		createContent();
+
+		// Expand Home Tree
+
+		dashboardPage.expandHomeTree();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// approve and publish
+
+		approveAndPublish();
+
+		// reload page and assert
+
+		reloadPage();
+
+		// Assert
 
 		String siteStatus = driverManager.getDriver()
 				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
 		Assert.assertEquals(siteStatus, "Live :");
+
 	}
 
 }

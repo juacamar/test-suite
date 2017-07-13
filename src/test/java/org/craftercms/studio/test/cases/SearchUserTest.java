@@ -49,17 +49,7 @@ public class SearchUserTest {
 		driverManager.closeConnection();
 	}
 
-	@Test(priority = 0)
-
-	public void searchUser() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void createUser() {
 
 		// click On Users option
 
@@ -86,17 +76,9 @@ public class SearchUserTest {
 		// Save Button
 
 		usersPage.clickOnSaveNewUser();
+	}
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Assert new users created is present
-
-		WebElement newUserCreated = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a"));
-
-		Assert.assertTrue(newUserCreated.isDisplayed());
+	public void searchUsers() {
 
 		// Search user recently created
 
@@ -134,6 +116,39 @@ public class SearchUserTest {
 						"#container > div > div > div > div > div > table > tbody > tr > td:nth-child(1) > a"))
 				.getText();
 		Assert.assertEquals(searchAdminUser, "admin");
+
+	}
+
+	@Test(priority = 0)
+
+	public void searchUser() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// create new user
+
+		createUser();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Assert new users created is present
+
+		WebElement newUserCreated = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a"));
+
+		Assert.assertTrue(newUserCreated.isDisplayed());
+
+		// search users
+		
+		searchUsers();
 
 		// Cleaning search field
 		driverManager.getDriver()

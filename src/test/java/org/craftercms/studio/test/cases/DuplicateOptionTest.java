@@ -206,18 +206,7 @@ public class DuplicateOptionTest {
 		driverManager.getDriver().switchTo().defaultContent();
 	}
 
-	@Test(priority = 0)
-
-	public void duplicateMenuOption() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
+	public void goToPreviewPage() {
 		// go to preview page
 		homePage.goToPreviewPage();
 
@@ -237,6 +226,24 @@ public class DuplicateOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
+	}
+
+	@Test(priority = 0)
+
+	public void duplicateMenuOption() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// goto preview page
+
+		goToPreviewPage();
+		
 		// select the content type to the test
 
 		selectContentTypeToTheTest();
@@ -291,7 +298,7 @@ public class DuplicateOptionTest {
 		homePage.getDriverManager().driverWait();
 
 		// Duplicate content created
-		
+
 		duplicateContentCreated();
 
 		// wait for element is clickeable

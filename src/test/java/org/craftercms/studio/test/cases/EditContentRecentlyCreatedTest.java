@@ -43,45 +43,12 @@ public class EditContentRecentlyCreatedTest {
 
 	}
 
-	 @AfterTest
-	 public void afterTest() {
-	 driverManager.closeConnection();
-	 }
+	@AfterTest
+	public void afterTest() {
+		driverManager.closeConnection();
+	}
 
-	@Test(priority = 0)
-
-	public void editContentRecentlyCreated() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-		
-		// MaximizeWindow
-		driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to preview page
-		homePage.goToPreviewPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
+	public void bodyNotRequiered() {
 		// go to admin console page
 
 		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
@@ -138,13 +105,9 @@ public class EditContentRecentlyCreatedTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// go to dashboard
+	}
 
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-
-		// expand pages folder
-
-		dashboardPage.expandPagesTree();
+	public void createNewContent() {
 
 		// right click to see the the menu
 
@@ -189,10 +152,10 @@ public class EditContentRecentlyCreatedTest {
 
 		// Set Main Content
 
-		//dashboardPage.setMetadataFields("title", "keywords");
-		
+		// dashboardPage.setMetadataFields("title", "keywords");
+
 		// Set the title of main content
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
@@ -210,26 +173,9 @@ public class EditContentRecentlyCreatedTest {
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
+	}
 
-		// Expand Home Tree
-
-		dashboardPage.expandHomeTree2();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-		
-		// expand home content
-
-				//dashboardPage.expandHomeTree();
+	public void editingContentRecentlyCreated() {
 
 		// right click to see the menu and edit
 
@@ -262,7 +208,7 @@ public class EditContentRecentlyCreatedTest {
 
 		// Set Main Content
 
-		//dashboardPage.setMetadataFields("EditedTitle", "EditedKeywords");
+		// dashboardPage.setMetadataFields("EditedTitle", "EditedKeywords");
 
 		// wait for element is clickeable
 
@@ -276,19 +222,86 @@ public class EditContentRecentlyCreatedTest {
 
 		driverManager.getDriver().switchTo().defaultContent();
 
+	}
+
+	@Test(priority = 0)
+
+	public void editContentRecentlyCreated() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// MaximizeWindow
+		driverManager.maximizeWindow();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to preview page
+		homePage.goToPreviewPage();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-		
-		// expand home content
 
-		//dashboardPage.expandHomeTree();
+		// Show site content panel
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Body not requiered
+
+		bodyNotRequiered();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+		// expand pages folder
+
+		dashboardPage.expandPagesTree();
+
+		// create new content
+
+		createNewContent();
+
+		// Expand Home Tree
+
+		dashboardPage.expandHomeTree2();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Edited content recently created
+
+		editingContentRecentlyCreated();
 		
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
 		// Assert find the new content created edited
 
-				String contentEdited = driverManager.getDriver()
-						.findElement(By.cssSelector("#ygtvlabelel3")).getText();
-				Assert.assertEquals(contentEdited, "Testing1EDITED");
+		String contentEdited = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
+		Assert.assertEquals(contentEdited, "Testing1EDITED");
 
 	}
 

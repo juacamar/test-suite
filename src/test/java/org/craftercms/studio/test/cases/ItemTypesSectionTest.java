@@ -42,25 +42,7 @@ public class ItemTypesSectionTest {
 		driverManager.closeConnection();
 	}
 
-	@Test(priority = 0)
-
-	public void itemTypes() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to dashboard page
-
-		homePage.goToDashboardPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void assertsBlockOne() {
 
 		// Assert Item Types tittle is present.
 
@@ -139,6 +121,9 @@ public class ItemTypesSectionTest {
 
 		Assert.assertTrue(templateScript.isDisplayed());
 
+	}
+
+	public void AssertsBlockTwo() {
 		// Assert pdf icon is present.
 
 		WebElement pdf = driverManager.getDriver().findElement(
@@ -180,5 +165,27 @@ public class ItemTypesSectionTest {
 				By.cssSelector("#iconGuide > div.panel-body > div.row.item-types > div:nth-child(13) > div"));
 
 		Assert.assertTrue(word.isDisplayed());
+	}
+
+	@Test(priority = 0)
+
+	public void itemTypes() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to dashboard page
+
+		homePage.goToDashboardPage();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
 	}
 }

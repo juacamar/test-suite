@@ -34,7 +34,7 @@ public class EditOptionTest {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager  uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
@@ -48,39 +48,7 @@ public class EditOptionTest {
 		driverManager.closeConnection();
 	}
 
-	@Test(priority = 0)
-
-	public void editOption() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-		
-		// MaximizeWindow
-		driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to preview page
-		homePage.goToPreviewPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void bodyNotRequiered() {
 
 		// go to admin console page
 
@@ -134,17 +102,9 @@ public class EditOptionTest {
 
 		adminConsolePage.saveDragAndDropProcess();
 
-		// wait for element is clickeable
+	}
 
-		homePage.getDriverManager().driverWait();
-
-		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-
-		// expand pages folder
-
-		dashboardPage.expandPagesTree();
+	public void createNewContent() {
 
 		// right click to see the the menu
 
@@ -187,12 +147,8 @@ public class EditOptionTest {
 
 		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
-		// Set Main Content
-
-		//dashboardPage.setMetadataFields("title", "keywords");
-		
 		// Set the title of main content
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
@@ -211,40 +167,21 @@ public class EditOptionTest {
 
 		driverManager.getDriver().switchTo().defaultContent();
 
-		// Expand Home Tree
-
-		dashboardPage.expandHomeTree2();
-		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-		
-		// expand home content
-
-				//dashboardPage.expandHomeTree();
-		
+	}
+	
+	public void editingContent(){
 		// Select a content to edit
-		
-		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3"))
-		.click();
+
+		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+
 		// click edit option of the menu
 
-		driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(2) > a"))
-		.click();
-		
+		driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(2) > a")).click();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -270,10 +207,6 @@ public class EditOptionTest {
 
 		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
-		// Set Main Content
-
-		//dashboardPage.setMetadataFields("EditedTitle", "EditedKeywords");
-
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -285,18 +218,89 @@ public class EditOptionTest {
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
+	}
+
+	@Test(priority = 0)
+
+	public void editOption() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// MaximizeWindow
+		driverManager.maximizeWindow();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to preview page
+		homePage.goToPreviewPage();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-		
+
+		// Show site content panel
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
-		// expand home content
 
-				//dashboardPage.expandHomeTree();
+		// Body Not requiered
+
+		bodyNotRequiered();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+		// expand pages folder
+
+		dashboardPage.expandPagesTree();
+
+		// create a new content
+
+		createNewContent();
+
+		// Expand Home Tree
+
+		dashboardPage.expandHomeTree2();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+	    // edit content
+		
+		editingContent();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 		// Assert find the new content created edited
 

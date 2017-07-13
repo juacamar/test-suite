@@ -267,6 +267,20 @@ public class EditContentFormTest {
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
+
+		// Assert of the test case is fine
+
+		String contentURL = driverManager.getDriver()
+				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
+		Assert.assertTrue(contentURL.contains(contentURL));
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
 	}
 
 	public void editFormCreated() {
@@ -317,6 +331,29 @@ public class EditContentFormTest {
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
+
+	}
+
+	public void clickOnEditOptionOfRecentActivitySection() {
+
+		// Click on edit option of recent activity section
+		homePage.clickEditOptionOfRecentActivitySection();
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+
+		// wait for element
+
+		homePage.getDriverManager().driverWait();
+
+		// Expand default section
+		myRecentActivityFramePage1.expandDefaultSection();
 
 	}
 
@@ -402,24 +439,10 @@ public class EditContentFormTest {
 
 		createNewContent();
 
-		// Assert of the test case is fine
-
-		String contentURL = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
-		Assert.assertTrue(contentURL.contains(contentURL));
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
 		// edit the form created
 
 		editFormCreated();
-		
+
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
@@ -427,24 +450,9 @@ public class EditContentFormTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Click on edit option of recent activity section
-		homePage.clickEditOptionOfRecentActivitySection();
+		// click on edit option of recently activity section
 
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// Expand default section
-		myRecentActivityFramePage1.expandDefaultSection();
+		clickOnEditOptionOfRecentActivitySection();
 
 		// Assert validation
 		String textTitle = driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input"))

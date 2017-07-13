@@ -43,28 +43,13 @@ public class EditUserTest {
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
 	}
-	
-	 @AfterTest
-	 public void afterTest() {
-	 driverManager.closeConnection();
-	 }
 
-	@Test(priority = 0)
+	@AfterTest
+	public void afterTest() {
+		driverManager.closeConnection();
+	}
 
-	public void editUser() {
-
-		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// click On Users option
-
-		createPage.clickOnUsersOption();
-
+	public void createUserToEdit() {
 		// click on new user button
 
 		usersPage.clickOnNewUser();
@@ -87,16 +72,14 @@ public class EditUserTest {
 
 		usersPage.clickOnSaveNewUser();
 
-		// wait for element is clickeable
+	}
+	
 
-		homePage.getDriverManager().driverWait();
-
+	public void editingUser() {
 		// Click on edit option
 
 		usersPage.clickOnEditUserCreated();
-
-		// Editing
-
+		
 		// Follow the form
 
 		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Test");
@@ -117,6 +100,36 @@ public class EditUserTest {
 
 		usersPage.clickOnSaveNewUser();
 
+	}
+	
+	@Test(priority = 0)
+
+	public void editUser() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// click On Users option
+
+		createPage.clickOnUsersOption();
+
+		// create a new user
+
+		createUserToEdit();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// edit user
+
+		editingUser();
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
