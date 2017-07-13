@@ -123,7 +123,7 @@ public class ItemTypesSectionTest {
 
 	}
 
-	public void AssertsBlockTwo() {
+	public void assertsBlockTwo() {
 		// Assert pdf icon is present.
 
 		WebElement pdf = driverManager.getDriver().findElement(

@@ -356,6 +356,19 @@ public class EditContentFormTest {
 		myRecentActivityFramePage1.expandDefaultSection();
 
 	}
+	
+	public void goToDashboard(){
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Go to dashboard page
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[4]/div[1]/nav/div/div[1]/a/img")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+	}
 
 	@Test(priority = 0)
 
@@ -392,16 +405,9 @@ public class EditContentFormTest {
 
 		dragAndDrop();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Go to dashboard page
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[4]/div[1]/nav/div/div[1]/a/img")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+		// go to the dashboard page
+		
+		goToDashboard();
 
 		// expand pages folder
 
