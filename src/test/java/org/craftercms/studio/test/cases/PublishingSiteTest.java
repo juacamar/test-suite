@@ -1,7 +1,6 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -23,13 +22,9 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class PublishingSiteTest {
 
-	WebDriver driver;
-
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
 
 	private HomePage homePage;
 
@@ -42,13 +37,13 @@ public class PublishingSiteTest {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager);
-		this.adminConsolePage = new AdminConsolePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager);
+		this.adminConsolePage = new AdminConsolePage(driverManager, uIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
 
 	}
 
@@ -57,39 +52,7 @@ public class PublishingSiteTest {
 		driverManager.closeConnection();
 	}
 
-	@Test(priority = 0)
-
-	public void Publishing_Site() {
-
-		// login to application
-		
-		loginPage.loginToCrafter("admin", "admin");
-		
-		// MaximizeWindow
-		driverManager.maximizeWindow();
-		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to preview page
-		homePage.goToPreviewPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void bodyNotRequiered() {
 
 		// go to admin console page
 
@@ -142,22 +105,9 @@ public class PublishingSiteTest {
 		// save
 
 		adminConsolePage.saveDragAndDropProcess();
+	}
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// expand pages folder
-
-		dashboardPage.expandPagesTree();
+	public void createContent() {
 
 		// right click to see the the menu
 
@@ -196,14 +146,6 @@ public class PublishingSiteTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Expand all fields
-
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// Set Main Content
-
-		// dashboardPage.setMetadataFields("title", "keywords");
-
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -228,20 +170,9 @@ public class PublishingSiteTest {
 
 		driverManager.getDriver().switchTo().defaultContent();
 
-		// Expand Home Tree
+	}
 
-		dashboardPage.expandHomeTree();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-		
-		driverManager.getDriver()
-		.findElement(By.cssSelector("#ygtvlabelel3")).click();
-		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+	public void approveAndPublish() {
 
 		// approve and publish
 
@@ -258,7 +189,9 @@ public class PublishingSiteTest {
 		// wait for element is clickeable
 
 		previewPage.getDriverManager().driverWait();
+	}
 
+	public void reloadPage() {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
@@ -283,23 +216,102 @@ public class PublishingSiteTest {
 
 		homePage.getDriverManager().driverWait();
 
-//		// Show site content panel
-//				driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-//						.click();
-				
 		// reload page
 
-		driverManager.getDriver().navigate().refresh();	
-				
+		driverManager.getDriver().navigate().refresh();
+
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
 
-		// assert
+	}
+
+	@Test(priority = 0)
+
+	public void publishingSite() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// MaximizeWindow
+		driverManager.maximizeWindow();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to preview page
+		homePage.goToPreviewPage();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// reload page
+
+		driverManager.getDriver().navigate().refresh();
+
+		// Show site content panel
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// body not requiered
+
+		bodyNotRequiered();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// expand pages folder
+
+		dashboardPage.expandPagesTree();
+
+		// create content
+
+		createContent();
+
+		// Expand Home Tree
+
+		dashboardPage.expandHomeTree();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// approve and publish
+
+		approveAndPublish();
+
+		// reload page and assert
+
+		reloadPage();
+
+		// Assert
 
 		String siteStatus = driverManager.getDriver()
 				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
 		Assert.assertEquals(siteStatus, "Live :");
+
 	}
 
 }

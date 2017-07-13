@@ -17,7 +17,6 @@ import org.openqa.selenium.WebElement;
 public class PreviewPage {
 
 	private WebDriverManager driverManager;
-	private UIElementsPropertiesManager uIElementsManager;
 	private String adminConsole;
 	private String openComboSites;
 	private String clickPreviewTools;
@@ -44,37 +43,36 @@ public class PreviewPage {
 	 */
 	public PreviewPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
-		this.uIElementsManager = UIElementsPropertiesManager;
 		this.driverManager.getDriver();
-		adminConsole = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.admin_console_link");
-		openComboSites = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.open_combo_sites");
-		clickPreviewTools = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.preview_tools");
-		expandInContextEditing = uIElementsManager.getSharedUIElementsLocators()
+		adminConsole = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.admin_console_link");
+		openComboSites = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.open_combo_sites");
+		clickPreviewTools = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.preview_tools");
+		expandInContextEditing = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.expand_in_context_editing");
-		clickInContextEdit = uIElementsManager.getSharedUIElementsLocators()
+		clickInContextEdit = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.enable_disable_in_context_edit");
-		approvePublish = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.approve&publish");
-		submitButtonApprovePublish = uIElementsManager.getSharedUIElementsLocators()
+		approvePublish = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.approve&publish");
+		submitButtonApprovePublish = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.approve&publish_submit");
-		previewDuplicate = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.duplicate");
-		duplicateName = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.duplicate_name");
-		saveAndClose = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.save_close");
-		pagesTree = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.expand_pages");
-		expandGlobalEntryContent = uIElementsManager.getSharedUIElementsLocators()
+		previewDuplicate = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.duplicate");
+		duplicateName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.duplicate_name");
+		saveAndClose = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.save_close");
+		pagesTree = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.expand_pages");
+		expandGlobalEntryContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.expand_GlobalEntry_Tree");
-		previewDelete = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.delete");
-		deleteDependencies = uIElementsManager.getSharedUIElementsLocators().getProperty("preview.delete_dependencies");
-		OKdeleteDependencies = uIElementsManager.getSharedUIElementsLocators()
+		previewDelete = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.delete");
+		deleteDependencies = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.delete_dependencies");
+		OKdeleteDependencies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.ok_delete_dependencies");
-		previewEdit = uIElementsManager.getSharedUIElementsLocators()
+		previewEdit = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.edit");
-		internalName = uIElementsManager.getSharedUIElementsLocators()
+		internalName = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame1.internal_Name");
-		saveAndCloseiFrame = uIElementsManager.getSharedUIElementsLocators()
+		saveAndCloseiFrame = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame1.save_close");
-		previewHistory = uIElementsManager.getSharedUIElementsLocators()
+		previewHistory = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.history");
-		previewDependecies = uIElementsManager.getSharedUIElementsLocators()
+		previewDependecies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.dependencies");
 		
 				

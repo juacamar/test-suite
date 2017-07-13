@@ -16,7 +16,6 @@ import org.openqa.selenium.interactions.Actions;
 public class DashboardPage {
 
 	private WebDriverManager driverManager;
-	private UIElementsPropertiesManager uIElementsManager;
 	private WebDriver driver;
 	private String pagesTree;
 	private String homeContentTree;
@@ -75,106 +74,107 @@ public class DashboardPage {
 	private String pasteContent0;
 	private String newFolderCreated;
 	private String deleteCrafterComponent2;
+	private String homeTreeDashbard;
 
 	/**
 	 * 
 	 */
 	public DashboardPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
-		this.uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
-		pagesTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Pages_Tree");
-		homeTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_GlobalEntry_Tree");
-		homeContentTree = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Home_Tree");
-		homeContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page");
-		homeContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page2");
-		addNewContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content");
-		addNewContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content2");
-		addNewFolder = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Folder");
-		selectEntryCT = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.entry_Content_Type");
-		okButton1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.ok_Button");
-		setPageURL1 = uIElementsManager.getSharedUIElementsLocators().getProperty("frame2.page_URL");
-		setInternalName1 = uIElementsManager.getSharedUIElementsLocators().getProperty("frame2.internal_Name");
-		setBodyText1 = uIElementsManager.getSharedUIElementsLocators().getProperty("frame2.bodyOne");
-		saveCloseButton1 = uIElementsManager.getSharedUIElementsLocators().getProperty("frame2.save_Close_Button");
-		saveDraft1 = uIElementsManager.getSharedUIElementsLocators().getProperty("frame2.save_Draft");
-		createButton1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.create_Button");
-		setFolderName1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
-		copyContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content1");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content2");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.global_entry");
+		pagesTree = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Pages_Tree");
+		homeTree = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.expand_GlobalEntry_Tree");
+		homeTreeDashbard = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Home_Tree2");
+		homeContentTree = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.expand_Home_Tree");
+		homeContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page");
+		homeContent2 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page2");
+		addNewContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content");
+		addNewContent2 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Content2");
+		addNewFolder = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.add_New_Folder");
+		selectEntryCT = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.entry_Content_Type");
+		okButton1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.ok_Button");
+		setPageURL1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.page_URL");
+		setInternalName1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.internal_Name");
+		setBodyText1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.bodyOne");
+		saveCloseButton1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.save_Close_Button");
+		saveDraft1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.save_Draft");
+		createButton1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.create_Button");
+		setFolderName1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
+		copyContent1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content1");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content2");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.global_entry");
 		
 		
-		pasteContent0 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content");
+		pasteContent0 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content");
 
-		pasteContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content1");
-		pasteContent2 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content2");
-		pasteContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content3");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content4");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us");
-		aboutUsOptionCopied = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_copied");
-		deleteOptionCopied = uIElementsManager.getSharedUIElementsLocators()
+		pasteContent1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content1");
+		pasteContent2 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content2");
+		pasteContent3 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content3");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content4");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.about_us");
+		aboutUsOptionCopied = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_copied");
+		deleteOptionCopied = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_about_us_copied");
-		uIElementsManager.getSharedUIElementsLocators()
+		UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_crafter_component");
-		deleteCrafterComponent2 = uIElementsManager.getSharedUIElementsLocators()
+		deleteCrafterComponent2 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_crafter_component2");
-		unlockOptionCopied = uIElementsManager.getSharedUIElementsLocators()
+		unlockOptionCopied = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.unlock_about_us_copied");
-		deleteOptionCopiedPopup = uIElementsManager.getSharedUIElementsLocators()
+		deleteOptionCopiedPopup = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_about_us_panel");
-		deleteOK = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.delete_OK");
-		cutContent1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content1");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content2");
-		aboutUsOptionCut = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_cut");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder_created");
-		copyContentButton = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
-		newContentCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_content");
-		uIElementsManager.getSharedUIElementsLocators()
+		deleteOK = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.delete_OK");
+		cutContent1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content1");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content2");
+		aboutUsOptionCut = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_cut");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder_created");
+		copyContentButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
+		newContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.new_content");
+		UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_folderToCopy");
-		aboutUsOptionToTree1 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_tree1");
-		aboutUsOptionTreeLevel1 = uIElementsManager.getSharedUIElementsLocators()
+		aboutUsOptionToTree1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_tree1");
+		aboutUsOptionTreeLevel1 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_to_the_tree_leve1");
-		aboutUsOptionTreeLevel2 = uIElementsManager.getSharedUIElementsLocators()
+		aboutUsOptionTreeLevel2 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_to_the_tree_leve2");
-		uIElementsManager.getSharedUIElementsLocators()
+		UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_to_the_tree_leve3");
-		aboutUsOptionTreeCreated = uIElementsManager.getSharedUIElementsLocators()
+		aboutUsOptionTreeCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_tree");
-		deleteAboutUsTreeCreated = uIElementsManager.getSharedUIElementsLocators()
+		deleteAboutUsTreeCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_about_us_tree");
-		clickOnSiteContent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.site_content");
-		deleteContentOK = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.delete_content_OK");
-		submittalCompleteOK = uIElementsManager.getSharedUIElementsLocators()
+		clickOnSiteContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.site_content");
+		deleteContentOK = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.delete_content_OK");
+		submittalCompleteOK = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.submittal_complete");
-		editOption = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_iframe");
-		ediPagetUrl = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.edit_url_button");
-		pageUrlField = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.page_url_field");
-		previewSync = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
-		uIElementsManager.getSharedUIElementsLocators()
+		editOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.edit_iframe");
+		ediPagetUrl = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.edit_url_button");
+		pageUrlField = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.page_url_field");
+		previewSync = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
+		UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.recently_content_created");
-		editRecentlyContentCreated = uIElementsManager.getSharedUIElementsLocators()
+		editRecentlyContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.edit_recently_content_created");
-		crafterComponent = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.crafter_component");
-		cutCrafterComponent = uIElementsManager.getSharedUIElementsLocators()
+		crafterComponent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.crafter_component");
+		cutCrafterComponent = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.cut_crafter_component");
-		folderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_created");
-		copyContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content3");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.folder_to_paste");
-		titleMedatata = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_title");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_keywords");
-		previewDuplicate = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate");
-		duplicateName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate_name");
-		levelDescriptorContentType = uIElementsManager.getSharedUIElementsLocators()
+		folderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_created");
+		copyContent3 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content3");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_to_paste");
+		titleMedatata = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_title");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.metadata_keywords");
+		previewDuplicate = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate");
+		duplicateName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate_name");
+		levelDescriptorContentType = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.level_descriptor");
-		setFileName = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.file_name");
-		homeContent3 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page3");
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content5"); 
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder"); 
-		uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_in_new_folder");
-		contentCreatedToCut = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.content_created_testing");
-		newFolderCreated = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.add_new_folder");
-		pasteContent0 = uIElementsManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content_copied");
+		setFileName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.file_name");
+		homeContent3 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.home_Content_Page3");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content5"); 
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.new_folder"); 
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_in_new_folder");
+		contentCreatedToCut = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.content_created_testing");
+		newFolderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.add_new_folder");
+		pasteContent0 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content_copied");
 
 		
 
@@ -210,7 +210,7 @@ public class DashboardPage {
 
 	public void clickGlobalEntryContent() {
 
-		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(homeTree));
+		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(homeTree)); 
 		globalEntry.click();
 
 	}
@@ -222,6 +222,23 @@ public class DashboardPage {
 		this.clickGlobalEntryContent();
 
 	}
+	
+	// Expand home tree
+
+		public void clicHomeTree2() {
+
+			WebElement homeTree = driverManager.getDriver().findElement(By.cssSelector(homeTreeDashbard)); 
+			homeTree.click();
+
+		}
+
+		public void expandHomeTree2() {
+
+			// Expand home tree
+			
+			this.clicHomeTree2();
+
+		}
 
 	// Expand home content
 
@@ -637,7 +654,7 @@ public class DashboardPage {
 
 	// Press right click and Unlock
 
-	public void RightClickUnlockOption() {
+	public void rightClickUnlockOption() {
 
 		WebElement unlockContentOption = driverManager.getDriver().findElement(By.xpath(aboutUsOptionCopied));
 
@@ -649,11 +666,11 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToUnlockOption() {
+	public void rightClickToUnlockOption() {
 
 		// Press right click and Unlock
 
-		this.RightClickUnlockOption();
+		this.rightClickUnlockOption();
 
 	}
 
@@ -825,18 +842,18 @@ public class DashboardPage {
 
 	// copy button
 
-	public void CopyButton() {
+	public void copyButton() {
 
 		WebElement buttonCopy = driverManager.getDriver().findElement(By.id(copyContentButton));
 		buttonCopy.click();
 
 	}
 
-	public void ClickCopyButton() {
+	public void clickCopyButton() {
 
 		// copy button
 
-		this.CopyButton();
+		this.copyButton();
 
 	}
 
@@ -976,7 +993,7 @@ public class DashboardPage {
 	}
 
 	// Press right click and press delete option to the "aboutoptionCOPY"
-	public void RightClickDeleteTreeLevel1() {
+	public void rightClickDeleteTreeLevel1() {
 		WebElement deleteContentTree = driverManager.getDriver().findElement(By.id(aboutUsOptionTreeCreated));
 
 		Actions action = new Actions(driverManager.getDriver());
@@ -987,17 +1004,17 @@ public class DashboardPage {
 
 	}
 
-	public void RightClickToDeleteTheTree() {
+	public void rightClickToDeleteTheTree() {
 
 		// Press right click and press delete option to the "aboutoptionCOPY"
 
-		this.RightClickDeleteTreeLevel1();
+		this.rightClickDeleteTreeLevel1();
 
 	}
 
 	// click on Site Content
 
-	public void ClickSiteContent() {
+	public void clickSiteContent() {
 
 		WebElement siteContent = driverManager.getDriver().findElement(By.xpath(clickOnSiteContent));
 		siteContent.click();
@@ -1008,7 +1025,7 @@ public class DashboardPage {
 
 		// click on Site Content
 
-		this.ClickSiteContent();
+		this.clickSiteContent();
 
 	}
 
@@ -1109,7 +1126,7 @@ public class DashboardPage {
 
 	// Set the new name of the URL
 
-	public void URLPageName(String strNewURL) {
+	public void uRLPageName(String strNewURL) {
 
 		WebElement URLName = driverManager.getDriver().findElement(By.cssSelector(pageUrlField));
 		URLName.sendKeys(strNewURL);
@@ -1120,7 +1137,7 @@ public class DashboardPage {
 
 		// Set the new name of the URL
 
-		this.URLPageName(strNewURL);
+		this.uRLPageName(strNewURL);
 
 	}
 

@@ -16,7 +16,6 @@ import org.openqa.selenium.WebElement;
 public class HomePage {
 
 	private WebDriverManager driverManager;
-	private UIElementsPropertiesManager uIElementsManager;
 	private WebDriver driver;
 	private String previewSite1;
 	private String dashboardSite2;
@@ -33,18 +32,17 @@ public class HomePage {
 	 */
 	public HomePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
-		this.uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
-		uIElementsManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
-		previewSite1 = uIElementsManager.getSharedUIElementsLocators().getProperty("home.preview_link");
-		dashboardSite2 = uIElementsManager.getSharedUIElementsLocators().getProperty("home.dashboard_link");
-		editRecentActivity = uIElementsManager.getSharedUIElementsLocators().getProperty("home.edit_my_recent_activty");
-		seeThePageEdited = uIElementsManager.getSharedUIElementsLocators().getProperty("home.see_page_recent_activity");
-		createSiteButton = uIElementsManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
-		deleteSiteIcon = uIElementsManager.getSharedUIElementsLocators().getProperty("home.delete_site_icon");
-		yesDeleteButton = uIElementsManager.getSharedUIElementsLocators().getProperty("home.confirm_to_delete");
-		logOutLink = uIElementsManager.getSharedUIElementsLocators().getProperty("home.expand_account");
-		signOutLink = uIElementsManager.getSharedUIElementsLocators().getProperty("home.sign_out");
+		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
+		previewSite1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.preview_link");
+		dashboardSite2 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.dashboard_link");
+		editRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.edit_my_recent_activty");
+		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.see_page_recent_activity");
+		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
+		deleteSiteIcon = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.delete_site_icon");
+		yesDeleteButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.confirm_to_delete");
+		logOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.expand_account");
+		signOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.sign_out");
 				
 				
 
@@ -52,9 +50,7 @@ public class HomePage {
 
 	// Click on preview link
 
-	public HomePage(WebDriver driver2) {
-		// TODO Auto-generated constructor stub
-	}
+
 
 	public void clickPreviewOption() {
 
@@ -107,18 +103,18 @@ public class HomePage {
 
 	// See the page edited
 
-	public void DisplayPageEdited() {
+	public void displayPageEdited() {
 
 		WebElement seeThePageMyRecentActivity = driver.findElement(By.xpath(seeThePageEdited));
 		seeThePageMyRecentActivity.click();
 
 	}
 
-	public void SeeThePageEdited() {
+	public void seeThePageEdited() {
 
 		// See the page edited
 
-		this.DisplayPageEdited();
+		this.displayPageEdited();
 
 	}
 
@@ -191,7 +187,7 @@ public class HomePage {
 	
 	// Logout to the crafter
 
-		public void ExpandAccount() {
+		public void expandAccount() {
 
 			WebElement expandAccount = driver.findElement(By.cssSelector(logOutLink));
 			expandAccount.click();
@@ -210,7 +206,7 @@ public class HomePage {
 
 			//Expand account
 
-			this.ExpandAccount();
+			this.expandAccount();
 			
 			//Click on SignOut
 			

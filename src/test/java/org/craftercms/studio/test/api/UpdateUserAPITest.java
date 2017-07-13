@@ -104,7 +104,13 @@ public class UpdateUserAPITest {
 //				.json("$.message", is("Internal server error"))
 //				.debug();
 //
-//	}	
+//	}
+	
+	@Test(priority = 5)
+	public void testDeleteUser() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", "jane.doe");
+		api.post("/studio/api/1/services/api/1/user/delete.json").json(json).execute();
 
-
+	}
 }

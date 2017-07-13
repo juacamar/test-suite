@@ -57,12 +57,12 @@ public class GetUserAPITest {
 	@Test(priority=3)
 	public void testInvalidParameters() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/user/login.json")
+		api.get("/studio/api/1/services/api/1/user/get.json")
 		.json(json)
 		.execute()
 		.status(400)
 		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
-		.json("$.message", is("Invalid parameter(s)"));
+		.json("$.message", is("Invalid parameter: username"));
 
 		
 	}

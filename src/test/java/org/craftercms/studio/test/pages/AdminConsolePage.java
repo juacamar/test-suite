@@ -17,7 +17,6 @@ import org.openqa.selenium.WebElement;
 public class AdminConsolePage {
 
 	private WebDriverManager driverManager;
-    private UIElementsPropertiesManager uIElementsManager;
     private WebDriver driver;
     private String contentTypeOption;
     private String openExistingTypeOption;
@@ -37,21 +36,20 @@ public class AdminConsolePage {
      */
     public AdminConsolePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
         this.driverManager = driverManager;
-        this.uIElementsManager = UIElementsPropertiesManager;
         this.driver = this.driverManager.getDriver();
-        contentTypeOption = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.content_type_option");
-        openExistingTypeOption = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.open_Existing_Type_Option");
-        genericContentTypeOption = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.generic_Content_Type_Option");
-        okButton = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.ok_Button");
-        saveButton = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.save_Button");
-        genericTitle = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.generic_title");
-        displayTemplateField = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.display_Template_Field");
-        editFTLOption = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.edit_FTL_Option");
-        inputTitle = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Title");
-        inputIceGroup = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Ice_Group");
-        inputDescription = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Description");
-        inputDefaultValue = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Default_Value");
-        clickOnInputSection = uIElementsManager.getSharedUIElementsLocators().getProperty("adminconsole.click_On_Input_Section");
+        contentTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.content_type_option");
+        openExistingTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.open_Existing_Type_Option");
+        genericContentTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.generic_Content_Type_Option");
+        okButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.ok_Button");
+        saveButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.save_Button");
+        genericTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.generic_title");
+        displayTemplateField = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.display_Template_Field");
+        editFTLOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.edit_FTL_Option");
+        inputTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Title");
+        inputIceGroup = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Ice_Group");
+        inputDescription = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Description");
+        inputDefaultValue = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Default_Value");
+        clickOnInputSection = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.click_On_Input_Section");
     }
 	public AdminConsolePage(WebDriver driver) {
 
@@ -146,52 +144,52 @@ public class AdminConsolePage {
 
 	// Click on generic title to edit the context type selected.
 
-	public void ClickOnGenericTitle() {
+	public void clickOnGenericTitle() {
 
 		WebElement ClickTitle = driver.findElement(By.cssSelector(genericTitle));
 		ClickTitle.click();
 
 	}
 
-	public void DoClickOnGenericTitle() {
+	public void doClickOnGenericTitle() {
 
 		// Click on generic title to edit the context type selected.
 
-		this.ClickOnGenericTitle();
+		this.clickOnGenericTitle();
 
 	}
 
 	// Click on display template field.
 
-	public void ClickOnDisplayTemplateField() {
+	public void clickOnDisplayTemplateField() {
 
 		WebElement showTemplate = driver.findElement(By.cssSelector(displayTemplateField));
 		showTemplate.click();
 
 	}
 
-	public void DoClickOnDisplayTemplateField() {
+	public void doClickOnDisplayTemplateField() {
 
 		// Click on display template field.
 
-		this.ClickOnDisplayTemplateField();
+		this.clickOnDisplayTemplateField();
 
 	}
 
 	// Edit ftl option
 
-	public void ClickOnEditFTLOption() {
+	public void clickOnEditFTLOption() {
 
 		WebElement editFLTopt = driver.findElement(By.cssSelector(editFTLOption));
 		editFLTopt.click();
 
 	}
 
-	public void DoClickOnEditFTLOption() {
+	public void doClickOnEditFTLOption() {
 
 		// Edit ftl option
 
-		this.ClickOnEditFTLOption();
+		this.clickOnEditFTLOption();
 
 	}
 
@@ -233,7 +231,7 @@ public class AdminConsolePage {
 	
 	// Complete input fields basics
 	
-	public void CompleteInputFieldsBasics(String strTitle, String strICEGroup, String strDescription, String strDefaultValue) {
+	public void completeInputFieldsBasics(String strTitle, String strICEGroup, String strDescription, String strDefaultValue) {
 
 		// Fill title
 

@@ -20,7 +20,6 @@ import org.openqa.selenium.WebElement;
 public class CreatePage {
 
 	private WebDriverManager driverManager;
-	private UIElementsPropertiesManager uIElementsManager;
 	private WebDriver driver;
 	private String siteName;
 	private String siteID;
@@ -32,24 +31,27 @@ public class CreatePage {
 	private String emptyBlueprint;
 	private String corporateBlueprint;
 	private String AngMemGamBlueprint;
+	private String usersOption;
 
 	/**
 	 * 
 	 */
 	public CreatePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
-		this.uIElementsManager = UIElementsPropertiesManager;
 		this.driver = this.driverManager.getDriver();
-		siteName = uIElementsManager.getSharedUIElementsLocators().getProperty("create.site_name");
-		siteID = uIElementsManager.getSharedUIElementsLocators().getProperty("create.id_name");
-		descriptionSite = uIElementsManager.getSharedUIElementsLocators().getProperty("create.description_site");
-		blueprintCombo = uIElementsManager.getSharedUIElementsLocators().getProperty("create.blueprint_combo");
-		plutonBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.pluton_blueprint");
-		createSiteButton = uIElementsManager.getSharedUIElementsLocators().getProperty("create.create_button");
-		cancelButton = uIElementsManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
-		emptyBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.empty_blueprint");
-		corporateBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.corporate_blueprint");
-		AngMemGamBlueprint = uIElementsManager.getSharedUIElementsLocators().getProperty("create.ang_mem_gam_blueprint");
+		siteName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.site_name");
+		siteID = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.id_name");
+		descriptionSite = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.description_site");
+		blueprintCombo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.blueprint_combo");
+		plutonBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.pluton_blueprint");
+		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.create_button");
+		cancelButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
+		emptyBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.empty_blueprint");
+		corporateBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.corporate_blueprint");
+		AngMemGamBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.ang_mem_gam_blueprint");
+		usersOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.users_option");
+				
+				
 
 	}
 
@@ -217,6 +219,23 @@ public class CreatePage {
 		this.createButton();
 
 	}
+	
+	// Press on users option
+
+		public void usersOption() {
+
+			WebElement users = driver.findElement(By.xpath(usersOption));
+			users.click();
+
+		}
+
+		public void clickOnUsersOption() {
+
+			// Press on users option
+
+			this.usersOption();
+
+		}
 
 	// Press on Cancel button of the create site process.
 
