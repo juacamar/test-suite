@@ -1,8 +1,6 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -21,7 +19,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class UsersPerPageTest {
+public class PaginationOfListOfUsersTest {
 
 	private WebDriverManager driverManager;
 
@@ -84,7 +82,7 @@ public class UsersPerPageTest {
 		homePage.getDriverManager().driverWait();
 	}
 
-	public void filters() {
+	public void navigationOfPage() {
 
 		// Show 8 users
 
@@ -92,87 +90,39 @@ public class UsersPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.sendKeys("8");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Asser only 8 users displayed
-
-		WebElement user8 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(8) > td:nth-child(6) > a"));
-
-		Assert.assertTrue(user8.isDisplayed());
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Show 5 users
-
-		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.clear();
-
-		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.sendKeys("5");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Asser only 5 users displayed
-
-		WebElement user5 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(5) > td:nth-child(6) > a"));
-
-		Assert.assertTrue(user5.isDisplayed());
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Show 11 users
-
-		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.clear();
-
-		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
 				.sendKeys("1");
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Asser only 1 user displayed
-
-		WebElement user1 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(6) > a"));
-
-		Assert.assertTrue(user1.isDisplayed());
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Show 11 users
-
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
 				.clear();
-
+		
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.sendKeys("11");
+		.sendKeys("11");
+
+		// navigation
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(3) > a"))
+				.click();
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(2) > a"))
+				.click();
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(4) > a"))
+				.click();
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(1) > a"))
+				.click();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// Asser only 1 users displayed
-
-		WebElement user11 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(11) > td:nth-child(6) > a"));
-
-		Assert.assertTrue(user11.isDisplayed());
 
 	}
 
@@ -329,18 +279,16 @@ public class UsersPerPageTest {
 				.click();
 
 		// wait for element is clickeable
-		
+
 		homePage.getDriverManager().driverWait();
-		
-		// reload page		
-		driverManager.getDriver()
-		.findElement(By.cssSelector("#homeSites"))
-		.click();
-		
+
+		// reload page
+		driverManager.getDriver().findElement(By.cssSelector("#homeSites")).click();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+
 		createPage.clickOnUsersOption();
 
 		// wait for element is clickeable
@@ -412,7 +360,7 @@ public class UsersPerPageTest {
 
 	@Test(priority = 0)
 
-	public void usersPerPage() {
+	public void paginationOfTheListOfUsers() {
 
 		// login to application
 
@@ -472,7 +420,7 @@ public class UsersPerPageTest {
 
 		// filters
 
-		filters();
+		navigationOfPage();
 
 		// wait for element is clickeable
 

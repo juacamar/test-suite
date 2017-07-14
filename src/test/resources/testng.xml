@@ -311,5 +311,11 @@
   </classes>
   </test> <!-- Test -->
   
+  <test name="Navigation of users Page Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.NavigationOfUsersPageTest" /> 
+  </classes>
+  </test> <!-- Test -->
+  
   
 </suite> <!-- Suite -->
