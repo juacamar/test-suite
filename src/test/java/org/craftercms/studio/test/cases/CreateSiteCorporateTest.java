@@ -23,17 +23,9 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class CreateSiteCorporateTest {
 
-	WebDriver driver;
-
-	LoginPage objLogin;
-
-	HomePage objHomePage;
-
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
 
 	private HomePage homePage;
 
@@ -45,15 +37,14 @@ public class CreateSiteCorporateTest {
 	 @BeforeTest
 	 public void beforeTest() {
 	 this.driverManager = new WebDriverManager();
-	 this.UIElementsPropertiesManager = new
-	 org.craftercms.studio.test.utils.UIElementsPropertiesManager(
-	 FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
+	 UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 	 this.loginPage = new LoginPage(driverManager,
-	 this.UIElementsPropertiesManager);
+			 uIElementsPropertiesManager);
 	 this.homePage = new HomePage(driverManager,
-	 this.UIElementsPropertiesManager);
+			 uIElementsPropertiesManager);
 	 this.createPage = new CreatePage(driverManager,
-	 this.UIElementsPropertiesManager);
+			 uIElementsPropertiesManager);
 
 	
 	 }
@@ -65,7 +56,7 @@ public class CreateSiteCorporateTest {
 
 	@Test(priority = 0)
 
-	public void createSiteRandomName() {
+	public void createSiteCorporate() {
 
 		// login to application
 
