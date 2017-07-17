@@ -65,11 +65,11 @@ public class CreateSiteCorporateTest {
 
 	@Test(priority = 0)
 
-	public void create_site_corporate() {
+	public void createSiteRandomName() {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "1234");
+		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
