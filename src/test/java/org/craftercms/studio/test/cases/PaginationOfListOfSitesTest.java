@@ -1,8 +1,6 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -19,7 +17,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class SitesPerPageTest {
+public class PaginationOfListOfSitesTest {
 
 	private WebDriverManager driverManager;
 
@@ -66,10 +64,6 @@ public class SitesPerPageTest {
 
 		createPage.fillSiteName();
 
-		// Filling the Id of the site
-
-		// createPage.fillIdSite("");
-
 		// Filling the description of the site
 
 		createPage.fillDescription("Description");
@@ -107,55 +101,7 @@ public class SitesPerPageTest {
 		homePage.getDriverManager().driverWait();
 	}
 
-	public void filters() {
-
-		// Show 8 sites
-
-		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.clear();
-
-		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.sendKeys("8");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Assert only 8 sites displayed
-
-		WebElement user8 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(8) > td.name.ng-binding"));
-
-		Assert.assertTrue(user8.isDisplayed());
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Show 5 sites
-
-		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.clear();
-
-		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.sendKeys("5");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Asser only 5 sites displayed
-
-		WebElement user5 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(5) > td.name.ng-binding"));
-
-		Assert.assertTrue(user5.isDisplayed());
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Show 1 site
+	public void navigationOfPage() {
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
 				.clear();
@@ -163,39 +109,47 @@ public class SitesPerPageTest {
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
 				.sendKeys("1");
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Asser only 1 site displayed
-
-		WebElement user1 = driverManager.getDriver().findElement(
-				By.cssSelector("#container > div > div > div.ng-scope > table > tbody > tr > td.name.ng-binding"));
-
-		Assert.assertTrue(user1.isDisplayed());
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Show 11 sites
-
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.sendKeys("11");
-
+				.sendKeys("8");
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
-		// Asser only 1 site displayed
+		// navigation
 
-		WebElement user11 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(11) > td.name.ng-binding"));
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(3) > a"))
+				.click();
 
-		Assert.assertTrue(user11.isDisplayed());
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(2) > a"))
+				.click();
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(4) > a"))
+				.click();
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector(
+						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a"))
+				.click();
+		
+		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
+		.clear();
+		
+		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
+		.sendKeys("11");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
 
 	}
 
@@ -218,16 +172,19 @@ public class SitesPerPageTest {
 		homePage.getDriverManager().driverWait();
 
 	}
-
 	
 	@Test(priority = 0)
 
-	public void sitesPerPage() {
+	public void paginationOfTheListOfSites() {
 
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
-		
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
 		// Create user 1
 
 		createSitesRandom();
@@ -272,52 +229,42 @@ public class SitesPerPageTest {
 
 		createSitesRandom();
 
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
 		// filters
 
-		filters();
+		navigationOfPage();
 
-		// Delete sites
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Delete sites 
+
+		deleteSite();
+		
+		deleteSite();
+		
+		deleteSite();
+
+		deleteSite();
+		
+		deleteSite();
+		
+		deleteSite();
 
 		deleteSite();
 
-		// Delete sites
+		deleteSite();
 
 		deleteSite();
 
-		// Delete sites
-
 		deleteSite();
 
-		// Delete sites
-
 		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
+		
 	}
+
 }

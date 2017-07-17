@@ -311,9 +311,21 @@
   </classes>
   </test> <!-- Test -->
   
-  <test name="Navigation of users Page Test">
+  <test name="Pagination of users Page Test">
   <classes>
     <class name="org.craftercms.studio.test.cases.PaginationOfListOfUsersTest" /> 
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Pagination of List Page Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.PaginationOfListOfSitesTest" /> 
+  </classes>
+  </test> <!-- Test -->
+  
+  <test name="Sites Per Page Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.SitesPerPageTest" /> 
   </classes>
   </test> <!-- Test -->
   
