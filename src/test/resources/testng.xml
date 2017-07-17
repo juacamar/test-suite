@@ -313,7 +313,7 @@
   
   <test name="Navigation of users Page Test">
   <classes>
-    <class name="org.craftercms.studio.test.cases.NavigationOfUsersPageTest" /> 
+    <class name="org.craftercms.studio.test.cases.PaginationOfListOfUsersTest" /> 
   </classes>
   </test> <!-- Test -->
   
