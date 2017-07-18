@@ -329,5 +329,11 @@
   </classes>
   </test> <!-- Test -->
   
+   <test name="About Us Test">
+  <classes>
+    <class name="org.craftercms.studio.test.cases.AboutUsTest" /> 
+  </classes>
+  </test> <!-- Test -->
+  
   
 </suite> <!-- Suite -->
