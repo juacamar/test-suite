@@ -19,7 +19,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class AboutUsTest {
+public class ShowAboutUsTest {
 
 	private WebDriverManager driverManager;
 
