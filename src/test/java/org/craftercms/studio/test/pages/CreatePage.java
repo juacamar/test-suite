@@ -32,6 +32,8 @@ public class CreatePage {
 	private String corporateBlueprint;
 	private String AngMemGamBlueprint;
 	private String usersOption;
+	private String helpOption;
+	private String aboutOption;
 
 	/**
 	 * 
@@ -41,17 +43,24 @@ public class CreatePage {
 		this.driver = this.driverManager.getDriver();
 		siteName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.site_name");
 		siteID = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.id_name");
-		descriptionSite = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.description_site");
-		blueprintCombo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.blueprint_combo");
-		plutonBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.pluton_blueprint");
-		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.create_button");
+		descriptionSite = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create.description_site");
+		blueprintCombo = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create.blueprint_combo");
+		plutonBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create.pluton_blueprint");
+		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create.create_button");
 		cancelButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
-		emptyBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.empty_blueprint");
-		corporateBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.corporate_blueprint");
-		AngMemGamBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.ang_mem_gam_blueprint");
+		emptyBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create.empty_blueprint");
+		corporateBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create.corporate_blueprint");
+		AngMemGamBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create.ang_mem_gam_blueprint");
 		usersOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.users_option");
-				
-				
+		helpOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_help_option");
+		aboutOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_about_option");
 
 	}
 
@@ -65,9 +74,8 @@ public class CreatePage {
 
 	public void setSiteName() {
 
-		
 		WebElement nameNewSite = driver.findElement(By.cssSelector(siteName));
-		nameNewSite.sendKeys(RandomStringUtils.randomAlphabetic(5)); 
+		nameNewSite.sendKeys(RandomStringUtils.randomAlphabetic(5));
 
 	}
 
@@ -183,7 +191,7 @@ public class CreatePage {
 		this.corporateBlueprint();
 
 	}
-	
+
 	// select blue angular memory game print
 
 	public void angMemGamBlueprint() {
@@ -219,23 +227,23 @@ public class CreatePage {
 		this.createButton();
 
 	}
-	
+
 	// Press on users option
 
-		public void usersOption() {
+	public void usersOption() {
 
-			WebElement users = driver.findElement(By.xpath(usersOption));
-			users.click();
+		WebElement users = driver.findElement(By.xpath(usersOption));
+		users.click();
 
-		}
+	}
 
-		public void clickOnUsersOption() {
+	public void clickOnUsersOption() {
 
-			// Press on users option
+		// Press on users option
 
-			this.usersOption();
+		this.usersOption();
 
-		}
+	}
 
 	// Press on Cancel button of the create site process.
 
@@ -252,6 +260,40 @@ public class CreatePage {
 		// Press on Cancel button of the create site.
 
 		this.cancelButton();
+
+	}
+
+	// Press on help option
+
+	public void clickHelp() {
+
+		WebElement users = driver.findElement(By.cssSelector(helpOption));
+		users.click();
+
+	}
+
+	public void clickOnHelpOption() {
+
+		// Press on help option
+
+		this.clickHelp();
+
+	}
+
+	// Press on help option
+
+	public void clickAbout() {
+
+		WebElement users = driver.findElement(By.cssSelector(aboutOption));
+		users.click();
+
+	}
+
+	public void clickOnAboutOption() {
+
+		// Press on help option
+
+		this.clickAbout();
 
 	}
 
