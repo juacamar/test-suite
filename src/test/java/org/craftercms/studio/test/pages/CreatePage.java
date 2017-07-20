@@ -325,7 +325,7 @@ public class CreatePage {
 
 	public void clickAdmin() {
 
-		WebElement admin = driver.findElement(By.cssSelector(adminDropdownOption));
+		WebElement admin = driver.findElement(By.cssSelector(adminDropdownOption)); 
 		admin.click();
 
 	}
