@@ -34,6 +34,9 @@ public class CreatePage {
 	private String usersOption;
 	private String helpOption;
 	private String aboutOption;
+	private String documentationOption;
+	private String adminDropdownOption;
+	private String settingsOption;
 
 	/**
 	 * 
@@ -61,7 +64,11 @@ public class CreatePage {
 		usersOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.users_option");
 		helpOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_help_option");
 		aboutOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_about_option");
-
+		documentationOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_documentation_option");
+		adminDropdownOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_admin_dropdown_option");
+		settingsOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create_settings_option");
+		
 	}
 
 	public CreatePage(WebDriver driver) {
@@ -280,20 +287,72 @@ public class CreatePage {
 
 	}
 
-	// Press on help option
+	// Press on about option
 
 	public void clickAbout() {
 
-		WebElement users = driver.findElement(By.cssSelector(aboutOption));
-		users.click();
+		WebElement about = driver.findElement(By.cssSelector(aboutOption));
+		about.click();
 
 	}
 
 	public void clickOnAboutOption() {
 
-		// Press on help option
+		// Press on about option
 
 		this.clickAbout();
+
+	}
+
+	// Press on documentation option
+
+	public void clickDocumentation() {
+
+		WebElement documentation = driver.findElement(By.cssSelector(documentationOption));
+		documentation.click();
+
+	}
+
+	public void clickOnDocumentationOption() {
+
+		// Press on documentation option
+
+		this.clickDocumentation();
+
+	}
+	
+	// Press on admin option
+
+	public void clickAdmin() {
+
+		WebElement admin = driver.findElement(By.cssSelector(adminDropdownOption));
+		admin.click();
+
+	}
+
+	public void clickOnAdminOption() {
+
+		// Press on admin option
+
+		this.clickAdmin();
+
+	}
+	
+
+	// Press on settings option
+
+	public void clickSettings() {
+
+		WebElement settings = driver.findElement(By.cssSelector(settingsOption));
+		settings.click();
+
+	}
+
+	public void clickOnSettingsOption() {
+
+		// Press on settings option
+
+		this.clickSettings();
 
 	}
 

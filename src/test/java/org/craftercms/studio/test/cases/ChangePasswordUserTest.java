@@ -1,0 +1,93 @@
+package org.craftercms.studio.test.cases;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.craftercms.studio.test.pages.AccountManagementPage;
+import org.craftercms.studio.test.pages.CreatePage;
+import org.craftercms.studio.test.pages.HomePage;
+import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.FilesLocations;
+import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
+import org.craftercms.studio.test.utils.WebDriverManager;
+
+/**
+ * 
+ * @author Gustavo Andrei Ortiz Alfaro
+ *
+ */
+
+public class ChangePasswordUserTest {
+
+	private WebDriverManager driverManager;
+
+	private LoginPage loginPage;
+
+	private HomePage homePage;
+
+	private CreatePage createPage;
+	
+	private AccountManagementPage accountManagementPage;
+
+	@BeforeTest
+	public void beforeTest() {
+		this.driverManager = new WebDriverManager();
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.accountManagementPage = new AccountManagementPage(driverManager, uIElementsPropertiesManager);
+
+	}
+
+	@AfterTest
+	public void afterTest() {
+		driverManager.closeConnection();
+	}
+
+	@Test(priority = 0)
+
+	public void changePasswordUser() {
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "admin");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// click On admin option
+		
+		createPage.clickOnAdminOption();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
+		//click on settings
+		
+		createPage.clickOnSettingsOption();
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// change password
+		
+		accountManagementPage.changeUserPassword("admin", "123456", "123456");
+		
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+		
+		// login to application
+
+		loginPage.loginToCrafter("admin", "123456");
+		
+		// change password
+		
+		accountManagementPage.changeUserPassword("123456", "admin", "admin");
+		
+	}
+}
