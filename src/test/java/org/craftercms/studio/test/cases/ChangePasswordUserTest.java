@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.cases;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -10,6 +11,8 @@ import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  * 
@@ -26,7 +29,7 @@ public class ChangePasswordUserTest {
 	private HomePage homePage;
 
 	private CreatePage createPage;
-	
+
 	private AccountManagementPage accountManagementPage;
 
 	@BeforeTest
@@ -37,6 +40,7 @@ public class ChangePasswordUserTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.accountManagementPage = new AccountManagementPage(driverManager, uIElementsPropertiesManager);
+		this.createPage = new CreatePage(driverManager, uIElementsPropertiesManager);
 
 	}
 
@@ -58,36 +62,75 @@ public class ChangePasswordUserTest {
 		homePage.getDriverManager().driverWait();
 
 		// click On admin option
-		
-		createPage.clickOnAdminOption();
-		
+
+		createPage.clickAdmin();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
-		//click on settings
-		
+
+		// click on settings
+
 		createPage.clickOnSettingsOption();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
 		// change password
-		
+
 		accountManagementPage.changeUserPassword("admin", "123456", "123456");
-		
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// login to application
+
+		loginPage.loginToCrafter("admin", "123456");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// click On admin option
+
+		createPage.clickAdmin();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// click on settings
+
+		createPage.clickOnSettingsOption();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// change password
+
+		accountManagementPage.changeUserPassword("123456", "admin", "admin");
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 		
 		// login to application
 
-		loginPage.loginToCrafter("admin", "123456");
-		
-		// change password
-		
-		accountManagementPage.changeUserPassword("123456", "admin", "admin");
-		
+		loginPage.loginToCrafter("admin", "admin");
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// Assert create button is present.
+
+		WebElement createButton = driverManager.getDriver()
+				.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
+
+		Assert.assertTrue(createButton.isDisplayed());
+
 	}
 }

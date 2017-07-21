@@ -56,7 +56,7 @@ public class AccountManagementPage {
 
 	public void setNewPassword(String strNewPassword) {
 
-		WebElement newPass = driver.findElement(By.id(newPassword));
+		WebElement newPass = driver.findElement(By.cssSelector(newPassword));
 		newPass.sendKeys(strNewPassword);
 
 	}
@@ -65,7 +65,7 @@ public class AccountManagementPage {
 
 	public void setConfirmNewPassword(String strConfNewPassword) {
 
-		WebElement confPass = driver.findElement(By.id(confirmPassword));
+		WebElement confPass = driver.findElement(By.cssSelector(confirmPassword));
 		confPass.sendKeys(strConfNewPassword);
 
 	}
