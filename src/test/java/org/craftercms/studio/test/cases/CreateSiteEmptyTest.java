@@ -23,8 +23,6 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class CreateSiteEmptyTest {
 
-	WebDriver driver;
-
 	LoginPage objLogin;
 
 	HomePage objHomePage;
@@ -32,8 +30,6 @@ public class CreateSiteEmptyTest {
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
 
 	private HomePage homePage;
 
@@ -44,15 +40,15 @@ public class CreateSiteEmptyTest {
 	 @BeforeTest
 	 public void beforeTest() {
 	 this.driverManager = new WebDriverManager();
-	 this.UIElementsPropertiesManager = new
+	 UIElementsPropertiesManager uIElementsPropertiesManager = new
 	 org.craftercms.studio.test.utils.UIElementsPropertiesManager(
 	 FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 	 this.loginPage = new LoginPage(driverManager,
-	 this.UIElementsPropertiesManager);
+			 uIElementsPropertiesManager);
 	 this.homePage = new HomePage(driverManager,
-	 this.UIElementsPropertiesManager);
+			 uIElementsPropertiesManager);
 	 this.createPage = new CreatePage(driverManager,
-	 this.UIElementsPropertiesManager);
+			 uIElementsPropertiesManager);
 
 	
 	 }
@@ -64,7 +60,7 @@ public class CreateSiteEmptyTest {
 
 	@Test(priority = 0)
 
-	public void create_site_empty() {
+	public void createSiteEmpty() {
 
 		// login to application
 
