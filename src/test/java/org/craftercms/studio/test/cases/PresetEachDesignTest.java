@@ -20,7 +20,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class AddNewContentEntryTest {
+public class PresetEachDesignTest {
 
 	private WebDriverManager driverManager;
 
@@ -152,7 +152,7 @@ public class AddNewContentEntryTest {
 
 		// Set basics fields of the new content created
 
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+		dashboardPage.setBasicFieldsOfNewContent("PRESET", "PRESET TESTING");
 
 		// wait for element is clickeable
 
@@ -192,9 +192,22 @@ public class AddNewContentEntryTest {
 
 	}
 
+	public void presets() {
+
+		// open publishing channel combo
+
+		driverManager.getDriver().findElement(By.cssSelector("#medium-panel-elem > div.acn-accordion-header > a")).click();
+
+		//desktop prese
+
+		 String contentURL = driverManager.getDriver()
+		 .findElement(By.cssSelector("#engineWindow")).getText();
+		 Assert.assertTrue(contentURL.contains(contentURL));
+	}
+
 	@Test(priority = 0)
 
-	public void addNewContentEntry() {
+	public void presetDesign() {
 
 		// login to application
 
@@ -233,7 +246,7 @@ public class AddNewContentEntryTest {
 		// create content
 
 		createContent();
-		
+
 		// Expand Home Tree
 
 		dashboardPage.expandHomeTree();
@@ -242,11 +255,26 @@ public class AddNewContentEntryTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Assert of the test case is fine
+		// select content
 
-		String contentURL = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
-		Assert.assertTrue(contentURL.contains(contentURL));
+		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// open tools
+
+		driverManager.getDriver().findElement(By.cssSelector("#acn-preview-tools-image")).click();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait();
+
+		// presets and asserts
+
+		presets();
+
 	}
 
 }
