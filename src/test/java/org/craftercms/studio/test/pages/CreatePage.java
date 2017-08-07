@@ -355,6 +355,20 @@ public class CreatePage {
 		this.clickSettings();
 
 	}
+	
+	public void createRandomSite() {
+		// Filling the name of site
+		this.fillSiteName();
+		// Filling the description of the site
+		this.fillDescription("Description");
+		// Open blueprint combo
+		this.openBlueprintCombo();
+		// Select empty blueprint
+		this.selectEmptyBlueprint();
+		// Click on Create button
+		this.clickOnCreateSiteButton();
+	}
+
 
 	public WebDriverManager getDriverManager() {
 		return driverManager;
