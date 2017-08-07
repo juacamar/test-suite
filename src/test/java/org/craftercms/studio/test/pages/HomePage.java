@@ -1,15 +1,17 @@
 package org.craftercms.studio.test.pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -26,6 +28,7 @@ public class HomePage {
 	private String yesDeleteButton;
 	private String logOutLink;
 	private String signOutLink;
+	private String usersContextualNavigationOption;
 
 	/**
 	 * 
@@ -36,21 +39,23 @@ public class HomePage {
 		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
 		previewSite1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.preview_link");
 		dashboardSite2 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.dashboard_link");
-		editRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.edit_my_recent_activty");
-		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.see_page_recent_activity");
-		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
+		editRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("home.edit_my_recent_activty");
+		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("home.see_page_recent_activity");
+		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("home.create_site_button");
 		deleteSiteIcon = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.delete_site_icon");
-		yesDeleteButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.confirm_to_delete");
+		yesDeleteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("home.confirm_to_delete");
 		logOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.expand_account");
 		signOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.sign_out");
-				
-				
+		usersContextualNavigationOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("home.userscontextualnavigationoption");
 
 	}
 
 	// Click on preview link
-
-
 
 	public void clickPreviewOption() {
 
@@ -184,40 +189,78 @@ public class HomePage {
 		this.clickYesButton();
 
 	}
-	
+
 	// Logout to the crafter
 
-		public void expandAccount() {
+	public void expandAccount() {
 
-			WebElement expandAccount = driver.findElement(By.cssSelector(logOutLink));
-			expandAccount.click();
-			
-		}
-		
-		public void clickSignOut() {
+		WebElement expandAccount = driver.findElement(By.cssSelector(logOutLink));
+		expandAccount.click();
 
-			
-			WebElement signOut = driver.findElement(By.cssSelector(signOutLink));
-			signOut.click();
+	}
 
-		}
+	public void clickSignOut() {
 
-		public void clickLogoutOutCrafter() {
+		WebElement signOut = driver.findElement(By.cssSelector(signOutLink));
+		signOut.click();
 
-			//Expand account
+	}
 
-			this.expandAccount();
-			
-			//Click on SignOut
-			
-			this.clickSignOut();
-			
+	public void clickLogoutOutCrafter() {
 
-		}
+		// Expand account
+
+		this.expandAccount();
+
+		// Click on SignOut
+
+		this.clickSignOut();
+
+	}
 
 	public String getHomePageDashboardUserName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	public void clickUsersContextualNavigationOption() {
+		WebElement usersContextualNavigationOptionWebElement = driver
+				.findElement(By.xpath(usersContextualNavigationOption));
+		usersContextualNavigationOptionWebElement.click();
+	}
+
+	public boolean isElementPresentByXpath(String xpathOfTheElement) {
+		boolean isElementPresent = true;
+
+		try {
+
+			this.driverManager.getDriver().manage().timeouts().implicitlyWait(1200, TimeUnit.MILLISECONDS);
+			@SuppressWarnings("unused")
+
+			WebElement webElement = driverManager.getDriver().findElement(By.xpath(xpathOfTheElement));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
+	}
+
+	public Boolean isUsersContextualNavigationOptionPresent() {
+		return this.isElementPresentByXpath(usersContextualNavigationOption);
+	}
+
+	public void deleteSite() {
+
+		// Click on Delete icon
+		this.clickOnDeleteSiteIcon();
+
+		// wait for element is clickeable
+		this.getDriverManager().driverWait();
+
+		// Click on YES to confirm the delete.
+		this.clickOnYesToDeleteSite();
+
+		// wait for element is clickeable
+		this.getDriverManager().driverWait();
+	}
 }

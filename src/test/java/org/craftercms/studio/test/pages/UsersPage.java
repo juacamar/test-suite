@@ -1,8 +1,11 @@
 package org.craftercms.studio.test.pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -21,6 +24,8 @@ public class UsersPage {
 	private String saveNewUserOption;
 	private String deleteUserOption2;
 	private String editUserOption;
+	private String usersPageTitle;
+	private String crafterLogo;
 
 	/**
 	 * 
@@ -35,6 +40,8 @@ public class UsersPage {
 		deleteUserOption2 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("users.delete_option2");
 		editUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.edit_option");
+		usersPageTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.page_title");
+		crafterLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.crafterlogo");
 
 	}
 
@@ -153,6 +160,32 @@ public class UsersPage {
 
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	public boolean isElementPresentByXpath(String xpathOfTheElement) {
+		boolean isElementPresent = true;
+
+		try {
+
+			this.driverManager.getDriver().manage().timeouts().implicitlyWait(1200, TimeUnit.MILLISECONDS);
+			@SuppressWarnings("unused")
+
+			WebElement webElement = driverManager.getDriver().findElement(By.xpath(xpathOfTheElement));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
+	}
+
+	public Boolean isUsersPageTitlePresent() {
+		return this.isElementPresentByXpath(usersPageTitle);
+	}
+
+	public void clickOnCrafterLogo() {
+		WebElement crafterLogoWebElement = driverManager.getDriver().findElement(By.xpath(crafterLogo));
+		crafterLogoWebElement.click();
+
 	}
 
 }
