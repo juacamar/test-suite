@@ -1,13 +1,20 @@
 package org.craftercms.studio.test.utils;
 
+import java.awt.Toolkit;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Point;
 
 public class WebDriverManager {
 	WebDriver driver;
@@ -38,6 +45,7 @@ public class WebDriverManager {
 			driver = new FirefoxDriver();
 		}
 
+		this.maximizeWindow();
 		driver.get(constantsPropertiesManager.getSharedExecutionConstants().getProperty("baseUrl"));
 	}
 
@@ -46,11 +54,16 @@ public class WebDriverManager {
 		this.driver.quit();
 	}
 	
-	public void maximizeWindow() {   
-		//driver.manage().window().maximize(); 
-		 Dimension d = new Dimension(1400,1600);
-         //Resize current window to the set dimension
-         driver.manage().window().setSize(d);
+	public void maximizeWindow() {
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		int width = (int) toolkit.getScreenSize().getWidth();
+		int height = (int) toolkit.getScreenSize().getHeight();
+
+		this.driver.manage().window().setPosition(new Point(0, 0));
+		this.driver.manage().window().maximize();
+		this.driver.manage().window().setSize(new Dimension(width, height));
+		this.driverWait();
+
 	}
 
 	public WebDriver getDriver() {
@@ -70,4 +83,42 @@ public class WebDriverManager {
 			ie1.printStackTrace();
 		}
 	}
+	
+	public void dragAndDropElement (WebElement fromWebElement, WebElement toWebElement) {
+		//Creating an actions builder
+		Actions builder = new Actions(this.getDriver());
+
+		//Creating the action for click and hold from the origin web element
+		Action dragAndDrop = builder.clickAndHold(fromWebElement)
+		.moveToElement(toWebElement)
+		.release(toWebElement)
+		.build();
+
+		//commit the actions above
+		dragAndDrop.perform();
+		
+		//wait for a couple of secs
+		this.driverWait();
+	}
+	
+	public boolean isElementPresentByXpath(String xpathOfTheElement) {
+		boolean isElementPresent = true;
+
+		try {
+
+			this.getDriver().manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+			@SuppressWarnings("unused")
+
+			WebElement webElement = this.getDriver().findElement(By.xpath(xpathOfTheElement));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
+	}
+	
+	public void setImplicitlyWaitTimeForFindElements(){
+		this.getDriver().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+	}
+
 }

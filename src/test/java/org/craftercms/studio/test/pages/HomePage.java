@@ -1,11 +1,9 @@
 package org.craftercms.studio.test.pages;
 
-import java.util.concurrent.TimeUnit;
 
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -229,24 +227,8 @@ public class HomePage {
 		usersContextualNavigationOptionWebElement.click();
 	}
 
-	public boolean isElementPresentByXpath(String xpathOfTheElement) {
-		boolean isElementPresent = true;
-
-		try {
-
-			this.driverManager.getDriver().manage().timeouts().implicitlyWait(1200, TimeUnit.MILLISECONDS);
-			@SuppressWarnings("unused")
-
-			WebElement webElement = driverManager.getDriver().findElement(By.xpath(xpathOfTheElement));
-		} catch (NoSuchElementException e) {
-			isElementPresent = false;
-		}
-
-		return isElementPresent;
-	}
-
 	public Boolean isUsersContextualNavigationOptionPresent() {
-		return this.isElementPresentByXpath(usersContextualNavigationOption);
+		return this.driverManager.isElementPresentByXpath(usersContextualNavigationOption);
 	}
 
 	public void deleteSite() {
