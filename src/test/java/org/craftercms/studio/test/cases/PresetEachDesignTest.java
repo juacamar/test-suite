@@ -1,12 +1,11 @@
 package org.craftercms.studio.test.cases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.AdminConsolePage;
+import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
@@ -30,7 +29,7 @@ public class PresetEachDesignTest {
 
 	private DashboardPage dashboardPage;
 
-	private AdminConsolePage adminConsolePage;
+	private SiteConfigPage siteConfigPage;
 
 	@BeforeTest
 	public void beforeTest() {
@@ -40,7 +39,7 @@ public class PresetEachDesignTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
-		this.adminConsolePage = new AdminConsolePage(driverManager, uIElementsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 
 	}
 
@@ -67,11 +66,11 @@ public class PresetEachDesignTest {
 		homePage.getDriverManager().driverWait();
 
 		// select content types
-		adminConsolePage.selectContentTypeOption();
+		siteConfigPage.selectContentTypeOption();
 
 		// open content types
 
-		adminConsolePage.clickExistingTypeOption();
+		siteConfigPage.clickExistingTypeOption();
 
 		// wait for element is clickeable
 
@@ -79,11 +78,11 @@ public class PresetEachDesignTest {
 
 		// Select the Entry content type
 
-		adminConsolePage.selectEntryContentType();
+		siteConfigPage.selectEntryContentType();
 
 		// Confirm the content type selected
 
-		adminConsolePage.confirmContentTypeSelected();
+		siteConfigPage.confirmContentTypeSelected();
 
 		// wait for element is clickeable
 
@@ -108,7 +107,7 @@ public class PresetEachDesignTest {
 
 		// save
 
-		adminConsolePage.saveDragAndDropProcess();
+		siteConfigPage.saveDragAndDropProcess();
 
 		// wait for element is clickeable
 
