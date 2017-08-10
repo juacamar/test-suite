@@ -37,6 +37,7 @@ public class CreateSitePage {
 	private String documentationOption;
 	private String adminDropdownOption;
 	private String settingsOption;
+	private String webSitEditorialBlueprintLocator;
 
 	/**
 	 * 
@@ -64,11 +65,15 @@ public class CreateSitePage {
 		usersOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.users_option");
 		helpOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_help_option");
 		aboutOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_about_option");
-		documentationOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_documentation_option");
-		adminDropdownOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_admin_dropdown_option");
+		documentationOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create_documentation_option");
+		adminDropdownOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create_admin_dropdown_option");
 		settingsOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create_settings_option");
-		
+		webSitEditorialBlueprintLocator= UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("create.websiteditorialblueprint");
+
 	}
 
 	public CreateSitePage(WebDriver driver) {
@@ -82,7 +87,7 @@ public class CreateSitePage {
 	public void setSiteName() {
 
 		WebElement nameNewSite = driver.findElement(By.cssSelector(siteName));
-		nameNewSite.sendKeys(RandomStringUtils.randomAlphabetic(5));
+		nameNewSite.sendKeys("testsite"+RandomStringUtils.randomAlphabetic(5).toLowerCase());
 
 	}
 
@@ -320,12 +325,12 @@ public class CreateSitePage {
 		this.clickDocumentation();
 
 	}
-	
+
 	// Press on admin option
 
 	public void clickAdmin() {
 
-		WebElement admin = driver.findElement(By.cssSelector(adminDropdownOption)); 
+		WebElement admin = driver.findElement(By.cssSelector(adminDropdownOption));
 		admin.click();
 
 	}
@@ -337,7 +342,6 @@ public class CreateSitePage {
 		this.clickAdmin();
 
 	}
-	
 
 	// Press on settings option
 
@@ -355,7 +359,7 @@ public class CreateSitePage {
 		this.clickSettings();
 
 	}
-	
+
 	public void createRandomSite() {
 		// Filling the name of site
 		this.fillSiteName();
@@ -368,7 +372,6 @@ public class CreateSitePage {
 		// Click on Create button
 		this.clickOnCreateSiteButton();
 	}
-
 
 	public WebDriverManager getDriverManager() {
 		return driverManager;
@@ -384,6 +387,17 @@ public class CreateSitePage {
 
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	public void selectWebEditorialBlueprint() {
+		// select blue corporate print
+		this.webSiteEditorialBluePrint();
+
+	}
+
+	private void webSiteEditorialBluePrint() {
+		WebElement blueprintWebSiteEditorial = driver.findElement(By.cssSelector(webSitEditorialBlueprintLocator));
+		blueprintWebSiteEditorial.click();
 	}
 
 }

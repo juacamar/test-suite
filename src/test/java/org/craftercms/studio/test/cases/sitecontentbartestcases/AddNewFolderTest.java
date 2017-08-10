@@ -89,7 +89,7 @@ public class AddNewFolderTest {
 
 		// right click to see the the menu
 
-		dashboardPage.rightClickToNewContent();
+		dashboardPage.rightClickToFolderOnHome();
 
 		// Set the name of the folder
 

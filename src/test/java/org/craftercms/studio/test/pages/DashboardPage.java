@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  *
@@ -57,6 +58,7 @@ public class DashboardPage {
 	private String previewSync;
 	private String editRecentlyContentCreated;
 	private String selectEntryCT;
+	private String pageArticleContentTypeLocator;
 	private String homeTree;
 	private String crafterComponent;
 	private String folderCreated;
@@ -76,6 +78,25 @@ public class DashboardPage {
 	private String deleteCrafterComponent2;
 	private String homeTreeDashbard;
 	private String usersContextualNavigationOption;
+	private String articlesTitleLocator;
+	private String copyOptionLocator;
+	private String categoriesLocator;
+	private String copyButonOnTreeSelector;
+	private String pasteOptionLocator;
+	private String cutOptionLocator;
+	private String homeTreeLocator;
+	private String contextualNavigationEditLocator;
+	private String contextualNavigationHistoryLocator;
+	private String compareButtonLocator;
+	private String closeButtonLocator;
+	private String historyCloseButtonLocator;
+	private String publishOptionLocator;
+	private String approveAndPublishPublishButtonLocator;
+	private String deleteOptionLocator;
+	private String deleteDeletButtonLocator;
+	private String addNewFolderOption;
+	private String addNewContentOption;
+	private String deleteOKButtonLocator;
 
 	/**
 	 * 
@@ -150,14 +171,14 @@ public class DashboardPage {
 				.getProperty("dashboard.copy_content");
 		newContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.new_content");
-		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_folderToCopy");
+		// UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_folderToCopy");
 		aboutUsOptionToTree1 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_tree1");
 		aboutUsOptionTreeLevel1 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_to_the_tree_leve1");
 		aboutUsOptionTreeLevel2 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_to_the_tree_leve2");
-		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_to_the_tree_leve3");
+		// UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.about_us_to_the_tree_leve3");
 		aboutUsOptionTreeCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.about_us_tree");
 		deleteAboutUsTreeCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -174,7 +195,7 @@ public class DashboardPage {
 		pageUrlField = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.page_url_field");
 		previewSync = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
-		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.recently_content_created");
+		// UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.recently_content_created");
 		editRecentlyContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.edit_recently_content_created");
 		crafterComponent = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -207,7 +228,45 @@ public class DashboardPage {
 				.getProperty("dashboard.paste_content_copied");
 		usersContextualNavigationOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.userscontextualnavigationoption");
-
+		pageArticleContentTypeLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.pageArticle_Content_Type");
+		articlesTitleLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("frame2.articlestitlefield");
+		categoriesLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("frame2.categoriesdropdownlist");
+		copyOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.rightclickcopyoption");
+		copyButonOnTreeSelector = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.treeselectorcopybutton");
+		pasteOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.rightclickpasteoption");
+		cutOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.rightclickcutoption");
+		homeTreeLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.hometree");
+		contextualNavigationEditLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.contextualnavigationeditoption");
+		contextualNavigationHistoryLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.contextualnavigationhistoryoption");
+		compareButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.comparebutton");
+		closeButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.closebutton");
+		historyCloseButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.historyClosebutton");
+		publishOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.rightclickpublish");
+		approveAndPublishPublishButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.approveandpublishsubmitbutton");
+		deleteOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.rightclickdeleteoption");
+		deleteDeletButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.deletedeletebutton");
+		addNewFolderOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.rightclickaddnewfolderoption");
+		addNewContentOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.rightclickaddnewcontentoption");
+		deleteOKButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.deleteOkbutton");
 	}
 
 	public DashboardPage(WebDriver driver) {
@@ -349,7 +408,7 @@ public class DashboardPage {
 
 	// Press right click select new folder
 
-	public void rightClickNewFolder() {
+	public void rightClickNewFolderOnHome() {
 
 		WebElement newFolder = driverManager.getDriver().findElement(By.cssSelector(homeContent));
 
@@ -361,27 +420,55 @@ public class DashboardPage {
 
 	}
 
-	public void rightClickToNewContent() {
+	// Press right click select new folder
+	public void rightClickNewFolderOnAPresentFolder(WebElement parentWebElement) {
+
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(parentWebElement).build().perform();
+
+		WebElement addFolderOption = driverManager.getDriver().findElement(By.cssSelector(addNewFolderOption));
+		addFolderOption.click();
+
+	}
+
+	// Press right click to see the menu
+	public void rightClickCreatePageOnAPresentFolder(WebElement parentWebElement) {
+
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(parentWebElement).build().perform();
+
+		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContentOption));
+		addContent.click();
+	}
+
+	public void rightClickToFolderOnHome() {
 
 		// Press right click select new folder
 
-		this.rightClickNewFolder();
+		this.rightClickNewFolderOnHome();
 
 	}
 
 	// Select Entry Content type
 
 	public void selectEntryCT() {
-
 		WebElement entryCT = driverManager.getDriver().findElement(By.cssSelector(selectEntryCT));
 		entryCT.click();
 
 	}
 
+	public void selectPageArticleContentType() {
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo().activeElement();
+		
+		WebElement pageArticleContentType = driverManager.getDriver()
+				.findElement(By.cssSelector(pageArticleContentTypeLocator));
+		pageArticleContentType.click();
+	}
+
 	public void clickEntryCT() {
 
 		// Select Generic Content type
-
 		this.selectEntryCT();
 
 	}
@@ -885,6 +972,13 @@ public class DashboardPage {
 
 	}
 
+	public void clickCopyButtonOnTreeSelector() {
+
+		WebElement buttonCopy = driverManager.getDriver().findElement(By.xpath(copyButonOnTreeSelector));
+		buttonCopy.click();
+
+	}
+
 	// Press right click and press paste option
 
 	public void rightClickPasteOption1() {
@@ -1285,8 +1379,155 @@ public class DashboardPage {
 	}
 
 	public void clickUsersContextualNavigationOption() {
-		WebElement usersContextualNavigationOptionWebElement = driver.findElement(By.xpath(usersContextualNavigationOption));
+		WebElement usersContextualNavigationOptionWebElement = driver
+				.findElement(By.xpath(usersContextualNavigationOption));
 		usersContextualNavigationOptionWebElement.click();
+	}
+
+	public void setBasicFieldsOfNewPageArticleContent(String strPageURL, String strInternalName,
+			String strArticlesTitle) {
+		// Fill page URL
+		this.setPageURL1(strPageURL);
+		// Fill internal name
+		this.setInternalName1(strInternalName);
+		// Fill the Subject field
+		this.setArticlesTitle(strArticlesTitle);
+		// select the Category
+		this.selectFirstCategoryOfPagArticle();
+	}
+
+	public void setArticlesTitle(String strArticlesTitle) {
+		WebElement articlesTitle = driver.findElement(By.xpath(articlesTitleLocator));
+		articlesTitle.sendKeys(strArticlesTitle);
+
+	}
+
+	public void selectFirstCategoryOfPagArticle() {
+		Select categoriesDropDown = new Select(driver.findElement(By.xpath(categoriesLocator)));
+		categoriesDropDown.selectByValue("style");
+	}
+
+	public void selectAllTreeOnSelector(String folderXPath) {
+		WebElement checkAllTree = driver.findElement(By.xpath(folderXPath));
+		if (!checkAllTree.getAttribute("checked").equals("true"))
+			checkAllTree.click();
+
+	}
+
+	public void clicOnHomeTree() {
+
+		WebElement homeTree = driverManager.getDriver().findElement(By.xpath(homeTreeLocator));
+		homeTree.click();
+
+	}
+
+	public void clickOnContextualNavigationEditOption() {
+		WebElement contextualNavigationEdit = driverManager.getDriver()
+				.findElement(By.xpath(contextualNavigationEditLocator));
+		contextualNavigationEdit.click();
+	}
+
+	public void clickOnContextualNavigationHistoryOption() {
+		WebElement contextualNavigationHistory = driverManager.getDriver()
+				.findElement(By.xpath(contextualNavigationHistoryLocator));
+		contextualNavigationHistory.click();
+	}
+
+	public void clickCompareButton() {
+		WebElement compareButton = driver.findElement(By.id(compareButtonLocator));
+		compareButton.click();
+	}
+
+	public void clickCloseButton() {
+		WebElement closeButton = driver.findElement(By.id(closeButtonLocator));
+		closeButton.click();
+	}
+
+	public void clickHistoryCloseButton() {
+		WebElement historyCloseButton = driver.findElement(By.id(historyCloseButtonLocator));
+		historyCloseButton.click();
+	}
+
+	public void clickOnPublishOption() {
+		WebElement publishOption = driverManager.getDriver().findElement(By.cssSelector(publishOptionLocator));
+		publishOption.click();
+	}
+
+	public void rightClickOnAContentPage(WebElement element) {
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(element).build().perform();
+	}
+
+	public void clickApproveAndPublishSubmitButton() {
+		WebElement submitButton = driver.findElement(By.id(approveAndPublishPublishButtonLocator));
+		submitButton.click();
+	}
+
+	public void clickDeleteDeleteSubmitButton() {
+		WebElement deleteButton = driver.findElement(By.id(deleteDeletButtonLocator));
+		deleteButton.click();
+		this.acceptDeletionAction();	
+	}
+
+	public void acceptDeletionAction(){
+		driverManager.driverWait();
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().activeElement();	
+		// wait for element
+		driverManager.driverWait();
+		// Click on Publish button
+		WebElement okButton = driver.findElement(By.xpath(deleteOKButtonLocator));
+		okButton.click();
+	}
+	
+	public void rightClickCopyFolder(WebElement parentWebElement) {
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(parentWebElement).build().perform();
+
+		WebElement copyOption = driverManager.getDriver().findElement(By.cssSelector(copyOptionLocator));
+		copyOption.click();
+
+	}
+
+	public void rightClickPasteOnAFolder(WebElement parentWebElement) {
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(parentWebElement).build().perform();
+
+		WebElement pasteOption = driverManager.getDriver().findElement(By.cssSelector(pasteOptionLocator));
+		pasteOption.click();
+
+	}
+
+	public void rightClickCutAFolder(WebElement parentWebElement) {
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(parentWebElement).build().perform();
+
+		WebElement cutOption = driverManager.getDriver().findElement(By.cssSelector(cutOptionLocator));
+		cutOption.click();
+	}
+
+	public void rightClickDeleteAFolder(WebElement parentWebElement) {
+		Actions action = new Actions(driverManager.getDriver());
+		action.contextClick(parentWebElement).build().perform();
+
+		WebElement deleteOption = driverManager.getDriver().findElement(By.cssSelector(deleteOptionLocator));
+		deleteOption.click();
+	}
+
+	public void expandParentFolder(WebElement parentElement) {
+		WebElement elementToClick = parentElement;
+
+		Actions action = new Actions(driverManager.getDriver());
+		action.click(elementToClick).build().perform();
+	}
+
+	public void switchToAFormByCssSelector(String cSSSelector) {
+		this.getDriverManager().driverWait();
+		// Switch to the iframe
+		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo()
+				.frame(driverManager.getDriver().findElement(By.cssSelector(cSSSelector)));
+		
 	}
 
 }

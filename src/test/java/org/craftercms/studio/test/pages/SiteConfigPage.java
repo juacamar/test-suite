@@ -32,6 +32,8 @@ public class SiteConfigPage {
     private String inputDefaultValue;
     private String clickOnInputSection;
     private String clickOnRepeatingGroupSection;
+    private String clickOnTextAreaSection;
+    private String pageArticleContentTypeOption;
     /**
      * 
      */
@@ -52,8 +54,11 @@ public class SiteConfigPage {
         inputDefaultValue = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Default_Value");
         clickOnInputSection = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.contenttype.entry.contenttypecontainerinput");
         clickOnRepeatingGroupSection = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.contenttype.entry.contenttypecontainerrepeatinggroup");
+        clickOnTextAreaSection = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.contenttype.entry.contenttypecontainertextarea");
+        pageArticleContentTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.contenttype.pagearticleoption");
     }
-	public SiteConfigPage(WebDriver driver) {
+	
+    public SiteConfigPage(WebDriver driver) {
 
 		this.driver = driver;
 
@@ -101,6 +106,14 @@ public class SiteConfigPage {
 		selectGenericOption.click();
 
 	}
+	
+	public void selectPageArticleContentTypeOption() {
+
+		WebElement selectPageArticleOption = driver.findElement(By.cssSelector(pageArticleContentTypeOption));
+		selectPageArticleOption.click();
+
+	}
+
 
 	public void selectEntryContentType() {
 
@@ -264,6 +277,17 @@ public class SiteConfigPage {
 
 	}
 	
+	public void completeTextAreaFieldsBasics(String strTitle, String strICEGroup, String strDescription, String strDefaultValue) {
+		// Fill title
+		this.setTitle(strTitle);
+		// Fill Ice group
+		this.setIceGroup(strICEGroup);
+		// Fill description
+		this.setDescription(strDescription);
+		// Fill default value
+		this.setDefaultValue(strDefaultValue);
+	}
+	
 	// Click on input section to can view the properties 
 
 	public void clickOnInputSectionToViewTheProperties() {
@@ -297,6 +321,23 @@ public class SiteConfigPage {
 
 	}
 	
+	
+	public void clickTectAreaSection() {
+
+		// Confirm the content type selected
+
+		this.clickOnTextAreaToViewTheProperties();
+
+	}
+	
+	//Click on Repeating group to view the properties of it
+	public void clickOnTextAreaToViewTheProperties() {
+
+		WebElement showRepeatingGroupSection = driver.findElement(By.xpath(clickOnTextAreaSection));
+		showRepeatingGroupSection.click();
+
+	}
+	
 	public void selectEntryContentTypeFromAdminConsole() {
 		// select content types
 		this.selectContentTypeOption();
@@ -317,4 +358,9 @@ public class SiteConfigPage {
 	public void setDriverManager(WebDriverManager driverManager) {
 		this.driverManager = driverManager;
 	}
+
+	public void selectPageArticleContentType() {
+		this.selectPageArticleContentTypeOption();
+	}
+	
 }

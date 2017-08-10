@@ -76,7 +76,7 @@ public class WebDriverManager {
 
 	public void driverWait() {
 		long wait = Long.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultWaitTime"));
-		this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
+		//this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
 		try {
 			Thread.sleep(wait);
 		} catch (InterruptedException ie1) {

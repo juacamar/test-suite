@@ -95,7 +95,7 @@ public class ContentTypesAddRepeatingGroupTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeInputData() {
+	public void contentTypeAddRepeatingGroup() {
 
 		// login to application
 
