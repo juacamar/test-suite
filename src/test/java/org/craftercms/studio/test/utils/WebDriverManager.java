@@ -41,7 +41,7 @@ public class WebDriverManager {
 		else if (webBrowserProperty.equalsIgnoreCase("Safari"))
 			driver = new SafariDriver();
 		else {
-			// if not recognized web browser, it run by default with Firefox                
+			
 			driver = new FirefoxDriver();
 		}
 

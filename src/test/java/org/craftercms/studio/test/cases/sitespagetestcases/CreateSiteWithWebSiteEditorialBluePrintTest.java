@@ -22,9 +22,9 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
-	LoginPage objLogin;
+	private LoginPage objLogin;
 
-	HomePage objHomePage;
+	private HomePage objHomePage;
 
 	private WebDriverManager driverManager;
 
@@ -39,8 +39,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 	 @BeforeTest
 	 public void beforeTest() {
 	 this.driverManager = new WebDriverManager();
-	 UIElementsPropertiesManager uIElementsPropertiesManager = new
-	 org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+	 UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 	 FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 	 this.loginPage = new LoginPage(driverManager,
 			 uIElementsPropertiesManager);
