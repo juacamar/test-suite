@@ -50,14 +50,12 @@ public class Crafter3LoadTest1Script {
 	private String myTestBigTreeChildFolderLocator;
 	private String anotherTestBigTreeChildFolderLocator;
 
-	private WebElement parentFolder;
 	private WebElement harnessFolder;
 	private WebElement emptyFolder;
 	private WebElement bigTree1Folder;
 	private WebElement bigTree2Folder;
 	private WebElement myTestFolder;
 	private WebElement anotherTestFolder;
-	private WebElement myTestBigTreeChildFolder;
 	private WebElement bigTree2BigTree1ChildFolder;
 
 	@BeforeTest
@@ -148,7 +146,7 @@ public class Crafter3LoadTest1Script {
 
 		// Checking if parent folder is present
 		AssertJUnit.assertTrue(driverManager.isElementPresentByXpath(parentFolderLocator));
-		parentFolder = dashboardPage.getDriverManager().getDriver().findElement(By.xpath(parentFolderLocator));
+		WebElement parentFolder = dashboardPage.getDriverManager().getDriver().findElement(By.xpath(parentFolderLocator));
 
 		// creating a new folder on a given parentFolder
 		this.createFolderOnAPresentFolder(harnessFolderName, parentFolder);
@@ -421,7 +419,7 @@ public class Crafter3LoadTest1Script {
 		myTestFolder = driverManager.getDriver().findElement(By.xpath(mytestFolderLocator));
 		dashboardPage.expandParentFolder(myTestFolder);
 
-		myTestBigTreeChildFolder = driverManager.getDriver().findElement(By.xpath(myTestBigTreeChildFolderLocator));
+		WebElement myTestBigTreeChildFolder = driverManager.getDriver().findElement(By.xpath(myTestBigTreeChildFolderLocator));
 		dashboardPage.rightClickCutAFolder(myTestBigTreeChildFolder);
 
 		anotherTestFolder = driverManager.getDriver().findElement(By.xpath(anotherTestFolderLocator));

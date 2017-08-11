@@ -22,10 +22,6 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
-	private LoginPage objLogin;
-
-	private HomePage objHomePage;
-
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
