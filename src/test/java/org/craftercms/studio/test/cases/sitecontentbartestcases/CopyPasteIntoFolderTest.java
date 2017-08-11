@@ -234,7 +234,7 @@ public class CopyPasteIntoFolderTest {
 
 		// right click to see the the menu
 
-		dashboardPage.rightClickNewFolder();
+		dashboardPage.rightClickNewFolderOnHome();
 
 		// Set the name of the folder
 

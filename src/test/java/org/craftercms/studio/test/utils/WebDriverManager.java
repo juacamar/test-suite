@@ -41,7 +41,7 @@ public class WebDriverManager {
 		else if (webBrowserProperty.equalsIgnoreCase("Safari"))
 			driver = new SafariDriver();
 		else {
-			// if not recognized web browser, it run by default with Firefox                
+			
 			driver = new FirefoxDriver();
 		}
 
@@ -76,7 +76,7 @@ public class WebDriverManager {
 
 	public void driverWait() {
 		long wait = Long.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultWaitTime"));
-		this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
+		//this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
 		try {
 			Thread.sleep(wait);
 		} catch (InterruptedException ie1) {

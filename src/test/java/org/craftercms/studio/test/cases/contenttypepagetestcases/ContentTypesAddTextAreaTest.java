@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
  * @author luishernandez
  *
  */
-public class ContentTypesAddRepeatingGroupTest {
+public class ContentTypesAddTextAreaTest {
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -28,9 +28,9 @@ public class ContentTypesAddRepeatingGroupTest {
 
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
-	private String controlsSectionRepeatingGroupLocator;
+	private String controlsSectionTextAreaLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
-	private String contentTypeContainerRepeatingGroupTitleLocator;
+	private String contentTypeContainerTextAreaTitleLocator;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -44,12 +44,12 @@ public class ContentTypesAddRepeatingGroupTest {
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.controlsSectionRepeatingGroupLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.controlsrepeatinggroup");
+		this.controlsSectionTextAreaLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.controlstextarea");
 		this.contentTypeContainerFormSectionContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
-		this.contentTypeContainerRepeatingGroupTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.contenttypecontainerrepeatinggrouptitle");
+		this.contentTypeContainerTextAreaTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainertextareatitle");
 	}
 
 	@AfterTest
@@ -57,7 +57,7 @@ public class ContentTypesAddRepeatingGroupTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForRepeatingGroup() {
+	public void dragAndDropForTextArea() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -79,7 +79,7 @@ public class ContentTypesAddRepeatingGroupTest {
 		driverManager.setImplicitlyWaitTimeForFindElements();
 
 		WebElement FromRepeatingGroup = driverManager.getDriver()
-				.findElement(By.xpath(controlsSectionRepeatingGroupLocator));
+				.findElement(By.xpath(controlsSectionTextAreaLocator));
 
 		WebElement ToDefaultSection = driverManager.getDriver()
 				.findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
@@ -87,7 +87,7 @@ public class ContentTypesAddRepeatingGroupTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRepeatingGroup, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeRepeatingGroupFieldsBasics("TestTitle", "TestICEGroup", "TestDescription");
+		siteConfigPage.completeTextAreaFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -95,7 +95,7 @@ public class ContentTypesAddRepeatingGroupTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddRepeatingGroup() {
+	public void contentTypeAddTextArea() {
 
 		// login to application
 
@@ -131,7 +131,7 @@ public class ContentTypesAddRepeatingGroupTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForRepeatingGroup();
+		this.dragAndDropForTextArea();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();
@@ -156,7 +156,7 @@ public class ContentTypesAddRepeatingGroupTest {
 
 		// Asserts that fields are not empty.
 		String titleText = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerRepeatingGroupTitleLocator)).getText();
+				.findElement(By.xpath(contentTypeContainerTextAreaTitleLocator)).getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

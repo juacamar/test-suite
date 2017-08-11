@@ -247,7 +247,7 @@ public class CutPasteContentTest {
 
 		// right click to see the menu
 
-		dashboardPage.rightClickToNewContent();
+		dashboardPage.rightClickToFolderOnHome();
 		
 		// wait for element is clickeable
 

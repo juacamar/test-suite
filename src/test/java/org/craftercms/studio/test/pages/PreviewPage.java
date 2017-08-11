@@ -44,14 +44,18 @@ public class PreviewPage {
 	public PreviewPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driverManager.getDriver();
-		adminConsole = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.admin_console_link");
-		openComboSites = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.open_combo_sites");
-		clickPreviewTools = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.preview_tools");
+		adminConsole = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("preview.admin_console_link");
+		openComboSites = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("preview.open_combo_sites");
+		clickPreviewTools = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("preview.preview_tools");
 		expandInContextEditing = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.expand_in_context_editing");
 		clickInContextEdit = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.enable_disable_in_context_edit");
-		approvePublish = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.approve&publish");
+		approvePublish = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("preview.approve&publish");
 		submitButtonApprovePublish = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.approve&publish_submit");
 		previewDuplicate = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.duplicate");
@@ -61,21 +65,17 @@ public class PreviewPage {
 		expandGlobalEntryContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.expand_GlobalEntry_Tree");
 		previewDelete = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.delete");
-		deleteDependencies = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.delete_dependencies");
+		deleteDependencies = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("preview.delete_dependencies");
 		OKdeleteDependencies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.ok_delete_dependencies");
-		previewEdit = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.edit");
-		internalName = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("frame1.internal_Name");
-		saveAndCloseiFrame = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("frame1.save_close");
-		previewHistory = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.history");
+		previewEdit = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.edit");
+		internalName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.internal_Name");
+		saveAndCloseiFrame = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.save_close");
+		previewHistory = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.history");
 		previewDependecies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.dependencies");
-		
-				
+
 	}
 
 	public PreviewPage(WebDriver driver2) {
@@ -289,12 +289,12 @@ public class PreviewPage {
 		this.EditButton();
 
 	}
-	
+
 	// Click on history button of the menu
 
 	public void historyButton() {
 
-		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewHistory));   
+		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewHistory));
 		historyOption.click();
 
 	}
@@ -306,24 +306,23 @@ public class PreviewPage {
 		this.historyButton();
 
 	}
-	
-	
+
 	// Click on dependencies button of the menu
 
-		public void dependenciesButton() {
+	public void dependenciesButton() {
 
-			WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewDependecies));
-			historyOption.click();
+		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewDependecies));
+		historyOption.click();
 
-		}
+	}
 
-		public void clickOnDependenciesOption() {
+	public void clickOnDependenciesOption() {
 
-			// Click on dependencies button of the menu
+		// Click on dependencies button of the menu
 
-			this.dependenciesButton();
+		this.dependenciesButton();
 
-		}
+	}
 
 	// Set the new name duplicated
 
@@ -392,40 +391,39 @@ public class PreviewPage {
 		this.SaveAndClose();
 
 	}
-	
-	
+
 	// Set the new name of the URL
 
-		public void changeInternalName(String strNewInternalName) {
+	public void changeInternalName(String strNewInternalName) {
 
-			WebElement URLName = driverManager.getDriver().findElement(By.xpath(internalName));
-			URLName.sendKeys(strNewInternalName);
+		WebElement URLName = driverManager.getDriver().findElement(By.xpath(internalName));
+		URLName.sendKeys(strNewInternalName);
 
-		}
+	}
 
-		public void setNewInternalName(String strNewInternalName) {
+	public void setNewInternalName(String strNewInternalName) {
 
-			// Set the new name of the URL
+		// Set the new name of the URL
 
-			this.changeInternalName(strNewInternalName);
+		this.changeInternalName(strNewInternalName);
 
-		}
-		
+	}
+
+	// Click save and close
+
+	public void saveAndCloseButton() {
+
+		WebElement saveClose = driverManager.getDriver().findElement(By.cssSelector(saveAndCloseiFrame));
+		saveClose.click();
+
+	}
+
+	public void clickOnSaveAndCloseButton() {
+
 		// Click save and close
-		
-		public void saveAndCloseButton() {
 
-			WebElement saveClose = driverManager.getDriver().findElement(By.cssSelector(saveAndCloseiFrame));
-			saveClose.click();
+		this.saveAndCloseButton();
 
-		}
-
-		public void clickOnSaveAndCloseButton() {
-
-			// Click save and close
-
-			this.saveAndCloseButton();
-
-		}
+	}
 
 }

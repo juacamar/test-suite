@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="CrafterSuite">
-
+<suite name="CrafterSuite" parallel="none" preserve-order="true" thread-count="1">
 <!-- UI Test Cases -->
 
  <test name="Try to delete user connected test">
@@ -354,5 +353,18 @@
     <class name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
   </classes>
   </test> <!-- Test -->
-  
+
+<!--
+	<test name="Crafter3LoadTest1">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+			<class
+				name="org.craftercms.studio.test.cases.complexscenariostestcases.Crafter3LoadTest1Script" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> 
+-->
+
 </suite> <!-- Suite -->
