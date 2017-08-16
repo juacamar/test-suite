@@ -6,11 +6,13 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriver; 
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
@@ -25,23 +27,22 @@ public class WebDriverManager {
 		String webBrowserProperty = constantsPropertiesManager.getSharedExecutionConstants().getProperty("webBrowser");
 
 		if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
-
 			System.setProperty("phantomjs.binary.path",
-					constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomJSExec"));
-			driver = new PhantomJSDriver();
+			 constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomJSExec"));
+		     driver=new PhantomJSDriver();
 		}
-		
+
 		else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
 
 			System.setProperty("webdriver.chrome.driver",
 					constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeExec"));
 			driver = new ChromeDriver();
 		}
-		
+
 		else if (webBrowserProperty.equalsIgnoreCase("Safari"))
 			driver = new SafariDriver();
 		else {
-			
+
 			driver = new FirefoxDriver();
 		}
 
@@ -49,11 +50,11 @@ public class WebDriverManager {
 		driver.get(constantsPropertiesManager.getSharedExecutionConstants().getProperty("baseUrl"));
 	}
 
-	public void closeConnection() {   
+	public void closeConnection() {
 		this.driver.close();
 		this.driver.quit();
 	}
-	
+
 	public void maximizeWindow() {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		int width = (int) toolkit.getScreenSize().getWidth();
@@ -75,32 +76,31 @@ public class WebDriverManager {
 	}
 
 	public void driverWait() {
-		long wait = Long.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultWaitTime"));
-		//this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
+		long wait = Long
+				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultWaitTime"));
+		// this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
 		try {
 			Thread.sleep(wait);
 		} catch (InterruptedException ie1) {
 			ie1.printStackTrace();
 		}
 	}
-	
-	public void dragAndDropElement (WebElement fromWebElement, WebElement toWebElement) {
-		//Creating an actions builder
+
+	public void dragAndDropElement(WebElement fromWebElement, WebElement toWebElement) {
+		// Creating an actions builder
 		Actions builder = new Actions(this.getDriver());
 
-		//Creating the action for click and hold from the origin web element
-		Action dragAndDrop = builder.clickAndHold(fromWebElement)
-		.moveToElement(toWebElement)
-		.release(toWebElement)
-		.build();
+		// Creating the action for click and hold from the origin web element
+		Action dragAndDrop = builder.clickAndHold(fromWebElement).moveToElement(toWebElement).release(toWebElement)
+				.build();
 
-		//commit the actions above
+		// commit the actions above
 		dragAndDrop.perform();
-		
-		//wait for a couple of secs
+
+		// wait for a couple of secs
 		this.driverWait();
 	}
-	
+
 	public boolean isElementPresentByXpath(String xpathOfTheElement) {
 		boolean isElementPresent = true;
 
@@ -116,9 +116,8 @@ public class WebDriverManager {
 
 		return isElementPresent;
 	}
-	
-	public void setImplicitlyWaitTimeForFindElements(){
-		this.getDriver().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
-	}
 
+	public void setImplicitlyWaitTimeForFindElements() {
+		this.getDriver().manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+	}
 }

@@ -279,7 +279,9 @@ public class DashboardPage {
 
 	public void clickPagesTree() {
 
-		WebElement expandPagesTree = driverManager.getDriver().findElement(By.cssSelector(pagesTree));
+		this.getDriverManager().driverWait();
+		
+		WebElement expandPagesTree = driverManager.getDriver().findElement(By.xpath(pagesTree));
 		expandPagesTree.click();
 
 	}
@@ -296,6 +298,8 @@ public class DashboardPage {
 
 	public void clickGlobalEntryContent() {
 
+		this.getDriverManager().driverWait();
+		
 		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(homeTree));
 		globalEntry.click();
 
@@ -313,6 +317,8 @@ public class DashboardPage {
 
 	public void clicHomeTree2() {
 
+		this.getDriverManager().driverWait();
+		
 		WebElement homeTree = driverManager.getDriver().findElement(By.cssSelector(homeTreeDashbard));
 		homeTree.click();
 
@@ -330,6 +336,8 @@ public class DashboardPage {
 
 	public void clickHomeContent() {
 
+		this.getDriverManager().driverWait();
+		
 		WebElement home = driverManager.getDriver().findElement(By.cssSelector(homeContentTree));
 		home.click();
 
@@ -346,13 +354,15 @@ public class DashboardPage {
 	// Press right click and select new content
 
 	public void rightClickHome() {
-
-		WebElement home = driverManager.getDriver().findElement(By.cssSelector(homeContent));
-
+		
+		WebElement home = driverManager.getDriver().findElement(By.xpath(homeContent));
+		
 		Actions action = new Actions(driverManager.getDriver());
 		action.contextClick(home).build().perform();
-
-		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContent));
+		
+		driverManager.driverWait();
+	
+		WebElement addContent = driverManager.getDriver().findElement(By.xpath(addNewContent));
 		addContent.click();
 	}
 

@@ -5,10 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -28,8 +28,8 @@ public class AddNewContentEntryTest {
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
-
-	private SiteConfigPage siteConfigPage;
+	
+	private PreviewPage previewPage;
 
 	@BeforeTest
 	public void beforeTest() {
@@ -38,84 +38,19 @@ public class AddNewContentEntryTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 
 	}
 
 	@AfterTest
 	public void afterTest() {
-		driverManager.closeConnection();
+		driverManager.closeConnection(); 
 	}
 
 	public void notRequired() {
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to admin console page
-
-		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// select content types
-		siteConfigPage.selectContentTypeOption();
-
-		// open content types
-
-		siteConfigPage.clickExistingTypeOption();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Select the Entry content type
-
-		siteConfigPage.selectEntryContentType();
-
-		// Confirm the content type selected
-
-		siteConfigPage.confirmContentTypeSelected();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// select main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Body not required
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// save
-
-		siteConfigPage.saveDragAndDropProcess();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		
+		previewPage.changeBodyOfEntryContentPageToNotRequired();
 
 	}
 
@@ -200,7 +135,7 @@ public class AddNewContentEntryTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// MaximizeWindow
-		driverManager.maximizeWindow();
+		//driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
@@ -218,9 +153,7 @@ public class AddNewContentEntryTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// body not required
-
-		notRequired();
-
+		this.notRequired();
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -232,7 +165,7 @@ public class AddNewContentEntryTest {
 		// create content
 
 		createContent();
-		
+
 		// Expand Home Tree
 
 		dashboardPage.expandHomeTree();
