@@ -425,7 +425,7 @@ public class DashboardPage {
 
 	public void rightClickNewFolderOnHome() {
 
-		WebElement newFolder = driverManager.getDriver().findElement(By.cssSelector(homeContent));
+		WebElement newFolder = driverManager.getDriver().findElement(By.xpath(homeContent));
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), newFolder);
 		// Actions action = new Actions(driverManager.getDriver());
