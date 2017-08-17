@@ -14,6 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 
@@ -46,8 +47,10 @@ public class WebDriverManager {
 				driver = new SafariDriver();
 
 			else {
-				// if not recognized web browser, it run by default with Firefox
-				driver = new FirefoxDriver();
+				System.setProperty("webdriver.gecko.driver", constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec"));
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				//capabilities.setCapability("marionette", true);
+				driver = new FirefoxDriver(capabilities);
 			}
 
 		} else {
@@ -83,8 +86,18 @@ public class WebDriverManager {
 
 				driver = new InternetExplorerDriver();
 			} else {
-				// if not recognized web browser, it run by default with Firefox
-				driver = new FirefoxDriver();
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				capabilities.setCapability("marionette", true);
+				
+				if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("bitsVersionForFireFox")
+						.equalsIgnoreCase("32"))
+					System.setProperty("webdriver.gecko.driver", 
+							constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec32"));
+				else
+					System.setProperty("webdriver.gecko.driver", 
+							constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec64"));
+
+				driver = new FirefoxDriver(capabilities);
 			}
 
 		}
@@ -162,5 +175,21 @@ public class WebDriverManager {
 
 	public void setImplicitlyWaitTimeForFindElements() {
 		this.getDriver().manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+	}
+	
+	public void contextClick(WebDriver driver, WebElement element) {
+	    if(driver instanceof PhantomJSDriver) {
+	        String script =
+	                "var element = arguments[0];" +
+	                "var event = document.createEvent('HTMLEvents');" +
+	                "event.initEvent('contextmenu', true, false);" +
+	                "element.dispatchEvent(event);";
+	        ((JavascriptExecutor)driver).executeScript(script, new Object[]{element});
+	    } else {
+	        (new Actions(driver))
+	                .contextClick(element)
+	                .build()
+	                .perform();
+	    }
 	}
 }

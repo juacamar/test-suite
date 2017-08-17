@@ -2,7 +2,6 @@ package org.craftercms.studio.test.cases.sitecontentbartestcases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -52,8 +51,9 @@ public class AddNewContentSectionDfaultsTest {
 
 		WebElement home = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1"));
 
-		Actions action = new Actions(driverManager.getDriver());
-		action.contextClick(home).build().perform();
+		this.driverManager.contextClick(this.driverManager.getDriver(), home);
+		//Actions action = new Actions(driverManager.getDriver());
+		//action.contextClick(home).build().perform();
 
 		WebElement addContent = driverManager.getDriver()
 				.findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(3)"));
