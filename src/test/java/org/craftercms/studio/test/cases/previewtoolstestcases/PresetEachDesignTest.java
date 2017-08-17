@@ -1,4 +1,4 @@
-package org.craftercms.studio.test.cases;
+package org.craftercms.studio.test.cases.previewtoolstestcases;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;

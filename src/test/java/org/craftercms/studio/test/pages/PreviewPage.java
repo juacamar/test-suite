@@ -37,6 +37,8 @@ public class PreviewPage {
 	private String saveAndCloseiFrame;
 	private String previewHistory;
 	private String previewDependecies;
+	
+	private SiteConfigPage siteConfigPage;
 
 	/**
 	 * 
@@ -44,6 +46,7 @@ public class PreviewPage {
 	public PreviewPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driverManager.getDriver();
+		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager);
 		adminConsole = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.admin_console_link");
 		openComboSites = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -425,5 +428,80 @@ public class PreviewPage {
 		this.saveAndCloseButton();
 
 	}
+	
+	public void changeBodyOfEntryContentPageToNotRequired() {
+		this.getDriverManager().driverWait();
+		
+		// Show site content panel
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
+
+		// wait for element is clickeable
+
+		this.getDriverManager().driverWait();
+
+		// go to admin console page
+
+		this.getDriverManager().getDriver().findElement(By.cssSelector("#admin-console")).click();
+
+		// wait for element is clickeable
+
+		this.getDriverManager().driverWait();
+
+		// select content types
+		siteConfigPage.selectContentTypeOption();
+
+		// open content types
+
+		siteConfigPage.clickExistingTypeOption();
+
+		// wait for element is clickeable
+
+		this.getDriverManager().driverWait();
+		this.getDriverManager().driverWait();
+		
+
+		siteConfigPage.selectEntryContentType();
+
+		// Confirm the content type selected
+
+		siteConfigPage.confirmContentTypeSelected();
+
+		// wait for element is clickeable
+		driverManager.getDriver().switchTo().defaultContent();
+
+		this.getDriverManager().driverWait();
+
+		// select main content
+
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
+
+		// wait for element is clickeable
+
+		this.getDriverManager().driverWait();
+
+		// Body not required
+
+		driverManager.getDriver()
+				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+
+		// wait for element is clickeable
+
+		this.getDriverManager().driverWait();
+
+		// save
+
+		siteConfigPage.saveDragAndDropProcess();
+
+		// wait for element is clickeable
+
+		this.getDriverManager().driverWait();
+
+		// go to dashboard
+
+		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+
+	}
+
 
 }
