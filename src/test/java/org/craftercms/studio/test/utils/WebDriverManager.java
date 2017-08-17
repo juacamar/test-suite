@@ -2,17 +2,16 @@ package org.craftercms.studio.test.utils;
 
 import java.awt.Toolkit;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver; 
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
@@ -26,24 +25,68 @@ public class WebDriverManager {
 		constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		String webBrowserProperty = constantsPropertiesManager.getSharedExecutionConstants().getProperty("webBrowser");
 
-		if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
-			System.setProperty("phantomjs.binary.path",
-			 constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomJSExec"));
-		     driver=new PhantomJSDriver();
-		}
+		if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("environmentToExecuteAutomation")
+				.equalsIgnoreCase("MAC")) {
+			if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
 
-		else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
+				System.setProperty("phantomjs.binary.path",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomjsMacExec"));
+				driver = new PhantomJSDriver();
+			}
 
-			System.setProperty("webdriver.chrome.driver",
-					constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeExec"));
-			driver = new ChromeDriver();
-		}
+			else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
 
-		else if (webBrowserProperty.equalsIgnoreCase("Safari"))
-			driver = new SafariDriver();
-		else {
+				System.setProperty("webdriver.chrome.driver",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeMacExec"));
+				driver = new ChromeDriver();
 
-			driver = new FirefoxDriver();
+			}
+
+			else if (webBrowserProperty.equalsIgnoreCase("Safari"))
+				driver = new SafariDriver();
+
+			else {
+				// if not recognized web browser, it run by default with Firefox
+				driver = new FirefoxDriver();
+			}
+
+		} else {
+			if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
+
+				System.setProperty("phantomjs.binary.path",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomjsWinExec"));
+				driver = new PhantomJSDriver();
+			}
+
+			else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
+
+				System.setProperty("webdriver.chrome.driver",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeWinExec"));
+				driver = new ChromeDriver();
+
+			}
+
+			else if (webBrowserProperty.equalsIgnoreCase("Safari"))
+				driver = new SafariDriver();
+
+			else if (webBrowserProperty.equalsIgnoreCase("IE")) {
+				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+						true);
+				if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("bitsVersionForIE")
+						.equalsIgnoreCase("32"))
+					System.setProperty("webdriver.ie.driver",
+							constantsPropertiesManager.getSharedExecutionConstants().getProperty("IEexec32"));
+				else
+					System.setProperty("webdriver.ie.driver",
+							constantsPropertiesManager.getSharedExecutionConstants().getProperty("IEexec64"));
+
+				driver = new InternetExplorerDriver();
+			} else {
+				// if not recognized web browser, it run by default with Firefox
+				driver = new FirefoxDriver();
+			}
+
 		}
 
 		this.maximizeWindow();

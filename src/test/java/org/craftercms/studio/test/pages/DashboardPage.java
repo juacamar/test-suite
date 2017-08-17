@@ -283,6 +283,8 @@ public class DashboardPage {
 		
 		WebElement expandPagesTree = driverManager.getDriver().findElement(By.xpath(pagesTree));
 		expandPagesTree.click();
+		
+		driverManager.driverWait();
 
 	}
 
@@ -356,12 +358,11 @@ public class DashboardPage {
 	public void rightClickHome() {
 		
 		WebElement home = driverManager.getDriver().findElement(By.xpath(homeContent));
-		
 		Actions action = new Actions(driverManager.getDriver());
-		action.contextClick(home).build().perform();
+		action.moveToElement(home).contextClick(home).build().perform();
 		
 		driverManager.driverWait();
-	
+		
 		WebElement addContent = driverManager.getDriver().findElement(By.xpath(addNewContent));
 		addContent.click();
 	}

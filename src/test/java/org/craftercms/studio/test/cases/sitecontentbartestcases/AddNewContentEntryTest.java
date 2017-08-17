@@ -28,7 +28,7 @@ public class AddNewContentEntryTest {
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
-	
+
 	private PreviewPage previewPage;
 
 	@BeforeTest
@@ -45,11 +45,11 @@ public class AddNewContentEntryTest {
 
 	@AfterTest
 	public void afterTest() {
-		driverManager.closeConnection(); 
+		driverManager.closeConnection();
 	}
 
 	public void notRequired() {
-		
+
 		previewPage.changeBodyOfEntryContentPageToNotRequired();
 
 	}
@@ -131,11 +131,12 @@ public class AddNewContentEntryTest {
 	public void addNewContentEntry() {
 
 		// login to application
+		loginPage.getDriverManager().driverWait();
 
 		loginPage.loginToCrafter("admin", "admin");
 
 		// MaximizeWindow
-		//driverManager.maximizeWindow();
+		// driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
