@@ -499,7 +499,7 @@ public class Crafter3LoadTest1Script {
 		this.prepareTestArea();
 
 		// expand pages folder
-		dashboardPage.expandPagesTree();
+		//dashboardPage.expandPagesTree();
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();

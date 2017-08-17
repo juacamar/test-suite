@@ -42,6 +42,11 @@
 			<name>Alfonso Vásquez</name>
 			<email>alfonso.vasquez@craftersoftware.com</email>
 		</developer>
+		<developer>
+			<id>luishernandez</id>
+			<name>Luis Hernandez Monge</name>
+			<email>luis.hernandez@craftersoftware.com</email>
+		</developer>
 	</developers>
 
 
@@ -54,6 +59,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<threads>2</threads>
+		<file>src/test/resources/testng.xml</file>
+		<file>src/test/resources/testngAPI.xml</file>
+		<file>src/test/resources/testngLoadTestSuite.xml</file>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -213,13 +222,14 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.19.1</version>
 				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>src/test/resources/api.xml</suiteXmlFile>
-						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
-					<systemPropertyVariables>
-						<phantomjs.binary>${phantomjs.binary}</phantomjs.binary>
-					</systemPropertyVariables>
+					<suiteXmlFiles>${file}</suiteXmlFiles>
+					<skipTests>false</skipTests>
+					<properties>
+						<property>
+							<name>suitethreadpoolsize</name>
+							<value>${threads}</value>
+						</property>
+					</properties>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -248,7 +258,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>com.github.klieber</groupId>
 				<artifactId>phantomjs-maven-plugin</artifactId>
@@ -264,10 +273,8 @@
 					<version>2.1.1</version>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
-
 	<profiles>
 		<profile>
 			<id>JDK8</id>
