@@ -5,10 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -27,9 +27,9 @@ public class DuplicateOptionTest {
 
 	private HomePage homePage;
 
-	private SiteConfigPage siteConfigPage;
-
 	private DashboardPage dashboardPage;
+
+	private PreviewPage previewPage;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -38,7 +38,7 @@ public class DuplicateOptionTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
 
 	}
@@ -48,58 +48,64 @@ public class DuplicateOptionTest {
 		driverManager.closeConnection();
 	}
 
-	public void selectContentTypeToTheTest() {
-		// go to admin console page
+//	public void selectContentTypeToTheTest() {
+//		// go to admin console page
+//
+//		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+//
+//		// wait for element is clickeable
+//
+//		homePage.getDriverManager().driverWait();
+//
+//		// select content types
+//		siteConfigPage.selectContentTypeOption();
+//
+//		// open content types
+//
+//		siteConfigPage.clickExistingTypeOption();
+//
+//		// wait for element is clickeable
+//
+//		homePage.getDriverManager().driverWait();
+//
+//		// Select the Entry content type
+//
+//		siteConfigPage.selectEntryContentType();
+//
+//		// Confirm the content type selected
+//
+//		siteConfigPage.confirmContentTypeSelected();
+//
+//	}
 
-		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+	public void changeBodyToNotRequiredOnEntryContent() {
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// select content types
-		siteConfigPage.selectContentTypeOption();
-
-		// open content types
-
-		siteConfigPage.clickExistingTypeOption();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Select the Entry content type
-
-		siteConfigPage.selectEntryContentType();
-
-		// Confirm the content type selected
-
-		siteConfigPage.confirmContentTypeSelected();
+		previewPage.changeBodyOfEntryContentPageToNotRequired();
 
 	}
 
-	public void bodyNotRequired() {
-		// select main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Body not required
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// save
-
-		siteConfigPage.saveDragAndDropProcess();
-	}
+//	public void bodyNotRequired() {
+//		// select main content
+//
+//		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
+//
+//		// wait for element is clickeable
+//
+//		homePage.getDriverManager().driverWait();
+//
+//		// Body not required
+//
+//		driverManager.getDriver()
+//				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+//
+//		// wait for element is clickeable
+//
+//		homePage.getDriverManager().driverWait();
+//
+//		// save
+//
+//		siteConfigPage.saveDragAndDropProcess();
+//	}
 
 	public void createNewContent() {
 		// right click to see the the menu
@@ -243,18 +249,9 @@ public class DuplicateOptionTest {
 		// goto preview page
 
 		goToPreviewPage();
-		
+
 		// select the content type to the test
-
-		selectContentTypeToTheTest();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Body Not requiered
-
-		bodyNotRequired();
+		changeBodyToNotRequiredOnEntryContent();
 
 		// wait for element is clickeable
 

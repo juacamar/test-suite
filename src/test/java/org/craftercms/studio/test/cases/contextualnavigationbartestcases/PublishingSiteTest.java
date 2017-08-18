@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
@@ -30,8 +29,6 @@ public class PublishingSiteTest {
 
 	private PreviewPage previewPage;
 
-	private SiteConfigPage siteConfigPage;
-
 	private DashboardPage dashboardPage;
 
 	@BeforeClass
@@ -42,7 +39,6 @@ public class PublishingSiteTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
 
 	}
@@ -52,59 +48,9 @@ public class PublishingSiteTest {
 		driverManager.closeConnection();
 	}
 
-	public void bodyNotRequiered() {
+	public void changeBodyToNotRequiredOnEntryContent() {
 
-		// go to admin console page
-
-		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// select content types
-		siteConfigPage.selectContentTypeOption();
-
-		// open content types
-
-		siteConfigPage.clickExistingTypeOption();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Select the Entry content type
-
-		siteConfigPage.selectEntryContentType();
-
-		// Confirm the content type selected
-
-		siteConfigPage.confirmContentTypeSelected();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// select main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Body not required
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// save
-
-		siteConfigPage.saveDragAndDropProcess();
+		previewPage.changeBodyOfEntryContentPageToNotRequired();
 	}
 
 	public void createContent() {
@@ -262,7 +208,7 @@ public class PublishingSiteTest {
 
 		// body not requiered
 
-		bodyNotRequiered();
+		changeBodyToNotRequiredOnEntryContent();
 
 		// wait for element is clickeable
 

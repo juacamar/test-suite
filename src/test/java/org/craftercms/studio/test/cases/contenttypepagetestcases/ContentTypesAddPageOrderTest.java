@@ -58,7 +58,7 @@ public class ContentTypesAddPageOrderTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForPageOrder() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddPageOrderTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromLabel, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completePageOrderFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddPageOrderTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddLabel() {
+	public void contentTypeAddPageOrderTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddPageOrderTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForPageOrder();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

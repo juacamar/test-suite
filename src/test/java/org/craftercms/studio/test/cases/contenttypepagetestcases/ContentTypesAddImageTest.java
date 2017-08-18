@@ -58,7 +58,7 @@ public class ContentTypesAddImageTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForImage() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddImageTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromImage, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeImageFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddImageTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddImage() {
+	public void contentTypeAddImageTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddImageTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForImage();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

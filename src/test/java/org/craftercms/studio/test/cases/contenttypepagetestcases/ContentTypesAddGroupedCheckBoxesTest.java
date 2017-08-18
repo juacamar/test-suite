@@ -58,7 +58,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForGroupedCheckBoxes() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromGroupedCheckBoxes, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeaGroupedCheckBoxesFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddGroupedCheckBoxes() {
+	public void contentTypeAddGroupedCheckBoxesTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForGroupedCheckBoxes();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

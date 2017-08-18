@@ -58,7 +58,7 @@ public class ContentTypesAddLabelTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForLabel() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddLabelTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromLabel, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeLabelFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddLabelTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddLabel() {
+	public void contentTypeAddLabelTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddLabelTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForLabel();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

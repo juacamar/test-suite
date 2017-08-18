@@ -59,7 +59,7 @@ public class ContentTypesDragAndDropTest {
 	}
 
 	@Test(priority = 0)
-	public void CT_Drap_And_Drop() {
+	public void contentTypesDragAndDropTest() {
 
 		// login to application
 

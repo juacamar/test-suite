@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
  * @author luishernandez
  *
  */
-public class ContentTypesAddVideoTest {
+public class ContentTypesAddAutoFileNameTest {
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -28,9 +28,9 @@ public class ContentTypesAddVideoTest {
 
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
-	private String controlsSectionVideoLocator;
+	private String controlsSectionAutoFileNameLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
-	private String contentTypeContainerVideoTitleLocator;
+	private String contentTypeContainerAutoFileNameTitleLocator;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -44,12 +44,12 @@ public class ContentTypesAddVideoTest {
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.controlsSectionVideoLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.controlsvideo");
+		this.controlsSectionAutoFileNameLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.controlsautofilename");
 		this.contentTypeContainerFormSectionContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
-		this.contentTypeContainerVideoTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.contenttypecontainervideotitle");
+		this.contentTypeContainerAutoFileNameTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerautofilenametitle");
 	
 	}
 
@@ -79,16 +79,16 @@ public class ContentTypesAddVideoTest {
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
 
-		WebElement FromVideo= driverManager.getDriver()
-				.findElement(By.xpath(controlsSectionVideoLocator));
+		WebElement FromAutoFileName = driverManager.getDriver()
+				.findElement(By.xpath(controlsSectionAutoFileNameLocator));
 
 		WebElement ToDefaultSection = driverManager.getDriver()
 				.findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
 
-		siteConfigPage.getDriverManager().dragAndDropElement(FromVideo, ToDefaultSection);
+		siteConfigPage.getDriverManager().dragAndDropElement(FromAutoFileName, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefault");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddVideoTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddVideoTest() {
+	public void contentTypeAddAutoFileNameTest() {
 
 		// login to application
 
@@ -153,11 +153,11 @@ public class ContentTypesAddVideoTest {
 		driverManager.setImplicitlyWaitTimeForFindElements();
 		
 		// Click on input section to can view the properties
-		siteConfigPage.clickVideoSection();
+		siteConfigPage.clickAutoFileNameSection();
 
 		// Asserts that fields are not empty.
 		String titleText = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerVideoTitleLocator)).getText();
+				.findElement(By.xpath(contentTypeContainerAutoFileNameTitleLocator)).getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

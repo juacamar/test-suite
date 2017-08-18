@@ -58,7 +58,7 @@ public class ContentTypesAddDateTimeTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForDateTime() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddDateTimeTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromDateTime, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeaDateTimeFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddDateTimeTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddDateTime() {
+	public void contentTypeAddDateTimeTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddDateTimeTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForDateTime();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

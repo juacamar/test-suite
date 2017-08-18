@@ -1,36 +1,34 @@
-/**
- * 
- */
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
-import org.craftercms.studio.test.pages.SiteConfigPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.craftercms.studio.test.pages.SiteConfigPage;
+import org.craftercms.studio.test.pages.HomePage;
+import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.FilesLocations;
+import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
+import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
+ * 
  * @author luishernandez
  *
  */
-public class ContentTypesAddVideoTest {
+
+public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
+
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private SiteConfigPage siteConfigPage;
-
-	private String controlsSectionFormSectionLocator;
+	
 	private String contentTypeContainerLocator;
-	private String controlsSectionVideoLocator;
-	private String contentTypeContainerFormSectionContainerLocator;
-	private String contentTypeContainerVideoTitleLocator;
+	private String dataSourceSectionImageUploadedFromRepositoryLocator;
+	private String contentTypeContainerImageUploadedFromRepositoryTitleLocator;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -40,17 +38,12 @@ public class ContentTypesAddVideoTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.controlsSectionVideoLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.controlsvideo");
-		this.contentTypeContainerFormSectionContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
-		this.contentTypeContainerVideoTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.contenttypecontainervideotitle");
-	
+		this.dataSourceSectionImageUploadedFromRepositoryLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.datasourceimageuploadedfromrepository");
+		this.contentTypeContainerImageUploadedFromRepositoryTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerimageuploadedfromrepositorytitle");
 	}
 
 	@AfterTest
@@ -60,43 +53,31 @@ public class ContentTypesAddVideoTest {
 
 	public void dragAndDrop() {
 
-
 		driverManager.setImplicitlyWaitTimeForFindElements();
 
-		// Getting the Form Section control input for drag and drop action
-		WebElement FromControlSectionFormSectionElement = driverManager.getDriver()
-				.findElement(By.xpath(controlsSectionFormSectionLocator));
+		// Getting the ChildContent for drag and drop action
+		WebElement FromDataSourceImageUploadedFromRepoElement = driverManager.getDriver()
+				.findElement(By.xpath(dataSourceSectionImageUploadedFromRepositoryLocator));
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
 		WebElement ToContentTypeContainer = driverManager.getDriver()
 				.findElement(By.xpath(contentTypeContainerLocator));
 
-		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
+		driverManager.dragAndDropElement(FromDataSourceImageUploadedFromRepoElement, ToContentTypeContainer);
 		// wait for element
 
 		homePage.getDriverManager().driverWait();
 
-		driverManager.setImplicitlyWaitTimeForFindElements();
-
-		WebElement FromVideo= driverManager.getDriver()
-				.findElement(By.xpath(controlsSectionVideoLocator));
-
-		WebElement ToDefaultSection = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
-
-		siteConfigPage.getDriverManager().dragAndDropElement(FromVideo, ToDefaultSection);
-
 		// Complete the input fields basics
-		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeDataSourceFieldsBasics("TestTitle");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
-
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddVideoTest() {
+	public void contentTypeAddDataSourceImageUploadedFromRepositoryTest() {
 
 		// login to application
 
@@ -153,13 +134,14 @@ public class ContentTypesAddVideoTest {
 		driverManager.setImplicitlyWaitTimeForFindElements();
 		
 		// Click on input section to can view the properties
-		siteConfigPage.clickVideoSection();
+		siteConfigPage.clickDataSourceImageUploadedFromRepositorySection();
 
 		// Asserts that fields are not empty.
 		String titleText = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerVideoTitleLocator)).getText();
+				.findElement(By.xpath(contentTypeContainerImageUploadedFromRepositoryTitleLocator)).getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}
+
 }

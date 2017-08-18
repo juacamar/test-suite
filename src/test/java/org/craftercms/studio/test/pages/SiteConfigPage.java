@@ -25,6 +25,7 @@ public class SiteConfigPage {
 	private String displayTemplateField;
 	private String editFTLOption;
 	private String inputTitle;
+	private String inputName;
 	private String inputIceGroup;
 	private String inputDescription;
 	private String inputDefaultValue;
@@ -41,6 +42,12 @@ public class SiteConfigPage {
 	public String clickOnVideoSection;
 	public String clickOnLabelSection;
 	public String clickOnPageOrderSection;
+	public String clickOnFileNameSection;
+	public String clickOnAutoFileNameSection;
+	public String clickOnDataSourceChildContentSection;
+	public String clickOnDataSourceImageUploadedFromDesktopSection;
+	public String clickOnDataSourceImageUploadedFromRepositorySection;
+	public String clickOnDataSourceImageUploadedFromCMISRepositorySection;
 
 	/**
 	 * 
@@ -63,6 +70,7 @@ public class SiteConfigPage {
 		editFTLOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.edit_FTL_Option");
 		inputTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Title");
+		inputName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Name");
 		inputIceGroup = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.input_Ice_Group");
 		inputDescription = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -95,6 +103,18 @@ public class SiteConfigPage {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerlabel");
 		clickOnPageOrderSection = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerpageorder");
+		clickOnFileNameSection = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerfilename");
+		clickOnAutoFileNameSection = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerautofilename");
+		clickOnDataSourceChildContentSection = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerdatasourcechildcontent");
+		clickOnDataSourceImageUploadedFromDesktopSection = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerdatasourceimageuploadedfromdesktop");
+		clickOnDataSourceImageUploadedFromRepositorySection = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerdatasourceimageuploadedfromrepository");
+		clickOnDataSourceImageUploadedFromCMISRepositorySection=UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerdatasourceimageuploadedfromCMISrepository");
 	}
 
 	public SiteConfigPage(WebDriver driver) {
@@ -302,30 +322,11 @@ public class SiteConfigPage {
 		this.setDescription(strDescription);
 	}
 
-	// Complete input fields basics
-	public void completeInputFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
-	public void completeRepeatingGroupFieldsBasics(String strTitle, String strICEGroup, String strDescription) {
-
-		this.completeControlsFieldsBasics2(strTitle, strICEGroup, strDescription);
-
-	}
-
-	public void completeTextAreaFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
 	// Click on input section to can view the properties
-
 	public void clickOnInputSectionToViewTheProperties() {
 
-		WebElement showInputSection = driver.findElement(By.xpath(clickOnInputSection));
-		showInputSection.click();
-
+		WebElement showSection = driver.findElement(By.xpath(clickOnInputSection));
+		showSection.click();
 	}
 
 	public void clickInputSection() {
@@ -347,8 +348,8 @@ public class SiteConfigPage {
 	// Click on Repeating group to view the properties of it
 	public void clickOnRepeatingGroupToViewTheProperties() {
 
-		WebElement showRepeatingGroupSection = driver.findElement(By.xpath(clickOnRepeatingGroupSection));
-		showRepeatingGroupSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnRepeatingGroupSection));
+		showSection.click();
 
 	}
 
@@ -363,8 +364,8 @@ public class SiteConfigPage {
 	// Click on Repeating group to view the properties of it
 	public void clickOnTextAreaToViewTheProperties() {
 
-		WebElement showRepeatingGroupSection = driver.findElement(By.xpath(clickOnTextAreaSection));
-		showRepeatingGroupSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnTextAreaSection));
+		showSection.click();
 
 	}
 
@@ -393,15 +394,9 @@ public class SiteConfigPage {
 		this.selectPageArticleContentTypeOption();
 	}
 
-	public void completeRTEFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-
-	}
-
 	public void clickRTESectionToViewProperties() {
-		WebElement showRTESection = driver.findElement(By.xpath(clickOnRTESection));
-		showRTESection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnRTESection));
+		showSection.click();
 	}
 
 	public void clickRTESection() {
@@ -409,14 +404,9 @@ public class SiteConfigPage {
 
 	}
 
-	public void completeDropdonwFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
 	public void clickDropdownSectionToViewProperties() {
-		WebElement showDropdownSection = driver.findElement(By.xpath(clickOnDropdownSection));
-		showDropdownSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnDropdownSection));
+		showSection.click();
 	}
 
 	public void clickDropdownSection() {
@@ -424,14 +414,9 @@ public class SiteConfigPage {
 
 	}
 
-	public void completeaDateTimeFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
 	public void clickDateTimeSectionToViewProperties() {
-		WebElement showDateTimeSection = driver.findElement(By.xpath(clickOnDropdownSection));
-		showDateTimeSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnDropdownSection));
+		showSection.click();
 	}
 
 	public void clickDateTimeSection() {
@@ -439,14 +424,9 @@ public class SiteConfigPage {
 
 	}
 
-	public void completeaCheckBoxFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
 	public void clickCheckBoxSectionToViewProperties() {
-		WebElement showCheckBoxSection = driver.findElement(By.xpath(clickOnCheckBoxSection));
-		showCheckBoxSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnCheckBoxSection));
+		showSection.click();
 	}
 
 	public void clickCheckBoxSection() {
@@ -454,24 +434,14 @@ public class SiteConfigPage {
 
 	}
 
-	public void completeaGroupedCheckBoxesFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
 	public void clickGroupedCheckBoxesSectionToViewProperties() {
-		WebElement showGroupedCheckBoxesSection = driver.findElement(By.xpath(clickOnGroupedCheckBoxesSection));
-		showGroupedCheckBoxesSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnGroupedCheckBoxesSection));
+		showSection.click();
 	}
 
 	public void clickGroupedCheckBoxSection() {
 		this.clickGroupedCheckBoxesSectionToViewProperties();
 
-	}
-
-	public void completeItemSelectorFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
 	}
 
 	public void clickItemSelectorToViewProperties() {
@@ -484,14 +454,9 @@ public class SiteConfigPage {
 
 	}
 
-	public void completeImageFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
 	public void clickImageToViewProperties() {
-		WebElement showImageSection = driver.findElement(By.xpath(clickOnImageSection));
-		showImageSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnImageSection));
+		showSection.click();
 	}
 
 	public void clickImageSection() {
@@ -499,24 +464,14 @@ public class SiteConfigPage {
 
 	}
 
-	public void completeVideoFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
 	public void clickVideoToViewProperties() {
-		WebElement showVideoSection = driver.findElement(By.xpath(clickOnVideoSection));
-		showVideoSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnVideoSection));
+		showSection.click();
 	}
 
 	public void clickVideoSection() {
 		this.clickVideoToViewProperties();
 
-	}
-
-	public void completeLabelFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
 	}
 
 	public void clickLabelToViewProperties() {
@@ -529,18 +484,94 @@ public class SiteConfigPage {
 
 	}
 
-	public void completePageOrderFieldsBasics(String strTitle, String strICEGroup, String strDescription,
-			String strDefaultValue) {
-		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
-	}
-
 	public void clickPageOrderToViewProperties() {
-		WebElement showPageOrderSection = driver.findElement(By.xpath(clickOnPageOrderSection));
-		showPageOrderSection.click();
+		WebElement showSection = driver.findElement(By.xpath(clickOnPageOrderSection));
+		showSection.click();
 	}
 
 	public void clickPageOrderSection() {
 		this.clickPageOrderToViewProperties();
 
 	}
+
+	public void clickFileNameToViewProperties() {
+		WebElement showSection = driver.findElement(By.xpath(clickOnFileNameSection));
+		showSection.click();
+	}
+
+	public void clickFileNameSection() {
+		this.clickFileNameToViewProperties();
+
+	}
+
+	public void completeControlFieldsBasics(String strTitle, String strICEGroup, String strDescription,
+			String strDefaultValue) {
+		this.completeControlsFieldsBasics(strTitle, strICEGroup, strDescription, strDefaultValue);
+	}
+
+	public void completeControlFieldsBasics2(String strTitle, String strICEGroup, String strDescription) {
+		this.completeControlsFieldsBasics2(strTitle, strICEGroup, strDescription);
+	}
+
+	public void clickAutoFileNameToViewProperties() {
+		WebElement showSection = driver.findElement(By.xpath(clickOnAutoFileNameSection));
+		showSection.click();
+	}
+
+	public void clickAutoFileNameSection() {
+		this.clickAutoFileNameToViewProperties();
+
+	}
+
+	public void completeDataSourcesFieldsBasics(String strTitle) {
+		// Fill title
+		this.setTitle(strTitle);
+	}
+
+//	private void setName(String strName) {
+//		WebElement typeName = driver.findElement(By.cssSelector(inputName));
+//		typeName.sendKeys(strName);
+//	}
+
+	public void completeDataSourceFieldsBasics(String strTitle) {
+
+		this.completeDataSourcesFieldsBasics(strTitle);
+	}
+
+	public void clickDataSourceChildContentToViewProperties() {
+		WebElement showSection = driver.findElement(By.xpath(clickOnDataSourceChildContentSection));
+		showSection.click();
+	}
+
+	public void clickDataSourceChildContentSection() {
+		clickDataSourceChildContentToViewProperties();
+	}
+
+	public void clickDataSourceImageUploadedFromDesktopToViewProperties() {
+		WebElement showSection = driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromDesktopSection));
+		showSection.click();
+	}
+
+	public void clickDataSourceImageUploadedFromDesktopSection() {
+		clickDataSourceImageUploadedFromDesktopToViewProperties();
+	}
+
+	public void clickDataSourceImageUploadedFromRepositoryToViewProperties() {
+		WebElement showSection = driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromRepositorySection));
+		showSection.click();
+	}
+
+	public void clickDataSourceImageUploadedFromRepositorySection() {
+		clickDataSourceImageUploadedFromRepositoryToViewProperties();
+	}
+
+	public void clickDataSourceImageUploadedFromCMISRepositoryToViewProperties() {
+		WebElement showSection = driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromCMISRepositorySection));
+		showSection.click();
+	}
+
+	public void clickDataSourceImageUploadedFromCMISRepositorySection() {
+		clickDataSourceImageUploadedFromCMISRepositoryToViewProperties();
+	}
+
 }

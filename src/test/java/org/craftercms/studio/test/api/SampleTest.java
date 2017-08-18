@@ -1,6 +1,6 @@
 package org.craftercms.studio.test.api;
 
-import org.craftercms.studio.test.utils.JsonTester;
+//import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -13,10 +13,10 @@ import org.testng.annotations.Test;
 
 public class SampleTest {
 
-    private JsonTester api;
+    //private JsonTester api;
 
     public SampleTest(){
-        api = new JsonTester("http","localhost",8080);
+      //  api = new JsonTester("http","localhost",8080);
     }
 
     @BeforeTest
