@@ -57,7 +57,7 @@ public class ContentTypesAddRepeatingGroupTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForRepeatingGroup() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -87,7 +87,7 @@ public class ContentTypesAddRepeatingGroupTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRepeatingGroup, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeRepeatingGroupFieldsBasics("TestTitle", "TestICEGroup", "TestDescription");
+		siteConfigPage.completeControlFieldsBasics2("TestTitle", "TestICEGroup", "TestDescription");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -95,7 +95,7 @@ public class ContentTypesAddRepeatingGroupTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddRepeatingGroup() {
+	public void contentTypeAddRepeatingGroupTest() {
 
 		// login to application
 
@@ -131,7 +131,7 @@ public class ContentTypesAddRepeatingGroupTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForRepeatingGroup();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

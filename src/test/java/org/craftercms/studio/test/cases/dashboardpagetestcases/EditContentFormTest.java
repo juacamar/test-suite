@@ -146,7 +146,7 @@ public class EditContentFormTest {
 
 		// Complete the input fields basics
 
-		siteConfigPage.completeInputFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaultValue");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaultValue");
 
 		// Save the data
 

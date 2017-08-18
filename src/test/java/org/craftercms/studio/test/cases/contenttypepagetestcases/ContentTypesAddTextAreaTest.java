@@ -57,7 +57,7 @@ public class ContentTypesAddTextAreaTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForTextArea() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -87,7 +87,7 @@ public class ContentTypesAddTextAreaTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRepeatingGroup, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeTextAreaFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -95,7 +95,7 @@ public class ContentTypesAddTextAreaTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddTextArea() {
+	public void contentTypeAddTextAreaTest() {
 
 		// login to application
 
@@ -131,7 +131,7 @@ public class ContentTypesAddTextAreaTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForTextArea();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

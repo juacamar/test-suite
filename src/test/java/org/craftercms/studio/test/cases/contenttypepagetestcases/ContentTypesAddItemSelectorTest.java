@@ -58,7 +58,7 @@ public class ContentTypesAddItemSelectorTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForItemSelector() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddItemSelectorTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromItemSelector, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeItemSelectorFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddItemSelectorTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddItemSelector() {
+	public void contentTypeAddItemSelectorTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddItemSelectorTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForItemSelector();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

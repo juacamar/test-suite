@@ -58,7 +58,7 @@ public class ContentTypesAddDropdownTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForDropDown() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddDropdownTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromDropDown, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeDropdonwFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddDropdownTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddDropdown() {
+	public void contentTypeAddDropdownTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddDropdownTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForDropDown();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

@@ -58,7 +58,7 @@ public class ContentTypesAddRichTextEditorTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForRTE() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddRichTextEditorTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRTE, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeRTEFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddRichTextEditorTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddRichTextEditor() {
+	public void contentTypeAddRichTextEditorTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddRichTextEditorTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForRTE();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

@@ -58,7 +58,7 @@ public class ContentTypesAddCheckBoxTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForCheckBox() {
+	public void dragAndDrop() {
 
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
@@ -88,7 +88,7 @@ public class ContentTypesAddCheckBoxTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromCheckBox, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeaCheckBoxFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -96,7 +96,7 @@ public class ContentTypesAddCheckBoxTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddCheckBox() {
+	public void contentTypeAddCheckBoxTest() {
 
 		// login to application
 
@@ -132,7 +132,7 @@ public class ContentTypesAddCheckBoxTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForCheckBox();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

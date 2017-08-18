@@ -57,7 +57,7 @@ public class ContentTypesAddInputTest {
 		driverManager.closeConnection();
 	}
 
-	public void dragAndDropForInput() {
+	public void dragAndDrop() {
 
 		driverManager.setImplicitlyWaitTimeForFindElements();
 
@@ -86,14 +86,14 @@ public class ContentTypesAddInputTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRepeatingGroup, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeInputFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefault");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefault");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
 	}
 
 	@Test(priority = 0)
-	public void contentTypeInputData() {
+	public void contentTypeAddInputTest() {
 
 		// login to application
 
@@ -129,7 +129,7 @@ public class ContentTypesAddInputTest {
 		siteConfigPage.getDriverManager().driverWait();
 
 		// drag and drop
-		this.dragAndDropForInput();
+		this.dragAndDrop();
 
 		// open content types
 		siteConfigPage.clickExistingTypeOption();

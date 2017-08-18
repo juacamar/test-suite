@@ -48,7 +48,7 @@ public class AddNewContentEntryTest {
 		driverManager.closeConnection();
 	}
 
-	public void notRequired() {
+	public void changeBodyToNotRequiredOnEntryContent() {
 
 		previewPage.changeBodyOfEntryContentPageToNotRequired();
 
@@ -154,7 +154,7 @@ public class AddNewContentEntryTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// body not required
-		this.notRequired();
+		this.changeBodyToNotRequiredOnEntryContent();
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
