@@ -23,8 +23,9 @@ public class LoginPage {
      * 
      */
     public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
-        this.driverManager = driverManager;
-        this.driverManager.openConnection();
+        this.driverManager = driverManager; 
+        //this.driverManager.openConnection();
+        //this.driverManager.openConnectionWithMavenParams();  
         this.driver = this.driverManager.getDriver();
         userNameTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_UserName");
         passwordTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_Password");

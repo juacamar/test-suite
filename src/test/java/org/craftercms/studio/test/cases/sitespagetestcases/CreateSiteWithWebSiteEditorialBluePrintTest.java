@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
-
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -30,22 +29,19 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 	private CreateSitePage createSitePage;
 
+	@BeforeTest
+	public void beforeTest() {
 
+		this.driverManager = new WebDriverManager();
+		this.driverManager.setUpForLocalTest();
+		//this.driverManager.setUpForMavenTest();
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
+		this.loginPage = new LoginPage(this.driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(this.driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(this.driverManager, uIElementsPropertiesManager);
 
-	 @BeforeTest
-	 public void beforeTest() {
-	 this.driverManager = new WebDriverManager();
-	 UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-	 FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-	 this.loginPage = new LoginPage(driverManager,
-			 uIElementsPropertiesManager);
-	 this.homePage = new HomePage(driverManager,
-			 uIElementsPropertiesManager);
-	 this.createSitePage = new CreateSitePage(driverManager,
-			 uIElementsPropertiesManager);
-
-	
-	 }
+	}
 
 	@AfterTest
 	public void afterTest() {
@@ -58,7 +54,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
-		
+
 		// MaximizeWindow
 		driverManager.maximizeWindow();
 
@@ -80,7 +76,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		// Filling the Id of the site
 
-		//createSitePage.fillIdSite("");
+		// createSitePage.fillIdSite("");
 
 		// Filling the description of the site
 
@@ -97,15 +93,15 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		// Click on Create button
 
 		createSitePage.clickOnCreateSiteButton();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
