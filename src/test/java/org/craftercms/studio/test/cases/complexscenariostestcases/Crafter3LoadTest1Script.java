@@ -60,7 +60,9 @@ public class Crafter3LoadTest1Script {
 
 	@BeforeTest
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
+	    this.driverManager = new WebDriverManager();
+	    this.driverManager.setUpForLocalTest();
+	    
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
@@ -146,7 +148,8 @@ public class Crafter3LoadTest1Script {
 
 		// Checking if parent folder is present
 		AssertJUnit.assertTrue(driverManager.isElementPresentByXpath(parentFolderLocator));
-		WebElement parentFolder = dashboardPage.getDriverManager().getDriver().findElement(By.xpath(parentFolderLocator));
+		WebElement parentFolder = dashboardPage.getDriverManager().getDriver()
+				.findElement(By.xpath(parentFolderLocator));
 
 		// creating a new folder on a given parentFolder
 		this.createFolderOnAPresentFolder(harnessFolderName, parentFolder);
@@ -419,7 +422,8 @@ public class Crafter3LoadTest1Script {
 		myTestFolder = driverManager.getDriver().findElement(By.xpath(mytestFolderLocator));
 		dashboardPage.expandParentFolder(myTestFolder);
 
-		WebElement myTestBigTreeChildFolder = driverManager.getDriver().findElement(By.xpath(myTestBigTreeChildFolderLocator));
+		WebElement myTestBigTreeChildFolder = driverManager.getDriver()
+				.findElement(By.xpath(myTestBigTreeChildFolderLocator));
 		dashboardPage.rightClickCutAFolder(myTestBigTreeChildFolder);
 
 		anotherTestFolder = driverManager.getDriver().findElement(By.xpath(anotherTestFolderLocator));
@@ -499,7 +503,7 @@ public class Crafter3LoadTest1Script {
 		this.prepareTestArea();
 
 		// expand pages folder
-		//dashboardPage.expandPagesTree();
+		// dashboardPage.expandPagesTree();
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
@@ -538,7 +542,7 @@ public class Crafter3LoadTest1Script {
 		// Step11
 		this.step11();
 
-		//Step12
+		// Step12
 		this.step12();
 	}
 

@@ -25,7 +25,6 @@ public class SiteConfigPage {
 	private String displayTemplateField;
 	private String editFTLOption;
 	private String inputTitle;
-	private String inputName;
 	private String inputIceGroup;
 	private String inputDescription;
 	private String inputDefaultValue;
@@ -70,7 +69,6 @@ public class SiteConfigPage {
 		editFTLOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.edit_FTL_Option");
 		inputTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Title");
-		inputName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Name");
 		inputIceGroup = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.input_Ice_Group");
 		inputDescription = UIElementsPropertiesManager.getSharedUIElementsLocators()

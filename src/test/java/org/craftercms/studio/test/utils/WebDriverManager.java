@@ -22,6 +22,13 @@ public class WebDriverManager {
 	WebDriver driver;
 	ConstantsPropertiesManager constantsPropertiesManager;
 
+	private String urlToTestProperty;
+	private String bitsversionProperty;
+	private String webBrowserProperty;
+	private String environmentProperty;
+	private String webBrowserVersionProperty;
+	private String executableLocationForWebBrowserProperty;
+
 	public void openConnection() {
 		constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		String webBrowserProperty = constantsPropertiesManager.getSharedExecutionConstants().getProperty("webBrowser");
@@ -47,9 +54,10 @@ public class WebDriverManager {
 				driver = new SafariDriver();
 
 			else {
-				System.setProperty("webdriver.gecko.driver", constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec"));
+				System.setProperty("webdriver.gecko.driver",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec"));
 				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-				//capabilities.setCapability("marionette", true);
+				// capabilities.setCapability("marionette", true);
 				driver = new FirefoxDriver(capabilities);
 			}
 
@@ -88,13 +96,13 @@ public class WebDriverManager {
 			} else {
 				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 				capabilities.setCapability("marionette", true);
-				
+
 				if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("bitsVersionForFireFox")
 						.equalsIgnoreCase("32"))
-					System.setProperty("webdriver.gecko.driver", 
+					System.setProperty("webdriver.gecko.driver",
 							constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec32"));
 				else
-					System.setProperty("webdriver.gecko.driver", 
+					System.setProperty("webdriver.gecko.driver",
 							constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec64"));
 
 				driver = new FirefoxDriver(capabilities);
@@ -104,6 +112,86 @@ public class WebDriverManager {
 
 		this.maximizeWindow();
 		driver.get(constantsPropertiesManager.getSharedExecutionConstants().getProperty("baseUrl"));
+	}
+
+	public void openConnectionWithMavenParams() {
+		if (this.environmentProperty.equalsIgnoreCase("Mac")) {
+			if (this.webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
+
+				System.setProperty("phantomjs.binary.path",
+						this.executableLocationForWebBrowserProperty);
+				driver = new PhantomJSDriver();
+			}
+
+			else if (this.webBrowserProperty.equalsIgnoreCase("Chrome")) {
+
+				System.setProperty("webdriver.chrome.driver",
+						this.executableLocationForWebBrowserProperty);
+				driver = new ChromeDriver();
+
+			}
+
+			else if (this.webBrowserProperty.equalsIgnoreCase("Safari"))
+				driver = new SafariDriver();
+
+			else {
+				System.setProperty("webdriver.gecko.driver",
+						this.executableLocationForWebBrowserProperty);
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				// capabilities.setCapability("marionette", true);
+				driver = new FirefoxDriver(capabilities);
+			}
+
+		} else {
+			if (this.webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
+
+				System.setProperty("phantomjs.binary.path",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomjsWinExec"));
+				driver = new PhantomJSDriver();
+			}
+
+			else if (this.webBrowserProperty.equalsIgnoreCase("Chrome")) {
+
+				System.setProperty("webdriver.chrome.driver",
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeWinExec"));
+				driver = new ChromeDriver();
+
+			}
+
+			else if (this.webBrowserProperty.equalsIgnoreCase("Safari"))
+				driver = new SafariDriver();
+
+			else if (this.webBrowserProperty.equalsIgnoreCase("IE")) {
+				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+						true);
+				if (this.bitsversionProperty.equalsIgnoreCase("32"))
+					System.setProperty("webdriver.ie.driver",
+							this.executableLocationForWebBrowserProperty);
+				else
+					System.setProperty("webdriver.ie.driver",
+							this.executableLocationForWebBrowserProperty);
+
+				driver = new InternetExplorerDriver();
+			} else {
+				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				capabilities.setCapability("marionette", true);
+
+				if (this.bitsversionProperty.equalsIgnoreCase("32"))
+					System.setProperty("webdriver.gecko.driver",
+							this.executableLocationForWebBrowserProperty);
+				else
+					System.setProperty("webdriver.gecko.driver",
+							this.executableLocationForWebBrowserProperty);
+
+				driver = new FirefoxDriver(capabilities);
+			}
+
+		}
+
+		this.maximizeWindow();
+		driver.get(this.urlToTestProperty);
+		// driver.get(constantsPropertiesManager.getSharedExecutionConstants().getProperty("baseUrl"));
 	}
 
 	public void closeConnection() {
@@ -132,11 +220,8 @@ public class WebDriverManager {
 	}
 
 	public void driverWait() {
-		long wait = Long
-				.parseLong(constantsPropertiesManager.getSharedExecutionConstants().getProperty("defaultWaitTime"));
-		// this.driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
 		try {
-			Thread.sleep(wait);
+			Thread.sleep(4000);
 		} catch (InterruptedException ie1) {
 			ie1.printStackTrace();
 		}
@@ -176,20 +261,85 @@ public class WebDriverManager {
 	public void setImplicitlyWaitTimeForFindElements() {
 		this.getDriver().manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
 	}
-	
+
 	public void contextClick(WebDriver driver, WebElement element) {
-	    if(driver instanceof PhantomJSDriver) {
-	        String script =
-	                "var element = arguments[0];" +
-	                "var event = document.createEvent('HTMLEvents');" +
-	                "event.initEvent('contextmenu', true, false);" +
-	                "element.dispatchEvent(event);";
-	        ((JavascriptExecutor)driver).executeScript(script, new Object[]{element});
-	    } else {
-	        (new Actions(driver))
-	                .contextClick(element)
-	                .build()
-	                .perform();
-	    }
+		if (driver instanceof PhantomJSDriver) {
+			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
+					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
+			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
+		} else {
+			(new Actions(driver)).contextClick(element).build().perform();
+		}
+	}
+
+	public String getUrlToTestProperty() {
+		return urlToTestProperty;
+	}
+
+	public void setUrlToTestProperty(String urlToTestProperty) {
+		this.urlToTestProperty = urlToTestProperty;
+	}
+
+	public String getBitsversionProperty() {
+		return bitsversionProperty;
+	}
+
+	public void setBitsversionProperty(String bitsversionProperty) {
+		this.bitsversionProperty = bitsversionProperty;
+	}
+
+	public String getWebBrowserProperty() {
+		return webBrowserProperty;
+	}
+
+	public void setWebBrowserProperty(String webBrowserProperty) {
+		this.webBrowserProperty = webBrowserProperty;
+	}
+
+	public String getEnvironmentProperty() {
+		return environmentProperty;
+	}
+
+	public void setEnvironmentProperty(String environmentProperty) {
+		this.environmentProperty = environmentProperty;
+	}
+
+	public String getWebBrowserVersionProperty() {
+		return webBrowserVersionProperty;
+	}
+
+	public void setWebBrowserVersionProperty(String webBrowserVersionProperty) {
+		this.webBrowserVersionProperty = webBrowserVersionProperty;
+	}
+
+	public String getExecutableLocationForWebBrowserProperty() {
+		return executableLocationForWebBrowserProperty;
+	}
+
+	public void setExecutableLocationForWebBrowserProperty(String executableLocationForWebBrowserProperty) {
+		this.executableLocationForWebBrowserProperty = executableLocationForWebBrowserProperty;
+	}
+
+	public void setUpForLocalTest() {
+		this.openConnection(); 
+	}
+	
+	public void setUpForMavenTest() {
+		String environmentProperty = System.getProperty("environment");
+		String bitsversionProperty = System.getProperty("bitsversion");
+		String webBrowserProperty = System.getProperty("webbrowser");
+		String urlToTestProperty= System.getProperty("targeturl");
+		String webBrowserVersionProperty= System.getProperty("webbrowserversion");
+		String executableLocationForWebBrowserProperty= System.getProperty("executablelocationforwebbrowser");
+		
+		
+		this.setEnvironmentProperty(environmentProperty);
+		this.setWebBrowserProperty(webBrowserProperty);
+		this.setBitsversionProperty(bitsversionProperty);
+		this.setUrlToTestProperty(urlToTestProperty);
+		this.setWebBrowserVersionProperty(webBrowserVersionProperty);
+		this.setExecutableLocationForWebBrowserProperty(executableLocationForWebBrowserProperty);
+		
+		this.openConnectionWithMavenParams();  
 	}
 }

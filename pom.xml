@@ -222,6 +222,14 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.19.1</version>
 				<configuration>
+					<systemPropertyVariables>
+                        <environment>${environment}</environment>
+                        <bitsversion>${bitsversionofenvironment}</bitsversion>
+                        <webbrowser>${webbrowser}</webbrowser>
+                        <targeturl>${targeturl}</targeturl>
+                        <webbrowserversion>${webbrowserversion}</webbrowserversion>
+                        <executablelocationforwebbrowser>${executablelocationforwebbrowser}</executablelocationforwebbrowser>
+                    </systemPropertyVariables>
 					<suiteXmlFiles>${file}</suiteXmlFiles>
 					<skipTests>false</skipTests>
 					<properties>
