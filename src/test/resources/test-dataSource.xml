@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<component>
+    <items>
+        <item>
+            <key>testdata0</key>
+            <value>testdata0</value>
+        </item>
+        <item>
+            <key>testdata1</key>
+            <value>testdata1</value>
+        </item>
+        <item>
+            <key>testdata2</key>
+            <value>testdata2</value>
+        </item>
+    </items>
+</component>

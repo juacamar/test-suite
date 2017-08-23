@@ -49,6 +49,10 @@ public class Crafter3LoadTest1Script {
 	private String bigTree2BigTree1ChildFolderLocator;
 	private String myTestBigTreeChildFolderLocator;
 	private String anotherTestBigTreeChildFolderLocator;
+	private String styleLocator;
+	private String entertainmentLocator;
+	private String healthLocator;
+	private String technologyLocator;
 
 	private WebElement harnessFolder;
 	private WebElement emptyFolder;
@@ -60,9 +64,9 @@ public class Crafter3LoadTest1Script {
 
 	@BeforeTest
 	public void beforeTest() {
-	    this.driverManager = new WebDriverManager();
-	    this.driverManager.setUpForLocalTest();
-	    
+		this.driverManager = new WebDriverManager();
+		this.driverManager.setUpForLocalTest();
+
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
@@ -92,6 +96,14 @@ public class Crafter3LoadTest1Script {
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.anotherTestFolderName + "')]";
 		parentFolderDivOnTreeSelectorLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.parentfolderdivontreeselector");
+		styleLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.crafter3loadtest.stylecontentpage");
+		entertainmentLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.crafter3loadtest.entertaimentcontentpage");
+		healthLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.crafter3loadtest.healthcontentpage");
+		technologyLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.crafter3loadtest.technologycontentpage");
 
 	}
 
@@ -166,6 +178,28 @@ public class Crafter3LoadTest1Script {
 		// creating a new folder on a given parentFolder
 		this.createFolderOnAPresentFolder(bigTree2FolderName, harnessFolder);
 		bigTree2Folder = driverManager.getDriver().findElement(By.xpath(bigTree2FolderLocator));
+
+		WebElement styleCategoryLandingStyle = driverManager.getDriver().findElement(By.xpath(styleLocator));
+		dashboardPage.rightClickCopyContentPage(styleCategoryLandingStyle);
+		bigTree1Folder = driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
+		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
+
+		WebElement entertainmentCategoryLandingStyle = driverManager.getDriver()
+				.findElement(By.xpath(entertainmentLocator));
+		dashboardPage.rightClickCopyContentPage(entertainmentCategoryLandingStyle);
+		bigTree1Folder = driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
+		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
+
+		WebElement healthCategoryLandingStyle = driverManager.getDriver().findElement(By.xpath(healthLocator));
+		dashboardPage.rightClickCopyContentPage(healthCategoryLandingStyle);
+		bigTree1Folder = driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
+		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
+
+		WebElement technologyCategoryLandingStyle = driverManager.getDriver().findElement(By.xpath(technologyLocator));
+		dashboardPage.rightClickCopyContentPage(technologyCategoryLandingStyle);
+		bigTree1Folder = driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
+		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
+
 	}
 
 	public void createNewPageArticleContent() {
@@ -323,7 +357,7 @@ public class Crafter3LoadTest1Script {
 			// moving to the publish dialog, clicking on Submit and confirm action
 			this.confirmPublishAction();
 			// wait for element
-			dashboardPage.getDriverManager().driverWait();
+			//dashboardPage.getDriverManager().driverWait();
 		}
 
 	}
@@ -346,7 +380,7 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.getDriverManager().driverWait();
 
 		// creating multiple content pages
-		for (int count = 0; count <= 0; count++) {
+		for (int count = 0; count < 1; count++) {
 			// reload page
 			driverManager.getDriver().navigate().refresh();
 			dashboardPage.getDriverManager().driverWait();
