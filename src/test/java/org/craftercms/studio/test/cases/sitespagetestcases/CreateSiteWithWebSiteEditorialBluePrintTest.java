@@ -11,7 +11,6 @@ import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.craftercms.studio.test.utils.datasourceslistxml.DataSourceCreatorXML;
 
 /**
  * 

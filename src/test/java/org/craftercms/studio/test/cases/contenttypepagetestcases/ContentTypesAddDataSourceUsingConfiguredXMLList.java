@@ -2,7 +2,6 @@ package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -31,7 +30,7 @@ public class ContentTypesAddDataSourceUsingConfiguredXMLList {
 
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionChildContentLocator;
-	private String contentTypeContainerChildContentTitleLocator;
+//	private String contentTypeContainerChildContentTitleLocator;
 	private String configuredXMLListLocation;
 	private String configuredXMLListName;
 	private String siteName;
@@ -55,8 +54,8 @@ public class ContentTypesAddDataSourceUsingConfiguredXMLList {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
 		this.dataSourceSectionChildContentLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.datasourcechildcontent");
-		this.contentTypeContainerChildContentTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.contenttypecontainerchildcontenttitle");
+	//	this.contentTypeContainerChildContentTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+			//	.getProperty("adminconsole.contenttype.entry.contenttypecontainerchildcontenttitle");
 	}
 
 	@AfterTest
