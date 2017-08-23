@@ -39,10 +39,9 @@ public class Craftercms1248Test {
 	private String parentPageNewLocator;
 	private String homeContent;
 
-	WebElement parentPage;
-	WebElement childPage1;
-	WebElement childPage2;
-	WebElement parentPageNew;
+	private WebElement parentPage;
+	private WebElement childPage1;
+	private WebElement childPage2;
 
 	@BeforeTest
 	public void beforeTest() {
@@ -238,7 +237,7 @@ public class Craftercms1248Test {
 		childPage2 = driverManager.getDriver().findElement(By.xpath(childPage2Locator));
 
 		this.renamePage(parentPage, parentPageNewName);
-		parentPageNew = driverManager.getDriver().findElement(By.xpath(parentPageNewLocator));
+		//parentPageNew = driverManager.getDriver().findElement(By.xpath(parentPageNewLocator));
 		
 		this.childPage1Locator = this.parentPageNewLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage1Name + "')]";

@@ -33,7 +33,7 @@ public class ContentTypesAddDataSourceUsingConfiguredXMLList {
 //	private String contentTypeContainerChildContentTitleLocator;
 	private String configuredXMLListLocation;
 	private String configuredXMLListName;
-	private String siteName;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -98,8 +98,9 @@ public class ContentTypesAddDataSourceUsingConfiguredXMLList {
 		// wait for element
 		homePage.getDriverManager().driverWait();
 
+	  
 		// get Site Name for the method createContentForXMLFileThroughAPI
-		siteName = driverManager.getDriver().findElement(By.xpath(".//table/tbody/tr[1]/td[1]")).getText();
+	  String siteName = driverManager.getDriver().findElement(By.xpath(".//table/tbody/tr[1]/td[1]")).getText();
 
 		siteConfigPage.createContentForXMLFileThroughAPI(siteName, "/site/"+configuredXMLListName, configuredXMLListName,
 				new File(configuredXMLListLocation,configuredXMLListName));

@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 
 /**
@@ -16,8 +15,7 @@ import org.craftercms.studio.test.utils.FilesLocations;
  *
  */
 public class DataSourceCreatorXML {
-	ConfiguredListXml configuredListXml;
-	ConstantsPropertiesManager constantsPropertiesManager;
+	private ConfiguredListXml configuredListXml;
 	private String XMLFileLocation;
 	private String fileName;
 
