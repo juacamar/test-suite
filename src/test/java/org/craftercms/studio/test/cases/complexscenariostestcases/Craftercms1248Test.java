@@ -39,9 +39,7 @@ public class Craftercms1248Test {
 	private String parentPageNewLocator;
 	private String homeContent;
 
-	private WebElement parentPage;
-	private WebElement childPage1;
-	private WebElement childPage2;
+	
 
 	@BeforeTest
 	public void beforeTest() {
@@ -227,6 +225,10 @@ public class Craftercms1248Test {
 				.findElement(By.xpath(".//span[text()='Home']/../../td[1]"));
 		expansorElementForHome.click();
 
+		WebElement parentPage;
+		WebElement childPage1;
+		WebElement childPage2;
+		
 		AssertJUnit.assertTrue(driverManager.isElementPresentByXpath(parentPageLocator));
 		parentPage = dashboardPage.getDriverManager().getDriver().findElement(By.xpath(parentPageLocator));
 
