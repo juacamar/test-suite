@@ -31,10 +31,9 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 	@BeforeTest
 	public void beforeTest() {
-
 		this.driverManager = new WebDriverManager();
 		this.driverManager.setUpForLocalTest();
-		//this.driverManager.setUpForMavenTest();
+		// this.driverManager.setUpForMavenTest();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(this.driverManager, uIElementsPropertiesManager);

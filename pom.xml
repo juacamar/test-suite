@@ -62,7 +62,7 @@
 		<threads>2</threads>
 		<file>src/test/resources/testng.xml</file>
 		<file>src/test/resources/testngAPI.xml</file>
-		<file>src/test/resources/testngLoadTestSuite.xml</file>
+		<file>src/test/resources/testngcomplexscenarios.xml</file>
 	</properties>
 	<dependencies>
 		<dependency>

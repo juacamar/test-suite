@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Crafter Complex Scenarios Suite">
+	<test name="Crafter3LoadTest" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+			<class
+				name="org.craftercms.studio.test.cases.complexscenariostestcases.Crafter3LoadTest1Script"/>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test>
+	<test name="Craftercms1248" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+			<class
+				name="org.craftercms.studio.test.cases.complexscenariostestcases.Craftercms1248Test"/>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test>
+</suite> <!-- Suite -->
