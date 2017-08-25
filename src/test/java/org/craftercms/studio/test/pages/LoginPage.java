@@ -24,6 +24,7 @@ public class LoginPage {
      */
     public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
         this.driverManager = driverManager; 
+        this.driverManager.openConnection();
         this.driver = this.driverManager.getDriver();
         userNameTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_UserName");
         passwordTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_Password");
@@ -42,7 +43,6 @@ public class LoginPage {
     WebElement userCrafter = driver.findElement(By.cssSelector(userNameTextBoxLocator));
     userCrafter.sendKeys(strUserName);
 		
-
 	}
 
 	// Set password in password textbox
