@@ -38,7 +38,6 @@ public class ContentTypesAddDataSourceUsingConfiguredXMLList {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.driverManager.setUpForLocalTest();
 		
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
