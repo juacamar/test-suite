@@ -50,3 +50,6 @@ hs_err_pid*
 *.log
 test-output/
 /target/
+bin/*
+!/bin/.keep
+test-properties.properties
