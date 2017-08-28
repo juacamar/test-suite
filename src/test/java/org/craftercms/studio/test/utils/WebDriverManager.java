@@ -1,12 +1,9 @@
 package org.craftercms.studio.test.utils;
 
-import java.awt.Toolkit;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import junit.framework.TestFailure;
+import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,13 +12,14 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Point;
-import sun.security.krb5.internal.crypto.Des;
+import org.testng.TestException;
+
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
 	WebDriver driver;
@@ -77,13 +75,12 @@ public class WebDriverManager {
 				}
 				driver.get(envProperties.getProperty("baseUrl"));
 			}catch (IOException ex){
-				throw new RuntimeException("Unable to read runtime properties file");
+				throw new FileNotFoundException("Unable to read runtime properties file");
 			}
 		}catch (IOException ex){
-			throw new RuntimeException("Unable to read runtime properties file");
+			throw new  TestException("Require Files are not found.");
 		}
 		this.maximizeWindow();
-
 	}
 
 
