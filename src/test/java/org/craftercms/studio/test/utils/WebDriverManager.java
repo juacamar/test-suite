@@ -50,7 +50,6 @@ public class WebDriverManager {
 				System.setProperty("webdriver.gecko.driver",
 						constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec"));
 				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-				// capabilities.setCapability("marionette", true);
 				driver = new FirefoxDriver(capabilities);
 			}
 
@@ -135,7 +134,7 @@ public class WebDriverManager {
 
 	public void driverWait() {
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2300);
 		} catch (InterruptedException ie1) {
 			ie1.printStackTrace();
 		}
