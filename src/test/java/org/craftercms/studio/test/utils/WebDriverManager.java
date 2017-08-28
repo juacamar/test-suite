@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.utils;
 
-import junit.framework.TestFailure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
