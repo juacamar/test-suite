@@ -7,17 +7,21 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
 			<class
-				name="org.craftercms.studio.test.cases.complexscenariostestcases.Crafter3LoadTest1Script"/>
+				name="org.craftercms.studio.test.cases.complexscenariostestcases.Crafter3LoadTest1Script">
+				<methods>
+					<include name="crafter3LoadTestTestUser1" />
+				</methods>
+			</class>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test>
-	<test name="Craftercms1248" preserve-order="true">
+	<test name="Craftercms1248">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
 			<class
-				name="org.craftercms.studio.test.cases.complexscenariostestcases.Craftercms1248Test"/>
+				name="org.craftercms.studio.test.cases.complexscenariostestcases.Craftercms1248Test" />
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>

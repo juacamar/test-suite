@@ -9,7 +9,6 @@
 	<description></description>
 	<url>https://github.com/craftercms/core</url>
 
-
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
@@ -208,12 +207,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -268,13 +261,6 @@
 				<groupId>com.github.klieber</groupId>
 				<artifactId>phantomjs-maven-plugin</artifactId>
 				<version>0.7</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>install</goal>
-						</goals>
-					</execution>
-				</executions>
 				<configuration>
 					<version>2.1.1</version>
 				</configuration>
