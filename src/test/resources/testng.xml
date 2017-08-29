@@ -2,13 +2,644 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="CrafterSuite">
-	<test name="Create Site with WebSiteEditorial Blueprint">
+<!-- UI Test Cases -->
+	<test name="Try to delete user connected test">
 		<classes>
 			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
-				<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.TryToDeleteUserConnectedTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Login Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.loginpagetestcases.LoginTest" />
+			<class
+				name="org.craftercms.studio.test.cases.loginpagetestcases.LogOutTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="LogOut Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.loginpagetestcases.LogOutTest" />
+			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
 
+	<test name="Add New Content Entry Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.AddNewContentEntryTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Add New Folder Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.AddNewFolderTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Cancel Create Site Process Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CancelCreateSiteProcessTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Copy Paste Content Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.CopyPasteContentTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Copy Paste Into Folder Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.CopyPasteIntoFolderTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+
+	<test name="Create Site Blueprint Empty">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+
+	<test name="Create Tree with Different Content">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Create Tree with Same Content">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Content Type Drag and Drop">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesDragAndDropTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add Input Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddInputTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Cut Paste Content">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.CutPasteContentTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Delete Content Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.DeleteContentTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Delete Option Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.DeleteOptionTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Delete Site Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Design Of Create Site Page Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DesignOfCreateSitePageTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Design Of Preview Page Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.previewpagetestcases.DesignOfPreviewPageTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Design Of Preview Tools Panel Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.previewtoolstestcases.DesignOfPreviewToolsPanelTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Design Of Workflow Section Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.dashboardpagetestcases.DesignOfWorkflowStateSectionTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Duplicate Option Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.DuplicateOptionTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Edit Content Form Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.dashboardpagetestcases.EditContentFormTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Edit Content Recently Created Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.dashboardpagetestcases.EditContentRecentlyCreatedTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Edit Option Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.dashboardpagetestcases.EditOptionTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Enable Disable Editing In Context Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.dashboardpagetestcases.EnableDisableEditingInContextTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Filter Show Recent Activity Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.dashboardpagetestcases.FilterShowRecentActivityTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="History Option Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contextualnavigationbartestcases.HistoryOptionTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="PreviewSync Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.siteconfigpagetestcases.PreviewSyncTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Publishing Site Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contextualnavigationbartestcases.PublishingSiteTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Show Hide Site Content Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.dashboardpagetestcases.ShowHideSiteContentTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Validations Of Create Site Fields Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.ValidationsOfCreateSiteFieldsTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Wrong Login Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.loginpagetestcases.WrongLoginTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Dependencies Option Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contextualnavigationbartestcases.DependenciesOptionTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="New User Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.AddNewUserTest" />
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.DeleteUserTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Delete User Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.AddNewUserTest" />
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.DeleteUserTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Edit User Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.EditUserTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Design of Users Page Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DesignOfUsersPageTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Users Per Page Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.UsersPerPageTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Pagination of users Page Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.PaginationOfListOfUsersTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Pagination of List Page Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.PaginationOfListOfSitesTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Sites Per Page Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.SitesPerPageTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="About Us Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.contextualnavigationbartestcases.ShowAboutUsTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Show Documentation Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.contextualnavigationbartestcases.ShowDocumentationTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Change Password User Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.ChangePasswordUserTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add New Content Section Dfaults Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitecontentbartestcases.AddNewContentSectionDfaultsTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Show Users Page Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.ShowUsersPageTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add RepeatingGroup Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddRepeatingGroupTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add TextArea Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddTextAreaTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add RTE Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddRichTextEditorTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add Dropdown Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddDropdownTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add DateTime Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddDateTimeTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add CheckBox Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddCheckBoxTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add GroupedCheckBoxes Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddGroupedCheckBoxesTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add ItemSelector Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddItemSelectorTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add Image Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddImageTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add Video Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddVideoTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add Label Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddLabelTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add PageOrder Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddPageOrderTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add FileName Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddFileNameTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add AutoFileName Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddAutoFileNameTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Add DataSource_ChildContent to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddDataSourceChildContentTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test
+		name="Add DataSource_ImageUploadedFromDesktop to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddDataSourceImageUploadedFromDesktopTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test
+		name="Add DataSource_ImageUploadedFromRepository to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddDataSourceImageUploadedFromRepositoryTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+	<test
+		name="Add DataSource_ImageUploadedFromCMISRepository to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->
