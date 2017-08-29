@@ -1,109 +1,85 @@
 package org.craftercms.studio.test.utils;
 
-import java.awt.Toolkit;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Point;
+import org.testng.TestException;
+
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
 	WebDriver driver;
 	ConstantsPropertiesManager constantsPropertiesManager;
 
 	public void openConnection() {
-		constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		String webBrowserProperty = constantsPropertiesManager.getSharedExecutionConstants().getProperty("webBrowser");
-
-		if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("environmentToExecuteAutomation")
-				.equalsIgnoreCase("MAC")) {
-			if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
-
-				System.setProperty("phantomjs.binary.path",
-						constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomjsMacExec"));
-				driver = new PhantomJSDriver();
+		final Properties runtimeProperties = new Properties();
+		try {
+			runtimeProperties.load(WebDriverManager.class.getResourceAsStream("/runtime.properties"));
+			String enviromentPropertiesPath = runtimeProperties.getProperty("crafter.test.location");
+			final Properties envProperties = new Properties();
+			try{
+				envProperties.load(new FileInputStream(enviromentPropertiesPath));
+				String webBrowserProperty = envProperties.getProperty("webBrowser");
+				DesiredCapabilities capabilities;
+				switch (webBrowserProperty.toLowerCase()){
+					case "phantomjs":
+						capabilities = DesiredCapabilities.phantomjs();
+						System.setProperty("phantomjs.binary.path",
+								envProperties.getProperty("phantomjs.binary.path"));
+						driver = new PhantomJSDriver(capabilities);
+						break;
+					case "firefox":
+						capabilities = DesiredCapabilities.firefox();
+						System.setProperty("webdriver.gecko.driver",
+								envProperties.getProperty("firefox.driver.path"));
+						driver = new FirefoxDriver(capabilities);
+						break;
+					case "edge":
+						capabilities = DesiredCapabilities.edge();
+						System.setProperty("webdriver.edge.driver",
+								envProperties.getProperty("edge.driver.path"));
+						driver = new EdgeDriver(capabilities);
+						break;
+					case "ie":
+						capabilities = DesiredCapabilities.internetExplorer();
+						capabilities.setCapability(
+								InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+								true);
+						System.setProperty("webdriver.ie.driver",
+								envProperties.getProperty("ie.driver.path"));
+						driver = new InternetExplorerDriver(capabilities);
+						break;
+					case "chrome":
+						capabilities = DesiredCapabilities.chrome();
+						System.setProperty("webdriver.chrome.driver",
+								envProperties.getProperty("chrome.driver.path"));
+						driver = new ChromeDriver(capabilities);
+						break;
+					default:
+						throw new IllegalArgumentException("webBrowser property is needed, valid values are:" +
+								"chrome,edge,ie,firefox,phantomjs");
+				}
+				driver.get(envProperties.getProperty("baseUrl"));
+			}catch (IOException ex){
+				throw new FileNotFoundException("Unable to read runtime properties file");
 			}
-
-			else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
-
-				System.setProperty("webdriver.chrome.driver",
-						constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeMacExec"));
-				driver = new ChromeDriver();
-
-			}
-
-			else if (webBrowserProperty.equalsIgnoreCase("Safari"))
-				driver = new SafariDriver();
-
-			else {
-				System.setProperty("webdriver.gecko.driver",
-						constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec"));
-				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-				driver = new FirefoxDriver(capabilities);
-			}
-
-		} else {
-			if (webBrowserProperty.equalsIgnoreCase("PhantomJS")) {
-
-				System.setProperty("phantomjs.binary.path",
-						constantsPropertiesManager.getSharedExecutionConstants().getProperty("phantomjsWinExec"));
-				driver = new PhantomJSDriver();
-			}
-
-			else if (webBrowserProperty.equalsIgnoreCase("Chrome")) {
-
-				System.setProperty("webdriver.chrome.driver",
-						constantsPropertiesManager.getSharedExecutionConstants().getProperty("chromeWinExec"));
-				driver = new ChromeDriver();
-
-			}
-
-			else if (webBrowserProperty.equalsIgnoreCase("Safari"))
-				driver = new SafariDriver();
-
-			else if (webBrowserProperty.equalsIgnoreCase("IE")) {
-				DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-						true);
-				if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("bitsVersionForIE")
-						.equalsIgnoreCase("32"))
-					System.setProperty("webdriver.ie.driver",
-							constantsPropertiesManager.getSharedExecutionConstants().getProperty("IEexec32"));
-				else
-					System.setProperty("webdriver.ie.driver",
-							constantsPropertiesManager.getSharedExecutionConstants().getProperty("IEexec64"));
-
-				driver = new InternetExplorerDriver();
-			} else {
-				DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-				capabilities.setCapability("marionette", true);
-
-				if (constantsPropertiesManager.getSharedExecutionConstants().getProperty("bitsVersionForFireFox")
-						.equalsIgnoreCase("32"))
-					System.setProperty("webdriver.gecko.driver",
-							constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec32"));
-				else
-					System.setProperty("webdriver.gecko.driver",
-							constantsPropertiesManager.getSharedExecutionConstants().getProperty("geckoMacExec64"));
-
-				driver = new FirefoxDriver(capabilities);
-			}
-
+		}catch (IOException ex){
+			throw new  TestException("Require Files are not found.");
 		}
-
 		this.maximizeWindow();
-		driver.get(constantsPropertiesManager.getSharedExecutionConstants().getProperty("baseUrl"));
 	}
 
 
@@ -134,7 +110,7 @@ public class WebDriverManager {
 
 	public void driverWait() {
 		try {
-			Thread.sleep(2300);
+			Thread.sleep(4000);
 		} catch (InterruptedException ie1) {
 			ie1.printStackTrace();
 		}

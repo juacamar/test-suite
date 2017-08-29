@@ -593,6 +593,7 @@ public class Crafter3LoadTest1Script {
 	public void crafter3LoadTestTestUser1() {
 		this.crafter3LoadTest();
 	}
+	
 //	@Test (priority=1, sequential = true)
 //	public void crafter3LoadTestTestUser2() {
 //		this.crafter3LoadTest();
