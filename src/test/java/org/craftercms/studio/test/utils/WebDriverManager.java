@@ -30,58 +30,51 @@ public class WebDriverManager {
 			runtimeProperties.load(WebDriverManager.class.getResourceAsStream("/runtime.properties"));
 			String enviromentPropertiesPath = runtimeProperties.getProperty("crafter.test.location");
 			final Properties envProperties = new Properties();
-			try{
+			try {
 				envProperties.load(new FileInputStream(enviromentPropertiesPath));
 				String webBrowserProperty = envProperties.getProperty("webBrowser");
 				DesiredCapabilities capabilities;
-				switch (webBrowserProperty.toLowerCase()){
-					case "phantomjs":
-						capabilities = DesiredCapabilities.phantomjs();
-						System.setProperty("phantomjs.binary.path",
-								envProperties.getProperty("phantomjs.binary.path"));
-						driver = new PhantomJSDriver(capabilities);
-						break;
-					case "firefox":
-						capabilities = DesiredCapabilities.firefox();
-						System.setProperty("webdriver.gecko.driver",
-								envProperties.getProperty("firefox.driver.path"));
-						driver = new FirefoxDriver(capabilities);
-						break;
-					case "edge":
-						capabilities = DesiredCapabilities.edge();
-						System.setProperty("webdriver.edge.driver",
-								envProperties.getProperty("edge.driver.path"));
-						driver = new EdgeDriver(capabilities);
-						break;
-					case "ie":
-						capabilities = DesiredCapabilities.internetExplorer();
-						capabilities.setCapability(
-								InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-								true);
-						System.setProperty("webdriver.ie.driver",
-								envProperties.getProperty("ie.driver.path"));
-						driver = new InternetExplorerDriver(capabilities);
-						break;
-					case "chrome":
-						capabilities = DesiredCapabilities.chrome();
-						System.setProperty("webdriver.chrome.driver",
-								envProperties.getProperty("chrome.driver.path"));
-						driver = new ChromeDriver(capabilities);
-						break;
-					default:
-						throw new IllegalArgumentException("webBrowser property is needed, valid values are:" +
-								"chrome,edge,ie,firefox,phantomjs");
+				switch (webBrowserProperty.toLowerCase()) {
+				case "phantomjs":
+					capabilities = DesiredCapabilities.phantomjs();
+					System.setProperty("phantomjs.binary.path", envProperties.getProperty("phantomjs.binary.path"));
+					driver = new PhantomJSDriver(capabilities);
+					break;
+				case "firefox":
+					capabilities = DesiredCapabilities.firefox();
+					System.setProperty("webdriver.gecko.driver", envProperties.getProperty("firefox.driver.path"));
+					driver = new FirefoxDriver(capabilities);
+					break;
+				case "edge":
+					capabilities = DesiredCapabilities.edge();
+					System.setProperty("webdriver.edge.driver", envProperties.getProperty("edge.driver.path"));
+					driver = new EdgeDriver(capabilities);
+					break;
+				case "ie":
+					capabilities = DesiredCapabilities.internetExplorer();
+					capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+							true);
+					System.setProperty("webdriver.ie.driver", envProperties.getProperty("ie.driver.path"));
+					driver = new InternetExplorerDriver(capabilities);
+					break;
+				case "chrome":
+					capabilities = DesiredCapabilities.chrome();
+					System.setProperty("webdriver.chrome.driver", envProperties.getProperty("chrome.driver.path"));
+					driver = new ChromeDriver(capabilities);
+					break;
+				default:
+					throw new IllegalArgumentException(
+							"webBrowser property is needed, valid values are:" + "chrome,edge,ie,firefox,phantomjs");
 				}
 				driver.get(envProperties.getProperty("baseUrl"));
-			}catch (IOException ex){
+			} catch (IOException ex) {
 				throw new FileNotFoundException("Unable to read runtime properties file");
 			}
-		}catch (IOException ex){
-			throw new  TestException("Require Files are not found.");
+		} catch (IOException ex) {
+			throw new TestException("Require Files are not found.");
 		}
 		this.maximizeWindow();
 	}
-
 
 	public void closeConnection() {
 		this.driver.close();
@@ -92,7 +85,7 @@ public class WebDriverManager {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		int width = (int) toolkit.getScreenSize().getWidth();
 		int height = (int) toolkit.getScreenSize().getHeight();
-
+		this.driverWait();
 		this.driver.manage().window().setPosition(new Point(0, 0));
 		this.driver.manage().window().maximize();
 		this.driver.manage().window().setSize(new Dimension(width, height));
@@ -110,7 +103,7 @@ public class WebDriverManager {
 
 	public void driverWait() {
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(3100);
 		} catch (InterruptedException ie1) {
 			ie1.printStackTrace();
 		}
@@ -161,5 +154,4 @@ public class WebDriverManager {
 		}
 	}
 
-	
 }

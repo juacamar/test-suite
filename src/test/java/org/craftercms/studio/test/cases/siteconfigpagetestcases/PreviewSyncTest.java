@@ -14,7 +14,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -31,8 +31,6 @@ public class PreviewSyncTest {
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
-
-	
 
 	@BeforeTest
 	public void beforeTest() {
@@ -70,43 +68,27 @@ public class PreviewSyncTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
 		// Show site content panel
 
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-		
+		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+
 		// go to admin console page
 
 		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// click on preview sync option
-		
+
 		dashboardPage.clickOnPreviewSyncOption();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-				
-		
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen0-button"))
-		.click();
-		
-		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		
-		// Ok for the dialog window when appears
-
-//		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
-//		driverManager.getDriver().switchTo().alert().accept();
+		driverManager.getDriver().findElement(By.cssSelector("#yui-gen0-button")).click();
 
 	}
 

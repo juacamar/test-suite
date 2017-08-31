@@ -74,13 +74,13 @@ public class CopyPasteIntoFolderTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// reload page
 
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 				.click();
 
 		// wait for element is clickeable
@@ -257,7 +257,7 @@ public class CopyPasteIntoFolderTest {
 		//dashboardPage.expandHomeTree();
 
 		// Copy the crafter component to the new folder created
-
+		homePage.getDriverManager().driverWait();
 		dashboardPage.rightClickToCopyComponentToNewFolder();
 
 		// wait for element is clickeable
@@ -290,7 +290,9 @@ public class CopyPasteIntoFolderTest {
 
 		// reload page
 
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
+		
+		//homePage.getDriverManager().driverWait();
 
 		// Asserts of the new content created
 

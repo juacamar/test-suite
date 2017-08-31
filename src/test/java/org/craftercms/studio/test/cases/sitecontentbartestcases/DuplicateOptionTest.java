@@ -169,9 +169,9 @@ public class DuplicateOptionTest {
 		homePage.getDriverManager().driverWait();
 
 		// click on duplicate in the popup
-
 		driverManager.getDriver().findElement(By.id("yui-gen1-button")).click();
-
+		driverManager.driverWait();
+		
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
@@ -201,7 +201,7 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		//homePage.getDriverManager().driverWait();
 
 		// wait for element is clickeable
 
@@ -216,20 +216,7 @@ public class DuplicateOptionTest {
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
+		// wait for element is clickeabl
 		homePage.getDriverManager().driverWait();
 
 	}
@@ -286,9 +273,7 @@ public class DuplicateOptionTest {
 		homePage.getDriverManager().driverWait();
 
 		// Select the content to duplicate.
-
-		driverManager.getDriver()
-				.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[2]/div/a")).click();
+		driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
 		// wait for element is clickeable
 
@@ -306,10 +291,6 @@ public class DuplicateOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
 		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
@@ -317,7 +298,6 @@ public class DuplicateOptionTest {
 		homePage.getDriverManager().driverWait();
 
 		// Assert
-
 		String duplicate = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
 		Assert.assertEquals(duplicate, "COPY");
 

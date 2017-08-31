@@ -1,10 +1,10 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
@@ -116,7 +116,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		String head = driverManager.getDriver()
 				.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();
-		Assert.assertEquals(head, "Live :");
+		AssertJUnit.assertEquals(head, "Live :");
 
 	}
 

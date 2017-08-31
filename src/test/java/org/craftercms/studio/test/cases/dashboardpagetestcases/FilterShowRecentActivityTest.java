@@ -300,12 +300,8 @@ public class FilterShowRecentActivityTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 				.click();
 
 		// wait for element is clickeable
@@ -338,7 +334,7 @@ public class FilterShowRecentActivityTest {
 
 		// expand home
 
-		dashboardPage.expandHomeTree2();
+		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable
 
@@ -351,7 +347,7 @@ public class FilterShowRecentActivityTest {
 		// create a content with level descriptor content type
 
 		// create another content to use a filter
-
+		homePage.getDriverManager().driverWait();
 		createSecondContent();
 
 		// reload page
@@ -363,6 +359,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait();
 
 		// filters and asserts
+		this.filtersAndAsserts();
 
 	}
 

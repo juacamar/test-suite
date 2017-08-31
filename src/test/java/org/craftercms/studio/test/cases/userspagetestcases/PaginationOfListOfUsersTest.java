@@ -99,7 +99,8 @@ public class PaginationOfListOfUsersTest {
 		.sendKeys("11");
 
 		// navigation
-
+        driverManager.driverWait();
+        
 		driverManager.getDriver()
 				.findElement(By.cssSelector(
 						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(3) > a"))

@@ -389,12 +389,8 @@ public class EditContentFormTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 				.click();
 
 		// wait for element
@@ -432,10 +428,6 @@ public class EditContentFormTest {
 		// go to dashboard
 
 		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-
-		// expand pages folder
-
-		dashboardPage.expandPagesTree();
 
 		// wait for element is clickeable
 
