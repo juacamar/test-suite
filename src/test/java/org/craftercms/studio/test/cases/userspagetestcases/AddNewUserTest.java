@@ -70,6 +70,7 @@ public class AddNewUserTest {
 		createSitePage.clickOnUsersOption();
 		
 		//click on new user button
+		this.driverManager.driverWait();
 		
 		usersPage.clickOnNewUser();
 		

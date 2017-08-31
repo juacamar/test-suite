@@ -176,26 +176,24 @@ public class EditContentRecentlyCreatedTest {
 	}
 
 	public void editingContentRecentlyCreated() {
-
-		// right click to see the menu and edit
-
+		// wait for element is clickeable
+		this.driverManager.driverWait();
+		
 		dashboardPage.rightClickToSelectEditOption();
 
 		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+		this.driverManager.driverWait();
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		
 
 		// wait for element is clickeable
-
 		homePage.getDriverManager().driverWait();
-
+		
 		// edit internal title
-
 		driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).sendKeys("EDITED");
 
 		// wait for element is clickeable
@@ -246,12 +244,8 @@ public class EditContentRecentlyCreatedTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 				.click();
 
 		// wait for element is clickeable
@@ -276,22 +270,19 @@ public class EditContentRecentlyCreatedTest {
 
 		// Expand Home Tree
 
-		dashboardPage.expandHomeTree2();
+		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
 
 		// Edited content recently created
-
+		driverManager.getDriver().navigate().refresh();
+		
 		editingContentRecentlyCreated();
 		
 		// reload page
@@ -299,7 +290,7 @@ public class EditContentRecentlyCreatedTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert find the new content created edited
-
+        driverManager.driverWait();
 		String contentEdited = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
 		Assert.assertEquals(contentEdited, "Testing1EDITED");
 

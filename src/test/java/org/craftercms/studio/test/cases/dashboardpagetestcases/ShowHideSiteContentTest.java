@@ -71,7 +71,7 @@ public class ShowHideSiteContentTest {
 		homePage.goToDashboardPage();
 
         //Expand the site content panel
-		
+		homePage.getDriverManager().driverWait();
 		dashboardPage.clickOnSiteContentOption();
 		
 		// wait for element is clickeable

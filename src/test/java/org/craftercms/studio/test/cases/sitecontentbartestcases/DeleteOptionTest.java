@@ -80,13 +80,8 @@ public class DeleteOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
+		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable
 
@@ -171,8 +166,7 @@ public class DeleteOptionTest {
 		WebElement home = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1"));
 
 		this.driverManager.contextClick(this.driverManager.getDriver(), home);
-		//Actions action = new Actions(driverManager.getDriver());
-		//action.contextClick(home).build().perform();
+		this.driverManager.driverWait();
 
 		WebElement addContent = driverManager.getDriver()
 				.findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(3)"));
@@ -210,14 +204,6 @@ public class DeleteOptionTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// Expand all fields
-
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// Set Main Content
-
-		// dashboardPage.setMetadataFields("title", "keywords");
 
 		// wait for element is clickeable
 
@@ -262,32 +248,12 @@ public class DeleteOptionTest {
 		driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
 
 		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// expand pages folder
-
-		dashboardPage.expandPagesTree();
-
-		// Expand Home Tree
-
 		dashboardPage.expandHomeTree();
+		
+		homePage.getDriverManager().driverWait();
 
 		// Select the content to delete.
-
-		driverManager.getDriver().findElement(By.cssSelector("#ygtvcontentel3")).click();
+		driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
 		// wait for element is clickeable
 

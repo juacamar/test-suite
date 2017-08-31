@@ -66,7 +66,7 @@ public class DeleteUserTest {
 		createSitePage.clickOnUsersOption();
 
 		// Click on delete user
-
+		homePage.getDriverManager().driverWait();
 		usersPage.clickOnDeleteUserCreated();
 
 		// wait for element is clickeable

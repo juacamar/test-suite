@@ -194,20 +194,6 @@ public class PublishingSiteTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// body not requiered
-
 		changeBodyToNotRequiredOnEntryContent();
 
 		// wait for element is clickeable
@@ -248,9 +234,7 @@ public class PublishingSiteTest {
 
 		approveAndPublish();
 
-		// reload page and assert
-
-		reloadPage();
+		this.reloadPage();
 
 		// Assert
 
