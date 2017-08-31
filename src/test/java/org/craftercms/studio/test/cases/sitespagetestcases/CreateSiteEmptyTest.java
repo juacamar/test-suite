@@ -109,16 +109,16 @@ public class CreateSiteEmptyTest {
 		//review the performance here, it is to much time aprox 38secs
 		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();	
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();	
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();	
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();	
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
 	
 		// Show site content panel
 

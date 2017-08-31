@@ -84,29 +84,6 @@ public class DuplicateOptionTest {
 
 	}
 
-//	public void bodyNotRequired() {
-//		// select main content
-//
-//		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
-//
-//		// wait for element is clickeable
-//
-//		homePage.getDriverManager().driverWait();
-//
-//		// Body not required
-//
-//		driverManager.getDriver()
-//				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
-//
-//		// wait for element is clickeable
-//
-//		homePage.getDriverManager().driverWait();
-//
-//		// save
-//
-//		siteConfigPage.saveDragAndDropProcess();
-//	}
-
 	public void createNewContent() {
 		// right click to see the the menu
 
@@ -168,9 +145,10 @@ public class DuplicateOptionTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// click on duplicate in the popup
-		driverManager.getDriver().findElement(By.id("yui-gen1-button")).click();
 		driverManager.driverWait();
+		// click on duplicate in the popup
+		driverManager.getDriver().findElement(By.xpath(".//div[@id='duplicate-dialog']/div/span/span/span/button[contains(text(),'Duplicate')]")).click();
+		
 		
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
@@ -276,6 +254,7 @@ public class DuplicateOptionTest {
 		driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
 		// wait for element is clickeable
+		driverManager.getDriver().navigate().refresh();
 
 		homePage.getDriverManager().driverWait();
 

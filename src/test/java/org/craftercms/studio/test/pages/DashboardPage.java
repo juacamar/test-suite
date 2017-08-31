@@ -32,6 +32,7 @@ public class DashboardPage {
 	private String createButton1;
 	private String setFolderName1;
 	private String copyContent1;
+	private String aboutUSContentPage;
 	private String pasteContent1;
 	private String aboutUsOptionCopied;
 	private String deleteOptionCopied;
@@ -139,6 +140,8 @@ public class DashboardPage {
 				.getProperty("dashboard.create_Button");
 		setFolderName1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
 		copyContent1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content1");
+		aboutUSContentPage = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.aboutuscontentpage");
 		pasteContent0 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.paste_content");
 		pasteContent1 = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -283,7 +286,7 @@ public class DashboardPage {
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
 		this.getDriverManager().driverWait();
-		WebElement globalEntry = driverManager.getDriver().findElement(By.cssSelector(homeTree));
+		WebElement globalEntry = driverManager.getDriver().findElement(By.xpath(homeTree));
 		globalEntry.click();
 	}
 
@@ -334,7 +337,7 @@ public class DashboardPage {
 	public void rightClickHome2() {
 		WebElement home2 = driverManager.getDriver().findElement(By.xpath(homeContent2));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home2);
-		
+
 		this.getDriverManager().driverWait();
 		WebElement addContent = driverManager.getDriver().findElement(By.xpath(addNewContent2));
 		addContent.click();
@@ -349,7 +352,7 @@ public class DashboardPage {
 	public void rightClickHome3() {
 		WebElement home3 = driverManager.getDriver().findElement(By.cssSelector(homeContent3));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home3);
-		
+
 		this.driverManager.driverWait();
 		WebElement addContent = driverManager.getDriver().findElement(By.xpath(addNewContent));
 		addContent.click();
@@ -371,7 +374,9 @@ public class DashboardPage {
 
 	// Press right click select new folder
 	public void rightClickNewFolderOnAPresentFolder(WebElement parentWebElement) {
+		this.driverManager.driverWait();
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
+		this.driverManager.driverWait();
 		WebElement addFolderOption = driverManager.getDriver().findElement(By.cssSelector(addNewFolderOption));
 		addFolderOption.click();
 	}
@@ -523,7 +528,7 @@ public class DashboardPage {
 
 	// Press right click and press copy option (about us page)
 	public void rightClickCopyOptionAboutUs() {
-		WebElement copypasteContent = driverManager.getDriver().findElement(By.xpath(homeContent2));
+		WebElement copypasteContent = driverManager.getDriver().findElement(By.xpath(aboutUSContentPage));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 		this.getDriverManager().driverWait();
 		WebElement copyContent = driverManager.getDriver().findElement(By.cssSelector(copyContent3));
@@ -948,6 +953,7 @@ public class DashboardPage {
 
 	// Click on duplicate button of the menu
 	public void duplicateButton() {
+		this.driverManager.driverWait();
 		WebElement duplicateOption = driverManager.getDriver().findElement(By.xpath(previewDuplicate));
 		duplicateOption.click();
 	}
@@ -1137,6 +1143,7 @@ public class DashboardPage {
 	}
 
 	public void rightClickCopyContentPage(WebElement parentWebElement) {
+		this.driverManager.driverWait();
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 		WebElement copyOption = driverManager.getDriver().findElement(By.cssSelector(copyOptionLocatorForContentPage));
 		copyOption.click();
