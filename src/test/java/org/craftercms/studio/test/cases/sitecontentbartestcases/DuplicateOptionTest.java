@@ -253,9 +253,6 @@ public class DuplicateOptionTest {
 		// Select the content to duplicate.
 		driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
-		// wait for element is clickeable
-		driverManager.getDriver().navigate().refresh();
-
 		homePage.getDriverManager().driverWait();
 
 		// Duplicate content created

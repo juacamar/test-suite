@@ -372,7 +372,7 @@ public class EditContentFormTest {
 
 	@Test(priority = 0)
 
-	public void editContentOne() {
+	public void editContentTest() {
 
 		// login to application
 

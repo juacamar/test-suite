@@ -47,7 +47,7 @@ public class DesignOfUsersPageTest {
 
 	@Test(priority = 0)
 
-	public void addNewUser() {
+	public void desingOfUsersPageTest() {
 
 		// login to application
 

@@ -115,7 +115,7 @@ public class SitesPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.sendKeys("8");
+				.sendKeys("1");
 
 		// wait for element is clickeable
 
@@ -123,10 +123,10 @@ public class SitesPerPageTest {
 
 		// Assert only 8 sites displayed
 
-		WebElement user8 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(8) > td.name.ng-binding"));
+		WebElement page1 = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(1) > td.name.ng-binding"));
 
-		Assert.assertTrue(user8.isDisplayed());
+		Assert.assertTrue(page1.isDisplayed());
 
 		// wait for element is clickeable
 
@@ -138,7 +138,7 @@ public class SitesPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.sendKeys("5");
+				.sendKeys("2");
 
 		// wait for element is clickeable
 
@@ -146,10 +146,10 @@ public class SitesPerPageTest {
 
 		// Asser only 5 sites displayed
 
-		WebElement user5 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(5) > td.name.ng-binding"));
+		WebElement page2 = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(2) > td.name.ng-binding"));
 
-		Assert.assertTrue(user5.isDisplayed());
+		Assert.assertTrue(page2.isDisplayed());
 
 		// wait for element is clickeable
 
@@ -161,7 +161,7 @@ public class SitesPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.sendKeys("1");
+				.sendKeys("3");
 
 		// wait for element is clickeable
 
@@ -169,10 +169,10 @@ public class SitesPerPageTest {
 
 		// Asser only 1 site displayed
 
-		WebElement user1 = driverManager.getDriver().findElement(
-				By.cssSelector("#container > div > div > div.ng-scope > table > tbody > tr > td.name.ng-binding"));
+		WebElement page3 = driverManager.getDriver().findElement(
+				By.cssSelector("#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) > td.name.ng-binding"));
 
-		Assert.assertTrue(user1.isDisplayed());
+		Assert.assertTrue(page3.isDisplayed());
 
 		// wait for element is clickeable
 
@@ -184,18 +184,11 @@ public class SitesPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.sendKeys("11");
+				.sendKeys("10");
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// Asser only 1 site displayed
-
-		WebElement user11 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(11) > td.name.ng-binding"));
-
-		Assert.assertTrue(user11.isDisplayed());
 
 	}
 
@@ -239,39 +232,7 @@ public class SitesPerPageTest {
 		// Create user 3
 
 		createSitesRandom();
-
-		// Create user 4
-
-		createSitesRandom();
-
-		// Create user 5
-
-		createSitesRandom();
-
-		// Create user 6
-
-		createSitesRandom();
-
-		// Create user 7
-
-		createSitesRandom();
-
-		// Create user 8
-
-		createSitesRandom();
-
-		// Create user 9
-
-		createSitesRandom();
-
-		// Create user 10
-
-		createSitesRandom();
-
-		// Create user 11
-
-		createSitesRandom();
-
+		
 		// filters
 
 		filters();
@@ -288,36 +249,5 @@ public class SitesPerPageTest {
 
 		deleteSite();
 
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
 	}
 }
