@@ -171,7 +171,7 @@ public class EditOptionTest {
 	
 	public void editingContent(){
 		// Select a content to edit
-
+		homePage.getDriverManager().driverWait();
 		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
 
 		// wait for element is clickeable
@@ -222,7 +222,7 @@ public class EditOptionTest {
 
 	@Test(priority = 0)
 
-	public void editOption() {
+	public void contextualNavigationEditOptionTest() {
 
 		// login to application
 
@@ -277,11 +277,7 @@ public class EditOptionTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
+		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();

@@ -113,7 +113,7 @@ public class PaginationOfListOfSitesTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-				.sendKeys("8");
+				.sendKeys("2");
 		
 		// wait for element is clickeable
 
@@ -145,7 +145,7 @@ public class PaginationOfListOfSitesTest {
 		.clear();
 		
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-		.sendKeys("11");
+		.sendKeys("10");
 
 		// wait for element is clickeable
 
@@ -197,40 +197,6 @@ public class PaginationOfListOfSitesTest {
 
 		createSitesRandom();
 
-		// Create user 4
-
-		createSitesRandom();
-
-		// Create user 5
-
-		createSitesRandom();
-
-		// Create user 6
-
-		createSitesRandom();
-
-		// Create user 7
-
-		createSitesRandom();
-
-		// Create user 8
-
-		createSitesRandom();
-
-		// Create user 9
-
-		createSitesRandom();
-
-		// Create user 10
-
-		createSitesRandom();
-
-		// Create user 11
-
-		createSitesRandom();
-
-		// wait for element is clickeable
-
 		homePage.getDriverManager().driverWait();
 
 		// filters
@@ -249,21 +215,6 @@ public class PaginationOfListOfSitesTest {
 		
 		deleteSite();
 
-		deleteSite();
-		
-		deleteSite();
-		
-		deleteSite();
-
-		deleteSite();
-
-		deleteSite();
-
-		deleteSite();
-
-		deleteSite();
-
-		deleteSite();
 		
 	}
 

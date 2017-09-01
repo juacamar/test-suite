@@ -57,7 +57,7 @@ public class DeleteContentTest {
 
 	@Test(priority = 0)
 
-	public void Delete_Content() {
+	public void deleteContentTest() {
 
 		// login to application
 
@@ -233,7 +233,7 @@ public class DeleteContentTest {
 
 		// wait for element is clickeable
 
-		//homePage.getDriverManager().driverWait();
+		// homePage.getDriverManager().driverWait();
 
 		// save and close
 
@@ -249,7 +249,7 @@ public class DeleteContentTest {
 
 		// reload page
 
-		//driverManager.getDriver().navigate().refresh();
+		// driverManager.getDriver().navigate().refresh();
 
 		// wait for element is clickeable
 
@@ -290,12 +290,13 @@ public class DeleteContentTest {
 		dashboardPage.clickOKSubmittalComplete();
 
 		// reload page
-		driverManager.getDriver().navigate().refresh();		
-
-		// wait for element is clickeable
+		driverManager.getDriver().navigate().refresh();
+		// wait for element
 		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		
+		// wait for element
+		driverManager.driverWait();
+		driverManager.getDriver().navigate().refresh();
+		driverManager.driverWait();
 
 		String contentCopied = driverManager.getDriver()
 				.findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)")).getText();

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.SiteConfigPage;
@@ -53,14 +53,14 @@ public class DeleteOptionTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)
 
-	public void Delete_option() {
+	public void contextualNavigationDeleteOptionTest() {
 
 		// login to application
 
@@ -249,7 +249,7 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 		dashboardPage.expandHomeTree();
-		
+
 		homePage.getDriverManager().driverWait();
 
 		// Select the content to delete.
@@ -284,7 +284,14 @@ public class DeleteOptionTest {
 
 		driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
 
+		// reload page
+		driverManager.getDriver().navigate().refresh();
+		// wait for element
 		previewPage.getDriverManager().driverWait();
+		// wait for element
+		driverManager.driverWait();
+		driverManager.getDriver().navigate().refresh();
+		driverManager.driverWait();
 
 		String contentDelete = driverManager.getDriver()
 				.findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)")).getText();

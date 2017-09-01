@@ -1,8 +1,8 @@
 package org.craftercms.studio.test.utils;
 
 import org.openqa.selenium.*;
-//import org.openqa.selenium.Dimension;
-//import org.openqa.selenium.Point;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,8 +12,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.TestException;
-
-//import java.awt.*;
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -82,14 +81,17 @@ public class WebDriverManager {
 	}
 
 	public void maximizeWindow() {
-//		Toolkit toolkit = Toolkit.getDefaultToolkit();
-//		int width = (int) toolkit.getScreenSize().getWidth();
-//		int height = (int) toolkit.getScreenSize().getHeight();
-		this.driverWait();
-		//this.driver.manage().window().setPosition(new Point(0, 0));
+		//Getting the size width and height
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		int width = (int) toolkit.getScreenSize().getWidth();
+		int height = (int) toolkit.getScreenSize().getHeight();
+		
+		//locating webdriver at coordinate 0,0
+		this.driver.manage().window().setPosition(new Point(0, 0));
+		//maximize the window at normal size
 		this.driver.manage().window().maximize();
-		//this.driver.manage().window().setSize(new Dimension(width, height));
-		//this.driverWait();
+		//scaling to full screen
+		this.driver.manage().window().setSize(new Dimension(width, height));
 
 	}
 

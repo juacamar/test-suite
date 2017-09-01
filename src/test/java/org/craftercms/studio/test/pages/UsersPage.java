@@ -70,7 +70,7 @@ public class UsersPage {
 	// Click on New User Button
 
 	public void clickNewUserButton() {
-
+		this.driverManager.driverWait();
 		WebElement newUserButton = driverManager.getDriver().findElement(By.cssSelector(newUserOption));
 		newUserButton.click();
 

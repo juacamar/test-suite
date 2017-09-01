@@ -3,8 +3,8 @@ package org.craftercms.studio.test.cases.userspagetestcases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.pages.CreateSitePage;
@@ -33,7 +33,7 @@ public class UsersPerPageTest {
 
 	private UsersPage usersPage;
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
@@ -45,7 +45,7 @@ public class UsersPerPageTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -92,7 +92,7 @@ public class UsersPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.sendKeys("8");
+				.sendKeys("1");
 
 		// wait for element is clickeable
 
@@ -100,10 +100,10 @@ public class UsersPerPageTest {
 
 		// Asser only 8 users displayed
 
-		WebElement user8 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(8) > td:nth-child(6) > a"));
+		WebElement user1 = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > a"));
 
-		Assert.assertTrue(user8.isDisplayed());
+		Assert.assertTrue(user1.isDisplayed());
 
 		// wait for element is clickeable
 
@@ -115,7 +115,7 @@ public class UsersPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.sendKeys("5");
+				.sendKeys("2");
 
 		// wait for element is clickeable
 
@@ -123,10 +123,10 @@ public class UsersPerPageTest {
 
 		// Asser only 5 users displayed
 
-		WebElement user5 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(5) > td:nth-child(6) > a"));
+		WebElement user2 = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a"));
 
-		Assert.assertTrue(user5.isDisplayed());
+		Assert.assertTrue(user2.isDisplayed());
 
 		// wait for element is clickeable
 
@@ -138,7 +138,7 @@ public class UsersPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.sendKeys("1");
+				.sendKeys("3");
 
 		// wait for element is clickeable
 
@@ -146,10 +146,10 @@ public class UsersPerPageTest {
 
 		// Asser only 1 user displayed
 
-		WebElement user1 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(6) > a"));
+		WebElement user3 = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > a"));
 
-		Assert.assertTrue(user1.isDisplayed());
+		Assert.assertTrue(user3.isDisplayed());
 
 		// wait for element is clickeable
 
@@ -161,7 +161,7 @@ public class UsersPerPageTest {
 				.clear();
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-				.sendKeys("11");
+				.sendKeys("4");
 
 		// wait for element is clickeable
 
@@ -169,14 +169,19 @@ public class UsersPerPageTest {
 
 		// Asser only 1 users displayed
 
-		WebElement user11 = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(11) > td:nth-child(6) > a"));
+		WebElement user4 = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > table > tbody > tr:nth-child(4) > td:nth-child(1) > a"));
 
-		Assert.assertTrue(user11.isDisplayed());
+		Assert.assertTrue(user4.isDisplayed());
 
+		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
+		.clear();
+
+        driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
+		.sendKeys("4");
 	}
 
-	public void deleteUserBlockOne() {
+	public void deleteUsers() {
 		// Click on delete user
 
 		usersPage.clickOnDeleteUserCreated();
@@ -218,195 +223,6 @@ public class UsersPerPageTest {
 		// Click on delete user
 
 		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-	}
-
-	public void deleteUsersBlockTwo() {
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-		
-		homePage.getDriverManager().driverWait();
-		
-		// reload page		
-		driverManager.getDriver()
-		.findElement(By.cssSelector("#homeSites"))
-		.click();
-		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-		
-		createSitePage.clickOnUsersOption();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-	}
-
-	public void deleteUsersBlockThree() {
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
 
 	}
 
@@ -434,38 +250,6 @@ public class UsersPerPageTest {
 
 		createUserRandom();
 
-		// Create user 4
-
-		createUserRandom();
-
-		// Create user 5
-
-		createUserRandom();
-
-		// Create user 6
-
-		createUserRandom();
-
-		// Create user 7
-
-		createUserRandom();
-
-		// Create user 8
-
-		createUserRandom();
-
-		// Create user 9
-
-		createUserRandom();
-
-		// Create user 10
-
-		createUserRandom();
-
-		// Create user 11
-
-		createUserRandom();
-
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -480,15 +264,8 @@ public class UsersPerPageTest {
 
 		// Delete users block 1
 
-		deleteUserBlockOne();
+		deleteUsers();
 
-		// delete users block 2
-
-		deleteUsersBlockTwo();
-
-		// delete users block 3
-
-		deleteUsersBlockThree();
 	}
 
 }
