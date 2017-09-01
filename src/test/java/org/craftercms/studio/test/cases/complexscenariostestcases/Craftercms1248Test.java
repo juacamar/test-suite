@@ -83,9 +83,11 @@ public class Craftercms1248Test {
 		homePage.getDriverManager().driverWait();
 		// reload page
 		driverManager.getDriver().navigate().refresh();
+	
 		driverManager.setImplicitlyWaitTimeForFindElements();
+		homePage.getDriverManager().driverWait();
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 				.click();
 		// wait for element is clickeable
 		homePage.getDriverManager().driverWait();

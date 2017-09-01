@@ -6,6 +6,7 @@ package org.craftercms.studio.test.cases.complexscenariostestcases;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 import org.testng.AssertJUnit;
 import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -112,6 +113,7 @@ public class Crafter3LoadTest1Script {
 	}
 
 	public void createFolderOnAPresentFolder(String folderName, WebElement Parent) {
+		this.driverManager.driverWait();
 		// Right click and click on New Folder option
 		dashboardPage.rightClickNewFolderOnAPresentFolder(Parent);
 		// Set the name of the folder
@@ -158,7 +160,8 @@ public class Crafter3LoadTest1Script {
 		driverManager.setImplicitlyWaitTimeForFindElements();
 
 		// Checking if parent folder is present
-		AssertJUnit.assertTrue(driverManager.isElementPresentByXpath(parentFolderLocator));
+		dashboardPage.getDriverManager().driverWait();
+		Assert.assertTrue(driverManager.isElementPresentByXpath(parentFolderLocator));
 		this.driverManager.driverWait();
 		WebElement parentFolder = dashboardPage.getDriverManager().getDriver()
 				.findElement(By.xpath(parentFolderLocator));
@@ -365,7 +368,7 @@ public class Crafter3LoadTest1Script {
 			// moving to the publish dialog, clicking on Submit and confirm action
 			this.confirmPublishAction();
 			// wait for element
-			//dashboardPage.getDriverManager().driverWait();
+			// dashboardPage.getDriverManager().driverWait();
 		}
 
 	}
@@ -432,7 +435,8 @@ public class Crafter3LoadTest1Script {
 	public void step3() {
 		harnessFolder = driverManager.getDriver().findElement(By.xpath(harnessFolderLocator));
 		this.createFolderOnAPresentFolder(myTestFolderName, harnessFolder);
-		// myTestFolder = driverManager.getDriver().findElement(By.xpath(mytestFolderLocator));
+		// myTestFolder =
+		// driverManager.getDriver().findElement(By.xpath(mytestFolderLocator));
 	}
 
 	public void step4() {
@@ -511,6 +515,7 @@ public class Crafter3LoadTest1Script {
 		bigTree2Folder = driverManager.getDriver().findElement(By.xpath(bigTree2FolderLocator));
 		dashboardPage.expandParentFolder(bigTree2Folder);
 
+		driverManager.driverWait();
 		bigTree2BigTree1ChildFolder = driverManager.getDriver()
 				.findElement(By.xpath(bigTree2BigTree1ChildFolderLocator));
 		dashboardPage.expandParentFolder(bigTree2BigTree1ChildFolder);
@@ -589,18 +594,18 @@ public class Crafter3LoadTest1Script {
 		this.step12();
 	}
 
-	@Test (priority=0, sequential = true)
+	@Test(priority = 0, sequential = true)
 	public void crafter3LoadTestTestUser1() {
 		this.crafter3LoadTest();
 	}
-	
-//	@Test (priority=1, sequential = true)
-//	public void crafter3LoadTestTestUser2() {
-//		this.crafter3LoadTest();
-//	}
-//	@Test (priority=2, sequential = true)
-//	public void crafter3LoadTestTestUser3() {
-//		this.crafter3LoadTest();
-//	}
-	
+
+	// @Test (priority=1, sequential = true)
+	// public void crafter3LoadTestTestUser2() {
+	// this.crafter3LoadTest();
+	// }
+	// @Test (priority=2, sequential = true)
+	// public void crafter3LoadTestTestUser3() {
+	// this.crafter3LoadTest();
+	// }
+
 }

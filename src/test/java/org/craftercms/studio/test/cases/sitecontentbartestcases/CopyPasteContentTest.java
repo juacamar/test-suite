@@ -235,7 +235,6 @@ public class CopyPasteContentTest {
 		// Right click and copy content.
 
 		dashboardPage.rightClickToCopyOptionAboutUs();
-		
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
