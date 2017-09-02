@@ -12,8 +12,8 @@ import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
@@ -28,7 +28,7 @@ public class ShowUsersPageTest {
 	private UsersPage usersPage;
 	private DashboardPage dashboardPage;
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
@@ -39,7 +39,7 @@ public class ShowUsersPageTest {
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		//closing the conection with the webdriver
 		driverManager.closeConnection();

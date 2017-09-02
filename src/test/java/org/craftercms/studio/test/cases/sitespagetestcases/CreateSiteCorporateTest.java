@@ -1,10 +1,9 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
-
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -30,25 +29,18 @@ public class CreateSiteCorporateTest {
 
 	private CreateSitePage createSitePage;
 
-
-	
-
-	 @BeforeTest
-	 public void beforeTest() {
-	 this.driverManager = new WebDriverManager();
-	 UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+	@BeforeClass
+	public void beforeTest() {
+		this.driverManager = new WebDriverManager();
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-	 this.loginPage = new LoginPage(driverManager,
-			 uIElementsPropertiesManager);
-	 this.homePage = new HomePage(driverManager,
-			 uIElementsPropertiesManager);
-	 this.createSitePage = new CreateSitePage(driverManager,
-			 uIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 
-	
-	 }
+	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}

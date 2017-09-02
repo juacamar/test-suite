@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Crafter Studio Test Cases - UI">
+<suite name="Crafter Studio Test Cases - UI" preserve-order="true">
 	<!-- UI Test Cases -->
 	<test name="Try to delete user connected test">
 		<classes>
@@ -650,3 +650,4 @@
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
+

@@ -1,8 +1,8 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.AccountManagementPage;
 import org.craftercms.studio.test.pages.CreateSitePage;
@@ -32,7 +32,7 @@ public class ChangePasswordUserTest {
 
 	private AccountManagementPage accountManagementPage;
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
@@ -44,7 +44,7 @@ public class ChangePasswordUserTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -116,7 +116,7 @@ public class ChangePasswordUserTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");

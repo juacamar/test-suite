@@ -3,8 +3,8 @@ package org.craftercms.studio.test.cases.sitespagetestcases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -29,7 +29,7 @@ public class SitesPerPageTest {
 
 	private CreateSitePage createSitePage;
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
@@ -40,7 +40,7 @@ public class SitesPerPageTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -169,8 +169,8 @@ public class SitesPerPageTest {
 
 		// Asser only 1 site displayed
 
-		WebElement page3 = driverManager.getDriver().findElement(
-				By.cssSelector("#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) > td.name.ng-binding"));
+		WebElement page3 = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) > td.name.ng-binding"));
 
 		Assert.assertTrue(page3.isDisplayed());
 
@@ -212,7 +212,6 @@ public class SitesPerPageTest {
 
 	}
 
-	
 	@Test(priority = 0)
 
 	public void sitesPerPage() {
@@ -220,7 +219,7 @@ public class SitesPerPageTest {
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
-		
+
 		// Create user 1
 
 		createSitesRandom();
@@ -232,7 +231,7 @@ public class SitesPerPageTest {
 		// Create user 3
 
 		createSitesRandom();
-		
+
 		// filters
 
 		filters();

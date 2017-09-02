@@ -71,7 +71,7 @@ public class CreateSitePage {
 				.getProperty("create_admin_dropdown_option");
 		settingsOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create_settings_option");
-		webSitEditorialBlueprintLocator= UIElementsPropertiesManager.getSharedUIElementsLocators()
+		webSitEditorialBlueprintLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.websiteditorialblueprint");
 
 	}
@@ -87,7 +87,7 @@ public class CreateSitePage {
 	public void setSiteName() {
 
 		WebElement nameNewSite = driver.findElement(By.cssSelector(siteName));
-		nameNewSite.sendKeys("testsite"+RandomStringUtils.randomAlphabetic(5).toLowerCase());
+		nameNewSite.sendKeys("testsite" + RandomStringUtils.randomAlphabetic(5).toLowerCase());
 
 	}
 
@@ -243,7 +243,7 @@ public class CreateSitePage {
 	// Press on users option
 
 	public void usersOption() {
-
+		this.driverManager.driverWait();
 		WebElement users = driver.findElement(By.xpath(usersOption));
 		users.click();
 

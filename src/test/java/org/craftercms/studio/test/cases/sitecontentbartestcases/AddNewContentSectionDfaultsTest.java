@@ -3,8 +3,8 @@ package org.craftercms.studio.test.cases.sitecontentbartestcases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -29,7 +29,7 @@ public class AddNewContentSectionDfaultsTest {
 
 	private DashboardPage dashboardPage;
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
@@ -39,7 +39,7 @@ public class AddNewContentSectionDfaultsTest {
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -49,12 +49,13 @@ public class AddNewContentSectionDfaultsTest {
 
 		// right click to see the the menu
 
-		WebElement home = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1"));
+		WebElement home = driverManager.getDriver().findElement(By.xpath(".//span[text()='Home']"));
 
+		this.driverManager.driverWait();
 		this.driverManager.contextClick(this.driverManager.getDriver(), home);
 		//Actions action = new Actions(driverManager.getDriver());
 		//action.contextClick(home).build().perform();
-
+		this.driverManager.driverWait();
 		WebElement addContent = driverManager.getDriver()
 				.findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(3)"));
 		addContent.click();

@@ -5,6 +5,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Action;
@@ -45,9 +46,11 @@ public class WebDriverManager {
 					driver = new FirefoxDriver(capabilities);
 					break;
 				case "edge":
-					capabilities = DesiredCapabilities.edge();
+					//capabilities = DesiredCapabilities.edge();	
 					System.setProperty("webdriver.edge.driver", envProperties.getProperty("edge.driver.path"));
-					driver = new EdgeDriver(capabilities);
+					EdgeOptions options = new EdgeOptions();
+					options.setPageLoadStrategy("eager");
+					driver = new EdgeDriver();
 					break;
 				case "ie":
 					capabilities = DesiredCapabilities.internetExplorer();
@@ -81,16 +84,15 @@ public class WebDriverManager {
 	}
 
 	public void maximizeWindow() {
-		//Getting the size width and height
+		// Getting the size width and height
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		int width = (int) toolkit.getScreenSize().getWidth();
 		int height = (int) toolkit.getScreenSize().getHeight();
-		
-		//locating webdriver at coordinate 0,0
+		// locating webdriver at coordinate 0,0
 		this.driver.manage().window().setPosition(new Point(0, 0));
-		//maximize the window at normal size
-		this.driver.manage().window().maximize();
-		//scaling to full screen
+		// maximize the window at normal size
+		//this.driver.manage().window().maximize();
+		// //scaling to full screen
 		this.driver.manage().window().setSize(new Dimension(width, height));
 
 	}

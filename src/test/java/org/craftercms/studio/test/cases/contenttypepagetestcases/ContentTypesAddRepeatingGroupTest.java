@@ -12,7 +12,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -52,7 +52,7 @@ public class ContentTypesAddRepeatingGroupTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerrepeatinggrouptitle");
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}

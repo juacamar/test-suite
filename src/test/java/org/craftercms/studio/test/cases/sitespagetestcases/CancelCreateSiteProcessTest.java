@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -42,7 +42,7 @@ public class CancelCreateSiteProcessTest {
 
 
 
-	 @BeforeTest
+	 @BeforeClass
 	 public void beforeTest() {
 	 this.driverManager = new WebDriverManager();
 	 this.UIElementsPropertiesManager = new
@@ -57,7 +57,7 @@ public class CancelCreateSiteProcessTest {
 	
 	 }
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}

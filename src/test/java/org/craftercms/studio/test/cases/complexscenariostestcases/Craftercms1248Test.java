@@ -3,8 +3,8 @@
  */
 package org.craftercms.studio.test.cases.complexscenariostestcases;
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 import org.testng.Assert;
@@ -41,7 +41,7 @@ public class Craftercms1248Test {
 
 	
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
@@ -67,7 +67,7 @@ public class Craftercms1248Test {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
