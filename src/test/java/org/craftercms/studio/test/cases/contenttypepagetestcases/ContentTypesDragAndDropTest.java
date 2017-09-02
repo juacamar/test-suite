@@ -121,7 +121,7 @@ public class ContentTypesDragAndDropTest {
 
 		// Drag and drop Form Section
 
-		driverManager.getDriver().manage().window().maximize();
+		//driverManager.getDriver().manage().window().maximize();
 
 		driverManager.getDriver().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
 

@@ -60,7 +60,7 @@ public class WrongLoginTest {
 		loginPage.loginToCrafter("WrongUser", "admin");
 		
 		// MaximizeWindow
-		driverManager.maximizeWindow();
+		//driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
