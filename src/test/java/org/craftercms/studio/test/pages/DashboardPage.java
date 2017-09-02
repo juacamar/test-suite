@@ -1069,6 +1069,7 @@ public class DashboardPage {
 	}
 
 	public void clickOnPublishOption() {
+		this.driverManager.driverWait();
 		WebElement publishOption = driverManager.getDriver().findElement(By.cssSelector(publishOptionLocator));
 		publishOption.click();
 	}

@@ -60,7 +60,7 @@ public class ShowHideSiteContentTest {
 		loginPage.loginToCrafter("admin", "admin");
 		
 		// MaximizeWindow
-		driverManager.maximizeWindow();
+		//driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 

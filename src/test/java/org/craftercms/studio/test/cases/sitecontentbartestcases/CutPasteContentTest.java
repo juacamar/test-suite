@@ -61,7 +61,7 @@ public class CutPasteContentTest {
 
 		loginPage.loginToCrafter("admin", "admin");
 
-		driverManager.maximizeWindow();
+	//	driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 

@@ -48,7 +48,7 @@ public class SitesPerPageTest {
 	public void createSitesRandom() {
 
 		// MaximizeWindow
-		driverManager.maximizeWindow();
+		//driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 

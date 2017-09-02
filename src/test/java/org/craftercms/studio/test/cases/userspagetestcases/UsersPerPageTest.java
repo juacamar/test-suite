@@ -175,10 +175,10 @@ public class UsersPerPageTest {
 		Assert.assertTrue(user4.isDisplayed());
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-		.clear();
+				.clear();
 
-        driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-		.sendKeys("4");
+		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
+				.sendKeys("4");
 	}
 
 	public void deleteUsers() {
@@ -192,9 +192,8 @@ public class UsersPerPageTest {
 
 		// Confirmation to delete user connected
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+		driverManager.getDriver().findElement(By.cssSelector(
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
 				.click();
 
 		// wait for element is clickeable
@@ -211,9 +210,8 @@ public class UsersPerPageTest {
 
 		// Confirmation to delete user connected
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+		driverManager.getDriver().findElement(By.cssSelector(
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
 				.click();
 
 		// wait for element is clickeable
@@ -223,6 +221,12 @@ public class UsersPerPageTest {
 		// Click on delete user
 
 		usersPage.clickOnDeleteUserCreated();
+
+		// Confirmation to delete user connected
+
+		driverManager.getDriver().findElement(By.cssSelector(
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+				.click();
 
 	}
 
