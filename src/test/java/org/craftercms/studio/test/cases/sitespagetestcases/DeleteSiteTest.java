@@ -13,7 +13,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -33,10 +33,6 @@ public class DeleteSiteTest {
 
 	private HomePage homePage;
 
-
-
-	
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -44,7 +40,6 @@ public class DeleteSiteTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-	
 
 	}
 

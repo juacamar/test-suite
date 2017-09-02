@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.pages;
 
-
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
@@ -56,7 +55,7 @@ public class HomePage {
 	// Click on preview link
 
 	public void clickPreviewOption() {
-
+		this.driverManager.driverWait();
 		WebElement previewLink = driverManager.getDriver().findElement(By.xpath(previewSite1));
 		previewLink.click();
 
@@ -82,7 +81,7 @@ public class HomePage {
 	public void goToDashboardPage() {
 
 		// Click on dashboard link
-
+		this.driverManager.driverWait();
 		this.clickDashboardOption();
 
 	}
@@ -157,7 +156,7 @@ public class HomePage {
 	// Click on Delete icon to the site
 
 	public void clickDeleteSiteIcon() {
-
+		this.driverManager.driverWait();
 		WebElement deleteIcon = driver.findElement(By.cssSelector(deleteSiteIcon));
 		deleteIcon.click();
 

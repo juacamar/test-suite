@@ -459,6 +459,7 @@ public class Crafter3LoadTest1Script {
 	public void step5() {
 		harnessFolder = driverManager.getDriver().findElement(By.xpath(harnessFolderLocator));
 		this.createFolderOnAPresentFolder(anotherTestFolderName, harnessFolder);
+		this.driverManager.driverWait();
 		anotherTestFolder = driverManager.getDriver().findElement(By.xpath(anotherTestFolderLocator));
 	}
 

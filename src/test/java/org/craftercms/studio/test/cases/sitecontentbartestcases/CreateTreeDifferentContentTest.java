@@ -3,8 +3,8 @@ package org.craftercms.studio.test.cases.sitecontentbartestcases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.DashboardPage;
@@ -38,7 +38,7 @@ public class CreateTreeDifferentContentTest {
 
 
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
@@ -51,7 +51,7 @@ public class CreateTreeDifferentContentTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 	driverManager.closeConnection();
 	}

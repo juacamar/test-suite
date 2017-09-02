@@ -1,8 +1,8 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -27,7 +27,7 @@ public class PaginationOfListOfSitesTest {
 
 	private CreateSitePage createSitePage;
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
@@ -38,7 +38,7 @@ public class PaginationOfListOfSitesTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -114,7 +114,7 @@ public class PaginationOfListOfSitesTest {
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
 				.sendKeys("2");
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -140,12 +140,12 @@ public class PaginationOfListOfSitesTest {
 				.findElement(By.cssSelector(
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a"))
 				.click();
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-		.clear();
-		
+				.clear();
+
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"))
-		.sendKeys("10");
+				.sendKeys("10");
 
 		// wait for element is clickeable
 
@@ -172,7 +172,7 @@ public class PaginationOfListOfSitesTest {
 		homePage.getDriverManager().driverWait();
 
 	}
-	
+
 	@Test(priority = 0)
 
 	public void paginationOfTheListOfSites() {
@@ -207,15 +207,14 @@ public class PaginationOfListOfSitesTest {
 
 		homePage.getDriverManager().driverWait();
 
-		// Delete sites 
+		// Delete sites
 
 		deleteSite();
-		
-		deleteSite();
-		
+
 		deleteSite();
 
-		
+		deleteSite();
+
 	}
 
 }

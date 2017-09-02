@@ -2,7 +2,7 @@ package org.craftercms.studio.test.cases.contextualnavigationbartestcases;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.DashboardPage;
@@ -43,7 +43,7 @@ public class PublishingSiteTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}

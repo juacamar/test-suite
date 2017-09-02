@@ -2,7 +2,7 @@ package org.craftercms.studio.test.cases.dashboardpagetestcases;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.SiteConfigPage;
@@ -43,7 +43,7 @@ public class EditOptionTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -172,7 +172,7 @@ public class EditOptionTest {
 	public void editingContent(){
 		// Select a content to edit
 		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
+		driverManager.getDriver().findElement(By.xpath(".//span[text()='Testing1']")).click();
 
 		// wait for element is clickeable
 
@@ -180,7 +180,7 @@ public class EditOptionTest {
 
 		// click edit option of the menu
 
-		driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(2) > a")).click();
+		driverManager.getDriver().findElement(By.xpath(".//body/div/div[@id='studioBar']/nav/div/div/ul/li/a[contains(text(),'Edit')]")).click();
 
 		// wait for element is clickeable
 
@@ -280,9 +280,7 @@ public class EditOptionTest {
 		
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
 
-	    // edit content
 		
 		editingContent();
 

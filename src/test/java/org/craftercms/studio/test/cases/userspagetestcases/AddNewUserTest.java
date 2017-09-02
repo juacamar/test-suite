@@ -3,8 +3,8 @@ package org.craftercms.studio.test.cases.userspagetestcases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -16,7 +16,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -27,15 +27,12 @@ public class AddNewUserTest {
 	private LoginPage loginPage;
 
 	private HomePage homePage;
-	
+
 	private CreateSitePage createSitePage;
-	
+
 	private UsersPage usersPage;
 
-
-
-
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
@@ -45,10 +42,9 @@ public class AddNewUserTest {
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
-		
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -65,43 +61,43 @@ public class AddNewUserTest {
 
 		homePage.getDriverManager().driverWait();
 
-		//click On Users option
-		
+		// click On Users option
+
 		createSitePage.clickOnUsersOption();
-		
-		//click on new user button
+
+		// click on new user button
 		this.driverManager.driverWait();
-		
+
 		usersPage.clickOnNewUser();
-		
+
 		// Follow the form
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
-		
+
 		// Save Button
-		
+
 		usersPage.clickOnSaveNewUser();
-		
+
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+
 		// Assert new users created is present
 
-				WebElement newUserCreated = driverManager.getDriver()
-						.findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a"));
+		WebElement newUserCreated = driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a"));
 
-				Assert.assertTrue(newUserCreated.isDisplayed());		
-		
+		Assert.assertTrue(newUserCreated.isDisplayed());
+
 	}
 }

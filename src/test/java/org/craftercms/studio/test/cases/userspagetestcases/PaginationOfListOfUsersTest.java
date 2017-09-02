@@ -1,8 +1,8 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.pages.CreateSitePage;
@@ -31,7 +31,7 @@ public class PaginationOfListOfUsersTest {
 
 	private UsersPage usersPage;
 
-	@BeforeTest
+	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
@@ -43,7 +43,7 @@ public class PaginationOfListOfUsersTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -94,32 +94,33 @@ public class PaginationOfListOfUsersTest {
 
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
 				.clear();
-		
+
 		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
-		.sendKeys("11");
+				.sendKeys("2");
 
 		// navigation
-        driverManager.driverWait();
-        
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(3) > a"))
+		driverManager.driverWait();
+
+		driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(3) > a"))
 				.click();
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(2) > a"))
+		driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(2) > a"))
 				.click();
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(4) > a"))
+		driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(4) > a"))
 				.click();
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(1) > a"))
+		driverManager.getDriver().findElement(By.cssSelector(
+				"#container > div > div > div > div > div > dir-pagination-controls > ul > li:nth-child(1) > a"))
 				.click();
+		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
+				.clear();
+
+		driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > div > input"))
+				.sendKeys("10");
 
 		// wait for element is clickeable
 
@@ -138,9 +139,8 @@ public class PaginationOfListOfUsersTest {
 
 		// Confirmation to delete user connected
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+		driverManager.getDriver().findElement(By.cssSelector(
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
 				.click();
 
 		// wait for element is clickeable
@@ -157,9 +157,8 @@ public class PaginationOfListOfUsersTest {
 
 		// Confirmation to delete user connected
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+		driverManager.getDriver().findElement(By.cssSelector(
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
 				.click();
 
 		// wait for element is clickeable
@@ -176,187 +175,9 @@ public class PaginationOfListOfUsersTest {
 
 		// Confirmation to delete user connected
 
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+		driverManager.getDriver().findElement(By.cssSelector(
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
 				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-	}
-
-	public void deleteUsersBlockTwo() {
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-		driverManager.getDriver().findElement(By.cssSelector("#homeSites")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		createSitePage.clickOnUsersOption();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-	}
-
-	public void deleteUsersBlockThree() {
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
-		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
-
 	}
 
 	@Test(priority = 0)
@@ -383,38 +204,6 @@ public class PaginationOfListOfUsersTest {
 
 		createUserRandom();
 
-		// Create user 4
-
-		createUserRandom();
-
-		// Create user 5
-
-		createUserRandom();
-
-		// Create user 6
-
-		createUserRandom();
-
-		// Create user 7
-
-		createUserRandom();
-
-		// Create user 8
-
-		createUserRandom();
-
-		// Create user 9
-
-		createUserRandom();
-
-		// Create user 10
-
-		createUserRandom();
-
-		// Create user 11
-
-		createUserRandom();
-
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
@@ -431,13 +220,6 @@ public class PaginationOfListOfUsersTest {
 
 		deleteUserBlockOne();
 
-		// delete users block 2
-
-		deleteUsersBlockTwo();
-
-		// delete users block 3
-
-		deleteUsersBlockThree();
 	}
 
 }

@@ -2,7 +2,7 @@ package org.craftercms.studio.test.cases.sitecontentbartestcases;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.DashboardPage;
@@ -43,7 +43,7 @@ public class DuplicateOptionTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
 	}
@@ -151,6 +151,7 @@ public class DuplicateOptionTest {
 		
 		
 		// Switch to the iframe
+		driverManager.driverWait();
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
 				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
