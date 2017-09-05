@@ -28,7 +28,6 @@ public class CreateSitePage {
 	private String plutonBlueprint;
 	private String createSiteButton;
 	private String cancelButton;
-	private String emptyBlueprint;
 	private String corporateBlueprint;
 	private String AngMemGamBlueprint;
 	private String usersOption;
@@ -37,7 +36,6 @@ public class CreateSitePage {
 	private String documentationOption;
 	private String adminDropdownOption;
 	private String settingsOption;
-	private String webSitEditorialBlueprintLocator;
 
 	/**
 	 * 
@@ -56,8 +54,6 @@ public class CreateSitePage {
 		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.create_button");
 		cancelButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
-		emptyBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.empty_blueprint");
 		corporateBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.corporate_blueprint");
 		AngMemGamBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -71,9 +67,6 @@ public class CreateSitePage {
 				.getProperty("create_admin_dropdown_option");
 		settingsOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create_settings_option");
-		webSitEditorialBlueprintLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.websiteditorialblueprint");
-
 	}
 
 	public CreateSitePage(WebDriver driver) {
@@ -174,8 +167,8 @@ public class CreateSitePage {
 
 		this.driverManager.driverWait();
 		WebElement bluePrintCombo = driver.findElement(By.id("blueprint"));
-		Select select =  new Select(bluePrintCombo);
-		
+		Select select = new Select(bluePrintCombo);
+
 		select.selectByVisibleText("Empty");
 
 	}
@@ -368,7 +361,7 @@ public class CreateSitePage {
 		// Filling the description of the site
 		this.fillDescription("Description");
 		// Open blueprint combo
-		//this.openBlueprintCombo();
+		// this.openBlueprintCombo();
 		// Select empty blueprint
 		this.selectEmptyBlueprint();
 		// Click on Create button
@@ -400,8 +393,8 @@ public class CreateSitePage {
 	private void selectWebSiteEditorialBluePrint() {
 		this.driverManager.driverWait();
 		WebElement bluePrintCombo = driver.findElement(By.id("blueprint"));
-		Select select =  new Select(bluePrintCombo);
-		
+		Select select = new Select(bluePrintCombo);
+
 		select.selectByVisibleText("Website_editorial");
 	}
 
