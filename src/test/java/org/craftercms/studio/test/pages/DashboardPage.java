@@ -437,6 +437,7 @@ public class DashboardPage {
 
 	// Set page URL
 	public void setPageURL1(String strPageURL) {
+		this.driverManager.driverWait();
 		WebElement pageUrl = driver.findElement(By.cssSelector(setPageURL1));
 		pageUrl.clear();
 		pageUrl.sendKeys(strPageURL);
@@ -444,6 +445,7 @@ public class DashboardPage {
 
 	// Set internal name
 	public void setInternalName1(String strInternalName) {
+		this.driverManager.driverWait();
 		WebElement internalName = driver.findElement(By.xpath(setInternalName1));
 		internalName.clear();
 		internalName.sendKeys(strInternalName);
@@ -451,6 +453,7 @@ public class DashboardPage {
 
 	// Set body text
 	public void setBodyText1(String strBodyText) {
+		this.driverManager.driverWait();
 		WebElement bodyText1 = driver.findElement(By.cssSelector(setBodyText1));
 		bodyText1.sendKeys(strBodyText);
 	}
@@ -516,6 +519,7 @@ public class DashboardPage {
 
 	// Set the name of the file
 	public void fileName(String strFileName) {
+		this.driverManager.driverWait();
 		WebElement fileName = driverManager.getDriver().findElement(By.cssSelector(setFileName));
 		fileName.clear();
 		fileName.sendKeys(strFileName);
@@ -946,6 +950,7 @@ public class DashboardPage {
 
 	// Set metadata fields
 	public void setTitle(String strTitle) {
+		this.driverManager.driverWait();
 		WebElement title = driverManager.getDriver().findElement(By.cssSelector(titleMedatata));
 		title.clear();
 		title.sendKeys(strTitle);
@@ -1020,6 +1025,7 @@ public class DashboardPage {
 	}
 
 	public void setArticlesTitle(String strArticlesTitle) {
+		this.driverManager.driverWait();
 		WebElement articlesTitle = driver.findElement(By.xpath(articlesTitleLocator));
 		articlesTitle.clear();
 		articlesTitle.sendKeys(strArticlesTitle);
@@ -1070,6 +1076,7 @@ public class DashboardPage {
 
 	public void clickOnPublishOption() {
 		this.driverManager.driverWait();
+		this.driverManager.driverWait();
 		WebElement publishOption = driverManager.getDriver().findElement(By.cssSelector(publishOptionLocator));
 		publishOption.click();
 	}
@@ -1079,6 +1086,7 @@ public class DashboardPage {
 	}
 
 	public void clickApproveAndPublishSubmitButton() {
+		this.driverManager.driverWait();
 		WebElement submitButton = driver.findElement(By.id(approveAndPublishPublishButtonLocator));
 		submitButton.click();
 	}
@@ -1102,30 +1110,35 @@ public class DashboardPage {
 
 	public void rightClickCopyFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
+		this.driverManager.driverWait();
 		WebElement copyOption = driverManager.getDriver().findElement(By.cssSelector(copyOptionLocator));
 		copyOption.click();
 	}
 
 	public void rightClickPasteOnAFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
+		this.driverManager.driverWait();
 		WebElement pasteOption = driverManager.getDriver().findElement(By.cssSelector(pasteOptionLocator));
 		pasteOption.click();
 	}
 
 	public void rightClickCutAFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
+		this.driverManager.driverWait();
 		WebElement cutOption = driverManager.getDriver().findElement(By.cssSelector(cutOptionLocator));
 		cutOption.click();
 	}
 
 	public void rightClickDeleteAFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
+		this.driverManager.driverWait();
 		WebElement deleteOption = driverManager.getDriver().findElement(By.cssSelector(deleteOptionLocator));
 		deleteOption.click();
 	}
 
 	public void rightClickDeleteAPage(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
+		this.driverManager.driverWait();
 		WebElement deleteOption = driverManager.getDriver().findElement(By.cssSelector(deleteOption2Locator));
 		deleteOption.click();
 	}
@@ -1146,18 +1159,21 @@ public class DashboardPage {
 	public void rightClickCopyContentPage(WebElement parentWebElement) {
 		this.driverManager.driverWait();
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
+		this.driverManager.driverWait();
 		WebElement copyOption = driverManager.getDriver().findElement(By.cssSelector(copyOptionLocatorForContentPage));
 		copyOption.click();
 	}
 
 	public void rightClickCreatePageOnAPresentPage(WebElement webElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement);
+		this.driverManager.driverWait();
 		WebElement addContent = driverManager.getDriver().findElement(By.cssSelector(addNewContentOption3));
 		addContent.click();
 	}
 
 	public void rightClickEditOnAPresentPage(WebElement webElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement);
+		this.driverManager.driverWait();
 		WebElement editContent = driverManager.getDriver().findElement(By.cssSelector(editOption));
 		editContent.click();
 	}

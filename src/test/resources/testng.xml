@@ -641,7 +641,7 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-	<test name="Create Site using WebSite Editorial BP">
+	<test name="Create a Site using Web Site Editorial BP">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />

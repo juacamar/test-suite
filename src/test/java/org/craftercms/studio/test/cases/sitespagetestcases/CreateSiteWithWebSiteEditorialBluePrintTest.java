@@ -77,12 +77,9 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		createSitePage.fillDescription("Description");
 
 		// Open blueprint combo
+		// Select blueprint
 
-		createSitePage.openBlueprintCombo();
-
-		// Select empty blueprint
-
-		createSitePage.selectWebEditorialBlueprint();
+		createSitePage.selectWebSiteEditorialBluePrintOption();
 
 		// Click on Create button
 
@@ -91,13 +88,10 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// wait for element is clickeable
-
 		homePage.getDriverManager().driverWait();
-
-		// wait for element is clickeable
-
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
 
 		// Show site content panel

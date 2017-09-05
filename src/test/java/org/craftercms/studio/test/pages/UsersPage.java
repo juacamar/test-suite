@@ -89,7 +89,7 @@ public class UsersPage {
 	// Click on Save New User Button
 
 	public void clickSaveNewUserButton() {
-
+		this.driverManager.driverWait();
 		WebElement saveNewUser = driverManager.getDriver().findElement(By.cssSelector(saveNewUserOption));
 		saveNewUser.click();
 

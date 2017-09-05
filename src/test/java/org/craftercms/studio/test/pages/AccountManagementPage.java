@@ -31,10 +31,12 @@ public class AccountManagementPage {
 		this.driver = this.driverManager.getDriver();
 		currentPassword = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("accountManagement.currentPass");
-		newPassword = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("accountManagement.newPass");
+		newPassword = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("accountManagement.newPass");
 		confirmPassword = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("accountManagement.confirmPass");
-		submitButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("accountManagement.submitButton");
+		submitButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("accountManagement.submitButton");
 	}
 
 	public AccountManagementPage(WebDriver driver) {
@@ -46,8 +48,8 @@ public class AccountManagementPage {
 	// Set the current pass
 
 	public void setCurrentPassword(String strCurrentPass) {
-
-		WebElement currentPass = driver.findElement(By.cssSelector(currentPassword));
+		this.driverManager.driverWait();
+		WebElement currentPass = driver.findElement(By.id(currentPassword));
 		currentPass.sendKeys(strCurrentPass);
 
 	}
@@ -55,8 +57,8 @@ public class AccountManagementPage {
 	// Set the new pass
 
 	public void setNewPassword(String strNewPassword) {
-
-		WebElement newPass = driver.findElement(By.cssSelector(newPassword));
+		this.driverManager.driverWait();
+		WebElement newPass = driver.findElement(By.id(newPassword));
 		newPass.sendKeys(strNewPassword);
 
 	}
@@ -64,8 +66,8 @@ public class AccountManagementPage {
 	// Set the new pass confirmation
 
 	public void setConfirmNewPassword(String strConfNewPassword) {
-
-		WebElement confPass = driver.findElement(By.cssSelector(confirmPassword));
+		this.driverManager.driverWait();
+		WebElement confPass = driver.findElement(By.id(confirmPassword));
 		confPass.sendKeys(strConfNewPassword);
 
 	}
@@ -89,9 +91,9 @@ public class AccountManagementPage {
 		// Fill new pass
 
 		this.setNewPassword(strNewPassword);
-		
+
 		// confirm new pass
-		
+
 		this.setConfirmNewPassword(strConfNewPassword);
 
 		// Click Login button

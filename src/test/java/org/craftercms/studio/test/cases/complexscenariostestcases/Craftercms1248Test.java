@@ -6,7 +6,6 @@ package org.craftercms.studio.test.cases.complexscenariostestcases;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -229,13 +228,16 @@ public class Craftercms1248Test {
 		WebElement childPage1;
 		WebElement childPage2;
 		
-		AssertJUnit.assertTrue(driverManager.isElementPresentByXpath(parentPageLocator));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(parentPageLocator));
+		this.driverManager.driverWait();
 		parentPage = dashboardPage.getDriverManager().getDriver().findElement(By.xpath(parentPageLocator));
 
 		this.createPageCategoryLandingPage(parentPage, childPage1Name);
+		this.driverManager.driverWait();
 		childPage1 = driverManager.getDriver().findElement(By.xpath(childPage1Locator));
 
 		this.createPageCategoryLandingPage(childPage1, childPage2Name);
+		this.driverManager.driverWait();
 		childPage2 = driverManager.getDriver().findElement(By.xpath(childPage2Locator));
 
 		this.renamePage(parentPage, parentPageNewName);

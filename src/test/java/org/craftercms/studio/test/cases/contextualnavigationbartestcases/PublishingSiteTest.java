@@ -131,9 +131,6 @@ public class PublishingSiteTest {
 		// submit
 
 		previewPage.clickOnSubmitButtonOfApprovePublish();
-
-		// wait for element is clickeable
-
 		previewPage.getDriverManager().driverWait();
 	}
 
@@ -158,18 +155,6 @@ public class PublishingSiteTest {
 
 		previewPage.getDriverManager().driverWait();
 
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait();
-
 	}
 
 	@Test(priority = 0)
@@ -181,7 +166,7 @@ public class PublishingSiteTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// MaximizeWindow
-		driverManager.maximizeWindow();
+		//driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
@@ -221,12 +206,12 @@ public class PublishingSiteTest {
 		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable
+		driverManager.getDriver().navigate().refresh();
+		
+		this.driverManager.driverWait();
+		this.driverManager.driverWait();
 
-		homePage.getDriverManager().driverWait();
-
-		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
-
-		// wait for element is clickeable
+		driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
 		homePage.getDriverManager().driverWait();
 
@@ -237,7 +222,7 @@ public class PublishingSiteTest {
 		this.reloadPage();
 
 		// Assert
-
+		homePage.getDriverManager().driverWait();
 		String siteStatus = driverManager.getDriver()
 				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
 		Assert.assertEquals(siteStatus, "Live :");

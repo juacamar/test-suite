@@ -6,9 +6,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * 
@@ -28,7 +28,6 @@ public class CreateSitePage {
 	private String plutonBlueprint;
 	private String createSiteButton;
 	private String cancelButton;
-	private String emptyBlueprint;
 	private String corporateBlueprint;
 	private String AngMemGamBlueprint;
 	private String usersOption;
@@ -37,7 +36,6 @@ public class CreateSitePage {
 	private String documentationOption;
 	private String adminDropdownOption;
 	private String settingsOption;
-	private String webSitEditorialBlueprintLocator;
 
 	/**
 	 * 
@@ -56,8 +54,6 @@ public class CreateSitePage {
 		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.create_button");
 		cancelButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
-		emptyBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.empty_blueprint");
 		corporateBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.corporate_blueprint");
 		AngMemGamBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -71,9 +67,6 @@ public class CreateSitePage {
 				.getProperty("create_admin_dropdown_option");
 		settingsOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create_settings_option");
-		webSitEditorialBlueprintLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.websiteditorialblueprint");
-
 	}
 
 	public CreateSitePage(WebDriver driver) {
@@ -170,19 +163,21 @@ public class CreateSitePage {
 
 	// select blue empty print
 
-	public void emptyBlueprint() {
+	public void selectEmptyBlueprint() {
 
-		WebElement blueprintEmpty = driver.findElement(By.cssSelector(emptyBlueprint));
+		this.driverManager.driverWait();
+		WebElement bluePrintCombo = driver.findElement(By.id("blueprint"));
+		Select select = new Select(bluePrintCombo);
 
-		blueprintEmpty.click();
+		select.selectByVisibleText("Empty");
 
 	}
 
-	public void selectEmptyBlueprint() {
+	public void selectEmptyBluePrintOption() {
 
 		// select blue empty print
 
-		this.emptyBlueprint();
+		this.selectEmptyBlueprint();
 
 	}
 
@@ -366,7 +361,7 @@ public class CreateSitePage {
 		// Filling the description of the site
 		this.fillDescription("Description");
 		// Open blueprint combo
-		this.openBlueprintCombo();
+		// this.openBlueprintCombo();
 		// Select empty blueprint
 		this.selectEmptyBlueprint();
 		// Click on Create button
@@ -389,15 +384,18 @@ public class CreateSitePage {
 		this.driver = driver;
 	}
 
-	public void selectWebEditorialBlueprint() {
+	public void selectWebSiteEditorialBluePrintOption() {
 		// select blue corporate print
-		this.webSiteEditorialBluePrint();
+		this.selectWebSiteEditorialBluePrint();
 
 	}
 
-	private void webSiteEditorialBluePrint() {
-		WebElement blueprintWebSiteEditorial = driver.findElement(By.cssSelector(webSitEditorialBlueprintLocator));
-		blueprintWebSiteEditorial.click();
+	private void selectWebSiteEditorialBluePrint() {
+		this.driverManager.driverWait();
+		WebElement bluePrintCombo = driver.findElement(By.id("blueprint"));
+		Select select = new Select(bluePrintCombo);
+
+		select.selectByVisibleText("Website_editorial");
 	}
 
 }
