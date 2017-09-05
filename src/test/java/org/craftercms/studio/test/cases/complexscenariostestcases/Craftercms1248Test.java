@@ -232,10 +232,12 @@ public class Craftercms1248Test {
 		this.driverManager.driverWait();
 		parentPage = dashboardPage.getDriverManager().getDriver().findElement(By.xpath(parentPageLocator));
 
+		this.driverManager.driverWait();
 		this.createPageCategoryLandingPage(parentPage, childPage1Name);
 		this.driverManager.driverWait();
 		childPage1 = driverManager.getDriver().findElement(By.xpath(childPage1Locator));
 
+		this.driverManager.driverWait();
 		this.createPageCategoryLandingPage(childPage1, childPage2Name);
 		this.driverManager.driverWait();
 		childPage2 = driverManager.getDriver().findElement(By.xpath(childPage2Locator));
