@@ -42,11 +42,12 @@ public class WebDriverManager {
 					break;
 				case "firefox":
 					capabilities = DesiredCapabilities.firefox();
+					capabilities.setCapability("marionette", true);
 					System.setProperty("webdriver.gecko.driver", envProperties.getProperty("firefox.driver.path"));
 					driver = new FirefoxDriver(capabilities);
 					break;
 				case "edge":
-					//capabilities = DesiredCapabilities.edge();	
+					capabilities = DesiredCapabilities.edge();
 					System.setProperty("webdriver.edge.driver", envProperties.getProperty("edge.driver.path"));
 					EdgeOptions options = new EdgeOptions();
 					options.setPageLoadStrategy("eager");
@@ -68,14 +69,20 @@ public class WebDriverManager {
 					throw new IllegalArgumentException(
 							"webBrowser property is needed, valid values are:" + "chrome,edge,ie,firefox,phantomjs");
 				}
+
 				driver.get(envProperties.getProperty("baseUrl"));
+
+				if (!webBrowserProperty.toLowerCase().equalsIgnoreCase("firefox")) {
+					this.maximizeWindow();
+				}
+
 			} catch (IOException ex) {
 				throw new FileNotFoundException("Unable to read runtime properties file");
 			}
 		} catch (IOException ex) {
 			throw new TestException("Require Files are not found.");
 		}
-		this.maximizeWindow();
+
 	}
 
 	public void closeConnection() {
@@ -91,7 +98,7 @@ public class WebDriverManager {
 		// locating webdriver at coordinate 0,0
 		this.driver.manage().window().setPosition(new Point(0, 0));
 		// maximize the window at normal size
-		//this.driver.manage().window().maximize();
+		// this.driver.manage().window().maximize();
 		// //scaling to full screen
 		this.driver.manage().window().setSize(new Dimension(width, height));
 

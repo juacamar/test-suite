@@ -94,11 +94,11 @@ public class CreateSiteEmptyTest {
 
 		// Open blueprint combo
 
-		createSitePage.openBlueprintCombo();
+		//createSitePage.openBlueprintCombo();
 
 		// Select empty blueprint
 
-		createSitePage.selectEmptyBlueprint();
+		createSitePage.selectEmptyBluePrintOption();
 
 		// Click on Create button
 
@@ -109,16 +109,6 @@ public class CreateSiteEmptyTest {
 		//review the performance here, it is to much time aprox 38secs
 		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
-//		homePage.getDriverManager().driverWait();	
-//		homePage.getDriverManager().driverWait();
-//		homePage.getDriverManager().driverWait();
-//		homePage.getDriverManager().driverWait();
-//		homePage.getDriverManager().driverWait();
-//		homePage.getDriverManager().driverWait();
-//		homePage.getDriverManager().driverWait();	
-//		homePage.getDriverManager().driverWait();
-//		homePage.getDriverManager().driverWait();
-//		homePage.getDriverManager().driverWait();
 	
 		// Show site content panel
 

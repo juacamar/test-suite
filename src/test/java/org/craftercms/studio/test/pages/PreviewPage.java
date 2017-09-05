@@ -37,7 +37,7 @@ public class PreviewPage {
 	private String saveAndCloseiFrame;
 	private String previewHistory;
 	private String previewDependecies;
-	
+
 	private SiteConfigPage siteConfigPage;
 
 	/**
@@ -173,10 +173,11 @@ public class PreviewPage {
 	// Click on Approve&Publish option
 
 	public void approvePublish() {
-
+		this.driverManager.driverWait();
 		WebElement toolsIcon = driverManager.getDriver().findElement(By.xpath(approvePublish));
+		
 		toolsIcon.click();
-
+		this.driverManager.driverWait();
 	}
 
 	public void clickOnApprovePublish() {
@@ -190,8 +191,8 @@ public class PreviewPage {
 	// Click on submit button of Approve&Publish
 
 	public void submitApprovePublish() {
-
-		WebElement toolsIcon = driverManager.getDriver().findElement(By.id(submitButtonApprovePublish));
+		this.driverManager.driverWait();
+		WebElement toolsIcon = driverManager.getDriver().findElement(By.xpath(submitButtonApprovePublish));
 		toolsIcon.click();
 
 	}
@@ -428,13 +429,12 @@ public class PreviewPage {
 		this.saveAndCloseButton();
 
 	}
-	
+
 	public void changeBodyOfEntryContentPageToNotRequired() {
 		this.getDriverManager().driverWait();
-		
+
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
-		.click();
+		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable
 
@@ -459,7 +459,6 @@ public class PreviewPage {
 
 		this.getDriverManager().driverWait();
 		this.getDriverManager().driverWait();
-		
 
 		siteConfigPage.selectEntryContentType();
 
@@ -502,6 +501,5 @@ public class PreviewPage {
 		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 	}
-
 
 }

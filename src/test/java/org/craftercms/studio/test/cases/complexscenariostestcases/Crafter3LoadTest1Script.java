@@ -137,6 +137,7 @@ public class Crafter3LoadTest1Script {
 		loginPage.loginToCrafter("admin", "admin");
 		// wait for element
 		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 		// go to preview page
 		homePage.goToPreviewPage();
 		// wait for element is clickeable
@@ -357,11 +358,13 @@ public class Crafter3LoadTest1Script {
 
 	public void publishAllPagesOnAFolder(String folderLocator) {
 		// getting the entire list of content pages on a folder
+			
 		List<WebElement> unpublishedContentPages = driverManager.getDriver()
 				.findElements(By.xpath(folderLocator + "/../../../../../div[1]/div/table/tbody/tr/td/span"));
-
+		this.driverManager.driverWait();
+		
 		for (WebElement element : unpublishedContentPages) {
-			// right click to displays right click menu
+			// right click to displays right click menu			
 			dashboardPage.rightClickOnAContentPage(element);
 			// selecting the Publish option
 			dashboardPage.clickOnPublishOption();
