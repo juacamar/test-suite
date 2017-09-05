@@ -427,6 +427,7 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.clickCopyButtonOnTreeSelector();
 
 		// Step2 c)
+		this.driverManager.driverWait();
 		bigTree2Folder = driverManager.getDriver().findElement(By.xpath(bigTree2FolderLocator));
 		dashboardPage.rightClickPasteOnAFolder(bigTree2Folder);
 
