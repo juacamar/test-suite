@@ -72,7 +72,7 @@ public class WebDriverManager {
 
 				driver.get(envProperties.getProperty("baseUrl"));
 
-				if (!webBrowserProperty.toLowerCase().equalsIgnoreCase("firefox")) {
+				if (!webBrowserProperty.equalsIgnoreCase("firefox")) {
 					this.maximizeWindow();
 				}
 
