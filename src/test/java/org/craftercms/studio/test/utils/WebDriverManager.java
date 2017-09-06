@@ -113,7 +113,7 @@ public class WebDriverManager {
 
 	public void driverWait() {
 		try {
-			Thread.sleep(3400);
+			Thread.sleep(3100);
 		} catch (InterruptedException ie1) {
 			ie1.printStackTrace();
 		}
@@ -160,9 +160,13 @@ public class WebDriverManager {
 	}
 	
 	public void contextClick(WebDriver driver, WebElement element) {	
+		if (driver instanceof PhantomJSDriver) {
 			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
 					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
 			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
+		} else {
+			(new Actions(driver)).contextClick(element).build().perform();
+		}
 	}
 
 }

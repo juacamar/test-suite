@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.api;
 
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -16,9 +17,13 @@ import static org.hamcrest.Matchers.*;
 public class GetUserAPITest {
 
 	private JsonTester api;
+	private String headerLocationBase;
 
 	public GetUserAPITest() {
-		api = new JsonTester("http", "localhost", 8080);
+		APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		api = new JsonTester(apiConnectionManager.getProtocol()
+				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
+		headerLocationBase=apiConnectionManager.getHeaderLocationBase();
 	}
 
 	@BeforeTest
@@ -38,7 +43,7 @@ public class GetUserAPITest {
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
+				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
 				.json("$.message", is("OK"));
 
 	}
@@ -46,11 +51,11 @@ public class GetUserAPITest {
 	@Test(priority=2)
 	public void testGetUser() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe")
+		api.get("/studio/api/1/services/api/1/user/get.json?username=jane.doe")
 		.json(json)
 		.execute()
 		.status(200)
-		.header("Location", is("/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/user/get.json?username=jane.doe"));
 		
 	}
 	
@@ -61,7 +66,7 @@ public class GetUserAPITest {
 		.json(json)
 		.execute()
 		.status(400)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/user/get.json?username=jane.doe"))
 		.json("$.message", is("Invalid parameter: username"));
 
 		

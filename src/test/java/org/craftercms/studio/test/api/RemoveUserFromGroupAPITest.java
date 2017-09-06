@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.api;
 
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -16,9 +17,13 @@ import static org.hamcrest.Matchers.*;
 public class RemoveUserFromGroupAPITest {
 
 	private JsonTester api;
+	private String headerLocationBase;
 
 	public RemoveUserFromGroupAPITest() {
-		api = new JsonTester("http", "localhost", 8080);
+		APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		api = new JsonTester(apiConnectionManager.getProtocol()
+				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
+		headerLocationBase=apiConnectionManager.getHeaderLocationBase();
 	}
 
 	@BeforeTest
@@ -37,7 +42,7 @@ public class RemoveUserFromGroupAPITest {
 		json.put("blueprint", "Empty");
 		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
 				.header("Location",
-						is("http://localhost:8080/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
+						is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
 				.json("$.message", is("OK")).debug();
 
 	}
@@ -49,7 +54,7 @@ public class RemoveUserFromGroupAPITest {
 		json.put("site_id", "mySite");
 		json.put("description", "Content Contributors");
 		api.post("studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
+				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
 				.json("$.message", is("OK")).debug();
 
 	}
@@ -63,7 +68,7 @@ public class RemoveUserFromGroupAPITest {
 		json.put("last_name", "Doe");
 		json.put("email", "jane@example.com");
 		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
+				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
 				.json("$.message", is("OK")).debug();
 
 	}
@@ -77,7 +82,7 @@ public class RemoveUserFromGroupAPITest {
 		api.post("/studio/api/1/services/api/1/group/add-user.json").json(json)
 		.execute()
 		.status(200)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
 		.json("$.message", is("OK")).debug();
 
 
@@ -93,7 +98,7 @@ public class RemoveUserFromGroupAPITest {
 		api.post("/studio/api/1/services/api/1/group/remove-user.json").json(json)
 		.execute()
 		.status(200)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
 		.json("$.message", is("null"));
 
 	}
