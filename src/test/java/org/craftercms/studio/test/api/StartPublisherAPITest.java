@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.api;
 
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.Test;
 
@@ -17,9 +18,13 @@ import java.util.Map;
 public class StartPublisherAPITest {
 
     private JsonTester api;
+	private String headerLocationBase;
 
     public StartPublisherAPITest(){
-        api = new JsonTester("http","localhost",8080);
+    	APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		api = new JsonTester(apiConnectionManager.getProtocol()
+				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
+		headerLocationBase=apiConnectionManager.getHeaderLocationBase();
     }
 
     
@@ -30,7 +35,7 @@ public class StartPublisherAPITest {
   		json.put("description", "My very first site!");
   		json.put("blueprint", "Empty");
   		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
-  				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
+  				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
   				.json("$.message", is("OK")).debug();
     }
     
@@ -38,7 +43,7 @@ public class StartPublisherAPITest {
     public void startPublisher(){
     	Map<String, Object> json = new HashMap<>();
 		json.put("site_id", "mySite");  
-		api.post("http://localhost:8080/studio/api/1/publish/start.json?site_id=mySite").json(json).execute().status(200)
+		api.post("/studio/api/1/publish/start.json").json(json).execute().status(200)
 		//.json("$.message", is("OK"))
 		.debug();
     }
@@ -47,7 +52,7 @@ public class StartPublisherAPITest {
     public void invalidParameters(){
     	Map<String, Object> json = new HashMap<>();
 		json.put("site_idINVALID", "mySiteNOEXIST");  
-		api.post("http://localhost:8080/studio/api/1/publish/start.json?site_id=mySite").json(json).execute().status(400)
+		api.post("/studio/api/1/publish/start.json").json(json).execute().status(400)
 		//.json("$.message", is("Invalid parameter(s)"))
 		.debug();
     }
@@ -67,7 +72,7 @@ public class StartPublisherAPITest {
  	    public void siteNotFound(){
  	    	Map<String, Object> json = new HashMap<>();
  			json.put("site_id", "mySiteNOTFOUND");  
- 			api.post("http://localhost:8080/studio/api/1/publish/start.json?site_id=mySite").json(json).execute().status(404)
+ 			api.post("/studio/api/1/publish/start.json").json(json).execute().status(404)
  			//.json("$.message", is("site not found"))
  			.debug();
  	    }

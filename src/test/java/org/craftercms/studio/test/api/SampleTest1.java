@@ -1,6 +1,7 @@
 package org.craftercms.studio.test.api;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -20,7 +21,9 @@ public class SampleTest1 {
     private JsonTester api;
 
     public SampleTest1(){
-        api = new JsonTester("http","localhost",8080);
+    	APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		api = new JsonTester(apiConnectionManager.getProtocol()
+				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
     }
 
     @BeforeTest

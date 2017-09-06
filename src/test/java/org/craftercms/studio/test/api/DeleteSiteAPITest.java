@@ -1,12 +1,12 @@
 package org.craftercms.studio.test.api;
 
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  * Created by Gustavo Ortiz Alfaro.
@@ -17,7 +17,9 @@ public class DeleteSiteAPITest {
 	private JsonTester api;
 
 	public DeleteSiteAPITest() {
-		api = new JsonTester("http", "localhost", 8080);
+		APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+				apiConnectionManager.getPort());
 	}
 
 	@BeforeTest
@@ -28,7 +30,7 @@ public class DeleteSiteAPITest {
 		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
 	}
 
-	@Test(priority=1)
+	@Test(priority = 1)
 	public void testDeleteSite() {
 		Map<String, Object> json = new HashMap<>();
 		json.put("siteId", "mySite");

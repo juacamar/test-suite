@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.api;
 
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -18,9 +19,13 @@ public class GetGroupAPITest {
 	private JsonTester api;
 	private String site = "mySite";
 	private String group = "contributors";
+	private String headerLocationBase;
 
 	public GetGroupAPITest() {
-		api = new JsonTester("http", "localhost", 8080);
+		APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		api = new JsonTester(apiConnectionManager.getProtocol()
+				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
+		headerLocationBase=apiConnectionManager.getHeaderLocationBase();
 	}
 
 	@BeforeTest
@@ -39,7 +44,7 @@ public class GetGroupAPITest {
 		json.put("blueprint", "Empty");
 		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
 				.header("Location",
-						is("http://localhost:8080/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
+						is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
 				.json("$.message", is("OK")).debug();
 
 	}
@@ -50,25 +55,25 @@ public class GetGroupAPITest {
 		json.put("group_name", group);
 		json.put("site_id", site);
 		json.put("description", "Content Contributors");
-		api.post("studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
+		api.post("/studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
 				.header("Location",
-						is("http://localhost:8080/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
+						is(headerLocationBase+"/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
 				.json("$.message", is("OK")).debug();
 
 	}
 
 	@Test(priority = 3)
 	public void testGetGroup() {
-		api.get("studio/api/1/services/api/1/group/get.json").urlParam("group_name", group).urlParam("site_id", site).execute()
+		api.get("/studio/api/1/services/api/1/group/get.json").urlParam("group_name", group).urlParam("site_id", site).execute()
 				.status(200).header("Location", is(
-						"http://localhost:8080/studio/api/1/services/api/1/get/get.json?site_id=mySite&group_name=contributors"));
+						headerLocationBase+"/studio/api/1/services/api/1/get/get.json?site_id=mySite&group_name=contributors"));
 		// .json("$.message", is("OK")).debug();
 
 	}
 
 	@Test(priority = 4)
 	public void testInvalidParameter() {
-		api.get("studio/api/1/services/api/1/group/get.json").urlParam("group_name",group).execute().status(400)
+		api.get("/studio/api/1/services/api/1/group/get.json").urlParam("group_name",group).execute().status(400)
 				.json("$.message", is("Invalid parameter(s): [site_id]")).debug();
 
 	}
@@ -83,7 +88,7 @@ public class GetGroupAPITest {
 
 	@Test(priority = 6)
 	public void testGroupNotFound() {
-		api.get("studio/api/1/services/api/1/group/get.json").urlParam("group_name", group+"nonvalid").urlParam("site_id", site).execute().status(404)
+		api.get("/studio/api/1/services/api/1/group/get.json").urlParam("group_name", group+"nonvalid").urlParam("site_id", site).execute().status(404)
 				.json("$.message", is("Group not found")).debug();
 
 	}

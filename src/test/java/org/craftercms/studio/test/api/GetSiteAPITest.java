@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.api;
 
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -17,9 +18,13 @@ import static org.hamcrest.Matchers.*;
 public class GetSiteAPITest {
 
     private JsonTester api;
+	private String headerLocationBase;
 
     public GetSiteAPITest(){
-        api = new JsonTester("http","localhost",8080);
+    	APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		api = new JsonTester(apiConnectionManager.getProtocol()
+				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
+		headerLocationBase=apiConnectionManager.getHeaderLocationBase();
     }
 
     @BeforeTest
@@ -38,7 +43,7 @@ public class GetSiteAPITest {
 		json.put("description", "My very first site!");
 		json.put("blueprint", "Empty");
 		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
-				.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
+				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
 				.json("$.message", is("OK")).debug();
 
 	}
@@ -50,7 +55,7 @@ public class GetSiteAPITest {
 		.json(json)
 		.execute()
 		.status(200)
-		.header("Location", is("http://localhost:8080/studio/api/1/services/api/1/site/get.json?site_id=mySite"));
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"));
 
 
    	}
