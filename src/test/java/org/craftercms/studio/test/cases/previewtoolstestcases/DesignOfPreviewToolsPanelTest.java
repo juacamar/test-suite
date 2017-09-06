@@ -71,7 +71,7 @@ public class DesignOfPreviewToolsPanelTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// Click on Preview Tools icon (show)
 
 		previewPage.clickOnPreviewTools();

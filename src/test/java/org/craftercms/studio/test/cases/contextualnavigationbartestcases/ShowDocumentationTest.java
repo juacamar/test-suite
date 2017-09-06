@@ -53,7 +53,7 @@ public class ShowDocumentationTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// click On help option
 
 		createSitePage.clickOnHelpOption();

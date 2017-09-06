@@ -11,6 +11,7 @@ import org.craftercms.studio.test.utils.datasourceslistxml.DataSourceCreatorXML;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 /**
  * 
@@ -56,7 +57,6 @@ public class SiteConfigPage {
 	private JsonTester api;
 	public String dataSourceXMLFileLocation;
 	public String dataSourceXMLFileName;
-	
 
 	/**
 	 * 
@@ -129,7 +129,6 @@ public class SiteConfigPage {
 	}
 
 	public SiteConfigPage(WebDriver driver) {
-
 		this.driver = driver;
 
 	}
@@ -137,7 +136,7 @@ public class SiteConfigPage {
 	// Click on Content Type option
 
 	public void clickContentTypeOption() {
-
+		this.driverManager.driverWait();
 		WebElement contentTypeOpt = driver.findElement(By.xpath(contentTypeOption));
 		contentTypeOpt.click();
 	}
@@ -153,7 +152,7 @@ public class SiteConfigPage {
 	// Click on open existing Type option
 
 	public void clickOpenExistingTypeOption() {
-
+		this.driverManager.driverWait();
 		WebElement openExistingTypeOpt = driver.findElement(By.xpath(openExistingTypeOption));
 		openExistingTypeOpt.click();
 
@@ -170,15 +169,17 @@ public class SiteConfigPage {
 	// Select the generic content type
 
 	public void selectContentType() {
-
-		WebElement selectGenericOption = this.getDriverManager().getDriver()
-				.findElement(By.xpath(genericContentTypeOption));
-		selectGenericOption.click();
+		this.driverManager.driverWait();
+		// its the default selected
+		// WebElement selectGenericOption = this.getDriverManager().getDriver()
+		// .findElement(By.xpath(genericContentTypeOption));
+		Assert.assertTrue(this.getDriverManager().isElementPresentByXpath(genericContentTypeOption));
+		// selectGenericOption.click();
 
 	}
 
 	public void selectPageArticleContentTypeOption() {
-
+		this.driverManager.driverWait();
 		WebElement selectPageArticleOption = driver.findElement(By.cssSelector(pageArticleContentTypeOption));
 		selectPageArticleOption.click();
 
@@ -195,7 +196,7 @@ public class SiteConfigPage {
 	// Confirm the content type selected
 
 	public void okContentTypeSelected() {
-
+		this.driverManager.driverWait();
 		WebElement okButtonOpt = driver.findElement(By.id(okButton));
 		okButtonOpt.click();
 
@@ -212,7 +213,7 @@ public class SiteConfigPage {
 	// Save the section dropped.
 
 	public void saveSectionDropped() {
-
+		this.driverManager.driverWait();
 		WebElement okButtonOpt = driver.findElement(By.xpath(saveButton));
 		okButtonOpt.click();
 
@@ -588,8 +589,8 @@ public class SiteConfigPage {
 	public void createConfiguredListXML() {
 		DataSourceCreatorXML creatorXML = new DataSourceCreatorXML();
 		creatorXML.generateTestXMLFileForDataSource();
-		this.dataSourceXMLFileLocation= creatorXML.getXMLFileLocation();
-		this.dataSourceXMLFileName= creatorXML.getFileName();
+		this.dataSourceXMLFileLocation = creatorXML.getXMLFileLocation();
+		this.dataSourceXMLFileName = creatorXML.getFileName();
 	}
 
 	public void createContentForXMLFileThroughAPI(String site, String path, String fileName, File file) {
@@ -597,7 +598,8 @@ public class SiteConfigPage {
 		json.put("site", site);
 		json.put("path", path);
 		json.put("filename", fileName);
-		api.post("studio/api/1/services/api/1/content/write-content.json").params(json).file(fileName, file).execute().status(200).debug();
+		api.post("studio/api/1/services/api/1/content/write-content.json").params(json).file(fileName, file).execute()
+				.status(200).debug();
 	}
 
 }

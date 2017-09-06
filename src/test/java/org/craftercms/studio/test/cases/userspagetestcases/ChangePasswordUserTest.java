@@ -60,7 +60,7 @@ public class ChangePasswordUserTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// click On admin option
 
 		createSitePage.clickAdmin();

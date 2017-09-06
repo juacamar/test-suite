@@ -62,7 +62,7 @@ public class DesignOfCreateSitePageTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// Assert crafter studio logo is present.
 
 		WebElement logoCrafter = driverManager.getDriver().findElement(By.cssSelector(".navbar-brand > img"));
@@ -70,12 +70,16 @@ public class DesignOfCreateSitePageTest {
 		Assert.assertTrue(logoCrafter.isDisplayed());
 
 		// Assert sites title is present.
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		WebElement sitesLabel = driverManager.getDriver().findElement(By.cssSelector("h1.ng-binding"));
 
 		Assert.assertTrue(sitesLabel.isDisplayed());
 
 		// Assert create button is present.
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		WebElement createButton = driverManager.getDriver()
 				.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
@@ -83,6 +87,8 @@ public class DesignOfCreateSitePageTest {
 		Assert.assertTrue(createButton.isDisplayed());
 
 		// Assert admin tools is present.
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		WebElement adminTools = driverManager.getDriver()
 				.findElement(By.cssSelector(".nav > li:nth-child(1) > a:nth-child(1)"));
@@ -90,12 +96,16 @@ public class DesignOfCreateSitePageTest {
 		Assert.assertTrue(adminTools.isDisplayed());
 
 		// Assert sites option is present.
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		WebElement sitesOption = driverManager.getDriver().findElement(By.cssSelector("li.active > a:nth-child(1)"));
 
 		Assert.assertTrue(sitesOption.isDisplayed());
 
 		// Assert Help option is present.
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		WebElement helpOption = driverManager.getDriver()
 				.findElement(By.cssSelector(".nav > li:nth-child(3) > a:nth-child(1)"));
@@ -103,12 +113,16 @@ public class DesignOfCreateSitePageTest {
 		Assert.assertTrue(helpOption.isDisplayed());
 
 		// Assert account option is present.
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		WebElement accountOption = driverManager.getDriver().findElement(By.cssSelector(".dropdown-toggle"));
 
 		Assert.assertTrue(accountOption.isDisplayed());
 
 		// Assert all sites option is present.
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		WebElement sitesPerPage = driverManager.getDriver()
 				.findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > label"));
@@ -116,6 +130,8 @@ public class DesignOfCreateSitePageTest {
 		Assert.assertTrue(sitesPerPage.isDisplayed());
 
 		// Assert site name is present.
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		WebElement sitesPerPageCombo = driverManager.getDriver()
 				.findElement(By.cssSelector("#container > div > div > div.pull-right.m10 > input"));

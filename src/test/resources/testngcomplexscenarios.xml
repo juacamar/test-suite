@@ -17,7 +17,7 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test>
-		<test name="Craftercms1248" preserve-order="true">
+	<test name="Craftercms1248" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />

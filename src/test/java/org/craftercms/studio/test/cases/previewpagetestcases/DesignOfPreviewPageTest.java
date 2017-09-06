@@ -36,9 +36,6 @@ public class DesignOfPreviewPageTest {
 
 	private HomePage homePage;
 
-
-	
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -46,7 +43,7 @@ public class DesignOfPreviewPageTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-	
+
 	}
 
 	@AfterClass
@@ -76,10 +73,10 @@ public class DesignOfPreviewPageTest {
 		// reload page
 
 		driverManager.getDriver().navigate().refresh();
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert crafter studio logo is present.
 
@@ -87,11 +84,12 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[1]/a/img"));
 
 		Assert.assertTrue(logoCrafter.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
+		// reload page
+		homePage.getDriverManager().driverWait();
 		// Assert site content option is present.
 
 		WebElement siteContent = driverManager.getDriver()
@@ -101,8 +99,9 @@ public class DesignOfPreviewPageTest {
 
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
-				
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+
 		// Assert search field is present.
 
 		WebElement searchField = driverManager.getDriver().findElement(By.id("acn-searchtext"));
@@ -111,17 +110,19 @@ public class DesignOfPreviewPageTest {
 
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
-				
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+
 		// Assert account option is present.
 
 		WebElement signUp = driverManager.getDriver().findElement(By.cssSelector("#account-dropdown"));
 
 		Assert.assertTrue(signUp.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert Edit option is present.
 
@@ -129,10 +130,11 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[2]/a"));
 
 		Assert.assertTrue(editOption.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert delete option is present.
 
@@ -140,10 +142,11 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[3]/a"));
 
 		Assert.assertTrue(deleteOption.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert all schedule option is present.
 
@@ -151,10 +154,11 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[4]/a"));
 
 		Assert.assertTrue(scheduleOption.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert Approve publish is present.
 
@@ -162,10 +166,11 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[5]/a"));
 
 		Assert.assertTrue(approvePublishOption.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert dependencies option is present.
 
@@ -173,10 +178,11 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.cssSelector("#activeContentActions > li:nth-child(5) > a"));
 
 		Assert.assertTrue(duplicateOption.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert history option is present.
 
@@ -184,46 +190,53 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.cssSelector("#activeContentActions > li:nth-child(5) > a"));
 
 		Assert.assertTrue(historyOption.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 				.click();
-		
+
 		// wait for element is clickeable
 
+		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
 
 		// Assert all Sites Dropdown option is present.
 
-		WebElement dashboard = driverManager.getDriver().findElement(By.cssSelector("#acn-dropdown-menu-inner > div.studio-view"));
+		WebElement dashboard = driverManager.getDriver()
+				.findElement(By.cssSelector("#acn-dropdown-menu-inner > div.studio-view"));
 
 		Assert.assertTrue(dashboard.isDisplayed());
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert Users option is present.
 
-		WebElement usersOption = driverManager.getDriver()
-				.findElement(By.cssSelector("#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"));
+		WebElement usersOption = driverManager.getDriver().findElement(By.cssSelector(
+				"#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"));
 
 		Assert.assertTrue(usersOption.isDisplayed());
-		
+
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 		// Assert sites option is present.
 
-				WebElement sitesOption = driverManager.getDriver()
-						.findElement(By.cssSelector("#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"));
+		WebElement sitesOption = driverManager.getDriver().findElement(By.cssSelector(
+				"#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"));
 
-				Assert.assertTrue(sitesOption.isDisplayed());
-		
+		Assert.assertTrue(sitesOption.isDisplayed());
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait();
 
 		// Assert admin console option is present.
 
@@ -231,7 +244,6 @@ public class DesignOfPreviewPageTest {
 				.findElement(By.cssSelector("#admin-console.acn-admin-console"));
 
 		Assert.assertTrue(adminConsoleOption.isDisplayed());
-		
 
 	}
 

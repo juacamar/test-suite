@@ -30,8 +30,8 @@ public class LoginPage {
         passwordTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_Password");
         loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
     }
+    
 	public LoginPage(WebDriver driver) {
-
 		this.driver = driver;
 
 	}
@@ -39,7 +39,7 @@ public class LoginPage {
 	// Set user name in textbox
 
 	public void setUserName(String strUserName) {
-		
+		this.driverManager.driverWait();
     WebElement userCrafter = driver.findElement(By.cssSelector(userNameTextBoxLocator));
     userCrafter.sendKeys(strUserName);
 		
@@ -48,7 +48,7 @@ public class LoginPage {
 	// Set password in password textbox
 
 	public void setPassword(String strPassword) {
-
+		this.driverManager.driverWait();
 		 WebElement pwdCrafter = driver.findElement(By.id(passwordTextBoxLocator));
 		 pwdCrafter.sendKeys(strPassword);
 
@@ -57,7 +57,7 @@ public class LoginPage {
 	// Click on login button
 
 	public void clickLogin() {
-
+		this.driverManager.driverWait();
 		 WebElement loginButton = driver.findElement(By.cssSelector(loginButtonLocator));
 		 loginButton.click();
 

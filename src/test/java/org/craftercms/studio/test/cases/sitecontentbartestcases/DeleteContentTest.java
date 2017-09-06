@@ -76,10 +76,7 @@ public class DeleteContentTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		// driverManager.getDriver().navigate().refresh();
+		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();

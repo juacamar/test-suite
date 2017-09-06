@@ -72,7 +72,7 @@ public class HomePage {
 	// Click on dashboard link
 
 	public void clickDashboardOption() {
-
+		this.driverManager.driverWait();
 		WebElement dashboardLink = driver.findElement(By.cssSelector(dashboardSite2));
 		dashboardLink.click();
 
@@ -80,8 +80,7 @@ public class HomePage {
 
 	public void goToDashboardPage() {
 
-		// Click on dashboard link
-		this.driverManager.driverWait();
+		// Click on dashboard
 		this.clickDashboardOption();
 
 	}
@@ -89,7 +88,7 @@ public class HomePage {
 	// Click on edit option of my recent activity senction
 
 	public void clickEditOptionOfRecentActivitySection() {
-
+		this.driverManager.driverWait();
 		WebElement editOptionMyRecentActivity = driver.findElement(By.xpath(editRecentActivity));
 		editOptionMyRecentActivity.click();
 
@@ -106,7 +105,7 @@ public class HomePage {
 	// See the page edited
 
 	public void displayPageEdited() {
-
+		this.driverManager.driverWait();
 		WebElement seeThePageMyRecentActivity = driver.findElement(By.xpath(seeThePageEdited));
 		seeThePageMyRecentActivity.click();
 
@@ -139,7 +138,7 @@ public class HomePage {
 	// Click on Create Site button
 
 	public void clickCreateSiteButton() {
-
+		this.driverManager.driverWait();
 		WebElement createSiteOption = driver.findElement(By.cssSelector(createSiteButton));
 		createSiteOption.click();
 
@@ -173,7 +172,7 @@ public class HomePage {
 	// Click on YES button
 
 	public void clickYesButton() {
-
+		this.driverManager.driverWait();
 		WebElement yesButton = driver.findElement(By.cssSelector(yesDeleteButton));
 		yesButton.click();
 
@@ -190,14 +189,14 @@ public class HomePage {
 	// Logout to the crafter
 
 	public void expandAccount() {
-
+		this.driverManager.driverWait();
 		WebElement expandAccount = driver.findElement(By.cssSelector(logOutLink));
 		expandAccount.click();
 
 	}
 
 	public void clickSignOut() {
-
+		this.driverManager.driverWait();
 		WebElement signOut = driver.findElement(By.cssSelector(signOutLink));
 		signOut.click();
 
@@ -215,18 +214,15 @@ public class HomePage {
 
 	}
 
-	public String getHomePageDashboardUserName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void clickUsersContextualNavigationOption() {
+		this.driverManager.driverWait();
 		WebElement usersContextualNavigationOptionWebElement = driver
 				.findElement(By.xpath(usersContextualNavigationOption));
 		usersContextualNavigationOptionWebElement.click();
 	}
 
 	public Boolean isUsersContextualNavigationOptionPresent() {
+		this.driverManager.driverWait();
 		return this.driverManager.isElementPresentByXpath(usersContextualNavigationOption);
 	}
 

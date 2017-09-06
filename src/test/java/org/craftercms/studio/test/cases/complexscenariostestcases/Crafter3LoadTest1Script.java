@@ -142,9 +142,8 @@ public class Crafter3LoadTest1Script {
 		homePage.goToPreviewPage();
 		// wait for element is clickeable
 		homePage.getDriverManager().driverWait();
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		homePage.getDriverManager().driverWait();
+
 		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 				.click();
@@ -157,8 +156,7 @@ public class Crafter3LoadTest1Script {
 		this.createFolderOnHome(parentFolderName);
 		// wait for element is clickeable
 		dashboardPage.getDriverManager().driverWait();
-
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		dashboardPage.getDriverManager().driverWait();
 
 		// Checking if parent folder is present
 		dashboardPage.getDriverManager().driverWait();
@@ -257,6 +255,7 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.clickOKButton();
 		// creating new Page Article into the empty folder
 		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.driverWait();
 		this.createNewPageArticleContent();
 	}
 
@@ -358,13 +357,13 @@ public class Crafter3LoadTest1Script {
 
 	public void publishAllPagesOnAFolder(String folderLocator) {
 		// getting the entire list of content pages on a folder
-			
+
 		List<WebElement> unpublishedContentPages = driverManager.getDriver()
 				.findElements(By.xpath(folderLocator + "/../../../../../div[1]/div/table/tbody/tr/td/span"));
 		this.driverManager.driverWait();
-		
+
 		for (WebElement element : unpublishedContentPages) {
-			// right click to displays right click menu			
+			// right click to displays right click menu
 			dashboardPage.rightClickOnAContentPage(element);
 			// selecting the Publish option
 			dashboardPage.clickOnPublishOption();
@@ -404,7 +403,7 @@ public class Crafter3LoadTest1Script {
 	}
 
 	public void step1() {
-
+		this.driverManager.driverWait();
 		emptyFolder = driverManager.getDriver().findElement(By.xpath(emptyFolderLocator));
 
 		// Step 1
@@ -469,17 +468,21 @@ public class Crafter3LoadTest1Script {
 
 	public void step6() {
 		// Step6
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		dashboardPage.getDriverManager().driverWait();
 
 		myTestFolder = driverManager.getDriver().findElement(By.xpath(mytestFolderLocator));
 		dashboardPage.expandParentFolder(myTestFolder);
 
+		this.driverManager.driverWait();
 		WebElement myTestBigTreeChildFolder = driverManager.getDriver()
 				.findElement(By.xpath(myTestBigTreeChildFolderLocator));
 		dashboardPage.rightClickCutAFolder(myTestBigTreeChildFolder);
 
+		this.driverManager.driverWait();
 		anotherTestFolder = driverManager.getDriver().findElement(By.xpath(anotherTestFolderLocator));
 		dashboardPage.rightClickPasteOnAFolder(anotherTestFolder);
+		
+		this.driverManager.driverWait();
 		anotherTestBigTreeChildFolderLocator = anotherTestFolderLocator + UIElementsPropertiesManager
 				.getSharedUIElementsLocators().getProperty("complexscenarios.crafter3loadtest.childfolder")
 				+ this.bigTree1FolderName + "')]";

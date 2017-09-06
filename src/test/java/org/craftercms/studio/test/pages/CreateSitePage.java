@@ -1,7 +1,5 @@
 package org.craftercms.studio.test.pages;
 
-import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -78,6 +76,7 @@ public class CreateSitePage {
 	// Set site name
 
 	public void setSiteName() {
+		this.driverManager.driverWait();
 
 		WebElement nameNewSite = driver.findElement(By.cssSelector(siteName));
 		nameNewSite.sendKeys("testsite" + RandomStringUtils.randomAlphabetic(5).toLowerCase());
@@ -95,6 +94,7 @@ public class CreateSitePage {
 	// Set site ID
 
 	public void setSiteId(String strSiteID) {
+		this.driverManager.driverWait();
 
 		WebElement idSite = driver.findElement(By.cssSelector(siteID));
 		idSite.sendKeys(strSiteID);
@@ -112,6 +112,7 @@ public class CreateSitePage {
 	// Set description
 
 	public void setDescription(String strDescription) {
+		this.driverManager.driverWait();
 
 		WebElement description = driver.findElement(By.cssSelector(descriptionSite));
 		description.sendKeys(strDescription);
@@ -129,6 +130,7 @@ public class CreateSitePage {
 	// Open blueprint combo
 
 	public void blueprintCombo() {
+		this.driverManager.driverWait();
 
 		WebElement comboBlueprint = driver.findElement(By.cssSelector(blueprintCombo));
 		comboBlueprint.click();
@@ -146,6 +148,7 @@ public class CreateSitePage {
 	// select blue pluton print
 
 	public void plutonBlueprint() {
+		this.driverManager.driverWait();
 
 		WebElement blueprintPluton = driver.findElement(By.xpath(plutonBlueprint));
 
@@ -168,7 +171,6 @@ public class CreateSitePage {
 		this.driverManager.driverWait();
 		WebElement bluePrintCombo = driver.findElement(By.id("blueprint"));
 		Select select = new Select(bluePrintCombo);
-
 		select.selectByVisibleText("Empty");
 
 	}
@@ -184,9 +186,8 @@ public class CreateSitePage {
 	// select blue corporate print
 
 	public void corporateBlueprint() {
-
+		this.driverManager.driverWait();
 		WebElement blueprintCorporate = driver.findElement(By.xpath(corporateBlueprint));
-
 		blueprintCorporate.click();
 
 	}
@@ -202,11 +203,9 @@ public class CreateSitePage {
 	// select blue angular memory game print
 
 	public void angMemGamBlueprint() {
-
+		this.driverManager.driverWait();
 		WebElement blueprintCorporate = driver.findElement(By.xpath(AngMemGamBlueprint));
-
 		blueprintCorporate.click();
-
 	}
 
 	public void selectAngMemGamBlueprint() {
@@ -220,9 +219,8 @@ public class CreateSitePage {
 	// Press on create site
 
 	public void createButton() {
-
+		this.driverManager.driverWait();
 		WebElement createButton = driver.findElement(By.cssSelector(createSiteButton));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		createButton.click();
 
 	}
@@ -255,9 +253,8 @@ public class CreateSitePage {
 	// Press on Cancel button of the create site process.
 
 	public void cancelButton() {
-
+		this.driverManager.driverWait();
 		WebElement createButton = driver.findElement(By.cssSelector(cancelButton));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		createButton.click();
 
 	}
@@ -273,7 +270,7 @@ public class CreateSitePage {
 	// Press on help option
 
 	public void clickHelp() {
-
+		this.driverManager.driverWait();
 		WebElement users = driver.findElement(By.cssSelector(helpOption));
 		users.click();
 
@@ -290,7 +287,7 @@ public class CreateSitePage {
 	// Press on about option
 
 	public void clickAbout() {
-
+		this.driverManager.driverWait();
 		WebElement about = driver.findElement(By.cssSelector(aboutOption));
 		about.click();
 
@@ -307,7 +304,7 @@ public class CreateSitePage {
 	// Press on documentation option
 
 	public void clickDocumentation() {
-
+		this.driverManager.driverWait();
 		WebElement documentation = driver.findElement(By.cssSelector(documentationOption));
 		documentation.click();
 
@@ -324,7 +321,7 @@ public class CreateSitePage {
 	// Press on admin option
 
 	public void clickAdmin() {
-
+		this.driverManager.driverWait();
 		WebElement admin = driver.findElement(By.cssSelector(adminDropdownOption));
 		admin.click();
 
@@ -341,7 +338,7 @@ public class CreateSitePage {
 	// Press on settings option
 
 	public void clickSettings() {
-
+		this.driverManager.driverWait();
 		WebElement settings = driver.findElement(By.cssSelector(settingsOption));
 		settings.click();
 
@@ -394,7 +391,6 @@ public class CreateSitePage {
 		this.driverManager.driverWait();
 		WebElement bluePrintCombo = driver.findElement(By.id("blueprint"));
 		Select select = new Select(bluePrintCombo);
-
 		select.selectByVisibleText("Website_editorial");
 	}
 

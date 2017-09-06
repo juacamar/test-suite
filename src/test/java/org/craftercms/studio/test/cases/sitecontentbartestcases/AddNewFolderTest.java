@@ -70,7 +70,7 @@ public class AddNewFolderTest {
 
 		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// reload page
 
 		//driverManager.getDriver().navigate().refresh();
@@ -81,7 +81,7 @@ public class AddNewFolderTest {
 				.click();
 
 		// wait for element is clickeable
-
+		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
 
 		// expand pages folder

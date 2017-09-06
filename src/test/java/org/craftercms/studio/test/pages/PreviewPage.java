@@ -88,7 +88,7 @@ public class PreviewPage {
 	// Click on admin console link
 
 	public void clickAdminConsoleOption() {
-
+		this.driverManager.driverWait();
 		WebElement adminConsoleOption = driverManager.getDriver().findElement(By.cssSelector(adminConsole));
 		adminConsoleOption.click();
 
@@ -105,7 +105,7 @@ public class PreviewPage {
 	// Open combo all sites
 
 	public void ComboAllSites() {
-
+		this.driverManager.driverWait();
 		WebElement openCombo = driverManager.getDriver().findElement(By.id(openComboSites));
 		openCombo.click();
 
@@ -122,7 +122,7 @@ public class PreviewPage {
 	// Click on preview tools icon
 
 	public void previewTools() {
-
+		this.driverManager.driverWait();
 		WebElement toolsIcon = driverManager.getDriver().findElement(By.id(clickPreviewTools));
 		toolsIcon.click();
 
@@ -139,7 +139,7 @@ public class PreviewPage {
 	// Expand the In Context Menu
 
 	public void expandInContextEditing() {
-
+		this.driverManager.driverWait();
 		WebElement expandInContextMenu = driverManager.getDriver().findElement(By.xpath(expandInContextEditing));
 		expandInContextMenu.click();
 
@@ -156,7 +156,7 @@ public class PreviewPage {
 	// Enable/Diseble In-Context Editing
 
 	public void inContextEditing() {
-
+		this.driverManager.driverWait();
 		WebElement inContextEditingOption = driverManager.getDriver().findElement(By.xpath(clickInContextEdit));
 		inContextEditingOption.click();
 
@@ -208,7 +208,7 @@ public class PreviewPage {
 	// Click on duplicate button of the menu
 
 	public void duplicateButton() {
-
+		this.driverManager.driverWait();
 		WebElement duplicateOption = driverManager.getDriver().findElement(By.xpath(previewDuplicate));
 		duplicateOption.click();
 
@@ -229,7 +229,7 @@ public class PreviewPage {
 	// Click on delete button of the menu
 
 	public void deleteButton() {
-
+		this.driverManager.driverWait();
 		WebElement deleteOption = driverManager.getDriver().findElement(By.xpath(previewDelete));
 		deleteOption.click();
 
@@ -246,7 +246,7 @@ public class PreviewPage {
 	// Click on delete dependencies
 
 	public void deleteDependencies() {
-
+		this.driverManager.driverWait();
 		WebElement deleteDepen = driverManager.getDriver().findElement(By.id(deleteDependencies));
 		deleteDepen.click();
 
@@ -263,7 +263,7 @@ public class PreviewPage {
 	// Click on OK to delete dependencies
 
 	public void okDeleteDependencies() {
-
+		this.driverManager.driverWait();
 		WebElement OKdeleteDepen = driverManager.getDriver().findElement(By.cssSelector(OKdeleteDependencies));
 		OKdeleteDepen.click();
 
@@ -280,7 +280,7 @@ public class PreviewPage {
 	// Click on edit button of the menu
 
 	public void EditButton() {
-
+		this.driverManager.driverWait();
 		WebElement editOption = driverManager.getDriver().findElement(By.xpath(previewEdit));
 		editOption.click();
 
@@ -297,7 +297,7 @@ public class PreviewPage {
 	// Click on history button of the menu
 
 	public void historyButton() {
-
+		this.driverManager.driverWait();
 		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewHistory));
 		historyOption.click();
 
@@ -314,7 +314,7 @@ public class PreviewPage {
 	// Click on dependencies button of the menu
 
 	public void dependenciesButton() {
-
+		this.driverManager.driverWait();
 		WebElement historyOption = driverManager.getDriver().findElement(By.cssSelector(previewDependecies));
 		historyOption.click();
 
@@ -331,7 +331,7 @@ public class PreviewPage {
 	// Set the new name duplicated
 
 	public void duplicateName(String strDuplicateName) {
-
+		this.driverManager.driverWait();
 		WebElement internalName = driverManager.getDriver().findElement(By.xpath(duplicateName));
 		internalName.sendKeys(strDuplicateName);
 
@@ -348,7 +348,7 @@ public class PreviewPage {
 	// Click on save and close
 
 	public void SaveAndClose() {
-
+		this.driverManager.driverWait();
 		WebElement saveClose = driverManager.getDriver().findElement(By.cssSelector(saveAndClose));
 		saveClose.click();
 
@@ -357,7 +357,7 @@ public class PreviewPage {
 	// Expand pages tree
 
 	public void clickPagesTree() {
-
+		this.driverManager.driverWait();
 		WebElement expandPagesTree = driverManager.getDriver().findElement(By.cssSelector(pagesTree));
 		expandPagesTree.click();
 
@@ -374,7 +374,7 @@ public class PreviewPage {
 	// Expand global entry content
 
 	public void clickHomeContent() {
-
+		this.driverManager.driverWait();
 		WebElement homeContent = driverManager.getDriver().findElement(By.cssSelector(expandGlobalEntryContent));
 		homeContent.click();
 
@@ -399,7 +399,7 @@ public class PreviewPage {
 	// Set the new name of the URL
 
 	public void changeInternalName(String strNewInternalName) {
-
+		this.driverManager.driverWait();
 		WebElement URLName = driverManager.getDriver().findElement(By.xpath(internalName));
 		URLName.sendKeys(strNewInternalName);
 
@@ -416,7 +416,7 @@ public class PreviewPage {
 	// Click save and close
 
 	public void saveAndCloseButton() {
-
+		this.driverManager.driverWait();
 		WebElement saveClose = driverManager.getDriver().findElement(By.cssSelector(saveAndCloseiFrame));
 		saveClose.click();
 
@@ -432,12 +432,13 @@ public class PreviewPage {
 
 	public void changeBodyOfEntryContentPageToNotRequired() {
 		this.getDriverManager().driverWait();
-
+		this.getDriverManager().driverWait();
 		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable
 
+		this.getDriverManager().driverWait();
 		this.getDriverManager().driverWait();
 
 		// go to admin console page

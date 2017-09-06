@@ -60,7 +60,7 @@ public class ContentTypesAddTextAreaTest {
 	public void dragAndDrop() {
 
 
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = driverManager.getDriver()
@@ -76,7 +76,7 @@ public class ContentTypesAddTextAreaTest {
 
 		homePage.getDriverManager().driverWait();
 
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 
 		WebElement FromRepeatingGroup = driverManager.getDriver()
 				.findElement(By.xpath(controlsSectionTextAreaLocator));
@@ -110,16 +110,12 @@ public class ContentTypesAddTextAreaTest {
 		// wait for element is clickeable
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-		
-		driverManager.setImplicitlyWaitTimeForFindElements();
-		
 		// Show site content panel
 		homePage.getDriverManager().driverWait();
 		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
 
 		// Show admin console page
+		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
 		driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
 
@@ -151,7 +147,7 @@ public class ContentTypesAddTextAreaTest {
 		homePage.getDriverManager().driverWait();
 
 		
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 		
 		// Click on input section to can view the properties
 		siteConfigPage.clickRepeatingGroupSection();

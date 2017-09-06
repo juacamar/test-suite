@@ -18,7 +18,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
 	WebDriver driver;
@@ -42,7 +41,7 @@ public class WebDriverManager {
 					break;
 				case "firefox":
 					capabilities = DesiredCapabilities.firefox();
-					capabilities.setCapability("marionette", true);
+					//capabilities.setCapability("marionette", true);
 					System.setProperty("webdriver.gecko.driver", envProperties.getProperty("firefox.driver.path"));
 					driver = new FirefoxDriver(capabilities);
 					break;
@@ -87,7 +86,7 @@ public class WebDriverManager {
 
 	public void closeConnection() {
 		this.driver.close();
-		this.driver.quit();
+		//this.driver.quit();
 	}
 
 	public void maximizeWindow() {
@@ -114,7 +113,7 @@ public class WebDriverManager {
 
 	public void driverWait() {
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(3400);
 		} catch (InterruptedException ie1) {
 			ie1.printStackTrace();
 		}
@@ -139,10 +138,7 @@ public class WebDriverManager {
 		boolean isElementPresent = true;
 
 		try {
-
-			this.getDriver().manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
 			@SuppressWarnings("unused")
-
 			WebElement webElement = this.getDriver().findElement(By.xpath(xpathOfTheElement));
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
@@ -150,19 +146,23 @@ public class WebDriverManager {
 
 		return isElementPresent;
 	}
+	public boolean isElementPresentBycssSelector(String cssSelector) {
+		boolean isElementPresent = true;
 
-	public void setImplicitlyWaitTimeForFindElements() {
-		this.getDriver().manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+		try {
+			@SuppressWarnings("unused")
+			WebElement webElement = this.getDriver().findElement(By.cssSelector(cssSelector));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
 	}
-
-	public void contextClick(WebDriver driver, WebElement element) {
-		if (driver instanceof PhantomJSDriver) {
+	
+	public void contextClick(WebDriver driver, WebElement element) {	
 			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
 					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
 			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
-		} else {
-			(new Actions(driver)).contextClick(element).build().perform();
-		}
 	}
 
 }

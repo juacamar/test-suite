@@ -53,7 +53,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 
 	public void dragAndDrop() {
 
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 
 		// Getting the ChildContent for drag and drop action
 		WebElement FromDataSourceImageUploadedFromDesktopElement = driverManager.getDriver()
@@ -93,9 +93,9 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		homePage.getDriverManager().driverWait();
 
 		// reload page
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
 		
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 		
 		// Show site content panel
 		homePage.getDriverManager().driverWait();
@@ -133,7 +133,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		homePage.getDriverManager().driverWait();
 
 		
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 		
 		// Click on input section to can view the properties
 		siteConfigPage.clickDataSourceImageUploadedFromDesktopSection();

@@ -97,7 +97,7 @@ public class SitesPerPageTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// go to the sites page
 
 		driverManager.getDriver().findElement(By.cssSelector("#sitesRightNav")).click();
@@ -221,7 +221,7 @@ public class SitesPerPageTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// Create user 1
-
+		homePage.getDriverManager().driverWait();
 		createSitesRandom();
 
 		// Create user 2

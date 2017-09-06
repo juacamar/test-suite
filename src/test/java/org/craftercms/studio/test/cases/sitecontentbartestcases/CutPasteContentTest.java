@@ -74,10 +74,7 @@ public class CutPasteContentTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
-		// reload page
-
-		// driverManager.getDriver().navigate().refresh();
+		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
@@ -86,7 +83,7 @@ public class CutPasteContentTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// go to admin console page
 
 		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();

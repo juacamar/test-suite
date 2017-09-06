@@ -57,7 +57,7 @@ public class ShowUsersPageTest {
 
 		// wait for element is clickeable
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// Click on the Users Contextual Navigation Option
 		homePage.clickUsersContextualNavigationOption();
 
