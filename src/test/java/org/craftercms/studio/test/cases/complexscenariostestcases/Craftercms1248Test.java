@@ -80,10 +80,6 @@ public class Craftercms1248Test {
 		homePage.goToPreviewPage();
 		// wait for element is clickeable
 		homePage.getDriverManager().driverWait();
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-	
-		driverManager.setImplicitlyWaitTimeForFindElements();
 		homePage.getDriverManager().driverWait();
 		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
@@ -218,7 +214,7 @@ public class Craftercms1248Test {
 		this.createPageCategoryLandingPage(homeParent, parentPageName);
 
 		dashboardPage.getDriverManager().driverWait();
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		dashboardPage.getDriverManager().driverWait();
 
 		WebElement expansorElementForHome = driverManager.getDriver()
 				.findElement(By.xpath(".//span[text()='Home']/../../td[1]"));
@@ -263,7 +259,7 @@ public class Craftercms1248Test {
 
 	private void verifyPublishedItemsOnDashboard() {
 		//driverManager.getDriver().navigate().refresh();
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 
 		String iconNeverPublishedForParentPage = this.parentPageNewLocator
 				+ "/div/span/span[contains(@class,'never-published')]";

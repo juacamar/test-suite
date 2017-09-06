@@ -62,7 +62,7 @@ public class LogOutTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-		
+		homePage.getDriverManager().driverWait();
 		// LogOut
 		
 		homePage.clickLogoutOutCrafter();

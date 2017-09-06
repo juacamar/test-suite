@@ -67,7 +67,7 @@ public class TryToDeleteUserConnectedTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// Go to users tab
 		
 		driverManager.getDriver().findElement(By.cssSelector("body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(1) > a"))

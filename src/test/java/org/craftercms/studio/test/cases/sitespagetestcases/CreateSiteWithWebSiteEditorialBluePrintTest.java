@@ -92,7 +92,6 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
 		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 

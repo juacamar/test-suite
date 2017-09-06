@@ -60,7 +60,7 @@ public class DeleteUserTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// click On Users option
 
 		createSitePage.clickOnUsersOption();

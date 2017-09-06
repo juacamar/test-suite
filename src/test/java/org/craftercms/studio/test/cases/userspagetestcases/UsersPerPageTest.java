@@ -53,7 +53,7 @@ public class UsersPerPageTest {
 	public void createUserRandom() {
 
 		// click On Users option
-
+		homePage.getDriverManager().driverWait();
 		createSitePage.clickOnUsersOption();
 
 		// click on new user button

@@ -91,7 +91,7 @@ public class PaginationOfListOfSitesTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// go to the sites page
 
 		driverManager.getDriver().findElement(By.cssSelector("#sitesRightNav")).click();
@@ -184,7 +184,7 @@ public class PaginationOfListOfSitesTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// Create user 1
 
 		createSitesRandom();

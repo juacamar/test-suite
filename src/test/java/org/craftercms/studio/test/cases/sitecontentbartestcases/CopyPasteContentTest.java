@@ -72,7 +72,7 @@ public class CopyPasteContentTest {
 
 				homePage.getDriverManager().driverWait();
 				homePage.getDriverManager().driverWait();
-
+				homePage.getDriverManager().driverWait();
 				// reload page
 
 				//driverManager.getDriver().navigate().refresh();
@@ -82,7 +82,7 @@ public class CopyPasteContentTest {
 						.click();
 
 				// wait for element is clickeable
-
+				homePage.getDriverManager().driverWait();
 				homePage.getDriverManager().driverWait();
 
 				// go to admin console page

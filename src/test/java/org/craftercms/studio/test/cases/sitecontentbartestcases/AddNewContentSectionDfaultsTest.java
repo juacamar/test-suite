@@ -131,7 +131,7 @@ public class AddNewContentSectionDfaultsTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// Show site content panel
 		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 				.click();
@@ -139,7 +139,7 @@ public class AddNewContentSectionDfaultsTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait();
-
+		homePage.getDriverManager().driverWait();
 		// expand pages folder
 
 		dashboardPage.expandPagesTree();

@@ -31,7 +31,7 @@ public class MyRecentActivityFramePage {
 	// Expand default section
 
 	public void clickExpandOption() {
-		
+		this.driverManager.driverWait();
 		WebElement expandOpt = driverManager.getDriver().findElement(By.id(expandDefaultSection));
 		expandOpt.click();
 
@@ -48,7 +48,7 @@ public class MyRecentActivityFramePage {
 	// Clear title field
 
 	public void clearTitleField() {
-
+		this.driverManager.driverWait();
 		WebElement clearTitleField = driverManager.getDriver().findElement(By.xpath(tittleField1));
 		clearTitleField.clear();
 
@@ -66,7 +66,7 @@ public class MyRecentActivityFramePage {
 	// Type new content on title text field.
 
 	public void typeNewTextOnBodyField(String newText1) {
-
+		this.driverManager.driverWait();
 		WebElement clearTitleField = driverManager.getDriver().findElement(By.xpath(tittleField1));
 		clearTitleField.sendKeys(newText1);
 
@@ -85,7 +85,7 @@ public class MyRecentActivityFramePage {
 	// Save and close
 
 	public void saveAndClose() {
-
+		this.driverManager.driverWait();
 		WebElement clearTitleField = driverManager.getDriver().findElement(By.id(saveCloseButton));
 		clearTitleField.click();
 

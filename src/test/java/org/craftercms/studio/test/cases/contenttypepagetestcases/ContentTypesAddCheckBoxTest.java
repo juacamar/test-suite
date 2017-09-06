@@ -61,7 +61,7 @@ public class ContentTypesAddCheckBoxTest {
 	public void dragAndDrop() {
 
 
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = driverManager.getDriver()
@@ -77,7 +77,7 @@ public class ContentTypesAddCheckBoxTest {
 
 		homePage.getDriverManager().driverWait();
 
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 
 		WebElement FromCheckBox = driverManager.getDriver()
 				.findElement(By.xpath(controlsSectionCheckBoxLocator));
@@ -110,11 +110,6 @@ public class ContentTypesAddCheckBoxTest {
 
 		// wait for element is clickeable
 		homePage.getDriverManager().driverWait();
-
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-		
-		driverManager.setImplicitlyWaitTimeForFindElements();
 		
 		// Show site content panel
 		homePage.getDriverManager().driverWait();
@@ -152,7 +147,7 @@ public class ContentTypesAddCheckBoxTest {
 		homePage.getDriverManager().driverWait();
 
 		
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 		
 		// Click on input section to can view the properties
 		siteConfigPage.clickCheckBoxSection();

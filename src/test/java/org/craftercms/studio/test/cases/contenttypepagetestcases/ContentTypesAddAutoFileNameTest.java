@@ -50,7 +50,7 @@ public class ContentTypesAddAutoFileNameTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerAutoFileNameTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerautofilenametitle");
-	
+
 	}
 
 	@AfterClass
@@ -60,8 +60,7 @@ public class ContentTypesAddAutoFileNameTest {
 
 	public void dragAndDrop() {
 
-
-		driverManager.setImplicitlyWaitTimeForFindElements();
+		driverManager.driverWait();
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = driverManager.getDriver()
@@ -77,8 +76,7 @@ public class ContentTypesAddAutoFileNameTest {
 
 		homePage.getDriverManager().driverWait();
 
-		driverManager.setImplicitlyWaitTimeForFindElements();
-
+		driverManager.driverWait();
 		WebElement FromAutoFileName = driverManager.getDriver()
 				.findElement(By.xpath(controlsSectionAutoFileNameLocator));
 
@@ -111,14 +109,12 @@ public class ContentTypesAddAutoFileNameTest {
 		// wait for element is clickeable
 		homePage.getDriverManager().driverWait();
 
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-		
-		driverManager.setImplicitlyWaitTimeForFindElements();
-		
+		driverManager.driverWait();
+
 		// Show site content panel
 		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
 
 		// Show admin console page
 		homePage.getDriverManager().driverWait();
@@ -151,15 +147,14 @@ public class ContentTypesAddAutoFileNameTest {
 		// wait for element
 		homePage.getDriverManager().driverWait();
 
-		
-		driverManager.setImplicitlyWaitTimeForFindElements();
-		
+		driverManager.driverWait();
+
 		// Click on input section to can view the properties
 		siteConfigPage.clickAutoFileNameSection();
 
 		// Asserts that fields are not empty.
-		String titleText = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerAutoFileNameTitleLocator)).getText();
+		String titleText = driverManager.getDriver().findElement(By.xpath(contentTypeContainerAutoFileNameTitleLocator))
+				.getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

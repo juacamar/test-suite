@@ -51,7 +51,7 @@ public class UsersPage {
 	// Try to delete the user connected
 
 	public void clickDeleteOption() {
-
+		this.driverManager.driverWait();
 		WebElement previewLink = driverManager.getDriver().findElement(By.cssSelector(deleteUserOption));
 		previewLink.click();
 
@@ -127,7 +127,7 @@ public class UsersPage {
 	// edit User
 
 	public void clickEditOptionCreated() {
-
+		this.driverManager.driverWait();
 		WebElement edit = driverManager.getDriver().findElement(By.cssSelector(editUserOption));
 		edit.click();
 
@@ -164,6 +164,7 @@ public class UsersPage {
 	}
 
 	public void clickOnCrafterLogo() {
+		this.driverManager.driverWait();
 		WebElement crafterLogoWebElement = driverManager.getDriver().findElement(By.xpath(crafterLogo));
 		crafterLogoWebElement.click();
 
