@@ -114,7 +114,7 @@ public class UsersPage {
 	// Delete User
 
 	public void clickDeleteOptionCreated() {
-		//driverManager.driverWait(3000);
+		driverManager.driverWait(2000);
 		WebElement previewLink =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				deleteUserOption2);
 				//driverManager.getDriver().findElement(By.cssSelector(deleteUserOption2));
@@ -135,7 +135,7 @@ public class UsersPage {
 	// edit User
 
 	public void clickEditOptionCreated() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				editUserOption);
 				//driverManager.getDriver().findElement(By.cssSelector(editUserOption));

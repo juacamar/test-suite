@@ -155,7 +155,7 @@ public class AddNewContentEntryTest {
 		this.changeBodyToNotRequiredOnEntryContent();
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// expand pages folder
 

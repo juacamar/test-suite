@@ -327,7 +327,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		driverManager.getDriver().navigate().refresh();
 
 		// body not requiered
 
@@ -335,7 +335,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// go to dashboard
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
@@ -343,6 +343,8 @@ public class FilterShowRecentActivityTest {
 		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// expand pages folder
+
+		homePage.getDriverManager().driverWait(3000);
 
 		dashboardPage.expandPagesTree();
 

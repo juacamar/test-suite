@@ -94,7 +94,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		// Show site content panel
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				".//a[@id='acn-dropdown-toggler']")
 				.click();
 

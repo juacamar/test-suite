@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.sitecontentbartestcases;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -283,7 +282,7 @@ public class DuplicateOptionTest {
 		//homePage.getDriverManager().driverWait();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
 				"cssSelector", "#cstudio-logo").click();
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
 

@@ -382,7 +382,7 @@ public class EditContentFormTest {
 	public void goToDashboard(){
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Go to dashboard page
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
@@ -391,7 +391,7 @@ public class EditContentFormTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 	}
 
 	@Test(priority = 0)
@@ -411,7 +411,7 @@ public class EditContentFormTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(23000);
 		//homePage.getDriverManager().driverWait();
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
@@ -421,7 +421,7 @@ public class EditContentFormTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 
 		// Select the content type and drag and drop
 

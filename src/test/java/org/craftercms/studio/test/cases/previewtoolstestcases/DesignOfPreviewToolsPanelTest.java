@@ -87,13 +87,13 @@ public class DesignOfPreviewToolsPanelTest {
 		previewPage.clickOnPreviewTools();
 
 		// Assert
+		homePage.getDriverManager().driverWait(2000);
+//		WebElement previewToolsHide = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+//				"cssSelector", "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel");
+//				//driverManager.getDriver()
+//				//.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
 
-		WebElement previewToolsHide = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
-				"cssSelector", "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
-
-		Assert.assertFalse(previewToolsHide.isDisplayed());
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector( "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
 
 	}
 

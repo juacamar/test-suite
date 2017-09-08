@@ -205,6 +205,8 @@ public class WebDriverManager {
 			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
+		} catch (Exception e) {
+			isElementPresent = false;
 		}
 
 		return isElementPresent;

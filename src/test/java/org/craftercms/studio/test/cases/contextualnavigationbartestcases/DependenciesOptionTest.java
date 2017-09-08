@@ -50,7 +50,7 @@ public class DependenciesOptionTest {
 
 	@Test(priority = 0)
 
-	public void history_option() {
+	public void dependenciesOptionTest() {
 
 		// login to application
 
@@ -69,7 +69,7 @@ public class DependenciesOptionTest {
 		// homePage.getDriverManager().driverWait();
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").getText();
+				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 		// .click();
 

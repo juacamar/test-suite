@@ -153,7 +153,9 @@ public class PublishingSiteTest {
 		// wait for element is clickeable
 
 		previewPage.getDriverManager().driverWait(3000);
-
+		
+		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().navigate().refresh();
 	}
 
 	@Test(priority = 0)
@@ -202,7 +204,7 @@ public class PublishingSiteTest {
 		createContent();
 
 		// Expand Home Tree
-
+		this.driverManager.driverWait(2000);
 		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable
@@ -224,8 +226,8 @@ public class PublishingSiteTest {
 		this.reloadPage();
 
 		// Assert
-		homePage.getDriverManager().driverWait(1000);
-		String siteStatus = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		homePage.getDriverManager().driverWait(5000);
+		String siteStatus = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5,
 				"xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span").getText();
 				//driverManager.getDriver()
 				//.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();

@@ -8,7 +8,6 @@
 				name="org.craftercms.studio.test.cases.userspagetestcases.TryToDeleteUserConnectedTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Login Test">
 		<classes>
 			<class
@@ -38,7 +37,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Add New Folder Test">
 		<classes>
 			<class
@@ -49,14 +47,12 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Cancel Create Site Process Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.CancelCreateSiteProcessTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Copy Paste Content Test">
 		<classes>
 			<class
@@ -67,7 +63,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Copy Paste Into Folder Test">
 		<classes>
 			<class
@@ -78,8 +73,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
-
 	<test name="Create Site Blueprint Empty">
 		<classes>
 			<class
@@ -88,26 +81,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
-
-	<test name="Create Tree with Different Content">
-		<classes>
-			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
-			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
-		</classes>
-	</test> <!-- Test -->
-
-	<test name="Create Tree with Same Content">
-		<classes>
-			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
-			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
-		</classes>
-	</test> <!-- Test -->
-
 	<test name="Content Type Drag and Drop">
 		<classes>
 			<class
@@ -138,7 +111,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Delete Content Test">
 		<classes>
 			<class
@@ -149,7 +121,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Delete Option Test">
 		<classes>
 			<class
@@ -160,7 +131,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Delete Site Test">
 		<classes>
 			<class
@@ -169,7 +139,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Design Of Create Site Page Test">
 		<classes>
 			<class
@@ -180,7 +149,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Design Of Preview Page Test">
 		<classes>
 			<class
@@ -191,7 +159,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Design Of Preview Tools Panel Test">
 		<classes>
 			<class
@@ -202,7 +169,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Design Of Workflow Section Test">
 		<classes>
 			<class
@@ -213,7 +179,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Duplicate Option Test">
 		<classes>
 			<class
@@ -224,7 +189,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Edit Content Form Test">
 		<classes>
 			<class
@@ -235,7 +199,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Edit Content Recently Created Test">
 		<classes>
 			<class
@@ -246,7 +209,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Edit Option Test">
 		<classes>
 			<class
@@ -257,7 +219,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Enable Disable Editing In Context Test">
 		<classes>
 			<class
@@ -268,7 +229,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Filter Show Recent Activity Test">
 		<classes>
 			<class
@@ -279,7 +239,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="History Option Test">
 		<classes>
 			<class
@@ -290,7 +249,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="PreviewSync Test">
 		<classes>
 			<class
@@ -301,7 +259,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Publishing Site Test">
 		<classes>
 			<class
@@ -312,7 +269,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Show Hide Site Content Test">
 		<classes>
 			<class
@@ -323,7 +279,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Validations Of Create Site Fields Test">
 		<classes>
 			<class
@@ -334,7 +289,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Wrong Login Test">
 		<classes>
 			<class
@@ -345,7 +299,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Dependencies Option Test">
 		<classes>
 			<class
@@ -356,7 +309,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="New User Test">
 		<classes>
 			<class
@@ -365,7 +317,6 @@
 				name="org.craftercms.studio.test.cases.userspagetestcases.DeleteUserTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Delete User Test">
 		<classes>
 			<class
@@ -374,63 +325,54 @@
 				name="org.craftercms.studio.test.cases.userspagetestcases.DeleteUserTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Edit User Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userspagetestcases.EditUserTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Design of Users Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userspagetestcases.DesignOfUsersPageTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Users Per Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userspagetestcases.UsersPerPageTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Pagination of users Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userspagetestcases.PaginationOfListOfUsersTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Pagination of List Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.PaginationOfListOfSitesTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Sites Per Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.SitesPerPageTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="About Us Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.contextualnavigationbartestcases.ShowAboutUsTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Show Documentation Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.contextualnavigationbartestcases.ShowDocumentationTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Change Password User Test">
 		<classes>
 			<class
