@@ -4,11 +4,10 @@ import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import static org.hamcrest.Matchers.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.hamcrest.Matchers.*;
 
 /**
  * Created by Gustavo Ortiz Alfaro.
@@ -18,6 +17,15 @@ public class GetGroupsAPITest {
 
 	private JsonTester api;
 	private String headerLocationBase;
+	
+	private String username = "admin";
+	private String password = "admin";
+	private String siteId = "mysite";
+	private String description = "Description!";
+	private String blueprint = "empty";
+	private String groupName1 = "contributors01";
+	private String groupName2 = "contributors02";
+	//private String groupName3 = "contributors03";
 
 	public GetGroupsAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
@@ -29,44 +37,62 @@ public class GetGroupsAPITest {
 	@BeforeTest
 	public void login() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "admin");
-		json.put("password", "admin");
-		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
+		json.put("username", username);
+		json.put("password", password);
+		api.post("/studio/api/1/services/api/1/security/login.json")
+		//.urlParam("username", username)
+		//.urlParam("password", password)
+		.json(json).execute().status(200);
 	}
 
 	@Test(priority = 1)
 	public void testCreateSite() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("site_id", "mySite");
-		json.put("description", "My very first site!");
-		json.put("blueprint", "Empty");
-		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
-				.header("Location",
-						is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
-				.json("$.message", is("OK")).debug();
-
+	 	Map<String, Object> json = new HashMap<>();
+			json.put("site_id", siteId);
+			json.put("description", description);
+			json.put("blueprint", blueprint);
+			
+			api.post("/studio/api/1/services/api/1/site/create.json")
+			//.urlParam("site_id", siteId)
+		    //.urlParam("description", description)
+			//.urlParam("blueprint", blueprint)
+			.json(json).execute().status(201)
+					.header("Location",
+							is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
+					.json("$.message", is("OK")).debug();
 	}
 	
 	@Test(priority=2)
 	public void testCreateStudioGroup01() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", "contributors01");
-		json.put("site_id", "mySite");
-		json.put("description", "Content Contributors");
-		api.post("/studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
-				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/group/get.json?group_name=contributors01"))
+		json.put("group_name", groupName1);
+		json.put("site_id", siteId);
+		json.put("description", description);
+		
+		api.post("/studio/api/1/services/api/1/group/create.json")
+//		.urlParam("group_name", groupName)
+//		.urlParam("site_id", siteId)
+//		.urlParam("description", description)
+		.json(json).execute().status(201)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName1))
 				.json("$.message", is("OK")).debug();
-
 	}
 	
 	@Test(priority=3)
 	public void testCreateStudioGroup02() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", "contributors02");
-		json.put("site_id", "mySite");
-		json.put("description", "Content Contributors");
-		api.post("/studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
-				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/group/get.json?group_name=contributors02"))
+		json.put("group_name", groupName2);
+		json.put("site_id", siteId);
+		json.put("description", description);
+		
+		api.post("/studio/api/1/services/api/1/group/create.json")
+//		.urlParam("group_name", groupName)
+//		.urlParam("site_id", siteId)
+//		.urlParam("description", description)
+		.json(json).execute().status(201)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName2))
 				.json("$.message", is("OK")).debug();
 
 	}
@@ -74,7 +100,13 @@ public class GetGroupsAPITest {
 	@Test(priority = 4)
 	public void testGetGroups() {
 		Map<String, Object> json = new HashMap<>();
-		api.get("/studio/api/1/services/api/1/group/get-all.json?start=0&number=25").json(json).execute().status(200)
+		json.put("start", "0");
+		json.put("number", "25");
+		
+		api.get("/studio/api/1/services/api/1/group/get-all.json")
+//		.urlParam("start", "0")
+//		.urlParam("number", "25")
+		.json(json).execute().status(200)
 				.header("Location",
 						is(headerLocationBase+"/studio/api/1/services/api/1/group/get-all.json?start=0&number=25"));
 				//.json("$.message", is("OK")).debug();

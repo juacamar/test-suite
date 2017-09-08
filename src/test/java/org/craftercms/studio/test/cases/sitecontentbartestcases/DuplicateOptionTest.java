@@ -91,7 +91,7 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Select Entry Content Type
 
@@ -103,16 +103,18 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+						"cssSelector", ".studio-ice-dialog > .bd iframe"));
+						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Set basics fields of the new content created
 
@@ -120,19 +122,21 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Set the title of main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#title > div > input").sendKeys("MainTitle");
+		//driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-
-		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"id", "cstudioSaveAndClose").click();
+		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 	}
 
@@ -143,28 +147,34 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
-		driverManager.driverWait();
+		//driverManager.driverWait(3000);
 		// click on duplicate in the popup
-		driverManager.getDriver().findElement(By.xpath(".//div[@id='duplicate-dialog']/div/span/span/span/button[contains(text(),'Duplicate')]")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"xpath", ".//div[@id='duplicate-dialog']/div/span/span/span/button[contains(text(),'Duplicate')]").click();
+		//driverManager.getDriver().findElement(By.xpath(".//div[@id='duplicate-dialog']/div/span/span/span/button[contains(text(),'Duplicate')]")).click();
 		
 		
 		// Switch to the iframe
-		driverManager.driverWait();
+		driverManager.driverWait(1000);
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+						"cssSelector", ".studio-ice-dialog > .bd iframe"));
+						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
-		driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#internal-name > div > input").clear();
+		//driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).clear();
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// edit internal name
 
@@ -172,19 +182,20 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// save and close
-
-		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
-
-		// wait for element is clickeable
-
-		//homePage.getDriverManager().driverWait();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"id", "cstudioSaveAndClose").click();
+		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		//homePage.getDriverManager().driverWait(3000);
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait(1000);
 
 		// Switch back to the dashboard page
 
@@ -196,7 +207,7 @@ public class DuplicateOptionTest {
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeabl
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 	}
 
@@ -210,7 +221,7 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// goto preview page
 
@@ -221,15 +232,16 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#cstudio-logo").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// expand pages folder
 
@@ -249,12 +261,14 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Select the content to duplicate.
-		driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"xpath", ".//span[contains(text(),'Testing1')]").click();
+		//driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Duplicate content created
 
@@ -262,20 +276,23 @@ public class DuplicateOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-
+		//homePage.getDriverManager().driverWait();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#cstudio-logo").click();
 		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Assert
-		String duplicate = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
+		String duplicate =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#ygtvlabelel3").getText();
+				//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
 		Assert.assertEquals(duplicate, "COPY");
 
 	}

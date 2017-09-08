@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.previewtoolstestcases;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -61,7 +60,7 @@ public class PresetEachDesignTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Select Entry Content Type
 
@@ -73,16 +72,18 @@ public class PresetEachDesignTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+						"cssSelector", ".studio-ice-dialog > .bd iframe"));
+						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Set basics fields of the new content created
 
@@ -90,35 +91,38 @@ public class PresetEachDesignTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		//homePage.getDriverManager().driverWait();
 
 		// Set the title of main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#title > div > input").sendKeys("MainTitle");
+		//driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#cstudio-form-expand-all").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+
+		// wait for element is clickeable
+
+		//homePage.getDriverManager().driverWait();
 
 		// save and close
-
-		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"id", "cstudioSaveAndClose").click();
+		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Switch back to the dashboard page
 
@@ -129,13 +133,16 @@ public class PresetEachDesignTest {
 	public void presets() {
 
 		// open publishing channel combo
-
-		driverManager.getDriver().findElement(By.cssSelector("#medium-panel-elem > div.acn-accordion-header > a")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#medium-panel-elem > div.acn-accordion-header > a").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#medium-panel-elem > div.acn-accordion-header > a")).click();
 
 		//desktop prese
 
-		 String contentURL = driverManager.getDriver()
-		 .findElement(By.cssSelector("#engineWindow")).getText();
+		 String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+					"cssSelector", "#engineWindow").getText();
+				 //driverManager.getDriver()
+		// .findElement(By.cssSelector("#engineWindow")).getText();
 		 Assert.assertTrue(contentURL.contains(contentURL));
 	}
 
@@ -152,14 +159,14 @@ public class PresetEachDesignTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// reload page
 
@@ -171,7 +178,7 @@ public class PresetEachDesignTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// expand pages folder
 
@@ -187,23 +194,25 @@ public class PresetEachDesignTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// select content
-
-		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#ygtvlabelel3").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// open tools
-
-		driverManager.getDriver().findElement(By.cssSelector("#acn-preview-tools-image")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#acn-preview-tools-image").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#acn-preview-tools-image")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// presets and asserts
 

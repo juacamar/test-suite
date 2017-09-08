@@ -1,7 +1,5 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -40,22 +38,16 @@ public class CancelCreateSiteProcessTest {
 
 	private CreateSitePage createSitePage;
 
+	@BeforeClass
+	public void beforeTest() {
+		this.driverManager = new WebDriverManager();
+		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
+		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, this.UIElementsPropertiesManager);
 
-
-	 @BeforeClass
-	 public void beforeTest() {
-	 this.driverManager = new WebDriverManager();
-	 this.UIElementsPropertiesManager = new
-	 org.craftercms.studio.test.utils.UIElementsPropertiesManager(
-	 FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-	 this.loginPage = new LoginPage(driverManager,
-	 this.UIElementsPropertiesManager);
-	 this.homePage = new HomePage(driverManager,
-	 this.UIElementsPropertiesManager);
-	 this.createSitePage = new CreateSitePage(driverManager,
-	 this.UIElementsPropertiesManager);
-	
-	 }
+	}
 
 	@AfterClass
 	public void afterTest() {
@@ -72,7 +64,7 @@ public class CancelCreateSiteProcessTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Click on the create site button
 
@@ -80,7 +72,7 @@ public class CancelCreateSiteProcessTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Filling the name of site
 
@@ -101,11 +93,12 @@ public class CancelCreateSiteProcessTest {
 		// Click on Cancel button
 
 		createSitePage.clickOnCancelButtonOfTheCreateSiteProcess();
-		
+
 		// Assert
 
-		WebElement siteName = driverManager.getDriver().findElement(By.cssSelector("#container > div > header"));
-		  
+		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#container > div > header");
+
 		Assert.assertTrue(siteName.isDisplayed());
 
 	}

@@ -8,6 +8,7 @@ import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.UsersPage;
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -27,6 +28,7 @@ public class ShowUsersPageTest {
 	private HomePage homePage;
 	private UsersPage usersPage;
 	private DashboardPage dashboardPage;
+	private APIConnectionManager apiConnectionManager;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -37,6 +39,7 @@ public class ShowUsersPageTest {
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
+		apiConnectionManager = new APIConnectionManager();
 	}
 
 	@AfterClass
@@ -56,20 +59,20 @@ public class ShowUsersPageTest {
 		//driverManager.maximizeWindow();
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		//homePage.getDriverManager().driverWait();
 		// Click on the Users Contextual Navigation Option
 		homePage.clickUsersContextualNavigationOption();
 
 		// wait for element is clickeable
-		usersPage.getDriverManager().driverWait();
+		usersPage.getDriverManager().driverWait(2000);
 
 		// wait for element is clickeable
-		usersPage.getDriverManager().driverWait();
+		//usersPage.getDriverManager().driverWait();
 
 		// Checking if the UsersPage was Loaded
 		Assert.assertTrue(usersPage.getDriverManager().getDriver().getCurrentUrl()
-				.equals("http://localhost:8080/studio/#/users"));
+				.equals(apiConnectionManager.getHeaderLocationBase()+"/studio/#/users"));
 
 		// Checking if the Users title is displayed on the current page
 		Assert.assertTrue(usersPage.isUsersPageTitlePresent());
@@ -78,25 +81,25 @@ public class ShowUsersPageTest {
 		usersPage.clickOnCrafterLogo();
 
 		// wait for element is clickeable
-		usersPage.getDriverManager().driverWait();
+		usersPage.getDriverManager().driverWait(2000);
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait();
+		//homePage.getDriverManager().driverWait(3000);
 
 		// select the about us option
 		homePage.goToDashboardPage();
 
 		// wait for element is clickeable
-		dashboardPage.getDriverManager().driverWait();
+		dashboardPage.getDriverManager().driverWait(2000);
 
 		dashboardPage.clickUsersContextualNavigationOption();
 
 		// wait for element is clickeable
-		usersPage.getDriverManager().driverWait();
+		usersPage.getDriverManager().driverWait(3000);
 
 		// Checking if the UsersPage was Loaded
 		Assert.assertTrue(usersPage.getDriverManager().getDriver().getCurrentUrl()
-				.equals("http://localhost:8080/studio/#/users"));
+				.equals(apiConnectionManager.getHeaderLocationBase()+"/studio/#/users"));
 
 		// Checking if the Users title is displayed on the current page
 		Assert.assertTrue(usersPage.isUsersPageTitlePresent());

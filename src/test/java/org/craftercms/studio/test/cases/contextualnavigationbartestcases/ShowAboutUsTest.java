@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.contextualnavigationbartestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -15,7 +14,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -26,9 +25,8 @@ public class ShowAboutUsTest {
 	private LoginPage loginPage;
 
 	private HomePage homePage;
-	
-	private CreateSitePage createSitePage;
 
+	private CreateSitePage createSitePage;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -39,7 +37,6 @@ public class ShowAboutUsTest {
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 
-		
 	}
 
 	@AfterClass
@@ -57,30 +54,33 @@ public class ShowAboutUsTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
-		//click On help option
-		
+		// click On help option
+
 		createSitePage.clickOnHelpOption();
-		
+
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		
+		homePage.getDriverManager().driverWait(1000);
+
 		// select the about us option
-		
+
 		createSitePage.clickOnAboutOption();
-		
+
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		
+		homePage.getDriverManager().driverWait(1000);
+
 		// Assert new users created is present
 
-				WebElement aboutUsInfo = driverManager.getDriver()
-						.findElement(By.cssSelector("#container > div > div > div:nth-child(2) > div"));
+		WebElement aboutUsInfo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#container > div > div > div:nth-child(2) > div");
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("#container > div > div > div:nth-child(2) >
+		// div"));
 
-				Assert.assertTrue(aboutUsInfo.isDisplayed());		
-		
+		Assert.assertTrue(aboutUsInfo.isDisplayed());
+
 	}
 }

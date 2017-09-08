@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.sitecontentbartestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -67,33 +66,35 @@ public class DeleteOptionTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// MaximizeWindow
-		//driverManager.maximizeWindow();
+		// driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		// homePage.getDriverManager().driverWait();
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']")
+				.click();
+		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to admin console page
-
-		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// select content types
 		siteConfigPage.selectContentTypeOption();
@@ -104,7 +105,7 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Select the Entry content type
 
@@ -116,24 +117,26 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// select main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#yui-gen8").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Body not required
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("div.property-wrapper:nth-child(21) >
+		// div:nth-child(2) > input")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// save
 
@@ -141,15 +144,15 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-logo").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// expand pages folder
 
@@ -157,24 +160,28 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// create a content with level descriptor content type
 
 		// right click to see the the menu
 
-		WebElement home = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1"));
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#ygtvlabelel1");
+		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1"));
 
 		this.driverManager.contextClick(this.driverManager.getDriver(), home);
-		this.driverManager.driverWait();
+		this.driverManager.driverWait(1500);
 
-		WebElement addContent = driverManager.getDriver()
-				.findElement(By.cssSelector("#ContextmenuWrapper0  ul li:nth-child(3)"));
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#ContextmenuWrapper0  ul li:nth-child(3)");
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("#ContextmenuWrapper0 ul li:nth-child(3)"));
 		addContent.click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Select Entry Content Type
 
@@ -186,16 +193,18 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
+		// .bd iframe")));
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Set basics fields of the new content created
 
@@ -203,35 +212,38 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		// homePage.getDriverManager().driverWait();
 
 		// Set the title of main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#title > div > input")
+				.sendKeys("MainTitle");
+		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
+		// input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-form-expand-all")
+				.click();
+		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+
+		// wait for element is clickeable
+
+		// homePage.getDriverManager().driverWait();
 
 		// save and close
-
-		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Switch back to the dashboard page
 
@@ -243,21 +255,25 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(3000);
 
-		driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudio-logo").click();
+		// driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
 
 		// wait for element is clickeable
 		dashboardPage.expandHomeTree();
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Select the content to delete.
-		driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//span[contains(text(),'Testing1')]")
+				.click();
+		// driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// click on delete option
 
@@ -265,7 +281,7 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Click on Delete dependencies
 
@@ -273,28 +289,32 @@ public class DeleteOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Click nn OK Delete dependencies
 
 		previewPage.clickOnOKDeleteDependencies();
 
 		// wait for element is clickeable
-		previewPage.getDriverManager().driverWait();
+		previewPage.getDriverManager().driverWait(2000);
 
-		driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudio-logo").click();
+		// driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 		// wait for element
-		previewPage.getDriverManager().driverWait();
+		previewPage.getDriverManager().driverWait(3000);
 		// wait for element
-		driverManager.driverWait();
+		// driverManager.driverWait();
 		driverManager.getDriver().navigate().refresh();
-		driverManager.driverWait();
+		driverManager.driverWait(3000);
 
-		String contentDelete = driverManager.getDriver()
-				.findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)")).getText();
+		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)").getText();
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) >
+		// td:nth-child(4)")).getText();
 		Assert.assertEquals(contentDelete, "/test1");
 
 	}

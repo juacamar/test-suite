@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.dashboardpagetestcases;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -51,12 +50,12 @@ public class EditOptionTest {
 	public void bodyNotRequiered() {
 
 		// go to admin console page
-
-		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// select content types
 		siteConfigPage.selectContentTypeOption();
@@ -67,7 +66,7 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Select the Entry content type
 
@@ -79,28 +78,34 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// select main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#yui-gen8").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Body not required
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("div.property-wrapper:nth-child(21) >
+		// div:nth-child(2) > input")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// save
 
 		siteConfigPage.saveDragAndDropProcess();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait(1000);
 
 	}
 
@@ -112,7 +117,7 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Select Entry Content Type
 
@@ -124,16 +129,18 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
+		// .bd iframe")));
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Set basics fields of the new content created
 
@@ -141,79 +148,98 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Expand all fields
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-form-expand-all")
+				.click();
+		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+		// Set Main Content
+
+		// dashboardPage.setMetadataFields("title", "keywords");
 
 		// Set the title of main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#title > div > input")
+				.sendKeys("MainTitle");
+		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
+		// input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-
-		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
 
 	}
-	
-	public void editingContent(){
+
+	public void editingContent() {
 		// Select a content to edit
-		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath(".//span[text()='Testing1']")).click();
+		homePage.getDriverManager().driverWait(2000);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//span[text()='Testing1']")
+				.click();
+		// driverManager.getDriver().findElement(By.xpath(".//span[text()='Testing1']")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// click edit option of the menu
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				".//body/div/div[@id='studioBar']/nav/div/div/ul/li/a[contains(text(),'Edit')]").click();
 
-		driverManager.getDriver().findElement(By.xpath(".//body/div/div[@id='studioBar']/nav/div/div/ul/li/a[contains(text(),'Edit')]")).click();
+		// driverManager.getDriver()
+		// .findElement(By.xpath(".//body/div/div[@id='studioBar']/nav/div/div/ul/li/a[contains(text(),'Edit')]"))
+		// .click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
+		// .bd iframe")));
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// edit internal title
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#internal-name > div > input")
+				.sendKeys("EDITED");
 
-		driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).sendKeys("EDITED");
+		// driverManager.getDriver().findElement(By.cssSelector("#internal-name > div >
+		// input")).sendKeys("EDITED");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Expand all fields
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-form-expand-all")
+				.click();
+		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-
-		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// Switch back to the dashboard page
 
@@ -229,26 +255,27 @@ public class EditOptionTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// MaximizeWindow
-		//driverManager.maximizeWindow();
+		// driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		// homePage.getDriverManager().driverWait();
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
+		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Body Not requiered
 
@@ -256,11 +283,11 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-logo").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// expand pages folder
 
@@ -276,12 +303,10 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		
+		homePage.getDriverManager().driverWait(1000);
+
 		// wait for element is clickeable
 
-
-		
 		editingContent();
 
 		// reload page
@@ -290,11 +315,13 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Assert find the new content created edited
 
-		String contentEdited = driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
+		String contentEdited = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#ygtvlabelel3").getText();
+		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
 		Assert.assertEquals(contentEdited, "Testing1EDITED");
 
 	}

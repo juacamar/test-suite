@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.dashboardpagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -15,7 +14,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -33,9 +32,6 @@ public class ShowHideSiteContentTest {
 
 	private DashboardPage dashboardPage;
 
-
-
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -48,7 +44,7 @@ public class ShowHideSiteContentTest {
 
 	@AfterClass
 	public void afterTest() {
-    driverManager.closeConnection();
+		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)
@@ -58,47 +54,49 @@ public class ShowHideSiteContentTest {
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
-		
+
 		// MaximizeWindow
-		//driverManager.maximizeWindow();
+		// driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		// homePage.getDriverManager().driverWait();
 		// go to dashboard page
 
 		homePage.goToDashboardPage();
 
-        //Expand the site content panel
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		
+		// Expand the site content panel
+		homePage.getDriverManager().driverWait(2000);
+		// homePage.getDriverManager().driverWait();
+
 		dashboardPage.clickOnSiteContentOption();
-		
+
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
-		//	Assert  that the site content is expanded
+		// Assert that the site content is expanded
 
-		String siteContentExpanded = driverManager.getDriver()
-				.findElement(By.cssSelector("#admin-console")).getText();
+		String siteContentExpanded = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").getText();
+		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).getText();
 		Assert.assertEquals(siteContentExpanded, "Site Config");
-		
-		//Collapse the site content panel
-		
+
+		// Collapse the site content panel
+
 		dashboardPage.clickOnSiteContentOption();
-		
+
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
-		//	Assert  that the site content is Collapsed
+		// Assert that the site content is Collapsed
 
-		String siteContentCollapsed = driverManager.getDriver()
-				.findElement(By.cssSelector("#admin-console")).getText();
+		String siteContentCollapsed = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").getText();
+		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).getText();
 		Assert.assertEquals(siteContentCollapsed, "");
 	}
-	
+
 }

@@ -2,7 +2,6 @@ package org.craftercms.studio.test.pages;
 
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -51,8 +50,11 @@ public class UsersPage {
 	// Try to delete the user connected
 
 	public void clickDeleteOption() {
-		this.driverManager.driverWait();
-		WebElement previewLink = driverManager.getDriver().findElement(By.cssSelector(deleteUserOption));
+		//this.driverManager.driverWait(3000);
+		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				deleteUserOption);
+				//driverManager.getDriver().findElement(By.cssSelector(deleteUserOption));
+		
 		previewLink.click();
 
 	}
@@ -70,8 +72,10 @@ public class UsersPage {
 	// Click on New User Button
 
 	public void clickNewUserButton() {
-		this.driverManager.driverWait();
-		WebElement newUserButton = driverManager.getDriver().findElement(By.cssSelector(newUserOption));
+		//this.driverManager.driverWait(3000);
+		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				newUserOption);
+				//driverManager.getDriver().findElement(By.cssSelector(newUserOption));
 		newUserButton.click();
 
 	}
@@ -89,8 +93,10 @@ public class UsersPage {
 	// Click on Save New User Button
 
 	public void clickSaveNewUserButton() {
-		this.driverManager.driverWait();
-		WebElement saveNewUser = driverManager.getDriver().findElement(By.cssSelector(saveNewUserOption));
+		//this.driverManager.driverWait(3000);
+		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				saveNewUserOption);
+				//driverManager.getDriver().findElement(By.cssSelector(saveNewUserOption));
 		saveNewUser.click();
 
 	}
@@ -108,8 +114,10 @@ public class UsersPage {
 	// Delete User
 
 	public void clickDeleteOptionCreated() {
-		driverManager.driverWait();
-		WebElement previewLink = driverManager.getDriver().findElement(By.cssSelector(deleteUserOption2));
+		//driverManager.driverWait(3000);
+		WebElement previewLink =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				deleteUserOption2);
+				//driverManager.getDriver().findElement(By.cssSelector(deleteUserOption2));
 		previewLink.click();
 
 	}
@@ -127,8 +135,10 @@ public class UsersPage {
 	// edit User
 
 	public void clickEditOptionCreated() {
-		this.driverManager.driverWait();
-		WebElement edit = driverManager.getDriver().findElement(By.cssSelector(editUserOption));
+		//this.driverManager.driverWait(3000);
+		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				editUserOption);
+				//driverManager.getDriver().findElement(By.cssSelector(editUserOption));
 		edit.click();
 
 	}
@@ -164,8 +174,10 @@ public class UsersPage {
 	}
 
 	public void clickOnCrafterLogo() {
-		this.driverManager.driverWait();
-		WebElement crafterLogoWebElement = driverManager.getDriver().findElement(By.xpath(crafterLogo));
+		//this.driverManager.driverWait(3000);
+		WebElement crafterLogoWebElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				crafterLogo);
+				//driverManager.getDriver().findElement(By.xpath(crafterLogo));
 		crafterLogoWebElement.click();
 
 	}

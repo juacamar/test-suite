@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.contextualnavigationbartestcases;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -61,7 +60,7 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Select Entry Content Type
 
@@ -73,16 +72,18 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+						"cssSelector", ".studio-ice-dialog > .bd iframe"));
+						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Set basics fields of the new content created
 
@@ -90,27 +91,29 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		//homePage.getDriverManager().driverWait();
 
 		// Set the title of main content
-
-		driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#title > div > input").sendKeys("MainTitle");
+		//driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-
-		driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"id", "cstudioSaveAndClose").click();
+		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Switch back to the dashboard page
 
@@ -126,12 +129,12 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		previewPage.getDriverManager().driverWait();
+		previewPage.getDriverManager().driverWait(1000);
 
 		// submit
 
 		previewPage.clickOnSubmitButtonOfApprovePublish();
-		previewPage.getDriverManager().driverWait();
+		previewPage.getDriverManager().driverWait(1000);
 	}
 
 	public void reloadPage() {
@@ -141,7 +144,7 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		previewPage.getDriverManager().driverWait();
+		previewPage.getDriverManager().driverWait(2000);
 
 		// reload page
 
@@ -149,11 +152,7 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		previewPage.getDriverManager().driverWait();
-
-		// wait for element is clickeable
-
-		previewPage.getDriverManager().driverWait();
+		previewPage.getDriverManager().driverWait(3000);
 
 	}
 
@@ -170,28 +169,29 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		changeBodyToNotRequiredOnEntryContent();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to dashboard
-
-		driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#cstudio-logo").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// expand pages folder
 
@@ -208,12 +208,14 @@ public class PublishingSiteTest {
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
 		
-		this.driverManager.driverWait();
-		this.driverManager.driverWait();
+		this.driverManager.driverWait(2000);
+		//this.driverManager.driverWait();
 
-		driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"xpath", ".//span[contains(text(),'Testing1')]").click();
+		//driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// approve and publish
 
@@ -222,9 +224,11 @@ public class PublishingSiteTest {
 		this.reloadPage();
 
 		// Assert
-		homePage.getDriverManager().driverWait();
-		String siteStatus = driverManager.getDriver()
-				.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
+		homePage.getDriverManager().driverWait(1000);
+		String siteStatus = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span").getText();
+				//driverManager.getDriver()
+				//.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
 		Assert.assertEquals(siteStatus, "Live :");
 
 	}

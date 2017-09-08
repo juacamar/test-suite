@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.dashboardpagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -61,7 +60,7 @@ public class EnableDisableEditingInContextTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to dashboard page
 
@@ -69,8 +68,8 @@ public class EnableDisableEditingInContextTest {
 		
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		//homePage.getDriverManager().driverWait();
 		// Click on Preview Tools icon
 		
 		previewPage.clickOnPreviewTools();
@@ -85,7 +84,9 @@ public class EnableDisableEditingInContextTest {
 		
 		//Assert 
 		
-		String editIconActive = driverManager.getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div[2]/div/div[2]/div/div[1]/button")).getText();
+		String editIconActive = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				"/html/body/div[3]/div[1]/div[2]/div/div[2]/div/div[1]/button").getText();
+				//driverManager.getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div[2]/div/div[2]/div/div[1]/button")).getText();
 		Assert.assertEquals(editIconActive, "In-Context Edit Off");
 		
 	}

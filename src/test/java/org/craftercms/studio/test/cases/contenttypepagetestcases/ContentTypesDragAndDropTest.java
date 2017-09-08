@@ -1,11 +1,10 @@
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
-import java.util.NoSuchElementException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,7 +18,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -38,8 +37,6 @@ public class ContentTypesDragAndDropTest {
 	private PreviewPage previewPage;
 
 	private SiteConfigPage siteConfigPage;
-
-	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -66,24 +63,25 @@ public class ContentTypesDragAndDropTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
-		homePage.getDriverManager().driverWait();
+		// homePage.getDriverManager().driverWait();
 
 		// Show site content panel
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
-				.click();
+		this.driverManager
+		.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']").click();
+		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to admin console page
 
@@ -91,7 +89,7 @@ public class ContentTypesDragAndDropTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// select content types
 		siteConfigPage.selectContentTypeOption();
@@ -102,7 +100,7 @@ public class ContentTypesDragAndDropTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Select the Entry content type
 
@@ -114,29 +112,34 @@ public class ContentTypesDragAndDropTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		// homePage.getDriverManager().driverWait();
 
 		// Drag and drop Form Section
 
-		//driverManager.getDriver().manage().window().maximize();
+		// driverManager.getDriver().manage().window().maximize();
 
-		//driverManager.getDriver().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+		// driverManager.getDriver().manage().timeouts().implicitlyWait(10000,
+		// TimeUnit.MILLISECONDS);
 
-		WebElement From = driverManager.getDriver().findElement(By.cssSelector(".control-section"));
+		WebElement From = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", ".control-section");
+				//driverManager.getDriver().findElement(By.cssSelector(".control-section"));
 
-		WebElement To = driverManager.getDriver()
-				.findElement(By.cssSelector("#content-type-canvas .content-form-name"));
+		WebElement To = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#content-type-canvas .content-form-name");
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector("#content-type-canvas .content-form-name"));
 
 		Actions builder = new Actions(driverManager.getDriver());
 
 		Action dragAndDrop = builder.clickAndHold(From)
 
-		.moveToElement(To)
+				.moveToElement(To)
 
-		.release(To)
+				.release(To)
 
-		.build();
+				.build();
 
 		dragAndDrop.perform();
 
@@ -146,17 +149,17 @@ public class ContentTypesDragAndDropTest {
 
 		// Ok for the dialog window when appears
 
-//		new WebDriverWait(driverManager.getDriver(), 10).until(ExpectedConditions.alertIsPresent());
-//		driverManager.getDriver().switchTo().alert().accept();
+		// new WebDriverWait(driverManager.getDriver(),
+		// 10).until(ExpectedConditions.alertIsPresent());
+		// driverManager.getDriver().switchTo().alert().accept();
 
 		// validate the control added
 
-		try {
-			driverManager.getDriver().findElement(By.cssSelector("#content-type-canvas .content-section-name"));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector("#content-type-canvas .content-section-name"));
+		
+			//driverManager.getDriver().findElement(By.cssSelector("#content-type-canvas .content-section-name"));
 
-		} catch (NoSuchElementException e) {
-
-		}
+	
 	}
 
 }

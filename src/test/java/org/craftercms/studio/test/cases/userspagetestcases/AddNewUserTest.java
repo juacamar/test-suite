@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -59,30 +58,36 @@ public class AddNewUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(4000);
+		//homePage.getDriverManager().driverWait(3000);
 		// click On Users option
 
 		createSitePage.clickOnUsersOption();
 
 		// click on new user button
-		this.driverManager.driverWait();
+		this.driverManager.driverWait(1000);
 
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#firstName").sendKeys("Name");
+		//driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#lastName").sendKeys("Last Name");
+		//driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#email").sendKeys("email@email.com");
+		//driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#username").sendKeys("username");
+		//driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#password").sendKeys("password");
+		//driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#passwordVerification").sendKeys("password");
+		//driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
 
 		// Save Button
 
@@ -90,12 +95,14 @@ public class AddNewUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		//homePage.getDriverManager().driverWait(3000);
 
 		// Assert new users created is present
 
-		WebElement newUserCreated = driverManager.getDriver().findElement(By.cssSelector(
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a"));
+		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
+				//driverManager.getDriver().findElement(By.cssSelector(
+				//"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a"));
 
 		Assert.assertTrue(newUserCreated.isDisplayed());
 

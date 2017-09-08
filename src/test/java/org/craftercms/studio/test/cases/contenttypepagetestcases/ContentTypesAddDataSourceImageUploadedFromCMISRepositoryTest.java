@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -25,7 +24,7 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private SiteConfigPage siteConfigPage;
-	
+
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionImageUploadedFromCMISRepositoryLocator;
 	private String contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator;
@@ -40,9 +39,11 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.dataSourceSectionImageUploadedFromCMISRepositoryLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.dataSourceSectionImageUploadedFromCMISRepositoryLocator = uIElementsPropertiesManager
+				.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.datasourceimageuploadedfromCMISrepository");
-		this.contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator = uIElementsPropertiesManager
+				.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerimageuploadedfromCMISrepositorytitle");
 	}
 
@@ -53,21 +54,26 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 
 	public void dragAndDrop() {
 
-		driverManager.driverWait();
+		driverManager.driverWait(4000);
 
 		// Getting the ChildContent for drag and drop action
-		WebElement FromDataSourceImageUploadedFromRepoElement = driverManager.getDriver()
-				.findElement(By.xpath(dataSourceSectionImageUploadedFromCMISRepositoryLocator));
+		WebElement FromDataSourceImageUploadedFromRepoElement = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+						dataSourceSectionImageUploadedFromCMISRepositoryLocator);
+		// driverManager.getDriver()
+		// .findElement(By.xpath(dataSourceSectionImageUploadedFromCMISRepositoryLocator));
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerLocator));
+		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				contentTypeContainerLocator);
+		// driverManager.getDriver()
+		// .findElement(By.xpath(contentTypeContainerLocator));
 
 		driverManager.dragAndDropElement(FromDataSourceImageUploadedFromRepoElement, ToContentTypeContainer);
 		// wait for element
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Complete the input fields basics
 		siteConfigPage.completeDataSourceFieldsBasics("TestTitle");
@@ -84,35 +90,40 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(200);
 
 		// reload page
-		//driverManager.getDriver().navigate().refresh();
-		
-		driverManager.driverWait();
-		
+		// driverManager.getDriver().navigate().refresh();
+
+		// driverManager.driverWait();
+
 		// Show site content panel
-		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
+		// homePage.getDriverManager().driverWait();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		// .click();
 
 		// Show admin console page
-		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
+		homePage.getDriverManager().driverWait(1000);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				".//a[@id='admin-console']").click();
+		//driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
 
 		// wait for element
-		siteConfigPage.getDriverManager().driverWait();
+		siteConfigPage.getDriverManager().driverWait(1000);
 
 		// drag and drop
 		this.dragAndDrop();
@@ -121,7 +132,7 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		siteConfigPage.clickExistingTypeOption();
 
 		// wait for element
-		siteConfigPage.getDriverManager().driverWait();
+		siteConfigPage.getDriverManager().driverWait(1000);
 
 		// Select the generic content type
 		siteConfigPage.selectEntryContentType();
@@ -130,17 +141,18 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
-		
-		driverManager.driverWait();
-		
+		// driverManager.driverWait();
+
 		// Click on input section to can view the properties
 		siteConfigPage.clickDataSourceImageUploadedFromCMISRepositorySection();
 
 		// Asserts that fields are not empty.
-		String titleText = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator)).getText();
+		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator).getText();
+				//driverManager.getDriver()
+				//.findElement(By.xpath(contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator)).getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

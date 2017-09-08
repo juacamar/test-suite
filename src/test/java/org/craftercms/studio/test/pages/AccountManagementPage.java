@@ -2,7 +2,6 @@ package org.craftercms.studio.test.pages;
 
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -48,8 +47,10 @@ public class AccountManagementPage {
 	// Set the current pass
 
 	public void setCurrentPassword(String strCurrentPass) {
-		this.driverManager.driverWait();
-		WebElement currentPass = driver.findElement(By.id(currentPassword));
+		// this.driverManager.driverWait(3000);
+		WebElement currentPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
+				currentPassword);
+		// driver.findElement(By.id(currentPassword));
 		currentPass.sendKeys(strCurrentPass);
 
 	}
@@ -57,8 +58,9 @@ public class AccountManagementPage {
 	// Set the new pass
 
 	public void setNewPassword(String strNewPassword) {
-		this.driverManager.driverWait();
-		WebElement newPass = driver.findElement(By.id(newPassword));
+		// this.driverManager.driverWait(3000);
+		WebElement newPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", newPassword);
+		// driver.findElement(By.id(newPassword));
 		newPass.sendKeys(strNewPassword);
 
 	}
@@ -66,8 +68,9 @@ public class AccountManagementPage {
 	// Set the new pass confirmation
 
 	public void setConfirmNewPassword(String strConfNewPassword) {
-		this.driverManager.driverWait();
-		WebElement confPass = driver.findElement(By.id(confirmPassword));
+		// this.driverManager.driverWait(3000);
+		WebElement confPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", confirmPassword);
+		// driver.findElement(By.id(confirmPassword));
 		confPass.sendKeys(strConfNewPassword);
 
 	}
@@ -75,8 +78,10 @@ public class AccountManagementPage {
 	// Click on submit
 
 	public void clickSubmit() {
-		this.driverManager.driverWait();
-		WebElement submitbtn = driver.findElement(By.cssSelector(submitButton));
+		// this.driverManager.driverWait(3000);
+		WebElement submitbtn = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				submitButton);
+				//driver.findElement(By.cssSelector(submitButton));
 		submitbtn.click();
 
 	}

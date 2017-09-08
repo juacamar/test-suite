@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.dashboardpagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -27,8 +26,6 @@ public class DesignOfWorkflowStateSectionTest {
 
 	private HomePage homePage;
 
-
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -36,7 +33,6 @@ public class DesignOfWorkflowStateSectionTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-
 
 	}
 
@@ -48,14 +44,14 @@ public class DesignOfWorkflowStateSectionTest {
 	@Test(priority = 0)
 
 	public void workflowSection() {
-		
+
 		// login to application
 
 		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to dashboard page
 
@@ -63,86 +59,115 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Assert workflow guide section is present.
 
-		WebElement workflowSection = driverManager.getDriver().findElement(By.cssSelector(".panel-body"));
+		WebElement workflowSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				".panel-body");
+		// driverManager.getDriver().findElement(By.cssSelector(".panel-body"));
 
 		Assert.assertTrue(workflowSection.isDisplayed());
 
 		// Assert navigation page is present.
 
-//		WebElement navigationPage = driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(1)"));
-//
-//		Assert.assertTrue(navigationPage.isDisplayed());
+		// WebElement navigationPage =
+		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(1)"));
+		//
+		// Assert.assertTrue(navigationPage.isDisplayed());
 
 		// Assert edited is present.
 
-		WebElement edited = driverManager.getDriver()
-				.findElement(By.cssSelector("#iconGuide > div.panel-body > div > div:nth-child(6) > div"));
+		WebElement edited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#iconGuide > div.panel-body > div > div:nth-child(6) > div");
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
+		// div:nth-child(6) > div"));
 
 		Assert.assertTrue(edited.isDisplayed());
 
 		// Assert floating page is present.
 
-		WebElement floatingPage = driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(2)"));
+		WebElement floatingPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"div.col-xs-6:nth-child(2)");
+		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(2)"));
 
 		Assert.assertTrue(floatingPage.isDisplayed());
 
 		// Assert in workflow is present.
 
-		WebElement inWorkflow = driverManager.getDriver()
-				.findElement(By.cssSelector("#iconGuide > div.panel-body > div > div:nth-child(7) > div"));
+		WebElement inWorkflow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#iconGuide > div.panel-body > div > div:nth-child(7) > div");
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
+		// div:nth-child(7) > div"));
 
 		Assert.assertTrue(inWorkflow.isDisplayed());
 
 		// Assert component is present.
 
-		WebElement component = driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(3)"));
+		WebElement component = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"div.col-xs-6:nth-child(3)");
+		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(3)"));
 
 		Assert.assertTrue(component.isDisplayed());
 
 		// Assert scheduled is present.
 
-		WebElement scheduled = driverManager.getDriver()
-				.findElement(By.cssSelector("#iconGuide > div.panel-body > div > div:nth-child(8) > div"));
+		WebElement scheduled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#iconGuide > div.panel-body > div > div:nth-child(8) > div");
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
+		// div:nth-child(8) > div"));
 
 		Assert.assertTrue(scheduled.isDisplayed());
 
 		// Assert document is present.
 
-		WebElement siteName = driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(4)"));
+		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"div.col-xs-6:nth-child(4)");
+		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(4)"));
 
 		Assert.assertTrue(siteName.isDisplayed());
 
 		// Assert deleted is present.
 
-		WebElement document = driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(10)"));
+		WebElement document = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"div.col-xs-6:nth-child(10)");
+		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(10)"));
 
 		Assert.assertTrue(document.isDisplayed());
 
 		// Assert Never published is present.
 
-		WebElement neverPublished = driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(5)"));
+		WebElement neverPublished = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"div.col-xs-6:nth-child(5)");
+		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(5)"));
 
 		Assert.assertTrue(neverPublished.isDisplayed());
 
 		// Assert processing is present.
 
-		WebElement processing = driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(11)"));
+		WebElement processing = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"div.col-xs-6:nth-child(11)");
+		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(11)"));
 
 		Assert.assertTrue(processing.isDisplayed());
 
 		// Assert disabled is present.
 
-		WebElement disabled = driverManager.getDriver().findElement(By.cssSelector(".iconText"));
+		WebElement disabled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				".iconText");
+		// driverManager.getDriver().findElement(By.cssSelector(".iconText"));
 
 		Assert.assertTrue(disabled.isDisplayed());
 
 		// Assert Locked for edit is present.
 
-		WebElement locked = driverManager.getDriver().findElement(By.cssSelector("#iconGuide > div.panel-body > div > div:nth-child(11) > div"));
+		WebElement locked = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#iconGuide > div.panel-body > div > div:nth-child(11) > div");
+		// driverManager.getDriver().findElement(By.cssSelector("#iconGuide >
+		// div.panel-body > div > div:nth-child(11) > div"));
 
 		Assert.assertTrue(locked.isDisplayed());
 

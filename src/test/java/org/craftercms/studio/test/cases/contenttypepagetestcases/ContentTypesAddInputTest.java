@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -59,29 +58,37 @@ public class ContentTypesAddInputTest {
 
 	public void dragAndDrop() {
 
-		driverManager.driverWait();
+		driverManager.driverWait(2000);
 
 		// Getting the Form Section control input for drag and drop action
-		WebElement FromControlSectionFormSectionElement = driverManager.getDriver()
-				.findElement(By.xpath(controlsSectionFormSectionLocator));
+		WebElement FromControlSectionFormSectionElement = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionFormSectionLocator);
+				//driverManager.getDriver()
+				//.findElement(By.xpath(controlsSectionFormSectionLocator));
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerLocator));
+		WebElement ToContentTypeContainer =  this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerLocator);
+				//driverManager.getDriver()
+				//.findElement(By.xpath(contentTypeContainerLocator));
 
 		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
 		// wait for element
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
-		driverManager.driverWait();
+		//driverManager.driverWait();
 
-		WebElement FromRepeatingGroup = driverManager.getDriver()
-				.findElement(By.xpath(controlsSectionInputLocator));
+		WebElement FromRepeatingGroup = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionInputLocator);
+				//driverManager.getDriver()
+				//.findElement(By.xpath(controlsSectionInputLocator));
 
-		WebElement ToDefaultSection = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
+		WebElement ToDefaultSection = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerFormSectionContainerLocator);
+				//driverManager.getDriver()
+				//.findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
 
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRepeatingGroup, ToDefaultSection);
 
@@ -100,31 +107,36 @@ public class ContentTypesAddInputTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 		
 		// Show site content panel
-		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
+		//homePage.getDriverManager().driverWait();
+		this.driverManager
+		.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+		//driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
 
 		// Show admin console page
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
+		homePage.getDriverManager().driverWait(2000);
+		//homePage.getDriverManager().driverWait();
+		
+		this.driverManager
+		.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='admin-console']").click();
+		//driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
 
 		// wait for element
-		siteConfigPage.getDriverManager().driverWait();
+		siteConfigPage.getDriverManager().driverWait(1000);
 
 		// drag and drop
 		this.dragAndDrop();
@@ -133,7 +145,7 @@ public class ContentTypesAddInputTest {
 		siteConfigPage.clickExistingTypeOption();
 
 		// wait for element
-		siteConfigPage.getDriverManager().driverWait();
+		siteConfigPage.getDriverManager().driverWait(1000);
 
 		// Select the generic content type
 		siteConfigPage.selectEntryContentType();
@@ -142,17 +154,19 @@ public class ContentTypesAddInputTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		
-		driverManager.driverWait();
+		//driverManager.driverWait();
 		
 		// Click on input section to can view the properties
 		siteConfigPage.clickInputSection();
 
 		// Asserts that fields are not empty.
-		String titleText = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerInputTitleLocator)).getText();
+		String titleText = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerInputTitleLocator).getText();
+				//driverManager.getDriver()
+				//.findElement(By.xpath(contentTypeContainerInputTitleLocator)).getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

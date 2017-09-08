@@ -11,7 +11,6 @@ import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -59,15 +58,15 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
+		//homePage.getDriverManager().driverWait();
 		// click On admin option
 
 		createSitePage.clickAdmin();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// click on settings
 
@@ -75,7 +74,7 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// change password
 
@@ -83,7 +82,7 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(3000);
 
 		// login to application
 
@@ -91,7 +90,7 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// click On admin option
 
@@ -99,7 +98,7 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// click on settings
 
@@ -107,7 +106,7 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// change password
 
@@ -115,7 +114,7 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// login to application
 
@@ -123,12 +122,14 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Assert create button is present.
 
-		WebElement createButton = driverManager.getDriver()
-				.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				".btn.btn-default.btn-pill.btn-block");
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
 
 		Assert.assertTrue(createButton.isDisplayed());
 

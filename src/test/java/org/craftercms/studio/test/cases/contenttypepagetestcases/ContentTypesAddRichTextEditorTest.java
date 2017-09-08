@@ -50,7 +50,7 @@ public class ContentTypesAddRichTextEditorTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerRTETitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerrtetitle");
-	
+
 	}
 
 	@AfterClass
@@ -60,8 +60,7 @@ public class ContentTypesAddRichTextEditorTest {
 
 	public void dragAndDrop() {
 
-
-		driverManager.driverWait();
+		driverManager.driverWait(4000);
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = driverManager.getDriver()
@@ -75,12 +74,11 @@ public class ContentTypesAddRichTextEditorTest {
 		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
 		// wait for element
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(4000);
 
-		driverManager.driverWait();
+		// driverManager.driverWait();
 
-		WebElement FromRTE = driverManager.getDriver()
-				.findElement(By.xpath(controlsSectionRichTextEditorLocator));
+		WebElement FromRTE = driverManager.getDriver().findElement(By.xpath(controlsSectionRichTextEditorLocator));
 
 		WebElement ToDefaultSection = driverManager.getDriver()
 				.findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
@@ -103,31 +101,32 @@ public class ContentTypesAddRichTextEditorTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(4000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait();
-		
+		homePage.getDriverManager().driverWait(4000);
+
 		// Show site content panel
-		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
+		// homePage.getDriverManager().driverWait();
+		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+				.click();
 
 		// Show admin console page
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(4000);
+		// homePage.getDriverManager().driverWait();
 		driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(3000);
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
 
 		// wait for element
-		siteConfigPage.getDriverManager().driverWait();
+		siteConfigPage.getDriverManager().driverWait(2000);
 
 		// drag and drop
 		this.dragAndDrop();
@@ -136,7 +135,7 @@ public class ContentTypesAddRichTextEditorTest {
 		siteConfigPage.clickExistingTypeOption();
 
 		// wait for element
-		siteConfigPage.getDriverManager().driverWait();
+		siteConfigPage.getDriverManager().driverWait(2000);
 
 		// Select the generic content type
 		siteConfigPage.selectEntryContentType();
@@ -145,17 +144,16 @@ public class ContentTypesAddRichTextEditorTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// wait for element
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(4000);
 
-		
-		driverManager.driverWait();
-		
+		// driverManager.driverWait();
+
 		// Click on input section to can view the properties
 		siteConfigPage.clickRTESection();
 
 		// Asserts that fields are not empty.
-		String titleText = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerRTETitleLocator)).getText();
+		String titleText = driverManager.getDriver().findElement(By.xpath(contentTypeContainerRTETitleLocator))
+				.getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

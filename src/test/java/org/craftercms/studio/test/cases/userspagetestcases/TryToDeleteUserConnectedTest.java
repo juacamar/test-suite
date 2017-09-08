@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -35,10 +34,8 @@ public class TryToDeleteUserConnectedTest {
 	private UIElementsPropertiesManager UIElementsPropertiesManager;
 
 	private HomePage homePage;
-	
+
 	private UsersPage usersPage;
-
-
 
 	@BeforeClass
 	public void beforeTest() {
@@ -66,40 +63,43 @@ public class TryToDeleteUserConnectedTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		// homePage.getDriverManager().driverWait();
 		// Go to users tab
-		
-		driverManager.getDriver().findElement(By.cssSelector("body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(1) > a"))
-		.click();
-		
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				"body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(1) > a")
+				.click();
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Try to delete the user current connected
-		
+
 		usersPage.clickOnDeleteUser();
-		
+
 		// wait for element is clickeable
 
-				homePage.getDriverManager().driverWait();
-		
+		homePage.getDriverManager().driverWait(2000);
+
 		// Confirmation to delete user connected
-		
-		driverManager.getDriver().findElement(By.cssSelector("body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-		.click();
-		
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
+				.click();
+
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
-		// Verify 
-		
-	    WebElement validation = driverManager.getDriver().findElement(By.cssSelector("body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button"));
-	 
-	    Assert.assertTrue(validation.isDisplayed());
-		
+		// Verify
+
+		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button");
+
+		Assert.assertTrue(validation.isDisplayed());
+
 	}
 
 }

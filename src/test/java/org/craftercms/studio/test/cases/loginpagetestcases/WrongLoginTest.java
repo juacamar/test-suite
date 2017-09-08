@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.loginpagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -64,11 +63,13 @@ public class WrongLoginTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Assert No login for invalid user.
 
-		WebElement signInWrongUser = driverManager.getDriver().findElement(By.cssSelector(".alert"));
+		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				".alert");
+				//driverManager.getDriver().findElement(By.cssSelector(".alert"));
 
 		Assert.assertTrue(signInWrongUser.isDisplayed());
 
@@ -78,11 +79,13 @@ public class WrongLoginTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Assert No login for invalid password.
 
-		WebElement signInWrongPwd = driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
+		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				".btn.btn-primary");
+				//driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
 
 		Assert.assertTrue(signInWrongPwd.isDisplayed());
 
