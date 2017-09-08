@@ -1,7 +1,6 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -10,6 +9,7 @@ import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -39,6 +39,8 @@ public class CreateSitePlutonTest {
 
 	private CreateSitePage createSitePage;
 
+	private APIConnectionManager apiConnectionManager;
+
 
 	
 
@@ -54,7 +56,7 @@ public class CreateSitePlutonTest {
 	 this.UIElementsPropertiesManager);
 	 this.createSitePage = new CreateSitePage(driverManager,
 	 this.UIElementsPropertiesManager);
-
+	 apiConnectionManager = new APIConnectionManager();
 	 }
 
 	@AfterClass
@@ -72,7 +74,7 @@ public class CreateSitePlutonTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Click on the create site button
 
@@ -80,7 +82,7 @@ public class CreateSitePlutonTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Filling the name of site
 
@@ -108,17 +110,18 @@ public class CreateSitePlutonTest {
 
 		// Show site content panel
 
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")
 				.click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
 
 		String URL = driverManager.getDriver().getCurrentUrl();
-		Assert.assertEquals(URL, "http://localhost:8080/studio/preview/#/?page=/&site=automationsite");
+		Assert.assertEquals(URL, apiConnectionManager.getHeaderLocationBase()+"/studio/preview/#/?page=/&site=automationsite");
 
 	}
 

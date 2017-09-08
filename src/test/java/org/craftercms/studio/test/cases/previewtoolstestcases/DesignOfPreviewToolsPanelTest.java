@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.previewtoolstestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -34,8 +33,6 @@ public class DesignOfPreviewToolsPanelTest {
 
 	private PreviewPage previewPage;
 
-	
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -62,7 +59,7 @@ public class DesignOfPreviewToolsPanelTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to dashboard page
 
@@ -70,16 +67,18 @@ public class DesignOfPreviewToolsPanelTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		//homePage.getDriverManager().driverWait();
 		// Click on Preview Tools icon (show)
 
 		previewPage.clickOnPreviewTools();
 
 		// Assert
 
-		WebElement previewToolsShow = driverManager.getDriver()
-				.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
+		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel");
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
 
 		Assert.assertTrue(previewToolsShow.isDisplayed());
 
@@ -89,8 +88,10 @@ public class DesignOfPreviewToolsPanelTest {
 
 		// Assert
 
-		WebElement previewToolsHide = driverManager.getDriver()
-				.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
+		WebElement previewToolsHide = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel");
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
 
 		Assert.assertFalse(previewToolsHide.isDisplayed());
 

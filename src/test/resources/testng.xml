@@ -17,7 +17,6 @@
 				name="org.craftercms.studio.test.cases.loginpagetestcases.LogOutTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="LogOut Test">
 		<classes>
 			<class
@@ -386,7 +385,7 @@
 	<test name="Design of Users Page Test">
 		<classes>
 			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.DesignOfUsersPageTest" />
+				name="org.craftercms.studio.test.cases.userspagetestcases.DesignOfUsersPageTest" />
 		</classes>
 	</test> <!-- Test -->
 

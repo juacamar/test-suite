@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.siteconfigpagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -58,7 +57,7 @@ public class PreviewSyncTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to dashboard page
 
@@ -66,19 +65,21 @@ public class PreviewSyncTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		//homePage.getDriverManager().driverWait();
 		// Show site content panel
-
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"xpath", ".//a[@id='acn-dropdown-toggler']").click();
+		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to admin console page
-
-		driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#admin-console").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// click on preview sync option
 
@@ -86,9 +87,11 @@ public class PreviewSyncTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-
-		driverManager.getDriver().findElement(By.cssSelector("#yui-gen0-button")).click();
+		homePage.getDriverManager().driverWait(1000);
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				"cssSelector", "#yui-gen0-button").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#yui-gen0-button")).click();
 
 	}
 

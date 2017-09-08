@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -55,18 +54,24 @@ public class EditUserTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-
-		driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
-
-		driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-
-		driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#firstName").sendKeys("Name");
+		//driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#lastName").sendKeys("Last Name");
+		//driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#email").sendKeys("email@email.com");
+		//driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#username").sendKeys("username");
+		//driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#password").sendKeys("password");
+		//driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#passwordVerification").sendKeys("password");
+		//driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
 
 		// Save Button
 
@@ -81,20 +86,22 @@ public class EditUserTest {
 		usersPage.clickOnEditUserCreated();
 		
 		// Follow the form
-
-		driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Test");
-
-		driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Test");
-
-		driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("Test");
-
-		// driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("Test");
-
-		driverManager.getDriver().findElement(By.cssSelector("#newPassword")).sendKeys("passwordEdited");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#firstName").sendKeys("Test");
+		//driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#lastName").sendKeys("Test");
+		//driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#email").sendKeys("Test@email.com");
+		//driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#newPassword").sendKeys("passwordEdited");
+		//driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Save Button
 
@@ -112,8 +119,8 @@ public class EditUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
+		//homePage.getDriverManager().driverWait();
 		// click On Users option
 
 		createSitePage.clickOnUsersOption();
@@ -124,7 +131,7 @@ public class EditUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// edit user
 
@@ -132,14 +139,18 @@ public class EditUserTest {
 		
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
 
-		String contentCopied = driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)"))
-				.getText();
+		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)").getText();
+				
+//				driverManager.getDriver()
+//				.findElement(By.cssSelector(
+//						"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)"))
+//				.getText();
+		
 		Assert.assertEquals(contentCopied, "NameTest");
 
 		// Click on delete user
@@ -148,23 +159,28 @@ public class EditUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
-				.click();
+		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+					"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)").click();
+		
+//		 driverManager.getDriver()
+//				.findElement(By.cssSelector(
+//						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+//				.click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Assert new users created is deteled
 
-		WebElement onlyAdminUserExist = driverManager.getDriver()
-				.findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody"));
+		WebElement onlyAdminUserExist =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#container > div > div > div > div > div > table > tbody");
+		
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody"));
 
 		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
 

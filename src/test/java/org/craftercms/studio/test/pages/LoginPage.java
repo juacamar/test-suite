@@ -2,35 +2,37 @@ package org.craftercms.studio.test.pages;
 
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
  *
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
 public class LoginPage {
 
 	private WebDriverManager driverManager;
-    private WebDriver driver;
-    private String userNameTextBoxLocator;
-    private String passwordTextBoxLocator;
-    private String loginButtonLocator;
-    /**
-     * 
-     */
-    public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
-        this.driverManager = driverManager; 
-        this.driverManager.openConnection();        
-        this.driver = this.driverManager.getDriver();
-        userNameTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_UserName");
-        passwordTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.txtbox_Password");
-        loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
-    }
-    
+	private WebDriver driver;
+	private String userNameTextBoxLocator;
+	private String passwordTextBoxLocator;
+	private String loginButtonLocator;
+
+	/**
+	 * 
+	 */
+	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+		this.driverManager = driverManager;
+		this.driverManager.openConnection();
+		this.driver = this.driverManager.getDriver();
+		userNameTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("login.txtbox_UserName");
+		passwordTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("login.txtbox_Password");
+		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
+	}
+
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 
@@ -39,31 +41,34 @@ public class LoginPage {
 	// Set user name in textbox
 
 	public void setUserName(String strUserName) {
-		this.driverManager.driverWait();
-    WebElement userCrafter = driver.findElement(By.cssSelector(userNameTextBoxLocator));
-    userCrafter.sendKeys(strUserName);
-		
+		//this.driverManager.driverWait(1000);
+		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "cssSelector", userNameTextBoxLocator);
+				//driver.findElement(By.cssSelector(userNameTextBoxLocator));
+		userCrafter.sendKeys(strUserName);
+
 	}
 
 	// Set password in password textbox
 
 	public void setPassword(String strPassword) {
-		this.driverManager.driverWait();
-		 WebElement pwdCrafter = driver.findElement(By.id(passwordTextBoxLocator));
-		 pwdCrafter.sendKeys(strPassword);
+		//this.driverManager.driverWait(1000);
+		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "id", passwordTextBoxLocator);
+				//driver.findElement(By.id(passwordTextBoxLocator));
+		pwdCrafter.sendKeys(strPassword);
 
 	}
 
 	// Click on login button
 
 	public void clickLogin() {
-		this.driverManager.driverWait();
-		 WebElement loginButton = driver.findElement(By.cssSelector(loginButtonLocator));
-		 loginButton.click();
+		//this.driverManager.driverWait(1000);
+		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "cssSelector", loginButtonLocator);
+				//driver.findElement(By.cssSelector(loginButtonLocator));
+		loginButton.click();
 
 	}
 
-	//Login to crafter
+	// Login to crafter
 	public void loginToCrafter(String strUserName, String strPasword) {
 
 		// Fill user name
@@ -79,18 +84,21 @@ public class LoginPage {
 		this.clickLogin();
 
 	}
+
 	public WebDriverManager getDriverManager() {
 		return driverManager;
 	}
+
 	public void setDriverManager(WebDriverManager driverManager) {
 		this.driverManager = driverManager;
 	}
+
 	public WebDriver getDriver() {
 		return driver;
 	}
+
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
 	}
-	
 
 }

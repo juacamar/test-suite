@@ -2,7 +2,6 @@ package org.craftercms.studio.test.cases.sitespagetestcases;
 
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
-import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.craftercms.studio.test.pages.CreateSitePage;
@@ -54,7 +53,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Click on the create site button
 
@@ -62,7 +61,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Filling the name of site
 
@@ -87,25 +86,29 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(9000);
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
+//		homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+				".//a[@id='acn-dropdown-toggler']")
 				.click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
 
-		String head = driverManager.getDriver()
-				.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();
+		String head = 	this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#activeContentActions > li:nth-child(1) > span").getText();
+		
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();
 		AssertJUnit.assertEquals(head, "Live :");
 
 	}

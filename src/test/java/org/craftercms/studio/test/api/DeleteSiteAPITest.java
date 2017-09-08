@@ -1,12 +1,15 @@
 package org.craftercms.studio.test.api;
 
+import static org.hamcrest.Matchers.is;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Gustavo Ortiz Alfaro.
@@ -15,6 +18,13 @@ import java.util.Map;
 public class DeleteSiteAPITest {
 
 	private JsonTester api;
+	
+	private String username = "admin";
+	private String password = "admin";
+	private String siteId = "mysite";
+//	private String description = "Description!";
+//	private String blueprint = "empty";
+//	private String groupName = "contributors";
 
 	public DeleteSiteAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
@@ -25,16 +35,23 @@ public class DeleteSiteAPITest {
 	@BeforeTest
 	public void login() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "admin");
-		json.put("password", "admin");
-		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
+		json.put("username", username);
+		json.put("password", password);
+		api.post("/studio/api/1/services/api/1/security/login.json")
+		//.urlParam("username", username)
+		//.urlParam("password", password)
+		.json(json).execute().status(200);
 	}
 
 	@Test(priority = 1)
 	public void testDeleteSite() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("siteId", "mySite");
-		api.post("/studio/api/1/services/api/1/site/delete-site.json").json(json).execute().status(200).debug();
+		json.put("siteId", siteId);
+		
+		api.post("/studio/api/1/services/api/1/site/delete-site.json")
+		//.urlParam("site_id", siteId)
+		.json(json).execute().status(200).json("$", is(true))
+		.debug();
 
 	}
 }

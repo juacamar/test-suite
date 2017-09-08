@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.sitecontentbartestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -15,7 +14,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -32,7 +31,6 @@ public class AddNewFolderTest {
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
-
 
 	@BeforeClass
 	public void beforeTest() {
@@ -60,7 +58,7 @@ public class AddNewFolderTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to dashboard page
 
@@ -68,21 +66,23 @@ public class AddNewFolderTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(4000);
+		// homePage.getDriverManager().driverWait();
+		// homePage.getDriverManager().driverWait();
 		// reload page
 
-		//driverManager.getDriver().navigate().refresh();
+		// driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
-
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
 
+		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
+		// .click();
+
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		// homePage.getDriverManager().driverWait();
 
 		// expand pages folder
 
@@ -102,12 +102,14 @@ public class AddNewFolderTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Assert find the new folder created
 
-		String folderName = driverManager.getDriver()
-				.findElement(By.cssSelector("span.status-icon.folder.no-preview.no-preview.over-effect-set")).getText();
+		String folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"span.status-icon.folder.no-preview.no-preview.over-effect-set").getText();
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("span.status-icon.folder.no-preview.no-preview.over-effect-set")).getText();
 		Assert.assertEquals(folderName, "addnewfolder");
 
 	}

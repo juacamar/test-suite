@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.loginpagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -61,12 +60,14 @@ public class LoginTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Assert create button is present.
 
-		WebElement createButton = driverManager.getDriver()
-				.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				".btn.btn-default.btn-pill.btn-block");
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
 
 		Assert.assertTrue(createButton.isDisplayed());
 

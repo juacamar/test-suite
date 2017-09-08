@@ -5,10 +5,10 @@ import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.Matchers.*;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.hamcrest.Matchers.*;
 
 
 /**
@@ -19,6 +19,13 @@ public class CreateSiteAPITest {
 
     private JsonTester api;
 	private String headerLocationBase;
+	
+	private String username = "admin";
+	private String password = "admin";
+	private String siteId = "mysite";
+	private String description = "Description!";
+	private String blueprint = "empty";
+//	private String groupName = "contributors";
 
     public CreateSiteAPITest(){
     	APIConnectionManager apiConnectionManager = new APIConnectionManager();
@@ -29,34 +36,46 @@ public class CreateSiteAPITest {
 
     @BeforeTest
 	public void login() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("username", "admin");
-		json.put("password", "admin");
-		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
+    	Map<String, Object> json = new HashMap<>();
+		json.put("username", username);
+		json.put("password", password);
+		api.post("/studio/api/1/services/api/1/security/login.json")
+		//.urlParam("username", username)
+		//.urlParam("password", password)
+		.json(json).execute().status(200);
 	}
 
 
     @Test(priority=1)
 	public void testCreateSite() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("site_id", "mySite");
-		json.put("description", "My very first site!");
-		json.put("blueprint", "Empty");
-		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
-				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
+    	Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		json.put("description", description);
+		json.put("blueprint", blueprint);
+		
+		api.post("/studio/api/1/services/api/1/site/create.json")
+		//.urlParam("site_id", siteId)
+	    //.urlParam("description", description)
+		//.urlParam("blueprint", blueprint)
+		.json(json).execute().status(201)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
 				.json("$.message", is("OK")).debug();
-
 	}
     
     @Test(priority=2)
    	public void testInvalidParameters() {
-   		Map<String, Object> json = new HashMap<>();
-   		json.put("site_idFAIL", "mySite");
-   		json.put("description", "My very first site!");
-   		json.put("blueprint", "Empty");
-   		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(400)
-   				.json("$.message", is("Invalid parameter(s): [site_id]")).debug();
-
+    	Map<String, Object> json = new HashMap<>();
+		json.put("site_idnonvalid", siteId);
+		json.put("description", description);
+		json.put("blueprint", blueprint);
+		
+		api.post("/studio/api/1/services/api/1/site/create.json")
+		//.urlParam("site_idnonvalid", siteId)
+	    //.urlParam("description", description)
+		//.urlParam("blueprint", blueprint)
+		.json(json).execute().status(400)
+			.json("$.message", is("Invalid parameter(s): [site_id]")).debug();
    	}
     
     
@@ -75,12 +94,18 @@ public class CreateSiteAPITest {
     
     @Test(priority=4)
    	public void testSiteAlreadyExists() {
-   		Map<String, Object> json = new HashMap<>();
-   		json.put("site_id", "mySite");
-   		json.put("description", "My very first site!");
-   		json.put("blueprint", "Empty");
-   		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(409)
-		        .header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
+     	Map<String, Object> json = new HashMap<>();
+    		json.put("site_id", siteId);
+    		json.put("description", description);
+    		json.put("blueprint", blueprint);
+    		
+    		api.post("/studio/api/1/services/api/1/site/create.json")
+    		//.urlParam("site_id", siteId)
+    	    //.urlParam("description", description)
+    		//.urlParam("blueprint", blueprint)
+    		.json(json)
+		.execute().status(409)
+		        .header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
    				.json("$.message", is("Site already exists")).debug();
 
     }

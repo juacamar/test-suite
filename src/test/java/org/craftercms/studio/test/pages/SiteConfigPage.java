@@ -8,8 +8,6 @@ import org.craftercms.studio.test.utils.JsonTester;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.craftercms.studio.test.utils.datasourceslistxml.DataSourceCreatorXML;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -22,7 +20,6 @@ import org.testng.Assert;
 public class SiteConfigPage {
 
 	private WebDriverManager driverManager;
-	private WebDriver driver;
 	private String contentTypeOption;
 	private String openExistingTypeOption;
 	private String genericContentTypeOption;
@@ -63,7 +60,7 @@ public class SiteConfigPage {
 	 */
 	public SiteConfigPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
-		this.driver = this.driverManager.getDriver();
+		//this.driver = this.driverManager.getDriver();
 		contentTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.content_type_option");
 		openExistingTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -128,16 +125,13 @@ public class SiteConfigPage {
 		api = new JsonTester("http", "localhost", 8080);
 	}
 
-	public SiteConfigPage(WebDriver driver) {
-		this.driver = driver;
-
-	}
-
 	// Click on Content Type option
 
 	public void clickContentTypeOption() {
-		this.driverManager.driverWait();
-		WebElement contentTypeOpt = driver.findElement(By.xpath(contentTypeOption));
+		//this.driverManager.driverWait(3000);
+		WebElement contentTypeOpt =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				contentTypeOption);
+				//driver.findElement(By.xpath(contentTypeOption));
 		contentTypeOpt.click();
 	}
 
@@ -152,8 +146,10 @@ public class SiteConfigPage {
 	// Click on open existing Type option
 
 	public void clickOpenExistingTypeOption() {
-		this.driverManager.driverWait();
-		WebElement openExistingTypeOpt = driver.findElement(By.xpath(openExistingTypeOption));
+		//this.driverManager.driverWait(3000);
+		WebElement openExistingTypeOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				openExistingTypeOption);
+				//driver.findElement(By.xpath(openExistingTypeOption));
 		openExistingTypeOpt.click();
 
 	}
@@ -169,7 +165,7 @@ public class SiteConfigPage {
 	// Select the generic content type
 
 	public void selectContentType() {
-		this.driverManager.driverWait();
+		this.driverManager.driverWait(1000);
 		// its the default selected
 		// WebElement selectGenericOption = this.getDriverManager().getDriver()
 		// .findElement(By.xpath(genericContentTypeOption));
@@ -179,8 +175,11 @@ public class SiteConfigPage {
 	}
 
 	public void selectPageArticleContentTypeOption() {
-		this.driverManager.driverWait();
-		WebElement selectPageArticleOption = driver.findElement(By.cssSelector(pageArticleContentTypeOption));
+		//this.driverManager.driverWait(3000);
+		
+		WebElement selectPageArticleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				pageArticleContentTypeOption);
+				//driver.findElement(By.cssSelector(pageArticleContentTypeOption));
 		selectPageArticleOption.click();
 
 	}
@@ -196,8 +195,10 @@ public class SiteConfigPage {
 	// Confirm the content type selected
 
 	public void okContentTypeSelected() {
-		this.driverManager.driverWait();
-		WebElement okButtonOpt = driver.findElement(By.id(okButton));
+		//this.driverManager.driverWait(3000);
+		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
+				okButton);
+				//driver.findElement(By.id(okButton));
 		okButtonOpt.click();
 
 	}
@@ -213,8 +214,10 @@ public class SiteConfigPage {
 	// Save the section dropped.
 
 	public void saveSectionDropped() {
-		this.driverManager.driverWait();
-		WebElement okButtonOpt = driver.findElement(By.xpath(saveButton));
+		//this.driverManager.driverWait(3000);
+		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				saveButton);
+				//driver.findElement(By.xpath(saveButton));
 		okButtonOpt.click();
 
 	}
@@ -230,7 +233,9 @@ public class SiteConfigPage {
 
 	public void clickOnGenericTitle() {
 
-		WebElement ClickTitle = driver.findElement(By.cssSelector(genericTitle));
+		WebElement ClickTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				genericTitle);
+				//driver.findElement(By.cssSelector(genericTitle));
 		ClickTitle.click();
 
 	}
@@ -247,7 +252,9 @@ public class SiteConfigPage {
 
 	public void clickOnDisplayTemplateField() {
 
-		WebElement showTemplate = driver.findElement(By.cssSelector(displayTemplateField));
+		WebElement showTemplate =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				displayTemplateField);
+				//driver.findElement(By.cssSelector(displayTemplateField));
 		showTemplate.click();
 
 	}
@@ -264,7 +271,9 @@ public class SiteConfigPage {
 
 	public void clickOnEditFTLOption() {
 
-		WebElement editFLTopt = driver.findElement(By.cssSelector(editFTLOption));
+		WebElement editFLTopt =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				editFTLOption);
+				//driver.findElement(By.cssSelector(editFTLOption));
 		editFLTopt.click();
 
 	}
@@ -281,7 +290,9 @@ public class SiteConfigPage {
 
 	public void setTitle(String strTitle) {
 
-		WebElement typeTitle = driver.findElement(By.cssSelector(inputTitle));
+		WebElement typeTitle =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				inputTitle);
+				//driver.findElement(By.cssSelector(inputTitle));
 		typeTitle.sendKeys(strTitle);
 
 	}
@@ -290,7 +301,9 @@ public class SiteConfigPage {
 
 	public void setIceGroup(String strICEGroup) {
 
-		WebElement typeIceGroup = driver.findElement(By.cssSelector(inputIceGroup));
+		WebElement typeIceGroup = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				inputIceGroup);
+				//driver.findElement(By.cssSelector(inputIceGroup));
 		typeIceGroup.sendKeys(strICEGroup);
 
 	}
@@ -299,7 +312,9 @@ public class SiteConfigPage {
 
 	public void setDescription(String strDescription) {
 
-		WebElement typeDescription = driver.findElement(By.cssSelector(inputDescription));
+		WebElement typeDescription =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				inputDescription);
+				//driver.findElement(By.cssSelector(inputDescription));
 		typeDescription.sendKeys(strDescription);
 
 	}
@@ -308,7 +323,9 @@ public class SiteConfigPage {
 
 	public void setDefaultValue(String strDefaultValue) {
 
-		WebElement typeDefaultValue = driver.findElement(By.cssSelector(inputDefaultValue));
+		WebElement typeDefaultValue = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				inputDefaultValue);
+				//driver.findElement(By.cssSelector(inputDefaultValue));
 		typeDefaultValue.sendKeys(strDefaultValue);
 
 	}
@@ -337,7 +354,9 @@ public class SiteConfigPage {
 	// Click on input section to can view the properties
 	public void clickOnInputSectionToViewTheProperties() {
 
-		WebElement showSection = driver.findElement(By.xpath(clickOnInputSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnInputSection);
+				//driver.findElement(By.xpath(clickOnInputSection));
 		showSection.click();
 	}
 
@@ -360,7 +379,9 @@ public class SiteConfigPage {
 	// Click on Repeating group to view the properties of it
 	public void clickOnRepeatingGroupToViewTheProperties() {
 
-		WebElement showSection = driver.findElement(By.xpath(clickOnRepeatingGroupSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnRepeatingGroupSection);
+				//driver.findElement(By.xpath(clickOnRepeatingGroupSection));
 		showSection.click();
 
 	}
@@ -376,7 +397,9 @@ public class SiteConfigPage {
 	// Click on Repeating group to view the properties of it
 	public void clickOnTextAreaToViewTheProperties() {
 
-		WebElement showSection = driver.findElement(By.xpath(clickOnTextAreaSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnTextAreaSection);
+				//driver.findElement(By.xpath(clickOnTextAreaSection));
 		showSection.click();
 
 	}
@@ -387,7 +410,7 @@ public class SiteConfigPage {
 		// open content types
 		this.clickExistingTypeOption();
 		// wait for element
-		this.driverManager.driverWait();
+		this.driverManager.driverWait(1000);
 		// Select the entry content type
 		this.selectEntryContentType();
 		// Confirm the content type selected
@@ -407,7 +430,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickRTESectionToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnRTESection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnRTESection);
+				//driver.findElement(By.xpath(clickOnRTESection));
 		showSection.click();
 	}
 
@@ -417,7 +442,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickDropdownSectionToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnDropdownSection));
+		WebElement showSection =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnDropdownSection);
+				//driver.findElement(By.xpath(clickOnDropdownSection));
 		showSection.click();
 	}
 
@@ -427,7 +454,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickDateTimeSectionToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnDropdownSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnDropdownSection);
+				//driver.findElement(By.xpath(clickOnDropdownSection));
 		showSection.click();
 	}
 
@@ -437,7 +466,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickCheckBoxSectionToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnCheckBoxSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnCheckBoxSection);
+				//driver.findElement(By.xpath(clickOnCheckBoxSection));
 		showSection.click();
 	}
 
@@ -447,7 +478,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickGroupedCheckBoxesSectionToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnGroupedCheckBoxesSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnGroupedCheckBoxesSection);
+				//driver.findElement(By.xpath(clickOnGroupedCheckBoxesSection));
 		showSection.click();
 	}
 
@@ -457,7 +490,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickItemSelectorToViewProperties() {
-		WebElement showItemSelectorSection = driver.findElement(By.xpath(clickOnItemSelectorSection));
+		WebElement showItemSelectorSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnItemSelectorSection);
+				//driver.findElement(By.xpath(clickOnItemSelectorSection));
 		showItemSelectorSection.click();
 	}
 
@@ -467,7 +502,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickImageToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnImageSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnImageSection);
+				//driver.findElement(By.xpath(clickOnImageSection));
 		showSection.click();
 	}
 
@@ -477,7 +514,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickVideoToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnVideoSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnVideoSection);
+				//driver.findElement(By.xpath(clickOnVideoSection));
 		showSection.click();
 	}
 
@@ -487,7 +526,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickLabelToViewProperties() {
-		WebElement showLabelSection = driver.findElement(By.xpath(clickOnLabelSection));
+		WebElement showLabelSection =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnLabelSection);
+				//driver.findElement(By.xpath(clickOnLabelSection));
 		showLabelSection.click();
 	}
 
@@ -497,7 +538,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickPageOrderToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnPageOrderSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnPageOrderSection);
+				//driver.findElement(By.xpath(clickOnPageOrderSection));
 		showSection.click();
 	}
 
@@ -507,7 +550,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickFileNameToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnFileNameSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnFileNameSection);
+				//driver.findElement(By.xpath(clickOnFileNameSection));
 		showSection.click();
 	}
 
@@ -526,7 +571,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickAutoFileNameToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnAutoFileNameSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnAutoFileNameSection);
+				//driver.findElement(By.xpath(clickOnAutoFileNameSection));
 		showSection.click();
 	}
 
@@ -551,7 +598,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickDataSourceChildContentToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnDataSourceChildContentSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnDataSourceChildContentSection);
+				//driver.findElement(By.xpath(clickOnDataSourceChildContentSection));
 		showSection.click();
 	}
 
@@ -560,7 +609,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickDataSourceImageUploadedFromDesktopToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromDesktopSection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnDataSourceImageUploadedFromDesktopSection);
+				//driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromDesktopSection));
 		showSection.click();
 	}
 
@@ -569,7 +620,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickDataSourceImageUploadedFromRepositoryToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromRepositorySection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnDataSourceImageUploadedFromRepositorySection);
+				//driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromRepositorySection));
 		showSection.click();
 	}
 
@@ -578,7 +631,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickDataSourceImageUploadedFromCMISRepositoryToViewProperties() {
-		WebElement showSection = driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromCMISRepositorySection));
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				clickOnDataSourceImageUploadedFromCMISRepositorySection);
+				//driver.findElement(By.xpath(clickOnDataSourceImageUploadedFromCMISRepositorySection));
 		showSection.click();
 	}
 

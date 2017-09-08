@@ -5,10 +5,10 @@ import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.Matchers.*;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.hamcrest.Matchers.*;
 
 /**
  * Created by Gustavo Ortiz Alfaro.
@@ -18,6 +18,13 @@ public class DeleteGroupAPITest {
 
 	private JsonTester api;
 	private String headerLocationBase;
+	
+	private String username = "admin";
+	private String password = "admin";
+	private String siteId = "mysite";
+	private String description = "Description!";
+	private String blueprint = "empty";
+	private String groupName = "contributors";
 
 	public DeleteGroupAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
@@ -29,32 +36,45 @@ public class DeleteGroupAPITest {
 	@BeforeTest
 	public void login() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("username", "admin");
-		json.put("password", "admin");
-		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
+		json.put("username", username);
+		json.put("password", password);
+		api.post("/studio/api/1/services/api/1/security/login.json")
+		//.urlParam("username", username)
+		//.urlParam("password", password)
+		.json(json).execute().status(200);
 	}
 
 	@Test(priority = 1)
 	public void testCreateSite() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("site_id", "mySite");
-		json.put("description", "My very first site!");
-		json.put("blueprint", "Empty");
-		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
-				.header("Location",
-						is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id=mySite"))
-				.json("$.message", is("OK")).debug();
-
+	 	Map<String, Object> json = new HashMap<>();
+			json.put("site_id", siteId);
+			json.put("description", description);
+			json.put("blueprint", blueprint);
+			
+			api.post("/studio/api/1/services/api/1/site/create.json")
+			//.urlParam("site_id", siteId)
+		    //.urlParam("description", description)
+			//.urlParam("blueprint", blueprint)
+			.json(json).execute().status(201)
+					.header("Location",
+							is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
+					.json("$.message", is("OK")).debug();
 	}
 	
 	@Test(priority=2)
 	public void testCreateStudioGroup() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", "contributors");
-		json.put("site_id", "mySite");
-		json.put("description", "Content Contributors");
-		api.post("/studio/api/1/services/api/1/group/create.json").json(json).execute().status(201)
-				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/group/get.json?group_name=contributors"))
+		json.put("group_name", groupName);
+		json.put("site_id", siteId);
+		json.put("description", description);
+		
+		api.post("/studio/api/1/services/api/1/group/create.json")
+//		.urlParam("group_name", groupName)
+//		.urlParam("site_id", siteId)
+//		.urlParam("description", description)
+		.json(json).execute().status(201)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
 				.json("$.message", is("OK")).debug();
 
 	}
@@ -62,22 +82,27 @@ public class DeleteGroupAPITest {
 	@Test(priority=3)
 	public void testDeleteGroup() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", "contributors");
-		json.put("site_id", "mysite");
-		api.post("/studio/api/1/services/api/1/group/delete.json").json(json)
-		.execute()
+		json.put("group_namenonvalid", groupName);
+		json.put("site_id", siteId);
+		
+		api.post("/studio/api/1/services/api/1/group/delete.json")
+//		.urlParam("group_name", groupName)
+//		.urlParam("site_id", siteId)
+		.json(json).execute()
 		.status(204);
-
-
 	}
 	
 	
 	@Test(priority=4)
 	public void testInvalidParameters() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("group_namInvalid", "contributors");
-		json.put("site_id", "mysite");
-		api.post("/studio/api/1/services/api/1/group/delete.json").json(json).execute().status(400)
+		json.put("group_namenonvalid", groupName);
+		json.put("site_id", siteId);
+		
+		api.post("/studio/api/1/services/api/1/group/delete.json")
+//		.urlParam("group_namenonvalid", groupName)
+//		.urlParam("site_id", siteId)
+		.json(json).execute().status(400)
 				.json("$.message", is("Invalid parameter(s): [group_name]")).debug();
 
 	}
@@ -96,9 +121,13 @@ public class DeleteGroupAPITest {
 	@Test(priority=6)
 	public void testUnauthorized() {
 		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", "nothing");
-		json.put("site_id", "mysite");
-		api.post("/studio/api/1/services/api/1/group/delete.json").json(json).execute().status(404)
+		json.put("group_name", groupName+"nonvalid");
+		json.put("site_id", siteId);
+		
+		api.post("/studio/api/1/services/api/1/group/delete.json")
+//		.urlParam("group_name", groupName+"nonvalid")
+//		.urlParam("site_id", siteId)
+		.json(json).execute().status(404)
 				.json("$.message", is("Group not found")).debug();
 
 	}

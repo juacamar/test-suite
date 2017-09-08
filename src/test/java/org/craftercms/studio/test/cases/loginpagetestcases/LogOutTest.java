@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.loginpagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -61,19 +60,21 @@ public class LogOutTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
+		//homePage.getDriverManager().driverWait();
 		// LogOut
 		
 		homePage.clickLogoutOutCrafter();
 		
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(3000);
 
 		// Verify login is fine
 	
-	    WebElement validation = driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
+	    WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				".btn.btn-primary");
+	    		//driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
 	 
 	    Assert.assertTrue(validation.isDisplayed());
 	

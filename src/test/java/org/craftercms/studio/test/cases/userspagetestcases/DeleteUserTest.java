@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -59,36 +58,43 @@ public class DeleteUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
+		// homePage.getDriverManager().driverWait(3000);
 		// click On Users option
 
 		createSitePage.clickOnUsersOption();
 
 		// Click on delete user
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 		usersPage.clickOnDeleteUserCreated();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Confirmation to delete user connected
-
-		driverManager.getDriver()
-				.findElement(By.cssSelector(
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)"))
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector(
+		// "body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div >
+		// div.modal-footer.ng-scope > button:nth-child(1)"))
+		// .click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
-		
+		homePage.getDriverManager().driverWait(1000);
+
 		// Assert new users created is deteled
 
-		 WebElement onlyAdminUserExist = driverManager.getDriver().findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody"));
-		  
-			Assert.assertTrue(onlyAdminUserExist.isDisplayed());
+		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#container > div > div > div > div > div > table > tbody");
+		
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody"));
+
+		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
 
 	}
 }

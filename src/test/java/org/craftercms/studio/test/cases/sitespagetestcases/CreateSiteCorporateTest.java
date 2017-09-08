@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -8,6 +7,7 @@ import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -29,6 +29,8 @@ public class CreateSiteCorporateTest {
 
 	private CreateSitePage createSitePage;
 
+	private APIConnectionManager apiConnectionManager;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -37,7 +39,7 @@ public class CreateSiteCorporateTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-
+		 apiConnectionManager = new APIConnectionManager();
 	}
 
 	@AfterClass
@@ -55,7 +57,7 @@ public class CreateSiteCorporateTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Click on the create site button
 
@@ -63,7 +65,7 @@ public class CreateSiteCorporateTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// Filling the name of site
 
@@ -91,17 +93,18 @@ public class CreateSiteCorporateTest {
 
 		// Show site content panel
 
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")
 				.click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(3000);
 
 		// Assert
 
 		String URL = driverManager.getDriver().getCurrentUrl();
-		Assert.assertEquals(URL, "http://localhost:8080/studio/preview/#/?page=/&site=automationsite");
+		Assert.assertEquals(URL, apiConnectionManager+"/studio/preview/#/?page=/&site=automationsite");
 
 	}
 

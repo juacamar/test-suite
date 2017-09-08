@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.contextualnavigationbartestcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -33,8 +32,6 @@ public class HistoryOptionTest {
 
 	private PreviewPage previewPage;
 
-
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -43,14 +40,13 @@ public class HistoryOptionTest {
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager);
-		
 
 	}
 
-	 @AfterClass
-	 public void afterTest() {
-	 driverManager.closeConnection();
-	 }
+	@AfterClass
+	public void afterTest() {
+		driverManager.closeConnection();
+	}
 
 	@Test(priority = 0)
 
@@ -62,23 +58,24 @@ public class HistoryOptionTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(2000);
 
 		// Show site content panel
-
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		// .click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// expand pages folder
 
@@ -86,19 +83,21 @@ public class HistoryOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// expand home content
 
 		previewPage.expandHomeTree();
 
 		// Select the content to view the history.
-
-		driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1")).click();
+		homePage.getDriverManager().driverWait(1000);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#ygtvlabelel1").click();
+		//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait();
+		homePage.getDriverManager().driverWait(1000);
 
 		// click on history option
 
@@ -106,12 +105,13 @@ public class HistoryOptionTest {
 
 		// wait for element is clickeable
 
-		previewPage.getDriverManager().driverWait();
+		previewPage.getDriverManager().driverWait(2000);
 
 		// Assert
 
-		String historyPage = driverManager.getDriver()
-		.findElement(By.cssSelector(".view-title")).getText();
+		String historyPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				".view-title").getText();
+				//driverManager.getDriver().findElement(By.cssSelector(".view-title")).getText();
 		Assert.assertEquals(historyPage, "Version History");
 
 	}
