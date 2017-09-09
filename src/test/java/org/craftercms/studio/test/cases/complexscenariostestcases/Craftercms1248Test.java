@@ -104,14 +104,14 @@ public class Craftercms1248Test {
 		dashboardPage.getDriverManager().driverWait(1000);
 		// Switch to the form
 		driverManager.getDriver().switchTo().activeElement();
-
+		dashboardPage.getDriverManager().driverWait(2000);
 		WebElement unSelectAllCheck = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				".//table[@class='item-listing scroll-body']/thead/tr/th/input");
 		// driverManager.getDriver()
 		// .findElement(By.xpath(".//table[@class='item-listing
 		// scroll-body']/thead/tr/th/input"));
 		unSelectAllCheck.click();
-
+		this.driverManager.driverWait(2000);
 		String pageNameCheckLocator = ".//table[@class='item-listing scroll-body']/tbody/tr/td/div/span[contains(text(),'"
 				+ pageName + "')]/../../../td/input";
 		WebElement pageNameCheck = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",

@@ -180,7 +180,7 @@ public class EditOptionTest {
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
-
+		this.driverManager.driverWait(3000);
 	}
 
 	public void editingContent() {
@@ -298,7 +298,7 @@ public class EditOptionTest {
 		createNewContent();
 
 		// Expand Home Tree
-
+		homePage.getDriverManager().driverWait(3000);
 		dashboardPage.expandHomeTree2();
 
 		// wait for element is clickeable

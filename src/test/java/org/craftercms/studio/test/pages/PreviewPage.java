@@ -123,7 +123,7 @@ public class PreviewPage {
 	// Click on preview tools icon
 
 	public void previewTools() {
-		// this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
 				clickPreviewTools);
 		// driverManager.getDriver().findElement(By.id(clickPreviewTools));
@@ -180,12 +180,12 @@ public class PreviewPage {
 	// Click on Approve&Publish option
 
 	public void approvePublish() {
-		// this.driverManager.driverWait(3000);
-		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		 this.driverManager.driverWait(3000);
+		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				approvePublish);
 		// driverManager.getDriver().findElement(By.xpath(approvePublish));
 
-		toolsIcon.click();
+		publishIcon.click();
 		this.driverManager.driverWait(2000);
 	}
 
@@ -386,7 +386,7 @@ public class PreviewPage {
 
 	public void clickPagesTree() {
 		// this.driverManager.driverWait(3000);
-		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				pagesTree);
 		// driverManager.getDriver().findElement(By.cssSelector(pagesTree));
 		expandPagesTree.click();
@@ -510,14 +510,15 @@ public class PreviewPage {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// this.getDriverManager().driverWait(1000);
-
+		 this.getDriverManager().driverWait(3000);
+		 
 		// select main content
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#yui-gen8").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
 		// wait for element is clickeable
 
-		// this.getDriverManager().driverWait(3000);
+		 this.getDriverManager().driverWait(3000);
 
 		// Body not required
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
@@ -536,7 +537,7 @@ public class PreviewPage {
 
 		// wait for element is clickeable
 
-		// this.getDriverManager().driverWait(1000);
+		 this.getDriverManager().driverWait(2000);
 
 		// go to dashboard
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-logo").click();

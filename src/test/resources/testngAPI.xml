@@ -2,11 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="craftercms API test suite" preserve-order="true">
-
-
 	<!-- API Test Cases -->
 	<!-- User Management -->
-
 	<test name="Create User"  preserve-order="true">
 		<classes>
 			<class name="org.craftercms.studio.test.api.CreateUserAPITest" />

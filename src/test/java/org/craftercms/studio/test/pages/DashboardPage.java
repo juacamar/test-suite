@@ -272,8 +272,8 @@ public class DashboardPage {
 
 	// Expand pages tree
 	public void clickPagesTree() {
-		// this.driverManager.driverWait(1500);
-		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "xpath",
+		this.driverManager.driverWait(2000);
+		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				pagesTree);
 		// driverManager.getDriver().findElement(By.xpath(pagesTree));
 		expandPagesTree.click();
@@ -282,12 +282,13 @@ public class DashboardPage {
 
 	public void expandPagesTree() {
 		// Expand pages tree
+		driverManager.driverWait(2000);
 		this.clickPagesTree();
 	}
 
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
-		// this.driverManager.driverWait(1500);
+	    this.driverManager.driverWait(1500);
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "xpath", homeTree);
 		// driverManager.getDriver().findElement(By.xpath(homeTree));
 		globalEntry.click();
@@ -300,7 +301,7 @@ public class DashboardPage {
 
 	// Expand home tree
 	public void clicHomeTree2() {
-		// this.driverManager.driverWait(1500);
+		 this.driverManager.driverWait(1500);
 		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "xpath",
 				homeTreeDashbard);
 		// driverManager.getDriver().findElement(By.xpath(homeTreeDashbard));
@@ -333,7 +334,7 @@ public class DashboardPage {
 		// driverManager.getDriver().findElement(By.xpath(homeContent));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home);
 
-		// this.driverManager.driverWait(1500);
+	 this.driverManager.driverWait(1000);
 		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				addNewContent);
 		// driverManager.getDriver().findElement(By.xpath(addNewContent));
@@ -530,6 +531,7 @@ public class DashboardPage {
 		// Fill page URL
 		this.setPageURL1(strPageURL);
 		// Fill internal name
+		this.driverManager.driverWait(1500);
 		this.setInternalName1(strInternalName);
 	}
 
