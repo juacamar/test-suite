@@ -202,20 +202,17 @@ public class PaginationOfListOfUsersTest {
 
 		loginPage.loginToCrafter("admin", "admin");
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		// wait for element is clickeable	
 		// Create user 1
-
+		homePage.getDriverManager().driverWait(1000);
 		createUserRandom();
 
 		// Create user 2
-
+		homePage.getDriverManager().driverWait(1000);
 		createUserRandom();
 
 		// Create user 3
-
+		homePage.getDriverManager().driverWait(1000);
 		createUserRandom();
 
 		// wait for element is clickeable

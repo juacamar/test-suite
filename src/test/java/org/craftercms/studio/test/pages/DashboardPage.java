@@ -272,12 +272,12 @@ public class DashboardPage {
 
 	// Expand pages tree
 	public void clickPagesTree() {
-		this.driverManager.driverWait(2000);
-		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		this.driverManager.driverWait(1000);
+		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				pagesTree);
 		// driverManager.getDriver().findElement(By.xpath(pagesTree));
 		expandPagesTree.click();
-		driverManager.driverWait(2000);
+		driverManager.driverWait(1000);
 	}
 
 	public void expandPagesTree() {
