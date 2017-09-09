@@ -250,7 +250,7 @@ public class CreateSitePage {
 	// Press on users option
 
 	public void usersOption() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(3000);
 		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				usersOption);
 				//driver.findElement(By.xpath(usersOption));

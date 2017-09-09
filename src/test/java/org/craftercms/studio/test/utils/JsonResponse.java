@@ -10,9 +10,7 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.hamcrest.Matcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.*;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertEquals;

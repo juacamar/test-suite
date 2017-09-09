@@ -69,10 +69,11 @@ public class CutPasteContentTest {
 		// go to dashboard page
 
 		homePage.goToDashboardPage();
-
+		
+		driverManager.getDriver().navigate().refresh();
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 		// homePage.getDriverManager().driverWait();
 
 		// Show site content panel
@@ -143,19 +144,21 @@ public class CutPasteContentTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-logo").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
-
+		homePage.getDriverManager().driverWait(3000);
+		//driverManager.getDriver().switchTo().defaultContent();
 		// expand pages folder
 
 		dashboardPage.expandPagesTree();
+		
+		homePage.getDriverManager().driverWait(1000);
 
 		// right click to see the the menu
 
