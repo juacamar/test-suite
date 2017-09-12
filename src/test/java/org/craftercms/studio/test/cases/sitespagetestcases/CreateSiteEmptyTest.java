@@ -11,6 +11,7 @@ import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.NoSuchElementException;
 
 /**
  * 
@@ -106,16 +107,24 @@ public class CreateSiteEmptyTest {
 		// wait for element is clickeable
 
 		//review the performance here, it is to much time aprox 38secs
-		homePage.getDriverManager().driverWait(9000);
+		homePage.getDriverManager().driverWait(8000);
 //		homePage.getDriverManager().driverWait();
 //		homePage.getDriverManager().driverWait();
 //		homePage.getDriverManager().driverWait();
 //		homePage.getDriverManager().driverWait();
-			
+		driverManager.getDriver().navigate().refresh();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
-				".//a[@id='acn-dropdown-toggler']")
-				.click();
+		
+		homePage.getDriverManager().driverWait(5000);
+		
+		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
+		
+		if(this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "xpath",
+					siteDropdownElementXPath)
+					.click();
+		else throw new NoSuchElementException("Site creation process is taking too long time and the element was not found");
+		
 
 		// wait for element is clickeable
 

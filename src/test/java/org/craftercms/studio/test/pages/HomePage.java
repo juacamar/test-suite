@@ -54,7 +54,7 @@ public class HomePage {
 	// Click on preview link
 
 	public void clickPreviewOption() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(3000);
 		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				previewSite1);
 				//driverManager.getDriver().findElement(By.xpath(previewSite1));
@@ -73,7 +73,7 @@ public class HomePage {
 	// Click on dashboard link
 
 	public void clickDashboardOption() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement dashboardLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				dashboardSite2);
 				//driver.findElement(By.cssSelector(dashboardSite2));
@@ -91,7 +91,7 @@ public class HomePage {
 	// Click on edit option of my recent activity senction
 
 	public void clickEditOptionOfRecentActivitySection() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement editOptionMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				editRecentActivity);
 				//driver.findElement(By.xpath(editRecentActivity));
@@ -110,7 +110,7 @@ public class HomePage {
 	// See the page edited
 
 	public void displayPageEdited() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement seeThePageMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				seeThePageEdited);
 				//driver.findElement(By.xpath(seeThePageEdited));
@@ -145,7 +145,7 @@ public class HomePage {
 	// Click on Create Site button
 
 	public void clickCreateSiteButton() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement createSiteOption =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				createSiteButton);
 				//driver.findElement(By.cssSelector(createSiteButton));
@@ -164,8 +164,8 @@ public class HomePage {
 	// Click on Delete icon to the site
 
 	public void clickDeleteSiteIcon() {
-		//this.driverManager.driverWait(3000);
-		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWait(2000);
+		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				deleteSiteIcon);
 				//driver.findElement(By.cssSelector(deleteSiteIcon));
 		deleteIcon.click();
@@ -183,7 +183,7 @@ public class HomePage {
 	// Click on YES button
 
 	public void clickYesButton() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement yesButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				yesDeleteButton);
 				//driver.findElement(By.cssSelector(yesDeleteButton));
@@ -202,7 +202,7 @@ public class HomePage {
 	// Logout to the crafter
 
 	public void expandAccount() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement expandAccount =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				logOutLink);
 				//driver.findElement(By.cssSelector(logOutLink));
@@ -211,7 +211,7 @@ public class HomePage {
 	}
 
 	public void clickSignOut() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement signOut = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				signOutLink);
 				//driver.findElement(By.cssSelector(signOutLink));
@@ -232,7 +232,7 @@ public class HomePage {
 	}
 
 	public void clickUsersContextualNavigationOption() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement usersContextualNavigationOptionWebElement =
 				this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 						usersContextualNavigationOption);
@@ -242,7 +242,7 @@ public class HomePage {
 	}
 
 	public Boolean isUsersContextualNavigationOptionPresent() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		return this.driverManager.isElementPresentByXpath(usersContextualNavigationOption);
 	}
 

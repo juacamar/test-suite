@@ -50,7 +50,7 @@ public class UsersPage {
 	// Try to delete the user connected
 
 	public void clickDeleteOption() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				deleteUserOption);
 				//driverManager.getDriver().findElement(By.cssSelector(deleteUserOption));
@@ -72,7 +72,7 @@ public class UsersPage {
 	// Click on New User Button
 
 	public void clickNewUserButton() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				newUserOption);
 				//driverManager.getDriver().findElement(By.cssSelector(newUserOption));
@@ -93,7 +93,7 @@ public class UsersPage {
 	// Click on Save New User Button
 
 	public void clickSaveNewUserButton() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				saveNewUserOption);
 				//driverManager.getDriver().findElement(By.cssSelector(saveNewUserOption));
@@ -174,7 +174,7 @@ public class UsersPage {
 	}
 
 	public void clickOnCrafterLogo() {
-		//this.driverManager.driverWait(3000);
+		this.driverManager.driverWait(2000);
 		WebElement crafterLogoWebElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				crafterLogo);
 				//driverManager.getDriver().findElement(By.xpath(crafterLogo));

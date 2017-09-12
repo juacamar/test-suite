@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -87,20 +88,26 @@ public class SitesPerPageTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(4000);
+		homePage.getDriverManager().driverWait(6000);
+		driverManager.getDriver().navigate().refresh();
+		// wait for element is clickeable
+
+		// homePage.getDriverManager().driverWait();
 
 		// wait for element is clickeable
 
-		// homePage.getDriverManager().driverWait(3000);
-
-		// wait for element is clickeable
-
-		// homePage.getDriverManager().driverWait(3000);
-		// homePage.getDriverManager().driverWait(3000);
+		// homePage.getDriverManager().driverWait();
+		// homePage.getDriverManager().driverWait();
 		// go to the sites page
+		homePage.getDriverManager().driverWait(3000);
+		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#sitesRightNav").click();
-		// driverManager.getDriver().findElement(By.cssSelector("#sitesRightNav")).click();
+		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "cssSelector", sitesNavOptionElementCssSelector)
+					.click();
+		else
+			throw new NoSuchElementException(
+					"Site creation process is taking too long time and the element was not found");
 
 		// wait for element is clickeable
 

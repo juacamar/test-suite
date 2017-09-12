@@ -95,10 +95,10 @@ public class AddNewUserTest {
 
 		// wait for element is clickeable
 
-		//homePage.getDriverManager().driverWait(3000);
+		
 
 		// Assert new users created is present
-
+		homePage.getDriverManager().driverWait(3000);
 		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
 				//driverManager.getDriver().findElement(By.cssSelector(

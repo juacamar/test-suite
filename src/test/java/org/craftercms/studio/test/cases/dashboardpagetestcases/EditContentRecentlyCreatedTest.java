@@ -97,7 +97,7 @@ public class EditContentRecentlyCreatedTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// save
 
@@ -255,10 +255,10 @@ public class EditContentRecentlyCreatedTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(4000);
 		//homePage.getDriverManager().driverWait();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4,
 				"xpath", ".//a[@id='acn-dropdown-toggler']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 			//	.click();
@@ -272,11 +272,14 @@ public class EditContentRecentlyCreatedTest {
 		bodyNotRequiered();
 
 		// go to dashboard
+		homePage.getDriverManager().driverWait(2000);
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
 				"cssSelector", "#cstudio-logo").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// expand pages folder
+		homePage.getDriverManager().driverWait(4000);
 
 		dashboardPage.expandPagesTree();
 

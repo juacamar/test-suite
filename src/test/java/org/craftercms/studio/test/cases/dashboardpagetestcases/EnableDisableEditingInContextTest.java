@@ -68,7 +68,7 @@ public class EnableDisableEditingInContextTest {
 		
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 		//homePage.getDriverManager().driverWait();
 		// Click on Preview Tools icon
 		

@@ -116,7 +116,7 @@ public class AddNewContentEntryTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// Switch back to the dashboard page
 
@@ -166,7 +166,7 @@ public class AddNewContentEntryTest {
 		createContent();
 
 		// Expand Home Tree
-
+		homePage.getDriverManager().driverWait(3000);
 		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable

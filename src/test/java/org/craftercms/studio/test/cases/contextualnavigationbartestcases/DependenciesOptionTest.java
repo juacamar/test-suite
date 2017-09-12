@@ -65,7 +65,7 @@ public class DependenciesOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(4000);
 		// homePage.getDriverManager().driverWait();
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",

@@ -154,7 +154,7 @@ public class EditContentFormTest {
 		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaultValue");
 
 		// Save the data
-
+		homePage.getDriverManager().driverWait(4000);
 		siteConfigPage.saveDragAndDropProcess();
 	}
 
@@ -209,11 +209,13 @@ public class EditContentFormTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// save
 
 		siteConfigPage.saveDragAndDropProcess();
+		
+		driverManager.getDriver().switchTo().defaultContent();
 
 	}
 
@@ -382,10 +384,10 @@ public class EditContentFormTest {
 	public void goToDashboard(){
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// Go to dashboard page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4,
 				"xpath", "/html/body/div[4]/div[1]/nav/div/div[1]/a/img").click();
 		//driverManager.getDriver().findElement(By.xpath("/html/body/div[4]/div[1]/nav/div/div[1]/a/img")).click();
 
@@ -421,18 +423,18 @@ public class EditContentFormTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Select the content type and drag and drop
 
 		dragAndDrop();
-
+		driverManager.getDriver().switchTo().defaultContent();
 		// go to the dashboard page
-		
+		homePage.getDriverManager().driverWait(2000);
 		goToDashboard();
 
 		// expand pages folder
-
+		homePage.getDriverManager().driverWait(4000);
 		dashboardPage.expandPagesTree();
 
 		// expand global entry content
@@ -446,10 +448,10 @@ public class EditContentFormTest {
 		// Select an existing content type
 
 		bodyNotRequiered();
-
+		driverManager.getDriver().switchTo().defaultContent();
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// go to dashboard
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
@@ -458,7 +460,7 @@ public class EditContentFormTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// create a new content
 

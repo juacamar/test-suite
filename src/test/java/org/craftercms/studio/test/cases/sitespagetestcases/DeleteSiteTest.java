@@ -58,7 +58,7 @@ public class DeleteSiteTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// Click on Delete icon
 

@@ -228,7 +228,7 @@ public class ItemTypesSectionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// go to dashboard page
 

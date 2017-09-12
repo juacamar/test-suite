@@ -241,7 +241,7 @@ public class CopyPasteContentTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// Expand Home Tree
 
@@ -250,7 +250,7 @@ public class CopyPasteContentTest {
 		// Assert of the content copied
 
 		String contentCopied = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#ygtvlabelel4").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector", "#ygtvlabelel4").getText();
 		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel4")).getText();
 		Assert.assertEquals(contentCopied, "COPY");
 

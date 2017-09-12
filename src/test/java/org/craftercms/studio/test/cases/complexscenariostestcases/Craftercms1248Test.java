@@ -72,11 +72,11 @@ public class Craftercms1248Test {
 		// login to application
 		loginPage.loginToCrafter("admin", "admin");
 		// wait for element
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 		// go to preview page
 		homePage.goToPreviewPage();
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(4000);
 		// homePage.getDriverManager().driverWait();
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']")
@@ -104,8 +104,8 @@ public class Craftercms1248Test {
 		dashboardPage.getDriverManager().driverWait(1000);
 		// Switch to the form
 		driverManager.getDriver().switchTo().activeElement();
-		dashboardPage.getDriverManager().driverWait(2000);
-		WebElement unSelectAllCheck = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		dashboardPage.getDriverManager().driverWait(3000);
+		WebElement unSelectAllCheck = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				".//table[@class='item-listing scroll-body']/thead/tr/th/input");
 		// driverManager.getDriver()
 		// .findElement(By.xpath(".//table[@class='item-listing
@@ -194,7 +194,7 @@ public class Craftercms1248Test {
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 		// wait for element is clickeable
-		dashboardPage.getDriverManager().driverWait(1000);
+		dashboardPage.getDriverManager().driverWait(2000);
 		// creating random values for URL field and InternalName field
 		String randomInternalName = pageName;
 		// Set basics fields of the new content created
@@ -205,18 +205,20 @@ public class Craftercms1248Test {
 		// wait for element is clickeable
 		// homePage.getDriverManager().driverWait();
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
 				.sendKeys(pageName);
 		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
 		// input")).sendKeys(pageName);
 
 		// click necessary to validate all fields required
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.scrollUp();
+		homePage.getDriverManager().driverWait(2000);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
 				.click();
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 		// wait for element is clickeable
 		// homePage.getDriverManager().driverWait();
 		// save and close
@@ -231,6 +233,7 @@ public class Craftercms1248Test {
 
 	public void createPageCategoryLandingPage(WebElement folderWebElement, String pageName) {
 		// right clicking and clikc on create New Content option
+		dashboardPage.getDriverManager().driverWait(4000);
 		dashboardPage.rightClickCreatePageOnAPresentPage(folderWebElement);
 		// selecting Page Category Landing Page
 		dashboardPage.selectPageArticleContentType();
@@ -242,16 +245,16 @@ public class Craftercms1248Test {
 	}
 
 	public void testScenario() {
-
-		WebElement homeParent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", homeContent);
+		dashboardPage.getDriverManager().driverWait(4000);
+		WebElement homeParent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", homeContent);
 		// driverManager.getDriver().findElement(By.xpath(homeContent));
 
 		this.createPageCategoryLandingPage(homeParent, parentPageName);
 
-		dashboardPage.getDriverManager().driverWait(2000);
+		dashboardPage.getDriverManager().driverWait(4000);
 		// dashboardPage.getDriverManager().driverWait();
 
-		WebElement expansorElementForHome = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement expansorElementForHome = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				".//span[text()='Home']/../../td[1]");
 		// driverManager.getDriver()
 		// .findElement(By.xpath(".//span[text()='Home']/../../td[1]"));
@@ -300,7 +303,7 @@ public class Craftercms1248Test {
 
 	private void verifyPublishedItemsOnDashboard() {
 		// driverManager.getDriver().navigate().refresh();
-		driverManager.driverWait(1500);
+		driverManager.driverWait(5000);
 
 		String iconNeverPublishedForParentPage = this.parentPageNewLocator
 				+ "/div/span/span[contains(@class,'never-published')]";
@@ -329,9 +332,10 @@ public class Craftercms1248Test {
 
 	private void renamePage(WebElement parentPage, String newPageName) {
 		// right clicking and click on Edit option
+		this.driverManager.driverWait(2000);
 		dashboardPage.rightClickEditOnAPresentPage(parentPage);
 		// creating new Page Article into the empty folder
-		driverManager.getDriver().switchTo().defaultContent();
+		//driverManager.getDriver().switchTo().defaultContent();
 		this.editPageArticleContent(newPageName);
 	}
 
