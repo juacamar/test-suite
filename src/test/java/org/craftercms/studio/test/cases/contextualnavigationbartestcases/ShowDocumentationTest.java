@@ -60,7 +60,7 @@ public class ShowDocumentationTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 
 		// select the about us option
 

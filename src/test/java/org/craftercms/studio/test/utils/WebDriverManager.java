@@ -87,8 +87,8 @@ public class WebDriverManager {
 	}
 
 	public void closeConnection() {
-		this.driver.close();
-		// this.driver.quit();
+		//this.driver.close();
+		 this.driver.quit();
 	}
 
 	public void maximizeWindow() {

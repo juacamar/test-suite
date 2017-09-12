@@ -123,6 +123,7 @@ public class Crafter3LoadTest1Script {
 	}
 
 	public void createFolderOnHome(String folderName) {
+		this.driverManager.driverWait(3000);
 		// right click to see the the menu
 		dashboardPage.rightClickToFolderOnHome();
 		// Set the name of the folder
@@ -135,11 +136,11 @@ public class Crafter3LoadTest1Script {
 		// login to application
 		loginPage.loginToCrafter("admin", "admin");
 		// wait for element
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 		// go to preview page
 		homePage.goToPreviewPage();
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
@@ -200,6 +201,7 @@ public class Crafter3LoadTest1Script {
 				"xpath", styleLocator);
 		// driverManager.getDriver().findElement(By.xpath(styleLocator));
 
+		this.driverManager.driverWait(2000);
 		dashboardPage.rightClickCopyContentPage(styleCategoryLandingStyle);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				bigTree1FolderLocator);
@@ -270,7 +272,7 @@ public class Crafter3LoadTest1Script {
 		// click necessary to validate all fields required
 		homePage.getDriverManager().driverWait(1000);
 		this.driverManager.scrollUp();
-		
+
 		homePage.getDriverManager().driverWait(1000);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector", "#cstudio-form-expand-all")
 				.click();
@@ -496,16 +498,20 @@ public class Crafter3LoadTest1Script {
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				bigTree1FolderLocator);
 		// driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
+		this.driverManager.driverWait(3000);
 		dashboardPage.rightClickCopyFolder(bigTree1Folder);
 
 		// Step2 b)
 		bigTree1FolderDivOnSelectorXPath = this.parentFolderDivOnTreeSelectorLocator + "/site/website/"
 				+ parentFolderName + "/" + harnessFolderName + "/" + bigTree1FolderName + "']";
+		this.driverManager.driverWait(3000);
 		dashboardPage.selectAllTreeOnSelector(bigTree1FolderDivOnSelectorXPath);
+
+		this.driverManager.driverWait(3000);
 		dashboardPage.clickCopyButtonOnTreeSelector();
 
 		// Step2 c)
-		this.driverManager.driverWait(1000);
+		this.driverManager.driverWait(3000);
 		bigTree2Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
 				bigTree2FolderLocator);
 		// driverManager.getDriver().findElement(By.xpath(bigTree2FolderLocator));

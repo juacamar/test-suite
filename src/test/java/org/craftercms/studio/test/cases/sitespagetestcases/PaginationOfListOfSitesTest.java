@@ -9,6 +9,7 @@ import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.NoSuchElementException;
 
 /**
  * 
@@ -81,8 +82,8 @@ public class PaginationOfListOfSitesTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(4000);
-
+		homePage.getDriverManager().driverWait(6000);
+		driverManager.getDriver().navigate().refresh();
 		// wait for element is clickeable
 
 		// homePage.getDriverManager().driverWait();
@@ -92,7 +93,17 @@ public class PaginationOfListOfSitesTest {
 		// homePage.getDriverManager().driverWait();
 		// homePage.getDriverManager().driverWait();
 		// go to the sites page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#sitesRightNav").click();
+		homePage.getDriverManager().driverWait(3000);
+		String sitesNavOptionElementCssSelector = "#sitesRightNav";
+
+		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "cssSelector", sitesNavOptionElementCssSelector)
+					.click();
+		else
+			throw new NoSuchElementException(
+					"Site creation process is taking too long time and the element was not found");
+
+		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector", "#sitesRightNav").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#sitesRightNav")).click();
 
 		// wait for element is clickeable
@@ -163,32 +174,27 @@ public class PaginationOfListOfSitesTest {
 		// li:nth-child(4) > a"))
 		// .click();
 
-		
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
-				"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a")
-		.click();
-		
+				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a")
+				.click();
+
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector(
 		// "#container > div > div > div.ng-scope > dir-pagination-controls > ul >
 		// li:nth-child(1) > a"))
 		// .click();
 
-		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
-				"#container > div > div > div.pull-right.m10 > input")
-		.clear();
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#container > div > div > div.pull-right.m10 > input").clear();
+
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .clear();
 
-		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
-				"#container > div > div > div.pull-right.m10 > input")
-		.sendKeys("10");
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
+
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .sendKeys("10");
@@ -237,10 +243,12 @@ public class PaginationOfListOfSitesTest {
 
 		// Create user 2
 
+		homePage.getDriverManager().driverWait(2000);
 		createSitesRandom();
 
 		// Create user 3
 
+		homePage.getDriverManager().driverWait(2000);
 		createSitesRandom();
 
 		homePage.getDriverManager().driverWait(1000);

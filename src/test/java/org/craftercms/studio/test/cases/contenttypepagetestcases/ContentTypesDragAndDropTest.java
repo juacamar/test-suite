@@ -70,13 +70,13 @@ public class ContentTypesDragAndDropTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// homePage.getDriverManager().driverWait();
 
 		// Show site content panel
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']").click();
+		.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", ".//a[@id='acn-dropdown-toggler']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable

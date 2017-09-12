@@ -73,11 +73,11 @@ public class CutPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(4000);
 		// homePage.getDriverManager().driverWait();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
 		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 		// .click();

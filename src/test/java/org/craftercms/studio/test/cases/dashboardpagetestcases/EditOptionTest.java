@@ -78,7 +78,7 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 
 		// select main content
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#yui-gen8").click();
@@ -97,7 +97,7 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// save
 
@@ -283,14 +283,14 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// go to dashboard
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-logo").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// expand pages folder
-
+		homePage.getDriverManager().driverWait(4000);
 		dashboardPage.expandPagesTree();
 
 		// create a new content
@@ -303,7 +303,7 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// wait for element is clickeable
 

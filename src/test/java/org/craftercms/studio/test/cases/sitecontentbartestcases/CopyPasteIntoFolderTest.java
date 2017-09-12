@@ -122,7 +122,7 @@ public class CopyPasteIntoFolderTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Switch back to the dashboard page
 
@@ -165,7 +165,7 @@ public class CopyPasteIntoFolderTest {
 	    this.createContent();
 	    
 		// Expand Home Tree
-
+	    dashboardPage.getDriverManager().driverWait(4000);
 		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable

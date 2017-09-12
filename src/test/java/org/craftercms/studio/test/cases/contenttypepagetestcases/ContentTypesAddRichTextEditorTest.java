@@ -9,7 +9,6 @@ import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -63,13 +62,11 @@ public class ContentTypesAddRichTextEditorTest {
 		driverManager.driverWait(4000);
 
 		// Getting the Form Section control input for drag and drop action
-		WebElement FromControlSectionFormSectionElement = driverManager.getDriver()
-				.findElement(By.xpath(controlsSectionFormSectionLocator));
+		WebElement FromControlSectionFormSectionElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionFormSectionLocator);
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerLocator));
+		WebElement ToContentTypeContainer =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerLocator);
 
 		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
 		// wait for element
@@ -78,10 +75,9 @@ public class ContentTypesAddRichTextEditorTest {
 
 		// driverManager.driverWait();
 
-		WebElement FromRTE = driverManager.getDriver().findElement(By.xpath(controlsSectionRichTextEditorLocator));
+		WebElement FromRTE = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionRichTextEditorLocator);
 
-		WebElement ToDefaultSection = driverManager.getDriver()
-				.findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerFormSectionContainerLocator);
 
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRTE, ToDefaultSection);
 
@@ -111,13 +107,13 @@ public class ContentTypesAddRichTextEditorTest {
 
 		// Show site content panel
 		// homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath","/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")
 				.click();
 
 		// Show admin console page
 		homePage.getDriverManager().driverWait(4000);
 		// homePage.getDriverManager().driverWait();
-		driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",".//a[@id='admin-console']").click();
 
 		// wait for element
 		homePage.getDriverManager().driverWait(3000);
@@ -150,9 +146,9 @@ public class ContentTypesAddRichTextEditorTest {
 
 		// Click on input section to can view the properties
 		siteConfigPage.clickRTESection();
-
+		homePage.getDriverManager().driverWait(2000);
 		// Asserts that fields are not empty.
-		String titleText = driverManager.getDriver().findElement(By.xpath(contentTypeContainerRTETitleLocator))
+		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",contentTypeContainerRTETitleLocator)
 				.getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));

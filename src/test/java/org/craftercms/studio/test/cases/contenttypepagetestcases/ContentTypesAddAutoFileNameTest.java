@@ -113,13 +113,13 @@ public class ContentTypesAddAutoFileNameTest {
 		homePage.goToPreviewPage();
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// driverManager.driverWait();
 
 		// Show site content panel
 		// homePage.getDriverManager().driverWait();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 		// .click();

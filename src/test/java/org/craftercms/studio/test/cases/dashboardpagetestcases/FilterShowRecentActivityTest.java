@@ -162,7 +162,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 
 		// Switch back to the dashboard page
 
@@ -354,7 +354,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 
 		// expand home
 
@@ -371,7 +371,7 @@ public class FilterShowRecentActivityTest {
 		// create a content with level descriptor content type
 
 		// create another content to use a filter
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 		createSecondContent();
 
 		// reload page
@@ -380,7 +380,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// filters and asserts
 		this.filtersAndAsserts();

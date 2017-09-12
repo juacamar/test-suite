@@ -141,7 +141,7 @@ public class DuplicateOptionTest {
 
 	public void duplicateContentCreated() {
 		// click on duplicate
-
+		driverManager.driverWait(4000);
 		dashboardPage.clickOnDuplicateOption();
 
 		// wait for element is clickeable

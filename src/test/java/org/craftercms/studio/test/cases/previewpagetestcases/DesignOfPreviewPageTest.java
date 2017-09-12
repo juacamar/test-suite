@@ -75,11 +75,11 @@ public class DesignOfPreviewPageTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// Assert crafter studio logo is present.
 
-		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[1]/a/img");
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[1]/a/img"));
