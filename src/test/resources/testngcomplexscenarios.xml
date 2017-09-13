@@ -3,7 +3,7 @@
 
 <suite name="craftercms studio UI complex-scenarios test suite"
 	preserve-order="true">
- <test name="Crafter3LoadTest" preserve-order="true">
+	<test name="Crafter3LoadTest" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
@@ -16,8 +16,8 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
-	  <test name="Craftercms1248" preserve-order="true">
+	</test>
+	<test name="Craftercms1248" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />

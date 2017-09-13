@@ -68,7 +68,7 @@ public class HistoryOptionTest {
 		homePage.getDriverManager().driverWait(4000);
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 		// .click();
@@ -91,7 +91,7 @@ public class HistoryOptionTest {
 
 		// Select the content to view the history.
 		homePage.getDriverManager().driverWait(1000);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#ygtvlabelel1").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1")).click();
 
@@ -109,7 +109,7 @@ public class HistoryOptionTest {
 
 		// Assert
 
-		String historyPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		String historyPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".view-title").getText();
 				//driverManager.getDriver().findElement(By.cssSelector(".view-title")).getText();
 		Assert.assertEquals(historyPage, "Version History");

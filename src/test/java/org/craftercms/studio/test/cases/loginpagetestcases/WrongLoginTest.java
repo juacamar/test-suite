@@ -67,7 +67,7 @@ public class WrongLoginTest {
 
 		// Assert No login for invalid user.
 
-		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".alert");
 				//driverManager.getDriver().findElement(By.cssSelector(".alert"));
 
@@ -83,7 +83,7 @@ public class WrongLoginTest {
 
 		// Assert No login for invalid password.
 
-		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".btn.btn-primary");
 				//driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
 

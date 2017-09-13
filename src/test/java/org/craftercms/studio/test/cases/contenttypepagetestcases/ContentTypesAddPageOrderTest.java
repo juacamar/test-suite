@@ -63,13 +63,13 @@ public class ContentTypesAddPageOrderTest {
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionFormSectionLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionFormSectionLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(controlsSectionFormSectionLocator));
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				contentTypeContainerLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(contentTypeContainerLocator));
@@ -81,11 +81,11 @@ public class ContentTypesAddPageOrderTest {
 
 		// driverManager.driverWait();
 
-		WebElement FromLabel = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement FromLabel = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				controlsSectionPageOrderLocator);
 		// driverManager.getDriver().findElement(By.xpath(controlsSectionPageOrderLocator));
 
-		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				contentTypeContainerFormSectionContainerLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
@@ -118,7 +118,7 @@ public class ContentTypesAddPageOrderTest {
 
 		// Show site content panel
 		// homePage.getDriverManager().driverWait();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 		// .click();
@@ -127,7 +127,7 @@ public class ContentTypesAddPageOrderTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='admin-console']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='admin-console']").click();
 		// driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
 
 		// wait for element
@@ -164,7 +164,7 @@ public class ContentTypesAddPageOrderTest {
 
 		// Asserts that fields are not empty.
 		String titleText = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerPageOrderTitleLocator)
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", contentTypeContainerPageOrderTitleLocator)
 				.getText();
 		// driverManager.getDriver().findElement(By.xpath(contentTypeContainerPageOrderTitleLocator))
 		// .getText();

@@ -68,11 +68,11 @@ public class LogOutTest {
 		
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// Verify login is fine
 	
-	    WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+	    WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".btn.btn-primary");
 	    		//driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
 	 

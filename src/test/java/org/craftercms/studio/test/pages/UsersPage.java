@@ -51,7 +51,7 @@ public class UsersPage {
 
 	public void clickDeleteOption() {
 		this.driverManager.driverWait(2000);
-		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				deleteUserOption);
 				//driverManager.getDriver().findElement(By.cssSelector(deleteUserOption));
 		
@@ -73,7 +73,7 @@ public class UsersPage {
 
 	public void clickNewUserButton() {
 		this.driverManager.driverWait(2000);
-		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				newUserOption);
 				//driverManager.getDriver().findElement(By.cssSelector(newUserOption));
 		newUserButton.click();
@@ -93,8 +93,8 @@ public class UsersPage {
 	// Click on Save New User Button
 
 	public void clickSaveNewUserButton() {
-		this.driverManager.driverWait(2000);
-		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWait(300);
+		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				saveNewUserOption);
 				//driverManager.getDriver().findElement(By.cssSelector(saveNewUserOption));
 		saveNewUser.click();
@@ -114,8 +114,8 @@ public class UsersPage {
 	// Delete User
 
 	public void clickDeleteOptionCreated() {
-		driverManager.driverWait(2000);
-		WebElement previewLink =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		driverManager.driverWait(3000);
+		WebElement previewLink =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				deleteUserOption2);
 				//driverManager.getDriver().findElement(By.cssSelector(deleteUserOption2));
 		previewLink.click();
@@ -135,8 +135,8 @@ public class UsersPage {
 	// edit User
 
 	public void clickEditOptionCreated() {
-		this.driverManager.driverWait(2000);
-		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWait(300);
+		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				editUserOption);
 				//driverManager.getDriver().findElement(By.cssSelector(editUserOption));
 		edit.click();
@@ -146,7 +146,6 @@ public class UsersPage {
 	// edit User
 
 	public void clickOnEditUserCreated() {
-
 		// edit User
 
 		this.clickEditOptionCreated();
@@ -175,7 +174,7 @@ public class UsersPage {
 
 	public void clickOnCrafterLogo() {
 		this.driverManager.driverWait(2000);
-		WebElement crafterLogoWebElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement crafterLogoWebElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				crafterLogo);
 				//driverManager.getDriver().findElement(By.xpath(crafterLogo));
 		crafterLogoWebElement.click();

@@ -67,7 +67,7 @@ public class TryToDeleteUserConnectedTest {
 		// homePage.getDriverManager().driverWait();
 		// Go to users tab
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "cssselector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssselector",
 				"body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(1) > a")
 				.click();
 
@@ -85,7 +85,7 @@ public class TryToDeleteUserConnectedTest {
 
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "cssselector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssselector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
@@ -95,7 +95,7 @@ public class TryToDeleteUserConnectedTest {
 
 		// Verify
 
-		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "cssselector",
+		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssselector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button");
 
 		Assert.assertTrue(validation.isDisplayed());

@@ -77,7 +77,7 @@ public class PresetEachDesignTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 						"cssSelector", ".studio-ice-dialog > .bd iframe"));
 						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
@@ -98,12 +98,12 @@ public class PresetEachDesignTest {
 		//homePage.getDriverManager().driverWait();
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#title > div > input").sendKeys("MainTitle");
 		//driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#cstudio-form-expand-all").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
@@ -116,7 +116,7 @@ public class PresetEachDesignTest {
 		//homePage.getDriverManager().driverWait();
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"id", "cstudioSaveAndClose").click();
 		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
@@ -133,13 +133,13 @@ public class PresetEachDesignTest {
 	public void presets() {
 
 		// open publishing channel combo
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#medium-panel-elem > div.acn-accordion-header > a").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#medium-panel-elem > div.acn-accordion-header > a")).click();
 
 		//desktop prese
 
-		 String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		 String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 					"cssSelector", "#engineWindow").getText();
 				 //driverManager.getDriver()
 		// .findElement(By.cssSelector("#engineWindow")).getText();
@@ -197,7 +197,7 @@ public class PresetEachDesignTest {
 		homePage.getDriverManager().driverWait(2000);
 
 		// select content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#ygtvlabelel3").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
 
@@ -206,7 +206,7 @@ public class PresetEachDesignTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// open tools
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#acn-preview-tools-image").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#acn-preview-tools-image")).click();
 

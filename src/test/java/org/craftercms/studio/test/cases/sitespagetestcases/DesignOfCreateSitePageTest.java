@@ -60,10 +60,10 @@ public class DesignOfCreateSitePageTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait(2000);
-		// homePage.getDriverManager().driverWait(3000);
+		// homePage.getDriverManager().driverWait(300);
 		// Assert crafter studio logo is present.
 
-		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".navbar-brand > img");
 		// driverManager.getDriver().findElement(By.cssSelector(".navbar-brand > img"));
 
@@ -73,7 +73,7 @@ public class DesignOfCreateSitePageTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		WebElement sitesLabel = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement sitesLabel = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"h1.ng-binding");
 		// driverManager.getDriver().findElement(By.cssSelector("h1.ng-binding"));
 
@@ -83,7 +83,7 @@ public class DesignOfCreateSitePageTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".btn.btn-default.btn-pill.btn-block");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
@@ -94,7 +94,7 @@ public class DesignOfCreateSitePageTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		WebElement adminTools = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement adminTools = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".nav > li:nth-child(1) > a:nth-child(1)");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector(".nav > li:nth-child(1) > a:nth-child(1)"));
@@ -105,7 +105,7 @@ public class DesignOfCreateSitePageTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		WebElement sitesOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement sitesOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"li.active > a:nth-child(1)");
 		// driverManager.getDriver().findElement(By.cssSelector("li.active >
 		// a:nth-child(1)"));
@@ -116,7 +116,7 @@ public class DesignOfCreateSitePageTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		WebElement helpOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement helpOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".nav > li:nth-child(3) > a:nth-child(1)");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector(".nav > li:nth-child(3) > a:nth-child(1)"));
@@ -127,7 +127,7 @@ public class DesignOfCreateSitePageTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		WebElement accountOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement accountOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".dropdown-toggle");
 		// driverManager.getDriver().findElement(By.cssSelector(".dropdown-toggle"));
 
@@ -137,7 +137,7 @@ public class DesignOfCreateSitePageTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		WebElement sitesPerPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement sitesPerPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > label");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#container > div > div > div.pull-right.m10 >
@@ -149,7 +149,7 @@ public class DesignOfCreateSitePageTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 
-		WebElement sitesPerPageCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement sitesPerPageCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#container > div > div > div.pull-right.m10 >

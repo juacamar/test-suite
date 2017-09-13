@@ -60,22 +60,22 @@ public class SearchUserTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#firstName").sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#firstName").sendKeys("Name");
 		// driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#lastName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#lastName")
 				.sendKeys("Last Name");
 		// driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last
 		// Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#email")
 				.sendKeys("email@email.com");
 		// driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#username")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#username")
 				.sendKeys(RandomStringUtils.randomAlphabetic(5));
 		// driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#password")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#password")
 				.sendKeys("password");
 		// driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#passwordVerification")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#passwordVerification")
 				.sendKeys("password");
 		// driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
 
@@ -88,14 +88,14 @@ public class SearchUserTest {
 		// Search user recently created
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input")
 				.sendKeys("username");
 
 		// Assert to search is properly
 
 		String searchUsername = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div > div > div > table > tbody > tr > td:nth-child(1) > a")
 				.getText();
 		Assert.assertEquals(searchUsername, "username");
@@ -104,20 +104,20 @@ public class SearchUserTest {
 
 		// Cleaning search field
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input")
 				.clear();
 
 		// Search admin
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input")
 				.sendKeys("admin");
 
 		// Assert to search is properly
 
 		String searchAdminUser = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div > div > div > table > tbody > tr > td:nth-child(1) > a")
 				.getText();
 		Assert.assertEquals(searchAdminUser, "admin");
@@ -146,7 +146,7 @@ public class SearchUserTest {
 
 		// Assert new users created is present
 
-		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
 
 		Assert.assertTrue(newUserCreated.isDisplayed());
@@ -157,7 +157,7 @@ public class SearchUserTest {
 
 		// Cleaning search field
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input")
 				.clear();
 
@@ -167,11 +167,11 @@ public class SearchUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 

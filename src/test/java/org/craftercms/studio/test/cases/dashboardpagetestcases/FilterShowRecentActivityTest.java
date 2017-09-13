@@ -51,7 +51,7 @@ public class FilterShowRecentActivityTest {
 	public void bodyNotRequiered() {
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// wait for element is clickeable
@@ -82,7 +82,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(2000);
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#yui-gen8").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#yui-gen8").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
 		// wait for element is clickeable
@@ -90,7 +90,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(2000);
 
 		// Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("div.property-wrapper:nth-child(21) >
@@ -98,7 +98,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// save
 
@@ -129,7 +129,7 @@ public class FilterShowRecentActivityTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
 		// .bd iframe")));
@@ -147,7 +147,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
 		// input")).sendKeys("MainTitle");
@@ -157,7 +157,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
@@ -193,7 +193,7 @@ public class FilterShowRecentActivityTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
 		// .bd iframe")));
@@ -211,17 +211,17 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
 		// input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
@@ -236,7 +236,7 @@ public class FilterShowRecentActivityTest {
 	public void filtersAndAsserts() {
 
 		// clean filter
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#widget-showitems-MyRecentActivity.form-control.input-sm").clear();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#widget-showitems-MyRecentActivity.form-control.input-sm")).clear();
@@ -246,7 +246,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Show only 1 item edited
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#widget-showitems-MyRecentActivity.form-control.input-sm").sendKeys("1", Keys.ENTER);
 
 		// driverManager.getDriver()
@@ -259,7 +259,7 @@ public class FilterShowRecentActivityTest {
 
 		// Assert filter 1
 
-		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]").getText();
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]")).getText();
@@ -270,7 +270,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// clean filter
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#widget-showitems-MyRecentActivity.form-control.input-sm").clear();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#widget-showitems-MyRecentActivity.form-control.input-sm")).clear();
@@ -280,7 +280,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Show only 1 item edited
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#widget-showitems-MyRecentActivity.form-control.input-sm").sendKeys("2", Keys.ENTER);
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#widget-showitems-MyRecentActivity.form-control.input-sm"))
@@ -292,7 +292,7 @@ public class FilterShowRecentActivityTest {
 
 		// Assert filter 1
 
-		String edit2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		String edit2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#MyRecentActivity-tbody > tr:nth-child(2) > td:nth-child(4)").getText();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(2) >
@@ -321,7 +321,7 @@ public class FilterShowRecentActivityTest {
 		// homePage.getDriverManager().driverWait();
 		// Show site content panel
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				".//a[@id='acn-dropdown-toggler']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
@@ -338,7 +338,7 @@ public class FilterShowRecentActivityTest {
 		homePage.getDriverManager().driverWait(3000);
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#cstudio-logo").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
@@ -380,7 +380,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// filters and asserts
 		this.filtersAndAsserts();

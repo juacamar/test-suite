@@ -59,13 +59,13 @@ public class DeleteUserTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait(1000);
-		// homePage.getDriverManager().driverWait(3000);
+		// homePage.getDriverManager().driverWait(300);
 		// click On Users option
 
 		createSitePage.clickOnUsersOption();
 
 		// Click on delete user
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 		usersPage.clickOnDeleteUserCreated();
 
 		// wait for element is clickeable
@@ -73,7 +73,7 @@ public class DeleteUserTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Confirmation to delete user connected
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 		// driverManager.getDriver()
@@ -84,11 +84,11 @@ public class DeleteUserTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(300);
 
 		// Assert new users created is deteled
 
-		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > table > tbody");
 		
 				//driverManager.getDriver()

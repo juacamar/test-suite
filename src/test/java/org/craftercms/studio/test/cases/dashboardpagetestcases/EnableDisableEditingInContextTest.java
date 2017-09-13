@@ -68,7 +68,7 @@ public class EnableDisableEditingInContextTest {
 		
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 		//homePage.getDriverManager().driverWait();
 		// Click on Preview Tools icon
 		
@@ -84,7 +84,7 @@ public class EnableDisableEditingInContextTest {
 		
 		//Assert 
 		
-		String editIconActive = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		String editIconActive = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				"/html/body/div[3]/div[1]/div[2]/div/div[2]/div/div[1]/button").getText();
 				//driverManager.getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div[2]/div/div[2]/div/div[1]/button")).getText();
 		Assert.assertEquals(editIconActive, "In-Context Edit Off");

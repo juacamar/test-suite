@@ -87,8 +87,8 @@ public class WebDriverManager {
 	}
 
 	public void closeConnection() {
-		//this.driver.close();
-		 this.driver.quit();
+		// this.driver.close();
+		this.driver.quit();
 	}
 
 	public void maximizeWindow() {
@@ -121,55 +121,55 @@ public class WebDriverManager {
 		}
 	}
 
-	public WebElement driverWaitUntilElementIsPresentAndDisplayed(int waitTime, String typeOfSelector,
+	public WebElement driverWaitUntilElementIsPresentAndDisplayed(int timeOut, String typeOfSelector,
 			String selectorValue) {
 		WebElement element = null;
 		switch (typeOfSelector.toLowerCase()) {
 		case "cssselector":
-			if ((new WebDriverWait(this.driver, waitTime)).until(
+			if ((new WebDriverWait(this.driver, timeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.cssSelector(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.cssSelector(selectorValue)))))
 				element = this.driver.findElement(By.cssSelector(selectorValue));
 
 			break;
 		case "xpath":
-			if ((new WebDriverWait(this.driver, waitTime))
+			if ((new WebDriverWait(this.driver, timeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.xpath(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.xpath(selectorValue)))))
 				element = this.driver.findElement(By.xpath(selectorValue));
 			break;
 		case "id":
-			if ((new WebDriverWait(this.driver, waitTime))
+			if ((new WebDriverWait(this.driver, timeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.id(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.id(selectorValue)))))
 				element = this.driver.findElement(By.id(selectorValue));
 			break;
 		case "classname":
-			if ((new WebDriverWait(this.driver, waitTime)).until(
+			if ((new WebDriverWait(this.driver, timeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.className(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.className(selectorValue)))))
 				element = this.driver.findElement(By.className(selectorValue));
 			break;
 		case "tagname":
-			if ((new WebDriverWait(this.driver, waitTime)).until(
+			if ((new WebDriverWait(this.driver, timeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.tagName(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.tagName(selectorValue)))))
 				element = this.driver.findElement(By.tagName(selectorValue));
 			break;
 		case "linktext":
-			if ((new WebDriverWait(this.driver, waitTime)).until(
+			if ((new WebDriverWait(this.driver, timeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.linkText(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.linkText(selectorValue)))))
 				element = this.driver.findElement(By.linkText(selectorValue));
 			break;
 		case "partialLinktext":
-			if ((new WebDriverWait(this.driver, waitTime)).until(ExpectedConditions.and(
+			if ((new WebDriverWait(this.driver, timeOut)).until(ExpectedConditions.and(
 					ExpectedConditions.presenceOfElementLocated(By.partialLinkText(selectorValue)),
 					ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(selectorValue)))))
 				element = this.driver.findElement(By.partialLinkText(selectorValue));
 			break;
 		case "name":
-			if ((new WebDriverWait(this.driver, waitTime))
+			if ((new WebDriverWait(this.driver, timeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.name(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.name(selectorValue)))))
 				element = this.driver.findElement(By.name(selectorValue));
@@ -201,7 +201,8 @@ public class WebDriverManager {
 
 		try {
 			@SuppressWarnings("unused")
-			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", xpathOfTheElement);
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(8, "xpath",
+					xpathOfTheElement);
 			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
@@ -217,7 +218,8 @@ public class WebDriverManager {
 
 		try {
 			@SuppressWarnings("unused")
-			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", cssSelector);
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(8, "cssSelector",
+					cssSelector);
 			// this.getDriver().findElement(By.cssSelector(cssSelector));
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;

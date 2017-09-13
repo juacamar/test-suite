@@ -76,10 +76,10 @@ public class PublishingSiteTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
-						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
+		// .bd iframe")));
 
 		// wait for element is clickeable
 
@@ -95,21 +95,21 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		//homePage.getDriverManager().driverWait();
+		// homePage.getDriverManager().driverWait();
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
-				"cssSelector", "#title > div > input").sendKeys("MainTitle");
-		//driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
+				.sendKeys("MainTitle");
+		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
+		// input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
-				"id", "cstudioSaveAndClose").click();
-		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
+		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
 
@@ -144,7 +144,7 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		previewPage.getDriverManager().driverWait(2000);
+		previewPage.getDriverManager().driverWait(3000);
 
 		// reload page
 
@@ -153,9 +153,12 @@ public class PublishingSiteTest {
 		// wait for element is clickeable
 
 		previewPage.getDriverManager().driverWait(3000);
-		
+
 		driverManager.getDriver().navigate().refresh();
+		previewPage.getDriverManager().driverWait(3000);
+
 		driverManager.getDriver().navigate().refresh();
+
 	}
 
 	@Test(priority = 0)
@@ -167,7 +170,7 @@ public class PublishingSiteTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// MaximizeWindow
-		//driverManager.maximizeWindow();
+		// driverManager.maximizeWindow();
 
 		// wait for element is clickeable
 
@@ -184,12 +187,11 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
-				"cssSelector", "#cstudio-logo").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(30, "cssSelector", "#cstudio-logo").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
 
@@ -209,13 +211,14 @@ public class PublishingSiteTest {
 
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
-		
-		this.driverManager.driverWait(2000);
-		//this.driverManager.driverWait();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
-				"xpath", ".//span[contains(text(),'Testing1')]").click();
-		//driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
+		this.driverManager.driverWait(2000);
+		// this.driverManager.driverWait();
+
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//span[contains(text(),'Testing1')]")
+				.click();
+		// driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
 
 		homePage.getDriverManager().driverWait(1000);
 
@@ -226,11 +229,11 @@ public class PublishingSiteTest {
 		this.reloadPage();
 
 		// Assert
-		homePage.getDriverManager().driverWait(5000);
-		String siteStatus = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5,
-				"xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span").getText();
-				//driverManager.getDriver()
-				//.findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
+		homePage.getDriverManager().driverWait(3000);
+		String siteStatus = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span").getText();
+		// driverManager.getDriver()
+		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
 		Assert.assertEquals(siteStatus, "Live :");
 
 	}

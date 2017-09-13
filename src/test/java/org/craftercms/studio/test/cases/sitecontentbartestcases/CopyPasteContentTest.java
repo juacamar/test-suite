@@ -80,7 +80,7 @@ public class CopyPasteContentTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
@@ -99,14 +99,14 @@ public class CopyPasteContentTest {
 		homePage.getDriverManager().driverWait(4000);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 
 		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
 		// input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
 				.click();
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
@@ -115,7 +115,7 @@ public class CopyPasteContentTest {
 		homePage.getDriverManager().driverWait(4000);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
@@ -133,7 +133,7 @@ public class CopyPasteContentTest {
 	public void Copy_Paste_Content_test() {
 
 		// login to application
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		loginPage.loginToCrafter("admin", "admin");
 
@@ -158,7 +158,7 @@ public class CopyPasteContentTest {
 
 		// driverManager.getDriver().navigate().refresh();
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// expand pages folder
 
@@ -205,7 +205,7 @@ public class CopyPasteContentTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.driverWait(2000);
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
 		// .bd iframe")));
@@ -214,7 +214,7 @@ public class CopyPasteContentTest {
 
 		homePage.getDriverManager().driverWait(1000);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#internal-name > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#internal-name > div > input")
 				.clear();
 		// driverManager.getDriver().findElement(By.cssSelector("#internal-name > div >
 		// input")).clear();
@@ -250,7 +250,7 @@ public class CopyPasteContentTest {
 		// Assert of the content copied
 
 		String contentCopied = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector", "#ygtvlabelel4").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#ygtvlabelel4").getText();
 		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel4")).getText();
 		Assert.assertEquals(contentCopied, "COPY");
 

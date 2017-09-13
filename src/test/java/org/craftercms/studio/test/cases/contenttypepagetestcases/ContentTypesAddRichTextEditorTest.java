@@ -62,11 +62,11 @@ public class ContentTypesAddRichTextEditorTest {
 		driverManager.driverWait(4000);
 
 		// Getting the Form Section control input for drag and drop action
-		WebElement FromControlSectionFormSectionElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionFormSectionLocator);
+		WebElement FromControlSectionFormSectionElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionFormSectionLocator);
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerLocator);
+		WebElement ToContentTypeContainer =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", contentTypeContainerLocator);
 
 		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
 		// wait for element
@@ -75,9 +75,9 @@ public class ContentTypesAddRichTextEditorTest {
 
 		// driverManager.driverWait();
 
-		WebElement FromRTE = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionRichTextEditorLocator);
+		WebElement FromRTE = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionRichTextEditorLocator);
 
-		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerFormSectionContainerLocator);
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", contentTypeContainerFormSectionContainerLocator);
 
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRTE, ToDefaultSection);
 
@@ -107,16 +107,16 @@ public class ContentTypesAddRichTextEditorTest {
 
 		// Show site content panel
 		// homePage.getDriverManager().driverWait();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath","/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath","/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")
 				.click();
 
 		// Show admin console page
 		homePage.getDriverManager().driverWait(4000);
 		// homePage.getDriverManager().driverWait();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",".//a[@id='admin-console']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",".//a[@id='admin-console']").click();
 
 		// wait for element
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -148,7 +148,7 @@ public class ContentTypesAddRichTextEditorTest {
 		siteConfigPage.clickRTESection();
 		homePage.getDriverManager().driverWait(2000);
 		// Asserts that fields are not empty.
-		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",contentTypeContainerRTETitleLocator)
+		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",contentTypeContainerRTETitleLocator)
 				.getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));

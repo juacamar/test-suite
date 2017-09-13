@@ -68,7 +68,7 @@ public class DependenciesOptionTest {
 		homePage.getDriverManager().driverWait(4000);
 		// homePage.getDriverManager().driverWait();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 		// .click();
@@ -90,12 +90,12 @@ public class DependenciesOptionTest {
 		previewPage.expandHomeTree();
 
 		// Select the content to view the history.
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#ygtvlabelel1").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#ygtvlabelel1").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// click on history option
 
@@ -103,12 +103,12 @@ public class DependenciesOptionTest {
 
 		// wait for element is clickeable
 
-		previewPage.getDriverManager().driverWait(3300);
+		previewPage.getDriverManager().driverWait(330);
 
 		// Assert
 
 		String historyPage = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", ".view-title").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", ".view-title").getText();
 		// driverManager.getDriver().findElement(By.cssSelector(".view-title")).getText();
 		Assert.assertEquals(historyPage, "Dependencies");
 

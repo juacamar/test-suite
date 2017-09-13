@@ -84,7 +84,7 @@ public class ShowUsersPageTest {
 		usersPage.getDriverManager().driverWait(2000);
 
 		// wait for element is clickeable
-		//homePage.getDriverManager().driverWait(3000);
+		//homePage.getDriverManager().driverWait(300);
 
 		// select the about us option
 		homePage.goToDashboardPage();
@@ -95,7 +95,7 @@ public class ShowUsersPageTest {
 		dashboardPage.clickUsersContextualNavigationOption();
 
 		// wait for element is clickeable
-		usersPage.getDriverManager().driverWait(3000);
+		usersPage.getDriverManager().driverWait(300);
 
 		// Checking if the UsersPage was Loaded
 		Assert.assertTrue(usersPage.getDriverManager().getDriver().getCurrentUrl()

@@ -68,7 +68,7 @@ public class PreviewSyncTest {
 		homePage.getDriverManager().driverWait(2000);
 		//homePage.getDriverManager().driverWait();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"xpath", ".//a[@id='acn-dropdown-toggler']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
@@ -77,7 +77,7 @@ public class PreviewSyncTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#admin-console").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
@@ -89,7 +89,7 @@ public class PreviewSyncTest {
 
 		homePage.getDriverManager().driverWait(1000);
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#yui-gen0-button").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#yui-gen0-button")).click();
 

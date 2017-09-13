@@ -82,7 +82,7 @@ public class PaginationOfListOfSitesTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(6000);
+		homePage.getDriverManager().driverWait(8000);
 		driverManager.getDriver().navigate().refresh();
 		// wait for element is clickeable
 
@@ -93,11 +93,11 @@ public class PaginationOfListOfSitesTest {
 		// homePage.getDriverManager().driverWait();
 		// homePage.getDriverManager().driverWait();
 		// go to the sites page
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
 		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "cssSelector", sitesNavOptionElementCssSelector)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -113,25 +113,25 @@ public class PaginationOfListOfSitesTest {
 
 	public void navigationOfPage() {
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .sendKeys("1");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
@@ -143,7 +143,7 @@ public class PaginationOfListOfSitesTest {
 
 		// navigation
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(3) > a")
 				.click();
 		// driverManager.getDriver()
@@ -153,7 +153,7 @@ public class PaginationOfListOfSitesTest {
 		// .click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(2) > a")
 				.click();
 
@@ -164,7 +164,7 @@ public class PaginationOfListOfSitesTest {
 		// .click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul >li:nth-child(4) > a")
 				.click();
 
@@ -175,7 +175,7 @@ public class PaginationOfListOfSitesTest {
 		// .click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a")
 				.click();
 
@@ -185,14 +185,14 @@ public class PaginationOfListOfSitesTest {
 		// li:nth-child(1) > a"))
 		// .click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
 
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
@@ -213,7 +213,7 @@ public class PaginationOfListOfSitesTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// Click on YES to confirm the delete.
 
@@ -221,7 +221,7 @@ public class PaginationOfListOfSitesTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 	}
 

@@ -74,7 +74,7 @@ public class ShowAboutUsTest {
 
 		// Assert new users created is present
 
-		WebElement aboutUsInfo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement aboutUsInfo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div:nth-child(2) > div");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#container > div > div > div:nth-child(2) >

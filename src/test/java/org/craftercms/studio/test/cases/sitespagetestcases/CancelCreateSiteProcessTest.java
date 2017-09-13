@@ -96,7 +96,7 @@ public class CancelCreateSiteProcessTest {
 
 		// Assert
 
-		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > header");
 
 		Assert.assertTrue(siteName.isDisplayed());

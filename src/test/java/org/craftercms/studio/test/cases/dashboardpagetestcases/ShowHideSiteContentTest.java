@@ -79,7 +79,7 @@ public class ShowHideSiteContentTest {
 		// Assert that the site content is expanded
 
 		String siteContentExpanded = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").getText();
 		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).getText();
 		Assert.assertEquals(siteContentExpanded, "Site Config");
 
@@ -94,7 +94,7 @@ public class ShowHideSiteContentTest {
 		// Assert that the site content is Collapsed
 
 		//String siteContentCollapsed = this.driverManager
-			//	.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").getText();
+			//	.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").getText();
 		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).getText();
 		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector("#admin-console"));
 	}

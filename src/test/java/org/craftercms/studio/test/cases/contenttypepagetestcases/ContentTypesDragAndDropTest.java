@@ -76,7 +76,7 @@ public class ContentTypesDragAndDropTest {
 
 		// Show site content panel
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", ".//a[@id='acn-dropdown-toggler']").click();
+		.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='acn-dropdown-toggler']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
 
 		// wait for element is clickeable
@@ -123,11 +123,11 @@ public class ContentTypesDragAndDropTest {
 		// TimeUnit.MILLISECONDS);
 
 		WebElement From = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", ".control-section");
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", ".control-section");
 				//driverManager.getDriver().findElement(By.cssSelector(".control-section"));
 
 		WebElement To = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#content-type-canvas .content-form-name");
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#content-type-canvas .content-form-name");
 				//driverManager.getDriver()
 				//.findElement(By.cssSelector("#content-type-canvas .content-form-name"));
 

@@ -76,7 +76,7 @@ public class CreateTreeSameContentTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 		// .click();
@@ -86,7 +86,7 @@ public class CreateTreeSameContentTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// wait for element is clickeable
@@ -117,7 +117,7 @@ public class CreateTreeSameContentTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#yui-gen6").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#yui-gen6").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen6")).click();
 
 		// wait for element is clickeable
@@ -125,7 +125,7 @@ public class CreateTreeSameContentTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("div.property-wrapper:nth-child(21) >
@@ -144,7 +144,7 @@ public class CreateTreeSameContentTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-logo").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// expand pages folder
@@ -173,7 +173,7 @@ public class CreateTreeSameContentTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 		// wait for element is clickeable
@@ -189,7 +189,7 @@ public class CreateTreeSameContentTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Expand all fields
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
 				.click();
 
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
@@ -200,10 +200,10 @@ public class CreateTreeSameContentTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
@@ -239,7 +239,7 @@ public class CreateTreeSameContentTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 		// wait for element
@@ -305,7 +305,7 @@ public class CreateTreeSameContentTest {
 		// Assert of the tree created
 
 		String contentCopied = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", "//tr/td[contains(span, 'About usTREE')]")
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", "//tr/td[contains(span, 'About usTREE')]")
 				.getText();
 		// driverManager.getDriver()
 		// .findElement(By.xpath("//tr/td[contains(span, 'About usTREE')]")).getText();

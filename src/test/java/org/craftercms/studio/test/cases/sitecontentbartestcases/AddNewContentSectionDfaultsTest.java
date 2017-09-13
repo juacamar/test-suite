@@ -48,7 +48,7 @@ public class AddNewContentSectionDfaultsTest {
 
 		// right click to see the the menu
 
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				".//span[text()='Home']");
 
 		// driverManager.getDriver().findElement(By.xpath(".//span[text()='Home']"));
@@ -58,7 +58,7 @@ public class AddNewContentSectionDfaultsTest {
 
 		this.driverManager.driverWait(1500);
 
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#ContextmenuWrapper0  ul li:nth-child(3)");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#ContextmenuWrapper0 ul li:nth-child(3)"));
@@ -83,7 +83,7 @@ public class AddNewContentSectionDfaultsTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
@@ -98,7 +98,7 @@ public class AddNewContentSectionDfaultsTest {
 		// homePage.getDriverManager().driverWait();
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
@@ -141,7 +141,7 @@ public class AddNewContentSectionDfaultsTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
 
 		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
@@ -174,7 +174,7 @@ public class AddNewContentSectionDfaultsTest {
 		// Assert of the test case is fine
 
 		String levelDescriptor = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#ygtvlabelel2").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#ygtvlabelel2").getText();
 
 		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel2")).getText();
 		
