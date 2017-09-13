@@ -73,7 +73,7 @@ public class ValidationsOfCreateSiteFieldsTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Click on description to show the validations
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#description").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#description").click();
 
 		// driverManager.getDriver().findElement(By.cssSelector("#description")).click();
 
@@ -83,7 +83,7 @@ public class ValidationsOfCreateSiteFieldsTest {
 
 		// Assert Id site is required.
 
-		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(1) > div:nth-child(4) > small");
 
 		Assert.assertTrue(siteID.isDisplayed());

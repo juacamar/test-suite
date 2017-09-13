@@ -45,7 +45,7 @@ public class ItemTypesSectionTest {
 
 		// Assert Item Types tittle is present.
 
-		WebElement itemTypes = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement itemTypes = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div.col-md-12.title > p");
 
 		// driverManager.getDriver().findElement(
@@ -56,7 +56,7 @@ public class ItemTypesSectionTest {
 
 		// Assert Navigation Page icon is present.
 
-		WebElement navigationPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement navigationPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(2) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -66,7 +66,7 @@ public class ItemTypesSectionTest {
 
 		// Assert video icon is present.
 
-		WebElement video = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement video = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(8) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -76,7 +76,7 @@ public class ItemTypesSectionTest {
 
 		// Assert excel icon is present.
 
-		WebElement excel = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement excel = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(14) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -86,7 +86,7 @@ public class ItemTypesSectionTest {
 
 		// Assert floating page icon is present.
 
-		WebElement floatingPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement floatingPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(3) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -96,7 +96,7 @@ public class ItemTypesSectionTest {
 
 		// Assert css icon is present.
 
-		WebElement css = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement css = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(9) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -106,7 +106,7 @@ public class ItemTypesSectionTest {
 
 		// Assert zip icon is present.
 
-		WebElement zip = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement zip = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(15) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -116,7 +116,7 @@ public class ItemTypesSectionTest {
 
 		// Assert component icon is present.
 
-		WebElement component = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement component = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(4) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -126,7 +126,7 @@ public class ItemTypesSectionTest {
 
 		// Assert font icon is present.
 
-		WebElement font = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement font = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(10) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -136,7 +136,7 @@ public class ItemTypesSectionTest {
 
 		// Assert groovy icon is present.
 
-		WebElement groovy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement groovy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(16) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -146,7 +146,7 @@ public class ItemTypesSectionTest {
 
 		// Assert Template/Script icon is present.
 
-		WebElement templateScript = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement templateScript = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(5) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -159,7 +159,7 @@ public class ItemTypesSectionTest {
 	public void assertsBlockTwo() {
 		// Assert pdf icon is present.
 
-		WebElement pdf = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement pdf = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(11) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -169,7 +169,7 @@ public class ItemTypesSectionTest {
 
 		// Assert other files icon is present.
 
-		WebElement otherFiles = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement otherFiles = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(17) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -179,7 +179,7 @@ public class ItemTypesSectionTest {
 
 		// Assert taxonomy icon is present.
 
-		WebElement taxonomy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement taxonomy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(6) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -189,7 +189,7 @@ public class ItemTypesSectionTest {
 
 		// Assert power point icon is present.
 
-		WebElement powerPoint = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement powerPoint = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(12) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -199,7 +199,7 @@ public class ItemTypesSectionTest {
 
 		// Assert image icon is present.
 
-		WebElement image = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement image = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(7) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -209,7 +209,7 @@ public class ItemTypesSectionTest {
 
 		// Assert word icon is present.
 
-		WebElement word = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement word = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#iconGuide > div.panel-body > div.row.item-types > div:nth-child(13) > div");
 		// driverManager.getDriver().findElement(
 		// By.cssSelector("#iconGuide > div.panel-body > div.row.item-types >
@@ -228,7 +228,7 @@ public class ItemTypesSectionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// go to dashboard page
 

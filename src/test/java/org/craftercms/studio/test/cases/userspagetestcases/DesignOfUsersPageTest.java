@@ -62,7 +62,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert header is present.
 		homePage.getDriverManager().driverWait(1000);
-		WebElement header = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement header = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > h2");
 
 		// driverManager.getDriver()
@@ -73,7 +73,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert crafter logo is present.
 
-		WebElement crafterLogo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement crafterLogo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"body > ui-view > header > nav > div > div.navbar-header > a > img");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("body > ui-view > header > nav > div >
@@ -83,7 +83,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert user menu option is present.
 
-		WebElement userMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement userMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#homeUsers");
 				//driverManager.getDriver().findElement(By.cssSelector("#homeUsers"));
 
@@ -91,7 +91,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert sites menu option is present.
 
-		WebElement sitesMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement sitesMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#homeSites");
 				//driverManager.getDriver().findElement(By.cssSelector("#homeSites"));
 
@@ -99,7 +99,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert help menu option is present.
 
-		WebElement helpMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement helpMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#homeHelp");
 				//driverManager.getDriver().findElement(By.cssSelector("#homeHelp"));
 
@@ -107,7 +107,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert admin dropdown option is present.
 
-		WebElement adminOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement adminOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(4) > a");
 				//driverManager.getDriver().findElement(By.cssSelector(
 				//"body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(4) > a"));
@@ -116,7 +116,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert users per page combo option is present.
 
-		WebElement usersPerPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement usersPerPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input");
 				//driverManager.getDriver()
 				//.findElement(By.cssSelector("#container > div > div > div > div > div > div > input"));
@@ -125,7 +125,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert new user option is present.
 
-		WebElement newUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement newUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > a");
 				//driverManager.getDriver()
 				//.findElement(By.cssSelector("#container > div > div > div > div > div > a"));
@@ -134,7 +134,7 @@ public class DesignOfUsersPageTest {
 
 		// Assert search option is present.
 
-		WebElement search =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement search =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input");
 				
 				//driverManager.getDriver().findElement(By.cssSelector(

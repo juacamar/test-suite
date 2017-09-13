@@ -86,8 +86,8 @@ public class PreviewPage {
 	// Click on admin console link
 
 	public void clickAdminConsoleOption() {
-		// this.driverManager.driverWait(3000);
-		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		// this.driverManager.driverWait(300);
+		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				adminConsole);
 		// driverManager.getDriver().findElement(By.cssSelector(adminConsole));
 		adminConsoleOption.click();
@@ -106,7 +106,7 @@ public class PreviewPage {
 
 	public void ComboAllSites() {
 		this.driverManager.driverWait(2000);
-		WebElement openCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", openComboSites);
+		WebElement openCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", openComboSites);
 		// driverManager.getDriver().findElement(By.id(openComboSites));
 		openCombo.click();
 
@@ -124,7 +124,7 @@ public class PreviewPage {
 
 	public void previewTools() {
 		this.driverManager.driverWait(2000);
-		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
+		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id",
 				clickPreviewTools);
 		// driverManager.getDriver().findElement(By.id(clickPreviewTools));
 		toolsIcon.click();
@@ -142,8 +142,8 @@ public class PreviewPage {
 	// Expand the In Context Menu
 
 	public void expandInContextEditing() {
-		// this.driverManager.driverWait(3000);
-		WebElement expandInContextMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		// this.driverManager.driverWait(300);
+		WebElement expandInContextMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				expandInContextEditing);
 		// driverManager.getDriver().findElement(By.xpath(expandInContextEditing));
 		expandInContextMenu.click();
@@ -162,7 +162,7 @@ public class PreviewPage {
 
 	public void inContextEditing() {
 		this.driverManager.driverWait(2000);
-		WebElement inContextEditingOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement inContextEditingOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				clickInContextEdit);
 		// driverManager.getDriver().findElement(By.xpath(clickInContextEdit));
 		inContextEditingOption.click();
@@ -180,8 +180,8 @@ public class PreviewPage {
 	// Click on Approve&Publish option
 
 	public void approvePublish() {
-		 this.driverManager.driverWait(3000);
-		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		 this.driverManager.driverWait(300);
+		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				approvePublish);
 		// driverManager.getDriver().findElement(By.xpath(approvePublish));
 
@@ -201,7 +201,7 @@ public class PreviewPage {
 
 	public void submitApprovePublish() {
 		this.driverManager.driverWait(2000);
-		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				submitButtonApprovePublish);
 		// driverManager.getDriver().findElement(By.xpath(submitButtonApprovePublish));
 		toolsIcon.click();
@@ -220,7 +220,7 @@ public class PreviewPage {
 
 	public void duplicateButton() {
 		this.driverManager.driverWait(2000);
-		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				previewDuplicate);
 		// driverManager.getDriver().findElement(By.xpath(previewDuplicate));
 		duplicateOption.click();
@@ -243,7 +243,7 @@ public class PreviewPage {
 
 	public void deleteButton() {
 		this.driverManager.driverWait(2000);
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				previewDelete);
 		// driverManager.getDriver().findElement(By.xpath(previewDelete));
 		deleteOption.click();
@@ -262,7 +262,7 @@ public class PreviewPage {
 
 	public void deleteDependencies() {
 		this.driverManager.driverWait(2000);
-		WebElement deleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
+		WebElement deleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id",
 				deleteDependencies);
 		// driverManager.getDriver().findElement(By.id(deleteDependencies));
 		deleteDepen.click();
@@ -281,7 +281,7 @@ public class PreviewPage {
 
 	public void okDeleteDependencies() {
 		this.driverManager.driverWait(2000);
-		WebElement OKdeleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement OKdeleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				OKdeleteDependencies);
 		// driverManager.getDriver().findElement(By.cssSelector(OKdeleteDependencies));
 		OKdeleteDepen.click();
@@ -300,7 +300,7 @@ public class PreviewPage {
 
 	public void EditButton() {
 		this.driverManager.driverWait(2000);
-		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", previewEdit);
+		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", previewEdit);
 		// driverManager.getDriver().findElement(By.xpath(previewEdit));
 		editOption.click();
 
@@ -318,7 +318,7 @@ public class PreviewPage {
 
 	public void historyButton() {
 		this.driverManager.driverWait(2000);
-		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				previewHistory);
 		// driverManager.getDriver().findElement(By.cssSelector(previewHistory));
 		historyOption.click();
@@ -337,7 +337,7 @@ public class PreviewPage {
 
 	public void dependenciesButton() {
 		this.driverManager.driverWait(2000);
-		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				previewDependecies);
 		// driverManager.getDriver().findElement(By.cssSelector(previewDependecies));
 		historyOption.click();
@@ -356,7 +356,7 @@ public class PreviewPage {
 
 	public void duplicateName(String strDuplicateName) {
 		this.driverManager.driverWait(2000);
-		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				duplicateName);
 		// driverManager.getDriver().findElement(By.xpath(duplicateName));
 		internalName.sendKeys(strDuplicateName);
@@ -375,7 +375,7 @@ public class PreviewPage {
 
 	public void SaveAndClose() {
 		this.driverManager.driverWait(2000);
-		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				saveAndClose);
 		// driverManager.getDriver().findElement(By.cssSelector(saveAndClose));
 		saveClose.click();
@@ -386,7 +386,7 @@ public class PreviewPage {
 
 	public void clickPagesTree() {
 		this.driverManager.driverWait(2000);
-		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				pagesTree);
 		// driverManager.getDriver().findElement(By.cssSelector(pagesTree));
 		expandPagesTree.click();
@@ -405,7 +405,7 @@ public class PreviewPage {
 
 	public void clickHomeContent() {
 		this.driverManager.driverWait(2000);
-		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				expandGlobalEntryContent);
 		// driverManager.getDriver().findElement(By.cssSelector(expandGlobalEntryContent));
 		homeContent.click();
@@ -432,7 +432,7 @@ public class PreviewPage {
 
 	public void changeInternalName(String strNewInternalName) {
 		this.driverManager.driverWait(2000);
-		WebElement URLName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", internalName);
+		WebElement URLName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", internalName);
 		// driverManager.getDriver().findElement(By.xpath(internalName));
 		URLName.sendKeys(strNewInternalName);
 
@@ -450,7 +450,7 @@ public class PreviewPage {
 
 	public void saveAndCloseButton() {
 		this.driverManager.driverWait(2000);
-		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				saveAndCloseiFrame);
 		// driverManager.getDriver().findElement(By.cssSelector(saveAndCloseiFrame));
 		saveClose.click();
@@ -510,7 +510,7 @@ public class PreviewPage {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// this.getDriverManager().driverWait(1000);
-		 this.getDriverManager().driverWait(3000);
+		 this.getDriverManager().driverWait(2000);
 		 
 		// select main content
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#yui-gen8").click();

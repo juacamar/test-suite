@@ -47,8 +47,8 @@ public class AccountManagementPage {
 	// Set the current pass
 
 	public void setCurrentPassword(String strCurrentPass) {
-		// this.driverManager.driverWait(3000);
-		WebElement currentPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
+		// this.driverManager.driverWait(300);
+		WebElement currentPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id",
 				currentPassword);
 		// driver.findElement(By.id(currentPassword));
 		currentPass.sendKeys(strCurrentPass);
@@ -58,8 +58,8 @@ public class AccountManagementPage {
 	// Set the new pass
 
 	public void setNewPassword(String strNewPassword) {
-		// this.driverManager.driverWait(3000);
-		WebElement newPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", newPassword);
+		// this.driverManager.driverWait(300);
+		WebElement newPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", newPassword);
 		// driver.findElement(By.id(newPassword));
 		newPass.sendKeys(strNewPassword);
 
@@ -68,8 +68,8 @@ public class AccountManagementPage {
 	// Set the new pass confirmation
 
 	public void setConfirmNewPassword(String strConfNewPassword) {
-		// this.driverManager.driverWait(3000);
-		WebElement confPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", confirmPassword);
+		// this.driverManager.driverWait(300);
+		WebElement confPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", confirmPassword);
 		// driver.findElement(By.id(confirmPassword));
 		confPass.sendKeys(strConfNewPassword);
 
@@ -78,8 +78,8 @@ public class AccountManagementPage {
 	// Click on submit
 
 	public void clickSubmit() {
-		// this.driverManager.driverWait(3000);
-		WebElement submitbtn = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		// this.driverManager.driverWait(300);
+		WebElement submitbtn = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				submitButton);
 				//driver.findElement(By.cssSelector(submitButton));
 		submitbtn.click();

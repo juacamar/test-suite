@@ -74,7 +74,7 @@ public class AddNewFolderTest {
 		// driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
 
 		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
@@ -106,7 +106,7 @@ public class AddNewFolderTest {
 
 		// Assert find the new folder created
 
-		String folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		String folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"span.status-icon.folder.no-preview.no-preview.over-effect-set").getText();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("span.status-icon.folder.no-preview.no-preview.over-effect-set")).getText();

@@ -88,8 +88,8 @@ public class SitesPerPageTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(6000);
-		driverManager.getDriver().navigate().refresh();
+		//homePage.getDriverManager().driverWait(300);
+		//driverManager.getDriver().navigate().refresh();
 		// wait for element is clickeable
 
 		// homePage.getDriverManager().driverWait();
@@ -99,11 +99,11 @@ public class SitesPerPageTest {
 		// homePage.getDriverManager().driverWait();
 		// homePage.getDriverManager().driverWait();
 		// go to the sites page
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(5000);
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
 		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "cssSelector", sitesNavOptionElementCssSelector)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -117,13 +117,13 @@ public class SitesPerPageTest {
 	public void filters() {
 
 		// Show 8 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
@@ -135,7 +135,7 @@ public class SitesPerPageTest {
 
 		// Assert only 8 sites displayed
 
-		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(1) > td.name.ng-binding");
 		// driverManager.getDriver().findElement(By.cssSelector(
 		// "#container > div > div > div.ng-scope > table > tbody > tr:nth-child(1) >
@@ -148,13 +148,13 @@ public class SitesPerPageTest {
 		homePage.getDriverManager().driverWait(2000);
 
 		// Show 5 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
@@ -166,7 +166,7 @@ public class SitesPerPageTest {
 
 		// Asser only 5 sites displayed
 
-		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(2) > td.name.ng-binding");
 
 		// driverManager.getDriver().findElement(By.cssSelector(
@@ -181,13 +181,13 @@ public class SitesPerPageTest {
 
 		// Show 1 site
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("3");
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
@@ -199,7 +199,7 @@ public class SitesPerPageTest {
 
 		// Asser only 1 site displayed
 
-		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) > td.name.ng-binding");
 
 		// driverManager.getDriver().findElement(By.cssSelector(
@@ -213,13 +213,13 @@ public class SitesPerPageTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Show 11 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))
 		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
 		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
 		// > div.pull-right.m10 > input"))

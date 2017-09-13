@@ -107,20 +107,20 @@ public class CreateSiteEmptyTest {
 		// wait for element is clickeable
 
 		//review the performance here, it is to much time aprox 38secs
-		homePage.getDriverManager().driverWait(8000);
+		//homePage.getDriverManager().driverWait(1000);
 //		homePage.getDriverManager().driverWait();
 //		homePage.getDriverManager().driverWait();
 //		homePage.getDriverManager().driverWait();
 //		homePage.getDriverManager().driverWait();
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
 		// Show site content panel
 		
-		homePage.getDriverManager().driverWait(5000);
+		homePage.getDriverManager().driverWait(2000);
 		
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 		
 		if(this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "xpath",
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(8, "xpath",
 					siteDropdownElementXPath)
 					.click();
 		else throw new NoSuchElementException("Site creation process is taking too long time and the element was not found");
@@ -128,11 +128,11 @@ public class CreateSiteEmptyTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
 
-		String head = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		String head = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#activeContentActions > li:nth-child(1) > span").getText();
 				//driverManager.getDriver()
 				//.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();

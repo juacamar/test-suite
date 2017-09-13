@@ -62,14 +62,14 @@ public class ContentTypesAddInputTest {
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionFormSectionLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionFormSectionLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(controlsSectionFormSectionLocator));
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
 		WebElement ToContentTypeContainer =  this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", contentTypeContainerLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(contentTypeContainerLocator));
 
@@ -81,12 +81,12 @@ public class ContentTypesAddInputTest {
 		//driverManager.driverWait();
 
 		WebElement FromRepeatingGroup = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionInputLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionInputLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(controlsSectionInputLocator));
 
 		WebElement ToDefaultSection = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerFormSectionContainerLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", contentTypeContainerFormSectionContainerLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
 
@@ -118,7 +118,7 @@ public class ContentTypesAddInputTest {
 		// Show site content panel
 		//homePage.getDriverManager().driverWait();
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+		.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		//driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
 
 		// Show admin console page
@@ -126,7 +126,7 @@ public class ContentTypesAddInputTest {
 		//homePage.getDriverManager().driverWait();
 		
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", ".//a[@id='admin-console']").click();
+		.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='admin-console']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
 
 		// wait for element
@@ -164,7 +164,7 @@ public class ContentTypesAddInputTest {
 
 		// Asserts that fields are not empty.
 		String titleText = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", contentTypeContainerInputTitleLocator).getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", contentTypeContainerInputTitleLocator).getText();
 				//driverManager.getDriver()
 				//.findElement(By.xpath(contentTypeContainerInputTitleLocator)).getText();
 

@@ -60,17 +60,17 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 
 	public void dragAndDrop() {
 
-		driverManager.driverWait(3000);
+		driverManager.driverWait(300);
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath", controlsSectionFormSectionLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionFormSectionLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(controlsSectionFormSectionLocator));
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				contentTypeContainerLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(contentTypeContainerLocator));
@@ -82,12 +82,12 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 
 		// driverManager.driverWait();
 
-		WebElement FromGroupedCheckBoxes = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement FromGroupedCheckBoxes = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				controlsSectionGroupedCheckBoxesLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(controlsSectionGroupedCheckBoxesLocator));
 
-		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				contentTypeContainerFormSectionContainerLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
@@ -120,7 +120,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 
 		// Show site content panel
 		// homePage.getDriverManager().driverWait();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,"xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		//driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 		//		.click();
@@ -129,7 +129,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		homePage.getDriverManager().driverWait(2000);
 		// homePage.getDriverManager().driverWait();
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,"xpath",
 				".//a[@id='admin-console']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
 
@@ -166,7 +166,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		siteConfigPage.clickGroupedCheckBoxSection();
 
 		// Asserts that fields are not empty.
-		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				contentTypeContainerGroupedCheckBoxesTitleLocator).getText();
 				//driverManager.getDriver()
 				//.findElement(By.xpath(contentTypeContainerGroupedCheckBoxesTitleLocator)).getText();

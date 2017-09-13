@@ -60,22 +60,22 @@ public class UsersPerPageTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#firstName").sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#firstName").sendKeys("Name");
 		// driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#lastName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#lastName")
 				.sendKeys("Last Name");
 		// driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last
 		// Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#email")
 				.sendKeys("email@email.com");
 		// driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#username")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#username")
 				.sendKeys(RandomStringUtils.randomAlphabetic(5));
 		// driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#password")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#password")
 				.sendKeys("password");
 		// driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#passwordVerification")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#passwordVerification")
 				.sendKeys("password");
 		// driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
 
@@ -92,10 +92,10 @@ public class UsersPerPageTest {
 
 		// Show 8 users
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("1");
 
 		// wait for element is clickeable
@@ -104,7 +104,7 @@ public class UsersPerPageTest {
 
 		// Asser only 8 users displayed
 
-		WebElement user1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement user1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > a");
 
 		Assert.assertTrue(user1.isDisplayed());
@@ -115,10 +115,10 @@ public class UsersPerPageTest {
 
 		// Show 5 users
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("2");
 
 		// wait for element is clickeable
@@ -127,7 +127,7 @@ public class UsersPerPageTest {
 
 		// Asser only 5 users displayed
 
-		WebElement user2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement user2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
 
 		Assert.assertTrue(user2.isDisplayed());
@@ -138,10 +138,10 @@ public class UsersPerPageTest {
 
 		// Show 11 users
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("3");
 
 		// wait for element is clickeable
@@ -150,7 +150,7 @@ public class UsersPerPageTest {
 
 		// Asser only 1 user displayed
 
-		WebElement user3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement user3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
 
 		Assert.assertTrue(user3.isDisplayed());
@@ -161,10 +161,10 @@ public class UsersPerPageTest {
 
 		// Show 11 users
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("4");
 
 		// wait for element is clickeable
@@ -173,15 +173,15 @@ public class UsersPerPageTest {
 
 		// Asser only 1 users displayed
 
-		WebElement user4 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement user4 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(4) > td:nth-child(1) > a");
 
 		Assert.assertTrue(user4.isDisplayed());
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("4");
 	}
 
@@ -196,7 +196,7 @@ public class UsersPerPageTest {
 
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
@@ -214,7 +214,7 @@ public class UsersPerPageTest {
 
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
@@ -228,7 +228,7 @@ public class UsersPerPageTest {
 
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 

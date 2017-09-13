@@ -56,7 +56,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 
 		// Getting the ChildContent for drag and drop action
 		WebElement FromDataSourceImageUploadedFromDesktopElement =  this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 						dataSourceSectionImageUploadedFromDesktopLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(dataSourceSectionImageUploadedFromDesktopLocator));
@@ -64,7 +64,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
 		WebElement ToContentTypeContainer = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 						contentTypeContainerLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(contentTypeContainerLocator));
@@ -105,14 +105,14 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		// Show site content panel
 		//homePage.getDriverManager().driverWait();
 		 this.driverManager
-			.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
+			.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 					"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		//driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
 
 		// Show admin console page
 		homePage.getDriverManager().driverWait(2000);
 		 this.driverManager
-			.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+			.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 					".//a[@id='admin-console']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
 
@@ -151,7 +151,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 
 		// Asserts that fields are not empty.
 		String titleText =this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 						contentTypeContainerImageUploadedFromDesktopTitleLocator).getText();
 				//driverManager.getDriver()
 				//.findElement(By.xpath(contentTypeContainerImageUploadedFromDesktopTitleLocator)).getText();

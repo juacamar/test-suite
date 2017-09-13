@@ -77,7 +77,7 @@ public class CutPasteContentTest {
 		// homePage.getDriverManager().driverWait();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
 		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 		// .click();
@@ -88,7 +88,7 @@ public class CutPasteContentTest {
 		// homePage.getDriverManager().driverWait();
 		// go to admin console page
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// wait for element is clickeable
@@ -119,7 +119,7 @@ public class CutPasteContentTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#yui-gen8").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#yui-gen8").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
 		// wait for element is clickeable
@@ -127,7 +127,7 @@ public class CutPasteContentTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
 
 		// driverManager.getDriver()
@@ -136,7 +136,7 @@ public class CutPasteContentTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// save
 
@@ -158,7 +158,7 @@ public class CutPasteContentTest {
 
 		dashboardPage.expandPagesTree();
 		
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(300);
 
 		// right click to see the the menu
 
@@ -182,7 +182,7 @@ public class CutPasteContentTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
 		// .bd iframe")));
@@ -212,26 +212,26 @@ public class CutPasteContentTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
 		// input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
 				.click();
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// wait for element is clickeable
 
-		// homePage.getDriverManager().driverWait(3000);
+		// homePage.getDriverManager().driverWait(300);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
@@ -295,15 +295,15 @@ public class CutPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// wait for element
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// wait for element
-		// homePage.getDriverManager().driverWait(3000);
+		// homePage.getDriverManager().driverWait(300);
 		driverManager.getDriver().navigate().refresh();
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// Assert of the content copied
-		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#MyRecentActivity-tbody > tr > td.urlCol").getText();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr >

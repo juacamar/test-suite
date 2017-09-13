@@ -49,7 +49,7 @@ public class EditContentRecentlyCreatedTest {
 
 	public void bodyNotRequiered() {
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#admin-console").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
@@ -81,7 +81,7 @@ public class EditContentRecentlyCreatedTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#yui-gen8").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
@@ -90,7 +90,7 @@ public class EditContentRecentlyCreatedTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
 		//driverManager.getDriver()
 			//	.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
@@ -134,7 +134,7 @@ public class EditContentRecentlyCreatedTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 						"cssSelector", ".studio-ice-dialog > .bd iframe"));
 						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 
@@ -151,7 +151,7 @@ public class EditContentRecentlyCreatedTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Expand all fields
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#cstudio-form-expand-all").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
@@ -160,7 +160,7 @@ public class EditContentRecentlyCreatedTest {
 		// dashboardPage.setMetadataFields("title", "keywords");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#title > div > input").sendKeys("MainTitle");
 		//driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
 
@@ -169,7 +169,7 @@ public class EditContentRecentlyCreatedTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"id", "cstudioSaveAndClose").click();
 		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
@@ -194,7 +194,7 @@ public class EditContentRecentlyCreatedTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-		.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 				//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
 		
@@ -203,16 +203,17 @@ public class EditContentRecentlyCreatedTest {
 		homePage.getDriverManager().driverWait(1000);
 		
 		// edit internal title
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#internal-name > div > input").sendKeys("EDITED");
 		//driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).sendKeys("EDITED");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		this.driverManager.scrollUp();
+		homePage.getDriverManager().driverWait(300);
 
 		// Expand all fields
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#cstudio-form-expand-all").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
@@ -225,7 +226,7 @@ public class EditContentRecentlyCreatedTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"id", "cstudioSaveAndClose").click();
 		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
@@ -258,7 +259,7 @@ public class EditContentRecentlyCreatedTest {
 		homePage.getDriverManager().driverWait(4000);
 		//homePage.getDriverManager().driverWait();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"xpath", ".//a[@id='acn-dropdown-toggler']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
 			//	.click();
@@ -274,7 +275,7 @@ public class EditContentRecentlyCreatedTest {
 		// go to dashboard
 		homePage.getDriverManager().driverWait(2000);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#cstudio-logo").click();
 		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
@@ -301,7 +302,7 @@ public class EditContentRecentlyCreatedTest {
 
 		// Edited content recently created
 		driverManager.getDriver().navigate().refresh();
-		
+		homePage.getDriverManager().driverWait(2000);
 		editingContentRecentlyCreated();
 		
 		// reload page
@@ -310,7 +311,7 @@ public class EditContentRecentlyCreatedTest {
 
 		// Assert find the new content created edited
         driverManager.driverWait(2000);
-		String contentEdited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		String contentEdited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", "#ygtvlabelel3").getText();
 				//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
 		Assert.assertEquals(contentEdited, "Testing1EDITED");

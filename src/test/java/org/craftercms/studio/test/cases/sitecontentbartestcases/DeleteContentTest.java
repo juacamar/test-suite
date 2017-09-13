@@ -82,7 +82,7 @@ public class DeleteContentTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
@@ -101,14 +101,14 @@ public class DeleteContentTest {
 		homePage.getDriverManager().driverWait(4000);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 
 		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
 		// input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
 				.click();
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
@@ -117,7 +117,7 @@ public class DeleteContentTest {
 		homePage.getDriverManager().driverWait(4000);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
@@ -161,7 +161,7 @@ public class DeleteContentTest {
 		this.changeBodyToNotRequiredOnEntryContent();
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 
 		// expand pages folder
 
@@ -183,7 +183,7 @@ public class DeleteContentTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1300);
+		homePage.getDriverManager().driverWait(130);
 
 		// confirmation
 
@@ -199,13 +199,13 @@ public class DeleteContentTest {
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 		// wait for element
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(300);
 		// wait for element
 		// driverManager.driverWait();
 		driverManager.getDriver().navigate().refresh();
-		driverManager.driverWait(3000);
+		driverManager.driverWait(300);
 
-		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)").getText();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) >

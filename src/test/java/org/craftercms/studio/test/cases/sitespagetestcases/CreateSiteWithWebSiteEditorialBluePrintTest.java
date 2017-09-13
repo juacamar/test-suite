@@ -87,19 +87,19 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(8000);
+		//homePage.getDriverManager().driverWait(4000);
 		// homePage.getDriverManager().driverWait();
 		// homePage.getDriverManager().driverWait();
 		// homePage.getDriverManager().driverWait();
 		// homePage.getDriverManager().driverWait();
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
 		// Show site content panel
 
-		homePage.getDriverManager().driverWait(5000);
+		homePage.getDriverManager().driverWait(2000);
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 
 		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "xpath", siteDropdownElementXPath)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", siteDropdownElementXPath)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -111,7 +111,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		// Assert
 
-		String head = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		String head = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#activeContentActions > li:nth-child(1) > span").getText();
 
 		// driverManager.getDriver()

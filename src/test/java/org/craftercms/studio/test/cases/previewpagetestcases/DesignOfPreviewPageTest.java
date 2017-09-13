@@ -79,7 +79,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert crafter studio logo is present.
 
-		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
+		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[1]/a/img");
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[1]/a/img"));
@@ -93,7 +93,7 @@ public class DesignOfPreviewPageTest {
 		// homePage.getDriverManager().driverWait();
 		// Assert site content option is present.
 
-		WebElement siteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement siteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a");
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"));
@@ -107,7 +107,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert search field is present.
 
-		WebElement searchField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
+		WebElement searchField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "id",
 				"acn-searchtext");
 		// driverManager.getDriver().findElement(By.id("acn-searchtext"));
 
@@ -120,7 +120,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert account option is present.
 
-		WebElement signUp = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement signUp = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "cssSelector",
 				"#account-dropdown");
 		// driverManager.getDriver().findElement(By.cssSelector("#account-dropdown"));
 
@@ -133,7 +133,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert Edit option is present.
 
-		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[2]/a");
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[2]/a"));
@@ -147,7 +147,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert delete option is present.
 
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[3]/a");
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[3]/a"));
@@ -161,7 +161,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert all schedule option is present.
 
-		WebElement scheduleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement scheduleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[4]/a");
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[4]/a"));
@@ -175,7 +175,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert Approve publish is present.
 
-		WebElement approvePublishOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement approvePublishOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[5]/a");
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[5]/a"));
@@ -189,7 +189,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert dependencies option is present.
 
-		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "cssSelector",
 				"#activeContentActions > li:nth-child(5) > a");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#activeContentActions > li:nth-child(5) > a"));
@@ -203,7 +203,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert history option is present.
 
-		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "cssSelector",
 				"#activeContentActions > li:nth-child(5) > a");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#activeContentActions > li:nth-child(5) > a"));
@@ -216,7 +216,7 @@ public class DesignOfPreviewPageTest {
 		// homePage.getDriverManager().driverWait();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
 		// .click();
@@ -228,7 +228,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert all Sites Dropdown option is present.
 
-		WebElement dashboard = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement dashboard = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "cssSelector",
 				"#acn-dropdown-menu-inner > div.studio-view");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#acn-dropdown-menu-inner > div.studio-view"));
@@ -242,7 +242,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert Users option is present.
 
-		WebElement usersOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement usersOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "cssSelector",
 				"#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a");
 
 		// driverManager.getDriver().findElement(By.cssSelector(
@@ -255,7 +255,7 @@ public class DesignOfPreviewPageTest {
 		// homePage.getDriverManager().driverWait();
 		// Assert sites option is present.
 
-		WebElement sitesOption =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement sitesOption =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "cssSelector",
 				"#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a");
 				//driverManager.getDriver().findElement(By.cssSelector(
 				//"#studioBar > nav > div > div.collapse.navbar-collapse > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"));
@@ -269,7 +269,7 @@ public class DesignOfPreviewPageTest {
 
 		// Assert admin console option is present.
 
-		WebElement adminConsoleOption =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement adminConsoleOption =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(60, "cssSelector",
 				"#admin-console.acn-admin-console");
 				//driverManager.getDriver()
 				//.findElement(By.cssSelector("#admin-console.acn-admin-console"));

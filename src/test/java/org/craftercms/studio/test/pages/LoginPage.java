@@ -42,7 +42,7 @@ public class LoginPage {
 
 	public void setUserName(String strUserName) {
 		//this.driverManager.driverWait(1000);
-		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "cssSelector", userNameTextBoxLocator);
+		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", userNameTextBoxLocator);
 				//driver.findElement(By.cssSelector(userNameTextBoxLocator));
 		userCrafter.sendKeys(strUserName);
 
@@ -52,7 +52,7 @@ public class LoginPage {
 
 	public void setPassword(String strPassword) {
 		//this.driverManager.driverWait(1000);
-		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "id", passwordTextBoxLocator);
+		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", passwordTextBoxLocator);
 				//driver.findElement(By.id(passwordTextBoxLocator));
 		pwdCrafter.sendKeys(strPassword);
 
@@ -62,7 +62,7 @@ public class LoginPage {
 
 	public void clickLogin() {
 		//this.driverManager.driverWait(1000);
-		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(1, "cssSelector", loginButtonLocator);
+		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", loginButtonLocator);
 				//driver.findElement(By.cssSelector(loginButtonLocator));
 		loginButton.click();
 

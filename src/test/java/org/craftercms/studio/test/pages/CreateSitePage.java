@@ -76,7 +76,7 @@ public class CreateSitePage {
 
 	public void setSiteName() {
 		 this.driverManager.driverWait(700);
-		WebElement nameNewSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement nameNewSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				siteName);
 		// driver.findElement(By.cssSelector(siteName));
 		nameNewSite.sendKeys("testsite" + RandomStringUtils.randomAlphabetic(5).toLowerCase());
@@ -95,7 +95,7 @@ public class CreateSitePage {
 
 	public void setSiteId(String strSiteID) {
 		 this.driverManager.driverWait(700);
-		WebElement idSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector", siteID);
+		WebElement idSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", siteID);
 		// driver.findElement(By.cssSelector(siteID));
 		idSite.sendKeys(strSiteID);
 
@@ -114,7 +114,7 @@ public class CreateSitePage {
 	public void setDescription(String strDescription) {
 		 this.driverManager.driverWait(700);
 
-		WebElement description = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement description = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				descriptionSite);
 		// driver.findElement(By.cssSelector(descriptionSite));
 		description.sendKeys(strDescription);
@@ -134,7 +134,7 @@ public class CreateSitePage {
 	public void blueprintCombo() {
 		 this.driverManager.driverWait(700);
 
-		WebElement comboBlueprint = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement comboBlueprint = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				blueprintCombo);
 		// driver.findElement(By.cssSelector(blueprintCombo));
 		comboBlueprint.click();
@@ -154,7 +154,7 @@ public class CreateSitePage {
 	public void plutonBlueprint() {
 		this.driverManager.driverWait(700);
 
-		WebElement blueprintPluton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement blueprintPluton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				plutonBlueprint);
 		// driver.findElement(By.xpath(plutonBlueprint));
 
@@ -175,7 +175,7 @@ public class CreateSitePage {
 	public void selectEmptyBlueprint() {
 
 		this.driverManager.driverWait(700);
-		WebElement bluePrintCombo =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
+		WebElement bluePrintCombo =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id",
 				"blueprint");
 				//driver.findElement(By.id("blueprint"));
 		Select select = new Select(bluePrintCombo);
@@ -195,7 +195,7 @@ public class CreateSitePage {
 
 	public void corporateBlueprint() {
 		this.driverManager.driverWait(700);
-		WebElement blueprintCorporate =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement blueprintCorporate =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				corporateBlueprint);
 				//driver.findElement(By.xpath(corporateBlueprint));
 		blueprintCorporate.click();
@@ -214,7 +214,7 @@ public class CreateSitePage {
 
 	public void angMemGamBlueprint() {
 		this.driverManager.driverWait(700);
-		WebElement blueprintCorporate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement blueprintCorporate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				AngMemGamBlueprint);
 				//driver.findElement(By.xpath(AngMemGamBlueprint));
 		blueprintCorporate.click();
@@ -232,7 +232,7 @@ public class CreateSitePage {
 
 	public void createButton() {
 		this.driverManager.driverWait(1000);
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				createSiteButton);
 				//driver.findElement(By.cssSelector(createSiteButton));
 		createButton.click();
@@ -251,7 +251,7 @@ public class CreateSitePage {
 
 	public void usersOption() {
 		this.driverManager.driverWait(2000);
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "xpath",
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				usersOption);
 				//driver.findElement(By.xpath(usersOption));
 		users.click();
@@ -270,7 +270,7 @@ public class CreateSitePage {
 
 	public void cancelButton() {
 		this.driverManager.driverWait(2000);
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				cancelButton);
 				//driver.findElement(By.cssSelector(cancelButton));
 		createButton.click();
@@ -289,7 +289,7 @@ public class CreateSitePage {
 
 	public void clickHelp() {
 		this.driverManager.driverWait(2000);
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				helpOption);
 				//driver.findElement(By.cssSelector(helpOption));
 		users.click();
@@ -308,7 +308,7 @@ public class CreateSitePage {
 
 	public void clickAbout() {
 		this.driverManager.driverWait(2000);
-		WebElement about = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement about = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				aboutOption);
 				//driver.findElement(By.cssSelector(aboutOption));
 		about.click();
@@ -327,7 +327,7 @@ public class CreateSitePage {
 
 	public void clickDocumentation() {
 		this.driverManager.driverWait(2000);
-		WebElement documentation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement documentation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				documentationOption);
 				//driver.findElement(By.cssSelector(documentationOption));
 		documentation.click();
@@ -346,7 +346,7 @@ public class CreateSitePage {
 
 	public void clickAdmin() {
 		this.driverManager.driverWait(2000);
-		WebElement admin = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement admin = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				adminDropdownOption);
 				//driver.findElement(By.cssSelector(adminDropdownOption));
 		admin.click();
@@ -365,7 +365,7 @@ public class CreateSitePage {
 
 	public void clickSettings() {
 		this.driverManager.driverWait(2000);
-		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "cssSelector",
+		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				settingsOption);
 				//driver.findElement(By.cssSelector(settingsOption));
 		settings.click();
@@ -417,7 +417,7 @@ public class CreateSitePage {
 
 	private void selectWebSiteEditorialBluePrint() {
 		this.driverManager.driverWait(2000);
-		WebElement bluePrintCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(2, "id",
+		WebElement bluePrintCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id",
 				"blueprint");
 				//driver.findElement(By.id("blueprint"));
 		Select select = new Select(bluePrintCombo);
