@@ -133,19 +133,19 @@ public class EditUserTest {
 
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(3000);
 
 		// edit user
 
 		editingUser();
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Assert
 
 		String nameElementText = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(6, "cssSelector",
 						"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)")
 				.getText();
 

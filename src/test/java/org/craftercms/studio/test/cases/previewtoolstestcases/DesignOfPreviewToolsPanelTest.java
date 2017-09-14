@@ -93,7 +93,7 @@ public class DesignOfPreviewToolsPanelTest {
 //				//driverManager.getDriver()
 //				//.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
 
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector( "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(3,"#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
 
 	}
 

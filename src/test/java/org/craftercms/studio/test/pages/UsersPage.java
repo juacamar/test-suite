@@ -115,7 +115,7 @@ public class UsersPage {
 
 	public void clickDeleteOptionCreated() {
 		driverManager.driverWait(3000);
-		WebElement previewLink =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement previewLink =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				deleteUserOption2);
 				//driverManager.getDriver().findElement(By.cssSelector(deleteUserOption2));
 		previewLink.click();
@@ -169,7 +169,7 @@ public class UsersPage {
 	}
 
 	public Boolean isUsersPageTitlePresent() {
-		return this.driverManager.isElementPresentByXpath(usersPageTitle);
+		return this.driverManager.isElementPresentByXpath(4,usersPageTitle);
 	}
 
 	public void clickOnCrafterLogo() {

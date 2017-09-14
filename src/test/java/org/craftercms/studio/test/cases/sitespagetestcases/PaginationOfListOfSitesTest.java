@@ -82,8 +82,8 @@ public class PaginationOfListOfSitesTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(8000);
-		driverManager.getDriver().navigate().refresh();
+		//homePage.getDriverManager().driverWait(8000);
+		//driverManager.getDriver().navigate().refresh();
 		// wait for element is clickeable
 
 		// homePage.getDriverManager().driverWait();
@@ -93,10 +93,10 @@ public class PaginationOfListOfSitesTest {
 		// homePage.getDriverManager().driverWait();
 		// homePage.getDriverManager().driverWait();
 		// go to the sites page
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(8000);
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
-		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
+		if (this.driverManager.isElementPresentBycssSelector(15,sitesNavOptionElementCssSelector))
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else

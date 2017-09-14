@@ -96,7 +96,7 @@ public class ShowHideSiteContentTest {
 		//String siteContentCollapsed = this.driverManager
 			//	.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").getText();
 		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).getText();
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector("#admin-console"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(4,"#admin-console"));
 	}
 
 }

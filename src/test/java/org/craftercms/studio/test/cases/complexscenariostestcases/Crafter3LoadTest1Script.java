@@ -141,11 +141,11 @@ public class Crafter3LoadTest1Script {
 		// go to preview page
 		homePage.goToPreviewPage();
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(3000);
 
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+		if (this.driverManager.isElementPresentByXpath(10,siteDropdownElementXPath))
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", siteDropdownElementXPath)
 					.click();
 		else
@@ -166,7 +166,7 @@ public class Crafter3LoadTest1Script {
 
 		// Checking if parent folder is present
 		dashboardPage.getDriverManager().driverWait(1000);
-		Assert.assertTrue(driverManager.isElementPresentByXpath(parentFolderLocator));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(12,parentFolderLocator));
 
 		this.driverManager.driverWait(1000);
 		WebElement parentFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
@@ -196,24 +196,24 @@ public class Crafter3LoadTest1Script {
 
 		// creating a new folder on a given parentFolder
 		this.createFolderOnAPresentFolder(bigTree2FolderName, harnessFolder);
-		this.driverManager.driverWait(1500);
+		this.driverManager.driverWait(3000);
 		bigTree2Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				bigTree2FolderLocator);
 		// driverManager.getDriver().findElement(By.xpath(bigTree2FolderLocator));
 
-		this.driverManager.driverWait(1500);
+		this.driverManager.driverWait(3000);
 		WebElement styleCategoryLandingStyle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"xpath", styleLocator);
 		// driverManager.getDriver().findElement(By.xpath(styleLocator));
 
-		this.driverManager.driverWait(2000);
+		this.driverManager.driverWait(3000);
 		dashboardPage.rightClickCopyContentPage(styleCategoryLandingStyle);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				bigTree1FolderLocator);
 		// driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
 
-		this.driverManager.driverWait(1500);
+		this.driverManager.driverWait(3000);
 		WebElement entertainmentCategoryLandingStyle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"xpath", entertainmentLocator);
 		// driverManager.getDriver()
@@ -224,7 +224,7 @@ public class Crafter3LoadTest1Script {
 		// driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
 
-		this.driverManager.driverWait(1500);
+		this.driverManager.driverWait(3000);
 		WebElement healthCategoryLandingStyle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"xpath", healthLocator);
 		// driverManager.getDriver().findElement(By.xpath(healthLocator));
@@ -234,7 +234,7 @@ public class Crafter3LoadTest1Script {
 		// driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
 
-		this.driverManager.driverWait(1500);
+		this.driverManager.driverWait(3000);
 		WebElement technologyCategoryLandingStyle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
 				"xpath", technologyLocator);
 		// driverManager.getDriver().findElement(By.xpath(technologyLocator));
@@ -373,11 +373,11 @@ public class Crafter3LoadTest1Script {
 
 		// checkin if is present the removed-red-highlight text
 		Assert.assertTrue(driverManager
-				.isElementPresentByXpath(".//td[text()='title']/../td[2]/span[contains(@class,'diff-html-removed')]"));
+				.isElementPresentByXpath(4,".//td[text()='title']/../td[2]/span[contains(@class,'diff-html-removed')]"));
 
 		// checkin if is present the added-green-highlight text
 		Assert.assertTrue(driverManager
-				.isElementPresentByXpath(".//td[text()='title']/../td[2]/span[contains(@class,'diff-html-added')]"));
+				.isElementPresentByXpath(4,".//td[text()='title']/../td[2]/span[contains(@class,'diff-html-added')]"));
 
 		// click on close button
 		dashboardPage.clickCloseButton();

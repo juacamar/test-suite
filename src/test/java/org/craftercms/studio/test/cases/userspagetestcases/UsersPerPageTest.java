@@ -187,12 +187,13 @@ public class UsersPerPageTest {
 
 	public void deleteUsers() {
 		// Click on delete user
-
+		driverManager.getDriver().navigate().refresh();
+		homePage.getDriverManager().driverWait(3000);
 		usersPage.clickOnDeleteUserCreated();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Confirmation to delete user connected
 
@@ -202,7 +203,8 @@ public class UsersPerPageTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		driverManager.getDriver().navigate().refresh();
+		homePage.getDriverManager().driverWait(3000);
 
 		// Click on delete user
 
@@ -210,7 +212,7 @@ public class UsersPerPageTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Confirmation to delete user connected
 
@@ -220,12 +222,13 @@ public class UsersPerPageTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		driverManager.getDriver().navigate().refresh();
+		homePage.getDriverManager().driverWait(3000);
 
 		// Click on delete user
 
 		usersPage.clickOnDeleteUserCreated();
-
+		homePage.getDriverManager().driverWait(3000);
 		// Confirmation to delete user connected
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",

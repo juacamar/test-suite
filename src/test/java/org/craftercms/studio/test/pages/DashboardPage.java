@@ -433,7 +433,7 @@ public class DashboardPage {
 		this.driverManager.driverWait(2000);
 		// WebElement entryCT =
 		// driverManager.getDriver().findElement(By.cssSelector(selectEntryCT));
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector(selectEntryCT));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector(3,selectEntryCT));
 		// entryCT.click();
 	}
 
@@ -444,7 +444,7 @@ public class DashboardPage {
 		this.driverManager.driverWait(4000);
 		// WebElement pageArticleContentType = driverManager.getDriver()
 		// .findElement(By.cssSelector(pageArticleContentTypeLocator));
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector(pageArticleContentTypeLocator));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector(3,pageArticleContentTypeLocator));
 		// pageArticleContentType.click();
 	}
 
@@ -1274,8 +1274,8 @@ public class DashboardPage {
 	}
 
 	public void setArticlesTitle(String strArticlesTitle) {
-		this.getDriverManager().driverWait(2000);
-		WebElement articlesTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.getDriverManager().driverWait(3000);
+		WebElement articlesTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				articlesTitleLocator);
 		// driver.findElement(By.xpath(articlesTitleLocator));
 		articlesTitle.clear();
