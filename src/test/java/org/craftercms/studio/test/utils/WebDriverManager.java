@@ -196,12 +196,12 @@ public class WebDriverManager {
 		this.driverWait(2000);
 	}
 
-	public boolean isElementPresentByXpath(String xpathOfTheElement) {
+	public boolean isElementPresentByXpath(int timeOut, String xpathOfTheElement) {
 		boolean isElementPresent = true;
 
 		try {
 			@SuppressWarnings("unused")
-			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(8, "xpath",
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(timeOut, "xpath",
 					xpathOfTheElement);
 			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
 		} catch (NoSuchElementException e) {
@@ -213,12 +213,12 @@ public class WebDriverManager {
 		return isElementPresent;
 	}
 
-	public boolean isElementPresentBycssSelector(String cssSelector) {
+	public boolean isElementPresentBycssSelector(int timeOut, String cssSelector) {
 		boolean isElementPresent = true;
 
 		try {
 			@SuppressWarnings("unused")
-			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(8, "cssSelector",
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(timeOut, "cssSelector",
 					cssSelector);
 			// this.getDriver().findElement(By.cssSelector(cssSelector));
 		} catch (NoSuchElementException e) {

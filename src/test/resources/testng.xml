@@ -343,13 +343,13 @@
 				name="org.craftercms.studio.test.cases.userspagetestcases.UsersPerPageTest" />
 		</classes>
 	</test> <!-- Test -->
-	<test name="Pagination of users Page Test">
+	<test name="Pagination of Users Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userspagetestcases.PaginationOfListOfUsersTest" />
 		</classes>
 	</test> <!-- Test -->
-	<test name="Pagination of List Page Test">
+	<test name="Pagination of List Sites Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.PaginationOfListOfSitesTest" />

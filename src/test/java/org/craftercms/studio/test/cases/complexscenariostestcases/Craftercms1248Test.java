@@ -81,7 +81,7 @@ public class Craftercms1248Test {
 		
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+		if (this.driverManager.isElementPresentByXpath(12,siteDropdownElementXPath))
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", siteDropdownElementXPath)
 					.click();
 		else
@@ -151,7 +151,7 @@ public class Craftercms1248Test {
 		// .bd iframe")));
 
 		// wait for element is clickeable
-		dashboardPage.getDriverManager().driverWait(1000);
+		dashboardPage.getDriverManager().driverWait(2000);
 		// creating random values for URL field and InternalName field
 		String randomURL = pageName;
 		String randomInternalName = pageName;
@@ -270,7 +270,7 @@ public class Craftercms1248Test {
 		WebElement childPage1;
 		WebElement childPage2;
 
-		Assert.assertTrue(driverManager.isElementPresentByXpath(parentPageLocator));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(12,parentPageLocator));
 		this.driverManager.driverWait(1000);
 		parentPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", parentPageLocator);
 				//dashboardPage.getDriverManager().getDriver().findElement(By.xpath(parentPageLocator));
@@ -317,8 +317,8 @@ public class Craftercms1248Test {
 				+ "/div/span/span[contains(@class,'never-published')]";
 		//String iconPublishedForChild2Page = this.childPage2Locator + "/div/span/span[contains(@class,'live')]";
 
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(iconNeverPublishedForParentPage));
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(iconNeverPublishedForChild1Page));
+		Assert.assertFalse(this.driverManager.isElementPresentByXpath(6,iconNeverPublishedForParentPage));
+		Assert.assertFalse(this.driverManager.isElementPresentByXpath(6,iconNeverPublishedForChild1Page));
 		//driverManager.driverWait(2000);
 		//Assert.assertTrue(this.driverManager.isElementPresentByXpath(iconPublishedForChild2Page));
 

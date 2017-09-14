@@ -115,12 +115,12 @@ public class CreateSiteEmptyTest {
 		//driverManager.getDriver().navigate().refresh();
 		// Show site content panel
 		
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(8000);
 		
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 		
-		if(this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(8, "xpath",
+		if(this.driverManager.isElementPresentByXpath(15,siteDropdownElementXPath))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "xpath",
 					siteDropdownElementXPath)
 					.click();
 		else throw new NoSuchElementException("Site creation process is taking too long time and the element was not found");

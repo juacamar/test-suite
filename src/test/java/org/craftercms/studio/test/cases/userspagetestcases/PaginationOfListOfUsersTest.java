@@ -144,22 +144,22 @@ public class PaginationOfListOfUsersTest {
 
 	public void deleteUserBlockOne() {
 		// Click on delete user
-
+		driverManager.getDriver().navigate().refresh();
+		homePage.getDriverManager().driverWait(3000);
 		usersPage.clickOnDeleteUserCreated();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
-
-		// Confirmation to delete user connected
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		homePage.getDriverManager().driverWait(3000);
+		// Confirmation to delete user
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		driverManager.getDriver().navigate().refresh();
+		homePage.getDriverManager().driverWait(3000);
 
 		// Click on delete user
 
@@ -167,17 +167,17 @@ public class PaginationOfListOfUsersTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
-		// Confirmation to delete user connected
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		// Confirmation to delete user 
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		driverManager.getDriver().navigate().refresh();
+		homePage.getDriverManager().driverWait(3000);
 
 		// Click on delete user
 
@@ -185,11 +185,11 @@ public class PaginationOfListOfUsersTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 	}

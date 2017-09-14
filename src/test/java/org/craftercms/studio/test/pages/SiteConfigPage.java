@@ -552,8 +552,8 @@ public class SiteConfigPage {
 	}
 
 	public void clickPageOrderToViewProperties() {
-		this.driverManager.driverWait(2000);
-		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.driverManager.driverWait(3000);
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				clickOnPageOrderSection);
 		// driver.findElement(By.xpath(clickOnPageOrderSection));
 		showSection.click();

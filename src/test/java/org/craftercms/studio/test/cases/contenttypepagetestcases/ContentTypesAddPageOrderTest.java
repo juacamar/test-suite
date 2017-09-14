@@ -155,7 +155,7 @@ public class ContentTypesAddPageOrderTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// wait for element
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// driverManager.driverWait();
 

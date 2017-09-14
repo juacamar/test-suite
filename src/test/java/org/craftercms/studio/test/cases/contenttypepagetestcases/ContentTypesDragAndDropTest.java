@@ -155,7 +155,7 @@ public class ContentTypesDragAndDropTest {
 
 		// validate the control added
 
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector("#content-type-canvas .content-section-name"));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector(5,"#content-type-canvas .content-section-name"));
 		
 			//driverManager.getDriver().findElement(By.cssSelector("#content-type-canvas .content-section-name"));
 

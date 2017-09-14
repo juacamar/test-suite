@@ -95,11 +95,11 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		//driverManager.getDriver().navigate().refresh();
 		// Show site content panel
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(8000);
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", siteDropdownElementXPath)
+		if (this.driverManager.isElementPresentByXpath(15,siteDropdownElementXPath))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "xpath", siteDropdownElementXPath)
 					.click();
 		else
 			throw new NoSuchElementException(

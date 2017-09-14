@@ -166,7 +166,7 @@ public class AddNewContentEntryTest {
 		createContent();
 
 		// Expand Home Tree
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(3000);
 		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable

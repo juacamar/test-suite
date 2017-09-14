@@ -165,7 +165,7 @@ public class HomePage {
 
 	public void clickDeleteSiteIcon() {
 		this.driverManager.driverWait(2000);
-		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "cssSelector",
 				deleteSiteIcon);
 				//driver.findElement(By.cssSelector(deleteSiteIcon));
 		deleteIcon.click();
@@ -243,7 +243,7 @@ public class HomePage {
 
 	public Boolean isUsersContextualNavigationOptionPresent() {
 		this.driverManager.driverWait(2000);
-		return this.driverManager.isElementPresentByXpath(usersContextualNavigationOption);
+		return this.driverManager.isElementPresentByXpath(3,usersContextualNavigationOption);
 	}
 
 	public void deleteSite() {

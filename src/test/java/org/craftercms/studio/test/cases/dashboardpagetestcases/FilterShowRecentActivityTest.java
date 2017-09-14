@@ -255,11 +255,11 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Assert filter 1
 
-		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]").getText();
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]")).getText();
@@ -267,7 +267,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// clean filter
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
@@ -277,7 +277,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Show only 1 item edited
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
@@ -288,7 +288,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Assert filter 1
 

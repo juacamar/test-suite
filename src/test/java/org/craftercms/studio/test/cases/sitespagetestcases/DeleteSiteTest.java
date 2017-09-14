@@ -58,7 +58,7 @@ public class DeleteSiteTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Click on Delete icon
 
@@ -77,6 +77,6 @@ public class DeleteSiteTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(".glyphicon.glyphicon-trash"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(10,".glyphicon.glyphicon-trash"));
 	}
 }
