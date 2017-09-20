@@ -199,13 +199,13 @@ public class DeleteContentTest {
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 		// wait for element
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(3000);
 		// wait for element
 		// driverManager.driverWait();
 		driverManager.getDriver().navigate().refresh();
-		driverManager.driverWait(300);
+		driverManager.driverWait(3000);
 
-		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				"#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)").getText();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) >

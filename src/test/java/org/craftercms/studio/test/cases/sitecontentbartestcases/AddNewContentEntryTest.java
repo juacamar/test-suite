@@ -175,7 +175,7 @@ public class AddNewContentEntryTest {
 
 		// Assert of the test case is fine
 
-		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]").getText();
 		
 		// driverManager.getDriver().findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]"))
