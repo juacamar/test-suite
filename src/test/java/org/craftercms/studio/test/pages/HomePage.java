@@ -91,8 +91,8 @@ public class HomePage {
 	// Click on edit option of my recent activity senction
 
 	public void clickEditOptionOfRecentActivitySection() {
-		this.driverManager.driverWait(2000);
-		WebElement editOptionMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.driverManager.driverWait(3000);
+		WebElement editOptionMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				editRecentActivity);
 				//driver.findElement(By.xpath(editRecentActivity));
 		editOptionMyRecentActivity.click();

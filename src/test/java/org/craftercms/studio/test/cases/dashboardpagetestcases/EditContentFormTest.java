@@ -275,16 +275,21 @@ public class EditContentFormTest {
 		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
+		driverManager.getDriver().navigate().refresh();
+		
+		// wait for element
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
-
+		
+		homePage.getDriverManager().driverWait(4000);
+		
 		// Assert of the test case is fine
 
-		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(6,
 				"xpath", "/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]").getText();
 				//driverManager.getDriver()
 				//.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();

@@ -226,7 +226,7 @@ public class CopyPasteIntoFolderTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// reload page
 
@@ -236,13 +236,13 @@ public class CopyPasteIntoFolderTest {
 
 		// Asserts of the new content created
 
-		String componentMoved = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		String componentMoved = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr[2]/td[4]").getText();
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[2]/td[4]")).getText();
 		Assert.assertTrue(componentMoved.contains(componentMoved));
 
-		String newContentMoved = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		String newContentMoved = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]").getText();
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();

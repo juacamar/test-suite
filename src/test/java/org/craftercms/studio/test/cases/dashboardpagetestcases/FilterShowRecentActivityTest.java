@@ -255,7 +255,7 @@ public class FilterShowRecentActivityTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(3000);
+		homePage.getDriverManager().driverWait(4000);
 
 		// Assert filter 1
 
