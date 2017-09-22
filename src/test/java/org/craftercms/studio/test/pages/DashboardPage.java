@@ -348,7 +348,7 @@ public class DashboardPage {
 	// Press right click and select new content
 	public void rightClickHome2() {
 		this.driverManager.driverWait(2000);
-		WebElement home2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", homeContent2);
+		WebElement home2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", homeContent2);
 		// driverManager.getDriver().findElement(By.xpath(homeContent2));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home2);
 

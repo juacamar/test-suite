@@ -86,7 +86,7 @@ public class PreviewPage {
 	// Click on admin console link
 
 	public void clickAdminConsoleOption() {
-		// this.driverManager.driverWait(300);
+		 this.driverManager.driverWait(3000);
 		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				adminConsole);
 		// driverManager.getDriver().findElement(By.cssSelector(adminConsole));
@@ -142,7 +142,7 @@ public class PreviewPage {
 	// Expand the In Context Menu
 
 	public void expandInContextEditing() {
-		// this.driverManager.driverWait(300);
+		 this.driverManager.driverWait(3000);
 		WebElement expandInContextMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				expandInContextEditing);
 		// driverManager.getDriver().findElement(By.xpath(expandInContextEditing));
@@ -180,7 +180,7 @@ public class PreviewPage {
 	// Click on Approve&Publish option
 
 	public void approvePublish() {
-		 this.driverManager.driverWait(300);
+		 this.driverManager.driverWait(3000);
 		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				approvePublish);
 		// driverManager.getDriver().findElement(By.xpath(approvePublish));

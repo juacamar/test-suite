@@ -54,7 +54,7 @@ public class HomePage {
 	// Click on preview link
 
 	public void clickPreviewOption() {
-		this.driverManager.driverWait(300);
+		this.driverManager.driverWait(3000);
 		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				previewSite1);
 				//driverManager.getDriver().findElement(By.xpath(previewSite1));
@@ -165,7 +165,7 @@ public class HomePage {
 
 	public void clickDeleteSiteIcon() {
 		this.driverManager.driverWait(2000);
-		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "cssSelector",
+		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(6, "cssSelector",
 				deleteSiteIcon);
 				//driver.findElement(By.cssSelector(deleteSiteIcon));
 		deleteIcon.click();
