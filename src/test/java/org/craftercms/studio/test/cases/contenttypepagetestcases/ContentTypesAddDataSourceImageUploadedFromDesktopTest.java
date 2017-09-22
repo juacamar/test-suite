@@ -89,7 +89,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		loginPage.loginToCrafter("admin", "admin");
 
 		// wait for element
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 
 		// go to preview page
 		homePage.goToPreviewPage();
