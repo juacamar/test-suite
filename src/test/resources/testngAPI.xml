@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="craftercms API test suite" preserve-order="true">
+<suite name="craftercms API test suite" preserve-order="true" verbose="3">
 	<!-- API Test Cases -->
 	<!-- User Management -->
+	<!--<listeners>
+		<listener class-name="org.craftercms.studio.test.utils.TestListener"></listener>
+	</listeners>-->
 	<test name="Create User"  preserve-order="true">
 		<classes>
 			<class name="org.craftercms.studio.test.api.CreateUserAPITest" />
