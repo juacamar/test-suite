@@ -84,9 +84,9 @@ public class TestListener implements ITestListener, ISuiteListener, IInvokedMeth
 
 	}
 
-	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
-
-	}
+	 public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
+		 printTestResults(arg0);
+	 }
 
 	// This is the method which will be executed in case of test pass or fail
 
@@ -115,21 +115,19 @@ public class TestListener implements ITestListener, ISuiteListener, IInvokedMeth
 		switch (result.getStatus()) {
 
 		case ITestResult.SUCCESS:
-
 			status = "Pass";
-
 			break;
 
 		case ITestResult.FAILURE:
-
 			status = "Failed";
-
 			break;
 
 		case ITestResult.SKIP:
-
 			status = "Skipped";
+			break;
 
+		default:
+			break;
 		}
 
 		Reporter.log("[INFO] Test Status: " + status, true);
@@ -146,7 +144,7 @@ public class TestListener implements ITestListener, ISuiteListener, IInvokedMeth
 			textMsg = "[INFO] Completed executing the before|after method: " + returnMethodName(arg0.getTestMethod());
 		else
 			textMsg = "[INFO] Completed executing the test method: " + returnMethodName(arg0.getTestMethod());
-		
+
 		Reporter.log(textMsg, true);
 
 	}
@@ -160,7 +158,7 @@ public class TestListener implements ITestListener, ISuiteListener, IInvokedMeth
 			textMsg = "[INFO] Completed executing the before|after method: " + returnMethodName(arg0.getTestMethod());
 		else
 			textMsg = "[INFO] Completed executing the test method: " + returnMethodName(arg0.getTestMethod());
-		
+
 		Reporter.log(textMsg, true);
 
 	}
