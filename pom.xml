@@ -241,6 +241,10 @@
 							<name>suitethreadpoolsize</name>
 							<value>${threads}</value>
 						</property>
+						<property>
+							<name>surefire.testng.verbose</name>
+							<value>2</value>
+						</property>
 					</properties>
 				</configuration>
 			</plugin>
