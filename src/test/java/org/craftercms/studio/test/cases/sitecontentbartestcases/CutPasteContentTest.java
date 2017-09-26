@@ -300,7 +300,8 @@ public class CutPasteContentTest {
 		// wait for element
 		// homePage.getDriverManager().driverWait(300);
 		driverManager.getDriver().navigate().refresh();
-		homePage.getDriverManager().driverWait(3000);
+		
+		homePage.getDriverManager().driverWait(4000);
 
 		// Assert of the content copied
 		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",

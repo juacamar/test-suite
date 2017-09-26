@@ -183,7 +183,7 @@ public class DeleteContentTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(130);
+		homePage.getDriverManager().driverWait(1300);
 
 		// confirmation
 
@@ -203,7 +203,7 @@ public class DeleteContentTest {
 		// wait for element
 		// driverManager.driverWait();
 		driverManager.getDriver().navigate().refresh();
-		driverManager.driverWait(3000);
+		driverManager.driverWait(4000);
 
 		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				"#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)").getText();

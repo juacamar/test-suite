@@ -259,7 +259,7 @@ public class FilterShowRecentActivityTest {
 
 		// Assert filter 1
 
-		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath",
+		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]").getText();
 		// driverManager.getDriver()
 		// .findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]")).getText();

@@ -283,9 +283,9 @@ public class EditContentFormTest {
 
 		// Switch back to the dashboard page
 
-		//driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().switchTo().defaultContent();
 		
-		homePage.getDriverManager().driverWait(4000);
+		homePage.getDriverManager().driverWait(5000);
 		
 		// Assert of the test case is fine
 

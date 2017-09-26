@@ -153,7 +153,7 @@ public class DashboardPage {
 				.getProperty("dashboard.about_us_copied");
 		deleteOptionCopied = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_about_us_copied");
-		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.delete_crafter_component");
+		//UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.delete_crafter_component");
 		deleteCrafterComponent2 = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_crafter_component2");
 		unlockOptionCopied = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -659,7 +659,7 @@ public class DashboardPage {
 	// Press right click and press paste option
 	public void rightClickPasteOptionTwo() {
 		this.getDriverManager().driverWait(2000);
-		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				newFolderCreated);
 		// driverManager.getDriver().findElement(By.cssSelector(newFolderCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
@@ -755,7 +755,7 @@ public class DashboardPage {
 	// Press right click and press cut option
 	public void rightClickCutOption() {
 		this.getDriverManager().driverWait(2000);
-		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				contentCreatedToCut);
 		// driverManager.getDriver().findElement(By.cssSelector(contentCreatedToCut));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), cutpasteContent);
@@ -835,7 +835,7 @@ public class DashboardPage {
 	// Press right click and copy the new content to the new folder
 	public void rightClickCopyNewContent() {
 		this.getDriverManager().driverWait(2000);
-		WebElement copyNewContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement copyNewContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				newContentCreated);
 		// driverManager.getDriver().findElement(By.cssSelector(newContentCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyNewContent);
@@ -855,7 +855,7 @@ public class DashboardPage {
 	// Press right click and press paste option to the new folder
 	public void rightClickPaste() {
 		this.getDriverManager().driverWait(2000);
-		WebElement pasteAllContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement pasteAllContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				folderCreated);
 		// driverManager.getDriver().findElement(By.cssSelector(folderCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteAllContent);
@@ -1059,7 +1059,7 @@ public class DashboardPage {
 	// Press right click and select new content
 	public void deleteContent() {
 		this.getDriverManager().driverWait(2000);
-		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				cutCrafterComponent);
 		// driverManager.getDriver().findElement(By.cssSelector(cutCrafterComponent));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu);

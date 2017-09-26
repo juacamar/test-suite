@@ -197,7 +197,7 @@ public class CopyPasteContentTest {
 
 		// wait for element
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 		// Click on edit option of recent activity section
 
 		homePage.clickOnEditOptionRecentActivity();
