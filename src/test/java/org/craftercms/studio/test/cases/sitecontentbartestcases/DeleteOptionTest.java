@@ -308,9 +308,9 @@ public class DeleteOptionTest {
 		// wait for element
 		// driverManager.driverWait();
 		driverManager.getDriver().navigate().refresh();
-		driverManager.driverWait(300);
+		driverManager.driverWait(4000);
 
-		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				"#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)").getText();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) >
