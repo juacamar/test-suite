@@ -16,6 +16,7 @@ import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+
 /**
  * 
  * 
@@ -93,29 +94,29 @@ public class EditContentFormTest {
 
 		// Drag and drop Form Section
 
-		//driverManager.getDriver().manage().window().maximize();
+		// driverManager.getDriver().manage().window().maximize();
 
-		//driverManager.getDriver().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+		// driverManager.getDriver().manage().timeouts().implicitlyWait(10000,
+		// TimeUnit.MILLISECONDS);
 
-		
 		WebElement From = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				".control-section");
-				//driverManager.getDriver().findElement(By.cssSelector(".control-section"));
+		// driverManager.getDriver().findElement(By.cssSelector(".control-section"));
 
 		WebElement To = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#content-type-canvas .content-form-name");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector("#content-type-canvas .content-form-name"));
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("#content-type-canvas .content-form-name"));
 
 		Actions builder = new Actions(driverManager.getDriver());
 
 		Action dragAndDrop = builder.clickAndHold(From)
 
-		.moveToElement(To)
+				.moveToElement(To)
 
-		.release(To)
+				.release(To)
 
-		.build();
+				.build();
 
 		dragAndDrop.perform();
 
@@ -125,27 +126,29 @@ public class EditContentFormTest {
 
 		// Drag and drop Input
 
-		//driverManager.getDriver().manage().window().maximize();
+		// driverManager.getDriver().manage().window().maximize();
 
-		//driverManager.getDriver().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+		// driverManager.getDriver().manage().timeouts().implicitlyWait(10000,
+		// TimeUnit.MILLISECONDS);
 
 		WebElement FromInput = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#content-type-tools .control:nth-child(3)");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector("#content-type-tools .control:nth-child(3)"));
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("#content-type-tools .control:nth-child(3)"));
 
 		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"#content-type-canvas .content-type-visual-section-container:nth-child(3)");
-				//driverManager.getDriver().findElement(
-				//By.cssSelector("#content-type-canvas .content-type-visual-section-container:nth-child(3)"));
+		// driverManager.getDriver().findElement(
+		// By.cssSelector("#content-type-canvas
+		// .content-type-visual-section-container:nth-child(3)"));
 
 		Action dragAndDropInput = builder.clickAndHold(FromInput)
 
-		.moveToElement(ToDefaultSection)
+				.moveToElement(ToDefaultSection)
 
-		.release(ToDefaultSection)
+				.release(ToDefaultSection)
 
-		.build();
+				.build();
 
 		dragAndDropInput.perform();
 
@@ -161,9 +164,8 @@ public class EditContentFormTest {
 	public void bodyNotRequiered() {
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
-				"#admin-console").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// wait for element is clickeable
 
@@ -193,9 +195,8 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
-				"#yui-gen9").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#yui-gen9")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#yui-gen9").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen9")).click();
 
 		// wait for element is clickeable
 
@@ -204,8 +205,9 @@ public class EditContentFormTest {
 		// Body not required
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
 				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
-		//driverManager.getDriver()
-		//		.findElement(By.cssSelector("div.property-wrapper:nth-child(21) > div:nth-child(2) > input")).click();
+		// driverManager.getDriver()
+		// .findElement(By.cssSelector("div.property-wrapper:nth-child(21) >
+		// div:nth-child(2) > input")).click();
 
 		// wait for element is clickeable
 
@@ -214,7 +216,7 @@ public class EditContentFormTest {
 		// save
 
 		siteConfigPage.saveDragAndDropProcess();
-		
+
 		driverManager.getDriver().switchTo().defaultContent();
 
 	}
@@ -243,10 +245,10 @@ public class EditContentFormTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
-						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
+		// .bd iframe")));
 
 		// wait for element is clickeable
 
@@ -261,22 +263,22 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait(2000);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"cssSelector", "#title > div > input").sendKeys("MainTitle");
-		//driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
+				.sendKeys("MainTitle");
+		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
+		// input")).sendKeys("MainTitle");
 
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"id", "cstudioSaveAndClose").click();
-		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
+		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
-		
+
 		// wait for element
 
 		homePage.getDriverManager().driverWait(3000);
@@ -284,15 +286,17 @@ public class EditContentFormTest {
 		// Switch back to the dashboard page
 
 		driverManager.getDriver().switchTo().defaultContent();
-		
+		// wait for element is clickeable
+		driverManager.getDriver().navigate().refresh();
+
 		homePage.getDriverManager().driverWait(5000);
-		
+
 		// Assert of the test case is fine
 
-		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(7,
-				"xpath", "/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]").getText();
-				//driverManager.getDriver()
-				//.findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
+		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(7, "xpath",
+				".//tbody[@id='MyRecentActivity-tbody']/tr/td/div/a[contains(text(),'Testing1')]").getText();
+		// driverManager.getDriver()
+		// .findElement(By.xpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]")).getText();
 		Assert.assertTrue(contentURL.contains(contentURL));
 
 		// reload page
@@ -315,10 +319,10 @@ public class EditContentFormTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
-						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
+		// .bd iframe")));
 
 		// wait for element
 
@@ -326,7 +330,7 @@ public class EditContentFormTest {
 
 		// wait for element
 
-		//homePage.getDriverManager().driverWait();
+		// homePage.getDriverManager().driverWait();
 
 		// Expand default section
 		myRecentActivityFramePage1.expandDefaultSection();
@@ -336,18 +340,20 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Clealing title text field
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"cssSelector", "#internal-name > div > input").clear();
-		//driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#internal-name > div > input")
+				.clear();
+		// driverManager.getDriver().findElement(By.cssSelector("#internal-name > div >
+		// input")).clear();
 
 		// wait for element
 
 		homePage.getDriverManager().driverWait(1000);
 
 		// Typing new text on title text field
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"cssSelector", "#internal-name > div > input").sendKeys("TestQA");
-		//driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input")).sendKeys("TestQA");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#internal-name > div > input")
+				.sendKeys("TestQA");
+		// driverManager.getDriver().findElement(By.cssSelector("#internal-name > div >
+		// input")).sendKeys("TestQA");
 
 		// wait for element
 
@@ -372,10 +378,10 @@ public class EditContentFormTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
-						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
+		// .bd iframe")));
 
 		// wait for element
 
@@ -385,16 +391,16 @@ public class EditContentFormTest {
 		myRecentActivityFramePage1.expandDefaultSection();
 
 	}
-	
-	public void goToDashboard(){
+
+	public void goToDashboard() {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait(4000);
 
 		// Go to dashboard page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"xpath", "/html/body/div[4]/div[1]/nav/div/div[1]/a/img").click();
-		//driverManager.getDriver().findElement(By.xpath("/html/body/div[4]/div[1]/nav/div/div[1]/a/img")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+				"/html/body/div[4]/div[1]/nav/div/div[1]/a/img").click();
+		// driverManager.getDriver().findElement(By.xpath("/html/body/div[4]/div[1]/nav/div/div[1]/a/img")).click();
 
 		// wait for element is clickeable
 
@@ -419,12 +425,12 @@ public class EditContentFormTest {
 		// wait for element is clickeable
 
 		homePage.getDriverManager().driverWait(2300);
-		//homePage.getDriverManager().driverWait();
+		// homePage.getDriverManager().driverWait();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"xpath", ".//a[@id='acn-dropdown-toggler']").click();
-		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
-		//		.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='acn-dropdown-toggler']")
+				.click();
+		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
+		// .click();
 
 		// wait for element
 
@@ -459,9 +465,8 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait(3000);
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"cssSelector", "#cstudio-logo").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-logo").click();
+		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
 
 		// wait for element is clickeable
 
@@ -487,10 +492,12 @@ public class EditContentFormTest {
 		clickOnEditOptionOfRecentActivitySection();
 
 		// Assert validation
-		String textTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"cssSelector", "#internal-name > div > input").getAttribute("value");
-				//driverManager.getDriver().findElement(By.cssSelector("#internal-name > div > input"))
-				//.getAttribute("value");
+		String textTitle = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#internal-name > div > input")
+				.getAttribute("value");
+		// driverManager.getDriver().findElement(By.cssSelector("#internal-name > div >
+		// input"))
+		// .getAttribute("value");
 		Assert.assertEquals(textTitle, "TestQA");
 
 	}

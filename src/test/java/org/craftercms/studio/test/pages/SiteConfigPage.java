@@ -211,7 +211,7 @@ public class SiteConfigPage {
 
 	public void saveSectionDropped() {
 		this.driverManager.driverWait(3000);
-		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", saveButton);
+		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", saveButton);
 		// driver.findElement(By.xpath(saveButton));
 		okButtonOpt.click();
 
