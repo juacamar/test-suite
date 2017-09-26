@@ -288,11 +288,12 @@ public class DuplicateOptionTest {
 
 		homePage.getDriverManager().driverWait(2000);
 
-		// Assert
-		String duplicate =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"cssSelector", "#ygtvlabelel3").getText();
-				//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
-		Assert.assertEquals(duplicate, "COPY");
+		Assert.assertTrue(driverManager.isElementPresentByXpath(3, ".//span[contains(text(),'COPY')]"));
+//		// Assert
+//		String duplicate =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+//				"xpath", "").getText();
+//				//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
+//		Assert.assertEquals(duplicate, "COPY");
 
 	}
 

@@ -97,7 +97,7 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(4000);
+		homePage.getDriverManager().driverWait(5000);
 
 		// save
 
@@ -129,7 +129,7 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
@@ -283,7 +283,7 @@ public class EditOptionTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(3000);
 
 		// go to dashboard
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-logo").click();
@@ -298,7 +298,7 @@ public class EditOptionTest {
 		createNewContent();
 
 		// Expand Home Tree
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(3000);
 		dashboardPage.expandHomeTree2();
 
 		// wait for element is clickeable
@@ -318,11 +318,12 @@ public class EditOptionTest {
 		homePage.getDriverManager().driverWait(2000);
 
 		// Assert find the new content created edited
-
-		String contentEdited = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#ygtvlabelel3").getText();
-		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
-		Assert.assertEquals(contentEdited, "Testing1EDITED");
+		
+		 Assert.assertTrue(this.driverManager.isElementPresentByXpath(3, ".//span[contains(text(),'Testing1EDITED')]"));
+//		String contentEdited = this.driverManager
+//				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#ygtvlabelel3").getText();
+//		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
+//		Assert.assertEquals(contentEdited, "Testing1EDITED");
 
 	}
 

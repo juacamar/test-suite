@@ -311,10 +311,17 @@ public class EditContentRecentlyCreatedTest {
 
 		// Assert find the new content created edited
         driverManager.driverWait(2000);
-		String contentEdited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-				"cssSelector", "#ygtvlabelel3").getText();
+        
+      	driverManager.getDriver().navigate().refresh();
+
+		// Assert find the new content created edited
+        driverManager.driverWait(3000);
+        
+        Assert.assertTrue(this.driverManager.isElementPresentByXpath(3, ".//tbody[@id='MyRecentActivity-tbody']/tr/td/div/a[contains(text(),'Testing1EDITED')]"));
+		//String contentEdited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+			//	"cssSelector", "").getText();
 				//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).getText();
-		Assert.assertEquals(contentEdited, "Testing1EDITED");
+		//Assert.assertEquals(contentEdited, "Testing1EDITED");
 
 	}
 
