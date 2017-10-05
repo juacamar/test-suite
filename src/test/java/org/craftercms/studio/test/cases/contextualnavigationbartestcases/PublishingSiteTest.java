@@ -11,6 +11,7 @@ import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.By;
 
 /**
  * 
@@ -230,11 +231,14 @@ public class PublishingSiteTest {
 
 		// Assert
 		homePage.getDriverManager().driverWait(3000);
-		String siteStatus = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span").getText();
-		// driverManager.getDriver()
-		// .findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[1]/span")).getText();
-		Assert.assertEquals(siteStatus, "Live :");
+		
+		
+		String headStatusClass = this.driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)")).getAttribute("class");
+//		String headClass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+//				"#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)").getAttribute("class");
+				//driverManager.getDriver()
+				//.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();
+		Assert.assertTrue(headStatusClass.contains("live"));
 
 	}
 

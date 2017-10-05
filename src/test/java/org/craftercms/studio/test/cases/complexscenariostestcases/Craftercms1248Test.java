@@ -169,7 +169,7 @@ public class Craftercms1248Test {
 		// input")).sendKeys(pageName);
 
 		// click necessary to validate all fields required
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 		this.driverManager.scrollUp();
 		
 		homePage.getDriverManager().driverWait(1000);
@@ -178,12 +178,12 @@ public class Craftercms1248Test {
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(5000);
 
 		// wait for element is clickeable
 		// homePage.getDriverManager().driverWait();
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 
 		// wait for element is clickeable

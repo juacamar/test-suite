@@ -11,6 +11,7 @@ import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
 /**
@@ -131,12 +132,12 @@ public class CreateSiteEmptyTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
-
-		String head = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
-				"#activeContentActions > li:nth-child(1) > span").getText();
+		String headStatusClass = this.driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)")).getAttribute("class");
+//		String headClass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+//				"#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)").getAttribute("class");
 				//driverManager.getDriver()
 				//.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();
-		Assert.assertEquals(head, "Live :");
+		Assert.assertTrue(headStatusClass.contains("live"));
 
 	}
 
