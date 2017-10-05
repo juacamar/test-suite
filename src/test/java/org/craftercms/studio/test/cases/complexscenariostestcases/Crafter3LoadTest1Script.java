@@ -284,14 +284,14 @@ public class Crafter3LoadTest1Script {
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1500);
+		homePage.getDriverManager().driverWait(3000);
 		// wait for element is clickeable
 		// homePage.getDriverManager().driverWait();
 		// save and close
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
 		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
 		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(2000);
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
@@ -503,7 +503,7 @@ public class Crafter3LoadTest1Script {
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				bigTree1FolderLocator);
 		// driverManager.getDriver().findElement(By.xpath(bigTree1FolderLocator));
-		this.driverManager.driverWait(300);
+		this.driverManager.driverWait(3000);
 		dashboardPage.rightClickCopyFolder(bigTree1Folder);
 
 		// Step2 b)
