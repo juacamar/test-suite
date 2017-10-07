@@ -94,11 +94,13 @@ public class TryToDeleteUserConnectedTest {
 		homePage.getDriverManager().driverWait(2000);
 
 		// Verify
+		Assert.assertTrue(this.driverManager.isElementPresentBycssSelector(4,
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-body.ng-scope > p"));
 
-		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssselector",
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button");
+		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssselector",
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-body.ng-scope > p");
 
-		Assert.assertTrue(validation.isDisplayed());
+		Assert.assertTrue(validation.getText().contains("Unable to delete user"));
 
 	}
 
