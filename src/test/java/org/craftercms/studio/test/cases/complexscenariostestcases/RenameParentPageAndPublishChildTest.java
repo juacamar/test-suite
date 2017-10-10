@@ -20,7 +20,7 @@ import org.openqa.selenium.WebElement;
  * @author luishernandez
  *
  */
-public class Craftercms1248Test {
+public class RenameParentPageAndPublishChildTest {
 
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
@@ -347,7 +347,8 @@ public class Craftercms1248Test {
 	}
 
 	@Test
-	public void craftercms1248Test() {
+	public void renameParentPageAndPublishChildTest() {
+		//Related to the bug: https://github.com/craftercms/craftercms/issues/1248
 		this.loginAndGoToSiteContentPagesStructure();
 
 		// expand pages folder
