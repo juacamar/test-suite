@@ -20,12 +20,12 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test>
-	<test name="Craftercms1248" preserve-order="true">
+	<test name="RenameParentPageAndPublishChildTest" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
 			<class
-				name="org.craftercms.studio.test.cases.complexscenariostestcases.Craftercms1248Test" />
+				name="org.craftercms.studio.test.cases.complexscenariostestcases.RenameParentPageAndPublishChildTest" />
 			<class
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
