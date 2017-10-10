@@ -195,12 +195,12 @@ public class EditContentFormTest {
 		homePage.getDriverManager().driverWait(1000);
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#yui-gen9").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//span[contains(text(),'Body')]").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen9")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(1000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Body not required
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",

@@ -120,12 +120,12 @@ public class DeleteOptionTest {
 		homePage.getDriverManager().driverWait(2000);
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#yui-gen8").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//span[contains(text(),'Body')]").click();
 		// driverManager.getDriver().findElement(By.cssSelector("#yui-gen8")).click();
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 
 		// Body not required
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",

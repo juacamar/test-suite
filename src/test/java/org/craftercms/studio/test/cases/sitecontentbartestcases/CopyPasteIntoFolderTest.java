@@ -132,7 +132,7 @@ public class CopyPasteIntoFolderTest {
 	
 	@Test(priority = 0)
 
-	public void Copy_Folder_test() {
+	public void copyFolderTest() {
 
 		// login to application
 		loginPage.getDriverManager().driverWait(1000);
