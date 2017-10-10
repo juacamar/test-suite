@@ -130,7 +130,7 @@ public class CopyPasteContentTest {
 
 	@Test(priority = 0)
 
-	public void Copy_Paste_Content_test() {
+	public void copyAndPasteContentTest() {
 
 		// login to application
 		homePage.getDriverManager().driverWait(300);
