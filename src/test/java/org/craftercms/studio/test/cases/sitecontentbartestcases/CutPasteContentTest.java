@@ -218,6 +218,7 @@ public class CutPasteContentTest {
 		// input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
+		this.driverManager.scrollUp();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
 				.click();
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
