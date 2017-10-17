@@ -106,6 +106,7 @@ public class CopyPasteContentTest {
 		// input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
+		this.driverManager.scrollUp();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
 				.click();
 		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
@@ -158,12 +159,15 @@ public class CopyPasteContentTest {
 
 		// driverManager.getDriver().navigate().refresh();
 
-		homePage.getDriverManager().driverWait(300);
+		homePage.getDriverManager().driverWait(3000);
 
 		// expand pages folder
 
 		dashboardPage.expandPagesTree();
 
+		// reload page
+		driverManager.getDriver().navigate().refresh();
+		dashboardPage.getDriverManager().driverWait(3000);
 		// create content
 
 		this.createContent();
