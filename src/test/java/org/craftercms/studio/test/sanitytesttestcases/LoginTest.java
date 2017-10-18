@@ -1,4 +1,4 @@
-package org.craftercms.studio.test.cases.loginpagetestcases;
+package org.craftercms.studio.test.sanitytesttestcases;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

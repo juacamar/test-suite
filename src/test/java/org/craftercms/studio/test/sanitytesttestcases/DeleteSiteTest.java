@@ -1,7 +1,6 @@
-package org.craftercms.studio.test.cases.loginpagetestcases;
+package org.craftercms.studio.test.sanitytesttestcases;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -18,7 +17,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class LoginTest {
+public class DeleteSiteTest {
 
 	WebDriver driver;
 
@@ -34,8 +33,6 @@ public class LoginTest {
 
 	private HomePage homePage;
 
-
-
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -43,6 +40,7 @@ public class LoginTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
+
 	}
 
 	@AfterClass
@@ -52,7 +50,7 @@ public class LoginTest {
 
 	@Test(priority = 0)
 
-	public void login_Test() {
+	public void delete_site() {
 
 		// login to application
 
@@ -60,18 +58,25 @@ public class LoginTest {
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
+		homePage.getDriverManager().driverWait(3000);
 
-		// Assert create button is present.
+		// Click on Delete icon
 
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
-				".btn.btn-default.btn-pill.btn-block");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
+		homePage.clickOnDeleteSiteIcon();
 
-		Assert.assertTrue(createButton.isDisplayed());
-		Assert.assertTrue(this.driverManager.getDriver().getCurrentUrl().contains("/studio#/sites"));
+		// wait for element is clickeable
 
+		homePage.getDriverManager().driverWait(1000);
+
+		// Click on YES to confirm the delete.
+
+		homePage.clickOnYesToDeleteSite();
+
+		// wait for element is clickeable
+
+		homePage.getDriverManager().driverWait(1000);
+
+		// Assert
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(10,".glyphicon.glyphicon-trash"));
 	}
-
 }

@@ -639,12 +639,12 @@ public class DashboardPage {
 	// Press right click and press paste option
 	public void rightClickPasteOption() {
 		this.getDriverManager().driverWait(2000);
-		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				homeContent3);
 		// driverManager.getDriver().findElement(By.cssSelector(homeContent3));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
-		this.getDriverManager().driverWait(3000);
+		//this.getDriverManager().driverWait(2000);
 		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				pasteContent0);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent0));
@@ -664,7 +664,7 @@ public class DashboardPage {
 		// driverManager.getDriver().findElement(By.cssSelector(newFolderCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
-		this.getDriverManager().driverWait(2000);
+		this.getDriverManager().driverWait(1000);
 		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
 				pasteContent2);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
