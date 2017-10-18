@@ -14,6 +14,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.TestException;
 import java.awt.*;
 import java.io.FileInputStream;
@@ -76,6 +77,8 @@ public class WebDriverManager {
 				if (!webBrowserProperty.equalsIgnoreCase("firefox")) {
 					this.maximizeWindow();
 				}
+				
+				Assert.assertTrue(driver.getCurrentUrl().contains("/studio#/login"));
 
 			} catch (IOException ex) {
 				throw new FileNotFoundException("Unable to read runtime properties file");

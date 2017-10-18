@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="craftercms studio UI complex-scenarios test suite"
-	preserve-order="true" verbose="3">
+	preserve-order="true">
 	<!--  <listeners>
 		<listener class-name="org.craftercms.studio.test.utils.TestListener"></listener>
 	</listeners>-->
