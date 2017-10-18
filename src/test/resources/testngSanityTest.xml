@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Crafter Studio - Sanity Test" preserve-order="true">
+	<test name="Login Test">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.sanitytesttestcases.LoginTest" />
+			<class
+				name="org.craftercms.studio.test.sanitytesttestcases.CreateSiteWithWebSiteEditorialBluePrintForSanityTest" />
+			<class
+				name="org.craftercms.studio.test.sanitytesttestcases.VerifyNoErrorsInHomePageOfSiteTest" />
+			<class
+				name="org.craftercms.studio.test.sanitytesttestcases.DeleteSiteTest" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
+
