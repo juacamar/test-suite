@@ -1,13 +1,7 @@
 package org.craftercms.studio.test.pages;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.craftercms.studio.test.utils.JsonTester;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.craftercms.studio.test.utils.datasourceslistxml.DataSourceCreatorXML;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -49,7 +43,6 @@ public class SiteConfigPage {
 	public String clickOnDataSourceImageUploadedFromDesktopSection;
 	public String clickOnDataSourceImageUploadedFromRepositorySection;
 	public String clickOnDataSourceImageUploadedFromCMISRepositorySection;
-	private JsonTester api;
 	public String dataSourceXMLFileLocation;
 	public String dataSourceXMLFileName;
 
@@ -118,7 +111,6 @@ public class SiteConfigPage {
 		clickOnDataSourceImageUploadedFromCMISRepositorySection = UIElementsPropertiesManager
 				.getSharedUIElementsLocators().getProperty(
 						"adminconsole.contenttype.entry.contenttypecontainerdatasourceimageuploadedfromCMISrepository");
-		api = new JsonTester("http", "localhost", 8080);
 	}
 
 	// Click on Content Type option
@@ -660,22 +652,6 @@ public class SiteConfigPage {
 
 	public void clickDataSourceImageUploadedFromCMISRepositorySection() {
 		clickDataSourceImageUploadedFromCMISRepositoryToViewProperties();
-	}
-
-	public void createConfiguredListXML() {
-		DataSourceCreatorXML creatorXML = new DataSourceCreatorXML();
-		creatorXML.generateTestXMLFileForDataSource();
-		this.dataSourceXMLFileLocation = creatorXML.getXMLFileLocation();
-		this.dataSourceXMLFileName = creatorXML.getFileName();
-	}
-
-	public void createContentForXMLFileThroughAPI(String site, String path, String fileName, File file) {
-		Map<String, String> json = new HashMap<>();
-		json.put("site", site);
-		json.put("path", path);
-		json.put("filename", fileName);
-		api.post("studio/api/1/services/api/1/content/write-content.json").params(json).file(fileName, file).execute()
-				.status(200).debug();
 	}
 
 }

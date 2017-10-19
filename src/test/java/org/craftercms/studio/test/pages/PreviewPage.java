@@ -529,7 +529,7 @@ public class PreviewPage {
 
 		// wait for element is clickeable
 
-		this.getDriverManager().driverWait(3000);
+		this.getDriverManager().driverWait(4000);
 
 		// save
 
