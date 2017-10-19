@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConstantsPropertiesManager {
-	private String baseUrl;
-	private String webBrowser;
 	private Properties sharedExecutionConstants;
 
 	public ConstantsPropertiesManager(String filePath) {
@@ -17,29 +15,10 @@ public class ConstantsPropertiesManager {
 			
 			sharedExecutionConstants.load(new FileInputStream(filePath));
 			
-			this.baseUrl = sharedExecutionConstants.getProperty("baseUrl");
-			this.webBrowser = sharedExecutionConstants.getProperty("webBrowser");
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public String getBaseUrl() {
-		return baseUrl;
-	}
-
-	public void setBaseUrl(String baseUrl) {
-		this.baseUrl = baseUrl;
-	}
-
-	public String getWebBrowser() {
-		return webBrowser;
-	}
-
-	public void setWebBrowser(String webBrowser) {
-		this.webBrowser = webBrowser;
 	}
 
 	public Properties getSharedExecutionConstants() {

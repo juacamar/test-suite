@@ -105,8 +105,8 @@ public class PreviewPage {
 	// Open combo all sites
 
 	public void ComboAllSites() {
-		this.driverManager.driverWait(2000);
-		WebElement openCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", openComboSites);
+
+		WebElement openCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "id", openComboSites);
 		// driverManager.getDriver().findElement(By.id(openComboSites));
 		openCombo.click();
 
@@ -529,7 +529,7 @@ public class PreviewPage {
 
 		// wait for element is clickeable
 
-		this.getDriverManager().driverWait(3000);
+		this.getDriverManager().driverWait(4000);
 
 		// save
 

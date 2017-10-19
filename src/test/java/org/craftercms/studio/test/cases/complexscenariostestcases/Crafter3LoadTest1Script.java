@@ -12,6 +12,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -28,8 +29,14 @@ public class Crafter3LoadTest1Script {
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private UIElementsPropertiesManager UIElementsPropertiesManager;
+	private ConstantsPropertiesManager constantsPropertiesManager;
+
 	private HomePage homePage;
 	private DashboardPage dashboardPage;
+
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	private String parentFolderName;
 	private String harnessFolderName;
@@ -68,6 +75,8 @@ public class Crafter3LoadTest1Script {
 		this.driverManager = new WebDriverManager();
 
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
@@ -80,6 +89,11 @@ public class Crafter3LoadTest1Script {
 		this.myTestFolderName = "mytest";
 		this.anotherTestFolderName = "anothertest";
 
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+		
 		this.parentFolderLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.parentfolder") + this.parentFolderName + "')]";
 		harnessFolderLocator = this.parentFolderLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -135,7 +149,9 @@ public class Crafter3LoadTest1Script {
 
 	public void loginAndGoToSiteContentPagesStructure() {
 		// login to application
-		loginPage.loginToCrafter("admin", "admin");
+		loginPage.loginToCrafter(
+				userName,password);
+
 		// wait for element
 		homePage.getDriverManager().driverWait(2000);
 		// go to preview page
@@ -145,8 +161,8 @@ public class Crafter3LoadTest1Script {
 
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 
-		if (this.driverManager.isElementPresentByXpath(10,siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", siteDropdownElementXPath)
+		if (this.driverManager.isElementPresentByXpath(defaultTimeOut, siteDropdownElementXPath))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", siteDropdownElementXPath)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -166,7 +182,7 @@ public class Crafter3LoadTest1Script {
 
 		// Checking if parent folder is present
 		dashboardPage.getDriverManager().driverWait(1000);
-		Assert.assertTrue(driverManager.isElementPresentByXpath(12,parentFolderLocator));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(12, parentFolderLocator));
 
 		this.driverManager.driverWait(1000);
 		WebElement parentFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
@@ -372,12 +388,12 @@ public class Crafter3LoadTest1Script {
 		driverManager.getDriver().switchTo().frame("diffDialog");
 
 		// checkin if is present the removed-red-highlight text
-		Assert.assertTrue(driverManager
-				.isElementPresentByXpath(4,".//td[text()='title']/../td[2]/span[contains(@class,'diff-html-removed')]"));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(4,
+				".//td[text()='title']/../td[2]/span[contains(@class,'diff-html-removed')]"));
 
 		// checkin if is present the added-green-highlight text
-		Assert.assertTrue(driverManager
-				.isElementPresentByXpath(4,".//td[text()='title']/../td[2]/span[contains(@class,'diff-html-added')]"));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(4,
+				".//td[text()='title']/../td[2]/span[contains(@class,'diff-html-added')]"));
 
 		// click on close button
 		dashboardPage.clickCloseButton();

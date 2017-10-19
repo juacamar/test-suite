@@ -58,30 +58,27 @@ public class ContentTypesAddInputTest {
 
 	public void dragAndDrop() {
 
-		driverManager.driverWait(2000);
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionFormSectionLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", controlsSectionFormSectionLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(controlsSectionFormSectionLocator));
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
 		WebElement ToContentTypeContainer =  this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", contentTypeContainerLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", contentTypeContainerLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(contentTypeContainerLocator));
 
 		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
 		// wait for element
 
-		homePage.getDriverManager().driverWait(2000);
-
 		//driverManager.driverWait();
 
 		WebElement FromRepeatingGroup = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionInputLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", controlsSectionInputLocator);
 				//driverManager.getDriver()
 				//.findElement(By.xpath(controlsSectionInputLocator));
 
@@ -104,39 +101,24 @@ public class ContentTypesAddInputTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element
-		homePage.getDriverManager().driverWait(2000);
+		loginPage.loginToCrafter("admin", "admin");	
 
 		// go to preview page
 		homePage.goToPreviewPage();
-
-		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(4000);
 		
 		// Show site content panel
 		//homePage.getDriverManager().driverWait();
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+		.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 		//driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")).click();
 
-		// Show admin console page
-		homePage.getDriverManager().driverWait(2000);
-		//homePage.getDriverManager().driverWait();
 		
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='admin-console']").click();
+		.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", ".//a[@id='admin-console']").click();
 		//driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
-
-		// wait for element
-		homePage.getDriverManager().driverWait(1000);
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
-
-		// wait for element
-		siteConfigPage.getDriverManager().driverWait(1000);
 
 		// drag and drop
 		this.dragAndDrop();
@@ -144,18 +126,11 @@ public class ContentTypesAddInputTest {
 		// open content types
 		siteConfigPage.clickExistingTypeOption();
 
-		// wait for element
-		siteConfigPage.getDriverManager().driverWait(1000);
-
 		// Select the generic content type
 		siteConfigPage.selectEntryContentType();
 
 		// Confirm the content type selected
 		siteConfigPage.confirmContentTypeSelected();
-
-		// wait for element
-		homePage.getDriverManager().driverWait(2000);
-
 		
 		//driverManager.driverWait();
 		
@@ -164,7 +139,7 @@ public class ContentTypesAddInputTest {
 
 		// Asserts that fields are not empty.
 		String titleText = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", contentTypeContainerInputTitleLocator).getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(4, "xpath", contentTypeContainerInputTitleLocator).getText();
 				//driverManager.getDriver()
 				//.findElement(By.xpath(contentTypeContainerInputTitleLocator)).getText();
 

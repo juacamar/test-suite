@@ -62,6 +62,7 @@
 		<file>src/test/resources/testng.xml</file>
 		<file>src/test/resources/testngcomplexscenarios.xml</file>
 		<file>src/test/resources/testngAPI.xml</file>
+		<file>src/test/resources/testngSanityTest.xml</file>
 	</properties>
 	<dependencies>
 		<dependency>
