@@ -6,6 +6,7 @@ package org.craftercms.studio.test.cases.contenttypepagetestcases;
 import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -21,6 +22,8 @@ import org.testng.annotations.Test;
  */
 public class ContentTypesAddAutoFileNameTest {
 	private WebDriverManager driverManager;
+	private ConstantsPropertiesManager constantsPropertiesManager;
+	private UIElementsPropertiesManager uIElementsPropertiesManager;
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private SiteConfigPage siteConfigPage;
@@ -30,15 +33,18 @@ public class ContentTypesAddAutoFileNameTest {
 	private String controlsSectionAutoFileNameLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerAutoFileNameTitleLocator;
+	
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()

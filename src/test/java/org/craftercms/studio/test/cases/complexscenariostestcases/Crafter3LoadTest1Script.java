@@ -77,9 +77,9 @@ public class Crafter3LoadTest1Script {
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager, this.constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager, this.constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager, this.constantsPropertiesManager);
 
 		this.parentFolderName = "tester-" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
 		this.harnessFolderName = "harness";

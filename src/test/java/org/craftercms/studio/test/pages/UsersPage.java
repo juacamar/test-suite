@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.pages;
 
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +27,7 @@ public class UsersPage {
 	/**
 	 * 
 	 */
-	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
 		deleteUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.delete_option");

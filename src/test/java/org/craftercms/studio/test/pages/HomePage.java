@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.pages;
 
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +30,7 @@ public class HomePage {
 	/**
 	 * 
 	 */
-	public HomePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+	public HomePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
 		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.create_site_button");

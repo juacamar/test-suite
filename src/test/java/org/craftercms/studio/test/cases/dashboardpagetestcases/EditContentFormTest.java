@@ -13,6 +13,7 @@ import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.MyRecentActivityFramePage;
 import org.craftercms.studio.test.pages.PreviewPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -40,17 +41,21 @@ public class EditContentFormTest {
 
 	private DashboardPage dashboardPage;
 
+	private ConstantsPropertiesManager constantsPropertiesManager;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		this.myRecentActivityFramePage1 = new MyRecentActivityFramePage(driverManager, uIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.myRecentActivityFramePage1 = new MyRecentActivityFramePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 
 	}
 

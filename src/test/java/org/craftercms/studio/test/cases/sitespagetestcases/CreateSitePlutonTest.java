@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -10,6 +9,7 @@ import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.APIConnectionManager;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -41,23 +41,20 @@ public class CreateSitePlutonTest {
 
 	private APIConnectionManager apiConnectionManager;
 
+	private ConstantsPropertiesManager constantsPropertiesManager;
 
-	
-
-	 @BeforeClass
-	 public void beforeTest() {
-	 this.driverManager = new WebDriverManager();
-	 this.UIElementsPropertiesManager = new
-	 org.craftercms.studio.test.utils.UIElementsPropertiesManager(
-	 FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-	 this.loginPage = new LoginPage(driverManager,
-	 this.UIElementsPropertiesManager);
-	 this.homePage = new HomePage(driverManager,
-	 this.UIElementsPropertiesManager);
-	 this.createSitePage = new CreateSitePage(driverManager,
-	 this.UIElementsPropertiesManager);
-	 apiConnectionManager = new APIConnectionManager();
-	 }
+	@BeforeClass
+	public void beforeTest() {
+		this.driverManager = new WebDriverManager();
+		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		apiConnectionManager = new APIConnectionManager();
+	}
 
 	@AfterClass
 	public void afterTest() {
@@ -111,8 +108,7 @@ public class CreateSitePlutonTest {
 		// Show site content panel
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")
-				.click();
+				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 
 		// wait for element is clickeable
 
@@ -121,7 +117,8 @@ public class CreateSitePlutonTest {
 		// Assert
 
 		String URL = driverManager.getDriver().getCurrentUrl();
-		Assert.assertEquals(URL, apiConnectionManager.getHeaderLocationBase()+"/studio/preview/#/?page=/&site=automationsite");
+		Assert.assertEquals(URL,
+				apiConnectionManager.getHeaderLocationBase() + "/studio/preview/#/?page=/&site=automationsite");
 
 	}
 

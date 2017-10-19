@@ -9,6 +9,7 @@ import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -35,15 +36,19 @@ public class CutPasteContentTest {
 
 	private SiteConfigPage siteConfigPage;
 
+	private ConstantsPropertiesManager constantsPropertiesManager;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, this.UIElementsPropertiesManager);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 
 	}
 

@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -28,15 +29,19 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionImageUploadedFromRepositoryLocator;
 	private String contentTypeContainerImageUploadedFromRepositoryTitleLocator;
+	private UIElementsPropertiesManager uIElementsPropertiesManager;
+	private ConstantsPropertiesManager constantsPropertiesManager;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		this.uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
 		this.dataSourceSectionImageUploadedFromRepositoryLocator = uIElementsPropertiesManager

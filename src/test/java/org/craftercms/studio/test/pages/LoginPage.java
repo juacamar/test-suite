@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.pages;
 
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,7 @@ public class LoginPage {
 	/**
 	 * 
 	 */
-	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driverManager.openConnection();
 		this.driver = this.driverManager.getDriver();

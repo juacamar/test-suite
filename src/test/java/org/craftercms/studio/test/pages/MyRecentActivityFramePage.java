@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.pages;
 
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,7 @@ public class MyRecentActivityFramePage {
     /**
      * 
      */
-    public MyRecentActivityFramePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+    public MyRecentActivityFramePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
         this.driverManager = driverManager;
         this.driverManager.getDriver();
         expandDefaultSection = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.expand_Default_Section");

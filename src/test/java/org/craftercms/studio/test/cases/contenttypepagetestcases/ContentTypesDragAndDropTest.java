@@ -12,6 +12,7 @@ import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.PreviewPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -30,23 +31,28 @@ public class ContentTypesDragAndDropTest {
 
 	private LoginPage loginPage;
 
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
 	private HomePage homePage;
 
 	private PreviewPage previewPage;
 
 	private SiteConfigPage siteConfigPage;
 
+	private ConstantsPropertiesManager constantsPropertiesManager;
+
+	private UIElementsPropertiesManager uIElementsPropertiesManager;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		this.uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, this.UIElementsPropertiesManager);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, this.uIElementsPropertiesManager,constantsPropertiesManager);
+		
 	}
 
 	@AfterClass

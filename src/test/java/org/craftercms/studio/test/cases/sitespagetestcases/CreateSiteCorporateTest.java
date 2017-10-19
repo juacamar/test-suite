@@ -8,6 +8,7 @@ import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.APIConnectionManager;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -31,14 +32,18 @@ public class CreateSiteCorporateTest {
 
 	private APIConnectionManager apiConnectionManager;
 
+	private ConstantsPropertiesManager constantsPropertiesManager;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		 apiConnectionManager = new APIConnectionManager();
 	}
 

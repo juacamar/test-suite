@@ -1,6 +1,7 @@
 package org.craftercms.studio.test.pages;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -37,7 +38,7 @@ public class CreateSitePage {
 	/**
 	 * 
 	 */
-	public CreateSitePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+	public CreateSitePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
 		siteName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.site_name");

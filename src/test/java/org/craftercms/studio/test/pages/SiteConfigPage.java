@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.pages;
 
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebElement;
@@ -49,7 +50,7 @@ public class SiteConfigPage {
 	/**
 	 * 
 	 */
-	public SiteConfigPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+	public SiteConfigPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
 		this.driverManager = driverManager;
 		// this.driver = this.driverManager.getDriver();
 		contentTypeOption = UIElementsPropertiesManager.getSharedUIElementsLocators()

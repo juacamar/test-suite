@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.pages;
 
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -104,7 +105,7 @@ public class DashboardPage {
 	/**
 	 * 
 	 */
-	public DashboardPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+	public DashboardPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
 		pagesTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -399,10 +400,10 @@ public class DashboardPage {
 
 	// Press right click select new folder
 	public void rightClickNewFolderOnAPresentFolder(WebElement parentWebElement) {
-		this.driverManager.driverWait(2000);
+
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		this.driverManager.driverWait(2000);
+
 		WebElement addFolderOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
 				addNewFolderOption);
 		// driverManager.getDriver().findElement(By.xpath(addNewFolderOption));

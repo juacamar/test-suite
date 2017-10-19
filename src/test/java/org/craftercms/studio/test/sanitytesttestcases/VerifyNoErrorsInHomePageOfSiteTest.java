@@ -12,6 +12,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -30,6 +31,7 @@ public class VerifyNoErrorsInHomePageOfSiteTest {
 	private UIElementsPropertiesManager UIElementsPropertiesManager;
 	private HomePage homePage;
 	private DashboardPage dashboardPage;
+	private ConstantsPropertiesManager constantsPropertiesManager;
 
 
 
@@ -38,9 +40,11 @@ public class VerifyNoErrorsInHomePageOfSiteTest {
 		this.driverManager = new WebDriverManager();
 
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 
 
 	}

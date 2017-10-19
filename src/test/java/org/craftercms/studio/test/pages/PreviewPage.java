@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.pages;
 
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -41,10 +42,11 @@ public class PreviewPage {
 	/**
 	 * 
 	 */
-	public PreviewPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+	public PreviewPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driverManager.getDriver();
-		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		
 		adminConsole = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.admin_console_link");
 		openComboSites = UIElementsPropertiesManager.getSharedUIElementsLocators()
