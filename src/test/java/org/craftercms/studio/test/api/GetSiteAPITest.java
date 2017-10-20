@@ -39,8 +39,6 @@ public class GetSiteAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-				// .urlParam("username", username)
-				// .urlParam("password", password)
 				.json(json).execute().status(200);
 	}
 
@@ -53,9 +51,6 @@ public class GetSiteAPITest {
 		json.put("blueprint", blueprint);
 
 		api.post("/studio/api/1/services/api/1/site/create.json")
-				// .urlParam("site_id", siteId)
-				// .urlParam("description", description)
-				// .urlParam("blueprint", blueprint)
 				.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
@@ -68,7 +63,6 @@ public class GetSiteAPITest {
 		json.put("site_id", siteId);
 		
 		api.get("/studio/api/1/services/api/1/site/get.json")
-		//.urlParam("site_id", siteId)
 		.json(json).execute()
 		.status(200)
 		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id="+ siteId));
@@ -80,7 +74,6 @@ public class GetSiteAPITest {
     		json.put("site_id", siteId+"nonvalid");
     		
     		api.get("/studio/api/1/services/api/1/site/get.json")
-		//.urlParam("site_id", siteId+"nonvalid")
     	  	.json(json).execute()
 		.status(404)
 		.json("$.message", is("Site not found")).debug();
@@ -99,7 +92,6 @@ public class GetSiteAPITest {
 		json.put("site_id", siteId);
 		
 		api.get("/studio/api/1/services/api/1/site/get.json")
-		//.urlParam("site_id", siteId)
 		.json(json).execute()
 		.status(401)
 		.json("$.message", is("Unauthorized")).debug();

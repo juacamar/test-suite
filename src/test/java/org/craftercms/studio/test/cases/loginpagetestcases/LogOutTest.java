@@ -37,7 +37,9 @@ public class LogOutTest {
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
 
-	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -48,6 +50,12 @@ public class LogOutTest {
 		
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+		
 	}
 
 	@AfterClass
@@ -61,23 +69,13 @@ public class LogOutTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
+		loginPage.loginToCrafter(userName, password);
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		//homePage.getDriverManager().driverWait();
 		// LogOut
-		
 		homePage.clickLogoutOutCrafter();
 		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(300);
-
 		// Verify login is fine
-	
-	    WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+	    WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				".btn.btn-primary");
 	    		//driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
 	 

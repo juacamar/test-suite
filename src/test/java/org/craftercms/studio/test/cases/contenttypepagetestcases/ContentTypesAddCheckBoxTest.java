@@ -32,13 +32,12 @@ public class ContentTypesAddCheckBoxTest {
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerCheckBoxTitleLocator;
 	private ConstantsPropertiesManager constantsPropertiesManager;
-	private UIElementsPropertiesManager uIElementsPropertiesManager;
-
+	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		
-		this.uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		

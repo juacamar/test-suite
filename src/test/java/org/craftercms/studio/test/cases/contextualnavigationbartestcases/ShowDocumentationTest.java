@@ -4,7 +4,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
-import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
@@ -23,11 +22,12 @@ public class ShowDocumentationTest {
 
 	private LoginPage loginPage;
 
-	private HomePage homePage;
-
 	private CreateSitePage createSitePage;
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -37,9 +37,10 @@ public class ShowDocumentationTest {
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 	}
 
 	@AfterClass
@@ -53,24 +54,12 @@ public class ShowDocumentationTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
+		loginPage.loginToCrafter(userName, password);
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		//homePage.getDriverManager().driverWait();
 		// click On help option
-
 		createSitePage.clickOnHelpOption();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// select the about us option
-
 		createSitePage.clickOnDocumentationOption();
-
-	
 	}
 }

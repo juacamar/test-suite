@@ -34,7 +34,10 @@ public class EnableDisableEditingInContextTest {
 	private PreviewPage previewPage;
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
-
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 	
 
 	@BeforeClass
@@ -47,6 +50,11 @@ public class EnableDisableEditingInContextTest {
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -61,37 +69,24 @@ public class EnableDisableEditingInContextTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
+		loginPage.loginToCrafter(userName, password);
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
 
 		// go to dashboard page
-
 		homePage.goToPreviewPage();
 		
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(300);
-		//homePage.getDriverManager().driverWait();
 		// Click on Preview Tools icon
-		
 		previewPage.clickOnPreviewTools();
 		
 		// Expand context editing section
-		
 		previewPage.clickToExpandInContextEditing();
 		
 		// Enable/disable In Context edit
-		
 		previewPage.clickToEnableDisableInContextEditing();
 		
 		//Assert 
-		
-		String editIconActive = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		String editIconActive = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
 				"/html/body/div[3]/div[1]/div[2]/div/div[2]/div/div[1]/button").getText();
-				//driverManager.getDriver().findElement(By.xpath("/html/body/div[3]/div[1]/div[2]/div/div[2]/div/div[1]/button")).getText();
 		Assert.assertEquals(editIconActive, "In-Context Edit Off");
 		
 	}

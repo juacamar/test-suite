@@ -30,6 +30,10 @@ public class AddNewContentSectionDfaultsTest {
 	private DashboardPage dashboardPage;
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -41,6 +45,11 @@ public class AddNewContentSectionDfaultsTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 	}
 
 	@AfterClass
@@ -50,77 +59,38 @@ public class AddNewContentSectionDfaultsTest {
 
 	public void createLevelDescriptorContent() {
 		// create a content with level descriptor content type
-
 		// right click to see the the menu
 
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
 				".//span[text()='Home']");
 
-		// driverManager.getDriver().findElement(By.xpath(".//span[text()='Home']"));
-
-		this.driverManager.driverWait(1000);
 		this.driverManager.contextClick(this.driverManager.getDriver(), home);
 
-		this.driverManager.driverWait(1500);
-
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"#ContextmenuWrapper0  ul li:nth-child(3)");
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#ContextmenuWrapper0 ul li:nth-child(3)"));
+		
 
 		addContent.click();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Select Entry Content Type
-
 		dashboardPage.clickLevelDescriptorCT();
 
 		// Confirm the Content Type selected
-
 		dashboardPage.clickOKButton();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
-		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
-		// .bd iframe")));
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
-		// wait for element is clickeable
-
-		// homePage.getDriverManager().driverWait();
-
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
-		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+	
 		// Switch back to the dashboard page
-
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// reload page
-
 		driverManager.getDriver().navigate().refresh();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
 	}
 
 	@Test(priority = 0)
@@ -129,59 +99,28 @@ public class AddNewContentSectionDfaultsTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// MaximizeWindow
-		// driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		// homePage.getDriverManager().driverWait();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
 
-		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
-		// .click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		// homePage.getDriverManager().driverWait();
 		// expand pages folder
-
 		dashboardPage.expandPagesTree();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		
 		// Expand Home Tree
-
 		dashboardPage.expandHomeTree();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Create level descriptor content
-
 		createLevelDescriptorContent();
 
 		// Assert of the test case is fine
-
 		String levelDescriptor = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#ygtvlabelel2").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#ygtvlabelel2").getText();
 
-		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel2")).getText();
 		
 		Assert.assertEquals(levelDescriptor, "Section Defaults");
 

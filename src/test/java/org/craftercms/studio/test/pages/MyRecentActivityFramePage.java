@@ -17,12 +17,16 @@ public class MyRecentActivityFramePage {
     private String expandDefaultSection;
     private String tittleField1;
     private String saveCloseButton;
+    private int defaultTimeOut;
     /**
      * 
      */
     public MyRecentActivityFramePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
         this.driverManager = driverManager;
         this.driverManager.getDriver();
+        defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+        
         expandDefaultSection = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.expand_Default_Section");
         tittleField1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.tittle_Field1");
         saveCloseButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.save_Close_Button");
@@ -30,8 +34,7 @@ public class MyRecentActivityFramePage {
 	// Expand default section
 
 	public void clickExpandOption() {
-		this.driverManager.driverWait(2000);
-		WebElement expandOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", expandDefaultSection);
+		WebElement expandOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id", expandDefaultSection);
 				//driverManager.getDriver().findElement(By.id(expandDefaultSection));
 		expandOpt.click();
 
@@ -48,8 +51,7 @@ public class MyRecentActivityFramePage {
 	// Clear title field
 
 	public void clearTitleField() {
-		this.driverManager.driverWait(2000);
-		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", tittleField1);
+		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", tittleField1);
 				//driverManager.getDriver().findElement(By.xpath(tittleField1));
 		clearTitleField.clear();
 
@@ -67,8 +69,7 @@ public class MyRecentActivityFramePage {
 	// Type new content on title text field.
 
 	public void typeNewTextOnBodyField(String newText1) {
-		this.driverManager.driverWait(2000);
-		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", tittleField1);
+		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", tittleField1);
 				//driverManager.getDriver().findElement(By.xpath(tittleField1));
 		clearTitleField.sendKeys(newText1);
 
@@ -87,8 +88,7 @@ public class MyRecentActivityFramePage {
 	// Save and close
 
 	public void saveAndClose() {
-		this.driverManager.driverWait(2000);
-		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", saveCloseButton);
+		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id", saveCloseButton);
 				//driverManager.getDriver().findElement(By.id(saveCloseButton));
 		clearTitleField.click();
 

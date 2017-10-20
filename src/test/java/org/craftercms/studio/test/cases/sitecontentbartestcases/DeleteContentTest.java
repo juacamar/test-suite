@@ -38,6 +38,10 @@ public class DeleteContentTest {
 	private PreviewPage previewPage;
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -49,8 +53,12 @@ public class DeleteContentTest {
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
-		//this.siteConfigPage = new SiteConfigPage(driverManager, this.UIElementsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 	}
 
 	@AfterClass
@@ -69,9 +77,6 @@ public class DeleteContentTest {
 
 		dashboardPage.rightClickToSeeMenu();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Select Entry Content Type
 
@@ -81,57 +86,30 @@ public class DeleteContentTest {
 
 		dashboardPage.clickOKButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
-		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
-		// .bd iframe")));
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		
 		// Set basics fields of the new content created
-
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
-
+		
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-
-		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
-		// input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
 		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-form-expand-all")
 				.click();
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
-
+		
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
-		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
 
 		// Switch back to the dashboard page
-
 		driverManager.getDriver().switchTo().defaultContent();
 
 	}
@@ -140,34 +118,16 @@ public class DeleteContentTest {
 
 	public void deleteContentTest() {
 
-		// login to application
-		loginPage.getDriverManager().driverWait(1000);
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// MaximizeWindow
-		// driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// reload page
-
 		driverManager.getDriver().navigate().refresh();
 
 		// body not required
 		this.changeBodyToNotRequiredOnEntryContent();
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(300);
 
 		// expand pages folder
 
@@ -179,43 +139,26 @@ public class DeleteContentTest {
 		
 		// Expand Home Tree
 		dashboardPage.expandHomeTree();
-
-		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(2000);
-
+		
 		// right click to delete
 
 		dashboardPage.rightClickToDeleteContent();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1300);
 
 		// confirmation
 
 		dashboardPage.clicktoDeleteContent();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
+	
 		// submittal complete ok
 		dashboardPage.clickOKSubmittalComplete();
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
-		// wait for element
-		homePage.getDriverManager().driverWait(3000);
-		// wait for element
-		// driverManager.driverWait();
 		driverManager.getDriver().navigate().refresh();
-		driverManager.driverWait(4000);
+		
 
-		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector",
+		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)").getText();
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(1) >
-		// td:nth-child(4)")).getText();
 		Assert.assertEquals(contentCopied, "/test1");
 
 	}

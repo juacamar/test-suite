@@ -35,6 +35,10 @@ public class DesignOfPreviewToolsPanelTest {
 	private PreviewPage previewPage;
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -46,6 +50,11 @@ public class DesignOfPreviewToolsPanelTest {
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -59,46 +68,26 @@ public class DesignOfPreviewToolsPanelTest {
 	public void design_preview_tools_panel() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to dashboard page
 
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		//homePage.getDriverManager().driverWait();
+		
 		// Click on Preview Tools icon (show)
-
 		previewPage.clickOnPreviewTools();
 
 		// Assert
-
-		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
-
 		Assert.assertTrue(previewToolsShow.isDisplayed());
 
 		// Click on Preview Tools icon (hide)
-
 		previewPage.clickOnPreviewTools();
 
 		// Assert
-		homePage.getDriverManager().driverWait(2000);
-//		WebElement previewToolsHide = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-//				"cssSelector", "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel");
-//				//driverManager.getDriver()
-//				//.findElement(By.cssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
-
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(3,"#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(defaultTimeOut,"#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
 
 	}
 

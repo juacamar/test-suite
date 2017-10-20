@@ -22,11 +22,6 @@ public class ChangePasswordAPITest {
 	
 	private String username = "admin";
 	private String password = "admin";
-//	private String siteId = "mysite";
-//	private String description = "Description!";
-//	private String blueprint = "empty";
-//	private String groupName = "contributors";
-
 	private String newusername = "jane.doe";
 	private String newpassword= "SuperSecretPassword123#";
 	private String first_name = "Jane";
@@ -53,14 +48,8 @@ public class ChangePasswordAPITest {
 		json.put("password", newpassword);
 		json.put("first_name", first_name);
 		json.put("last_name", last_name);
-		json.put("email", email);
-		
+		json.put("email", email);	
 		api.post("/studio/api/1/services/api/1/user/create.json")
-//		.urlParam("username", newusername)
-//		.urlParam("password", newpassword)
-//		.urlParam("first_name", first_name)
-//		.urlParam("last_name", last_name)
-//		.urlParam("email", email)
 		.json(json).execute().status(201)
 				.header("Location", is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?user="+newusername))
 				.json("$.message", is("OK")).debug();
@@ -80,8 +69,6 @@ public class ChangePasswordAPITest {
 			json.put("password", newpassword);
 			
 			api.post("/studio/api/1/services/api/1/security/login.json")
-//			.urlParam("username", newusername)
-//			.urlParam("password", newpassword)
 			.json(json).execute().status(200);
 		}
 	 
@@ -94,9 +81,6 @@ public class ChangePasswordAPITest {
 				json.put("new", newusername+"#");
 				
 			api.post("/studio/api/1/services/api/1/user/change-password.json")
-//			.urlParam("username", newusername)
-//			.urlParam("current", newpassword)
-//			.urlParam("new", newusername+"#")
 			.json(json).execute()
 			.status(200)
 			.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/user/get.json?username="+newusername))
@@ -112,9 +96,6 @@ public class ChangePasswordAPITest {
 				json.put("new", newusername+"#");
 				
 				api.post("/studio/api/1/services/api/1/user/change-password.json")
-//				.urlParam("username", newusername)
-//				.urlParam("currentnon-valid", newpassword)
-//				.urlParam("new", newusername+"#")
 				.json(json).execute()
 				.status(400)
 				.json("$.message", is("Invalid parameter(s): [current]")).debug();
@@ -129,9 +110,6 @@ public class ChangePasswordAPITest {
 				json.put("new", newusername+"#");
 				
 				api.post("/studio/api/1/services/api/1/user/change-password.json")
-//				.urlParam("username", newusername)
-//				.urlParam("current", newpassword+"non-valid")
-//				.urlParam("new", newusername+"#")
 				.json(json).execute()
 				.status(401)
 				.json("$.message", is("Unauthorized")).debug();
@@ -140,32 +118,16 @@ public class ChangePasswordAPITest {
 
 			}
 		  
-//		  @Test(priority=7)
-//			public void testExternallyManagedUser() {
-//				Map<String, Object> json = new HashMap<>();
-//				json.put("username", "jane.doe");
-//				json.put("current", "1234");
-//				json.put("new", "SuperSecretPassword321#");
-//				api.post("/studio/api/1/services/api/1/user/change-password.json")
-//				.json(json)
-//				.execute()
-//				.status(403)
-//				.json("$.message", is("Externally managed user")).debug();
-//
-//			}
+
 		  
 		  @Test(priority=8)
 			public void tesUserNotFound() {
-			  loginAsAdmin();
-			  
+			  loginAsAdmin();		  
 			  Map<String, Object> json = new HashMap<>();
 				json.put("username", newusername+"non-valid");
 				json.put("new", newusername+"#");
 				
 				api.post("/studio/api/1/services/api/1/user/reset-password.json")
-//				.urlParam("username", newusername+"non-valid")
-//				.urlParam("current", newpassword)
-//				.urlParam("new", newusername+"#")
 				.json(json).execute()
 				.status(404)
 				.json("$.message", is("User not found")).debug();
@@ -177,8 +139,6 @@ public class ChangePasswordAPITest {
 				json.put("username", username);
 				json.put("password", password);
 				api.post("/studio/api/1/services/api/1/security/login.json")
-				//.urlParam("username", username)
-				//.urlParam("password", password)
 				.json(json).execute().status(200);
 		  }
 		  
@@ -188,24 +148,8 @@ public class ChangePasswordAPITest {
 				json.put("password", password);
 				
 				api.post("/studio/api/1/services/api/1/security/logout.json")
-//				.urlParam("username", username)
-//				.urlParam("password", password)
 				.json(json).execute().status(200)
 				.json("$.message", is("OK")).debug();
-		  }
-//		  @Test(priority=9)
-//			public void tesInternalServerError() {
-//				Map<String, Object> json = new HashMap<>();
-//				json.put("username", "jane.doe");
-//				json.put("current", "InvalidPassword");
-//				json.put("new", "SuperSecretPassword321#");
-//				api.post("/studio/api/1/services/api/1/user/change-password.json")
-//				.json(json)
-//				.execute()
-//				.status(500)
-//				.json("$.message", is("Internal server error")).debug();
-//
-//			} 
-		  
+		  }		  
 		  
 }

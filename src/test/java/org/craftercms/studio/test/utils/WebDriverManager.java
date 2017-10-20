@@ -113,14 +113,6 @@ public class WebDriverManager {
 		this.driver = driver;
 	}
 
-	public void driverWait(int amoutOfMilliseconds) {
-		try {
-			Thread.sleep(amoutOfMilliseconds);
-		} catch (InterruptedException ie1) {
-			ie1.printStackTrace();
-		}
-	}
-
 	public WebElement driverWaitUntilElementIsPresentAndDisplayed(int timeOut, String typeOfSelector,
 			String selectorValue) {
 		WebElement element = null;
@@ -191,9 +183,6 @@ public class WebDriverManager {
 
 		// commit the actions above
 		dragAndDrop.perform();
-
-		// wait for a couple of secs
-		this.driverWait(2000);
 	}
 
 	public boolean isElementPresentByXpath(int timeOut, String xpathOfTheElement) {

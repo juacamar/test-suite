@@ -39,19 +39,18 @@ public class ContentTypesDragAndDropTest {
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
 
-	private UIElementsPropertiesManager uIElementsPropertiesManager;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, this.uIElementsPropertiesManager,constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		
 	}
 

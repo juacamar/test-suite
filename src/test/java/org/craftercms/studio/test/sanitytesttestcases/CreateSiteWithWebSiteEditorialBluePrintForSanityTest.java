@@ -34,6 +34,10 @@ public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 	private String siteId = "testeditorial";
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -45,6 +49,11 @@ public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 		this.loginPage = new LoginPage(this.driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(this.driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.createSitePage = new CreateSitePage(this.driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -58,72 +67,39 @@ public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(userName, password);
 
 		// Click on the create site button
-
 		homePage.clickOnCreateSiteButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Filling the name of site
-
 		createSitePage.setSiteId(siteId);
 
-		// Filling the Id of the site
-
-		// createSitePage.fillIdSite("");
-
+		
 		// Filling the description of the site
-
 		createSitePage.fillDescription("Test site to validate the Website_editorial blueprint screens");
 
 		// Open blueprint combo
 		// Select blueprint
-
 		createSitePage.selectWebSiteEditorialBluePrintOption();
 
 		// Click on Create button
 
 		createSitePage.clickOnCreateSiteButton();
 
-		// wait for element is clickeable
-
-		//homePage.getDriverManager().driverWait(4000);
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
-		//driverManager.getDriver().navigate().refresh();
-		// Show site content panel
-
-		homePage.getDriverManager().driverWait(8000);
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 
-		if (this.driverManager.isElementPresentByXpath(15,siteDropdownElementXPath))
+		if (this.driverManager.isElementPresentByXpath(defaultTimeOut,siteDropdownElementXPath))
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "xpath", siteDropdownElementXPath)
 					.click();
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
-
 		String headStatusClass = this.driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)")).getAttribute("class");
-//		String headClass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
-//				"#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)").getAttribute("class");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();
 		Assert.assertTrue(headStatusClass.contains("live"));
 		Assert.assertTrue(this.driverManager.getDriver().getCurrentUrl().contains("/studio/preview/#/?page=/&site="+siteId));
 

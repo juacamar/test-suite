@@ -34,17 +34,26 @@ public class PublishingSiteTest {
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
 
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -64,9 +73,6 @@ public class PublishingSiteTest {
 
 		dashboardPage.rightClickToSeeMenu();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Select Entry Content Type
 
@@ -76,50 +82,25 @@ public class PublishingSiteTest {
 
 		dashboardPage.clickOKButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
-		// .bd iframe")));
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+	
 		// Set basics fields of the new content created
 
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// wait for element is clickeable
 
-		homePage.getDriverManager().driverWait(2000);
-
-		// wait for element is clickeable
-
-		// homePage.getDriverManager().driverWait();
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
-		// input")).sendKeys("MainTitle");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
-		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
 
 		// Switch back to the dashboard page
 
@@ -133,38 +114,14 @@ public class PublishingSiteTest {
 
 		previewPage.clickOnApprovePublish();
 
-		// wait for element is clickeable
-
-		previewPage.getDriverManager().driverWait(1000);
-
 		// submit
-
 		previewPage.clickOnSubmitButtonOfApprovePublish();
-		previewPage.getDriverManager().driverWait(1000);
 	}
 
 	public void reloadPage() {
 		// reload page
-
 		driverManager.getDriver().navigate().refresh();
-
-		// wait for element is clickeable
-
-		previewPage.getDriverManager().driverWait(3000);
-
-		// reload page
-
 		driverManager.getDriver().navigate().refresh();
-
-		// wait for element is clickeable
-
-		previewPage.getDriverManager().driverWait(3000);
-
-		driverManager.getDriver().navigate().refresh();
-		previewPage.getDriverManager().driverWait(3000);
-
-		driverManager.getDriver().navigate().refresh();
-
 	}
 
 	@Test(priority = 0)
@@ -173,76 +130,40 @@ public class PublishingSiteTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// MaximizeWindow
-		// driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		changeBodyToNotRequiredOnEntryContent();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(300);
-
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(30, "cssSelector", "#cstudio-logo").click();
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-logo").click();
 
 		// expand pages folder
-
 		dashboardPage.expandPagesTree();
 
 		// create content
-
 		createContent();
 
-		// Expand Home Tree
-		this.driverManager.driverWait(2000);
 		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWait(2000);
-		// this.driverManager.driverWait();
-
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//span[contains(text(),'Testing1')]")
+				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//span[contains(text(),'Testing1')]")
 				.click();
-		// driverManager.getDriver().findElement(By.xpath(".//span[contains(text(),'Testing1')]")).click();
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// approve and publish
-
 		approveAndPublish();
 
 		this.reloadPage();
 
-		// Assert
-		homePage.getDriverManager().driverWait(3000);
-		
-		
-		String headStatusClass = this.driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)")).getAttribute("class");
-//		String headClass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
-//				"#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)").getAttribute("class");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span")).getText();
+		String headStatusClass = this.driverManager.getDriver()
+				.findElement(By
+						.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)"))
+				.getAttribute("class");
 		Assert.assertTrue(headStatusClass.contains("live"));
 
 	}

@@ -35,16 +35,25 @@ public class DependenciesOptionTest {
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
 
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+
+		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager, constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager, constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager, constantsPropertiesManager);
+
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -58,63 +67,31 @@ public class DependenciesOptionTest {
 	public void dependenciesOptionTest() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait(2000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
-		// homePage.getDriverManager().driverWait();
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
-		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-		// .click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+	
 
 		// expand pages folder
-
 		previewPage.expandPagesTree();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// expand home content
-
 		previewPage.expandHomeTree();
 
 		// Select the content to view the history.
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#ygtvlabelel1").click();
-		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel1")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(300);
-
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#ygtvlabelel1").click();
+		
 		// click on history option
-
 		previewPage.clickOnDependenciesOption();
 
-		// wait for element is clickeable
-
-		previewPage.getDriverManager().driverWait(330);
 
 		// Assert
-
 		String historyPage = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", ".view-title").getText();
-		// driverManager.getDriver().findElement(By.cssSelector(".view-title")).getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", ".view-title").getText();
 		Assert.assertEquals(historyPage, "Dependencies");
 
 	}

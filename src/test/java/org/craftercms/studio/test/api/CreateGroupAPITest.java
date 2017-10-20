@@ -38,8 +38,6 @@ public class CreateGroupAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200);
 
 	}
@@ -52,9 +50,6 @@ public class CreateGroupAPITest {
 		json.put("blueprint", blueprint);
 		
 	 	api.post("/studio/api/1/services/api/1/site/create.json")
-//	 	.urlParam("site_id", siteId)
-//		.urlParam("description", description)
-//		.urlParam("blueprint", blueprint)
 		.json(json).execute().status(201)
 			.header("Location",
 					is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
@@ -69,9 +64,6 @@ public class CreateGroupAPITest {
 		json.put("description", description);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
-//		.urlParam("description", description)
 		.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
@@ -87,24 +79,10 @@ public class CreateGroupAPITest {
 		json.put("description", description);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-//		.urlParam("group_nameInvalidParameter", groupName)
-//		.urlParam("site_id", siteId)
-//		.urlParam("description", description)
 		.json(json).execute().status(400)
 				.json("$.message", is("Invalid parameter(s): [group_name]")).debug();
 
 	}
-
-	// @Test(priority=4)
-	// public void testUnauthorized() {
-	// Map<String, Object> json = new HashMap<>();
-	// json.put("group_name", "contributors");
-	// json.put("site_id", "mySite");
-	// json.put("description", "Content Contributors");
-	// api.post("studio/api/1/services/api/1/group/create.json").json(json).execute().status(401)
-	// .json("$.message", is("Unauthorized")).debug();
-	//
-	// }
 
 	@Test(priority = 5)
 	public void testGroupAlreadyExists() {
@@ -114,25 +92,11 @@ public class CreateGroupAPITest {
 		json.put("description", description);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
-//		.urlParam("description", description)
 		.json(json).execute().status(409)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
 				.json("$.message", is("Group already exists")).debug();
 
 	}
-
-	// @Test(priority=6)
-	// public void testInternalServerError() {
-	// Map<String, Object> json = new HashMap<>();
-	// json.put("group_name", "contributors");
-	// json.put("site_id", "mySite");
-	// json.put("description", "Content Contributors");
-	// api.post("studio/api/1/services/api/1/group/create.json").json(json).execute().status(500)
-	// .json("$.message", is("Internal server error")).debug();
-	//
-	// }
 
 }

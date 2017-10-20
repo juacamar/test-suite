@@ -33,10 +33,11 @@ public class WrongLoginTest {
 
 	private UIElementsPropertiesManager UIElementsPropertiesManager;
 
-
-	private HomePage homePage;
-
 	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 
 	@BeforeClass
@@ -47,8 +48,14 @@ public class WrongLoginTest {
 		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+		
 	}
+	
 
 	@AfterClass
 	public void afterTest() {
@@ -61,34 +68,22 @@ public class WrongLoginTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("WrongUser", "admin");
+		loginPage.loginToCrafter(userName+"wrong", password);
 		
-		// MaximizeWindow
-		//driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
 
 		// Assert No login for invalid user.
-
-		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				".alert");
 				//driverManager.getDriver().findElement(By.cssSelector(".alert"));
 
 		Assert.assertTrue(signInWrongUser.isDisplayed());
 
 		// login to application
+		loginPage.loginToCrafter(userName, password+"wrong");
 
-		loginPage.loginToCrafter("Admin", "WrongPwd");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
+	
 		// Assert No login for invalid password.
-
-		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				".btn.btn-primary");
 				//driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
 

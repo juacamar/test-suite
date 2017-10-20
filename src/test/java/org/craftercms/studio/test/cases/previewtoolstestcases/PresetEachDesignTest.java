@@ -32,6 +32,10 @@ public class PresetEachDesignTest {
 	private PreviewPage previewPage;
 
 	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -44,6 +48,11 @@ public class PresetEachDesignTest {
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -63,74 +72,36 @@ public class PresetEachDesignTest {
 
 		dashboardPage.rightClickToSeeMenu();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// Select Entry Content Type
-
 		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
 
 		dashboardPage.clickOKButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
-						//driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog > .bd iframe")));
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+						"cssSelector", ".studio-ice-dialog > .bd iframe"));					
 
 		// Set basics fields of the new content created
-
 		dashboardPage.setBasicFieldsOfNewContent("PRESET", "PRESET TESTING");
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
-		// wait for element is clickeable
-
-		//homePage.getDriverManager().driverWait();
-
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#title > div > input").sendKeys("MainTitle");
-		//driverManager.getDriver().findElement(By.cssSelector("#title > div > input")).sendKeys("MainTitle");
+	
 
 		// click necessary to validate all fields required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#cstudio-form-expand-all").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
-		// wait for element is clickeable
-
-		//homePage.getDriverManager().driverWait();
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"id", "cstudioSaveAndClose").click();
-		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+	
 		// Switch back to the dashboard page
-
 		driverManager.getDriver().switchTo().defaultContent();
 
 	}
@@ -138,16 +109,12 @@ public class PresetEachDesignTest {
 	public void presets() {
 
 		// open publishing channel combo
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#medium-panel-elem > div.acn-accordion-header > a").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#medium-panel-elem > div.acn-accordion-header > a")).click();
 
-		//desktop prese
-
-		 String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		 String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 					"cssSelector", "#engineWindow").getText();
-				 //driverManager.getDriver()
-		// .findElement(By.cssSelector("#engineWindow")).getText();
+		
 		 Assert.assertTrue(contentURL.contains(contentURL));
 	}
 
@@ -156,71 +123,35 @@ public class PresetEachDesignTest {
 	public void presetDesign() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// MaximizeWindow
-	//	driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// reload page
-
 		driverManager.getDriver().navigate().refresh();
 
 		// body not required
-
 		changeBodyToNotRequiredOnEntryContent();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// expand pages folder
-
 		dashboardPage.expandPagesTree();
 
 		// create content
-
 		createContent();
 
 		// Expand Home Tree
-
 		dashboardPage.expandHomeTree();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// select content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#ygtvlabelel3").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel3")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		
 		// open tools
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#acn-preview-tools-image").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#acn-preview-tools-image")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// presets and asserts
-
 		presets();
 
 	}
