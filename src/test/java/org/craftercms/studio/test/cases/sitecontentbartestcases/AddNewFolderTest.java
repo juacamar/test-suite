@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -26,20 +27,29 @@ public class AddNewFolderTest {
 
 	private LoginPage loginPage;
 
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -54,62 +64,32 @@ public class AddNewFolderTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to dashboard page
 
 		homePage.goToDashboardPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
-		// reload page
-
-		// driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
-
-		// driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']"))
-		// .click();
-
-		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(2000);
-		// homePage.getDriverManager().driverWait();
-
+	
 		// expand pages folder
-
 		dashboardPage.expandPagesTree();
 
 		// right click to see the the menu
-
 		dashboardPage.rightClickToFolderOnHome();
 
 		// Set the name of the folder
-
 		dashboardPage.setFolderName("addnewfolder");
 
 		// Create folder button
-
 		dashboardPage.clickCreateButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// Assert find the new folder created
-
-		String folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		String folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"span.status-icon.folder.no-preview.no-preview.over-effect-set").getText();
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("span.status-icon.folder.no-preview.no-preview.over-effect-set")).getText();
 		Assert.assertEquals(folderName, "addnewfolder");
 
 	}

@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -20,26 +21,32 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class DeleteSiteTest {
 
 	WebDriver driver;
-
 	LoginPage objLogin;
-
 	HomePage objHomePage;
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
 	private HomePage homePage;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -53,30 +60,18 @@ public class DeleteSiteTest {
 	public void delete_site() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(3000);
+		loginPage.loginToCrafter(
+				userName,password);
 
 		// Click on Delete icon
 
 		homePage.clickOnDeleteSiteIcon();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		
 		// Click on YES to confirm the delete.
 
 		homePage.clickOnYesToDeleteSite();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(10,".glyphicon.glyphicon-trash"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(this.defaultTimeOut,".glyphicon.glyphicon-trash"));
 	}
 }

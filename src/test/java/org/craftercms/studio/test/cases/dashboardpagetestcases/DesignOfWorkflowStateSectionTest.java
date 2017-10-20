@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -25,14 +26,26 @@ public class DesignOfWorkflowStateSectionTest {
 	private LoginPage loginPage;
 
 	private HomePage homePage;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
+
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -47,23 +60,13 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to dashboard page
-
 		homePage.goToDashboardPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
-
 		// Assert workflow guide section is present.
-
-		WebElement workflowSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement workflowSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				".panel-body");
 		// driverManager.getDriver().findElement(By.cssSelector(".panel-body"));
 
@@ -78,7 +81,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert edited is present.
 
-		WebElement edited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement edited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"#iconGuide > div.panel-body > div > div:nth-child(6) > div");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
@@ -88,7 +91,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert floating page is present.
 
-		WebElement floatingPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement floatingPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"div.col-xs-6:nth-child(2)");
 		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(2)"));
 
@@ -96,7 +99,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert in workflow is present.
 
-		WebElement inWorkflow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement inWorkflow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"#iconGuide > div.panel-body > div > div:nth-child(7) > div");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
@@ -106,7 +109,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert component is present.
 
-		WebElement component = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement component = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"div.col-xs-6:nth-child(3)");
 		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(3)"));
 
@@ -114,7 +117,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert scheduled is present.
 
-		WebElement scheduled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement scheduled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"#iconGuide > div.panel-body > div > div:nth-child(8) > div");
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
@@ -124,7 +127,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert document is present.
 
-		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"div.col-xs-6:nth-child(4)");
 		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(4)"));
 
@@ -132,7 +135,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert deleted is present.
 
-		WebElement document = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement document = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"div.col-xs-6:nth-child(10)");
 		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(10)"));
 
@@ -140,7 +143,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert Never published is present.
 
-		WebElement neverPublished = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement neverPublished = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"div.col-xs-6:nth-child(5)");
 		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(5)"));
 
@@ -148,7 +151,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert processing is present.
 
-		WebElement processing = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement processing = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"div.col-xs-6:nth-child(11)");
 		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(11)"));
 
@@ -156,7 +159,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert disabled is present.
 
-		WebElement disabled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement disabled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				".iconText");
 		// driverManager.getDriver().findElement(By.cssSelector(".iconText"));
 
@@ -164,7 +167,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 		// Assert Locked for edit is present.
 
-		WebElement locked = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement locked = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"#iconGuide > div.panel-body > div > div:nth-child(11) > div");
 		// driverManager.getDriver().findElement(By.cssSelector("#iconGuide >
 		// div.panel-body > div > div:nth-child(11) > div"));

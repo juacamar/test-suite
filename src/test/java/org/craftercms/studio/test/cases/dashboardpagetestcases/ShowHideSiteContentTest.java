@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -25,21 +26,31 @@ public class ShowHideSiteContentTest {
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
+	
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
 
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 	}
 
 	@AfterClass
@@ -48,55 +59,28 @@ public class ShowHideSiteContentTest {
 	}
 
 	@Test(priority = 0)
-
 	public void Show_Hide_Site_Content_test() {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
+		loginPage.loginToCrafter(userName, password);
 
-		// MaximizeWindow
-		// driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		// homePage.getDriverManager().driverWait();
 		// go to dashboard page
-
 		homePage.goToDashboardPage();
-
-		// Expand the site content panel
-		homePage.getDriverManager().driverWait(2000);
-		// homePage.getDriverManager().driverWait();
 
 		dashboardPage.clickOnSiteContentOption();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// Assert that the site content is expanded
-
 		String siteContentExpanded = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").getText();
-		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#admin-console").getText();
+		
 		Assert.assertEquals(siteContentExpanded, "Site Config");
 
 		// Collapse the site content panel
-
 		dashboardPage.clickOnSiteContentOption();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Assert that the site content is Collapsed
-
-		//String siteContentCollapsed = this.driverManager
-			//	.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#admin-console").getText();
-		// driverManager.getDriver().findElement(By.cssSelector("#admin-console")).getText();
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(4,"#admin-console"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(defaultTimeOut,"#admin-console"));
 	}
 
 }

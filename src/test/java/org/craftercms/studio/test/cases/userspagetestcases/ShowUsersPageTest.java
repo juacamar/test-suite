@@ -9,6 +9,7 @@ import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.UsersPage;
 import org.craftercms.studio.test.utils.APIConnectionManager;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -30,15 +31,24 @@ public class ShowUsersPageTest {
 	private DashboardPage dashboardPage;
 	private APIConnectionManager apiConnectionManager;
 
+	private String userName;
+	private String password;
+	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		apiConnectionManager = new APIConnectionManager();
 	}
 
@@ -53,23 +63,12 @@ public class ShowUsersPageTest {
 	public void showUsersPage() {
 
 		// login to application
-		loginPage.loginToCrafter("admin", "admin");
+		loginPage.loginToCrafter(userName, password);
 
-		// MaximizeWindow
-		//driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(2000);
-		//homePage.getDriverManager().driverWait();
 		// Click on the Users Contextual Navigation Option
 		homePage.clickUsersContextualNavigationOption();
 
-		// wait for element is clickeable
-		usersPage.getDriverManager().driverWait(2000);
-
-		// wait for element is clickeable
-		//usersPage.getDriverManager().driverWait();
-
+	
 		// Checking if the UsersPage was Loaded
 		Assert.assertTrue(usersPage.getDriverManager().getDriver().getCurrentUrl()
 				.equals(apiConnectionManager.getHeaderLocationBase()+"/studio/#/users"));
@@ -80,22 +79,10 @@ public class ShowUsersPageTest {
 		// go back to Sites Page
 		usersPage.clickOnCrafterLogo();
 
-		// wait for element is clickeable
-		usersPage.getDriverManager().driverWait(2000);
-
-		// wait for element is clickeable
-		//homePage.getDriverManager().driverWait(300);
-
 		// select the about us option
 		homePage.goToDashboardPage();
 
-		// wait for element is clickeable
-		dashboardPage.getDriverManager().driverWait(2000);
-
 		dashboardPage.clickUsersContextualNavigationOption();
-
-		// wait for element is clickeable
-		usersPage.getDriverManager().driverWait(300);
 
 		// Checking if the UsersPage was Loaded
 		Assert.assertTrue(usersPage.getDriverManager().getDriver().getCurrentUrl()

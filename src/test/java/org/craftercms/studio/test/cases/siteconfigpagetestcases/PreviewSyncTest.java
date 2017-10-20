@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -25,20 +26,29 @@ public class PreviewSyncTest {
 
 	private LoginPage loginPage;
 
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -53,45 +63,25 @@ public class PreviewSyncTest {
 
 		// login to application
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to dashboard page
-
 		homePage.goToDashboardPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		//homePage.getDriverManager().driverWait();
+	
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"xpath", ".//a[@id='acn-dropdown-toggler']").click();
-		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#admin-console").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#admin-console")).click();
 
 		// click on preview sync option
-
 		dashboardPage.clickOnPreviewSyncOption();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#yui-gen0-button").click();
-		//driverManager.getDriver().findElement(By.cssSelector("#yui-gen0-button")).click();
+	
 
 	}
 

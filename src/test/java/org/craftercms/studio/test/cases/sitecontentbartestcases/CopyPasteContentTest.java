@@ -9,6 +9,7 @@ import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.PreviewPage;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -27,23 +28,32 @@ public class CopyPasteContentTest {
 
 	private LoginPage loginPage;
 
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
 
 	private PreviewPage previewPage;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 	}
 
 	@AfterClass
@@ -62,69 +72,37 @@ public class CopyPasteContentTest {
 
 		dashboardPage.rightClickToSeeMenu();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Select Entry Content Type
-
 		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
-
 		dashboardPage.clickOKButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
-		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
-		// .bd iframe")));
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+	
+	
 		// Set basics fields of the new content created
-
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "AboutUS");
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
-
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-
-		// driverManager.getDriver().findElement(By.cssSelector("#title > div >
-		// input")).sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
 		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-form-expand-all")
 				.click();
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-form-expand-all")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
-
+	
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "id", "cstudioSaveAndClose").click();
-		// driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		
 		// Switch back to the dashboard page
-
 		driverManager.getDriver().switchTo().defaultContent();
 
 	}
@@ -133,128 +111,64 @@ public class CopyPasteContentTest {
 
 	public void copyAndPasteContentTest() {
 
-		// login to application
-		homePage.getDriverManager().driverWait(300);
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// reload page
-
 		driverManager.getDriver().navigate().refresh();
 
 		// body not required
 		this.changeBodyToNotRequiredOnEntryContent();
 
-		// driverManager.getDriver().navigate().refresh();
-
-		homePage.getDriverManager().driverWait(3000);
-
 		// expand pages folder
-
 		dashboardPage.expandPagesTree();
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
-		dashboardPage.getDriverManager().driverWait(3000);
+		
 		// create content
-
 		this.createContent();
 
 		// Expand Home Tree
-
 		dashboardPage.expandHomeTree();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
-		// wait for element is clickeable
-
-		// homePage.getDriverManager().driverWait();
-
 		// Right click and copy content.
-
 		dashboardPage.rightClickToCopyOptionAboutUs();
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		
 		// Right click and paste content.
-
 		dashboardPage.rightClickToPasteOption();
 
-		// reload page
-
+		// Reload page
 		driverManager.getDriver().navigate().refresh();
 
-		// wait for element
-
-		homePage.getDriverManager().driverWait(3000);
 		// Click on edit option of recent activity section
-
 		homePage.clickOnEditOptionRecentActivity();
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.driverWait(2000);
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		// driverManager.getDriver().findElement(By.cssSelector(".studio-ice-dialog >
-		// .bd iframe")));
 
-		// wait for element
-
-		homePage.getDriverManager().driverWait(1000);
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#internal-name > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#internal-name > div > input")
 				.clear();
-		// driverManager.getDriver().findElement(By.cssSelector("#internal-name > div >
-		// input")).clear();
-
-		// wait for element
-
-		homePage.getDriverManager().driverWait(1000);
-
+		
+		
 		// edit internal name
-
 		dashboardPage.editInternalName("COPY");
 
 		// Switch back to the dashboard page
-
 		driverManager.getDriver().switchTo().defaultContent();
 
-		// wait for element
-
-		homePage.getDriverManager().driverWait(1000);
-
+	
 		// reload page
-
 		driverManager.getDriver().navigate().refresh();
 
-		// wait for element
-
-		homePage.getDriverManager().driverWait(4000);
-
-		// Expand Home Tree
-
-		// dashboardPage.expandHomeTree();
-
+		
 		// Assert of the content copied
-
 		String contentCopied = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#ygtvlabelel4").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#ygtvlabelel4").getText();
 		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel4")).getText();
 		Assert.assertEquals(contentCopied, "COPY");
 

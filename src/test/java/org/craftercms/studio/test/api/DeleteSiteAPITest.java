@@ -22,9 +22,6 @@ public class DeleteSiteAPITest {
 	private String username = "admin";
 	private String password = "admin";
 	private String siteId = "mysite";
-//	private String description = "Description!";
-//	private String blueprint = "empty";
-//	private String groupName = "contributors";
 
 	public DeleteSiteAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
@@ -38,8 +35,6 @@ public class DeleteSiteAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200);
 	}
 
@@ -49,7 +44,6 @@ public class DeleteSiteAPITest {
 		json.put("siteId", siteId);
 		
 		api.post("/studio/api/1/services/api/1/site/delete-site.json")
-		//.urlParam("site_id", siteId)
 		.json(json).execute().status(200).json("$", is(true))
 		.debug();
 

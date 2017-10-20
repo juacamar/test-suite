@@ -20,10 +20,6 @@ public class CreateUserAPITest {
 
 	private String username = "admin";
 	private String password = "admin";
-//	private String siteId = "mysite";
-//	private String description = "Description!";
-//	private String blueprint = "empty";
-
 	private String newusername = "jane.doe";
 	private String newpassword = "SuperSecretPassword123#";
 	private String first_name = "Jane";
@@ -43,8 +39,6 @@ public class CreateUserAPITest {
 			json.put("username", username);
 			json.put("password", password);
 			api.post("/studio/api/1/services/api/1/security/login.json")
-			//.urlParam("username", username)
-			//.urlParam("password", password)
 			.json(json).execute().status(200);
 	}
 
@@ -59,11 +53,6 @@ public class CreateUserAPITest {
 		json.put("email", email);
 		
 		api.post("/studio/api/1/services/api/1/user/create.json")
-//		.urlParam("username", newusername)
-//		.urlParam("password", newpassword)
-//		.urlParam("first_name", first_name)
-//		.urlParam("last_name", last_name)
-//		.urlParam("email", email)
 		.json(json).execute().status(201)
 				.header("Location", is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?user="+newusername))
 				.json("$.message", is("OK")).debug();
@@ -80,11 +69,6 @@ public class CreateUserAPITest {
 		
 		
 		api.post("/studio/api/1/services/api/1/user/create.json")
-//		.urlParam("username", newusername)
-//		.urlParam("password", newpassword)
-//		.urlParam("first_name", first_name)
-//		.urlParam("last_name", last_name)
-//		.urlParam("email", email)
 		.json(json).execute().status(409)
 				.header("Location", is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?user="+newusername))
 				.json("$.message", is("User already exists")).debug();
@@ -101,35 +85,11 @@ public class CreateUserAPITest {
 		json.put("emailnonvalid", email);
 		
 		api.post("/studio/api/1/services/api/1/user/create.json")
-//		.urlParam("usernamenonvalid", newusername)
-//		.urlParam("passwordnonvalid", newpassword)
-//		.urlParam("first_namenonvalid", first_name)
-//		.urlParam("last_namenonvalid", last_name)
-//		.urlParam("emailnonvalid", email)
 		.json(json).execute().status(400)
 				.json("$.message", is("Invalid parameter(s): [username, password, firstname, lastname, email]"))
 				.debug();
 
 	}
-
-	// @Test(priority=4)
-	// public void testInternalServerError(){
-	// Map<String,Object> json=new HashMap<>();
-	// json.put("usernamed", "jane.doe");
-	// json.put("passwordd", "SuperSecretPassword123#");
-	// json.put("first_named", "Jane");
-	// json.put("last_named", "Doe");
-	// json.put("emaild", "jane@example.com");
-	// api.post("/studio/api/1/services/api/1/user/create.json")
-	// .json(json)
-	// .execute()
-	// .status(500)
-	// .header("Location",is("http://localhost:8080/studio/api/1/services/api/1/user/get.json?user=jane.doe"))
-	// .json("$.message", is("Internal server error")).debug();
-	//
-	//
-	// }
-
 	@Test(priority = 5)
 	public void testLogout() {
 		Map<String, Object> json = new HashMap<>();
@@ -137,11 +97,7 @@ public class CreateUserAPITest {
 		json.put("password", password);
 		
 		api.post("/studio/api/1/services/api/1/security/logout.json")
-//		.urlParam("username", username)
-//		.urlParam("password", password)
 		.json(json).execute().status(200).json("$.message", is("OK")).debug();
 		
-
 	}
-
 }

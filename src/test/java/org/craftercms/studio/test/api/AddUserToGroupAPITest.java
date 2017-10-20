@@ -43,8 +43,6 @@ public class AddUserToGroupAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200);
 	}
 
@@ -56,9 +54,6 @@ public class AddUserToGroupAPITest {
 		json.put("blueprint", blueprint);
 		
 		api.post("/studio/api/1/services/api/1/site/create.json")
-		//.urlParam("site_id", siteId)
-	    //.urlParam("description", description)
-		//.urlParam("blueprint", blueprint)
 		.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
@@ -73,9 +68,6 @@ public class AddUserToGroupAPITest {
 		json.put("description", description);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
-//		.urlParam("description", description)
 		.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
@@ -93,11 +85,6 @@ public class AddUserToGroupAPITest {
 		json.put("email", email);
 		
 		api.post("/studio/api/1/services/api/1/user/create.json")
-//		.urlParam("username", newusername)
-//		.urlParam("password", newpassword)
-//		.urlParam("first_name", first_name)
-//		.urlParam("last_name", last_name)
-//		.urlParam("email", email)
 		.json(json).execute().status(201)
 				.header("Location", is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?user="+newusername))
 				.json("$.message", is("OK")).debug();
@@ -112,9 +99,6 @@ public class AddUserToGroupAPITest {
 		json.put("site_id", siteId);
 		
 		api.post("/studio/api/1/services/api/1/group/add-user.json")
-		//.urlParam("username", newusername)
-		//.urlParam("group_name", groupName)
-		//.urlParam("site_id", siteId)
 		.json(json).execute().status(200)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
@@ -130,28 +114,11 @@ public class AddUserToGroupAPITest {
 		json.put("site_id", siteId);
 		
 		api.post("/studio/api/1/services/api/1/group/add-user.json")
-//		.urlParam("usernameInvalid", newusername)
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
 		.json(json).execute().status(400)
 				.json("$.message", is("Invalid parameter(s): [username]")).debug();
 
 	}
 
-	// @Test(priority=6)
-	// public void testUnauthorized() {
-	// Map<String, Object> json = new HashMap<>();
-	// json.put("username", "jane.doe");
-	// json.put("group_name", "contributors");
-	// json.put("site_id", "mysite");
-	// api.post("/studio/api/1/services/api/1/group/add-user.json").json(json)
-	// .execute()
-	// .status(401)
-	// .json("$.message", is("Unauthorized")).debug();
-	//
-	//
-	//
-	// }
 
 	@Test(priority = 6)
 	public void testUserNotFound() {
@@ -162,9 +129,6 @@ public class AddUserToGroupAPITest {
 		json.put("site_id", siteId);
 		
 		api.post("/studio/api/1/services/api/1/group/add-user.json")
-//		.urlParam("username", newusername+"non-valid")
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
 		.json(json).execute().status(404)
 				.json("$.message", is("User not found")).debug();
 
@@ -178,9 +142,6 @@ public class AddUserToGroupAPITest {
 		json.put("site_id", siteId);
 		
 		api.post("/studio/api/1/services/api/1/group/add-user.json")
-//		.urlParam("username", newusername)
-//		.urlParam("group_name", groupName+"non-valid")
-//		.urlParam("site_id", siteId)
 		.json(json).execute().status(404)
 				.json("$.message", is("Group not found")).debug();
 	}
@@ -193,29 +154,10 @@ public class AddUserToGroupAPITest {
 		json.put("site_id", siteId);
 		
 		api.post("/studio/api/1/services/api/1/group/add-user.json")
-//		.urlParam("username", newusername)
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
 		.json(json).execute().status(409)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
 				.json("$.message", is("User already in group")).debug();
 
 	}
-	//
-	// @Test(priority=4)
-	// public void testInternalServerError() {
-	// Map<String, Object> json = new HashMap<>();
-	// json.put("username", "jane.doe");
-	// json.put("group_name", "contributors");
-	// json.put("site_id", "mysite");
-	// api.post("/studio/api/1/services/api/1/group/add-user.json").json(json)
-	// .execute()
-	// .status(500)
-	// .json("$.message", is("Internal server error")).debug();
-	//
-	//
-	//
-	// }
-
 }

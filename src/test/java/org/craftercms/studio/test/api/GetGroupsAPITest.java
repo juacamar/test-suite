@@ -25,7 +25,6 @@ public class GetGroupsAPITest {
 	private String blueprint = "empty";
 	private String groupName1 = "contributors01";
 	private String groupName2 = "contributors02";
-	//private String groupName3 = "contributors03";
 
 	public GetGroupsAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
@@ -40,8 +39,6 @@ public class GetGroupsAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200);
 	}
 
@@ -53,9 +50,6 @@ public class GetGroupsAPITest {
 			json.put("blueprint", blueprint);
 			
 			api.post("/studio/api/1/services/api/1/site/create.json")
-			//.urlParam("site_id", siteId)
-		    //.urlParam("description", description)
-			//.urlParam("blueprint", blueprint)
 			.json(json).execute().status(201)
 					.header("Location",
 							is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
@@ -70,9 +64,6 @@ public class GetGroupsAPITest {
 		json.put("description", description);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
-//		.urlParam("description", description)
 		.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName1))
@@ -87,9 +78,6 @@ public class GetGroupsAPITest {
 		json.put("description", description);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
-//		.urlParam("description", description)
 		.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName2))
@@ -104,39 +92,9 @@ public class GetGroupsAPITest {
 		json.put("number", "25");
 		
 		api.get("/studio/api/1/services/api/1/group/get-all.json")
-//		.urlParam("start", "0")
-//		.urlParam("number", "25")
 		.json(json).execute().status(200)
 				.header("Location",
 						is(headerLocationBase+"/studio/api/1/services/api/1/group/get-all.json?start=0&number=25"));
-				//.json("$.message", is("OK")).debug();
 
 	}
-	
-//	@Test(priority = 5)
-//	public void testInvalidParameter() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/group/get-all.json?start=0&number=25").json(json).execute().status(400)
-//				.json("$.message", is("Invalid parameter(s)")).debug();
-//
-//	}
-	
-//	@Test(priority = 6)
-//	public void testUnauthorized() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/group/get-all.json?start=0&number=25").json(json).execute().status(401)
-//				.json("$.message", is("Unauthorized")).debug();
-//
-//	}
-	
-//	@Test(priority = 7)
-//	public void testInternalServerError() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/group/get-all.json?start=0&number=25").json(json).execute().status(500)
-//				.json("$.message", is("Internal server error")).debug();
-//
-//	}
-	
-	
-
 }

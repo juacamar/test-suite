@@ -39,8 +39,6 @@ public class DeleteGroupAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200);
 	}
 
@@ -52,9 +50,6 @@ public class DeleteGroupAPITest {
 			json.put("blueprint", blueprint);
 			
 			api.post("/studio/api/1/services/api/1/site/create.json")
-			//.urlParam("site_id", siteId)
-		    //.urlParam("description", description)
-			//.urlParam("blueprint", blueprint)
 			.json(json).execute().status(201)
 					.header("Location",
 							is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
@@ -69,9 +64,6 @@ public class DeleteGroupAPITest {
 		json.put("description", description);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
-//		.urlParam("description", description)
 		.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
@@ -86,8 +78,6 @@ public class DeleteGroupAPITest {
 		json.put("site_id", siteId);
 		
 		api.post("/studio/api/1/services/api/1/group/delete.json")
-//		.urlParam("group_name", groupName)
-//		.urlParam("site_id", siteId)
 		.json(json).execute()
 		.status(204);
 	}
@@ -100,23 +90,10 @@ public class DeleteGroupAPITest {
 		json.put("site_id", siteId);
 		
 		api.post("/studio/api/1/services/api/1/group/delete.json")
-//		.urlParam("group_namenonvalid", groupName)
-//		.urlParam("site_id", siteId)
 		.json(json).execute().status(400)
 				.json("$.message", is("Invalid parameter(s): [group_name]")).debug();
 
 	}
-	
-//	@Test(priority=5)
-//	public void testUnauthorized() {
-//		Map<String, Object> json = new HashMap<>();
-//		json.put("group_name", "contributors");
-//		json.put("site_id", "mysite");
-//		api.post("/studio/api/1/services/api/1/group/delete.json").json(json).execute().status(401)
-//				.json("$.message", is("Unauthorized")).debug();
-//
-//	}
-	
 	
 	@Test(priority=6)
 	public void testUnauthorized() {
@@ -125,22 +102,9 @@ public class DeleteGroupAPITest {
 		json.put("site_id", siteId);
 		
 		api.post("/studio/api/1/services/api/1/group/delete.json")
-//		.urlParam("group_name", groupName+"nonvalid")
-//		.urlParam("site_id", siteId)
 		.json(json).execute().status(404)
 				.json("$.message", is("Group not found")).debug();
 
 	}
-	
-//	@Test(priority=7)
-//	public void testInternalServerError() {
-//		Map<String, Object> json = new HashMap<>();
-//		json.put("group_name", "contributors");
-//		json.put("site_id", "mysite");
-//		api.post("/studio/api/1/services/api/1/group/delete.json").json(json).execute().status(500)
-//				.json("$.message", is("Internal server error")).debug();
-//
-//	}
-
 	
 }

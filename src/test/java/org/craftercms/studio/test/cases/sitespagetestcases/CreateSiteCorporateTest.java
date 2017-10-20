@@ -8,6 +8,7 @@ import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.APIConnectionManager;
+import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
@@ -22,13 +23,14 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class CreateSiteCorporateTest {
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
 	private CreateSitePage createSitePage;
-
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
+	
 	private APIConnectionManager apiConnectionManager;
 
 	@BeforeClass
@@ -36,10 +38,19 @@ public class CreateSiteCorporateTest {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-		 apiConnectionManager = new APIConnectionManager();
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+		
+		apiConnectionManager = new APIConnectionManager();	 
 	}
 
 	@AfterClass
@@ -52,23 +63,15 @@ public class CreateSiteCorporateTest {
 	public void createSiteCorporate() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		
+		loginPage.loginToCrafter(
+				userName,password);
 
 		// Click on the create site button
-
+		
 		homePage.clickOnCreateSiteButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Filling the name of site
-
 		createSitePage.fillSiteName();
 
 		// Filling the Id of the site
@@ -93,13 +96,9 @@ public class CreateSiteCorporateTest {
 
 		// Show site content panel
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a")
 				.click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(300);
 
 		// Assert
 
