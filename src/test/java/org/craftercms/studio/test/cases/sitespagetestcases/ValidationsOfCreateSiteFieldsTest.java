@@ -23,29 +23,32 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class ValidationsOfCreateSiteFieldsTest {
 
 	WebDriver driver;
-
 	LoginPage objLogin;
-
 	HomePage objHomePage;
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
 	private HomePage homePage;
-
-	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -59,36 +62,17 @@ public class ValidationsOfCreateSiteFieldsTest {
 	public void Validations_Of_Create_Site() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// MaximizeWindow
-		// driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(
+				userName,password);
 
 		// Click on the create site button
-
 		homePage.clickOnCreateSiteButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Click on description to show the validations
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#description").click();
-
-		// driverManager.getDriver().findElement(By.cssSelector("#description")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#description").click();
 
 		// Assert Id site is required.
-
-		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(1) > div:nth-child(4) > small");
 
 		Assert.assertTrue(siteID.isDisplayed());

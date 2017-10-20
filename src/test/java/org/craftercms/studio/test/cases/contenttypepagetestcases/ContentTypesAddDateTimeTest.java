@@ -25,26 +25,34 @@ public class ContentTypesAddDateTimeTest {
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private SiteConfigPage siteConfigPage;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionDateTimeLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerDateTimeTitleLocator;
-	private UIElementsPropertiesManager uIElementsPropertiesManager;
-	private ConstantsPropertiesManager constantsPropertiesManager;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		
-		this.uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
@@ -66,36 +74,22 @@ public class ContentTypesAddDateTimeTest {
 
 	public void dragAndDrop() {
 
-		driverManager.driverWait(1000);
-
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", controlsSectionFormSectionLocator);
-		// driverManager.getDriver()
-		// .findElement(By.xpath(controlsSectionFormSectionLocator));
-
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", controlsSectionFormSectionLocator);
+		
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				contentTypeContainerLocator);
-		// driverManager.getDriver()
-		// .findElement(By.xpath(contentTypeContainerLocator));
 
 		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
-		// wait for element
 
-		homePage.getDriverManager().driverWait(1000);
-
-		// driverManager.driverWait();
-
-		WebElement FromDateTime = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		WebElement FromDateTime = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				controlsSectionDateTimeLocator);
-		// driverManager.getDriver().findElement(By.xpath(controlsSectionDateTimeLocator));
-
-		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+	
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				contentTypeContainerFormSectionContainerLocator);
-		// driverManager.getDriver()
-		// .findElement(By.xpath(contentTypeContainerFormSectionContainerLocator));
 
 		siteConfigPage.getDriverManager().dragAndDropElement(FromDateTime, ToDefaultSection);
 
@@ -111,45 +105,21 @@ public class ContentTypesAddDateTimeTest {
 	public void contentTypeAddDateTimeTest() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element
-		homePage.getDriverManager().driverWait(2000);
+		loginPage.loginToCrafter(
+				userName,password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-		homePage.getDriverManager().driverWait(4000);
-
-		// reload page
-		// driverManager.getDriver().navigate().refresh();
-
-		//driverManager.driverWait(1000);
-
 		// Show site content panel
-		// homePage.getDriverManager().driverWait();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
-		// driverManager.getDriver().findElement(By.xpath("/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a"))
-		// .click();
-
-		// Show admin console page
-		homePage.getDriverManager().driverWait(2000);
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				".//a[@id='admin-console']").click();
-		//driverManager.getDriver().findElement(By.xpath(".//a[@id='admin-console']")).click();
-
-		// wait for element
-		homePage.getDriverManager().driverWait(1000);
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
-
-		// wait for element
-		siteConfigPage.getDriverManager().driverWait(1000);
 
 		// drag and drop
 		this.dragAndDrop();
@@ -157,28 +127,15 @@ public class ContentTypesAddDateTimeTest {
 		// open content types
 		siteConfigPage.clickExistingTypeOption();
 
-		// wait for element
-		siteConfigPage.getDriverManager().driverWait(1000);
-
-		// Select the generic content type
-		siteConfigPage.selectEntryContentType();
-
 		// Confirm the content type selected
 		siteConfigPage.confirmContentTypeSelected();
-
-		// wait for element
-		homePage.getDriverManager().driverWait(1000);
-
-		// driverManager.driverWait();
 
 		// Click on input section to can view the properties
 		siteConfigPage.clickDateTimeSection();
 
 		// Asserts that fields are not empty.
-		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				contentTypeContainerDateTimeTitleLocator).getText();
-				//driverManager.getDriver().findElement(By.xpath(contentTypeContainerDateTimeTitleLocator))
-				//.getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

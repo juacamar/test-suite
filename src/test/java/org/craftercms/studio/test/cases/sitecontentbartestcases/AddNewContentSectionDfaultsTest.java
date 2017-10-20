@@ -29,8 +29,6 @@ public class AddNewContentSectionDfaultsTest {
 
 	private DashboardPage dashboardPage;
 
-	private ConstantsPropertiesManager constantsPropertiesManager;
-	
 	private String userName;
 	private String password;
 	private int defaultTimeOut;
@@ -38,13 +36,13 @@ public class AddNewContentSectionDfaultsTest {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");

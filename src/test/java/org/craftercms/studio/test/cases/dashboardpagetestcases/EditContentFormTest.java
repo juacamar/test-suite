@@ -40,8 +40,6 @@ public class EditContentFormTest {
 	private MyRecentActivityFramePage myRecentActivityFramePage1;
 
 	private DashboardPage dashboardPage;
-
-	private ConstantsPropertiesManager constantsPropertiesManager;
 	
 	private String userName;
 	private String password;
@@ -51,16 +49,16 @@ public class EditContentFormTest {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.myRecentActivityFramePage1 = new MyRecentActivityFramePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.myRecentActivityFramePage1 = new MyRecentActivityFramePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");

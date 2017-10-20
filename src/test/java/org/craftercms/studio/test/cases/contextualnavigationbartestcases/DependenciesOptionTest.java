@@ -27,13 +27,9 @@ public class DependenciesOptionTest {
 
 	private LoginPage loginPage;
 
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
 	private HomePage homePage;
 
 	private PreviewPage previewPage;
-
-	private ConstantsPropertiesManager constantsPropertiesManager;
 
 	private String userName;
 	private String password;
@@ -42,13 +38,13 @@ public class DependenciesOptionTest {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager, constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager, constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, this.UIElementsPropertiesManager, constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");

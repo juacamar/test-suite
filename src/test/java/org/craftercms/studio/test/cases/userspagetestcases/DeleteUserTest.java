@@ -6,7 +6,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.CreateSitePage;
-import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.UsersPage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
@@ -23,29 +22,31 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class DeleteUserTest {
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
-	private HomePage homePage;
-
 	private CreateSitePage createSitePage;
-
 	private UsersPage usersPage;
 
-	private ConstantsPropertiesManager constantsPropertiesManager;
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,
+				constantsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 	}
 
 	@AfterClass
@@ -58,46 +59,25 @@ public class DeleteUserTest {
 	public void deleteUser() {
 
 		// login to application
+		loginPage.loginToCrafter(userName, password);
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-		// homePage.getDriverManager().driverWait(300);
 		// click On Users option
 
 		createSitePage.clickOnUsersOption();
 
 		// Click on delete user
-		homePage.getDriverManager().driverWait(2000);
 		usersPage.clickOnDeleteUserCreated();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Confirmation to delete user connected
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector(
-		// "body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div >
-		// div.modal-footer.ng-scope > button:nth-child(1)"))
-		// .click();
 
-		// wait for element is clickeable
+		// Assert new users created is deleted
 
-		homePage.getDriverManager().driverWait(300);
-
-		// Assert new users created is deteled
-
-		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
-				"#container > div > div > div > div > div > table > tbody");
-		
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector("#container > div > div > div > div > div > table > tbody"));
+		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				this.defaultTimeOut, "cssSelector", "#container > div > div > div > div > div > table > tbody");
 
 		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
 

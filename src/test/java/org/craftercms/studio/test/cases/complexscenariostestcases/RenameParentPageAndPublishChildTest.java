@@ -26,7 +26,6 @@ public class RenameParentPageAndPublishChildTest {
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private UIElementsPropertiesManager UIElementsPropertiesManager;
-	private ConstantsPropertiesManager constantsPropertiesManager;
 	
 	private HomePage homePage;
 	private DashboardPage dashboardPage;
@@ -50,7 +49,7 @@ public class RenameParentPageAndPublishChildTest {
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager,constantsPropertiesManager);

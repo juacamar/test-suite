@@ -33,7 +33,6 @@ public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 	
 	private String siteId = "testeditorial";
 
-	private ConstantsPropertiesManager constantsPropertiesManager;
 	
 	private String userName;
 	private String password;
@@ -42,13 +41,13 @@ public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(this.driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(this.driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(this.driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.loginPage = new LoginPage(this.driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.homePage = new HomePage(this.driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.createSitePage = new CreateSitePage(this.driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");

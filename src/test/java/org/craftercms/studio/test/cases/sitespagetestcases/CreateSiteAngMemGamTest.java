@@ -24,37 +24,39 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class CreateSiteAngMemGamTest {
 
 	WebDriver driver;
-
 	LoginPage objLogin;
-
 	HomePage objHomePage;
-
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
 	private HomePage homePage;
-
 	private CreateSitePage createSitePage;
-
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
+	
 	private APIConnectionManager apiConnectionManager;
-
-	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager, constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager, constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, this.UIElementsPropertiesManager,
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,
 				constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
 		apiConnectionManager = new APIConnectionManager();
 
@@ -71,20 +73,12 @@ public class CreateSiteAngMemGamTest {
 	public void create_site_angular_memory_game() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(
+				userName,password);
 
 		// Click on the create site button
 
 		homePage.clickOnCreateSiteButton();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Filling the name of site
 
@@ -112,12 +106,8 @@ public class CreateSiteAngMemGamTest {
 
 		// Show site content panel
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
 

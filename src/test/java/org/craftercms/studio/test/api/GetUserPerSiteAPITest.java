@@ -46,8 +46,6 @@ public class GetUserPerSiteAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-				// .urlParam("username", username)
-				// .urlParam("password", password)
 				.json(json).execute().status(200);
 		
 		Map<String, Object> json2 = new HashMap<>();
@@ -58,11 +56,6 @@ public class GetUserPerSiteAPITest {
 		json2.put("email", email);
 		
 		api.post("/studio/api/1/services/api/1/user/create.json")
-//		.urlParam("username", newusername)
-//		.urlParam("password", newpassword)
-//		.urlParam("first_name", first_name)
-//		.urlParam("last_name", last_name)
-//		.urlParam("email", email)
 		.json(json2).execute().status(201)
 				.header("Location", is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?user="+newusername))
 				.json("$.message", is("OK")).debug();
@@ -76,9 +69,6 @@ public class GetUserPerSiteAPITest {
 		json.put("blueprint", blueprint);
 		
 	 	api.post("/studio/api/1/services/api/1/site/create.json")
-//	 	.urlParam("site_id", siteId)
-//		.urlParam("description", description)
-//		.urlParam("blueprint", blueprint)
 		.json(json).execute().status(201)
 			.header("Location",
 					is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
@@ -93,9 +83,6 @@ public class GetUserPerSiteAPITest {
 		json.put("blueprint", blueprint);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-		//.urlParam("group_name", groupName1)
-		//.urlParam("site_id", siteId)
-		//.urlParam("description", description)
 		.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName1))
@@ -110,9 +97,6 @@ public class GetUserPerSiteAPITest {
 		json.put("blueprint", blueprint);
 		
 		api.post("/studio/api/1/services/api/1/group/create.json")
-		//.urlParam("group_name", groupName1)
-		//.urlParam("site_id", siteId)
-		//.urlParam("description", description)
 		.json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName2))
@@ -124,45 +108,6 @@ public class GetUserPerSiteAPITest {
 		api.get("/studio/api/1/services/api/1/user/get-per-site.json")
 		.urlParam("site_id", siteId).execute().status(200)
 				.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/user/get-per-site.json?site_id="+siteId+"&start=0&number=25"));
-				//.json("$.message", is("OK")).debug();
 
-	}
-	
-//	@Test(priority=5)
-//	public void testInvalidParameters() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?").json(json).execute().status(400)
-//		.json("$.message", is("Invalid parameter(s)")).debug();
-//
-//	}
-
-	
-//	@Test(priority=6)
-//	public void testUnauthorized() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=mySite").json(json).execute().status(401)
-//		.json("$.message", is("Unauthorized")).debug();
-//
-//	}
-	
-	
-//	@Test(priority=7)
-//	public void testSiteNotFound() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=gfgfdgfdgfdfgd").json(json).execute().status(404)
-//		.json("$.message", is("Site not found")).debug();
-//
-//	}
-	
-	
-//	@Test(priority=8)
-//	public void testInternalServerError() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("http://localhost:8080/studio/api/1/services/api/1/user/get-per-site.json?site_id=`````").json(json).execute().status(500)
-//		.json("$.message", is("Internal server error")).debug();
-//
-//	}
-	
-	
-	
+	}	
 }

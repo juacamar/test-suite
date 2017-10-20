@@ -38,8 +38,6 @@ public class GetUserStatusAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200);
 	}
 
@@ -53,11 +51,6 @@ public class GetUserStatusAPITest {
 		json.put("email", email);
 		
 		api.post("/studio/api/1/services/api/1/user/create.json")
-//		.urlParam("username", newusername)
-//		.urlParam("password", newpassword)
-//		.urlParam("first_name", first_name)
-//		.urlParam("last_name", last_name)
-//		.urlParam("email", email)
 		.json(json).execute().status(201)
 				.header("Location", is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?user="+newusername))
 				.json("$.message", is("OK")).debug();
@@ -65,16 +58,13 @@ public class GetUserStatusAPITest {
 	
 	@Test(priority=2)
 	public void testGetUserStatus() {
-//		Map<String, Object> json = new HashMap<>();
-//		json.put("username", newusername);
+
 		
 		api.get("/studio/api/1/services/api/1/user/status.json")
 		.urlParam("username", newusername)
-		//.json(json)
 		.execute()
 		.status(200)
 		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/user/get.json?username="+newusername));
-	//	.json("$.message", is("OK"));
 		
 	}
 	
@@ -84,7 +74,6 @@ public class GetUserStatusAPITest {
 		json.put("usernamenonvalid", newusername);
 		
 		api.get("/studio/api/1/services/api/1/user/status.json")
-		//.urlParam("usernamenonvalid", newusername)
 		.json(json).execute()
 		.status(400)
 		.json("$.message", is("Invalid parameter: username"));
@@ -92,31 +81,16 @@ public class GetUserStatusAPITest {
 		
 
 	}
-	
-//	@Test(priority=4)
-//	public void testUnauthorized() {
-//		Map<String, Object> json = new HashMap<>();
-//		api.get("/studio/api/1/services/api/1/user/status.json?username=jane.doeNOT")
-//		.json(json)
-//		.execute()
-//		.status(401)
-//		.json("$.message", is("Unauthorized"));
-//
-//
-//	}
-	
+
 	
 	@Test(priority=5)
 	public void testUserNotFound() {
-//		Map<String, Object> json = new HashMap<>();
-//		json.put("username", newusername+"nonvalid");
 		
 		api.get("/studio/api/1/services/api/1/user/status.json")
 		.urlParam("username", newusername+"nonvalid")
-		//.json(json)
 		.execute()
 		.status(404);
-		//.json("$.message", is("User not found"));
+		
 	}
 	
 	

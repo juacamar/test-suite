@@ -23,25 +23,31 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class SitesPerPageTest {
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
+	
 	private CreateSitePage createSitePage;
-
-	private ConstantsPropertiesManager constantsPropertiesManager;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -52,28 +58,15 @@ public class SitesPerPageTest {
 
 	public void createSitesRandom() {
 
-		// MaximizeWindow
-		// driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// Click on the create site button
 
 		homePage.clickOnCreateSiteButton();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
 
 		// Filling the name of site
 
 		createSitePage.fillSiteName();
 
 		// Filling the Id of the site
-
-		// createSitePage.fillIdSite("");
 
 		// Filling the description of the site
 
@@ -91,149 +84,68 @@ public class SitesPerPageTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
-		// wait for element is clickeable
-
-		//homePage.getDriverManager().driverWait(300);
-		//driverManager.getDriver().navigate().refresh();
-		// wait for element is clickeable
-
-		// homePage.getDriverManager().driverWait();
-
-		// wait for element is clickeable
-
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
 		// go to the sites page
-		homePage.getDriverManager().driverWait(8000);
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
-		if (this.driverManager.isElementPresentBycssSelector(15,sitesNavOptionElementCssSelector))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", sitesNavOptionElementCssSelector)
+		if (this.driverManager.isElementPresentBycssSelector(this.defaultTimeOut,sitesNavOptionElementCssSelector))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
 	}
 
 	public void filters() {
 
 		// Show 8 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .sendKeys("1");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
+	
 		// Assert only 8 sites displayed
 
-		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(1) > td.name.ng-binding");
-		// driverManager.getDriver().findElement(By.cssSelector(
-		// "#container > div > div > div.ng-scope > table > tbody > tr:nth-child(1) >
-		// td.name.ng-binding"));
 
 		Assert.assertTrue(page1.isDisplayed());
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// Show 5 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .sendKeys("2");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
 
 		// Asser only 5 sites displayed
 
-		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(2) > td.name.ng-binding");
 
-		// driverManager.getDriver().findElement(By.cssSelector(
-		// "#container > div > div > div.ng-scope > table > tbody > tr:nth-child(2) >
-		// td.name.ng-binding"));
-
 		Assert.assertTrue(page2.isDisplayed());
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+		
 		// Show 1 site
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .clear();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("3");
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .sendKeys("3");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
+	
 		// Asser only 1 site displayed
 
-		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) > td.name.ng-binding");
-
-		// driverManager.getDriver().findElement(By.cssSelector(
-		// "#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) >
-		// td.name.ng-binding"));
 
 		Assert.assertTrue(page3.isDisplayed());
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Show 11 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .sendKeys("10");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 	}
 
 	public void deleteSite() {
@@ -242,17 +154,9 @@ public class SitesPerPageTest {
 
 		homePage.clickOnDeleteSiteIcon();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Click on YES to confirm the delete.
 
 		homePage.clickOnYesToDeleteSite();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 	}
 
@@ -261,11 +165,10 @@ public class SitesPerPageTest {
 	public void sitesPerPage() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
+		loginPage.loginToCrafter(
+				userName,password);
 
 		// Create user 1
-		homePage.getDriverManager().driverWait(1000);
 		createSitesRandom();
 
 		// Create user 2

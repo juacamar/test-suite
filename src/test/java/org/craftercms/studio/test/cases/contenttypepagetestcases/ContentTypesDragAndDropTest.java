@@ -28,16 +28,14 @@ public class ContentTypesDragAndDropTest {
 	WebDriver driver;
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
 	private PreviewPage previewPage;
-
 	private SiteConfigPage siteConfigPage;
-
-	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 
 	@BeforeClass
@@ -45,13 +43,18 @@ public class ContentTypesDragAndDropTest {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);		
 	}
 
 	@AfterClass
@@ -63,78 +66,36 @@ public class ContentTypesDragAndDropTest {
 	public void contentTypesDragAndDropTest() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
+		loginPage.loginToCrafter(
+				userName,password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(4000);
-
-		// homePage.getDriverManager().driverWait();
-
 		// Show site content panel
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(3, "xpath", ".//a[@id='acn-dropdown-toggler']").click();
-		//driverManager.getDriver().findElement(By.xpath(".//a[@id='acn-dropdown-toggler']")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
+		.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", ".//a[@id='acn-dropdown-toggler']").click();
 
 		// go to admin console page
 
 		previewPage.goToAdminConsolePage();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// select content types
 		siteConfigPage.selectContentTypeOption();
 
 		// open content types
-
 		siteConfigPage.clickExistingTypeOption();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
-		// Select the Entry content type
-
-		siteConfigPage.selectEntryContentType();
 
 		// Confirm the content type selected
 
 		siteConfigPage.confirmContentTypeSelected();
 
 		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		// homePage.getDriverManager().driverWait();
-
-		// Drag and drop Form Section
-
-		// driverManager.getDriver().manage().window().maximize();
-
-		// driverManager.getDriver().manage().timeouts().implicitlyWait(10000,
-		// TimeUnit.MILLISECONDS);
-
 		WebElement From = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", ".control-section");
-				//driverManager.getDriver().findElement(By.cssSelector(".control-section"));
-
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", ".control-section");
+		
 		WebElement To = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", "#content-type-canvas .content-form-name");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector("#content-type-canvas .content-form-name"));
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#content-type-canvas .content-form-name");
 
 		Actions builder = new Actions(driverManager.getDriver());
 
@@ -151,20 +112,10 @@ public class ContentTypesDragAndDropTest {
 		// Save the drag and drop process
 
 		siteConfigPage.saveDragAndDropProcess();
-
-		// Ok for the dialog window when appears
-
-		// new WebDriverWait(driverManager.getDriver(),
-		// 10).until(ExpectedConditions.alertIsPresent());
-		// driverManager.getDriver().switchTo().alert().accept();
-
 		// validate the control added
 
 		Assert.assertTrue(driverManager.isElementPresentBycssSelector(5,"#content-type-canvas .content-section-name"));
 		
-			//driverManager.getDriver().findElement(By.cssSelector("#content-type-canvas .content-section-name"));
-
-	
 	}
 
 }

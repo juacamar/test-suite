@@ -21,25 +21,31 @@ import org.openqa.selenium.NoSuchElementException;
 public class PaginationOfListOfSitesTest {
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
+	
 	private CreateSitePage createSitePage;
-
-	private ConstantsPropertiesManager constantsPropertiesManager;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -50,20 +56,9 @@ public class PaginationOfListOfSitesTest {
 
 	public void createSitesRandom() {
 
-		// MaximizeWindow
-		// driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-
 		// Click on the create site button
 
 		homePage.clickOnCreateSiteButton();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
 
 		// Filling the name of site
 
@@ -85,129 +80,57 @@ public class PaginationOfListOfSitesTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
-		// wait for element is clickeable
-
-		//homePage.getDriverManager().driverWait(8000);
-		//driverManager.getDriver().navigate().refresh();
-		// wait for element is clickeable
-
-		// homePage.getDriverManager().driverWait();
-
-		// wait for element is clickeable
-
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
 		// go to the sites page
-		homePage.getDriverManager().driverWait(8000);
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
-		if (this.driverManager.isElementPresentBycssSelector(15,sitesNavOptionElementCssSelector))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector", sitesNavOptionElementCssSelector)
+		if (this.driverManager.isElementPresentBycssSelector(this.defaultTimeOut,sitesNavOptionElementCssSelector))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
-
-		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(4, "cssSelector", "#sitesRightNav").click();
-		// driverManager.getDriver().findElement(By.cssSelector("#sitesRightNav")).click();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 	}
 
 	public void navigationOfPage() {
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .sendKeys("1");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .sendKeys("2");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
 
 		// navigation
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(3) > a")
 				.click();
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector(
-		// "#container > div > div > div.ng-scope > dir-pagination-controls > ul >
-		// li:nth-child(3) > a"))
-		// .click();
-
+		
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(2) > a")
 				.click();
 
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector(
-		// "#container > div > div > div.ng-scope > dir-pagination-controls > ul >
-		// li:nth-child(2) > a"))
-		// .click();
-
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul >li:nth-child(4) > a")
 				.click();
 
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector(
-		// "#container > div > div > div.ng-scope > dir-pagination-controls > ul >
-		// li:nth-child(4) > a"))
-		// .click();
-
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a")
 				.click();
 
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector(
-		// "#container > div > div > div.ng-scope > dir-pagination-controls > ul >
-		// li:nth-child(1) > a"))
-		// .click();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .clear();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
-
-		// driverManager.getDriver().findElement(By.cssSelector("#container > div > div
-		// > div.pull-right.m10 > input"))
-		// .sendKeys("10");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 	}
 
 	public void deleteSite() {
@@ -216,17 +139,9 @@ public class PaginationOfListOfSitesTest {
 
 		homePage.clickOnDeleteSiteIcon();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(300);
-
 		// Click on YES to confirm the delete.
 
 		homePage.clickOnYesToDeleteSite();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(300);
 
 	}
 
@@ -235,36 +150,24 @@ public class PaginationOfListOfSitesTest {
 	public void paginationOfTheListOfSites() {
 
 		// login to application
+		loginPage.loginToCrafter(
+				userName,password);
 
-		loginPage.loginToCrafter("admin", "admin");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(2000);
-		// homePage.getDriverManager().driverWait();
 		// Create user 1
 
 		createSitesRandom();
 
 		// Create user 2
 
-		homePage.getDriverManager().driverWait(2000);
 		createSitesRandom();
 
 		// Create user 3
 
-		homePage.getDriverManager().driverWait(2000);
 		createSitesRandom();
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// filters
 
 		navigationOfPage();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Delete sites
 

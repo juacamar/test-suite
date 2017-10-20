@@ -24,28 +24,32 @@ import org.openqa.selenium.NoSuchElementException;
 public class CreateSiteEmptyTest {
 
 	LoginPage objLogin;
-
 	HomePage objHomePage;
-
+	
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
 	private CreateSitePage createSitePage;
-
-	private ConstantsPropertiesManager constantsPropertiesManager;
+	
+	private String userName;
+	private String password;
+	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager uIElementsPropertiesManager = new org.craftercms.studio.test.utils.UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		this.constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		defaultTimeOut = Integer.parseInt(
+				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -59,39 +63,20 @@ public class CreateSiteEmptyTest {
 	public void createSiteEmpty() {
 
 		// login to application
-
-		loginPage.loginToCrafter("admin", "admin");
-
-		// MaximizeWindow
-		// driverManager.maximizeWindow();
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
+		loginPage.loginToCrafter(
+				userName,password);
 
 		// Click on the create site button
 
 		homePage.clickOnCreateSiteButton();
 
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
-
 		// Filling the name of site
 
 		createSitePage.fillSiteName();
 
-		// Filling the Id of the site
-
-		// createSitePage.fillIdSite("");
-
 		// Filling the description of the site
 
 		createSitePage.fillDescription("Description");
-
-		// Open blueprint combo
-
-		// createSitePage.openBlueprintCombo();
 
 		// Select empty blueprint
 
@@ -101,45 +86,23 @@ public class CreateSiteEmptyTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
-		// wait for element is clickeable
-
-		// review the performance here, it is to much time aprox 38secs
-		// homePage.getDriverManager().driverWait(1000);
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
-		// homePage.getDriverManager().driverWait();
-		// driverManager.getDriver().navigate().refresh();
 		// Show site content panel
-
-		homePage.getDriverManager().driverWait(8000);
 
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 
 		if (this.driverManager.isElementPresentByXpath(15, siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "xpath", siteDropdownElementXPath)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", siteDropdownElementXPath)
 					.click();
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
-
-		// wait for element is clickeable
-
-		homePage.getDriverManager().driverWait(1000);
 
 		// Assert
 		String headStatusClass = this.driverManager.getDriver()
 				.findElement(By
 						.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)"))
 				.getAttribute("class");
-		// String headClass =
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(3,
-		// "cssSelector",
-		// "#activeContentActions > li:nth-child(1) > span > div > span >
-		// span:nth-child(2)").getAttribute("class");
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#activeContentActions > li:nth-child(1) >
-		// span")).getText();
+
 		Assert.assertTrue(headStatusClass.contains("live"));
 
 	}
