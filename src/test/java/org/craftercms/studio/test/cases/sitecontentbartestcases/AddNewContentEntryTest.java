@@ -94,9 +94,10 @@ public class AddNewContentEntryTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-form-expand-all")
 				.click();
 	
-
 		// save and close
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		
+		this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//span[text()='Home']");
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -119,7 +120,7 @@ public class AddNewContentEntryTest {
 
 		// body not required
 		this.changeBodyToNotRequiredOnEntryContent();
-		
+
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
@@ -128,11 +129,7 @@ public class AddNewContentEntryTest {
 
 		dashboardPage.expandHomeTree();
 
-		// Assert of the test case is fine
-		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
-				"/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]").getText();
-		
-		Assert.assertTrue(contentURL.contains(contentURL));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(defaultTimeOut, ".//tbody[@id='MyRecentActivity-tbody']/tr/td[@class='itemNameCol']/div/a[text()='Testing1']"));
 	}
 
 }

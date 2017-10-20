@@ -25,7 +25,7 @@ public class ContentTypesAddInputTest {
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private SiteConfigPage siteConfigPage;
-	
+
 	private String userName;
 	private String password;
 	private int defaultTimeOut;
@@ -43,16 +43,17 @@ public class ContentTypesAddInputTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		
+
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,
+				constantsPropertiesManager);
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		defaultTimeOut = Integer.parseInt(
 				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
-		
+
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -72,14 +73,14 @@ public class ContentTypesAddInputTest {
 
 	public void dragAndDrop() {
 
-
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", controlsSectionFormSectionLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+						controlsSectionFormSectionLocator);
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer =  this.driverManager
+		WebElement ToContentTypeContainer = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", contentTypeContainerLocator);
 
 		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
@@ -87,9 +88,8 @@ public class ContentTypesAddInputTest {
 		WebElement FromRepeatingGroup = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", controlsSectionInputLocator);
 
-
-		WebElement ToDefaultSection = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", contentTypeContainerFormSectionContainerLocator);
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				this.defaultTimeOut, "xpath", contentTypeContainerFormSectionContainerLocator);
 
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRepeatingGroup, ToDefaultSection);
 
@@ -104,19 +104,18 @@ public class ContentTypesAddInputTest {
 	public void contentTypeAddInputTest() {
 
 		// login to application
-		loginPage.loginToCrafter(
-				userName,password);
-	
+		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
-		
+
 		// Show site content panel
-		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", ".//a[@id='admin-console']").click();
+				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", ".//a[@id='admin-console']")
+				.click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -129,13 +128,15 @@ public class ContentTypesAddInputTest {
 
 		// Confirm the content type selected
 		siteConfigPage.confirmContentTypeSelected();
-		
+
 		// Click on input section to can view the properties
 		siteConfigPage.clickInputSection();
 
 		// Asserts that fields are not empty.
-		String titleText = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", contentTypeContainerInputTitleLocator).getText();
+		this.driverManager.isElementPresentByXpath(defaultTimeOut, contentTypeContainerInputTitleLocator);
+		
+		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+				contentTypeContainerInputTitleLocator).getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

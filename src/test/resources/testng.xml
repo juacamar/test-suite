@@ -29,7 +29,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-
 	<test name="Add New Content Entry Test">
 		<classes>
 			<class

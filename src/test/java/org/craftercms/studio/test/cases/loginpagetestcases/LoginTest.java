@@ -71,7 +71,7 @@ public class LoginTest {
 				//.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
 
 		Assert.assertTrue(createButton.isDisplayed());
-		Assert.assertTrue(this.driverManager.getDriver().getCurrentUrl().contains("/studio#/sites"));
+		//Assert.assertTrue(this.driverManager.getDriver().getCurrentUrl().contains("/studio#/sites"));
 
 	}
 
