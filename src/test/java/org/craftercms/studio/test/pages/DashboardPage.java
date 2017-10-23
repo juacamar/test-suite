@@ -280,6 +280,7 @@ public class DashboardPage {
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
 				"xpath", pagesTree);
 		expandPagesTree.click();
+		this.driverManager.isElementPresentByXpath(defaultTimeOut, homeContent);
 
 	}
 
@@ -290,6 +291,7 @@ public class DashboardPage {
 
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
+		
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
 				"xpath", homeTree);
 		globalEntry.click();
@@ -326,12 +328,13 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void rightClickHome() {
+		this.driverManager.isElementPresentByXpath(defaultTimeOut, homeContent);
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home);
+		
 		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
 				"xpath", addNewContent);
-		
 		addContent.click();
 	}
 
@@ -423,7 +426,7 @@ public class DashboardPage {
 		
 		// WebElement entryCT =
 		// driverManager.getDriver().findElement(By.cssSelector(selectEntryCT));
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector(3, selectEntryCT));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector(defaultTimeOut, selectEntryCT));
 		// entryCT.click();
 	}
 
@@ -433,7 +436,7 @@ public class DashboardPage {
 
 		// WebElement pageArticleContentType = driverManager.getDriver()
 		// .findElement(By.cssSelector(pageArticleContentTypeLocator));
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector(3, pageArticleContentTypeLocator));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector(defaultTimeOut, pageArticleContentTypeLocator));
 		// pageArticleContentType.click();
 	}
 
@@ -485,7 +488,6 @@ public class DashboardPage {
 		
 		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
 				"xpath", setInternalName1);
-		// driver.findElement(By.xpath(setInternalName1));
 		internalName.clear();
 		internalName.sendKeys(strInternalName);
 	}
@@ -510,10 +512,9 @@ public class DashboardPage {
 
 	// Click on save and close button
 	public void clickSaveDraft() {
-		
-		WebElement saveDraftButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		this.driverManager.isElementPresentAndClickableById(20, saveDraft1);
+		WebElement saveDraftButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(this.defaultTimeOut,
 				"id", saveDraft1);
-		// driver.findElement(By.id(saveDraft1));
 		saveDraftButton.click();
 	}
 
@@ -692,7 +693,7 @@ public class DashboardPage {
 		// Fill internal name
 		this.setInternalName1(strInternalName);
 		// Click on save and draft button
-		this.clickSaveDraft();
+		this.clickSaveDraft ();
 	}
 
 	// Press right click and Unlock

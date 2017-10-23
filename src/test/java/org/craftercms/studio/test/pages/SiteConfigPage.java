@@ -138,6 +138,7 @@ public class SiteConfigPage {
 	// Click on open existing Type option
 
 	public void clickOpenExistingTypeOption() {
+		this.driverManager.isElementPresentByXpath(defaultTimeOut, openExistingTypeOption);
 		WebElement openExistingTypeOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				openExistingTypeOption);
 		
@@ -165,8 +166,11 @@ public class SiteConfigPage {
 
 	// Confirm the content type selected
 	public void okContentTypeSelected() {
+		this.driverManager.isElementPresentById(defaultTimeOut, okButton);
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id", okButton);
-		okButtonOpt.click();
+		okButtonOpt.click();	
+		
+		this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//div[contains(@class,'content-type-visual-container')]");
 	}
 
 	public void confirmContentTypeSelected() {
@@ -178,7 +182,8 @@ public class SiteConfigPage {
 	public void saveSectionDropped() {
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", saveButton);
 		okButtonOpt.click();
-
+		this.driverManager.isElementPresentByXpath(this.defaultTimeOut, ".//*[@class='notifyjs-corner']");
+		
 	}
 
 	public void saveDragAndDropProcess() {
@@ -293,7 +298,8 @@ public class SiteConfigPage {
 
 	// Click on input section to can view the properties
 	public void clickOnInputSectionToViewTheProperties() {
-		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+		this.driverManager.isElementPresentAndClickableByXpath(defaultTimeOut, clickOnInputSection);
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(this.defaultTimeOut, "xpath",
 				clickOnInputSection);
 		showSection.click();
 	}

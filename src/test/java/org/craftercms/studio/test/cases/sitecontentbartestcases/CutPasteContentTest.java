@@ -101,7 +101,6 @@ public class CutPasteContentTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
 
-		
 		// save
 		siteConfigPage.saveDragAndDropProcess();
 
@@ -125,27 +124,23 @@ public class CutPasteContentTest {
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
-
+		this.driverManager.isElementPresentBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-		
 		// Set the title of main content
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-
-		// click necessary to validate all fields required
-		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-form-expand-all")
-				.click();
-		
 		
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		// save and close
 		
-		// Switch back to the dashboard page
-
 		driverManager.getDriver().switchTo().defaultContent();
+		
+		//reload page
+        driverManager.getDriver().navigate().refresh();
 
 		// expand home content
 
@@ -185,11 +180,9 @@ public class CutPasteContentTest {
 		// Assert of the content copied
 		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				"#MyRecentActivity-tbody > tr > td.urlCol").getText();
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr >
-		// td.urlCol")).getText();
 		Assert.assertEquals(contentCopied, "/addnewfolder/test1");
 
 	}
 
 }
+

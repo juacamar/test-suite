@@ -33,7 +33,7 @@ public class CopyPasteContentTest {
 	private DashboardPage dashboardPage;
 
 	private PreviewPage previewPage;
-	
+
 	private String userName;
 	private String password;
 	private int defaultTimeOut;
@@ -43,13 +43,14 @@ public class CopyPasteContentTest {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		defaultTimeOut = Integer.parseInt(
@@ -78,30 +79,25 @@ public class CopyPasteContentTest {
 		// Confirm the Content Type selected
 		dashboardPage.clickOKButton();
 
-
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-
-	
-	
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
+		
+		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "AboutUS");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-
-		// click necessary to validate all fields required
-		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-form-expand-all")
-				.click();
-	
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
-
 		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose")
+				.click();
+
+		//this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//span[text()=‘Home’]");
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
@@ -125,18 +121,18 @@ public class CopyPasteContentTest {
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-		
 		// create content
 		this.createContent();
+
+		// reload page
+		driverManager.getDriver().navigate().refresh();
 
 		// Expand Home Tree
 		dashboardPage.expandHomeTree();
 
 		// Right click and copy content.
 		dashboardPage.rightClickToCopyOptionAboutUs();
-		
+
 		// Right click and paste content.
 		dashboardPage.rightClickToPasteOption();
 
@@ -148,29 +144,24 @@ public class CopyPasteContentTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+				"#internal-name > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#internal-name > div > input")
-				.clear();
-		
-		
 		// edit internal name
 		dashboardPage.editInternalName("COPY");
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
-	
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
-		
 		// Assert of the content copied
-		String contentCopied = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#ygtvlabelel4").getText();
-		// driverManager.getDriver().findElement(By.cssSelector("#ygtvlabelel4")).getText();
-		Assert.assertEquals(contentCopied, "COPY");
+		Assert.assertTrue(this.driverManager.isElementPresentByXpath(this.defaultTimeOut, ".//span[text()='COPY']"));
 
 	}
 

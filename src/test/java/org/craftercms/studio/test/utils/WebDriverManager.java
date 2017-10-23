@@ -172,6 +172,74 @@ public class WebDriverManager {
 		}
 		return element;
 	}
+	
+	public WebElement driverWaitUntilElementIsPresentAndDisplayedAndClickable(int timeOut, String typeOfSelector,
+			String selectorValue) {
+		WebElement element = null;
+		switch (typeOfSelector.toLowerCase()) {
+		case "cssselector":
+			if ((new WebDriverWait(this.driver, timeOut)).until(
+					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.cssSelector(selectorValue)),
+							ExpectedConditions.visibilityOfElementLocated(By.cssSelector(selectorValue)),
+							ExpectedConditions.elementToBeClickable(By.cssSelector(selectorValue)))))
+				element = this.driver.findElement(By.cssSelector(selectorValue));
+
+			break;
+		case "xpath":
+			if ((new WebDriverWait(this.driver, timeOut))
+					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.xpath(selectorValue)),
+							ExpectedConditions.visibilityOfElementLocated(By.xpath(selectorValue)),
+							ExpectedConditions.elementToBeClickable(By.xpath(selectorValue)))))
+				element = this.driver.findElement(By.xpath(selectorValue));
+			break;
+		case "id":
+			if ((new WebDriverWait(this.driver, timeOut))
+					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.id(selectorValue)),
+							ExpectedConditions.visibilityOfElementLocated(By.id(selectorValue)),
+							ExpectedConditions.elementToBeClickable(By.id(selectorValue)))))
+				element = this.driver.findElement(By.id(selectorValue));
+			break;
+		case "classname":
+			if ((new WebDriverWait(this.driver, timeOut)).until(
+					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.className(selectorValue)),
+							ExpectedConditions.visibilityOfElementLocated(By.className(selectorValue)),
+							ExpectedConditions.elementToBeClickable(By.className(selectorValue)))))
+				element = this.driver.findElement(By.className(selectorValue));
+			break;
+		case "tagname":
+			if ((new WebDriverWait(this.driver, timeOut)).until(
+					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.tagName(selectorValue)),
+							ExpectedConditions.visibilityOfElementLocated(By.tagName(selectorValue)),
+					ExpectedConditions.elementToBeClickable(By.tagName(selectorValue)))))
+				element = this.driver.findElement(By.tagName(selectorValue));
+			break;
+		case "linktext":
+			if ((new WebDriverWait(this.driver, timeOut)).until(
+					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.linkText(selectorValue)),
+							ExpectedConditions.visibilityOfElementLocated(By.linkText(selectorValue)),
+							ExpectedConditions.elementToBeClickable(By.linkText(selectorValue)))))
+				element = this.driver.findElement(By.linkText(selectorValue));
+			break;
+		case "partialLinktext":
+			if ((new WebDriverWait(this.driver, timeOut)).until(ExpectedConditions.and(
+					ExpectedConditions.presenceOfElementLocated(By.partialLinkText(selectorValue)),
+					ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(selectorValue)),
+					ExpectedConditions.elementToBeClickable(By.partialLinkText(selectorValue)))))
+				element = this.driver.findElement(By.partialLinkText(selectorValue));
+			break;
+		case "name":
+			if ((new WebDriverWait(this.driver, timeOut))
+					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.name(selectorValue)),
+							ExpectedConditions.visibilityOfElementLocated(By.name(selectorValue)),
+							ExpectedConditions.elementToBeClickable(By.name(selectorValue)))))
+				element = this.driver.findElement(By.name(selectorValue));
+			break;
+		default:
+			throw new IllegalArgumentException("selectortype is needed, valid values are:"
+					+ "xpath,cssselector,id,tagname,classname,linktext,partiallinkText,name");
+		}
+		return element;
+	}
 
 	public void dragAndDropElement(WebElement fromWebElement, WebElement toWebElement) {
 		// Creating an actions builder
@@ -201,7 +269,58 @@ public class WebDriverManager {
 
 		return isElementPresent;
 	}
+	
+	public boolean isElementPresentAndClickableByXpath(int timeOut, String xpathOfTheElement) {
+		boolean isElementPresent = true;
 
+		try {
+			@SuppressWarnings("unused")
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayedAndClickable(timeOut, "xpath",
+					xpathOfTheElement);
+			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		} catch (Exception e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
+	}
+
+	public boolean isElementPresentById(int timeOut, String id) {
+		boolean isElementPresent = true;
+
+		try {
+			@SuppressWarnings("unused")
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed(timeOut, "id",
+					id);
+			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		} catch (Exception e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
+	}
+	
+	public boolean isElementPresentAndClickableById(int timeOut, String id) {
+		boolean isElementPresent = true;
+
+		try {
+			@SuppressWarnings("unused")
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayedAndClickable(timeOut, "id",
+					id);
+			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		} catch (Exception e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
+	}
+	
 	public boolean isElementPresentBycssSelector(int timeOut, String cssSelector) {
 		boolean isElementPresent = true;
 
@@ -218,6 +337,24 @@ public class WebDriverManager {
 
 		return isElementPresent;
 	}
+	
+	public boolean isElementPresentAndClickableBycssSelector(int timeOut, String cssSelector) {
+		boolean isElementPresent = true;
+
+		try {
+			@SuppressWarnings("unused")
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayedAndClickable(timeOut, "cssSelector",
+					cssSelector);
+			// this.getDriver().findElement(By.cssSelector(cssSelector));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		} catch (Exception e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
+	}
+
 
 	public void contextClick(WebDriver driver, WebElement element) {
 		if (driver instanceof PhantomJSDriver) {
