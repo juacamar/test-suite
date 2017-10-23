@@ -85,7 +85,7 @@ public class DuplicateOptionTest {
 		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
 		
 		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");;
+		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
 		this.driverManager
