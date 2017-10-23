@@ -110,18 +110,9 @@ public class DeleteOptionTest {
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
-
-		// create a content with level descriptor content type
+		
 		// right click to see the the menu
-
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
-				"#ygtvlabelel1");
-
-		this.driverManager.contextClick(this.driverManager.getDriver(), home);
-	
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
-				"#ContextmenuWrapper0  ul li:nth-child(3)");
-		addContent.click();
+		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
 		dashboardPage.clickEntryCT();
@@ -133,6 +124,8 @@ public class DeleteOptionTest {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+
+		this.driverManager.isElementPresentBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
 		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
@@ -140,21 +133,16 @@ public class DeleteOptionTest {
 		// Set the title of main content
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-
-		// click necessary to validate all fields required
-		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-form-expand-all")
-				.click();
-	
+		
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
-	
-		// Switch back to the dashboard page
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		// save and close
+		
 		driverManager.getDriver().switchTo().defaultContent();
-
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-
+		
+		//reload page
+        driverManager.getDriver().navigate().refresh();
+	
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudio-logo").click();
 		// driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
 
