@@ -35,7 +35,6 @@ public class MyRecentActivityFramePage {
 
 	public void clickExpandOption() {
 		WebElement expandOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id", expandDefaultSection);
-				//driverManager.getDriver().findElement(By.id(expandDefaultSection));
 		expandOpt.click();
 
 	}

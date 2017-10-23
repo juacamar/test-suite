@@ -76,25 +76,24 @@ public class DuplicateOptionTest {
 		// Confirm the Content Type selected
 
 		dashboardPage.clickOKButton();
-
+		
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
-
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
+		
+		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		
 		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");;
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"cssSelector", "#title > div > input").sendKeys("MainTitle");
-	
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"id", "cstudioSaveAndClose").click();
-		//driverManager.getDriver().findElement(By.id("cstudioSaveAndClose")).click();
-
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+				.sendKeys("MainTitle");
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose")
+				.click();
 	}
 
 	public void duplicateContentCreated() {
@@ -105,9 +104,8 @@ public class DuplicateOptionTest {
 				"xpath", ".//div[@id='duplicate-dialog']/div/span/span/span/button[contains(text(),'Duplicate')]").click();
 		
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", "#internal-name > div > input").clear();
@@ -115,12 +113,11 @@ public class DuplicateOptionTest {
 		// edit internal name
 		dashboardPage.editInternalName("COPY");
 
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"id", "cstudioSaveAndClose").click();
-		
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
+
+		// reload page
+		driverManager.getDriver().navigate().refresh();
 	}
 
 	public void goToPreviewPage() {
