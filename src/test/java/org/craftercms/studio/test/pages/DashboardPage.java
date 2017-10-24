@@ -328,7 +328,8 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void rightClickHome() {
-		this.driverManager.isElementPresentByXpath(defaultTimeOut, homeContent);
+		this.driverManager.isElementPresentAndClickableByXpath(defaultTimeOut, homeContent);
+		
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home);
@@ -1052,6 +1053,8 @@ public class DashboardPage {
 	// Press right click and select new content
 	public void deleteContent() {
 		
+		this.driverManager.isElementPresentAndClickableByXpath(defaultTimeOut, cutCrafterComponent);
+		
 		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
 				"xpath", cutCrafterComponent);
 		// driverManager.getDriver().findElement(By.cssSelector(cutCrafterComponent));
@@ -1059,7 +1062,7 @@ public class DashboardPage {
 
 		
 		WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
-				"cssSelector", deleteCrafterComponent2);
+				"xpath", deleteCrafterComponent2);
 		// driverManager.getDriver().findElement(By.cssSelector(deleteCrafterComponent2));
 		delContent.click();
 	}
@@ -1071,7 +1074,7 @@ public class DashboardPage {
 
 	// Ok delete content option
 	public void deleteContentOK() {
-		
+		this.driverManager.isElementPresentAndClickableById(defaultTimeOut, deleteContentOK);
 		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
 				"id", deleteContentOK);
 		// driverManager.getDriver().findElement(By.id(deleteContentOK));
