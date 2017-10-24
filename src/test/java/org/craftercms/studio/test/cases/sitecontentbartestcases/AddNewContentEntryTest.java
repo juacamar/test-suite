@@ -80,7 +80,7 @@ public class AddNewContentEntryTest {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-
+		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");

@@ -138,7 +138,7 @@ public class SiteConfigPage {
 	// Click on open existing Type option
 
 	public void clickOpenExistingTypeOption() {
-		this.driverManager.isElementPresentByXpath(defaultTimeOut, openExistingTypeOption);
+		this.driverManager.isElementPresentAndClickableByXpath(defaultTimeOut, openExistingTypeOption);
 		WebElement openExistingTypeOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
 				openExistingTypeOption);
 		
@@ -166,11 +166,11 @@ public class SiteConfigPage {
 
 	// Confirm the content type selected
 	public void okContentTypeSelected() {
-		this.driverManager.isElementPresentById(defaultTimeOut, okButton);
+		this.driverManager.isElementPresentAndClickableById(defaultTimeOut, okButton);
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id", okButton);
 		okButtonOpt.click();	
 		
-		this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//div[contains(@class,'content-type-visual-container')]");
+		this.driverManager.isElementPresentAndClickableByXpath(defaultTimeOut, ".//div[contains(@class,'content-type-visual-container')]");
 	}
 
 	public void confirmContentTypeSelected() {
