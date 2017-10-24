@@ -123,7 +123,6 @@ public class DeleteOptionTest {
 	
 	public void createContent() {
 		// right click to see the the menu
-
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
@@ -138,19 +137,16 @@ public class DeleteOptionTest {
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
 
+
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-
-		// click necessary to validate all fields required
-		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-form-expand-all")
-				.click();
-	
+		
 		// save and close
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
 		
 		this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//span[text()='Home']");
