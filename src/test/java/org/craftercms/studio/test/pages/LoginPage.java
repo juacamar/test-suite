@@ -84,6 +84,8 @@ public class LoginPage {
 		// Click Login button
 
 		this.clickLogin();
+		
+		this.driverManager.isElementPresentByXpath(this.defaultTimeOut, ".//h1[text()='Sites']");
 
 	}
 
