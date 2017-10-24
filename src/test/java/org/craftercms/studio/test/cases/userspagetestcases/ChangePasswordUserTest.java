@@ -78,12 +78,14 @@ public class ChangePasswordUserTest {
 
 		loginPage.loginToCrafter(userName, "123456");
 
+		// reload page
+		driverManager.getDriver().navigate().refresh();
+		this.driverManager.isElementPresentByXpath(this.defaultTimeOut, ".//h1[text()='Sites']");
+		
 		// click On admin option
-
 		createSitePage.clickAdmin();
 
 		// click on settings
-
 		createSitePage.clickOnSettingsOption();
 
 		// change password

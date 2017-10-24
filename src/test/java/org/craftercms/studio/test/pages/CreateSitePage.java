@@ -343,8 +343,8 @@ public class CreateSitePage {
 	// Press on admin option
 
 	public void clickAdmin() {
-		
-		WebElement admin = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.isElementPresentByXpath(this.defaultTimeOut, adminDropdownOption);
+		WebElement admin = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(this.defaultTimeOut, "xpath",
 				adminDropdownOption);
 				//driver.findElement(By.cssSelector(adminDropdownOption));
 		admin.click();
@@ -362,7 +362,7 @@ public class CreateSitePage {
 	// Press on settings option
 
 	public void clickSettings() {
-		
+		this.driverManager.isElementPresentAndClickableBycssSelector(this.defaultTimeOut, settingsOption);
 		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
 				settingsOption);
 				//driver.findElement(By.cssSelector(settingsOption));
