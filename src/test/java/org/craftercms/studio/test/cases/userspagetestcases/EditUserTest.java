@@ -144,7 +144,6 @@ public class EditUserTest {
 		Assert.assertEquals(nameElementText, "Test");
 
 		// Click on delete user
-
 		driverManager.getDriver().navigate().refresh();
 		usersPage.clickOnDeleteUserCreated();
 

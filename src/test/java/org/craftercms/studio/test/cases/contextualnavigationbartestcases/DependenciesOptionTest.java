@@ -68,12 +68,15 @@ public class DependenciesOptionTest {
 		homePage.goToPreviewPage();
 
 		// Show site content panel
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
-	
 
 		// expand pages folder
 		previewPage.expandPagesTree();
+		
+		driverManager.getDriver().navigate().refresh();
+		
 		// expand home content
 		previewPage.expandHomeTree();
 
@@ -82,7 +85,6 @@ public class DependenciesOptionTest {
 		
 		// click on history option
 		previewPage.clickOnDependenciesOption();
-
 
 		// Assert
 		String historyPage = this.driverManager
