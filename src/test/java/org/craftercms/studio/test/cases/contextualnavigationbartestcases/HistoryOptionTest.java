@@ -71,11 +71,12 @@ public class HistoryOptionTest {
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
-
+		
 		// expand pages folder
-
 		previewPage.expandPagesTree();
+		
 
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-logo");
 		// expand home content
 		previewPage.expandHomeTree();
 
@@ -87,7 +88,7 @@ public class HistoryOptionTest {
 		// Assert
 		String historyPage = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", ".view-title").getText();
-		// driverManager.getDriver().findElement(By.cssSelector(".view-title")).getText();
+		
 		Assert.assertEquals(historyPage, "Version History");
 
 	}

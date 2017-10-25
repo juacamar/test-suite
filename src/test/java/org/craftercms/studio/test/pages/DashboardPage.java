@@ -1453,7 +1453,6 @@ public class DashboardPage {
 
 		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
 				"cssSelector", editOption);
-		// driverManager.getDriver().findElement(By.cssSelector(editOption));
 		editContent.click();
 	}
 }

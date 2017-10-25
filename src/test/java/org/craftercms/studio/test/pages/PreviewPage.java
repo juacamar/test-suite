@@ -393,10 +393,8 @@ public class PreviewPage {
 	// Expand global entry content
 
 	public void clickHomeContent() {
-		
-		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id",
 				expandGlobalEntryContent);
-		
 		homeContent.click();
 
 	}
