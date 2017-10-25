@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.pages;
 
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -23,17 +22,16 @@ public class UsersPage {
 	private String editUserOption;
 	private String usersPageTitle;
 	private String crafterLogo;
-	private int defaultTimeOut;
+
 
 	/**
 	 * 
 	 */
-	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager,
-			ConstantsPropertiesManager constantsPropertiesManager) {
+	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager
+			 ) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+		
 
 		deleteUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.delete_option");
 		newUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user");
@@ -56,7 +54,7 @@ public class UsersPage {
 	// Try to delete the user connected
 
 	public void clickDeleteOption() {
-		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", deleteUserOption);
 		previewLink.click();
 
@@ -73,7 +71,7 @@ public class UsersPage {
 	// Click on New User Button
 
 	public void clickNewUserButton() {
-		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", newUserOption);
 		newUserButton.click();
 
@@ -91,7 +89,7 @@ public class UsersPage {
 	// Click on Save New User Button
 
 	public void clickSaveNewUserButton() {
-		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", saveNewUserOption);
 		saveNewUser.click();
 
@@ -108,7 +106,7 @@ public class UsersPage {
 	// Delete User
 
 	public void clickDeleteOptionCreated() {
-		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", deleteUserOption2);
 		previewLink.click();
 
@@ -126,7 +124,7 @@ public class UsersPage {
 	// edit User
 
 	public void clickEditOptionCreated() {
-		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", editUserOption);
 		edit.click();
 
@@ -156,12 +154,12 @@ public class UsersPage {
 	}
 
 	public Boolean isUsersPageTitlePresent() {
-		return this.driverManager.isElementPresentByXpath(this.defaultTimeOut, usersPageTitle);
+		return this.driverManager.isElementPresentByXpath( usersPageTitle);
 	}
 
 	public void clickOnCrafterLogo() {
 		WebElement crafterLogoWebElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", crafterLogo);
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", crafterLogo);
 		crafterLogoWebElement.click();
 
 	}

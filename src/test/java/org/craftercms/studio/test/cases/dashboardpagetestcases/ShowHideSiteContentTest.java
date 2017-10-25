@@ -34,23 +34,26 @@ public class ShowHideSiteContentTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
+
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+	
 	}
 
 	@AfterClass
@@ -72,7 +75,7 @@ public class ShowHideSiteContentTest {
 
 		// Assert that the site content is expanded
 		String siteContentExpanded = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#admin-console").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#admin-console").getText();
 		
 		Assert.assertEquals(siteContentExpanded, "Site Config");
 
@@ -80,7 +83,7 @@ public class ShowHideSiteContentTest {
 		dashboardPage.clickOnSiteContentOption();
 
 		// Assert that the site content is Collapsed
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(defaultTimeOut,"#admin-console"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector("#admin-console"));
 	}
 
 }

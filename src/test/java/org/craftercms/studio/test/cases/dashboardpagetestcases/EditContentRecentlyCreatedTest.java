@@ -29,27 +29,26 @@ public class EditContentRecentlyCreatedTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
-
 	
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
+
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -78,29 +77,26 @@ public class EditContentRecentlyCreatedTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		driverManager.getDriver().switchTo().frame(this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Expand all fields
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-form-expand-all")
 				.click();
 
 		// Set Main Content
 		// Set the title of main content
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose")
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
 
-		this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//span[text()='Home']");
+		this.driverManager.isElementPresentByXpath(".//span[text()='Home']");
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -112,19 +108,18 @@ public class EditContentRecentlyCreatedTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
-		
-		// edit internal title
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
-				"#internal-name > div > input").sendKeys("EDITED");
-	
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose")
-				.click();
+		driverManager.getDriver().switchTo().frame(this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
 
-		this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//span[text()='Home']");
+		// edit internal title
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#internal-name > div > input")
+				.sendKeys("EDITED");
+
+		// save and close
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
+
+		this.driverManager.isElementPresentByXpath(".//span[text()='Home']");
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 	}
@@ -156,13 +151,13 @@ public class EditContentRecentlyCreatedTest {
 
 		// Edited content recently created
 		driverManager.getDriver().navigate().refresh();
-		
+
 		editingContentRecentlyCreated();
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
-		
-		Assert.assertTrue(this.driverManager.isElementPresentByXpath(defaultTimeOut,
+
+		Assert.assertTrue(this.driverManager.isElementPresentByXpath(
 				".//tbody[@id='MyRecentActivity-tbody']/tr/td/div/a[contains(text(),'Testing1EDITED')]"));
 	}
 

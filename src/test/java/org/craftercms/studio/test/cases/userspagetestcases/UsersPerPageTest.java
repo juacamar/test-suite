@@ -32,25 +32,23 @@ public class UsersPerPageTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 	}
 
 	@AfterClass
@@ -67,22 +65,22 @@ public class UsersPerPageTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#firstName").sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName").sendKeys("Name");
 		// driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#lastName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
 				.sendKeys("Last Name");
 		// driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last
 		// Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
 				.sendKeys("email@email.com");
 		// driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#username")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#username")
 				.sendKeys(RandomStringUtils.randomAlphabetic(5));
 		// driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#password")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#password")
 				.sendKeys("password");
 		// driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#passwordVerification")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#passwordVerification")
 				.sendKeys("password");
 		// driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
 
@@ -95,16 +93,16 @@ public class UsersPerPageTest {
 
 		// Show 8 users
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("1");
 
 
 		// Asser only 8 users displayed
 
-		WebElement user1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement user1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > a");
 
 		Assert.assertTrue(user1.isDisplayed());
@@ -112,16 +110,16 @@ public class UsersPerPageTest {
 
 		// Show 5 users
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("2");
 
 
 		// Asser only 5 users displayed
 
-		WebElement user2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement user2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
 
 		Assert.assertTrue(user2.isDisplayed());
@@ -129,16 +127,16 @@ public class UsersPerPageTest {
 
 		// Show 11 users
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("3");
 
 
 		// Asser only 1 user displayed
 
-		WebElement user3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement user3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
 
 		Assert.assertTrue(user3.isDisplayed());
@@ -146,24 +144,24 @@ public class UsersPerPageTest {
 
 		// Show 11 users
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("4");
 
 
 		// Asser only 1 users displayed
 
-		WebElement user4 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement user4 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(4) > td:nth-child(1) > a");
 
 		Assert.assertTrue(user4.isDisplayed());
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > div > input").sendKeys("4");
 	}
 
@@ -175,7 +173,7 @@ public class UsersPerPageTest {
 		
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
@@ -187,7 +185,7 @@ public class UsersPerPageTest {
 
 		
 		// Confirmation to delete user
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
@@ -198,7 +196,7 @@ public class UsersPerPageTest {
 		usersPage.clickOnDeleteUserCreated();
 		
 		// Confirmation to delete user 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 

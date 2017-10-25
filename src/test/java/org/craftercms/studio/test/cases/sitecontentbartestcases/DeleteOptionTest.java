@@ -36,7 +36,7 @@ public class DeleteOptionTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -45,15 +45,15 @@ public class DeleteOptionTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -88,7 +88,7 @@ public class DeleteOptionTest {
 		// reload page
 		//driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudio-logo").click();
 		// driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
 
 		// wait for element is clickeable
@@ -96,7 +96,7 @@ public class DeleteOptionTest {
 
 		// Select the content to delete.
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//span[contains(text(),'Testing1')]")
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//span[contains(text(),'Testing1')]")
 				.click();
 
 		// click on delete option
@@ -110,9 +110,9 @@ public class DeleteOptionTest {
 
 		previewPage.clickOnOKDeleteDependencies();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudio-logo").click();
 
-		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)").getText();
 		Assert.assertEquals(contentDelete, "/test1");
 	}
@@ -133,23 +133,23 @@ public class DeleteOptionTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
 
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 		
 		// save and close
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
 		
-		this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//span[text()='Home']");
+		this.driverManager.isElementPresentByXpath( ".//span[text()='Home']");
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();

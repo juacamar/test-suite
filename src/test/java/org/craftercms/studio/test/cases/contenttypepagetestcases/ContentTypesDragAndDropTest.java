@@ -35,7 +35,6 @@ public class ContentTypesDragAndDropTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 
 
 	@BeforeClass
@@ -44,17 +43,17 @@ public class ContentTypesDragAndDropTest {
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);		
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager);		
 	}
 
 	@AfterClass
@@ -74,7 +73,7 @@ public class ContentTypesDragAndDropTest {
 
 		// Show site content panel
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath", ".//a[@id='acn-dropdown-toggler']").click();
+		.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']").click();
 
 		// go to admin console page
 
@@ -92,10 +91,10 @@ public class ContentTypesDragAndDropTest {
 
 		// wait for element is clickeable
 		WebElement From = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", ".control-section");
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", ".control-section");
 		
 		WebElement To = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#content-type-canvas .content-form-name");
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#content-type-canvas .content-form-name");
 
 		Actions builder = new Actions(driverManager.getDriver());
 
@@ -114,7 +113,7 @@ public class ContentTypesDragAndDropTest {
 		siteConfigPage.saveDragAndDropProcess();
 		// validate the control added
 
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector(5,"#content-type-canvas .content-section-name"));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector("#content-type-canvas .content-section-name"));
 		
 	}
 

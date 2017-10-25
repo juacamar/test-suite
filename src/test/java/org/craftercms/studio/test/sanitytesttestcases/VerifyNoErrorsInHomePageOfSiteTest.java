@@ -6,7 +6,6 @@ package org.craftercms.studio.test.sanitytesttestcases;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * @author luishernandez
@@ -14,7 +13,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  */
 public class VerifyNoErrorsInHomePageOfSiteTest {
 
-	private WebDriverManager driverManager;
+//	private WebDriverManager driverManager;
 
 //	private String userName;
 //	private String password;
@@ -22,7 +21,7 @@ public class VerifyNoErrorsInHomePageOfSiteTest {
 
 	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
+		//this.driverManager = new WebDriverManager();
 
 //		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 //				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
@@ -37,7 +36,7 @@ public class VerifyNoErrorsInHomePageOfSiteTest {
 
 	@AfterMethod
 	public void afterTest() {
-		driverManager.closeConnection();
+		//driverManager.closeConnection();
 	}
 
 

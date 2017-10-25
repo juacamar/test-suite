@@ -36,7 +36,6 @@ public class CopyPasteIntoFolderTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -45,15 +44,15 @@ public class CopyPasteIntoFolderTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
 	}
 
@@ -81,19 +80,19 @@ public class CopyPasteIntoFolderTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		this.driverManager.isElementPresentBycssSelector( ".studio-ice-dialog > .bd iframe");
 		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
 	
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -160,11 +159,11 @@ public class CopyPasteIntoFolderTest {
 
 		
 		// Asserts of the new content created
-		String componentMoved = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
+		String componentMoved = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr[2]/td[4]").getText();
 		Assert.assertTrue(componentMoved.contains(componentMoved));
 
-		String newContentMoved = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
+		String newContentMoved = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr[1]/td[4]").getText();
 
 		Assert.assertTrue(newContentMoved.contains(newContentMoved));

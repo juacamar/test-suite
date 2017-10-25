@@ -34,24 +34,24 @@ public class PublishingSiteTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+	
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -82,7 +82,7 @@ public class PublishingSiteTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 	
@@ -94,11 +94,11 @@ public class PublishingSiteTest {
 
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
 
 		// Switch back to the dashboard page
 
@@ -136,7 +136,7 @@ public class PublishingSiteTest {
 		changeBodyToNotRequiredOnEntryContent();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-logo").click();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
@@ -150,7 +150,7 @@ public class PublishingSiteTest {
 		driverManager.getDriver().navigate().refresh();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//span[contains(text(),'Testing1')]")
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//span[contains(text(),'Testing1')]")
 				.click();
 
 		// approve and publish

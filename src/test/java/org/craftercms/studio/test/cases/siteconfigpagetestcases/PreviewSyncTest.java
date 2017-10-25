@@ -32,7 +32,7 @@ public class PreviewSyncTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -41,14 +41,15 @@ public class PreviewSyncTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -69,17 +70,17 @@ public class PreviewSyncTest {
 		homePage.goToDashboardPage();
 	
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"xpath", ".//a[@id='acn-dropdown-toggler']").click();
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#admin-console").click();
 
 		// click on preview sync option
 		dashboardPage.clickOnPreviewSyncOption();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#yui-gen0-button").click();
 	
 

@@ -36,7 +36,6 @@ public class CancelCreateSiteProcessTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 	
 	
 	@BeforeClass
@@ -46,15 +45,14 @@ public class CancelCreateSiteProcessTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 
 	}
 
@@ -97,7 +95,7 @@ public class CancelCreateSiteProcessTest {
 
 		// Assert
 
-		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > header");
 
 		Assert.assertTrue(siteName.isDisplayed());

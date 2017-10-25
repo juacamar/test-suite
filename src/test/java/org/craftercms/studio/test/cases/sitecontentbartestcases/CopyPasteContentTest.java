@@ -36,7 +36,6 @@ public class CopyPasteContentTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -45,16 +44,17 @@ public class CopyPasteContentTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+		
 	}
 
 	@AfterClass
@@ -82,19 +82,19 @@ public class CopyPasteContentTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
+				 "cssSelector", ".studio-ice-dialog > .bd iframe"));
 		
-		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
 		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "AboutUS");
 
 		// Set the title of main content
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose")
 				.click();
 
 		//this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//span[text()=‘Home’]");
@@ -145,10 +145,10 @@ public class CopyPasteContentTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+				 "cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#internal-name > div > input").clear();
 
 		// edit internal name
@@ -161,7 +161,7 @@ public class CopyPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert of the content copied
-		Assert.assertTrue(this.driverManager.isElementPresentByXpath(this.defaultTimeOut, ".//span[text()='COPY']"));
+		Assert.assertTrue(this.driverManager.isElementPresentByXpath( ".//span[text()='COPY']"));
 
 	}
 

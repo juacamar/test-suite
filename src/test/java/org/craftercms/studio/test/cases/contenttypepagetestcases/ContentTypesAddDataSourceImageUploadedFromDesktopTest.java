@@ -28,7 +28,6 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 	
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionImageUploadedFromDesktopLocator;
@@ -38,20 +37,20 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-	
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
@@ -70,13 +69,13 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		
 		// Getting the ChildContent for drag and drop action
 		WebElement FromDataSourceImageUploadedFromDesktopElement =  this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 						dataSourceSectionImageUploadedFromDesktopLocator);
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
 		WebElement ToContentTypeContainer = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 						contentTypeContainerLocator);
 		
 		driverManager.dragAndDropElement(FromDataSourceImageUploadedFromDesktopElement, ToContentTypeContainer);
@@ -100,12 +99,12 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		
 		// Show site content panel
 		 this.driverManager
-			.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+			.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 					"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
 
 		// Show admin console page
 		 this.driverManager
-			.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+			.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 					".//a[@id='admin-console']").click();
 
 		// Select the content type to the test
@@ -125,7 +124,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 
 		// Asserts that fields are not empty.
 		String titleText =this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "xpath",
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 						contentTypeContainerImageUploadedFromDesktopTitleLocator).getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));

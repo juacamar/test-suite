@@ -31,7 +31,7 @@ public class AddNewContentSectionDfaultsTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -40,14 +40,15 @@ public class AddNewContentSectionDfaultsTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+		
 	}
 
 	@AfterClass
@@ -59,12 +60,12 @@ public class AddNewContentSectionDfaultsTest {
 		// create a content with level descriptor content type
 		// right click to see the the menu
 
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				".//span[text()='Home']");
 
 		this.driverManager.contextClick(this.driverManager.getDriver(), home);
 
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#ContextmenuWrapper0  ul li:nth-child(3)");
 		
 
@@ -78,11 +79,11 @@ public class AddNewContentSectionDfaultsTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
 	
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -103,7 +104,7 @@ public class AddNewContentSectionDfaultsTest {
 		homePage.goToPreviewPage();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
 
 		// expand pages folder
@@ -117,7 +118,7 @@ public class AddNewContentSectionDfaultsTest {
 
 		// Assert of the test case is fine
 		String levelDescriptor = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#ygtvlabelel2").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#ygtvlabelel2").getText();
 
 		
 		Assert.assertEquals(levelDescriptor, "Section Defaults");
