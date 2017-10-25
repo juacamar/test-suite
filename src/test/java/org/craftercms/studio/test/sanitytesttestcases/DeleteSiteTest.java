@@ -32,10 +32,9 @@ public class DeleteSiteTest {
 
 	private HomePage homePage;
 
-	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -43,15 +42,15 @@ public class DeleteSiteTest {
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
-
+		
 	}
 
 	@AfterClass
@@ -74,6 +73,6 @@ public class DeleteSiteTest {
 		homePage.clickOnYesToDeleteSite();
 
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(defaultTimeOut,".glyphicon.glyphicon-trash"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(".glyphicon.glyphicon-trash"));
 	}
 }

@@ -36,7 +36,7 @@ public class TryToDeleteUserConnectedTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -46,13 +46,14 @@ public class TryToDeleteUserConnectedTest {
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
 	}
 
@@ -70,7 +71,7 @@ public class TryToDeleteUserConnectedTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// Go to users tab
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssselector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssselector",
 				"body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(1) > a")
 				.click();
 		
@@ -78,14 +79,14 @@ public class TryToDeleteUserConnectedTest {
 		usersPage.clickOnDeleteUser();
 
 		// Confirmation to delete user connected
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssselector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssselector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 		// Verify
-		Assert.assertTrue(this.driverManager.isElementPresentBycssSelector(defaultTimeOut,
+		Assert.assertTrue(this.driverManager.isElementPresentBycssSelector(
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-body.ng-scope > p"));
 
-		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssselector",
+		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssselector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-body.ng-scope > p");
 
 		Assert.assertTrue(validation.getText().contains("Unable to delete user"));

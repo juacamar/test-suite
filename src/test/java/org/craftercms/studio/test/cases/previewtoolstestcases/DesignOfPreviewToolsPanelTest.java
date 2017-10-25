@@ -34,7 +34,6 @@ public class DesignOfPreviewToolsPanelTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -42,15 +41,15 @@ public class DesignOfPreviewToolsPanelTest {
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+	
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -75,7 +74,7 @@ public class DesignOfPreviewToolsPanelTest {
 		previewPage.clickOnPreviewTools();
 
 		// Assert
-		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel");
 		Assert.assertTrue(previewToolsShow.isDisplayed());
 
@@ -83,7 +82,7 @@ public class DesignOfPreviewToolsPanelTest {
 		previewPage.clickOnPreviewTools();
 
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(defaultTimeOut,"#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
+		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
 
 	}
 

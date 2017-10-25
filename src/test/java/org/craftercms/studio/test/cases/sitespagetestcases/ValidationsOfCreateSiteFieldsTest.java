@@ -32,7 +32,6 @@ public class ValidationsOfCreateSiteFieldsTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -42,13 +41,13 @@ public class ValidationsOfCreateSiteFieldsTest {
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -69,10 +68,10 @@ public class ValidationsOfCreateSiteFieldsTest {
 		homePage.clickOnCreateSiteButton();
 
 		// Click on description to show the validations
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#description").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#description").click();
 
 		// Assert Id site is required.
-		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(1) > div:nth-child(4) > small");
 
 		Assert.assertTrue(siteID.isDisplayed());

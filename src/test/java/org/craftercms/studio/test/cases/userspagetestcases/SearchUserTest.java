@@ -32,7 +32,7 @@ public class SearchUserTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -42,14 +42,14 @@ public class SearchUserTest {
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+	
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
 	}
 
@@ -69,21 +69,21 @@ public class SearchUserTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#firstName").sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName").sendKeys("Name");
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#lastName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
 				.sendKeys("Last Name");
 	
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
 				.sendKeys("email@email.com");
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#username")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#username")
 				.sendKeys(RandomStringUtils.randomAlphabetic(5));
 	
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#password")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#password")
 				.sendKeys("password");
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#passwordVerification")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#passwordVerification")
 				.sendKeys("password");
 
 		// Save Button
@@ -95,14 +95,14 @@ public class SearchUserTest {
 		// Search user recently created
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input")
 				.sendKeys("username");
 
 		// Assert to search is properly
 
 		String searchUsername = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div > div > div > table > tbody > tr > td:nth-child(1) > a")
 				.getText();
 		Assert.assertEquals(searchUsername, "username");
@@ -111,20 +111,20 @@ public class SearchUserTest {
 
 		// Cleaning search field
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input")
 				.clear();
 
 		// Search admin
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input")
 				.sendKeys("admin");
 
 		// Assert to search is properly
 
 		String searchAdminUser = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div > div > div > table > tbody > tr > td:nth-child(1) > a")
 				.getText();
 		Assert.assertEquals(searchAdminUser, "admin");
@@ -143,7 +143,7 @@ public class SearchUserTest {
 		createUser();
 
 		// Assert new users created is present
-		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
 
 		Assert.assertTrue(newUserCreated.isDisplayed());
@@ -154,7 +154,7 @@ public class SearchUserTest {
 
 		// Cleaning search field
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input")
 				.clear();
 
@@ -164,7 +164,7 @@ public class SearchUserTest {
 
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 

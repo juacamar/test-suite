@@ -51,57 +51,38 @@ public class EditContentFormTest {
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
 	private PreviewPage previewPage;
-
 	private SiteConfigPage siteConfigPage;
-
 	private MyRecentActivityFramePage myRecentActivityFramePage1;
-
 	private DashboardPage dashboardPage;
 
 	private String userName;
-
 	private String password;
-
-	private int defaultTimeOut;
 
 	@BeforeClass
 
 	public void beforeTest() {
-
 		this.driverManager = new WebDriverManager();
-
+		
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
-
-		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager,
-				constantsPropertiesManager);
-
-		this.myRecentActivityFramePage1 = new MyRecentActivityFramePage(driverManager, UIElementsPropertiesManager,
-				constantsPropertiesManager);
-
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
+		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager
+				);
+		this.myRecentActivityFramePage1 = new MyRecentActivityFramePage(driverManager, UIElementsPropertiesManager
+				);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
-
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
-		defaultTimeOut = Integer.parseInt(
-
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -133,11 +114,11 @@ public class EditContentFormTest {
 
 		// Drag and drop Form Section
 
-		WebElement From = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement From = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 
 				".control-section");
 
-		WebElement To = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement To = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 
 				"#content-type-canvas .content-form-name");
 
@@ -153,13 +134,11 @@ public class EditContentFormTest {
 
 		dragAndDrop.perform();
 
-		WebElement FromInput = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"cssSelector",
+		WebElement FromInput = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 
 				"#content-type-tools .control:nth-child(3)");
 
-		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"cssSelector",
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 
 				"#content-type-canvas .content-type-visual-section-container:nth-child(3)");
 
@@ -185,8 +164,7 @@ public class EditContentFormTest {
 
 		// go to admin console page
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#admin-console")
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#admin-console").click();
 
 		// select content types
 
@@ -202,12 +180,12 @@ public class EditContentFormTest {
 
 		// select main content
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
-				".//span[contains(text(),'Body')]").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//span[contains(text(),'Body')]")
+				.click();
 
 		// Body not required
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 
 				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
 
@@ -235,21 +213,19 @@ public class EditContentFormTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+		driverManager.getDriver().switchTo().frame(this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
 
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose")
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
 
 		// wait for element is clickeable
 
@@ -265,7 +241,7 @@ public class EditContentFormTest {
 
 		// Assert of the test case is fine
 
-		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
+		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 
 				".//tbody[@id='MyRecentActivity-tbody']/tr/td/div/a[contains(text(),'Testing1')]").getText();
 
@@ -287,27 +263,23 @@ public class EditContentFormTest {
 
 		driverManager.getDriver().switchTo().defaultContent();
 
-		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
+				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
 
 		// Expand default section
 
 		myRecentActivityFramePage1.expandDefaultSection();
 
 		// Clealing title text field
-		
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
-				"#internal-name > div > input")
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#internal-name > div > input")
 				.clear();
 
 		// Typing new text on title text field
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
-				"#internal-name > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#internal-name > div > input")
 
 				.sendKeys("TestQA");
 
@@ -331,11 +303,9 @@ public class EditContentFormTest {
 
 		driverManager.getDriver().switchTo().defaultContent();
 
-		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-						"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
-
+		driverManager.getDriver().switchTo().frame(this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
+		driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
 
 		// Expand default section
 
@@ -347,7 +317,7 @@ public class EditContentFormTest {
 
 		// Go to dashboard page
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 
 				"/html/body/div[4]/div[1]/nav/div/div[1]/a/img").click();
 
@@ -367,8 +337,7 @@ public class EditContentFormTest {
 
 		// Show site content panel
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
-				".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//a[@id='acn-dropdown-toggler']")
 
 				.click();
 
@@ -392,8 +361,7 @@ public class EditContentFormTest {
 
 		// go to dashboard
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-logo")
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-logo").click();
 
 		// create a new content
 
@@ -415,11 +383,9 @@ public class EditContentFormTest {
 
 		String textTitle = this.driverManager
 
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
-						"#internal-name > div > input")
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#internal-name > div > input")
 
 				.getAttribute("value");
-
 
 		Assert.assertEquals(textTitle, "TestQA");
 

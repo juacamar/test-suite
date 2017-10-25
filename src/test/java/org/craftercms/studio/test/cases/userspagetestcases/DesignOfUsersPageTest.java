@@ -26,8 +26,7 @@ public class DesignOfUsersPageTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
-
+	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -35,15 +34,14 @@ public class DesignOfUsersPageTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,
-				constantsPropertiesManager);
+		
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -63,42 +61,42 @@ public class DesignOfUsersPageTest {
 		createSitePage.clickOnUsersOption();
 
 		// Assert header is present.
-		WebElement header = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement header = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#container > div > div > div > div > div > h2");
 
 		Assert.assertTrue(header.isDisplayed());
 
 		// Assert crafter logo is present.
 
-		WebElement crafterLogo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement crafterLogo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "body > ui-view > header > nav > div > div.navbar-header > a > img");
 
 		Assert.assertTrue(crafterLogo.isDisplayed());
 
 		// Assert user menu option is present.
 
-		WebElement userMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement userMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#homeUsers");
 
 		Assert.assertTrue(userMenuOption.isDisplayed());
 
 		// Assert sites menu option is present.
 
-		WebElement sitesMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement sitesMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#homeSites");
 
 		Assert.assertTrue(sitesMenuOption.isDisplayed());
 
 		// Assert help menu option is present.
 
-		WebElement helpMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement helpMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#homeHelp");
 
 		Assert.assertTrue(helpMenuOption.isDisplayed());
 
 		// Assert admin dropdown option is present.
 
-		WebElement adminOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement adminOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector",
 				"body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(4) > a");
 
@@ -106,21 +104,21 @@ public class DesignOfUsersPageTest {
 
 		// Assert users per page combo option is present.
 
-		WebElement usersPerPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement usersPerPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#container > div > div > div > div > div > div > input");
 
 		Assert.assertTrue(usersPerPage.isDisplayed());
 
 		// Assert new user option is present.
 
-		WebElement newUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement newUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#container > div > div > div > div > div > a");
 
 		Assert.assertTrue(newUser.isDisplayed());
 
 		// Assert search option is present.
 
-		WebElement search = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement search = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector",
 				"#container > div > div > div > div > div > table > thead > tr:nth-child(2) > th > input");
 

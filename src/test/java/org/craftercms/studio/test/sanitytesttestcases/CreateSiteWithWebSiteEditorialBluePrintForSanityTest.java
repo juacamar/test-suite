@@ -24,11 +24,8 @@ import org.openqa.selenium.NoSuchElementException;
 public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
 	private CreateSitePage createSitePage;
 	
 	private String siteId = "testeditorial";
@@ -36,7 +33,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+
 
 	@BeforeClass
 	public void beforeTest() {
@@ -45,14 +42,14 @@ public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(this.driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(this.driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(this.driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(this.driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(this.driverManager, UIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(this.driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -89,8 +86,8 @@ public class CreateSiteWithWebSiteEditorialBluePrintForSanityTest {
 
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
 
-		if (this.driverManager.isElementPresentByXpath(defaultTimeOut,siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(5, "xpath", siteDropdownElementXPath)
+		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownElementXPath)
 					.click();
 		else
 			throw new NoSuchElementException(

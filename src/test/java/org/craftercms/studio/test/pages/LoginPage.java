@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.pages;
 
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -19,17 +18,15 @@ public class LoginPage {
 	private String userNameTextBoxLocator;
 	private String passwordTextBoxLocator;
 	private String loginButtonLocator;
-	private int defaultTimeOut;
+	
 
 	/**
 	 * 
 	 */
-	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
+	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driverManager.openConnection();
 		this.driver = this.driverManager.getDriver();
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		
 		userNameTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("login.txtbox_UserName");
@@ -46,7 +43,7 @@ public class LoginPage {
 	// Set user name in textbox
 
 	public void setUserName(String strUserName) {
-		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", userNameTextBoxLocator);
+		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", userNameTextBoxLocator);
 				//driver.findElement(By.cssSelector(userNameTextBoxLocator));
 		userCrafter.sendKeys(strUserName);
 
@@ -55,7 +52,7 @@ public class LoginPage {
 	// Set password in password textbox
 
 	public void setPassword(String strPassword) {
-		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id", passwordTextBoxLocator);
+		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", passwordTextBoxLocator);
 				//driver.findElement(By.id(passwordTextBoxLocator));
 		pwdCrafter.sendKeys(strPassword);
 
@@ -64,7 +61,7 @@ public class LoginPage {
 	// Click on login button
 
 	public void clickLogin() {
-		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", loginButtonLocator);
+		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", loginButtonLocator);
 				//driver.findElement(By.cssSelector(loginButtonLocator));
 		loginButton.click();
 
@@ -85,7 +82,7 @@ public class LoginPage {
 
 		this.clickLogin();
 		
-		this.driverManager.isElementPresentByXpath(this.defaultTimeOut, ".//h1[text()='Sites']");
+		this.driverManager.isElementPresentByXpath( ".//h1[text()='Sites']");
 
 	}
 

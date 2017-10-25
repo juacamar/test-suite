@@ -28,7 +28,7 @@ public class DeleteUserTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+
 
 	@BeforeClass
 	public void beforeTest() {
@@ -37,16 +37,16 @@ public class DeleteUserTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,
-				constantsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+	
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+	
 	}
 
 	@AfterClass
@@ -70,14 +70,14 @@ public class DeleteUserTest {
 
 		// Confirmation to delete user connected
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
 		// Assert new users created is deleted
 
 		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				this.defaultTimeOut, "cssSelector", "#container > div > div > div > div > div > table > tbody");
+				 "cssSelector", "#container > div > div > div > div > div > table > tbody");
 
 		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
 
