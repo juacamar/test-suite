@@ -106,7 +106,7 @@ public class EditOptionTest {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-
+		driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
 		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
@@ -129,6 +129,7 @@ public class EditOptionTest {
 	}
 
 	public void editingContent() {
+		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//span[text()='Testing1']")
 				.click();
 
@@ -137,13 +138,12 @@ public class EditOptionTest {
 				".//body/div/div[@id='studioBar']/nav/div/div/ul/li/a[contains(text(),'Edit')]").click();
 
 
-
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
 				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
 		
-
 		
 		// edit internal title
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#internal-name > div > input")
@@ -186,9 +186,13 @@ public class EditOptionTest {
 
 		// create a new content
 		createNewContent();
-
+		
+		driverManager.getDriver().switchTo().defaultContent();
+		
+		//reload page
+        driverManager.getDriver().navigate().refresh();
+		
 		dashboardPage.expandHomeTree2();
-
 
 		// wait for element is clickeable
 		editingContent();
