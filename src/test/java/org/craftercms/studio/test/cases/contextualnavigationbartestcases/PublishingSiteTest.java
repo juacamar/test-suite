@@ -41,7 +41,8 @@ public class PublishingSiteTest {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager, constantsPropertiesManager);
@@ -71,7 +72,6 @@ public class PublishingSiteTest {
 
 		dashboardPage.rightClickToSeeMenu();
 
-
 		// Select Entry Content Type
 
 		dashboardPage.clickEntryCT();
@@ -82,27 +82,26 @@ public class PublishingSiteTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				defaultTimeOut, "cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentAndClickableBycssSelector(defaultTimeOut, ".studio-ice-dialog > .bd iframe");
 
-	
 		// Set basics fields of the new content created
 
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-		// wait for element is clickeable
-
-
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose")
+				.click();
 
-		// Switch back to the dashboard page
+		// reload page
 
-		driverManager.getDriver().switchTo().defaultContent();
+		driverManager.getDriver().navigate().refresh();
 
 	}
 
@@ -136,7 +135,8 @@ public class PublishingSiteTest {
 		changeBodyToNotRequiredOnEntryContent();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#cstudio-logo")
+				.click();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
@@ -149,21 +149,36 @@ public class PublishingSiteTest {
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
 
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//span[contains(text(),'Testing1')]")
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
+				".//span[contains(text(),'Testing1')]").click();
 
 		// approve and publish
-		approveAndPublish();
-
-		this.reloadPage();
-
-		String headStatusClass = this.driverManager.getDriver()
+		approveAndPublish();	
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(defaultTimeOut, "xpath",
+				"//A[@class='cursor'][text()='Delete']");
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(defaultTimeOut, "xpath",
+				"//A[@class='cursor'][text()='Edit']");
+				
+		String isLifeContent="";
+		
+		while(!(isLifeContent.contains("undefined live")))
+		{
+			isLifeContent= this.driverManager.getDriver()
+			.findElement(By
+			.xpath(
+					"//ul[@id='activeContentActions']/li/span/div/span/span[2]")).getAttribute("class").toString();
+			driverManager.getDriver().navigate().refresh();
+			this.dashboardPage.expandHomeTree();	
+		}
+				
+		Assert.assertTrue(this.driverManager.getDriver()
 				.findElement(By
-						.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)"))
-				.getAttribute("class");
-		Assert.assertTrue(headStatusClass.contains("live"));
-
+				.xpath(
+				 ".//ul[@id='activeContentActions']/li/span/div/span/span[2]")).getAttribute("class").contains("undefined live"));
+		
 	}
 
 }
+

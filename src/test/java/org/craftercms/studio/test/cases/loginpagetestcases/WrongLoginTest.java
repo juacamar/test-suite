@@ -70,18 +70,15 @@ public class WrongLoginTest {
 		// Assert No login for invalid user.
 		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				".alert");
-				//driverManager.getDriver().findElement(By.cssSelector(".alert"));
 
 		Assert.assertTrue(signInWrongUser.isDisplayed());
 
 		// login to application
 		loginPage.loginToCrafter(userName, password+"wrong");
 
-	
 		// Assert No login for invalid password.
 		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
 				".btn.btn-primary");
-				//driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
 
 		Assert.assertTrue(signInWrongPwd.isDisplayed());
 
