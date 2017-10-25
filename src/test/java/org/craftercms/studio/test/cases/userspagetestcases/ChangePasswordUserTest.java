@@ -27,7 +27,7 @@ public class ChangePasswordUserTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
 
 	private AccountManagementPage accountManagementPage;
 
@@ -38,17 +38,16 @@ public class ChangePasswordUserTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
-		this.accountManagementPage = new AccountManagementPage(driverManager, uIElementsPropertiesManager,
-				constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,
-				constantsPropertiesManager);
+		
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.accountManagementPage = new AccountManagementPage(driverManager, uIElementsPropertiesManager
+				);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 	}
 
 	@AfterClass
@@ -80,7 +79,7 @@ public class ChangePasswordUserTest {
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
-		this.driverManager.isElementPresentByXpath(this.defaultTimeOut, ".//h1[text()='Sites']");
+		this.driverManager.isElementPresentByXpath( ".//h1[text()='Sites']");
 		
 		// click On admin option
 		createSitePage.clickAdmin();
@@ -98,7 +97,7 @@ public class ChangePasswordUserTest {
 
 		// Assert create button is present.
 
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut,
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", ".btn.btn-default.btn-pill.btn-block");
 
 		Assert.assertTrue(createButton.isDisplayed());

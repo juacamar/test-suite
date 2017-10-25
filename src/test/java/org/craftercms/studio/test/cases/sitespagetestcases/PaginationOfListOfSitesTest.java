@@ -26,7 +26,6 @@ public class PaginationOfListOfSitesTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 	
 	private CreateSitePage createSitePage;
 
@@ -38,14 +37,14 @@ public class PaginationOfListOfSitesTest {
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -83,8 +82,8 @@ public class PaginationOfListOfSitesTest {
 		// go to the sites page
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
-		if (this.driverManager.isElementPresentBycssSelector(this.defaultTimeOut,sitesNavOptionElementCssSelector))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", sitesNavOptionElementCssSelector)
+		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -93,43 +92,43 @@ public class PaginationOfListOfSitesTest {
 
 	public void navigationOfPage() {
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
 
 		// navigation
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(3) > a")
 				.click();
 		
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(2) > a")
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul >li:nth-child(4) > a")
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a")
 				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
 	}
 

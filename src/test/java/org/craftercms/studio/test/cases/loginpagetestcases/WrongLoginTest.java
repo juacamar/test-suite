@@ -33,23 +33,24 @@ public class WrongLoginTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+
 
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
+		
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
-		
+	
 	}
 	
 
@@ -68,7 +69,7 @@ public class WrongLoginTest {
 		
 
 		// Assert No login for invalid user.
-		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				".alert");
 
 		Assert.assertTrue(signInWrongUser.isDisplayed());
@@ -77,7 +78,7 @@ public class WrongLoginTest {
 		loginPage.loginToCrafter(userName, password+"wrong");
 
 		// Assert No login for invalid password.
-		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				".btn.btn-primary");
 
 		Assert.assertTrue(signInWrongPwd.isDisplayed());

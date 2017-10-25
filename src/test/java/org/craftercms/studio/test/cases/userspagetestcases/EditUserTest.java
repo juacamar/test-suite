@@ -28,8 +28,7 @@ public class EditUserTest {
 
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
-
+	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -37,16 +36,15 @@ public class EditUserTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,
-				constantsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager, constantsPropertiesManager);
+	
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -60,22 +58,22 @@ public class EditUserTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#firstName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName")
 				.sendKeys("Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#lastName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
 				.sendKeys("Last Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
 				.sendKeys("email@email.com");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#username")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#username")
 				.sendKeys("username");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#password")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#password")
 				.sendKeys("password");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#passwordVerification").sendKeys("password");
 
 		// Save Button
@@ -89,26 +87,26 @@ public class EditUserTest {
 		usersPage.clickOnEditUserCreated();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#firstName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName")
 				.clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#firstName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName")
 				.sendKeys("Test");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#lastName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
 				.clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#lastName")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
 				.sendKeys("Test");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
 				.clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
 				.sendKeys("Test@email.com");
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#newPassword")
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#newPassword")
 				.clear();
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", "#newPassword")
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#newPassword")
 				.sendKeys("passwordEdited");
 
 		// Save Button
@@ -139,7 +137,7 @@ public class EditUserTest {
 		// Assert
 
 		String nameElementText = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)")
 				.getText();
 
@@ -151,14 +149,14 @@ public class EditUserTest {
 
 		// Confirmation to delete user connected
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
 		// Assert new users created is deteled
 
 		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				this.defaultTimeOut, "cssSelector", "#container > div > div > div > div > div > table > tbody");
+				 "cssSelector", "#container > div > div > div > div > div > table > tbody");
 
 		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
 

@@ -33,7 +33,6 @@ public class PresetEachDesignTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -42,15 +41,15 @@ public class PresetEachDesignTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -80,23 +79,23 @@ public class PresetEachDesignTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo()
-				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 						"cssSelector", ".studio-ice-dialog > .bd iframe"));					
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("PRESET", "PRESET TESTING");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#title > div > input").sendKeys("MainTitle");
 	
 
 		// click necessary to validate all fields required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#cstudio-form-expand-all").click();
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"id", "cstudioSaveAndClose").click();
 	
 		// Switch back to the dashboard page
@@ -107,10 +106,10 @@ public class PresetEachDesignTest {
 	public void presets() {
 
 		// open publishing channel combo
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#medium-panel-elem > div.acn-accordion-header > a").click();
 
-		 String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		 String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 					"cssSelector", "#engineWindow").getText();
 		
 		 Assert.assertTrue(contentURL.contains(contentURL));
@@ -142,11 +141,11 @@ public class PresetEachDesignTest {
 		dashboardPage.expandHomeTree();
 
 		// select content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#ygtvlabelel3").click();
 		
 		// open tools
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#acn-preview-tools-image").click();
 
 		// presets and asserts

@@ -28,7 +28,7 @@ public class SitesPerPageTest {
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+
 	
 	private CreateSitePage createSitePage;
 
@@ -40,14 +40,14 @@ public class SitesPerPageTest {
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager,constantsPropertiesManager);
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 	}
 
@@ -87,8 +87,8 @@ public class SitesPerPageTest {
 		// go to the sites page
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
-		if (this.driverManager.isElementPresentBycssSelector(this.defaultTimeOut,sitesNavOptionElementCssSelector))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector", sitesNavOptionElementCssSelector)
+		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -98,53 +98,53 @@ public class SitesPerPageTest {
 	public void filters() {
 
 		// Show 8 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
 	
 		// Assert only 8 sites displayed
 
-		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(1) > td.name.ng-binding");
 
 		Assert.assertTrue(page1.isDisplayed());
 
 		// Show 5 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
 
 		// Asser only 5 sites displayed
 
-		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(2) > td.name.ng-binding");
 
 		Assert.assertTrue(page2.isDisplayed());
 		
 		// Show 1 site
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 	
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("3");
 	
 		// Asser only 1 site displayed
 
-		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) > td.name.ng-binding");
 
 		Assert.assertTrue(page3.isDisplayed());
 
 		// Show 11 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
 	}
 

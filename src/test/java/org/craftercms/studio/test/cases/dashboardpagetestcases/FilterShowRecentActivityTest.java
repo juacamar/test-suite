@@ -5,10 +5,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
+import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
@@ -29,29 +29,33 @@ public class FilterShowRecentActivityTest {
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
-
-	private SiteConfigPage siteConfigPage;
 	
 	private String userName;
 	private String password;
-	private int defaultTimeOut;
+	
+
+	private PreviewPage previewPage;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
+		
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager,constantsPropertiesManager);
+
+		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
+		
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
+		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+	
 	}
 
 	@AfterClass
@@ -59,29 +63,10 @@ public class FilterShowRecentActivityTest {
 		driverManager.closeConnection();
 	}
 
-	public void bodyNotRequiered() {
+	public void changeBodyToNotRequiredOnEntryContent() {
 
-		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#admin-console").click();
+		previewPage.changeBodyOfEntryContentPageToNotRequired();
 
-		// select content types
-		siteConfigPage.selectContentTypeOption();
-
-		// open content types
-		siteConfigPage.clickExistingTypeOption();
-
-		// Confirm the content type selected
-		siteConfigPage.confirmContentTypeSelected();
-
-		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath", ".//span[contains(text(),'Body')]").click();
-	
-		// Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
-				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
-	
-		// save
-		siteConfigPage.saveDragAndDropProcess();
 	}
 
 	public void createContent() {
@@ -97,19 +82,29 @@ public class FilterShowRecentActivityTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				 "cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("AboutUs", "AboutUs");
-		
+
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-	
+
+		// click necessary to validate all fields required
+		this.driverManager.scrollUp();
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-form-expand-all")
+				.click();
+
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose")
+				.click();
+
+		this.driverManager.isElementPresentByXpath( ".//span[text()='Home']");
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -119,7 +114,7 @@ public class FilterShowRecentActivityTest {
 	public void createSecondContent() {
 		// right click to see the the menu
 
-		dashboardPage.rightClickToSeeMenu3();
+		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
 		dashboardPage.clickEntryCT();
@@ -130,19 +125,29 @@ public class FilterShowRecentActivityTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut,
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		
+		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				 "cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
+
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("AboutUs1", "AboutUs1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector", "#title > div > input")
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
 				.sendKeys("MainTitle");
-		
+
+		// click necessary to validate all fields required
+		this.driverManager.scrollUp();
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-form-expand-all")
+				.click();
+
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "id", "cstudioSaveAndClose").click();
-	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose")
+				.click();
+		this.driverManager.isElementPresentByXpath( ".//span[text()='Home']");
+
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 	}
@@ -150,31 +155,32 @@ public class FilterShowRecentActivityTest {
 	public void filtersAndAsserts() {
 
 		// clean filter
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#widget-showitems-MyRecentActivity.form-control.input-sm").clear();
-		
+
 		// Show only 1 item edited
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#widget-showitems-MyRecentActivity.form-control.input-sm").sendKeys("1", Keys.ENTER);
 
-
+		this.driverManager.isElementPresentByXpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]");
 		// Assert filter 1
-		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
+		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				"/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]").getText();
-	
+
 		Assert.assertEquals(edit1, "/aboutus1");
 
 		// clean filter
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#widget-showitems-MyRecentActivity.form-control.input-sm").clear();
 
 		// Show only 1 item edited
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#widget-showitems-MyRecentActivity.form-control.input-sm").sendKeys("2", Keys.ENTER);
-	
 
+		this.driverManager.isElementPresentBycssSelector("#MyRecentActivity-tbody > tr:nth-child(2) > td:nth-child(4)");
+		
 		// Assert filter 1
-		String edit2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
+		String edit2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"#MyRecentActivity-tbody > tr:nth-child(2) > td:nth-child(4)").getText();
 		// driverManager.getDriver()
 		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(2) >
@@ -189,22 +195,11 @@ public class FilterShowRecentActivityTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
-
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "xpath",
-				".//a[@id='acn-dropdown-toggler']").click();
-		
-		driverManager.getDriver().navigate().refresh();
-
 		// body not requiered
-		bodyNotRequiered();
-
-		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(defaultTimeOut, "cssSelector",
-				"#cstudio-logo").click();
+		changeBodyToNotRequiredOnEntryContent();
 
 		dashboardPage.expandPagesTree();
 
@@ -213,7 +208,6 @@ public class FilterShowRecentActivityTest {
 
 		// expand home
 		dashboardPage.expandHomeTree();
-
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();

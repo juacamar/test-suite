@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.pages;
 
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -20,18 +19,16 @@ public class AccountManagementPage {
 	private String newPassword;
 	private String confirmPassword;
 	private String submitButton;
-	private int defaultTimeOut;
+	
 
 	/**
 	 * 
 	 */
 	public AccountManagementPage(WebDriverManager driverManager,
-			UIElementsPropertiesManager UIElementsPropertiesManager, ConstantsPropertiesManager constantsPropertiesManager) {
+			UIElementsPropertiesManager UIElementsPropertiesManager) {
 
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
-		defaultTimeOut = Integer.parseInt(
-				constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 		currentPassword = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("accountManagement.currentPass");
 		newPassword = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -52,7 +49,7 @@ public class AccountManagementPage {
 
 	public void setCurrentPassword(String strCurrentPass) {
 		// this.driverManager.driverWait(300);
-		WebElement currentPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id",
+		WebElement currentPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
 				currentPassword);
 		// driver.findElement(By.id(currentPassword));
 		currentPass.sendKeys(strCurrentPass);
@@ -63,7 +60,7 @@ public class AccountManagementPage {
 
 	public void setNewPassword(String strNewPassword) {
 		// this.driverManager.driverWait(300);
-		WebElement newPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id", newPassword);
+		WebElement newPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", newPassword);
 		// driver.findElement(By.id(newPassword));
 		newPass.sendKeys(strNewPassword);
 
@@ -73,7 +70,7 @@ public class AccountManagementPage {
 
 	public void setConfirmNewPassword(String strConfNewPassword) {
 		// this.driverManager.driverWait(300);
-		WebElement confPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "id", confirmPassword);
+		WebElement confPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", confirmPassword);
 		// driver.findElement(By.id(confirmPassword));
 		confPass.sendKeys(strConfNewPassword);
 
@@ -83,7 +80,7 @@ public class AccountManagementPage {
 
 	public void clickSubmit() {
 		// this.driverManager.driverWait(300);
-		WebElement submitbtn = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(this.defaultTimeOut, "cssSelector",
+		WebElement submitbtn = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				submitButton);
 				//driver.findElement(By.cssSelector(submitButton));
 		submitbtn.click();
