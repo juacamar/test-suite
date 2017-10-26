@@ -329,7 +329,7 @@ public class DashboardPage {
 	public void rightClickHome() {
 		this.driverManager.isElementPresentAndClickableByXpath(homeContent);
 
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home);
 
