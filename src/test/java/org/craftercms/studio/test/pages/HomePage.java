@@ -164,14 +164,15 @@ public class HomePage {
 
 	// Click on Delete icon to the site
 
-	public void clickDeleteSiteIcon() {
-		
-		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				deleteSiteIcon);
-				//driver.findElement(By.cssSelector(deleteSiteIcon));
-		deleteIcon.click();
+		public void clickDeleteSiteIcon() {
+        this.driverManager.isElementPresentAndClickableByXpath(deleteSiteIcon);
+        WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+                deleteSiteIcon);
+                //driver.findElement(By.cssSelector(deleteSiteIcon));
+        deleteIcon.click();
 
-	}
+    }
+	
 
 	public void clickOnDeleteSiteIcon() {
 
