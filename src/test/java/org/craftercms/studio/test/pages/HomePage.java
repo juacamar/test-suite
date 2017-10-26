@@ -168,7 +168,6 @@ public class HomePage {
         this.driverManager.isElementPresentAndClickableByXpath(deleteSiteIcon);
         WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
                 deleteSiteIcon);
-                //driver.findElement(By.cssSelector(deleteSiteIcon));
         deleteIcon.click();
 
     }

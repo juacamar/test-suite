@@ -60,7 +60,6 @@ public class DashboardPage {
 	private String previewSync;
 	private String editRecentlyContentCreated;
 	private String selectEntryCT;
-	private String selectSectionDefaultsCT;
 	private String pageArticleContentTypeLocator;
 	private String homeTree;
 	private String crafterComponent;
