@@ -141,7 +141,8 @@ public class PaginationOfListOfSitesTest {
 		// Click on YES to confirm the delete.
 
 		homePage.clickOnYesToDeleteSite();
-
+		driverManager.getDriver().navigate().refresh();
+		
 	}
 
 	@Test(priority = 0)
@@ -173,7 +174,7 @@ public class PaginationOfListOfSitesTest {
 		deleteSite();
 
 		deleteSite();
-
+		
 		deleteSite();
 
 	}

@@ -66,23 +66,16 @@ public class UsersPerPageTest {
 
 		// Follow the form
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName").sendKeys("Name");
-		// driverManager.getDriver().findElement(By.cssSelector("#firstName")).sendKeys("Name");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
 				.sendKeys("Last Name");
-		// driverManager.getDriver().findElement(By.cssSelector("#lastName")).sendKeys("Last
-		// Name");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
 				.sendKeys("email@email.com");
-		// driverManager.getDriver().findElement(By.cssSelector("#email")).sendKeys("email@email.com");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#username")
 				.sendKeys(RandomStringUtils.randomAlphabetic(5));
-		// driverManager.getDriver().findElement(By.cssSelector("#username")).sendKeys("username");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#password")
 				.sendKeys("password");
-		// driverManager.getDriver().findElement(By.cssSelector("#password")).sendKeys("password");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#passwordVerification")
 				.sendKeys("password");
-		// driverManager.getDriver().findElement(By.cssSelector("#passwordVerification")).sendKeys("password");
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
@@ -199,6 +192,8 @@ public class UsersPerPageTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
+		
+		driverManager.getDriver().navigate().refresh();
 
 	}
 
@@ -211,15 +206,15 @@ public class UsersPerPageTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// Create user 1
-
+		
 		createUserRandom();
 
 		// Create user 2
-
+		driverManager.getDriver().navigate().refresh();
 		createUserRandom();
 
 		// Create user 3
-
+		driverManager.getDriver().navigate().refresh();
 		createUserRandom();
 
 		// filters

@@ -77,6 +77,9 @@ public class PaginationOfListOfUsersTest {
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
+		
+		//Refresh the site
+		driverManager.getDriver().navigate().refresh();
 	}
 
 	public void navigationOfPage() {
@@ -155,6 +158,7 @@ public class PaginationOfListOfUsersTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
+		driverManager.getDriver().navigate().refresh();
 	}
 
 	@Test(priority = 0)
@@ -166,9 +170,11 @@ public class PaginationOfListOfUsersTest {
 		loginPage.loginToCrafter(userName, password);
 
 		createUserRandom();
+		
 		createUserRandom();
+		
 		createUserRandom();
-
+		
 		// filters
 		navigationOfPage();
 

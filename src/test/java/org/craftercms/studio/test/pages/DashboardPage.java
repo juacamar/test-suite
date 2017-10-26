@@ -60,6 +60,7 @@ public class DashboardPage {
 	private String previewSync;
 	private String editRecentlyContentCreated;
 	private String selectEntryCT;
+	private String selectSectionDefaultsCT;
 	private String pageArticleContentTypeLocator;
 	private String homeTree;
 	private String crafterComponent;
@@ -405,13 +406,10 @@ public class DashboardPage {
 	public void selectEntryCT() {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector(selectEntryCT));
 
-		// WebElement entryCT =
-		// driverManager.getDriver().findElement(By.cssSelector(selectEntryCT));
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector( selectEntryCT));
-		// entryCT.click();
 	}
-
+	
 	public void selectPageArticleContentType() {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
@@ -426,7 +424,7 @@ public class DashboardPage {
 		// Select Generic Content type
 		this.selectEntryCT();
 	}
-
+		
 	// Select Level Descriptor Content type
 	public void selectLDCT() {
 		driverManager.getDriver().switchTo().defaultContent();

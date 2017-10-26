@@ -93,6 +93,8 @@ public class SitesPerPageTest {
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
+		
+		driverManager.getDriver().navigate().refresh();
 	}
 
 	public void filters() {
@@ -157,6 +159,10 @@ public class SitesPerPageTest {
 		// Click on YES to confirm the delete.
 
 		homePage.clickOnYesToDeleteSite();
+		
+		
+		//Refresh teh site
+		driverManager.getDriver().navigate().refresh();
 
 	}
 
