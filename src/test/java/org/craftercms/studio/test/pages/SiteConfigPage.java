@@ -163,9 +163,10 @@ public class SiteConfigPage {
 	// Confirm the content type selected
 	public void okContentTypeSelected() {
 		this.driverManager.isElementPresentAndClickableById( okButton);
-		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", okButton);
+		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", okButton);
 		okButtonOpt.click();	
 		
+		this.driverManager.isElementPresentAndClickableByXpath( ".//div[contains(@class,'content-type-visual-container')]");
 		this.driverManager.isElementPresentAndClickableByXpath( ".//div[contains(@class,'content-type-visual-container')]");
 	}
 
@@ -294,7 +295,9 @@ public class SiteConfigPage {
 
 	// Click on input section to can view the properties
 	public void clickOnInputSectionToViewTheProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath( clickOnInputSection);
+		this.driverManager.isElementPresentAndClickableByXpath(clickOnInputSection);
+		this.driverManager.isElementPresentAndClickableByXpath(clickOnInputSection);
+		
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
 				clickOnInputSection);
 		showSection.click();

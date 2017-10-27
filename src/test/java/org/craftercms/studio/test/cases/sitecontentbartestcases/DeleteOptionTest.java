@@ -73,7 +73,7 @@ public class DeleteOptionTest {
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		
+	
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 

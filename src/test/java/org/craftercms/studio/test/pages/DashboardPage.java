@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.pages;
 
-
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +17,7 @@ public class DashboardPage {
 
 	private WebDriverManager driverManager;
 	private WebDriver driver;
-	
+
 	private String pagesTree;
 	private String homeContentTree;
 	private String homeContent;
@@ -106,11 +105,9 @@ public class DashboardPage {
 	/**
 	 * 
 	 */
-	public DashboardPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager
-			) {
+	public DashboardPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
-		
 
 		pagesTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.expand_Pages_Tree");
@@ -276,10 +273,9 @@ public class DashboardPage {
 
 	// Expand pages tree
 	public void clickPagesTree() {
-		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", pagesTree);
+		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
 		expandPagesTree.click();
-		this.driverManager.isElementPresentByXpath( homeContent);
+		this.driverManager.isElementPresentByXpath(homeContent);
 
 	}
 
@@ -290,9 +286,8 @@ public class DashboardPage {
 
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
-
-		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", homeTree);
+		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
+		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeTree);
 		globalEntry.click();
 	}
 
@@ -303,8 +298,7 @@ public class DashboardPage {
 
 	// Expand home tree
 	public void clicHomeTree2() {
-		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", homeTreeDashbard);
+		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeTreeDashbard);
 		homeTree.click();
 	}
 
@@ -315,8 +309,8 @@ public class DashboardPage {
 
 	// Expand home content
 	public void clickHomeContent() {
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", homeContentTree);
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				homeContentTree);
 		home.click();
 	}
 
@@ -329,12 +323,11 @@ public class DashboardPage {
 	public void rightClickHome() {
 		this.driverManager.isElementPresentAndClickableByXpath(homeContent);
 
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home);
 
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", addNewContent);
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewContent);
 		addContent.click();
 	}
 
@@ -345,13 +338,13 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void rightClickHome2() {
-		WebElement home2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				homeContent2);
+		this.driverManager.isElementPresentAndClickableByXpath(homeContent2);
+		
+		WebElement home2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent2);
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home2);
 
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", addNewContent2);
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewContent2);
 
 		addContent.click();
 	}
@@ -363,13 +356,11 @@ public class DashboardPage {
 
 	// Press right click select new folder
 	public void rightClickNewFolderOnHome() {
-		WebElement newFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", homeContent);
+		WebElement newFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
 		// driverManager.getDriver().findElement(By.xpath(homeContent));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), newFolder);
 
-		WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", addNewFolder);
+		WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewFolder);
 		// driverManager.getDriver().findElement(By.xpath(addNewFolder));
 		addFolder.click();
 	}
@@ -379,8 +370,8 @@ public class DashboardPage {
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		WebElement addFolderOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", addNewFolderOption);
+		WebElement addFolderOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				addNewFolderOption);
 		// driverManager.getDriver().findElement(By.xpath(addNewFolderOption));
 		addFolderOption.click();
 	}
@@ -390,8 +381,8 @@ public class DashboardPage {
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", addNewContentOption);
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				addNewContentOption);
 		// driverManager.getDriver().findElement(By.xpath(addNewContentOption));
 		addContent.click();
 	}
@@ -408,14 +399,14 @@ public class DashboardPage {
 		Assert.assertTrue(driverManager.isElementPresentBycssSelector(selectEntryCT));
 
 	}
-	
+
 	public void selectPageArticleContentType() {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
 
 		// WebElement pageArticleContentType = driverManager.getDriver()
 		// .findElement(By.cssSelector(pageArticleContentTypeLocator));
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector( pageArticleContentTypeLocator));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector(pageArticleContentTypeLocator));
 		// pageArticleContentType.click();
 	}
 
@@ -423,14 +414,14 @@ public class DashboardPage {
 		// Select Generic Content type
 		this.selectEntryCT();
 	}
-		
+
 	// Select Level Descriptor Content type
 	public void selectLDCT() {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
 
-		WebElement levelDescriptorCT = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "cssSelector", levelDescriptorContentType);
+		WebElement levelDescriptorCT = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				levelDescriptorContentType);
 		// driverManager.getDriver().findElement(By.cssSelector(levelDescriptorContentType));
 		levelDescriptorCT.click();
 	}
@@ -442,8 +433,7 @@ public class DashboardPage {
 
 	// Confirm the CT selected
 	public void confirmCTSelected() {
-		WebElement okButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
-				okButton1);
+		WebElement okButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", okButton1);
 		okButton.click();
 	}
 
@@ -455,8 +445,7 @@ public class DashboardPage {
 	// Set page URL
 	public void setPageURL1(String strPageURL) {
 
-		WebElement pageUrl = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", setPageURL1);
+		WebElement pageUrl = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", setPageURL1);
 		// driver.findElement(By.xpath(setPageURL1));
 		pageUrl.clear();
 		pageUrl.sendKeys(strPageURL);
@@ -465,8 +454,8 @@ public class DashboardPage {
 	// Set internal name
 	public void setInternalName1(String strInternalName) {
 
-		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", setInternalName1);
+		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				setInternalName1);
 		internalName.clear();
 		internalName.sendKeys(strInternalName);
 	}
@@ -474,8 +463,8 @@ public class DashboardPage {
 	// Set body text
 	public void setBodyText1(String strBodyText) {
 
-		WebElement bodyText1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", setBodyText1);
+		WebElement bodyText1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				setBodyText1);
 		// driver.findElement(By.cssSelector(setBodyText1));
 		bodyText1.sendKeys(strBodyText);
 	}
@@ -483,17 +472,17 @@ public class DashboardPage {
 	// Click on save and close button
 	public void clickSaveClose() {
 
-		WebElement saveCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", saveCloseButton1);
+		WebElement saveCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				saveCloseButton1);
 		// driver.findElement(By.id(saveCloseButton1));
 		saveCloseButton.click();
 	}
 
 	// Click on save and close button
 	public void clickSaveDraft() {
-		this.driverManager.isElementPresentAndClickableById( saveDraft1);
-		WebElement saveDraftButton = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", saveDraft1);
+		this.driverManager.isElementPresentAndClickableById(saveDraft1);
+		WebElement saveDraftButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+				saveDraft1);
 		saveDraftButton.click();
 	}
 
@@ -509,8 +498,7 @@ public class DashboardPage {
 	// Click on save and close button
 	public void clickSaveAndDraft() {
 
-		WebElement saveDraftButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", saveDraft1);
+		WebElement saveDraftButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", saveDraft1);
 		// driver.findElement(By.id(saveDraft1));
 		saveDraftButton.click();
 	}
@@ -527,8 +515,7 @@ public class DashboardPage {
 	// Set the name of the folder
 	public void folderName(String strFolderName) {
 
-		WebElement folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", setFolderName1);
+		WebElement folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", setFolderName1);
 		// driverManager.getDriver().findElement(By.id(setFolderName1));
 		folderName.clear();
 		folderName.sendKeys(strFolderName);
@@ -542,8 +529,7 @@ public class DashboardPage {
 	// create button
 	public void createButton() {
 
-		WebElement buttonCreate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", createButton1);
+		WebElement buttonCreate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createButton1);
 		// driverManager.getDriver().findElement(By.id(createButton1));
 		buttonCreate.click();
 	}
@@ -556,8 +542,8 @@ public class DashboardPage {
 	// Set the name of the file
 	public void fileName(String strFileName) {
 
-		WebElement fileName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", setFileName);
+		WebElement fileName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				setFileName);
 		// driverManager.getDriver().findElement(By.cssSelector(setFileName));
 		fileName.clear();
 		fileName.sendKeys(strFileName);
@@ -571,13 +557,13 @@ public class DashboardPage {
 	// Press right click and press copy option (about us page)
 	public void rightClickCopyOptionAboutUs() {
 
-		WebElement copypasteContent = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", aboutUSContentPage);
+		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				aboutUSContentPage);
 		// driverManager.getDriver().findElement(By.xpath(aboutUSContentPage));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
-		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", copyContent3);
+		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				copyContent3);
 		// driverManager.getDriver().findElement(By.cssSelector(copyContent3));
 		copyContent.click();
 	}
@@ -590,13 +576,13 @@ public class DashboardPage {
 	// Press right click and press copy option (service page)
 	public void rightClickCopyOptionService() {
 
-		WebElement copypasteContent = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", newContentCreated);
+		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				newContentCreated);
 		// driverManager.getDriver().findElement(By.id(newContentCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
-		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", copyContent1);
+		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				copyContent1);
 		// driverManager.getDriver().findElement(By.cssSelector(copyContent1));
 		copyContent.click();
 	}
@@ -609,14 +595,14 @@ public class DashboardPage {
 	// Press right click and press paste option
 	public void rightClickPasteOption() {
 
-		WebElement copypasteContent = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", homeContent3);
+		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				homeContent3);
 		// driverManager.getDriver().findElement(By.cssSelector(homeContent3));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
 		//
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", pasteContent0);
+		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				pasteContent0);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent0));
 		pasteContent.click();
 	}
@@ -629,13 +615,13 @@ public class DashboardPage {
 	// Press right click and press paste option
 	public void rightClickPasteOptionTwo() {
 
-		WebElement copypasteContent = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", newFolderCreated);
+		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				newFolderCreated);
 		// driverManager.getDriver().findElement(By.cssSelector(newFolderCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", pasteContent2);
+		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				pasteContent2);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
 		pasteContent.click();
 	}
@@ -648,13 +634,13 @@ public class DashboardPage {
 	// edit content copied
 	public void rightClickDeleteOption() {
 
-		WebElement delete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", aboutUsOptionCopied);
+		WebElement delete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				aboutUsOptionCopied);
 		// driverManager.getDriver().findElement(By.cssSelector(aboutUsOptionCopied));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), delete);
 
-		WebElement deletePanelOption = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", deleteOptionCopied);
+		WebElement deletePanelOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				deleteOptionCopied);
 		// driverManager.getDriver().findElement(By.cssSelector(deleteOptionCopied));
 		deletePanelOption.click();
 	}
@@ -675,13 +661,13 @@ public class DashboardPage {
 	// Press right click and Unlock
 	public void rightClickUnlockOption() {
 
-		WebElement unlockContentOption = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", aboutUsOptionCopied);
+		WebElement unlockContentOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				aboutUsOptionCopied);
 		// driverManager.getDriver().findElement(By.xpath(aboutUsOptionCopied));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), unlockContentOption);
 
-		WebElement unlockContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", unlockOptionCopied);
+		WebElement unlockContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				unlockOptionCopied);
 		// driverManager.getDriver().findElement(By.cssSelector(unlockOptionCopied));
 		unlockContent.click();
 	}
@@ -694,8 +680,8 @@ public class DashboardPage {
 	// Delete option
 	public void deleteContentCopied() {
 
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", deleteOptionCopiedPopup);
+		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				deleteOptionCopiedPopup);
 		// driverManager.getDriver().findElement(By.id(deleteOptionCopiedPopup));
 		deleteOption.click();
 	}
@@ -708,8 +694,8 @@ public class DashboardPage {
 	// Ok delete option
 	public void deleteContentCopiedOK() {
 
-		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", deleteOK);
+		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				deleteOK);
 		// driverManager.getDriver().findElement(By.cssSelector(deleteOK));
 		confirmDelete.click();
 	}
@@ -722,13 +708,13 @@ public class DashboardPage {
 	// Press right click and press cut option
 	public void rightClickCutOption() {
 
-		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", contentCreatedToCut);
+		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				contentCreatedToCut);
 		// driverManager.getDriver().findElement(By.cssSelector(contentCreatedToCut));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), cutpasteContent);
 
-		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", cutContent1);
+		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				cutContent1);
 		// driverManager.getDriver().findElement(By.cssSelector(cutContent1));
 		cutContent.click();
 	}
@@ -741,13 +727,13 @@ public class DashboardPage {
 	// Press right click and press cut option
 	public void rightClickCutOptionAgain() {
 
-		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", aboutUsOptionCut);
+		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				aboutUsOptionCut);
 		// driverManager.getDriver().findElement(By.id(aboutUsOptionCut));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), cutpasteContent);
 
-		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", cutContent1);
+		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				cutContent1);
 		// driverManager.getDriver().findElement(By.cssSelector(cutContent1));
 		cutContent.click();
 	}
@@ -760,13 +746,12 @@ public class DashboardPage {
 	// Press right click and press paste option
 	public void rightClickPasteOptionCut() {
 
-		WebElement pasteCutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", homeContent);
+		WebElement pasteCutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", homeContent);
 		// driverManager.getDriver().findElement(By.id(homeContent));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteCutContent);
 
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", pasteContent1);
+		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				pasteContent1);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent1));
 		pasteContent.click();
 	}
@@ -779,13 +764,13 @@ public class DashboardPage {
 	// Press right click and copy the component to new folder created.
 	public void rightClickCopyComponent() {
 
-		WebElement copyComponent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", crafterComponent);
+		WebElement copyComponent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				crafterComponent);
 		// driverManager.getDriver().findElement(By.xpath(crafterComponent));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyComponent);
 
 		WebElement copyComponentToNewFolder = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", copyContent1);
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", copyContent1);
 		// driverManager.getDriver().findElement(By.cssSelector(copyContent1));
 		copyComponentToNewFolder.click();
 	}
@@ -798,13 +783,13 @@ public class DashboardPage {
 	// Press right click and copy the new content to the new folder
 	public void rightClickCopyNewContent() {
 
-		WebElement copyNewContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", newContentCreated);
+		WebElement copyNewContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				newContentCreated);
 		// driverManager.getDriver().findElement(By.cssSelector(newContentCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyNewContent);
 
 		WebElement copyNewContentToNewFolder = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", copyContent3);
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", copyContent3);
 		// driverManager.getDriver().findElement(By.cssSelector(copyContent3));
 		copyNewContentToNewFolder.click();
 	}
@@ -817,13 +802,13 @@ public class DashboardPage {
 	// Press right click and press paste option to the new folder
 	public void rightClickPaste() {
 
-		WebElement pasteAllContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", folderCreated);
+		WebElement pasteAllContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				folderCreated);
 		// driverManager.getDriver().findElement(By.cssSelector(folderCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteAllContent);
 
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", pasteContent2);
+		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				pasteContent2);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
 		pasteContent.click();
 	}
@@ -836,8 +821,7 @@ public class DashboardPage {
 	// copy button
 	public void copyButton() {
 
-		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", copyContentButton);
+		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", copyContentButton);
 		// driverManager.getDriver().findElement(By.id(copyContentButton));
 		buttonCopy.click();
 	}
@@ -849,8 +833,8 @@ public class DashboardPage {
 
 	public void clickCopyButtonOnTreeSelector() {
 
-		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", copyButonOnTreeSelector);
+		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				copyButonOnTreeSelector);
 		// driverManager.getDriver().findElement(By.xpath(copyButonOnTreeSelector));
 		buttonCopy.click();
 	}
@@ -858,13 +842,13 @@ public class DashboardPage {
 	// Press right click and press paste option
 	public void rightClickPasteOption1() {
 
-		WebElement pasteAboutContent = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", newContentCreated);
+		WebElement pasteAboutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				newContentCreated);
 		// driverManager.getDriver().findElement(By.id(newContentCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteAboutContent);
 
-		WebElement pasteAboutUS = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", pasteContent1);
+		WebElement pasteAboutUS = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				pasteContent1);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent1));
 		pasteAboutUS.click();
 	}
@@ -877,13 +861,13 @@ public class DashboardPage {
 	// Press right click and press copy option to the tree
 	public void rightClickCopyOptionTree() {
 
-		WebElement copypasteContent = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", aboutUsOptionToTree1);
+		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				aboutUsOptionToTree1);
 		// driverManager.getDriver().findElement(By.id(aboutUsOptionToTree1));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
-		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", copyContent1);
+		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				copyContent1);
 		// driverManager.getDriver().findElement(By.cssSelector(copyContent1));
 		copyContent.click();
 	}
@@ -897,13 +881,13 @@ public class DashboardPage {
 	// start to create a tree
 	public void rightClickPasteTreeLevel1() {
 
-		WebElement pasteContentTree1 = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", aboutUsOptionTreeLevel1);
+		WebElement pasteContentTree1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				aboutUsOptionTreeLevel1);
 		// driverManager.getDriver().findElement(By.id(aboutUsOptionTreeLevel1));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteContentTree1);
 
 		WebElement pasteContentToTheTree1 = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", pasteContent3);
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", pasteContent3);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent3));
 		pasteContentToTheTree1.click();
 	}
@@ -918,13 +902,13 @@ public class DashboardPage {
 	// start to create a tree
 	public void rightClickPasteTreeLevel2() {
 
-		WebElement pasteContentTree2 = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", aboutUsOptionTreeLevel2);
+		WebElement pasteContentTree2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				aboutUsOptionTreeLevel2);
 		// driverManager.getDriver().findElement(By.id(aboutUsOptionTreeLevel2));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteContentTree2);
 
 		WebElement pasteContentToTheTree2 = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", pasteContent3);
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", pasteContent3);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent3));
 		pasteContentToTheTree2.click();
 	}
@@ -939,13 +923,13 @@ public class DashboardPage {
 	// start to create a tree
 	public void rightClickPasteTreeLevel3() {
 
-		WebElement pasteContentTree3 = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", aboutUsOptionTreeLevel2);
+		WebElement pasteContentTree3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				aboutUsOptionTreeLevel2);
 		// driverManager.getDriver().findElement(By.id(aboutUsOptionTreeLevel2));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteContentTree3);
 
 		WebElement pasteContentToTheTree3 = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", pasteContent3);
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", pasteContent3);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent3));
 		pasteContentToTheTree3.click();
 	}
@@ -961,13 +945,13 @@ public class DashboardPage {
 
 	public void rightClickPasteTreeLevel4() {
 
-		WebElement pasteContentTree4 = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", aboutUsOptionTreeLevel1);
+		WebElement pasteContentTree4 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				aboutUsOptionTreeLevel1);
 		// driverManager.getDriver().findElement(By.id(aboutUsOptionTreeLevel1));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteContentTree4);
 
 		WebElement pasteContentToTheTree4 = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", pasteContent3);
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", pasteContent3);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent3));
 		pasteContentToTheTree4.click();
 	}
@@ -981,13 +965,13 @@ public class DashboardPage {
 	// Press right click and press delete option to the "aboutoptionCOPY"
 	public void rightClickDeleteTreeLevel1() {
 
-		WebElement deleteContentTree = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", aboutUsOptionTreeCreated);
+		WebElement deleteContentTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				aboutUsOptionTreeCreated);
 		// driverManager.getDriver().findElement(By.id(aboutUsOptionTreeCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), deleteContentTree);
 
-		WebElement deleteTheTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", deleteAboutUsTreeCreated);
+		WebElement deleteTheTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				deleteAboutUsTreeCreated);
 		// driverManager.getDriver().findElement(By.cssSelector(deleteAboutUsTreeCreated));
 		deleteTheTree.click();
 	}
@@ -1000,8 +984,8 @@ public class DashboardPage {
 	// click on Site Content
 	public void clickSiteContent() {
 
-		WebElement siteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", clickOnSiteContent);
+		WebElement siteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				clickOnSiteContent);
 		// driverManager.getDriver().findElement(By.xpath(clickOnSiteContent));
 		siteContent.click();
 	}
@@ -1014,15 +998,15 @@ public class DashboardPage {
 	// Press right click and select new content
 	public void deleteContent() {
 
-		this.driverManager.isElementPresentAndClickableByXpath( cutCrafterComponent);
+		this.driverManager.isElementPresentAndClickableByXpath(cutCrafterComponent);
 
-		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", cutCrafterComponent);
+		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				cutCrafterComponent);
 		// driverManager.getDriver().findElement(By.cssSelector(cutCrafterComponent));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu);
 
-		WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", deleteCrafterComponent2);
+		WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				deleteCrafterComponent2);
 		// driverManager.getDriver().findElement(By.cssSelector(deleteCrafterComponent2));
 		delContent.click();
 	}
@@ -1034,9 +1018,9 @@ public class DashboardPage {
 
 	// Ok delete content option
 	public void deleteContentOK() {
-		this.driverManager.isElementPresentAndClickableById( deleteContentOK);
-		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", deleteContentOK);
+		this.driverManager.isElementPresentAndClickableById(deleteContentOK);
+		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				deleteContentOK);
 		// driverManager.getDriver().findElement(By.id(deleteContentOK));
 		confirmDelete.click();
 	}
@@ -1049,8 +1033,8 @@ public class DashboardPage {
 	// Ok submittal complete
 	public void submittalCompleteOK() {
 
-		WebElement submittalComplete = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", submittalCompleteOK);
+		WebElement submittalComplete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				submittalCompleteOK);
 		// driverManager.getDriver().findElement(By.cssSelector(submittalCompleteOK));
 		submittalComplete.click();
 	}
@@ -1063,13 +1047,12 @@ public class DashboardPage {
 	// Press right click and select edit
 	public void editMenu() {
 
-		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
-				homeContent);
+		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", homeContent);
 		// driverManager.getDriver().findElement(By.id(homeContent));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu);
 
-		WebElement goToEditIframe = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", editOption);
+		WebElement goToEditIframe = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				editOption);
 		// driverManager.getDriver().findElement(By.cssSelector(editOption));
 		goToEditIframe.click();
 	}
@@ -1082,8 +1065,8 @@ public class DashboardPage {
 	// click on edit page button
 	public void editURLbutton() {
 
-		WebElement editURLButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ediPagetUrl);
+		WebElement editURLButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				ediPagetUrl);
 		// driverManager.getDriver().findElement(By.cssSelector(ediPagetUrl));
 		editURLButton.click();
 	}
@@ -1096,8 +1079,8 @@ public class DashboardPage {
 	// Set the new name of the URL
 	public void uRLPageName(String strNewURL) {
 
-		WebElement URLName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", pageUrlField);
+		WebElement URLName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				pageUrlField);
 		// driverManager.getDriver().findElement(By.cssSelector(pageUrlField));
 		URLName.clear();
 		URLName.sendKeys(strNewURL);
@@ -1111,8 +1094,8 @@ public class DashboardPage {
 	// click on preview sync option
 	public void previewSyncOption() {
 
-		WebElement previewSyncOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", previewSync);
+		WebElement previewSyncOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				previewSync);
 		// driverManager.getDriver().findElement(By.cssSelector(previewSync));
 		previewSyncOpt.click();
 	}
@@ -1126,14 +1109,14 @@ public class DashboardPage {
 
 	public void rightClickToEdit() {
 
-		this.driverManager.isElementPresentAndClickableByXpath( crafterComponent);
+		this.driverManager.isElementPresentAndClickableByXpath(crafterComponent);
 
-		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", crafterComponent);
+		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				crafterComponent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), editContent);
 
-		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", editRecentlyContentCreated);
+		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				editRecentlyContentCreated);
 		editOption.click();
 	}
 
@@ -1145,8 +1128,7 @@ public class DashboardPage {
 	// Set metadata fields
 	public void setTitle(String strTitle) {
 
-		WebElement title = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", titleMedatata);
+		WebElement title = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", titleMedatata);
 		// driverManager.getDriver().findElement(By.cssSelector(titleMedatata));
 		title.clear();
 		title.sendKeys(strTitle);
@@ -1155,8 +1137,8 @@ public class DashboardPage {
 	// Click on duplicate button of the menu
 	public void duplicateButton() {
 
-		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", previewDuplicate);
+		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				previewDuplicate);
 		// driverManager.getDriver().findElement(By.xpath(previewDuplicate));
 		duplicateOption.click();
 	}
@@ -1169,8 +1151,8 @@ public class DashboardPage {
 	// Set the new name duplicated
 	public void duplicateName(String strDuplicateName) {
 
-		WebElement duplicateName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", this.duplicateName);
+		WebElement duplicateName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				this.duplicateName);
 		// driverManager.getDriver().findElement(By.xpath(this.duplicateName));
 		duplicateName.clear();
 		duplicateName.sendKeys(strDuplicateName);
@@ -1228,8 +1210,8 @@ public class DashboardPage {
 	}
 
 	public void setArticlesTitle(String strArticlesTitle) {
-		WebElement articlesTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", articlesTitleLocator);
+		WebElement articlesTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				articlesTitleLocator);
 		// driver.findElement(By.xpath(articlesTitleLocator));
 		articlesTitle.clear();
 		articlesTitle.sendKeys(strArticlesTitle);
@@ -1237,16 +1219,15 @@ public class DashboardPage {
 
 	public void selectFirstCategoryOfPagArticle() {
 
-		Select categoriesDropDown = new Select(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", categoriesLocator));
+		Select categoriesDropDown = new Select(
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", categoriesLocator));
 		// driver.findElement(By.xpath(categoriesLocator)));
 		categoriesDropDown.selectByValue("style");
 	}
 
 	public void selectAllTreeOnSelector(String folderXPath) {
 
-		WebElement checkAllTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", folderXPath);
+		WebElement checkAllTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", folderXPath);
 		// driver.findElement(By.xpath(folderXPath));
 		if (!checkAllTree.getAttribute("checked").equals("true"))
 			checkAllTree.click();
@@ -1254,16 +1235,15 @@ public class DashboardPage {
 
 	public void clicOnHomeTree() {
 
-		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", homeTreeLocator);
+		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeTreeLocator);
 		// driverManager.getDriver().findElement(By.xpath(homeTreeLocator));
 		homeTree.click();
 	}
 
 	public void clickOnContextualNavigationEditOption() {
 
-		WebElement contextualNavigationEdit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "xpath", contextualNavigationEditLocator);
+		WebElement contextualNavigationEdit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				contextualNavigationEditLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(contextualNavigationEditLocator));
 		contextualNavigationEdit.click();
@@ -1271,8 +1251,8 @@ public class DashboardPage {
 
 	public void clickOnContextualNavigationHistoryOption() {
 
-		WebElement contextualNavigationHistory = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "xpath", contextualNavigationHistoryLocator);
+		WebElement contextualNavigationHistory = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				contextualNavigationHistoryLocator);
 		// driverManager.getDriver()
 		// .findElement(By.xpath(contextualNavigationHistoryLocator));
 		contextualNavigationHistory.click();
@@ -1280,32 +1260,32 @@ public class DashboardPage {
 
 	public void clickCompareButton() {
 
-		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", compareButtonLocator);
+		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				compareButtonLocator);
 		// driver.findElement(By.id(compareButtonLocator));
 		compareButton.click();
 	}
 
 	public void clickCloseButton() {
 
-		WebElement closeButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", closeButtonLocator);
+		WebElement closeButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				closeButtonLocator);
 		// driver.findElement(By.id(closeButtonLocator));
 		closeButton.click();
 	}
 
 	public void clickHistoryCloseButton() {
 
-		WebElement historyCloseButton = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", historyCloseButtonLocator);
+		WebElement historyCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				historyCloseButtonLocator);
 		// driver.findElement(By.id(historyCloseButtonLocator));
 		historyCloseButton.click();
 	}
 
 	public void clickOnPublishOption() {
 
-		WebElement publishOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", publishOptionLocator);
+		WebElement publishOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				publishOptionLocator);
 		// driverManager.getDriver().findElement(By.cssSelector(publishOptionLocator));
 		publishOption.click();
 	}
@@ -1316,15 +1296,15 @@ public class DashboardPage {
 
 	public void clickApproveAndPublishSubmitButton() {
 
-		WebElement submitButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", approveAndPublishPublishButtonLocator);
+		WebElement submitButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				approveAndPublishPublishButtonLocator);
 		// driver.findElement(By.id(approveAndPublishPublishButtonLocator));
 		submitButton.click();
 	}
 
 	public void clickDeleteDeleteSubmitButton() {
-		WebElement deleteButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", deleteDeletButtonLocator);
+		WebElement deleteButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				deleteDeletButtonLocator);
 		// driver.findElement(By.id(deleteDeletButtonLocator));
 		deleteButton.click();
 		this.acceptDeletionAction();
@@ -1337,8 +1317,8 @@ public class DashboardPage {
 		// wait for element
 
 		// Click on Publish button
-		WebElement okButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", deleteOKButtonLocator);
+		WebElement okButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				deleteOKButtonLocator);
 		// driver.findElement(By.xpath(deleteOKButtonLocator));
 		okButton.click();
 	}
@@ -1347,8 +1327,8 @@ public class DashboardPage {
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", copyOptionLocator);
+		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				copyOptionLocator);
 		// driverManager.getDriver().findElement(By.cssSelector(copyOptionLocator));
 		copyOption.click();
 	}
@@ -1357,8 +1337,8 @@ public class DashboardPage {
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		WebElement pasteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", pasteOptionLocator);
+		WebElement pasteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				pasteOptionLocator);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteOptionLocator));
 		pasteOption.click();
 	}
@@ -1367,8 +1347,8 @@ public class DashboardPage {
 		//
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		WebElement cutOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", cutOptionLocator);
+		WebElement cutOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				cutOptionLocator);
 		// driverManager.getDriver().findElement(By.cssSelector(cutOptionLocator));
 		cutOption.click();
 	}
@@ -1376,8 +1356,8 @@ public class DashboardPage {
 	public void rightClickDeleteAFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", deleteOptionLocator);
+		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				deleteOptionLocator);
 		// driverManager.getDriver().findElement(By.cssSelector(deleteOptionLocator));
 		deleteOption.click();
 	}
@@ -1385,8 +1365,8 @@ public class DashboardPage {
 	public void rightClickDeleteAPage(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", deleteOption2Locator);
+		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				deleteOption2Locator);
 		// driverManager.getDriver().findElement(By.xpath(deleteOption2Locator));
 		deleteOption.click();
 	}
@@ -1400,8 +1380,8 @@ public class DashboardPage {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", cSSSelector));
+		driverManager.getDriver().switchTo()
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", cSSSelector));
 		// driverManager.getDriver().findElement(By.cssSelector(cSSSelector)));
 	}
 
@@ -1409,8 +1389,8 @@ public class DashboardPage {
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement);
 
-		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", copyOptionLocatorForContentPage);
+		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				copyOptionLocatorForContentPage);
 		// driverManager.getDriver().findElement(By.xpath(copyOptionLocatorForContentPage));
 		copyOption.click();
 	}
@@ -1419,8 +1399,8 @@ public class DashboardPage {
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement);
 
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", addNewContentOption3);
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				addNewContentOption3);
 		// driverManager.getDriver().findElement(By.xpath(addNewContentOption3));
 		addContent.click();
 	}
@@ -1429,8 +1409,8 @@ public class DashboardPage {
 
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement);
 
-		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", editOption);
+		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				editOption);
 		editContent.click();
 	}
 }
