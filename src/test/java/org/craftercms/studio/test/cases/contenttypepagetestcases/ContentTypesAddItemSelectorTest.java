@@ -132,6 +132,8 @@ public class ContentTypesAddItemSelectorTest {
 		siteConfigPage.clickItemSelectorSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerItemSelectorTitleLocator);
+		
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerItemSelectorTitleLocator)
 				.getText();

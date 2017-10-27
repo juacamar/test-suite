@@ -131,6 +131,8 @@ public class ContentTypesAddAutoFileNameTest {
 		siteConfigPage.clickAutoFileNameSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerAutoFileNameTitleLocator);
+		
 		String titleText =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerAutoFileNameTitleLocator).getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));

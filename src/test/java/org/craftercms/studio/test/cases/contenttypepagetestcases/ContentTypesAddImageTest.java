@@ -132,6 +132,8 @@ public class ContentTypesAddImageTest {
 		siteConfigPage.clickImageSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerImageTitleLocator);
+		
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerImageTitleLocator)
 				.getText();

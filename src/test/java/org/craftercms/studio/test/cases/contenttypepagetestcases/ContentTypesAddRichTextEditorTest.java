@@ -129,6 +129,8 @@ public class ContentTypesAddRichTextEditorTest {
 		siteConfigPage.clickRTESection();
 		
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerRTETitleLocator);
+		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",contentTypeContainerRTETitleLocator)
 				.getText();
 

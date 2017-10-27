@@ -72,7 +72,7 @@ public class UsersPage {
 
 	public void clickNewUserButton() {
 		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", newUserOption);
+				"xpath", newUserOption);
 		newUserButton.click();
 
 	}

@@ -121,6 +121,8 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		siteConfigPage.clickDataSourceImageUploadedFromCMISRepositorySection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator);
+		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator).getText();
 
