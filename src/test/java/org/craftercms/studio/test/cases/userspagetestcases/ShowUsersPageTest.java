@@ -30,14 +30,14 @@ public class ShowUsersPageTest {
 	private UsersPage usersPage;
 	private DashboardPage dashboardPage;
 	private APIConnectionManager apiConnectionManager;
-
+	private UIElementsPropertiesManager uIElementsPropertiesManager;
 	private String userName;
 	private String password;
 	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
@@ -70,8 +70,9 @@ public class ShowUsersPageTest {
 		// Click on the Users Contextual Navigation Option
 		homePage.clickUsersContextualNavigationOption();
 
-	
-		// Checking if the UsersPage was Loaded
+	    this.driverManager.isElementPresentAndClickableByXpath(uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user"));
+		
+	    // Checking if the UsersPage was Loaded
 		Assert.assertTrue(usersPage.getDriverManager().getDriver().getCurrentUrl()
 				.equals(apiConnectionManager.getHeaderLocationBase()+"/studio/#/users"));
 

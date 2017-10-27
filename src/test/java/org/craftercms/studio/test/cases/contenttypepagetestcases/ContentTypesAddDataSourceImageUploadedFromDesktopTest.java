@@ -123,6 +123,8 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		siteConfigPage.clickDataSourceImageUploadedFromDesktopSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerImageUploadedFromDesktopTitleLocator);
+		
 		String titleText =this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 						contentTypeContainerImageUploadedFromDesktopTitleLocator).getText();

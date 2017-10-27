@@ -133,6 +133,8 @@ public class ContentTypesAddDateTimeTest {
 		siteConfigPage.clickDateTimeSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerDateTimeTitleLocator);
+		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerDateTimeTitleLocator).getText();
 

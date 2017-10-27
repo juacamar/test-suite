@@ -131,6 +131,8 @@ public class ContentTypesAddCheckBoxTest {
 		siteConfigPage.clickCheckBoxSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerCheckBoxTitleLocator);
+		
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerCheckBoxTitleLocator)
 				.getText();

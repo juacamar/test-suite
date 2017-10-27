@@ -118,6 +118,8 @@ public class ContentTypesAddDataSourceChildContentTest {
 		siteConfigPage.clickDataSourceChildContentSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerChildContentTitleLocator);
+		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerChildContentTitleLocator).getText();
 

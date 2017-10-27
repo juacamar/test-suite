@@ -135,10 +135,9 @@ public class EditUserTest {
 		editingUser();
 
 		// Assert
-
 		String nameElementText = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-						"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(2)")
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+						".//*[@id='container']/div/div/div/div/div/table/tbody/tr[2]/td[2]")
 				.getText();
 
 		Assert.assertEquals(nameElementText, "Test");
@@ -147,7 +146,7 @@ public class EditUserTest {
 		driverManager.getDriver().navigate().refresh();
 		usersPage.clickOnDeleteUserCreated();
 
-		// Confirmation to delete user connected
+		// Confirmation to delete the user
 		this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")

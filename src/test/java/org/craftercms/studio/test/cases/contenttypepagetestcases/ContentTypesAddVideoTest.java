@@ -136,6 +136,8 @@ public class ContentTypesAddVideoTest {
 		siteConfigPage.clickVideoSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerVideoTitleLocator);
+		
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerVideoTitleLocator).getText();
 

@@ -134,6 +134,8 @@ public class ContentTypesAddLabelTest {
 		siteConfigPage.clickLabelSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerLabelTitleLocator);
+		
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerLabelTitleLocator)
 				.getText();

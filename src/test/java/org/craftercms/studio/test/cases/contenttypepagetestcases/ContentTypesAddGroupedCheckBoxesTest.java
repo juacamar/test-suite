@@ -135,6 +135,8 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		siteConfigPage.clickGroupedCheckBoxSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerGroupedCheckBoxesTitleLocator);
+		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerGroupedCheckBoxesTitleLocator).getText();
 

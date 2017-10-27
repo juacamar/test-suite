@@ -139,6 +139,8 @@ public class ContentTypesAddPageOrderTest {
 		siteConfigPage.clickPageOrderSection();
 
 		// Asserts that fields are not empty.
+		this.driverManager.isElementPresentByXpath(contentTypeContainerPageOrderTitleLocator);
+		
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerPageOrderTitleLocator)
 				.getText();

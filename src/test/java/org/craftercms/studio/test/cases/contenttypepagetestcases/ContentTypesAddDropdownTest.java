@@ -25,10 +25,10 @@ public class ContentTypesAddDropdownTest {
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private SiteConfigPage siteConfigPage;
-	
+
 	private String userName;
 	private String password;
-	
+
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionDropdownLocator;
@@ -42,17 +42,16 @@ public class ContentTypesAddDropdownTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		
+
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
+
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -75,21 +74,21 @@ public class ContentTypesAddDropdownTest {
 
 		// Getting the Form Section control input for drag and drop action
 		WebElement FromControlSectionFormSectionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", controlsSectionFormSectionLocator);
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", controlsSectionFormSectionLocator);
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				contentTypeContainerLocator);
 
 		driverManager.dragAndDropElement(FromControlSectionFormSectionElement, ToContentTypeContainer);
 
-		WebElement FromDropDown = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement FromDropDown = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				controlsSectionDropdownLocator);
 
-		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				contentTypeContainerFormSectionContainerLocator);
-		
+
 		siteConfigPage.getDriverManager().dragAndDropElement(FromDropDown, ToDefaultSection);
 
 		// Complete the input fields basics
@@ -104,18 +103,17 @@ public class ContentTypesAddDropdownTest {
 	public void contentTypeAddDropdownTest() {
 
 		// login to application
-		loginPage.loginToCrafter(
-				userName,password);
+		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
 		homePage.goToPreviewPage();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
-		
+
 		// Show admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='admin-console']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//a[@id='admin-console']").click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -133,7 +131,10 @@ public class ContentTypesAddDropdownTest {
 		siteConfigPage.clickDropdownSection();
 
 		// Asserts that fields are not empty.
-		String titleText = 	this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerDropdownTitleLocator).getText();
+		this.driverManager.isElementPresentByXpath(contentTypeContainerDropdownTitleLocator);
+		String titleText = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", contentTypeContainerDropdownTitleLocator)
+				.getText();
 
 		Assert.assertTrue(titleText.contains("TestTitle"));
 

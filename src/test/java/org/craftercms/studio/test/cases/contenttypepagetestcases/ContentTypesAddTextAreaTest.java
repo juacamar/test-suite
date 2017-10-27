@@ -130,9 +130,11 @@ public class ContentTypesAddTextAreaTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		siteConfigPage.clickRepeatingGroupSection();
+		siteConfigPage.clickTextAreaSection();
 
 		// Asserts that fields are not empty.
+				this.driverManager.isElementPresentByXpath(contentTypeContainerTextAreaTitleLocator);
+				
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerTextAreaTitleLocator)
 				.getText();

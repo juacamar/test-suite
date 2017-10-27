@@ -57,7 +57,8 @@ public class HomePage {
 	// Click on preview link
 
 	public void clickPreviewOption() {
-		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		this.driverManager.isElementPresentAndClickableByXpath(previewSite1);
+		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
 				previewSite1);
 		previewLink.click();
 
@@ -74,10 +75,9 @@ public class HomePage {
 	// Click on dashboard link
 
 	public void clickDashboardOption() {
-		
-		WebElement dashboardLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.isElementPresentAndClickableByXpath(dashboardSite2);
+		WebElement dashboardLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
 				dashboardSite2);
-				//driver.findElement(By.cssSelector(dashboardSite2));
 		dashboardLink.click();
 
 	}
@@ -166,7 +166,7 @@ public class HomePage {
 
 		public void clickDeleteSiteIcon() {
         this.driverManager.isElementPresentAndClickableByXpath(deleteSiteIcon);
-        WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+        WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
                 deleteSiteIcon);
         deleteIcon.click();
 
