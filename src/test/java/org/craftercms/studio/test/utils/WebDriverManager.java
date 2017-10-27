@@ -264,7 +264,6 @@ public class WebDriverManager {
 			@SuppressWarnings("unused")
 			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 					xpathOfTheElement);
-			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -297,6 +296,22 @@ public class WebDriverManager {
 		try {
 			@SuppressWarnings("unused")
 			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed("id", id);
+			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
+		} catch (NoSuchElementException e) {
+			isElementPresent = false;
+		} catch (Exception e) {
+			isElementPresent = false;
+		}
+
+		return isElementPresent;
+	}
+	
+	public boolean isElementPresentAndClickableByName(String name) {
+		boolean isElementPresent = true;
+
+		try {
+			@SuppressWarnings("unused")
+			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayedAndClickable("name", name);
 			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;

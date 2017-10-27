@@ -94,7 +94,6 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 					"Site creation process is taking too long time and the element was not found");
 
 		// Assert
-
 		String headStatusClass = this.driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)")).getAttribute("class");
 		Assert.assertTrue(headStatusClass.contains("live"));
 
