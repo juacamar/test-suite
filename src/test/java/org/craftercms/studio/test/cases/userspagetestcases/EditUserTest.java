@@ -139,7 +139,7 @@ public class EditUserTest {
 		this.driverManager.isElementPresentByXpath(".//*[@id='container']/div/div/div/div/div/table/tbody/tr[2]/td[2]");
 		String nameElementText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-						".//*[@id='container']/div/div/div/div/div/table/tbody/tr[2]/td[2]")
+						"(//TD[@class='ng-binding'][text()='Test'][text()='Test'])[1]")
 				.getText();
 
 		Assert.assertEquals(nameElementText, "Test");

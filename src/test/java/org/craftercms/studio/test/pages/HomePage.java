@@ -148,7 +148,7 @@ public class HomePage {
 	public void clickCreateSiteButton() {
 		
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
-		WebElement createSiteOption =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement createSiteOption =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				createSiteButton);
 		createSiteOption.click();
 
