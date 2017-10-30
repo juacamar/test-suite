@@ -25,23 +25,23 @@ public class EditUserTest {
 	private LoginPage loginPage;
 	private CreateSitePage createSitePage;
 	private UsersPage usersPage;
-
+	private UIElementsPropertiesManager UIElementsPropertiesManager;
 	private String userName;
 	private String password;
 	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 	
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, UIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -111,6 +111,7 @@ public class EditUserTest {
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
+		this.driverManager.isElementPresentAndClickableByXpath(UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user"));
 
 	}
 
@@ -135,6 +136,7 @@ public class EditUserTest {
 		editingUser();
 
 		// Assert
+		this.driverManager.isElementPresentByXpath(".//*[@id='container']/div/div/div/div/div/table/tbody/tr[2]/td[2]");
 		String nameElementText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 						"(//TD[@class='ng-binding'][text()='Test'][text()='Test'])[1]")
