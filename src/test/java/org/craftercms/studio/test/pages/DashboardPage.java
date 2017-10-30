@@ -620,7 +620,7 @@ public class DashboardPage {
 		// driverManager.getDriver().findElement(By.cssSelector(newFolderCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				pasteContent2);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
 		pasteContent.click();
@@ -766,12 +766,10 @@ public class DashboardPage {
 
 		WebElement copyComponent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				crafterComponent);
-		// driverManager.getDriver().findElement(By.xpath(crafterComponent));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyComponent);
 
 		WebElement copyComponentToNewFolder = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", copyContent1);
-		// driverManager.getDriver().findElement(By.cssSelector(copyContent1));
 		copyComponentToNewFolder.click();
 	}
 
@@ -785,12 +783,10 @@ public class DashboardPage {
 
 		WebElement copyNewContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newContentCreated);
-		// driverManager.getDriver().findElement(By.cssSelector(newContentCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyNewContent);
 
 		WebElement copyNewContentToNewFolder = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", copyContent3);
-		// driverManager.getDriver().findElement(By.cssSelector(copyContent3));
 		copyNewContentToNewFolder.click();
 	}
 
@@ -804,12 +800,10 @@ public class DashboardPage {
 
 		WebElement pasteAllContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				folderCreated);
-		// driverManager.getDriver().findElement(By.cssSelector(folderCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteAllContent);
 
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				pasteContent2);
-		// driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
 		pasteContent.click();
 	}
 
@@ -822,7 +816,6 @@ public class DashboardPage {
 	public void copyButton() {
 
 		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", copyContentButton);
-		// driverManager.getDriver().findElement(By.id(copyContentButton));
 		buttonCopy.click();
 	}
 
