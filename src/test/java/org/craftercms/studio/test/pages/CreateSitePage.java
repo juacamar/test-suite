@@ -282,8 +282,8 @@ public class CreateSitePage {
 	// Press on help option
 
 	public void clickHelp() {
-		
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.isElementPresentAndClickableById(helpOption);
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
 				helpOption);
 				//driver.findElement(By.cssSelector(helpOption));
 		users.click();
