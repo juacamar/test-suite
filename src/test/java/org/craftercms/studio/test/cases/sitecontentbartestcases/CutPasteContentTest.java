@@ -170,7 +170,7 @@ public class CutPasteContentTest {
 		
 		// Right click and paste content.
 
-		dashboardPage.rightClickToPasteOption2();
+		dashboardPage.rightClickToPasteIntoFolder();
 
 		// reload page
 

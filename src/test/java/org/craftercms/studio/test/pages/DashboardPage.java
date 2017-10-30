@@ -357,12 +357,12 @@ public class DashboardPage {
 
 	// Press right click select new folder
 	public void rightClickNewFolderOnHome() {
-		WebElement newFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
-		// driverManager.getDriver().findElement(By.xpath(homeContent));
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), newFolder);
+		this.driverManager.isElementPresentAndClickableByXpath(homeContent);
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				homeContent);
+		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home);
 
 		WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewFolder);
-		// driverManager.getDriver().findElement(By.xpath(addNewFolder));
 		addFolder.click();
 	}
 
@@ -614,22 +614,22 @@ public class DashboardPage {
 	}
 
 	// Press right click and press paste option
-	public void rightClickPasteOptionTwo() {
-
-		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+	public void rightClickToPasteIntoFolderToTest() {
+		this.driverManager.isElementPresentAndClickableByXpath(newFolderCreated);
+		WebElement newFolderElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newFolderCreated);
-		// driverManager.getDriver().findElement(By.cssSelector(newFolderCreated));
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent);
 
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), newFolderElement);
+
+		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				pasteContent2);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
 		pasteContent.click();
 	}
 
-	public void rightClickToPasteOption2() {
+	public void rightClickToPasteIntoFolder() {
 		// Press right click and press paste option
-		this.rightClickPasteOptionTwo();
+		this.rightClickToPasteIntoFolderToTest();
 	}
 
 	// edit content copied
@@ -708,14 +708,13 @@ public class DashboardPage {
 
 	// Press right click and press cut option
 	public void rightClickCutOption() {
-
+		this.driverManager.isElementPresentAndClickableByName(contentCreatedToCut);
 		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				contentCreatedToCut);
 		// driverManager.getDriver().findElement(By.cssSelector(contentCreatedToCut));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), cutpasteContent);
 
-		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				cutContent1);
+		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", cutContent1);
 		// driverManager.getDriver().findElement(By.cssSelector(cutContent1));
 		cutContent.click();
 	}
@@ -802,13 +801,13 @@ public class DashboardPage {
 
 	// Press right click and press paste option to the new folder
 	public void rightClickPaste() {
-
+		this.driverManager.isElementPresentAndClickableByXpath(folderCreated);
 		WebElement pasteAllContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				folderCreated);
 		// driverManager.getDriver().findElement(By.cssSelector(folderCreated));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteAllContent);
 
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				pasteContent2);
 		// driverManager.getDriver().findElement(By.cssSelector(pasteContent2));
 		pasteContent.click();
