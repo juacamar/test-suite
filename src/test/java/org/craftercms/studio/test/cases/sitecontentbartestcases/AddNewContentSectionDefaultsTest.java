@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.sitecontentbartestcases;
 
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -19,7 +18,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class AddNewContentSectionDfaultsTest {
+public class AddNewContentSectionDefaultsTest {
 
 	private WebDriverManager driverManager;
 
@@ -57,19 +56,15 @@ public class AddNewContentSectionDfaultsTest {
 	}
 
 	public void createLevelDescriptorContent() {
+		
+		// right click to see the the menu
+
+		dashboardPage.rightClickToSeeMenu();
+		
 		// create a content with level descriptor content type
 		// right click to see the the menu
 
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				".//span[text()='Home']");
-
-		this.driverManager.contextClick(this.driverManager.getDriver(), home);
-
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#ContextmenuWrapper0  ul li:nth-child(3)");
-		
-
-		addContent.click();
+		dashboardPage.selectLDCT(); 
 
 		// Select Entry Content Type
 		dashboardPage.clickLevelDescriptorCT();

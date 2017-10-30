@@ -66,9 +66,10 @@ public class CreateSiteEmptyTest {
 		// login to application
 		loginPage.loginToCrafter(
 				userName,password);
+		
+		this.driverManager.isElementPresentAndClickableByXpath(".//span[text()='Create Site']/..");
 
 		// Click on the create site button
-
 		homePage.clickOnCreateSiteButton();
 
 		// Filling the name of site
