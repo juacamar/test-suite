@@ -107,6 +107,7 @@ public class DuplicateOptionTest {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				 "cssSelector", ".studio-ice-dialog > .bd iframe"));
+		this.driverManager.isElementPresentBycssSelector( ".studio-ice-dialog > .bd iframe");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", "#internal-name > div > input").clear();
