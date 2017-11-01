@@ -19,6 +19,7 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 public class WebDriverManager {
@@ -372,8 +373,8 @@ public class WebDriverManager {
 		return isElementPresent;
 	}
 
-	public void contextClick(WebDriver driver, WebElement element) {
-		if (driver instanceof PhantomJSDriver) {
+	public void contextClick(WebDriver driver, WebElement element, Boolean executeThroughJavaScript) {
+		if (executeThroughJavaScript) {
 			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
 					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
 			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
@@ -383,11 +384,11 @@ public class WebDriverManager {
 	}
 
 	public void scrollUp() {
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-500)", "");
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
 	}
 
 	public void scrollDown() {
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)", "");
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,2000)");
 	}
 
 	public ConstantsPropertiesManager getConstantsPropertiesManager() {
@@ -398,5 +399,25 @@ public class WebDriverManager {
 		this.constantsPropertiesManager = constantsPropertiesManager;
 	}
 	
+	public boolean elementHasChildsByXPath(String childsLocator) {
+		boolean hasChilds = false;
+		List<WebElement> childs = this.driver.findElements(By.xpath(childsLocator));
+        
+        if(!(childs.isEmpty()))
+		hasChilds=true;
+        
+		return hasChilds;
+	}
+	
+	public void moveMouseToElement(WebElement toElement) {
+		// Creating an actions builder
+		Actions builder = new Actions(this.getDriver());
+		// Creating the action for click and hold from the origin web element
+		Action dragAndDrop = builder.moveToElement(toElement)
+				.build();
+
+		// commit the actions above
+		dragAndDrop.perform();
+	}
 	
 }
