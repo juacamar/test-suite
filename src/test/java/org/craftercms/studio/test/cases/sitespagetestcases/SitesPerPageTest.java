@@ -25,11 +25,10 @@ public class SitesPerPageTest {
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private HomePage homePage;
-	
+
 	private String userName;
 	private String password;
 
-	
 	private CreateSitePage createSitePage;
 
 	@BeforeClass
@@ -39,20 +38,42 @@ public class SitesPerPageTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+
+		// login to application
+		loginPage.loginToCrafter(userName, password);
+
+		// Create site 1
+		createSitesRandom();
+
+		// Create site 2
+		createSitesRandom();
+
+		// Create site 3
+		createSitesRandom();
 
 	}
 
 	@AfterClass
 	public void afterTest() {
+
+		// Delete Created site 1
+		deleteSite();
+
+		// Delete Created site 2
+		deleteSite();
+
+		// Delete Created site 3
+		deleteSite();
+
 		driverManager.closeConnection();
 	}
 
@@ -88,65 +109,66 @@ public class SitesPerPageTest {
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
 		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", sitesNavOptionElementCssSelector)
+			this.driverManager
+					.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
-		
+
 		driverManager.getDriver().navigate().refresh();
 	}
 
 	public void filters() {
 
 		// Show 8 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
-	
+
 		// Assert only 8 sites displayed
 
-		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(1) > td.name.ng-binding");
 
 		Assert.assertTrue(page1.isDisplayed());
 
 		// Show 5 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
 
 		// Asser only 5 sites displayed
 
-		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(2) > td.name.ng-binding");
 
 		Assert.assertTrue(page2.isDisplayed());
-		
+
 		// Show 1 site
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
-	
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("3");
-	
+
 		// Asser only 1 site displayed
 
-		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) > td.name.ng-binding");
 
 		Assert.assertTrue(page3.isDisplayed());
 
 		// Show 11 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
 	}
 
@@ -159,9 +181,8 @@ public class SitesPerPageTest {
 		// Click on YES to confirm the delete.
 
 		homePage.clickOnYesToDeleteSite();
-		
-		
-		//Refresh teh site
+
+		// Refresh teh site
 		driverManager.getDriver().navigate().refresh();
 
 	}
@@ -170,36 +191,8 @@ public class SitesPerPageTest {
 
 	public void sitesPerPage() {
 
-		// login to application
-		loginPage.loginToCrafter(
-				userName,password);
-
-		// Create user 1
-		createSitesRandom();
-
-		// Create user 2
-
-		createSitesRandom();
-
-		// Create user 3
-
-		createSitesRandom();
-
 		// filters
-
 		filters();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
-
-		// Delete sites
-
-		deleteSite();
 
 	}
 }

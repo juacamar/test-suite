@@ -25,10 +25,9 @@ public class ShowAboutUsTest {
 	private LoginPage loginPage;
 
 	private CreateSitePage createSitePage;
-	
+
 	private String userName;
 	private String password;
-
 
 	@BeforeClass
 	public void beforeTest() {
@@ -37,12 +36,12 @@ public class ShowAboutUsTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, UIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
@@ -67,13 +66,9 @@ public class ShowAboutUsTest {
 		// select the about us option
 		createSitePage.clickOnAboutOption();
 
-
 		// Assert new users created is present
 		WebElement aboutUsInfo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div:nth-child(2) > div");
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#container > div > div > div:nth-child(2) >
-		// div"));
 
 		Assert.assertTrue(aboutUsInfo.isDisplayed());
 

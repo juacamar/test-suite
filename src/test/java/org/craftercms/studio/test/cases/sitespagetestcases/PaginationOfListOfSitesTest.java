@@ -23,10 +23,10 @@ public class PaginationOfListOfSitesTest {
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private HomePage homePage;
-	
+
 	private String userName;
 	private String password;
-	
+
 	private CreateSitePage createSitePage;
 
 	@BeforeClass
@@ -36,20 +36,34 @@ public class PaginationOfListOfSitesTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
+		loginPage.loginToCrafter(userName, password);
+		// Create Site 1
+		createSitesRandom();
+		// Create Site 2
+		createSitesRandom();
+		// Create Site 3
+		createSitesRandom();
 	}
 
 	@AfterClass
 	public void afterTest() {
+
+		// Delete Site 1
+		deleteSite();
+		// Delete Site 2
+		deleteSite();
+		// Delete Site 3
+		deleteSite();
 		driverManager.closeConnection();
 	}
 
@@ -83,7 +97,8 @@ public class PaginationOfListOfSitesTest {
 		String sitesNavOptionElementCssSelector = "#sitesRightNav";
 
 		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", sitesNavOptionElementCssSelector)
+			this.driverManager
+					.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", sitesNavOptionElementCssSelector)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -92,43 +107,43 @@ public class PaginationOfListOfSitesTest {
 
 	public void navigationOfPage() {
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
 
 		// navigation
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(3) > a")
 				.click();
-		
+
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(2) > a")
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul >li:nth-child(4) > a")
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a")
 				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
 	}
 
@@ -142,40 +157,14 @@ public class PaginationOfListOfSitesTest {
 
 		homePage.clickOnYesToDeleteSite();
 		driverManager.getDriver().navigate().refresh();
-		
+
 	}
 
 	@Test(priority = 0)
 
 	public void paginationOfTheListOfSites() {
 
-		// login to application
-		loginPage.loginToCrafter(
-				userName,password);
-
-		// Create user 1
-
-		createSitesRandom();
-
-		// Create user 2
-
-		createSitesRandom();
-
-		// Create user 3
-
-		createSitesRandom();
-
-		// filters
-
 		navigationOfPage();
-
-		// Delete sites
-
-		deleteSite();
-
-		deleteSite();
-		
-		deleteSite();
 
 	}
 
