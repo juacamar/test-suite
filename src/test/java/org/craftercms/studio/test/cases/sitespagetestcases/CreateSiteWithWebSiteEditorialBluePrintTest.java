@@ -27,10 +27,9 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private CreateSitePage createSitePage;
-	
+
 	private String userName;
 	private String password;
-	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -39,13 +38,13 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(this.driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(this.driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(this.driverManager, uIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
@@ -85,10 +84,16 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		createSitePage.clickOnCreateSiteButton();
 
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
-
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
+				"xpath", siteDropdownElementXPath);
+		
 		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownElementXPath)
+		{
+			
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( 
+					"xpath", siteDropdownElementXPath)
 					.click();
+		}
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");

@@ -52,6 +52,8 @@ public class DuplicateOptionTest {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		
+		
+		
 	}
 
 	@AfterClass
@@ -142,7 +144,7 @@ public class DuplicateOptionTest {
 		changeBodyToNotRequiredOnEntryContent();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
 				"cssSelector", "#cstudio-logo").click();
 		
 		// expand pages folder

@@ -221,12 +221,15 @@ public class RenameParentPageAndPublishChildTest {
 		this.childPage2Locator = this.childPage1Locator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage2Name + "')]";
 
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator).click();
+
 		this.publishElement(childPage2, childPage2Name);
 
 		this.verifyPublishedItemsOnDashboard();
 
-		dashboardPage.rightClickDeleteAPage(parentPage);
-		this.confirmDeleteAction();
+		// dashboardPage.rightClickDeleteAPage(parentPage);
+		// this.confirmDeleteAction();
 
 	}
 
@@ -236,6 +239,14 @@ public class RenameParentPageAndPublishChildTest {
 				+ "/div/span/span[contains(@class,'never-published')]";
 		String iconNeverPublishedForChild1Page = this.childPage1Locator
 				+ "/div/span/span[contains(@class,'never-published')]";
+
+		while (this.driverManager.isElementPresentByXpath(iconNeverPublishedForParentPage)) {
+			driverManager.getDriver().navigate().refresh();
+		}
+		while (this.driverManager.isElementPresentByXpath(iconNeverPublishedForChild1Page)) {
+			driverManager.getDriver().navigate().refresh();
+		}
+
 		Assert.assertFalse(this.driverManager.isElementPresentByXpath(iconNeverPublishedForParentPage));
 		Assert.assertFalse(this.driverManager.isElementPresentByXpath(iconNeverPublishedForChild1Page));
 

@@ -1210,7 +1210,7 @@ public class DashboardPage {
 
 	public void clickCompareButton() {
 		this.driverManager.isElementPresentAndClickableById(compareButtonLocator);
-		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				compareButtonLocator);
 		compareButton.click();
 	}
@@ -1240,6 +1240,10 @@ public class DashboardPage {
 
 	public void rightClickOnAContentPage(WebElement element) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), element, false);
+	}
+
+	public void rightClickOnAContentPageByJavascript(WebElement element) {
+		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), element, true);
 	}
 
 	public void clickApproveAndPublishSubmitButton() {
