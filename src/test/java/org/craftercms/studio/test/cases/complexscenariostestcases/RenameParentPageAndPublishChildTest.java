@@ -6,6 +6,9 @@ package org.craftercms.studio.test.cases.complexscenariostestcases;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import javafx.scene.Parent;
+
 import org.testng.Assert;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -14,6 +17,7 @@ import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
@@ -221,12 +225,15 @@ public class RenameParentPageAndPublishChildTest {
 		this.childPage2Locator = this.childPage1Locator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage2Name + "')]";
 
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator).click();
+
 		this.publishElement(childPage2, childPage2Name);
 
 		this.verifyPublishedItemsOnDashboard();
 
-		dashboardPage.rightClickDeleteAPage(parentPage);
-		this.confirmDeleteAction();
+		// dashboardPage.rightClickDeleteAPage(parentPage);
+		// this.confirmDeleteAction();
 
 	}
 
@@ -236,6 +243,14 @@ public class RenameParentPageAndPublishChildTest {
 				+ "/div/span/span[contains(@class,'never-published')]";
 		String iconNeverPublishedForChild1Page = this.childPage1Locator
 				+ "/div/span/span[contains(@class,'never-published')]";
+
+		while (this.driverManager.isElementPresentByXpath(iconNeverPublishedForParentPage)) {
+			driverManager.getDriver().navigate().refresh();
+		}
+		while (this.driverManager.isElementPresentByXpath(iconNeverPublishedForChild1Page)) {
+			driverManager.getDriver().navigate().refresh();
+		}
+
 		Assert.assertFalse(this.driverManager.isElementPresentByXpath(iconNeverPublishedForParentPage));
 		Assert.assertFalse(this.driverManager.isElementPresentByXpath(iconNeverPublishedForChild1Page));
 
