@@ -84,6 +84,8 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		createSitePage.clickOnCreateSiteButton();
 
 		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
+		
+		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
 				"xpath", siteDropdownElementXPath);
 		

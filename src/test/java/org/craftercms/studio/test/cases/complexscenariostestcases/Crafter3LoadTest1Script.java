@@ -511,6 +511,7 @@ public class Crafter3LoadTest1Script {
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
+		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", bigTree1FolderLocator)
 				.click();
 		dashboardPage.rightClickCopyFolder(bigTree1Folder);
