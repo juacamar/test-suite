@@ -33,6 +33,7 @@ public class ShowUsersPageTest {
 	private UIElementsPropertiesManager uIElementsPropertiesManager;
 	private String userName;
 	private String password;
+	private String newUserXpath;
 	
 	@BeforeClass
 	public void beforeTest() {
@@ -51,6 +52,7 @@ public class ShowUsersPageTest {
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
+		newUserXpath = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user");
 		apiConnectionManager = new APIConnectionManager();
 	}
 
@@ -70,7 +72,7 @@ public class ShowUsersPageTest {
 		// Click on the Users Contextual Navigation Option
 		homePage.clickUsersContextualNavigationOption();
 
-	    this.driverManager.isElementPresentAndClickableByXpath(uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user"));
+	    this.driverManager.isElementPresentAndClickableByXpath(newUserXpath);
 		
 	    // Checking if the UsersPage was Loaded
 		Assert.assertTrue(usersPage.getDriverManager().getDriver().getCurrentUrl()

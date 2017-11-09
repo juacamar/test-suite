@@ -187,7 +187,6 @@ public class HomePage {
 		this.driverManager.isElementPresentAndClickableBycssSelector(yesDeleteButton);
 		WebElement yesButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				yesDeleteButton);
-				//driver.findElement(By.cssSelector(yesDeleteButton));
 		yesButton.click();
 
 	}

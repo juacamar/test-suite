@@ -303,7 +303,7 @@ public class Crafter3LoadTest1Script {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		this.driverManager.isElementPresentAndClickableByXpath(homeElementXPath);
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
+		this.driverManager.isElementPresentAndClickableByXpath(homeElementXPath);
 
 	}
 

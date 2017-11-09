@@ -1,10 +1,14 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.List;
+
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.UsersPage;
@@ -25,27 +29,57 @@ public class EditUserTest {
 	private LoginPage loginPage;
 	private CreateSitePage createSitePage;
 	private UsersPage usersPage;
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
 	private String userName;
 	private String password;
-	
+	private String newUserLastNameId;
+	private String newUserEmailId;
+	private String newUserFirstNameId;
+	private String newUserUserNameId;
+	private String newUserPasswordId;
+	private String newUserPasswordVerificationId;
+	private String newUserButtonXpath;
+	private String newUserNewPasswordId;
+	private String newUserLastNameCellXpath;
+	private String deleteYesButtonXpath;
+	private String usersRowsXpath;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager = new UIElementsPropertiesManager(
+		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, UIElementsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, UIElementsPropertiesManager);
+
+		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
+		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		newUserFirstNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.firstname");
+		newUserLastNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.lastname");
+		newUserEmailId = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.users.email");
+		newUserUserNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.username");
+		newUserPasswordId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.password");
+		newUserPasswordVerificationId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.passwordVerification");
+		newUserButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.newuserbutton");
+		newUserNewPasswordId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.newpassword");
+		newUserLastNameCellXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.newuserlastnamecell");
+		deleteYesButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deleteyesbutton");
+		usersRowsXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.usersrows");
 	}
 
 	@AfterClass
@@ -58,23 +92,19 @@ public class EditUserTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName")
-				.sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserFirstNameId).sendKeys("Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
-				.sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserLastNameId).sendKeys("Last Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId)
 				.sendKeys("email@email.com");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#username")
-				.sendKeys("username");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserUserNameId).sendKeys("username");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#password")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordId).sendKeys("password");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordVerificationId)
 				.sendKeys("password");
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#passwordVerification").sendKeys("password");
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
@@ -87,31 +117,22 @@ public class EditUserTest {
 		usersPage.clickOnEditUserCreated();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName")
-				.clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName")
-				.sendKeys("Test");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserFirstNameId).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserFirstNameId).sendKeys("Test");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
-				.clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
-				.sendKeys("Test");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserLastNameId).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserLastNameId).sendKeys("Test");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
-				.clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
-				.sendKeys("Test@email.com");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId).sendKeys("Test@email.com");
 
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#newPassword")
-				.clear();
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#newPassword")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserNewPasswordId).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserNewPasswordId)
 				.sendKeys("passwordEdited");
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
-		this.driverManager.isElementPresentAndClickableByXpath(UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user"));
+		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
 
 	}
 
@@ -136,11 +157,12 @@ public class EditUserTest {
 		editingUser();
 
 		// Assert
-		this.driverManager.isElementPresentByXpath(".//*[@id='container']/div/div/div/div/div/table/tbody/tr[2]/td[2]");
+		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
+		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
+		
+		this.driverManager.isElementPresentByXpath(newUserLastNameCellXpath);
 		String nameElementText = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-						"(//TD[@class='ng-binding'][text()='Test'][text()='Test'])[1]")
-				.getText();
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameCellXpath).getText();
 
 		Assert.assertEquals(nameElementText, "Test");
 
@@ -148,18 +170,15 @@ public class EditUserTest {
 		driverManager.getDriver().navigate().refresh();
 		usersPage.clickOnDeleteUserCreated();
 
-		// Confirmation to delete the user
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
-				.click();
+		// Confirmation to delete user 
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
 
-		// Assert new users created is deteled
+		// Assert new users created is deleted
+		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
-		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "cssSelector", "#container > div > div > div > div > div > table > tbody");
+		List<WebElement> usersList = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
 
-		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
+		Assert.assertTrue(usersList.size() == 1);
 
 	}
 }
