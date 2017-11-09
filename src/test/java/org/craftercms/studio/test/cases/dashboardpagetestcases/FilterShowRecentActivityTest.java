@@ -36,6 +36,22 @@ public class FilterShowRecentActivityTest {
 
 	private PreviewPage previewPage;
 
+	private String createFormFrameElementCss;
+
+	private String createFormMainTitleElementXPath;
+
+	private String createFormExpandAll;
+
+	private String createFormSaveAndCloseElementId;
+
+	private String homeElementXPath;
+
+	private String myRecentActivityShowInputXPath;
+
+	private String myRecentActivityFirstItemURLXPath;
+
+	private String myRecentActivitySecondItemURLXPath;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -55,6 +71,22 @@ public class FilterShowRecentActivityTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformexpandall");
+		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformMainTitle");
+		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.home");
+		myRecentActivityShowInputXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.myrecentactivity.showinput");
+		myRecentActivityFirstItemURLXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.myrecentactivity.firstelementurl");
+		myRecentActivitySecondItemURLXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.myrecentactivity.secondelementurl");
 	
 	}
 
@@ -83,28 +115,28 @@ public class FilterShowRecentActivityTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
+				 "cssSelector", createFormFrameElementCss));
+		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("AboutUs", "AboutUs");
 
 		// Set the title of main content
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
 		this.driverManager.scrollUp();
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-form-expand-all")
+				.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
 				.click();
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
 				.click();
 
-		this.driverManager.isElementPresentByXpath( ".//span[text()='Home']");
+		this.driverManager.isElementPresentByXpath(homeElementXPath);
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -126,27 +158,27 @@ public class FilterShowRecentActivityTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
+				 "cssSelector", createFormFrameElementCss));
+		this.driverManager.isElementPresentAndClickableBycssSelector( createFormFrameElementCss);
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("AboutUs1", "AboutUs1");
 
 		// Set the title of main content
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
 		this.driverManager.scrollUp();
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-form-expand-all")
+				.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
 				.click();
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
 				.click();
-		this.driverManager.isElementPresentByXpath( ".//span[text()='Home']");
+		this.driverManager.isElementPresentByXpath(homeElementXPath);
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -155,42 +187,39 @@ public class FilterShowRecentActivityTest {
 	public void filtersAndAsserts() {
 
 		// clean filter
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#widget-showitems-MyRecentActivity.form-control.input-sm").clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				myRecentActivityShowInputXPath).clear();
 
 		// Show only 1 item edited
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#widget-showitems-MyRecentActivity.form-control.input-sm").sendKeys("1", Keys.ENTER);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				myRecentActivityShowInputXPath).sendKeys("1", Keys.ENTER);
 
-		this.driverManager.isElementPresentByXpath("/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]");
+		this.driverManager.isElementPresentByXpath(myRecentActivityFirstItemURLXPath);
+		
 		// Assert filter 1
 		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/section/div/div[4]/div[2]/table/tbody/tr/td[4]").getText();
+				myRecentActivityFirstItemURLXPath).getText();
 
 		Assert.assertEquals(edit1, "/aboutus1");
 
 		// clean filter
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#widget-showitems-MyRecentActivity.form-control.input-sm").clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				myRecentActivityShowInputXPath).clear();
 
 		// Show only 1 item edited
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#widget-showitems-MyRecentActivity.form-control.input-sm").sendKeys("2", Keys.ENTER);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				myRecentActivityShowInputXPath).sendKeys("2", Keys.ENTER);
 
-		this.driverManager.isElementPresentBycssSelector("#MyRecentActivity-tbody > tr:nth-child(2) > td:nth-child(4)");
+		this.driverManager.isElementPresentByXpath(myRecentActivitySecondItemURLXPath);
 		
 		// Assert filter 1
-		String edit2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#MyRecentActivity-tbody > tr:nth-child(2) > td:nth-child(4)").getText();
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#MyRecentActivity-tbody > tr:nth-child(2) >
-		// td:nth-child(4)")).getText();
+		String edit2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				myRecentActivitySecondItemURLXPath).getText();
 		Assert.assertEquals(edit2, "/aboutus");
 	}
 
 	@Test(priority = 0)
-
-	public void filterShowRecentActivity() {
+	public void verifyThatTheShowInputWorksProperlyOnRecentActivityWidgetTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
@@ -214,6 +243,7 @@ public class FilterShowRecentActivityTest {
 
 		// create a content with level descriptor content type
 		// create another content to use a filter
+		this.driverManager.isElementPresentAndClickableByXpath(homeElementXPath);
 		createSecondContent();
 
 		// reload page

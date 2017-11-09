@@ -34,6 +34,8 @@ public class ContentTypesAddInputTest {
 	private String controlsSectionInputLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerInputTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -63,6 +65,10 @@ public class ContentTypesAddInputTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerInputTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerinputtitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 	}
 
 	@AfterClass
@@ -100,7 +106,7 @@ public class ContentTypesAddInputTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddInputTest() {
+	public void verifyThatStudioAllowsToAddAnInputControlToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
@@ -110,10 +116,10 @@ public class ContentTypesAddInputTest {
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='admin-console']")
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath)
 				.click();
 
 		// Select the content type to the test
@@ -129,6 +135,7 @@ public class ContentTypesAddInputTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickInputSection();
 
 		// Asserts that fields are not empty.

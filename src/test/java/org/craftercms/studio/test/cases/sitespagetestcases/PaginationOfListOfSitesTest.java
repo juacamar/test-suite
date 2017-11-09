@@ -28,6 +28,12 @@ public class PaginationOfListOfSitesTest {
 	private String password;
 
 	private CreateSitePage createSitePage;
+	private String sitesTopBarOptionId;
+	private String sitesPerPageInputXpath;
+	private String lastNumberOfPaginationXpath;
+	private String firstNumberOfPaginationXpath;
+	private String lastArrowOfPaginationXpath;
+	private String firstArrowOfPaginationXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -45,7 +51,19 @@ public class PaginationOfListOfSitesTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		sitesTopBarOptionId= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.preview.sitesoption");
+		sitesPerPageInputXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.sitesperpageinput");
+		lastNumberOfPaginationXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagination.lastnumberelement");
+		firstNumberOfPaginationXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagination.firstnumberelement");
+		lastArrowOfPaginationXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagination.lastarrowelement");
+		firstArrowOfPaginationXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagination.firstarrowelement");
+		
 		loginPage.loginToCrafter(userName, password);
 		// Create Site 1
 		createSitesRandom();
@@ -93,12 +111,9 @@ public class PaginationOfListOfSitesTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
-		// go to the sites page
-		String sitesNavOptionElementCssSelector = "#sitesRightNav";
-
-		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
+		if (this.driverManager.isElementPresentById(sitesTopBarOptionId))
 			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", sitesNavOptionElementCssSelector)
+					.driverWaitUntilElementIsPresentAndDisplayed("id", sitesTopBarOptionId)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -107,44 +122,44 @@ public class PaginationOfListOfSitesTest {
 
 	public void navigationOfPage() {
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).sendKeys("1");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).sendKeys("2");
 
 		// navigation
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(3) > a")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+						lastNumberOfPaginationXpath)
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(2) > a")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+						firstNumberOfPaginationXpath)
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-						"#container > div > div > div.ng-scope > dir-pagination-controls > ul >li:nth-child(4) > a")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+						lastArrowOfPaginationXpath)
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-						"#container > div > div > div.ng-scope > dir-pagination-controls > ul > li:nth-child(1) > a")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+						firstArrowOfPaginationXpath)
 				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).sendKeys("10");
 	}
 
 	public void deleteSite() {

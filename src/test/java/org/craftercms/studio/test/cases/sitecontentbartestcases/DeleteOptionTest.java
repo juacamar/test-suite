@@ -36,6 +36,15 @@ public class DeleteOptionTest {
 	
 	private String userName;
 	private String password;
+
+	private String createFormFrameElementCss;
+	private String createFormSaveAndCloseElementId;
+	private String createFormMainTitleElementCss;
+	private String homeElementXPath;
+	private String testingItemURLXpath;
+	private String studioLogo;
+
+	private String testItemXpath;
 	
 
 	@BeforeClass
@@ -54,7 +63,17 @@ public class DeleteOptionTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		createFormMainTitleElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformMainTitle");
+		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
+		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.myrecentactivity.firstelementurl");
+		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		testItemXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.testingcontentitem");
 	}
 
 	@AfterClass
@@ -63,8 +82,7 @@ public class DeleteOptionTest {
 	}
 
 	@Test(priority = 0)
-
-	public void contextualNavigationDeleteOptionTest() {
+	public void deletePageUsingContextualNavigationDeleteOptionTest() {
 
 		// login to application
 
@@ -85,18 +103,14 @@ public class DeleteOptionTest {
 
 		this.createContent();
 
-		// reload page
-		//driverManager.getDriver().navigate().refresh();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudio-logo").click();
-		// driverManager.getDriver().findElement(By.id("cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();
 
 		// wait for element is clickeable
 		dashboardPage.expandHomeTree();
 
 		// Select the content to delete.
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//span[contains(text(),'Testing1')]")
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", testItemXpath)
 				.click();
 
 		// click on delete option
@@ -110,10 +124,10 @@ public class DeleteOptionTest {
 
 		previewPage.clickOnOKDeleteDependencies();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();
 
-		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#MyRecentActivity-tbody > tr:nth-child(1) > td:nth-child(4)").getText();
+		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				testingItemURLXpath).getText();
 		Assert.assertEquals(contentDelete, "/test1");
 	}
 
@@ -134,22 +148,22 @@ public class DeleteOptionTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
+				"cssSelector", createFormFrameElementCss));
+		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementCss)
 				.sendKeys("MainTitle");
 		
 		// save and close
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
 		
-		this.driverManager.isElementPresentByXpath( ".//span[text()='Home']");
+		this.driverManager.isElementPresentByXpath(homeElementXPath);
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();

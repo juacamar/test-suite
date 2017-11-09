@@ -30,6 +30,8 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 	private String userName;
 	private String password;
+	private String siteDropdownElementXPath;
+	private String statusIconTopNavBar;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -47,6 +49,10 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		statusIconTopNavBar = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.statustopbaricon");
 
 	}
 
@@ -83,8 +89,6 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
-		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
-		
 		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
 				"xpath", siteDropdownElementXPath);
@@ -101,7 +105,8 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 					"Site creation process is taking too long time and the element was not found");
 
 		// Assert
-		String headStatusClass = this.driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)")).getAttribute("class");
+		String headStatusClass = this.driverManager.getDriver().findElement(By.xpath(
+				statusIconTopNavBar)).getAttribute("class");
 		Assert.assertTrue(headStatusClass.contains("live"));
 
 	}

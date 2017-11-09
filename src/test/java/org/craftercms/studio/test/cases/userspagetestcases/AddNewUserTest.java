@@ -23,13 +23,19 @@ public class AddNewUserTest {
 
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
-	
+
 	private String userName;
 	private String password;
-	
+
 	private CreateSitePage createSitePage;
 	private UsersPage usersPage;
-
+	private String newUserFirstNameId;
+	private String newUserLastNameId;
+	private String newUserEmailId;
+	private String newUserUserNameId;
+	private String newUserPasswordId;
+	private String newUserPasswordVerificationId;
+	private String newUserUserNameCreatedXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -39,14 +45,26 @@ public class AddNewUserTest {
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		newUserFirstNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.firstname");
+		newUserLastNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.lastname");
+		newUserEmailId = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.users.email");
+		newUserUserNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.username");
+		newUserPasswordId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.password");
+		newUserPasswordVerificationId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.passwordVerification");
+		newUserUserNameCreatedXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.usernamecreated");
 	}
 
 	@AfterClass
@@ -59,8 +77,7 @@ public class AddNewUserTest {
 	public void addNewUser() {
 
 		// login to application
-		loginPage.loginToCrafter(
-				userName,password);
+		loginPage.loginToCrafter(userName, password);
 
 		// click On Users option
 
@@ -70,32 +87,28 @@ public class AddNewUserTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#firstName").sendKeys("Name");
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#lastName").sendKeys("Last Name");
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#email").sendKeys("email@email.com");
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#username").sendKeys("username");
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#password").sendKeys("password");
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#passwordVerification").sendKeys("password");
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserFirstNameId).sendKeys("Name");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserLastNameId).sendKeys("Last Name");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId)
+				.sendKeys("email@email.com");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserUserNameId).sendKeys("username");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordId).sendKeys("password");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordVerificationId)
+				.sendKeys("password");
+
 		// Save Button
 
 		usersPage.clickOnSaveNewUser();
-		
+
 		// Assert new users created is present
-		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
-		
+		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				newUserUserNameCreatedXpath);
+
 		Assert.assertTrue(newUserCreated.isDisplayed());
 
 	}

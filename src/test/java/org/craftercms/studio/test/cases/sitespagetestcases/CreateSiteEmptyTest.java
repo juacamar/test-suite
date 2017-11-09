@@ -25,15 +25,18 @@ public class CreateSiteEmptyTest {
 
 	LoginPage objLogin;
 	HomePage objHomePage;
-	
+
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private CreateSitePage createSitePage;
-	
+
 	private String userName;
 	private String password;
-	
+	private String siteDropdownElementXPath;
+	private String createSiteButtonXpath;
+	private String statusIconTopNavBar;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -42,16 +45,19 @@ public class CreateSiteEmptyTest {
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		
+
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-	
-
+		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		statusIconTopNavBar = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.statustopbaricon");
 	}
 
 	@AfterClass
@@ -64,10 +70,9 @@ public class CreateSiteEmptyTest {
 	public void createSiteEmpty() {
 
 		// login to application
-		loginPage.loginToCrafter(
-				userName,password);
-		
-		this.driverManager.isElementPresentAndClickableByXpath(".//span[text()='Create Site']/..");
+		loginPage.loginToCrafter(userName, password);
+
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
 
 		// Click on the create site button
 		homePage.clickOnCreateSiteButton();
@@ -89,22 +94,15 @@ public class CreateSiteEmptyTest {
 		createSitePage.clickOnCreateSiteButton();
 
 		// Show site content panel
-
-		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
-
-		if (this.driverManager.isElementPresentByXpath (siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownElementXPath)
-					.click();
+		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
 
 		// Assert
-		String headStatusClass = this.driverManager.getDriver()
-				.findElement(By
-						.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)"))
+		String headStatusClass = this.driverManager.getDriver().findElement(By.xpath(statusIconTopNavBar))
 				.getAttribute("class");
-
 		Assert.assertTrue(headStatusClass.contains("live"));
 
 	}

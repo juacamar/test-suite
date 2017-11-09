@@ -34,6 +34,8 @@ public class ContentTypesAddDateTimeTest {
 	private String controlsSectionDateTimeLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerDateTimeTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -63,6 +65,10 @@ public class ContentTypesAddDateTimeTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerDateTimeTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerdatetimetitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 
 	}
 
@@ -93,7 +99,7 @@ public class ContentTypesAddDateTimeTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromDateTime, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefault");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -101,7 +107,7 @@ public class ContentTypesAddDateTimeTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddDateTimeTest() {
+	public void verifyThatStudioAllowsToAddADateTimeControlToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -112,10 +118,10 @@ public class ContentTypesAddDateTimeTest {
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				".//a[@id='admin-console']").click();
+				adminConsoleXpath).click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -130,6 +136,7 @@ public class ContentTypesAddDateTimeTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickDateTimeSection();
 
 		// Asserts that fields are not empty.

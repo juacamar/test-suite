@@ -36,6 +36,14 @@ public class ContentTypesDragAndDropTest {
 	private String userName;
 	private String password;
 
+	private String siteDropdownXpath;
+
+	private String controlsSectionFromSection;
+
+	private String contentFormName;
+
+	private String contentFormContentSection;
+
 
 	@BeforeClass
 	public void beforeTest() {
@@ -53,7 +61,15 @@ public class ContentTypesDragAndDropTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager);		
+		this.previewPage = new PreviewPage(driverManager, uIElementsPropertiesManager);	
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		controlsSectionFromSection = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.controlssection");
+		contentFormName = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contentformname");
+		contentFormContentSection = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contentformcontentsection");
 	}
 
 	@AfterClass
@@ -73,7 +89,7 @@ public class ContentTypesDragAndDropTest {
 
 		// Show site content panel
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']").click();
+		.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownXpath).click();
 
 		// go to admin console page
 
@@ -91,10 +107,10 @@ public class ContentTypesDragAndDropTest {
 
 		// wait for element is clickeable
 		WebElement From = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", ".control-section");
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", controlsSectionFromSection);
 		
 		WebElement To = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#content-type-canvas .content-form-name");
+				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", contentFormName);
 
 		Actions builder = new Actions(driverManager.getDriver());
 
@@ -113,7 +129,7 @@ public class ContentTypesDragAndDropTest {
 		siteConfigPage.saveDragAndDropProcess();
 		// validate the control added
 
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector("#content-type-canvas .content-section-name"));
+		Assert.assertTrue(driverManager.isElementPresentBycssSelector(contentFormContentSection));
 		
 	}
 

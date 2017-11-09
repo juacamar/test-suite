@@ -35,6 +35,7 @@ public class CreateSiteAngMemGamTest {
 	private String password;
 
 	private APIConnectionManager apiConnectionManager;
+	private String siteDropdownElementXPath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -53,7 +54,8 @@ public class CreateSiteAngMemGamTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
 		apiConnectionManager = new APIConnectionManager();
 
 	}
@@ -102,7 +104,7 @@ public class CreateSiteAngMemGamTest {
 		// Show site content panel
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownElementXPath).click();
 
 		// Assert
 

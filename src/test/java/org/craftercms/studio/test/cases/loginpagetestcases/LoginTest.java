@@ -33,6 +33,8 @@ public class LoginTest {
 
 	private String userName;
 	private String password;
+
+	private String createSiteButtonXpath;
 	
 	@BeforeClass
 	public void beforeTest() {
@@ -48,7 +50,8 @@ public class LoginTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-	
+		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
 	
 	}
 
@@ -59,20 +62,17 @@ public class LoginTest {
 
 	@Test(priority = 0)
 
-	public void login_Test() {
+	public void loginInToStudioTest() {
 
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
 
 		// Assert create button is present.
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				".btn.btn-default.btn-pill.btn-block");
-				//driverManager.getDriver()
-				//.findElement(By.cssSelector(".btn.btn-default.btn-pill.btn-block"));
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				createSiteButtonXpath);
 
 		Assert.assertTrue(createButton.isDisplayed());
-		//Assert.assertTrue(this.driverManager.getDriver().getCurrentUrl().contains("/studio#/sites"));
 
 	}
 

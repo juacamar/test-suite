@@ -34,6 +34,18 @@ public class AddNewContentEntryTest {
 	private String userName;
 	private String password;
 
+	private String createFormFrameElementCss;
+
+	private String createFormSaveAndCloseElementId;
+
+	private String createFormMainTitleElementXPath;
+
+	private String createFormExpandAll;
+
+	private String homeElementXPath;
+
+	private String testingItemRecentActivity;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -50,6 +62,18 @@ public class AddNewContentEntryTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformMainTitle");
+		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformexpandall");
+		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.home");
+		testingItemRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.testingcontentitem.myrecentactivity");
 		
 	}
 
@@ -78,25 +102,25 @@ public class AddNewContentEntryTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
+				"cssSelector", createFormFrameElementCss));
+		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
 		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
 				.click();
 	
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
 		
-		this.driverManager.isElementPresentByXpath( ".//span[text()='Home']");
+		this.driverManager.isElementPresentByXpath(homeElementXPath);
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -104,8 +128,7 @@ public class AddNewContentEntryTest {
 	}
 
 	@Test(priority = 0)
-
-	public void addNewContentEntry() {
+	public void addNewPageUsingEntryContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
@@ -127,7 +150,7 @@ public class AddNewContentEntryTest {
 
 		dashboardPage.expandHomeTree();
 
-		Assert.assertTrue(driverManager.isElementPresentByXpath( ".//tbody[@id='MyRecentActivity-tbody']/tr/td[@class='itemNameCol']/div/a[text()='Testing1']"));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(testingItemRecentActivity));
 	}
 
 }

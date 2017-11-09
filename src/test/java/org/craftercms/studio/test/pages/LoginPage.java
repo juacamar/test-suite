@@ -18,6 +18,7 @@ public class LoginPage {
 	private String userNameTextBoxLocator;
 	private String passwordTextBoxLocator;
 	private String loginButtonLocator;
+	private String sitesPageTitleLocator;
 	
 
 	/**
@@ -33,6 +34,7 @@ public class LoginPage {
 		passwordTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("login.txtbox_Password");
 		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
+		sitesPageTitleLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.pagetitle");
 	}
 
 	public LoginPage(WebDriver driver) {
@@ -45,6 +47,7 @@ public class LoginPage {
 	public void setUserName(String strUserName) {
 		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", userNameTextBoxLocator);
 				//driver.findElement(By.cssSelector(userNameTextBoxLocator));
+		userCrafter.clear();
 		userCrafter.sendKeys(strUserName);
 
 	}
@@ -54,6 +57,7 @@ public class LoginPage {
 	public void setPassword(String strPassword) {
 		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", passwordTextBoxLocator);
 				//driver.findElement(By.id(passwordTextBoxLocator));
+		pwdCrafter.clear();
 		pwdCrafter.sendKeys(strPassword);
 
 	}
@@ -61,8 +65,7 @@ public class LoginPage {
 	// Click on login button
 
 	public void clickLogin() {
-		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", loginButtonLocator);
-				//driver.findElement(By.cssSelector(loginButtonLocator));
+		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", loginButtonLocator);
 		loginButton.click();
 
 	}
@@ -82,7 +85,7 @@ public class LoginPage {
 
 		this.clickLogin();
 		
-		this.driverManager.isElementPresentByXpath( ".//h1[text()='Sites']");
+		this.driverManager.isElementPresentByXpath(sitesPageTitleLocator);
 
 	}
 

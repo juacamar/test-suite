@@ -32,6 +32,12 @@ public class PreviewSyncTest {
 	
 	private String userName;
 	private String password;
+
+	private String siteDropDownXpath;
+
+	private String adminConsoleXpath;
+
+	private String notificationTextXpath;
 	
 
 	@BeforeClass
@@ -50,7 +56,12 @@ public class PreviewSyncTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		siteDropDownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+		notificationTextXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.previewsyncnotificationtext");
 	}
 
 	@AfterClass
@@ -59,8 +70,7 @@ public class PreviewSyncTest {
 	}
 
 	@Test(priority = 0)
-
-	public void Preview_Sync() {
+	public void startPrevieSyncFromSiteConfigTest() {
 
 		// login to application
 
@@ -71,17 +81,17 @@ public class PreviewSyncTest {
 	
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", ".//a[@id='acn-dropdown-toggler']").click();
+				"xpath", siteDropDownXpath).click();
 
 		// go to admin console page
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", "#admin-console").click();
+				"xpath", adminConsoleXpath).click();
 
 		// click on preview sync option
 		dashboardPage.clickOnPreviewSyncOption();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", "#yui-gen0-button").click();
+				"xpath", notificationTextXpath).click();
 	
 
 	}

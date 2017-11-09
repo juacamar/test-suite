@@ -246,7 +246,7 @@ public class CreateSitePage {
 
 	public void usersOption() {
 		this.driverManager.isElementPresentAndClickableByXpath(usersOption);
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
 				usersOption);
 		users.click();
 

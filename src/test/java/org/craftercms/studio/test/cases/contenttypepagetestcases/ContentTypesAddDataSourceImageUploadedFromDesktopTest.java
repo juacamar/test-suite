@@ -32,6 +32,8 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionImageUploadedFromDesktopLocator;
 	private String contentTypeContainerImageUploadedFromDesktopTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 
 	@BeforeClass
@@ -58,6 +60,10 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 				.getProperty("adminconsole.contenttype.entry.datasourceimageuploadedfromdesktop");
 		this.contentTypeContainerImageUploadedFromDesktopTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerimageuploadedfromdesktoptitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 	}
 
 	@AfterClass
@@ -88,7 +94,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddDataSourceImageUploadedFromDesktopTest() {
+	public void verifyThatStudioAllowsToAddADataSourceImageUploadedFromDesktopToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -100,12 +106,12 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		// Show site content panel
 		 this.driverManager
 			.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-					"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+					siteDropdownXpath).click();
 
 		// Show admin console page
 		 this.driverManager
 			.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-					".//a[@id='admin-console']").click();
+					adminConsoleXpath).click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -120,11 +126,10 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerImageUploadedFromDesktopTitleLocator);
 		siteConfigPage.clickDataSourceImageUploadedFromDesktopSection();
 
 		// Asserts that fields are not empty.
-		this.driverManager.isElementPresentByXpath(contentTypeContainerImageUploadedFromDesktopTitleLocator);
-		
 		String titleText =this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 						contentTypeContainerImageUploadedFromDesktopTitleLocator).getText();

@@ -33,6 +33,19 @@ public class EditOptionTest {
 
 	private String userName;
 	private String password;
+	private String adminConsoleXpath;
+	private String entryContentTypeBodyXpath;
+	private String entryContentTypeBodyCheckCss;
+	private String createFormFrameElementCss;
+	private String createFormSaveAndCloseElementId;
+	private String createFormExpandAll;
+	private String createFormMainTitleElementXPath;
+	private String testingContentItem;
+	private String topNavEditOption;
+	private String createFormInternalNameTitle;
+	private String siteDropDownXpath;
+	private String crafterLogoId;
+	private String testingItemEditedXpath;
 	
 	
 	@BeforeClass
@@ -54,8 +67,32 @@ public class EditOptionTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
-
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+		entryContentTypeBodyXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.body");
+		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.bodyrequiredcheck");
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformexpandall");
+		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformMainTitle");
+		testingContentItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.testingcontentitem");
+		topNavEditOption= UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.edittopnavoption");
+		createFormInternalNameTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformfiletitle");
+		siteDropDownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.studiologo");
+		testingItemEditedXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.testingcontentitemedited.sitecontent");
 	}
 
 	@AfterClass
@@ -66,7 +103,7 @@ public class EditOptionTest {
 	public void bodyNotRequiered() {
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).click();
 
 		// select content types
 		siteConfigPage.selectContentTypeOption();
@@ -80,12 +117,12 @@ public class EditOptionTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//span[contains(text(),'Body')]").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", entryContentTypeBodyXpath).click();
 		
 
 		// Body not required
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
+				entryContentTypeBodyCheckCss).click();
 
 		// save
 		siteConfigPage.saveDragAndDropProcess();
@@ -109,23 +146,23 @@ public class EditOptionTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
+				"cssSelector", createFormFrameElementCss));
+		driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Expand all fields
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
 				.click();
 
 		
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 		
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -134,32 +171,31 @@ public class EditOptionTest {
 
 	public void editingContent() {
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//span[text()='Testing1']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", testingContentItem)
 				.click();
 
 		// click edit option of the menu
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				".//body/div/div[@id='studioBar']/nav/div/div/ul/li/a[contains(text(),'Edit')]").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",topNavEditOption).click();
 
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
+				"cssSelector", createFormFrameElementCss));
+		driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 		
 		
 		// edit internal title
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#internal-name > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormInternalNameTitle)
 				.sendKeys("EDITED");
 
 		
 		// Expand all fields
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormExpandAll)
 				.click();
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 		
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -167,7 +203,7 @@ public class EditOptionTest {
 
 	@Test(priority = 0)
 
-	public void contextualNavigationEditOptionTest() {
+	public void verifyTheEditionOfAPageUsingContextualNavigationEditOptionTest() {
 
 		// login to application
 
@@ -177,14 +213,14 @@ public class EditOptionTest {
 		homePage.goToPreviewPage();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropDownXpath)
 				.click();
 		
 		// Body Not requiered
 		bodyNotRequiered();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
 		
 		dashboardPage.expandPagesTree();
 
@@ -205,9 +241,8 @@ public class EditOptionTest {
 
 		driverManager.getDriver().navigate().refresh();
 
-
 		// Assert find the new content created edited	
-		 Assert.assertTrue(this.driverManager.isElementPresentByXpath( ".//span[contains(text(),'Testing1EDITED')]"));
+		 Assert.assertTrue(this.driverManager.isElementPresentByXpath(testingItemEditedXpath));
 
 	}
 
