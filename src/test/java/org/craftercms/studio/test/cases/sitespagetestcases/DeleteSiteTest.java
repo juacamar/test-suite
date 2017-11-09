@@ -30,7 +30,7 @@ public class DeleteSiteTest {
 	
 	private String userName;
 	private String password;
-	private String deleteSiteIcons;
+	private String deletedSiteRow;
 	private String createSiteButton;
 
 	@BeforeClass
@@ -48,8 +48,8 @@ public class DeleteSiteTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		deleteSiteIcons = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.deleteicons");
+		deletedSiteRow = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.deletedsiterow");
 		createSiteButton = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
 
@@ -74,10 +74,13 @@ public class DeleteSiteTest {
 		
 		// Click on YES to confirm the delete.
 		homePage.clickOnYesToDeleteSite();
-
+		
+		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().navigate().refresh();
+		
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
+		
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(deleteSiteIcons));
+		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(deletedSiteRow));
 	}
 }

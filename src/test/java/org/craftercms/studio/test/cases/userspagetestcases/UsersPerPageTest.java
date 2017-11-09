@@ -1,10 +1,14 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.LoginPage;
@@ -33,6 +37,28 @@ public class UsersPerPageTest {
 	private String userName;
 	private String password;
 
+	private String newUserFirstNameId;
+
+	private String newUserLastNameId;
+
+	private String newUserEmailId;
+
+	private String newUserUserNameId;
+
+	private String newUserPasswordId;
+
+	private String newUserPasswordVerificationId;
+
+	private String usersPerPageInputXpath;
+
+	private String deleteYesButtonXpath;
+
+	private String usersRowsXpath;
+
+	private String newUserButtonXpath;
+
+	private String lastNumberOfPaginationXpath;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -40,12 +66,32 @@ public class UsersPerPageTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
+		newUserFirstNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.firstname");
+		newUserLastNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.lastname");
+		newUserEmailId = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.users.email");
+		newUserUserNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.username");
+		newUserPasswordId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.password");
+		newUserPasswordVerificationId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.passwordVerification");
+		usersPerPageInputXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.usersperpageinput");
+		deleteYesButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deleteyesbutton");
+		usersRowsXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.usersrows");
+		newUserButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.newuserbutton");
+		lastNumberOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagination.lastnumberelement");
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
@@ -65,97 +111,51 @@ public class UsersPerPageTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#firstName").sendKeys("Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#lastName")
-				.sendKeys("Last Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#email")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserFirstNameId).sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserLastNameId).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId)
 				.sendKeys("email@email.com");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#username")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserUserNameId)
 				.sendKeys(RandomStringUtils.randomAlphabetic(5));
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#password")
-				.sendKeys("password");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#passwordVerification")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordId).sendKeys("password");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordVerificationId)
 				.sendKeys("password");
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
-
+		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
 	}
 
 	public void filters() {
 
-		// Show 8 users
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").clear();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").sendKeys("1");
-
-
-		// Asser only 8 users displayed
-
-		WebElement user1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > a");
-
-		Assert.assertTrue(user1.isDisplayed());
-
-
-		// Show 5 users
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").clear();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").sendKeys("2");
-
-
-		// Asser only 5 users displayed
-
-		WebElement user2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
-
-		Assert.assertTrue(user2.isDisplayed());
-
-
-		// Show 11 users
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").clear();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").sendKeys("3");
-
-
-		// Asser only 1 user displayed
-
-		WebElement user3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
-
-		Assert.assertTrue(user3.isDisplayed());
-
-
-		// Show 11 users
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").clear();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").sendKeys("4");
-
+		// Show 1 user
+		this.driverManager.isElementPresentAndClickableByXpath( usersPerPageInputXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("1");
 
 		// Asser only 1 users displayed
+		this.driverManager.isElementPresentAndClickableByXpath(lastNumberOfPaginationXpath);
+		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
-		WebElement user4 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > table > tbody > tr:nth-child(4) > td:nth-child(1) > a");
+		List<WebElement> usersList1item = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
+		Assert.assertTrue(usersList1item.size() == 1);
+		
+		driverManager.getDriver().navigate().refresh();
+		
+		// Show 4 users
+		this.driverManager.isElementPresentAndClickableByXpath( usersPerPageInputXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("4");
 
-		Assert.assertTrue(user4.isDisplayed());
+		// Asser only 1 users displayed
+		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").clear();
+		List<WebElement> usersList4items = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
+		Assert.assertTrue(usersList4items.size() == 4);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > div > div > div > div > div > input").sendKeys("4");
+		this.driverManager.isElementPresentAndClickableByXpath( usersPerPageInputXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("10");
 	}
 
 	public void deleteUsers() {
@@ -163,36 +163,28 @@ public class UsersPerPageTest {
 		driverManager.getDriver().navigate().refresh();
 		usersPage.clickOnDeleteUserCreated();
 
-		
 		// Confirmation to delete user connected
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
 
 		driverManager.getDriver().navigate().refresh();
-		
+
 		// Click on delete user
 
 		usersPage.clickOnDeleteUserCreated();
 
-		
 		// Confirmation to delete user
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
 
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
-		
+
 		// Click on delete user
 		usersPage.clickOnDeleteUserCreated();
-		
-		// Confirmation to delete user 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
-				.click();
-		
+
+		// Confirmation to delete user
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
+
 		driverManager.getDriver().navigate().refresh();
 
 	}
@@ -206,7 +198,7 @@ public class UsersPerPageTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// Create user 1
-		
+
 		createUserRandom();
 
 		// Create user 2
@@ -217,6 +209,8 @@ public class UsersPerPageTest {
 		driverManager.getDriver().navigate().refresh();
 		createUserRandom();
 
+		driverManager.getDriver().navigate().refresh();
+		
 		// filters
 
 		filters();

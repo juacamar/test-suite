@@ -30,6 +30,8 @@ public class ChangePasswordUserTest {
 	
 
 	private AccountManagementPage accountManagementPage;
+	private String sitePageTitleXpath;
+	private String createSiteButtonXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -48,6 +50,10 @@ public class ChangePasswordUserTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		sitePageTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
 	}
 
 	@AfterClass
@@ -79,7 +85,7 @@ public class ChangePasswordUserTest {
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
-		this.driverManager.isElementPresentByXpath( ".//h1[text()='Sites']");
+		this.driverManager.isElementPresentByXpath(sitePageTitleXpath);
 		
 		// click On admin option
 		createSitePage.clickAdmin();
@@ -98,7 +104,7 @@ public class ChangePasswordUserTest {
 		// Assert create button is present.
 
 		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".btn.btn-default.btn-pill.btn-block");
+				"xpath", createSiteButtonXpath);
 
 		Assert.assertTrue(createButton.isDisplayed());
 

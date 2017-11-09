@@ -405,7 +405,8 @@ public class PreviewPage {
 	// Expand global entry content
 
 	public void clickHomeContent() {
-		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
+		this.driverManager.isElementPresentAndClickableByXpath(expandGlobalEntryContent);
+		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				expandGlobalEntryContent);
 		homeContent.click();
 

@@ -33,10 +33,13 @@ public class TryToDeleteUserConnectedTest {
 	private LoginPage loginPage;
 
 	private UsersPage usersPage;
-	
+
 	private String userName;
 	private String password;
-	
+	private String usersTopNavOptionXpath;
+	private String deleteYesButtonXpath;
+	private String deleteNotAllowedMessageXpath;
+	private String errorMessageXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -45,13 +48,19 @@ public class TryToDeleteUserConnectedTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
-		
+		usersTopNavOptionXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.homeusers");
+		deleteYesButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deleteyesbutton");
+		deleteNotAllowedMessageXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deletenotallowedparagraph");
+		errorMessageXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deletenotallowederrorparagraph");
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 
@@ -63,32 +72,26 @@ public class TryToDeleteUserConnectedTest {
 	}
 
 	@Test(priority = 0)
-
-	public void try_to_delete_user() {
+	public void tryToDeleteTheAdminUser() {
 
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
 
 		// Go to users tab
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssselector",
-				"body > ui-view > header > nav > div > div.collapse.navbar-collapse.ng-scope > ul > li:nth-child(1) > a")
-				.click();
-		
-		// Try to delete the user current 
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", usersTopNavOptionXpath).click();
+
+		// Try to delete the user current
 		usersPage.clickOnDeleteUser();
 
 		// Confirmation to delete user connected
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssselector",
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
+		
 		// Verify
-		Assert.assertTrue(this.driverManager.isElementPresentBycssSelector(
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-body.ng-scope > p"));
+		Assert.assertTrue(this.driverManager.isElementPresentByXpath(deleteNotAllowedMessageXpath));
+		Assert.assertTrue(this.driverManager.isElementPresentByXpath(errorMessageXpath));
 
-		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssselector",
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-body.ng-scope > p");
-
+		WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",deleteNotAllowedMessageXpath);
 		Assert.assertTrue(validation.getText().contains("Unable to delete user"));
 
 	}
