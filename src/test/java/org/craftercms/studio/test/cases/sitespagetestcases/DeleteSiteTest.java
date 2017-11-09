@@ -30,6 +30,8 @@ public class DeleteSiteTest {
 	
 	private String userName;
 	private String password;
+	private String deleteSiteIcons;
+	private String createSiteButton;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -46,7 +48,10 @@ public class DeleteSiteTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
+		deleteSiteIcons = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.deleteicons");
+		createSiteButton = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
 
 	}
 
@@ -57,21 +62,22 @@ public class DeleteSiteTest {
 
 	@Test(priority = 0)
 
-	public void delete_site() {
+	public void deleteSiteTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
 				userName,password);
 
 		// Click on Delete icon
-
+        this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
 		homePage.clickOnDeleteSiteIcon();
 		
 		// Click on YES to confirm the delete.
-
 		homePage.clickOnYesToDeleteSite();
 
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(".glyphicon.glyphicon-trash"));
+		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(deleteSiteIcons));
 	}
 }

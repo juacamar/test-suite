@@ -34,6 +34,8 @@ public class WrongLoginTest {
 	private String userName;
 	private String password;
 
+	private String alertWrongUserOrPasswordXpath;
+
 
 
 	@BeforeClass
@@ -50,7 +52,8 @@ public class WrongLoginTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-	
+		alertWrongUserOrPasswordXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.loginalertfornonvalidcreds");
 	}
 	
 
@@ -61,7 +64,7 @@ public class WrongLoginTest {
 
 	@Test(priority = 0)
 
-	public void wrong_login_Test() {
+	public void tryToLoginUsingNonValidCredientialsTest() {
 
 		// login to application
 
@@ -69,8 +72,8 @@ public class WrongLoginTest {
 		
 
 		// Assert No login for invalid user.
-		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				".alert");
+		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				alertWrongUserOrPasswordXpath);
 
 		Assert.assertTrue(signInWrongUser.isDisplayed());
 
@@ -78,8 +81,8 @@ public class WrongLoginTest {
 		loginPage.loginToCrafter(userName, password+"wrong");
 
 		// Assert No login for invalid password.
-		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				".btn.btn-primary");
+		WebElement signInWrongPwd = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				alertWrongUserOrPasswordXpath);
 
 		Assert.assertTrue(signInWrongPwd.isDisplayed());
 

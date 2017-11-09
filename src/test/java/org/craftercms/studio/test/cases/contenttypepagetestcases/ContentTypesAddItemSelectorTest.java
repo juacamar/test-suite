@@ -34,6 +34,8 @@ public class ContentTypesAddItemSelectorTest {
 	private String controlsSectionItemSelectorLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerItemSelectorTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -63,6 +65,10 @@ public class ContentTypesAddItemSelectorTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerItemSelectorTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontaineritemselectortitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 
 	}
 
@@ -93,7 +99,7 @@ public class ContentTypesAddItemSelectorTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromItemSelector, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefault");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -101,7 +107,7 @@ public class ContentTypesAddItemSelectorTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddItemSelectorTest() {
+	public void verifyThatStudioAllowsToAddAnItemSelectorControlToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -112,9 +118,9 @@ public class ContentTypesAddItemSelectorTest {
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='admin-console']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -129,6 +135,7 @@ public class ContentTypesAddItemSelectorTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickItemSelectorSection();
 
 		// Asserts that fields are not empty.

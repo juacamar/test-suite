@@ -36,6 +36,8 @@ public class CancelCreateSiteProcessTest {
 	
 	private String userName;
 	private String password;
+
+	private String sitesPageTitleLocator;
 	
 	
 	@BeforeClass
@@ -53,6 +55,7 @@ public class CancelCreateSiteProcessTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
+		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.pagetitle");
 
 	}
 
@@ -95,8 +98,8 @@ public class CancelCreateSiteProcessTest {
 
 		// Assert
 
-		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#container > div > header");
+		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				sitesPageTitleLocator);
 
 		Assert.assertTrue(siteName.isDisplayed());
 

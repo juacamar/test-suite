@@ -32,6 +32,8 @@ public class ContentTypesAddDataSourceChildContentTest {
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionChildContentLocator;
 	private String contentTypeContainerChildContentTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -57,6 +59,10 @@ public class ContentTypesAddDataSourceChildContentTest {
 				.getProperty("adminconsole.contenttype.entry.datasourcechildcontent");
 		this.contentTypeContainerChildContentTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerchildcontenttitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 	}
 
 	@AfterClass
@@ -85,7 +91,7 @@ public class ContentTypesAddDataSourceChildContentTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddDataSourceChildContentTest() {
+	public void verifyThatStudioAllowsToAddADataSourceChildToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -96,11 +102,11 @@ public class ContentTypesAddDataSourceChildContentTest {
 	
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 	
 		// Show admin console page
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				".//a[@id='admin-console']").click();
+				adminConsoleXpath).click();
 		
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -115,6 +121,7 @@ public class ContentTypesAddDataSourceChildContentTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerLocator);
 		siteConfigPage.clickDataSourceChildContentSection();
 
 		// Asserts that fields are not empty.

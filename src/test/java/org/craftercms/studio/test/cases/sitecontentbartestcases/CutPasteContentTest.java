@@ -36,6 +36,17 @@ public class CutPasteContentTest {
 
 	private String userName;
 	private String password;
+
+	private String siteDropdownElementXPath;
+	private String adminConsoleXpath;
+	private String entryContentTypeBodyXpath;
+	private String entryContentTypeBodyCheckCss;
+	private String studioLogo;
+	private String createFormFrameElementCss;
+	private String createFormSaveAndCloseElementId;
+	private String createFormMainTitleElementCss;
+
+	private String testingItemURLXpath;
 	
 	
 	@BeforeClass
@@ -54,7 +65,23 @@ public class CutPasteContentTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+		entryContentTypeBodyXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.body");
+		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.bodyrequiredcheck");
+		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		createFormMainTitleElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformMainTitle");
+		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.myrecentactivity.firstelementurl");
 	}
 
 	@AfterClass
@@ -64,7 +91,7 @@ public class CutPasteContentTest {
 
 	@Test(priority = 0)
 
-	public void Cut_Paste_Content_test() {
+	public void cutAndPasteContentUsingContextualClickOptionsTest() {
 
 		// login to application
 
@@ -77,11 +104,11 @@ public class CutPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 		
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownElementXPath)
 				.click();
 		
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).click();
 		
 		// select content types
 		siteConfigPage.selectContentTypeOption();
@@ -94,18 +121,18 @@ public class CutPasteContentTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//span[contains(text(),'Body')]").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", entryContentTypeBodyXpath).click();
 		
 
 		// Body not required
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
+				entryContentTypeBodyCheckCss).click();
 
 		// save
 		siteConfigPage.saveDragAndDropProcess();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();
 		
 		// expand pages folder
 		dashboardPage.expandPagesTree();
@@ -122,19 +149,19 @@ public class CutPasteContentTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+				"cssSelector", createFormFrameElementCss));
 
-		this.driverManager.isElementPresentBycssSelector( ".studio-ice-dialog > .bd iframe");
+		this.driverManager.isElementPresentBycssSelector(createFormFrameElementCss);
 		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",createFormMainTitleElementCss)
 				.sendKeys("MainTitle");
 		
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", createFormSaveAndCloseElementId).click();
 		// save and close
 		
 		driverManager.getDriver().switchTo().defaultContent();
@@ -178,8 +205,8 @@ public class CutPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 		
 		// Assert of the content copied
-		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#MyRecentActivity-tbody > tr > td.urlCol").getText();
+		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				testingItemURLXpath).getText();
 		Assert.assertEquals(contentCopied, "/addnewfolder/test1");
 
 	}

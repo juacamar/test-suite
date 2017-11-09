@@ -34,6 +34,8 @@ public class ContentTypesAddTextAreaTest {
 	private String controlsSectionTextAreaLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerTextAreaTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -64,6 +66,10 @@ public class ContentTypesAddTextAreaTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerTextAreaTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainertextareatitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 	}
 
 	@AfterClass
@@ -93,7 +99,7 @@ public class ContentTypesAddTextAreaTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromRepeatingGroup, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefault");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -101,7 +107,7 @@ public class ContentTypesAddTextAreaTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddTextAreaTest() {
+	public void verifyThatStudioAllowsToAddATextAreaControlToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -112,10 +118,10 @@ public class ContentTypesAddTextAreaTest {
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 
 		// Show admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='admin-console']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -130,6 +136,7 @@ public class ContentTypesAddTextAreaTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickTextAreaSection();
 
 		// Asserts that fields are not empty.

@@ -34,6 +34,12 @@ public class DependenciesOptionTest {
 	private String userName;
 	private String password;
 
+	private String siteDropdownXpath;
+
+	private String homeXpath;
+
+	private String dependeciesDialogTitle;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -49,7 +55,12 @@ public class DependenciesOptionTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
+		siteDropdownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		homeXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.home");
+		dependeciesDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.dependeciesdialogtitle");
 	}
 
 	@AfterClass
@@ -70,7 +81,7 @@ public class DependenciesOptionTest {
 		// Show site content panel
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 
 		// expand pages folder
 		previewPage.expandPagesTree();
@@ -81,14 +92,14 @@ public class DependenciesOptionTest {
 		previewPage.expandHomeTree();
 
 		// Select the content to view the history.
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#ygtvlabelel1").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", homeXpath).click();
 		
 		// click on history option
 		previewPage.clickOnDependenciesOption();
 
 		// Assert
 		String historyPage = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", ".view-title").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", dependeciesDialogTitle).getText();
 		Assert.assertEquals(historyPage, "Dependencies");
 
 	}

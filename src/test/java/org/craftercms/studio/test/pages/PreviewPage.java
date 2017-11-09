@@ -36,6 +36,11 @@ public class PreviewPage {
 	private String previewDependecies;
 
 	private SiteConfigPage siteConfigPage;
+	private String studioLogo;
+	private String siteDropdownElementXPath;
+	private String adminConsoleXpath;
+	private String entryContentTypeBodyXpath;
+	private String entryContentTypeBodyCheckCss;
 
 	/**
 	 * 
@@ -77,6 +82,15 @@ public class PreviewPage {
 		previewHistory = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.history");
 		previewDependecies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.dependencies");
+		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+		entryContentTypeBodyXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.body");
+		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.bodyrequiredcheck");
 
 	}
 
@@ -453,12 +467,12 @@ public class PreviewPage {
 	public void changeBodyOfEntryContentPageToNotRequired() {
 		
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownElementXPath)
 				.click();
 		
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).click();
 
 		
 		// select content types
@@ -477,12 +491,12 @@ public class PreviewPage {
 
 		
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//span[contains(text(),'Body')]").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", entryContentTypeBodyXpath).click();
 		
 	
 		// Mark Body not required
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
+				entryContentTypeBodyCheckCss).click();
 	
 		// save
 		siteConfigPage.saveDragAndDropProcess();
@@ -490,7 +504,7 @@ public class PreviewPage {
 		 driverManager.getDriver().switchTo().defaultContent();
 		 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-logo").click();	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();	
 
 	}
 

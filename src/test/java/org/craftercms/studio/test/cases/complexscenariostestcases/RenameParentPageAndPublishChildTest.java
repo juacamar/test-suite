@@ -40,6 +40,15 @@ public class RenameParentPageAndPublishChildTest {
 	private String childPage2Locator;
 	private String parentPageNewLocator;
 	private String homeContent;
+	private String siteDropdownElementXPath;
+	private String approveSubmitId;
+	private String unselectAllCheckBox;
+	private String createFormFrameElementCss;
+	private String createFormMainTitleElementXPath;
+	private String createFormExpandAll;
+	private String createFormSaveAndCloseElementId;
+	private String toggleNavigationXpath;
+	private String homeExpansorXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -69,7 +78,24 @@ public class RenameParentPageAndPublishChildTest {
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage2Name + "')]";
 		this.parentPageNewLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.parentfolder") + this.parentPageNewName + "')]";
-
+		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		approveSubmitId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.renameparentpageandpublishchildtest.approvesubmitid");
+		unselectAllCheckBox = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.renameparentpageandpublishchildtest.unselectallcheckbox");
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformMainTitle");
+		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformexpandall");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		toggleNavigationXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.renameparentpageandpublishchildtest.togglenavigationelement");
+		homeExpansorXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.homeexpansor");
 	}
 
 	@AfterClass
@@ -82,8 +108,6 @@ public class RenameParentPageAndPublishChildTest {
 		loginPage.loginToCrafter(userName, password);
 		// go to preview page
 		homePage.goToPreviewPage();
-		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
-
 		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 		else
@@ -105,12 +129,14 @@ public class RenameParentPageAndPublishChildTest {
 	private void selectOnlyOnePageToPublish(String pageName) {
 		// Switch to the form
 		driverManager.getDriver().switchTo().activeElement();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "approveSubmit");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", approveSubmitId);
 		WebElement unSelectAllCheck = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				"(//INPUT[@type='checkbox'])[1]");
+				unselectAllCheckBox);
 		unSelectAllCheck.click();
+		
 		String pageNameCheckLocator = ".//table[@class='item-listing scroll-body']/tbody/tr/td/div/span[contains(text(),'"
 				+ pageName + "')]/../../../td/input";
+		
 		WebElement pageNameCheck = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				pageNameCheckLocator);
 
@@ -133,8 +159,8 @@ public class RenameParentPageAndPublishChildTest {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
+		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 		// creating random values for URL field and InternalName field
 		String randomURL = pageName;
 		String randomInternalName = pageName;
@@ -142,26 +168,28 @@ public class RenameParentPageAndPublishChildTest {
 		dashboardPage.setBasicFieldsOfNewPageArticleContent(randomURL, randomInternalName, pageName);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
 				.sendKeys(pageName);
+		
 		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormExpandAll)
 				.click();
+		
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.isElementPresentByXpath(".//span[text()='Toggle navigation']");
+		this.driverManager.isElementPresentByXpath(toggleNavigationXpath);
 	}
 
 	public void editPageArticleContent(String pageName) {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",createFormFrameElementCss ));
+		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 		// creating random values for URL field and InternalName field
 		String randomInternalName = pageName;
@@ -169,18 +197,18 @@ public class RenameParentPageAndPublishChildTest {
 		dashboardPage.updateBasicFieldsOfNewPageArticleContent(randomInternalName, pageName);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
 				.sendKeys(pageName);
 		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-form-expand-all")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormExpandAll)
 				.click();
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.isElementPresentByXpath(".//span[text()='Toggle navigation']");
+		this.driverManager.isElementPresentByXpath(toggleNavigationXpath);
 
 	}
 
@@ -200,7 +228,7 @@ public class RenameParentPageAndPublishChildTest {
 		this.createPageCategoryLandingPage(homeParent, parentPageName);
 
 		WebElement expansorElementForHome = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				".//span[text()='Home']/../../td[1]");
+				homeExpansorXpath);
 		expansorElementForHome.click();
 
 		WebElement parentPage;
@@ -227,9 +255,6 @@ public class RenameParentPageAndPublishChildTest {
 		this.publishElement(childPage2, childPage2Name);
 
 		this.verifyPublishedItemsOnDashboard();
-
-		// dashboardPage.rightClickDeleteAPage(parentPage);
-		// this.confirmDeleteAction();
 
 	}
 

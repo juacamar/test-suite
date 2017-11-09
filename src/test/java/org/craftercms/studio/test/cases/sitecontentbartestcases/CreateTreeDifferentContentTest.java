@@ -33,26 +33,58 @@ public class CreateTreeDifferentContentTest {
 	private DashboardPage dashboardPage;
 
 	private SiteConfigPage siteConfigPage;
-	
+
 	private String userName;
 	private String password;
-	
+
+	private String createFormFrameElementCss;
+
+	private String createFormSaveAndCloseElementId;
+
+	private String createFormExpandAll;
+
+	private String studioLogo;
+
+	private String siteDropdownElementXPath;
+
+	private String adminConsoleXpath;
+
+	private String entryContentTypeBodyXpath;
+
+	private String entryContentTypeBodyCheckCss;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		createFormExpandAll = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformexpandall");
+		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+		entryContentTypeBodyXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.body");
+		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.bodyrequiredcheck");
 
 	}
 
@@ -76,11 +108,10 @@ public class CreateTreeDifferentContentTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
 
 		// select content types
 		siteConfigPage.selectContentTypeOption();
@@ -92,20 +123,17 @@ public class CreateTreeDifferentContentTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#yui-gen6").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
 
 		// Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
+				.click();
 
 		// save
 		siteConfigPage.saveDragAndDropProcess();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-logo").click();
-
-		// driverManager.getDriver().findElement(By.cssSelector("#cstudio-logo")).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 
 		// expand pages folder
 
@@ -124,18 +152,17 @@ public class CreateTreeDifferentContentTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-	
+		driverManager.getDriver().switchTo().frame(this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
+
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "services");
 
 		// Expand all fields
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-form-expand-all")
-				.click();
-	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormExpandAll).click();
+
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -160,9 +187,9 @@ public class CreateTreeDifferentContentTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		
+		driverManager.getDriver().switchTo().frame(this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
+
 		// edit internal name
 		dashboardPage.editInternalName("TREE");
 
@@ -211,7 +238,7 @@ public class CreateTreeDifferentContentTest {
 		// Assert of the tree created
 
 		String contentCopied = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", "//tr/td[contains(span, 'ServicesTREE')]")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//tr/td[contains(span, 'ServicesTREE')]")
 				.getText();
 
 		// driverManager.getDriver()

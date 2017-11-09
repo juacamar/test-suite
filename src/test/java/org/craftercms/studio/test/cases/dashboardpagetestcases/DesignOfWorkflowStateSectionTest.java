@@ -26,28 +26,50 @@ public class DesignOfWorkflowStateSectionTest {
 	private LoginPage loginPage;
 
 	private HomePage homePage;
-	
+
 	private String userName;
 	private String password;
-	
+	private String workflowPanel;
+	private String editedStateItem;
+	private String neverPublishedItem;
+	private String inWorkFlowItem;
+	private String scheduledStateItem;
+	private String processingStateItem;
+	private String deletedStateItem;
+	private String lockedStateItem;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		
+
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		workflowPanel = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.workflowpanel");
+		neverPublishedItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.workflowpanel.neverpublishedstate");
+		editedStateItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.workflowpanel.editedstate");
+		inWorkFlowItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.workflowpanel.inworkflowstate");
+		scheduledStateItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.workflowpanel.scheduledstate");
+		processingStateItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.workflowpanel.processingstate");
+		deletedStateItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.workflowpanel.deletedstate");
+		lockedStateItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.workflowpanel.lockedstate");
 	}
 
 	@AfterClass
@@ -57,7 +79,7 @@ public class DesignOfWorkflowStateSectionTest {
 
 	@Test(priority = 0)
 
-	public void workflowSection() {
+	public void verifyAllWorkflowStatesOnIconGuideTest() {
 
 		// login to application
 
@@ -67,112 +89,45 @@ public class DesignOfWorkflowStateSectionTest {
 		homePage.goToDashboardPage();
 
 		// Assert workflow guide section is present.
-		WebElement workflowSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				".panel-body");
-		// driverManager.getDriver().findElement(By.cssSelector(".panel-body"));
-
+		WebElement workflowSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				workflowPanel);
 		Assert.assertTrue(workflowSection.isDisplayed());
 
-		// Assert navigation page is present.
-
-		// WebElement navigationPage =
-		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(1)"));
-		//
-		// Assert.assertTrue(navigationPage.isDisplayed());
-
-		// Assert edited is present.
-
-		WebElement edited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#iconGuide > div.panel-body > div > div:nth-child(6) > div");
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
-		// div:nth-child(6) > div"));
-
-		Assert.assertTrue(edited.isDisplayed());
-
-		// Assert floating page is present.
-
-		WebElement floatingPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.col-xs-6:nth-child(2)");
-		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(2)"));
-
-		Assert.assertTrue(floatingPage.isDisplayed());
-
-		// Assert in workflow is present.
-
-		WebElement inWorkflow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#iconGuide > div.panel-body > div > div:nth-child(7) > div");
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
-		// div:nth-child(7) > div"));
-
-		Assert.assertTrue(inWorkflow.isDisplayed());
-
-		// Assert component is present.
-
-		WebElement component = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.col-xs-6:nth-child(3)");
-		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(3)"));
-
-		Assert.assertTrue(component.isDisplayed());
-
-		// Assert scheduled is present.
-
-		WebElement scheduled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#iconGuide > div.panel-body > div > div:nth-child(8) > div");
-		// driverManager.getDriver()
-		// .findElement(By.cssSelector("#iconGuide > div.panel-body > div >
-		// div:nth-child(8) > div"));
-
-		Assert.assertTrue(scheduled.isDisplayed());
-
-		// Assert document is present.
-
-		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.col-xs-6:nth-child(4)");
-		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(4)"));
-
-		Assert.assertTrue(siteName.isDisplayed());
-
-		// Assert deleted is present.
-
-		WebElement document = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.col-xs-6:nth-child(10)");
-		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(10)"));
-
-		Assert.assertTrue(document.isDisplayed());
-
-		// Assert Never published is present.
-
-		WebElement neverPublished = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.col-xs-6:nth-child(5)");
-		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(5)"));
-
+		// Assert neverpub is present.
+		WebElement neverPublished = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				neverPublishedItem);
 		Assert.assertTrue(neverPublished.isDisplayed());
 
+		// Assert edited is present.
+		WebElement edited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", editedStateItem);
+		Assert.assertTrue(edited.isDisplayed());
+
+
+		// Assert in workflow is present.
+		WebElement inWorkflow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", inWorkFlowItem);
+		Assert.assertTrue(inWorkflow.isDisplayed());
+
+		// Assert scheduled is present.
+		WebElement scheduled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				scheduledStateItem);
+		Assert.assertTrue(scheduled.isDisplayed());
+
 		// Assert processing is present.
-
-		WebElement processing = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.col-xs-6:nth-child(11)");
-		// driverManager.getDriver().findElement(By.cssSelector("div.col-xs-6:nth-child(11)"));
-
+		WebElement processing = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				processingStateItem);
 		Assert.assertTrue(processing.isDisplayed());
 
 		// Assert disabled is present.
+//		WebElement disabled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+//				disabledStateItem);
+//		Assert.assertTrue(disabled.isDisplayed());
 
-		WebElement disabled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				".iconText");
-		// driverManager.getDriver().findElement(By.cssSelector(".iconText"));
-
-		Assert.assertTrue(disabled.isDisplayed());
+		// Assert deleted for edit is present.
+		WebElement deleted = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deletedStateItem);
+		Assert.assertTrue(deleted.isDisplayed());
 
 		// Assert Locked for edit is present.
-
-		WebElement locked = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#iconGuide > div.panel-body > div > div:nth-child(11) > div");
-		// driverManager.getDriver().findElement(By.cssSelector("#iconGuide >
-		// div.panel-body > div > div:nth-child(11) > div"));
-
+		WebElement locked = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", lockedStateItem);
 		Assert.assertTrue(locked.isDisplayed());
 
 	}

@@ -33,6 +33,10 @@ public class AddNewFolderTest {
 	
 	private String userName;
 	private String password;
+
+	private String siteDropdownElementXPath;
+
+	private String newFolderXpath;
 	
 
 	@BeforeClass
@@ -50,7 +54,10 @@ public class AddNewFolderTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-	
+		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		newFolderXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitecontent.newfolder");
 
 	}
 
@@ -61,7 +68,7 @@ public class AddNewFolderTest {
 
 	@Test(priority = 0)
 
-	public void Add_New_Folder_test() {
+	public void createANewFolderUsingContextualClickOptionTest() {
 
 		// login to application
 
@@ -73,7 +80,7 @@ public class AddNewFolderTest {
 
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownElementXPath)
 				.click();
 	
 		// expand pages folder
@@ -89,9 +96,8 @@ public class AddNewFolderTest {
 		dashboardPage.clickCreateButton();
 
 		// Assert find the new folder created
-		String folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"span.status-icon.folder.no-preview.no-preview.over-effect-set").getText();
-		Assert.assertEquals(folderName, "addnewfolder");
+		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(
+				newFolderXpath));
 
 	}
 

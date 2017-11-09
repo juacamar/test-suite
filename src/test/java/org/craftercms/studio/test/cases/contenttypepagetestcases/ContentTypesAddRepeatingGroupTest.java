@@ -34,6 +34,8 @@ public class ContentTypesAddRepeatingGroupTest {
 	private String controlsSectionRepeatingGroupLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerRepeatingGroupTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -62,6 +64,10 @@ public class ContentTypesAddRepeatingGroupTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerRepeatingGroupTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerrepeatinggrouptitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 	}
 
 	@AfterClass
@@ -99,7 +105,7 @@ public class ContentTypesAddRepeatingGroupTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddRepeatingGroupTest() {
+	public void verifyThatStudioAllowsToAddARepeatingGroupControlToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
@@ -109,9 +115,9 @@ public class ContentTypesAddRepeatingGroupTest {
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//a[@id='admin-console']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -126,6 +132,7 @@ public class ContentTypesAddRepeatingGroupTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickRepeatingGroupSection();
 
 		// Asserts that fields are not empty.
