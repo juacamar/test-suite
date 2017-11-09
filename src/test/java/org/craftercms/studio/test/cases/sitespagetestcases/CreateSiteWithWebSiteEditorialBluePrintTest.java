@@ -90,13 +90,15 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		createSitePage.clickOnCreateSiteButton();
 
 		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
 				"xpath", siteDropdownElementXPath);
 		
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+		if (this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath))
 		{
 			
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( 
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( 
 					"xpath", siteDropdownElementXPath)
 					.click();
 		}

@@ -121,7 +121,7 @@ public class WebDriverManager {
 	public WebElement driverWaitUntilElementIsPresentAndDisplayed(String typeOfSelector,
 			String selectorValue) {
 		WebElement element = null;
-		long sleepTimeInMilliSecs = ((this.defaultTimeOut * 1000)/(5));
+		long sleepTimeInMilliSecs = ((this.defaultTimeOut * 1000)/(3));
 		switch (typeOfSelector.toLowerCase()) {
 		case "cssselector":
 			if ((new WebDriverWait(this.driver, this.defaultTimeOut,sleepTimeInMilliSecs)).until(
@@ -182,7 +182,7 @@ public class WebDriverManager {
 	public WebElement driverWaitUntilElementIsPresentAndDisplayedAndClickable(String typeOfSelector,
 			String selectorValue) {
 		WebElement element = null;
-		long sleepTimeInMilliSecs = ((this.defaultTimeOut * 1000)/(5));
+		long sleepTimeInMilliSecs = ((this.defaultTimeOut * 1000)/(3));
 		switch (typeOfSelector.toLowerCase()) {
 		case "cssselector":
 			if ((new WebDriverWait(this.driver,  this.defaultTimeOut, sleepTimeInMilliSecs)).until(
