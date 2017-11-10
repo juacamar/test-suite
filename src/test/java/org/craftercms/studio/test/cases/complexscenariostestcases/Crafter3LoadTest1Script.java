@@ -130,8 +130,7 @@ public class Crafter3LoadTest1Script {
 				.getProperty("complexscenarios.crafter3loadtest.technologycontentpage");
 		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.home");
+		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
 		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -152,8 +151,7 @@ public class Crafter3LoadTest1Script {
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.compareButton");
 		historyInitialCommitRevertButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.initialcommittrevertbutton");
-		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.studiologo");
+		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 		approveForPublishDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.approveforpublishdialogtitle");
 		siteDropDownMenuId = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -295,7 +293,6 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
-
 		// save and close
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 
@@ -348,20 +345,18 @@ public class Crafter3LoadTest1Script {
 		// driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
 
-		this.driverManager.isElementPresentAndClickableByXpath(
-				historyFirstItemCheckbBox);
+		this.driverManager.isElementPresentAndClickableByXpath(historyFirstItemCheckbBox);
+		this.driverManager.isElementPresentAndClickableByXpath(historyFirstItemCheckbBox);
+
 		// Checking the first row version
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-						historyFirstItemCheckbBox)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historyFirstItemCheckbBox)
 				.click();
 
 		// Checking the second row version
-		this.driverManager.isElementPresentAndClickableByXpath(
-				historySecondItemCheckbBox);
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-						historySecondItemCheckbBox)
+		this.driverManager.isElementPresentAndClickableByXpath(historySecondItemCheckbBox);
+		this.driverManager.isElementPresentAndClickableByXpath(historySecondItemCheckbBox);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historySecondItemCheckbBox)
 				.click();
 
 		// click on Compare button
@@ -372,12 +367,10 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.isElementPresentAndClickableByName(differencesDialogId);
 
 		// checkin if is present the removed-red-highlight text
-		Assert.assertTrue(driverManager
-				.isElementPresentByXpath(differencesDialogRemovedMarkXpath));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(differencesDialogRemovedMarkXpath));
 
 		// checkin if is present the added-green-highlight text
-		Assert.assertTrue(driverManager
-				.isElementPresentByXpath(differencesDialogAddedMarkXpath));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(differencesDialogAddedMarkXpath));
 
 		// click on close button
 		dashboardPage.clickCloseButton();
@@ -393,9 +386,7 @@ public class Crafter3LoadTest1Script {
 		driverManager.getDriver().switchTo().activeElement();
 
 		// Clickin the revert changes option for the initial version
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-						historyInitialCommitRevertButton)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", historyInitialCommitRevertButton)
 				.click();
 
 		// Comparing first two versions of the content
@@ -761,7 +752,7 @@ public class Crafter3LoadTest1Script {
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.isElementPresentAndClickableById(studioLogo);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 
 		// Step8
 		this.step8();

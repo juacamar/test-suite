@@ -93,9 +93,16 @@ public class CreateSiteEmptyTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
+		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
+
 		// Show site content panel
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+		if (this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath))
+			this.driverManager
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath).click();
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
