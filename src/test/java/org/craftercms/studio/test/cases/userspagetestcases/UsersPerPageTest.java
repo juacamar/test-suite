@@ -147,7 +147,8 @@ public class UsersPerPageTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("4");
 
-		// Asser only 1 users displayed
+		// Asser 4 users displayed
+		this.driverManager.isElementPresentAndClickableByXpath(lastNumberOfPaginationXpath);
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
 		List<WebElement> usersList4items = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));

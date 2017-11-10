@@ -130,12 +130,6 @@ public class PublishingSiteTest {
 		previewPage.clickOnSubmitButtonOfApprovePublish();
 	}
 
-	public void reloadPage() {
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-		driverManager.getDriver().navigate().refresh();
-	}
-
 	@Test(priority = 0)
 
 	public void publishingSite() {
@@ -164,8 +158,11 @@ public class PublishingSiteTest {
 		driverManager.getDriver().navigate().refresh();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", testingContentItem)
-				.click();
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath", testingContentItem);
+				//.click();
+		this.driverManager
+		.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath", testingContentItem)
+		.click();
 
 		// approve and publish
 		approveAndPublish();	
@@ -180,9 +177,7 @@ public class PublishingSiteTest {
 		
 		while(!(isLifeContent.contains("undefined live")))
 		{
-			isLifeContent= this.driverManager.getDriver()
-			.findElement(By
-			.xpath(topNavStatusIcon)).getAttribute("class").toString();
+			isLifeContent= this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavStatusIcon).getAttribute("class");
 			driverManager.getDriver().navigate().refresh();
 			this.dashboardPage.expandHomeTree();	
 		}

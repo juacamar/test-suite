@@ -187,10 +187,10 @@ public class PreviewPage {
 	// Click on Approve&Publish option
 
 	public void approvePublish() {
+		this.driverManager.isElementPresentAndClickableByXpath(approvePublish);
 		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				approvePublish);
 		
-
 		publishIcon.click();
 	
 	}
@@ -505,6 +505,7 @@ public class PreviewPage {
 		 driverManager.getDriver().switchTo().defaultContent();
 		 
 		// go to dashboard
+		this.driverManager.isElementPresentAndClickableById(studioLogo);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();	
 
 	}

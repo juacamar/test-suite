@@ -80,6 +80,9 @@ public class DeleteSiteTest {
 		
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
 		
+		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().navigate().refresh();
+		
 		// Assert
 		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(deletedSiteRow));
 	}

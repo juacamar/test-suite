@@ -967,11 +967,11 @@ public class DashboardPage {
 
 		this.driverManager.isElementPresentAndClickableByXpath(cutCrafterComponent);
 
-		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				cutCrafterComponent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu, false);
 
-		WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				deleteCrafterComponent2);
 		delContent.click();
 	}
@@ -1232,6 +1232,7 @@ public class DashboardPage {
 	public void clickOnPublishOption() {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", publishOptionLocator);
 		this.driverManager.isElementPresentAndClickableByXpath(publishOptionLocator);
+		
 		WebElement publishOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				publishOptionLocator);
 
