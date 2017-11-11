@@ -34,6 +34,7 @@ public class DeleteUserTest {
 	private String password;
 	private String deleteYesButtonXpath;
 	private String usersRowsXpath;
+	private String newUserButtonXpath;
 
 
 	@BeforeClass
@@ -56,6 +57,8 @@ public class DeleteUserTest {
 				.getProperty("general.users.deleteyesbutton");
 		usersRowsXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersrows");
+		newUserButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.newuserbutton");
 	}
 
 	@AfterClass
@@ -84,7 +87,8 @@ public class DeleteUserTest {
 				.click();
 
 		// Assert new users created is deleted
-
+		driverManager.getDriver().navigate().refresh();
+		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 		
 		List<WebElement> usersList = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
