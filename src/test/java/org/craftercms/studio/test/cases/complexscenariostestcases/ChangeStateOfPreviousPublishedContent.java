@@ -481,7 +481,7 @@ public class ChangeStateOfPreviousPublishedContent {
 	}
 
 	@Test
-	public void renameParentPageAndPublishChildTest() {
+	public void changeStateOfPreviousPublishedContent() {
 		// Related to the bug:
 		// issue https://github.com/craftercms/craftercms/issues/1557
 
