@@ -102,6 +102,10 @@ public class DashboardPage {
 	private String copyOptionLocatorForContentPage;
 	private String addNewContentOption3;
 	private String deleteOption2Locator;
+	private String articlesSubjectInput;
+	private String articlesAuthorInput;
+	private String articlesSummaryInput;
+	private String articleAddImageButton;
 
 	/**
 	 * 
@@ -268,6 +272,18 @@ public class DashboardPage {
 				.getProperty("dashboard.add_New_Content3");
 		deleteOption2Locator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.rightclickdeleteoption2");
+		articlesSubjectInput = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("frame2.article_subject_input");
+		articlesAuthorInput = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("frame2.article_author_input");
+		articlesSummaryInput = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("frame2.article_summary_input");
+		articleAddImageButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("frame2.article_add_image_button");
+				
+		
+	
+		
 	}
 
 	public DashboardPage(WebDriver driver) {
@@ -338,6 +354,22 @@ public class DashboardPage {
 	public void rightClickToSeeMenu() {
 		// Press right click and select new content
 		this.rightClickHome();
+	}
+	
+	public void rightClickToSeeMenuOfSpecificFolder(String folderLocation) {
+		// Press right click and select new content
+		this.rightClickSpecificFolder(folderLocation);
+	}
+	
+	public void rightClickSpecificFolder(String folderLocation) {
+		this.driverManager.isElementPresentAndClickableByXpath(folderLocation);
+
+		WebElement folderLocationElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				folderLocation);
+		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), folderLocationElement, false);
+
+		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewContent);
+		addContent.click();
 	}
 
 	// Press right click and select new content
@@ -1162,6 +1194,13 @@ public class DashboardPage {
 		// select the Category
 		this.selectFirstCategoryOfPagArticle();
 	}
+	public void updateFieldsOfPageArticleContent(String strInternalName, String strArticlesTitle) {
+		// Fill internal name
+		this.setInternalName1(strInternalName);
+		// Fill the Subject field
+		this.setArticlesTitle(strArticlesTitle);
+		
+	}
 
 	public void setArticlesTitle(String strArticlesTitle) {
 		WebElement articlesTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
@@ -1169,12 +1208,53 @@ public class DashboardPage {
 		articlesTitle.clear();
 		articlesTitle.sendKeys(strArticlesTitle);
 	}
+	
+	public void setNewArticleContentSection(String subject, String author, String summary){
+		
+		WebElement articlePageSubject = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				articlesSubjectInput);
+		articlePageSubject.clear();
+		articlePageSubject.sendKeys(subject);
+		
+		WebElement articlePageAuthor = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				articlesAuthorInput);
+		articlePageAuthor.clear();
+		articlePageAuthor.sendKeys(author);
+		
+		WebElement articlePageSummary = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				articlesSummaryInput);
+		articlePageSummary.clear();
+		articlePageSummary.sendKeys(summary);
+		
+		
+		
+	}
 
 	public void selectFirstCategoryOfPagArticle() {
 
 		Select categoriesDropDown = new Select(
 				this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", categoriesLocator));
 		categoriesDropDown.selectByValue("style");
+	}
+	
+	public void selectCategoriesOfNewPageArticle(String category) {
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", category);
+
+		WebElement categoryToCheck = 
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", category);
+		categoryToCheck.click();
+	
+	}
+	
+	public void selectSegmentsOfNewPageArticle(String segments) {
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", segments);
+		
+		WebElement segmentToCheck = 
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", segments);
+		segmentToCheck.click();
+	
 	}
 
 	public void selectAllTreeOnSelector(String folderXPath) {
@@ -1364,4 +1444,40 @@ public class DashboardPage {
 				editParentOption);
 		editContent.click();
 	}
+
+	public void addAnImageToAnArticle() {
+		
+		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				articleAddImageButton);
+		
+		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					articleAddImageButton).click();
+		 
+		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
+				 "xpath", "//*[@id='image']/div/div/div[2]/div[2]/div[2]/div[2]");
+		 
+		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
+				 "xpath", "//*[@id='image']/div/div/div[2]/div[2]/div[2]/div[2]").click();
+		 
+		 
+		// Switch to the iframe
+			driverManager.getDriver().switchTo().defaultContent();
+			driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+					"cssSelector", ".studio-ice-dialog > .bd iframe"));
+			this.driverManager.isElementPresentAndClickableBycssSelector( ".studio-ice-dialog > .bd iframe");
+			
+			driverManager.getDriver().switchTo().defaultContent();
+			this.driverManager.getDriver().switchTo().frame(2);
+			
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+			"//*[@id='cstudio-wcm-search-result']/div[2]/div/div[1]/div[2]/div[1]/span[5]/a");
+			
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+			"//*[@id='cstudio-wcm-search-result']/div[2]/div/div[1]/div[2]/div[1]/span[5]/a").click();
+		
+	}
+
+
+
+
 }
