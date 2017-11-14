@@ -89,6 +89,7 @@ public class DeleteUserTest {
 		// Assert new users created is deleted
 		driverManager.getDriver().navigate().refresh();
 		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
+		
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 		
 		List<WebElement> usersList = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));

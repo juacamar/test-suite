@@ -39,9 +39,12 @@ public class PublishingSiteTest {
 	private String createFormSaveAndCloseElementId;
 	private String studioLogo;
 	private String testingContentItem;
-	private String topNavDeleteOption;
-	private String topNavEditOption;
 	private String topNavStatusIcon;
+	private String siteDropdownElementXPath;
+
+	private String homeXpath;
+
+	private String crafterLogoId;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -50,9 +53,9 @@ public class PublishingSiteTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
@@ -66,16 +69,15 @@ public class PublishingSiteTest {
 				.getProperty("general.createformMainTitle");
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.saveandclosebutton");
-		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.studiologo");
+		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 		testingContentItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.testingcontentitem");
-		topNavDeleteOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.deletetopnavoption");
-		topNavEditOption= UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.edittopnavoption");
 		topNavStatusIcon = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.statustopbaricon");
+		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		homeXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
+		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 
 	}
 
@@ -102,19 +104,17 @@ public class PublishingSiteTest {
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", createFormFrameElementCss));
+		driverManager.getDriver().switchTo().frame(this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
 		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 		// Set the title of main content
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
@@ -128,6 +128,8 @@ public class PublishingSiteTest {
 
 		// submit
 		previewPage.clickOnSubmitButtonOfApprovePublish();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeXpath);
 	}
 
 	@Test(priority = 0)
@@ -144,7 +146,7 @@ public class PublishingSiteTest {
 		changeBodyToNotRequiredOnEntryContent();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
@@ -157,36 +159,40 @@ public class PublishingSiteTest {
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
 
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath", testingContentItem);
-				//.click();
-		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath", testingContentItem)
-		.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem);
+		// .click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
 
 		// approve and publish
-		approveAndPublish();	
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				topNavDeleteOption);
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
-				topNavEditOption);
-				
-		String isLifeContent="";
-		
-		while(!(isLifeContent.contains("undefined live")))
-		{
-			isLifeContent= this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavStatusIcon).getAttribute("class");
+		approveAndPublish();
+
+		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().navigate().refresh();
+
+		driverManager.isElementPresentAndClickableById(crafterLogoId);
+		driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", crafterLogoId).click();
+
+		// expand pages folder
+		dashboardPage.expandPagesTree();
+		//this.driverManager.waitWhileElementIsDisplayedByXpath(testingContentItem);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
+
+		this.driverManager.waitWhileElementIsPresentByXpath(topNavStatusIcon);
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
+
+		String isLifeContent = "";
+
+		while (!(isLifeContent.contains("undefined live"))) {
+			isLifeContent = this.driverManager.getDriver().findElement(By.xpath(topNavStatusIcon))
+					.getAttribute("class");
 			driverManager.getDriver().navigate().refresh();
-			this.dashboardPage.expandHomeTree();	
+			this.dashboardPage.expandHomeTree();
 		}
-				
-		Assert.assertTrue(this.driverManager.getDriver()
-				.findElement(By
-				.xpath(topNavStatusIcon)).getAttribute("class").contains("undefined live"));
-		
+
+		String elementClassValue = this.driverManager.getDriver().findElement(By.xpath(topNavStatusIcon))
+				.getAttribute("class");
+		Assert.assertTrue(elementClassValue.contains("undefined live"));
+
 	}
 
 }
-

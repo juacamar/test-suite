@@ -158,10 +158,17 @@ public class EditUserTest {
 		editingUser();
 
 		// Assert
-		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
-		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
+		driverManager.getDriver().navigate().refresh();
 		
+		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
+		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(newUserButtonXpath);
+		
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(newUserLastNameCellXpath);
 		this.driverManager.isElementPresentByXpath(newUserLastNameCellXpath);
+		this.driverManager
+		.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameCellXpath);
+		
 		String nameElementText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameCellXpath).getText();
 

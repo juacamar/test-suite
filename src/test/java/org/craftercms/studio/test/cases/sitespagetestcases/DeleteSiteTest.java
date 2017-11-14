@@ -21,8 +21,8 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class DeleteSiteTest {
 
 	WebDriver driver;
-	LoginPage objLogin;
-	HomePage objHomePage;
+	LoginPage Login;
+	HomePage HomePage;
 
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
@@ -78,12 +78,13 @@ public class DeleteSiteTest {
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().navigate().refresh();
 		
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
-		
-		driverManager.getDriver().navigate().refresh();
-		driverManager.getDriver().navigate().refresh();
+//		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
+//		
+//		driverManager.getDriver().navigate().refresh();
+//		driverManager.getDriver().navigate().refresh();
 		
 		// Assert
+		this.driverManager.waitWhileElementIsNotDisplayedByXpath(deletedSiteRow);
 		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(deletedSiteRow));
 	}
 }

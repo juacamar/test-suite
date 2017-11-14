@@ -120,7 +120,7 @@ public class WebDriverManager {
 
 	public WebElement driverWaitUntilElementIsPresentAndDisplayed(String typeOfSelector, String selectorValue) {
 		WebElement element = null;
-		
+
 		switch (typeOfSelector.toLowerCase()) {
 		case "cssselector":
 			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
@@ -160,9 +160,9 @@ public class WebDriverManager {
 				element = this.driver.findElement(By.linkText(selectorValue));
 			break;
 		case "partialLinktext":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(ExpectedConditions
-					.and(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(selectorValue)),
-							ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(selectorValue)))))
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(ExpectedConditions.and(
+					ExpectedConditions.presenceOfElementLocated(By.partialLinkText(selectorValue)),
+					ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(selectorValue)))))
 				element = this.driver.findElement(By.partialLinkText(selectorValue));
 			break;
 		case "name":
@@ -227,10 +227,10 @@ public class WebDriverManager {
 				element = this.driver.findElement(By.linkText(selectorValue));
 			break;
 		case "partialLinktext":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(ExpectedConditions
-					.and(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(selectorValue)),
-							ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(selectorValue)),
-							ExpectedConditions.elementToBeClickable(By.partialLinkText(selectorValue)))))
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(ExpectedConditions.and(
+					ExpectedConditions.presenceOfElementLocated(By.partialLinkText(selectorValue)),
+					ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(selectorValue)),
+					ExpectedConditions.elementToBeClickable(By.partialLinkText(selectorValue)))))
 				element = this.driver.findElement(By.partialLinkText(selectorValue));
 			break;
 		case "name":
@@ -416,6 +416,38 @@ public class WebDriverManager {
 
 		// commit the actions above
 		action.perform();
+	}
+
+	public void waitWhileElementIsDisplayedAndClickableByXpath(String xpath) {
+		Boolean isPresent = this.isElementPresentAndClickableByXpath(xpath);
+
+		while (!isPresent) {
+			isPresent = this.isElementPresentAndClickableByXpath(xpath);
+		}
+	}
+	
+	public void waitWhileElementIsPresentByXpath(String xpath) {
+		Boolean isPresent = this.isElementPresentByXpath(xpath);
+
+		while (!isPresent) {
+			try {
+				 this.getDriver().findElement(By.xpath(xpath));
+				 isPresent=true;
+			} catch (NoSuchElementException e) {
+				isPresent = false;
+			} catch (Exception e) {
+				isPresent = false;
+			}
+		}
+	}
+	
+	public void waitWhileElementIsNotDisplayedByXpath(String xpath) {
+		Boolean isPresent = this.isElementPresentAndClickableByXpath(xpath);
+
+		while (isPresent) {
+			isPresent = this.isElementPresentAndClickableByXpath(xpath);
+			this.getDriver().navigate().refresh();
+		}
 	}
 
 }

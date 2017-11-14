@@ -599,7 +599,9 @@ public class Crafter3LoadTest1Script {
 		myTestFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", mytestFolderLocator);
 
 		dashboardPage.expandParentFolder(myTestFolder);
+		//dashboardPage.expandParentFolder(myTestFolder);
 
+		this.driverManager.isElementPresentAndClickableByXpath(myTestBigTreeChildFolderLocator);
 		WebElement myTestBigTreeChildFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				myTestBigTreeChildFolderLocator);
 
@@ -700,10 +702,10 @@ public class Crafter3LoadTest1Script {
 
 		this.driverManager.isElementPresentAndClickableByXpath(bigTree2FolderLocator);
 		bigTree2Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", bigTree2FolderLocator);
-		dashboardPage.expandParentFolder(bigTree2Folder);
+		//dashboardPage.expandParentFolder(bigTree2Folder);
 
 		this.driverManager.isElementPresentAndClickableByXpath(bigTree2BigTree1ChildFolderLocator);
-		bigTree2BigTree1ChildFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		bigTree2BigTree1ChildFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2BigTree1ChildFolderLocator);
 		dashboardPage.rightClickDeleteAFolder(bigTree2BigTree1ChildFolder);
 		this.confirmDeleteAction();
@@ -731,13 +733,17 @@ public class Crafter3LoadTest1Script {
 
 		// Step3
 		this.step3();
-
+		
+		driverManager.getDriver().navigate().refresh();
 		// Step4
 		this.step4();
 
 		// Step5
 		this.step5();
-
+		
+		this.driverManager.getDriver().navigate().refresh();
+		this.driverManager.isElementPresentAndClickableById(studioLogo);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 		// Step6
 		this.step6();
 
