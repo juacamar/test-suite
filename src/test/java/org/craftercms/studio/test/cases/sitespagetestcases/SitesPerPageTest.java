@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.sitespagetestcases;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -30,12 +29,15 @@ public class SitesPerPageTest {
 	private String password;
 
 	private CreateSitePage createSitePage;
-	private String sitesTopBarOptionId;
 	private String sitesPerPageInputXpath;
 	private String firstSiteXpath;
 	private String secondSiteXpath;
 	private String thirdSiteXpath;
 	private String createSiteButton;
+	private String siteDropdownElementXPath;
+	private String topNavDeleteOption;
+	private String topNavEditOption;
+	private String topNavSitesOption;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -54,8 +56,6 @@ public class SitesPerPageTest {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
-		sitesTopBarOptionId= uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.preview.sitesoption");
 		sitesPerPageInputXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.sitesperpageinput");
 		firstSiteXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -66,6 +66,14 @@ public class SitesPerPageTest {
 				.getProperty("general.sites.thirdSiteNameOnList");
 		createSiteButton = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
+		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		topNavDeleteOption = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.deletetopnavoption");
+		topNavEditOption= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.edittopnavoption");
+		topNavSitesOption= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.preview.sitesoption");
 		
 		// login to application
 		loginPage.loginToCrafter(userName, password);
@@ -123,16 +131,17 @@ public class SitesPerPageTest {
 		// Click on Create button
 
 		createSitePage.clickOnCreateSiteButton();
+		
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 
-		if (this.driverManager.isElementPresentById(sitesTopBarOptionId))
-			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayed("id", sitesTopBarOptionId)
-					.click();
-		else
-			throw new NoSuchElementException(
-					"Site creation process is taking too long time and the element was not found");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavDeleteOption);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavEditOption);
 
-		driverManager.getDriver().navigate().refresh();
+		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
+		
+		this.driverManager.isElementPresentAndClickableById(topNavSitesOption);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", topNavSitesOption).click();
 	}
 
 	public void filters() {
@@ -199,8 +208,7 @@ public class SitesPerPageTest {
 		// Click on YES to confirm the delete.
 
 		homePage.clickOnYesToDeleteSite();
-
-		// Refresh teh site
+		// Refresh the site
 		driverManager.getDriver().navigate().refresh();
 	}
 
