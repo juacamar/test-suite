@@ -365,7 +365,7 @@ public class DashboardPage {
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
 
-		WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewFolder);
+		WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", addNewFolder);
 		addFolder.click();
 	}
 

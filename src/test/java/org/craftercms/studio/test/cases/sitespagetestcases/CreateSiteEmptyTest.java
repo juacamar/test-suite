@@ -94,8 +94,11 @@ public class CreateSiteEmptyTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
-		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
-		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+//		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+//		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+//		
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
+		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				topNavDeleteOption);
