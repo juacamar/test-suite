@@ -30,6 +30,14 @@ public class AddNewContentSectionDefaultsTest {
 
 	private String userName;
 	private String password;
+
+	private String createFormFrameElementCss;
+
+	private String createFormSaveAndCloseElementId;
+
+	private String siteDropDownXpath;
+
+	private String sectionDefaultsXpath;
 	
 
 	@BeforeClass
@@ -47,7 +55,14 @@ public class AddNewContentSectionDefaultsTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		siteDropDownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		sectionDefaultsXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitecontent.sectiondefaults");
 	}
 
 	@AfterClass
@@ -75,10 +90,10 @@ public class AddNewContentSectionDefaultsTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
+				"cssSelector", createFormFrameElementCss));
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
 	
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -89,7 +104,7 @@ public class AddNewContentSectionDefaultsTest {
 
 	@Test(priority = 0)
 
-	public void addLevelDescriptor() {
+	public void addLevelDescriptorItemUsingContextualClickOptionsTest() {
 
 		// login to application
 
@@ -99,7 +114,7 @@ public class AddNewContentSectionDefaultsTest {
 		homePage.goToPreviewPage();
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropDownXpath)
 				.click();
 
 		// expand pages folder
@@ -113,7 +128,7 @@ public class AddNewContentSectionDefaultsTest {
 
 		// Assert of the test case is fine
 		String levelDescriptor = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#ygtvlabelel2").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", sectionDefaultsXpath).getText();
 
 		
 		Assert.assertEquals(levelDescriptor, "Section Defaults");

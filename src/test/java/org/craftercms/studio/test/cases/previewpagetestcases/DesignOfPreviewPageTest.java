@@ -33,25 +33,77 @@ public class DesignOfPreviewPageTest {
 	private LoginPage loginPage;
 
 	private HomePage homePage;
-	
+
 	private String userName;
 	private String password;
+
+	private String crafterLogoId;
+
+	private String siteDropDownXpath;
+
+	private String searchTopBarOptionId;
+
+	private String accountDropdownTopBarOptionId;
+
+	private String topNavDeleteOption;
+
+	private String topNavEditOption;
+
+	private String topNavHistoryOption;
+
+	private String topNavDependenciesOption;
+
+	private String dashboardOptionXpath;
+
+	private String adminConsoleXpath;
+
+	private String topNavUsersOption;
+
+	private String topNavSitesOption;
+
+	private String createSiteButtonXpath;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		
+
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		siteDropDownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		searchTopBarOptionId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.preview.searchtopbaroption");
+		accountDropdownTopBarOptionId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.preview.accountdropdowntopbaroption");
+		topNavDeleteOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.deletetopnavoption");
+		topNavEditOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.edittopnavoption");
+		topNavHistoryOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.historytopnavoption");
+		topNavDependenciesOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.dependenciestopnavoption");
+		dashboardOptionXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitecontent.dashboard");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+		topNavUsersOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.userstopnavoption");
+		topNavSitesOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitestopnavoption");
+		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
 
 	}
 
@@ -62,106 +114,85 @@ public class DesignOfPreviewPageTest {
 
 	@Test(priority = 0)
 
-	public void Design_of_preview_page() {
+	public void verifyTheDesignOfPreviewPageTest() {
 
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
 		homePage.goToPreviewPage();
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert crafter studio logo is present.
-		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[1]/a/img");
-		
+		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId);
 		Assert.assertTrue(logoCrafter.isDisplayed());
 
-	
 		// Assert site content option is present.
-		WebElement siteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a");
-	
+		WebElement siteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				siteDropDownXpath);
 
 		Assert.assertTrue(siteContent.isDisplayed());
 
-
 		// Assert search field is present.
-		WebElement searchField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
-				"acn-searchtext");
+		WebElement searchField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				searchTopBarOptionId);
 
 		Assert.assertTrue(searchField.isDisplayed());
 
-		
 		// Assert account option is present.
-		WebElement signUp = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#account-dropdown");
-		
+		WebElement signUp = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+				accountDropdownTopBarOptionId);
+
 		Assert.assertTrue(signUp.isDisplayed());
 
 		// Assert Edit option is present.
-		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[2]/a");
+		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				topNavEditOption);
 
 		Assert.assertTrue(editOption.isDisplayed());
 
 		// Assert delete option is present.
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[3]/a");
-		
+		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				topNavDeleteOption);
+
 		Assert.assertTrue(deleteOption.isDisplayed());
 
-		
-		// Assert all schedule option is present.
-		WebElement scheduleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[4]/a");
-		Assert.assertTrue(scheduleOption.isDisplayed());
-
-	
-		// Assert Approve publish is present.
-		WebElement approvePublishOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[3]/li[5]/a");
-		Assert.assertTrue(approvePublishOption.isDisplayed());
-
-		
-		// Assert dependencies option is present.
-		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#activeContentActions > li:nth-child(5) > a");
-	
-		Assert.assertTrue(duplicateOption.isDisplayed());
-
-		
 		// Assert history option is present.
-		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#activeContentActions > li:nth-child(5) > a");
+		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				topNavHistoryOption);
 		Assert.assertTrue(historyOption.isDisplayed());
 
+		// Assert history option is present.
+		WebElement dependencies = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				topNavDependenciesOption);
+		Assert.assertTrue(dependencies.isDisplayed());
+
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				siteDropDownXpath).click();
+
 		// Assert all Sites Dropdown option is present.
-		WebElement dashboard = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#acn-dropdown-menu-inner > div.studio-view");
+		WebElement dashboard = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				dashboardOptionXpath);
 		Assert.assertTrue(dashboard.isDisplayed());
 
-	
 		// Assert Users option is present.
-		WebElement usersOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#studioBar > nav > div div.collapse.navbar-collapse > div > ul  > li:nth-child(1) > a");
+		WebElement usersOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				topNavUsersOption);
 		Assert.assertTrue(usersOption.isDisplayed());
 
 		// Assert sites option is present.
-		WebElement sitesOption =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#studioBar > nav > div div.collapse.navbar-collapse > div > ul  > li:nth-child(1) > a");
+		WebElement sitesOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				topNavSitesOption);
 		Assert.assertTrue(sitesOption.isDisplayed());
 
 		// Assert admin console option is present.
-		WebElement adminConsoleOption =this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"#admin-console.acn-admin-console");
+		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				adminConsoleXpath);
 		Assert.assertTrue(adminConsoleOption.isDisplayed());
 
 	}

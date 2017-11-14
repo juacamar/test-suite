@@ -35,6 +35,8 @@ public class DesignOfPreviewToolsPanelTest {
 	private String userName;
 	private String password;
 
+	private String previewToolsPanel;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -50,7 +52,8 @@ public class DesignOfPreviewToolsPanelTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		previewToolsPanel = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.previewtools.mainpanel");
 	}
 
 	@AfterClass
@@ -60,7 +63,7 @@ public class DesignOfPreviewToolsPanelTest {
 
 	@Test(priority = 0)
 
-	public void design_preview_tools_panel() {
+	public void verifyTheDesignOfPreviewToolsSectionTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
@@ -75,14 +78,14 @@ public class DesignOfPreviewToolsPanelTest {
 
 		// Assert
 		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", "#preview-tools-panel-container.yui-module.yui-overlay.yui-panel");
+				"xpath", previewToolsPanel);
 		Assert.assertTrue(previewToolsShow.isDisplayed());
 
 		// Click on Preview Tools icon (hide)
 		previewPage.clickOnPreviewTools();
 
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector("#preview-tools-panel-container.yui-module.yui-overlay.yui-panel"));
+		Assert.assertFalse(this.driverManager.isElementPresentByXpath(previewToolsPanel));
 
 	}
 

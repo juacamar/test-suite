@@ -246,7 +246,7 @@ public class CreateSitePage {
 
 	public void usersOption() {
 		this.driverManager.isElementPresentAndClickableByXpath(usersOption);
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
 				usersOption);
 		users.click();
 
@@ -283,7 +283,7 @@ public class CreateSitePage {
 
 	public void clickHelp() {
 		this.driverManager.isElementPresentAndClickableById(helpOption);
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id",
 				helpOption);
 				//driver.findElement(By.cssSelector(helpOption));
 		users.click();
@@ -339,7 +339,7 @@ public class CreateSitePage {
 	// Press on admin option
 
 	public void clickAdmin() {
-		this.driverManager.isElementPresentByXpath( adminDropdownOption);
+		this.driverManager.isElementPresentAndClickableByXpath( adminDropdownOption);
 		WebElement admin = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				adminDropdownOption);
 				//driver.findElement(By.cssSelector(adminDropdownOption));

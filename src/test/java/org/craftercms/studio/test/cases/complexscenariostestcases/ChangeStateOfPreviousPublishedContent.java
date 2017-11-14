@@ -483,7 +483,7 @@ public class ChangeStateOfPreviousPublishedContent {
 	@Test
 	public void renameParentPageAndPublishChildTest() {
 		// Related to the bug:
-		// issue https://github.com/craftercms/craftercms/issues/15
+		// issue https://github.com/craftercms/craftercms/issues/1557
 
 		this.login(userName, password);
 

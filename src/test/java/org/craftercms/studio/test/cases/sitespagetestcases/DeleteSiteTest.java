@@ -21,8 +21,8 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class DeleteSiteTest {
 
 	WebDriver driver;
-	LoginPage objLogin;
-	HomePage objHomePage;
+	LoginPage Login;
+	HomePage HomePage;
 
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
@@ -30,6 +30,8 @@ public class DeleteSiteTest {
 	
 	private String userName;
 	private String password;
+	private String deletedSiteRow;
+	private String createSiteButton;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -46,7 +48,10 @@ public class DeleteSiteTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
+		deletedSiteRow = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.deletedsiterow");
+		createSiteButton = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
 
 	}
 
@@ -57,21 +62,29 @@ public class DeleteSiteTest {
 
 	@Test(priority = 0)
 
-	public void delete_site() {
+	public void deleteSiteTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
 				userName,password);
 
 		// Click on Delete icon
-
+        this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
 		homePage.clickOnDeleteSiteIcon();
 		
 		// Click on YES to confirm the delete.
-
 		homePage.clickOnYesToDeleteSite();
-
+		
+		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().navigate().refresh();
+		
+//		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
+//		
+//		driverManager.getDriver().navigate().refresh();
+//		driverManager.getDriver().navigate().refresh();
+		
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector(".glyphicon.glyphicon-trash"));
+		this.driverManager.waitWhileElementIsNotDisplayedByXpath(deletedSiteRow);
+		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(deletedSiteRow));
 	}
 }

@@ -35,6 +35,8 @@ public class LogOutTest {
 
 	private String userName;
 	private String password;
+
+	private String loginButtonLocator;
 	
 
 	@BeforeClass
@@ -52,7 +54,7 @@ public class LogOutTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
+		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
 		
 	}
 
@@ -63,7 +65,7 @@ public class LogOutTest {
 
 	@Test(priority = 0)
 
-	public void logOut_Test() {
+	public void logoutFromStudioTest() {
 
 		// login to application
 
@@ -73,11 +75,10 @@ public class LogOutTest {
 		homePage.clickLogoutOutCrafter();
 		
 		// Verify login is fine
-	    WebElement validation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				".btn.btn-primary");
-	    		//driverManager.getDriver().findElement(By.cssSelector(".btn.btn-primary"));
+	    WebElement signInButtom = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+	    		loginButtonLocator);
 	 
-	    Assert.assertTrue(validation.isDisplayed());
+	    Assert.assertTrue(signInButtom.isDisplayed());
 	
 	}
 

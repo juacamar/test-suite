@@ -34,6 +34,8 @@ public class ContentTypesAddVideoTest {
 	private String controlsSectionVideoLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerVideoTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -64,6 +66,10 @@ public class ContentTypesAddVideoTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerVideoTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainervideotitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 
 	}
 
@@ -95,7 +101,7 @@ public class ContentTypesAddVideoTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromVideo, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefault");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -103,7 +109,7 @@ public class ContentTypesAddVideoTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddVideoTest() {
+	public void verifyThatStudioAllowsToAddAVideoControlToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -114,11 +120,11 @@ public class ContentTypesAddVideoTest {
 
 		// Show site content panel
 		 this.driverManager
-			.driverWaitUntilElementIsPresentAndDisplayed( "xpath", "/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+			.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownXpath).click();
 
 		// Show admin console page
 		this.driverManager
-		.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='admin-console']").click();
+		.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -133,6 +139,7 @@ public class ContentTypesAddVideoTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickVideoSection();
 
 		// Asserts that fields are not empty.

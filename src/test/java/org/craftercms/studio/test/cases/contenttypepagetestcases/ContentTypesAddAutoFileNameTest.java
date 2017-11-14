@@ -34,6 +34,8 @@ public class ContentTypesAddAutoFileNameTest {
 	private String controlsSectionAutoFileNameLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerAutoFileNameTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 	
 	@BeforeClass
 	public void beforeTest() {
@@ -62,6 +64,10 @@ public class ContentTypesAddAutoFileNameTest {
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
 		this.contentTypeContainerAutoFileNameTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerautofilenametitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 
 	}
 
@@ -100,7 +106,7 @@ public class ContentTypesAddAutoFileNameTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddAutoFileNameTest() {
+	public void verifyThatStudioAllowsToAddAnAutoFileNameControlToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -111,9 +117,9 @@ public class ContentTypesAddAutoFileNameTest {
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='admin-console']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -128,6 +134,7 @@ public class ContentTypesAddAutoFileNameTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickAutoFileNameSection();
 
 		// Asserts that fields are not empty.

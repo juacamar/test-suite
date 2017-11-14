@@ -117,7 +117,7 @@ public class PresetEachDesignTest {
 
 	@Test(priority = 0)
 
-	public void presetDesign() {
+	public void verifyTheDesingOfPresetsOnPreviewToolsTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);

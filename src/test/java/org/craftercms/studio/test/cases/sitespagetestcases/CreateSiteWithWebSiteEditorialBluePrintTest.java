@@ -11,8 +11,6 @@ import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 
 /**
  * 
@@ -30,6 +28,9 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 	private String userName;
 	private String password;
+	private String siteDropdownElementXPath;
+	private String topNavDeleteOption;
+	private String topNavEditOption;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -47,6 +48,12 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		topNavDeleteOption = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.deletetopnavoption");
+		topNavEditOption= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.edittopnavoption");
 
 	}
 
@@ -83,27 +90,23 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
-		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
+//		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+//		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+//		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);	
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 		
-		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-				"xpath", siteDropdownElementXPath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				topNavDeleteOption);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
+				topNavEditOption);
 		
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-		{
-			
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( 
-					"xpath", siteDropdownElementXPath)
-					.click();
-		}
-		else
-			throw new NoSuchElementException(
-					"Site creation process is taking too long time and the element was not found");
+//		Assert.assertTrue(
+//				(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",topNavStatusIcon).getAttribute("class"))
+//				.contains("undefined live")
+//				);
 
-		// Assert
-		String headStatusClass = this.driverManager.getDriver().findElement(By.cssSelector("#activeContentActions > li:nth-child(1) > span > div > span > span:nth-child(2)")).getAttribute("class");
-		Assert.assertTrue(headStatusClass.contains("live"));
-
+		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 	}
 
 }

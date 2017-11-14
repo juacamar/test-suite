@@ -59,6 +59,21 @@ public class EditContentFormTest {
 
 	private String userName;
 	private String password;
+	private String controlsSectionFromSection;
+	private String contentFormName;
+	private String controlsSectionInputLocator;
+	private String contentTypeContainerFormSectionContainerLocator;
+	private String adminConsoleXpath;
+	private String entryContentTypeBodyXpath;
+	private String entryContentTypeBodyCheckCss;
+	private String createFormFrameElementCss;
+	private String createFormSaveAndCloseElementId;
+	private String myRecentActivityTestingItem;
+	private String createFormTitle;
+	private String siteDropDownXpath;
+	private String crafterLogoId;
+
+	private String createFormMainTitle;
 
 	@BeforeClass
 
@@ -83,7 +98,34 @@ public class EditContentFormTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		controlsSectionFromSection = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.controlssection");
+		contentFormName = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contentformname");
+		controlsSectionInputLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.controlsinput");
+		contentTypeContainerFormSectionContainerLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+		entryContentTypeBodyXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.body");
+		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.bodyrequiredcheck");
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
+		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
+		myRecentActivityTestingItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.testingcontentitem.myrecentactivity");
+		createFormTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformfiletitle");
+		createFormMainTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformMainTitle");
+		siteDropDownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.studiologo");
 	}
 
 	@AfterClass
@@ -114,13 +156,9 @@ public class EditContentFormTest {
 
 		// Drag and drop Form Section
 
-		WebElement From = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement From = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",controlsSectionFromSection);
 
-				".control-section");
-
-		WebElement To = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-
-				"#content-type-canvas .content-form-name");
+		WebElement To = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",contentFormName);
 
 		Actions builder = new Actions(driverManager.getDriver());
 
@@ -134,13 +172,9 @@ public class EditContentFormTest {
 
 		dragAndDrop.perform();
 
-		WebElement FromInput = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement FromInput = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",controlsSectionInputLocator);
 
-				"#content-type-tools .control:nth-child(3)");
-
-		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-
-				"#content-type-canvas .content-type-visual-section-container:nth-child(3)");
+		WebElement ToDefaultSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeContainerFormSectionContainerLocator);
 
 		Action dragAndDropInput = builder.clickAndHold(FromInput)
 
@@ -164,7 +198,7 @@ public class EditContentFormTest {
 
 		// go to admin console page
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
 
 		// select content types
 
@@ -180,19 +214,15 @@ public class EditContentFormTest {
 
 		// select main content
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//span[contains(text(),'Body')]")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath)
 				.click();
 
 		// Body not required
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-
-				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",entryContentTypeBodyCheckCss).click();
 
 		// save
-
 		siteConfigPage.saveDragAndDropProcess();
-
 		driverManager.getDriver().switchTo().defaultContent();
 
 	}
@@ -214,18 +244,18 @@ public class EditContentFormTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
+		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#title > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitle)
 				.sendKeys("MainTitle");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 
 		// wait for element is clickeable
 
@@ -241,9 +271,7 @@ public class EditContentFormTest {
 
 		// Assert of the test case is fine
 
-		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-
-				".//tbody[@id='MyRecentActivity-tbody']/tr/td/div/a[contains(text(),'Testing1')]").getText();
+		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",myRecentActivityTestingItem).getText();
 
 		Assert.assertTrue(contentURL.contains(contentURL));
 
@@ -265,8 +293,8 @@ public class EditContentFormTest {
 
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 
-				"cssSelector", ".studio-ice-dialog > .bd iframe"));
-		driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
+				"cssSelector", createFormFrameElementCss));
+		driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 		// Expand default section
 
@@ -274,12 +302,12 @@ public class EditContentFormTest {
 
 		// Clealing title text field
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#internal-name > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormTitle)
 				.clear();
 
 		// Typing new text on title text field
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#internal-name > div > input")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormTitle)
 
 				.sendKeys("TestQA");
 
@@ -304,8 +332,8 @@ public class EditContentFormTest {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
-		driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
+		driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 		// Expand default section
 
@@ -317,15 +345,13 @@ public class EditContentFormTest {
 
 		// Go to dashboard page
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-
-				"/html/body/div[4]/div[1]/nav/div/div[1]/a/img").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",crafterLogoId).click();
 
 	}
 
 	@Test(priority = 0)
 
-	public void editContentTest() {
+	public void verifyTheEditionOfAPageUsingEditLinkOfRecentActivityTest() {
 
 		// login to application
 
@@ -337,12 +363,9 @@ public class EditContentFormTest {
 
 		// Show site content panel
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//a[@id='acn-dropdown-toggler']")
-
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropDownXpath).click();
 
 		// Select the content type and drag and drop
-
 		dragAndDrop();
 
 		driverManager.getDriver().switchTo().defaultContent();
@@ -361,7 +384,7 @@ public class EditContentFormTest {
 
 		// go to dashboard
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
 
 		// create a new content
 
@@ -383,7 +406,7 @@ public class EditContentFormTest {
 
 		String textTitle = this.driverManager
 
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#internal-name > div > input")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormTitle)
 
 				.getAttribute("value");
 

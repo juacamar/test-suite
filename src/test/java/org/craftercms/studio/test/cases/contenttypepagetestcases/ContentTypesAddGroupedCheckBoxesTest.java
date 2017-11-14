@@ -34,6 +34,8 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 	private String controlsSectionGroupedCheckBoxesLocator;
 	private String contentTypeContainerFormSectionContainerLocator;
 	private String contentTypeContainerGroupedCheckBoxesTitleLocator;
+	private String siteDropdownXpath;
+	private String adminConsoleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -65,6 +67,10 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		this.contentTypeContainerGroupedCheckBoxesTitleLocator = uIElementsPropertiesManager
 				.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainergroupedcheckboxestitle");
+		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 
 	}
 
@@ -95,7 +101,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		siteConfigPage.getDriverManager().dragAndDropElement(FromGroupedCheckBoxes, ToDefaultSection);
 
 		// Complete the input fields basics
-		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefaul");
+		siteConfigPage.completeControlFieldsBasics("TestTitle", "TestICEGroup", "TestDescription", "TestDefault");
 
 		// Save the data
 		siteConfigPage.saveDragAndDropProcess();
@@ -103,7 +109,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 	}
 
 	@Test(priority = 0)
-	public void contentTypeAddGroupedCheckBoxesTest() {
+	public void verifyThatStudioAllowsToAddAGroupedCheckBoxesControlToExistingContentTypeTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -114,10 +120,10 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				"/html/body/div[2]/div[1]/nav/div/div[2]/ul[1]/li/div/div[1]/a").click();
+				siteDropdownXpath).click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				".//a[@id='admin-console']").click();
+				adminConsoleXpath).click();
 
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
@@ -132,6 +138,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickGroupedCheckBoxSection();
 
 		// Asserts that fields are not empty.

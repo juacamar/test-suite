@@ -32,6 +32,8 @@ public class ValidationsOfCreateSiteFieldsTest {
 	
 	private String userName;
 	private String password;
+	private String createSiteDescriptionId;
+	private String validationMessageXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -48,7 +50,10 @@ public class ValidationsOfCreateSiteFieldsTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		createSiteDescriptionId= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitedescription");
+		validationMessageXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitevalidationmessage");
 	}
 
 	@AfterClass
@@ -58,7 +63,7 @@ public class ValidationsOfCreateSiteFieldsTest {
 
 	@Test(priority = 0)
 
-	public void Validations_Of_Create_Site() {
+	public void verifyThatTheValidationsAreDisplayedForCreateSiteDialog() {
 
 		// login to application
 		loginPage.loginToCrafter(
@@ -68,11 +73,11 @@ public class ValidationsOfCreateSiteFieldsTest {
 		homePage.clickOnCreateSiteButton();
 
 		// Click on description to show the validations
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#description").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createSiteDescriptionId).click();
 
 		// Assert Id site is required.
-		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"body > div.modal.fade.ng-isolate-scope.in > div > div > div.modal-body.ng-scope > form > div:nth-child(1) > div:nth-child(4) > small");
+		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+				validationMessageXpath);
 
 		Assert.assertTrue(siteID.isDisplayed());
 

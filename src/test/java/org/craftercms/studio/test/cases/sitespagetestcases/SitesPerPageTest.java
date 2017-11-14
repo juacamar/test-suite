@@ -30,6 +30,12 @@ public class SitesPerPageTest {
 	private String password;
 
 	private CreateSitePage createSitePage;
+	private String sitesTopBarOptionId;
+	private String sitesPerPageInputXpath;
+	private String firstSiteXpath;
+	private String secondSiteXpath;
+	private String thirdSiteXpath;
+	private String createSiteButton;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -48,6 +54,19 @@ public class SitesPerPageTest {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
+		sitesTopBarOptionId= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.preview.sitesoption");
+		sitesPerPageInputXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.sitesperpageinput");
+		firstSiteXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.firstSiteNameOnList");
+		secondSiteXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.secondSiteNameOnList");
+		thirdSiteXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.thirdSiteNameOnList");
+		createSiteButton = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
@@ -105,12 +124,9 @@ public class SitesPerPageTest {
 
 		createSitePage.clickOnCreateSiteButton();
 
-		// go to the sites page
-		String sitesNavOptionElementCssSelector = "#sitesRightNav";
-
-		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
+		if (this.driverManager.isElementPresentById(sitesTopBarOptionId))
 			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", sitesNavOptionElementCssSelector)
+					.driverWaitUntilElementIsPresentAndDisplayed("id", sitesTopBarOptionId)
 					.click();
 		else
 			throw new NoSuchElementException(
@@ -121,60 +137,62 @@ public class SitesPerPageTest {
 
 	public void filters() {
 
-		// Show 8 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").clear();
+		// Show 1 sites
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").sendKeys("1");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).sendKeys("1");
 
-		// Assert only 8 sites displayed
+		// Assert only 1 sites displayed
 
-		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(1) > td.name.ng-binding");
+		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				firstSiteXpath);
 
 		Assert.assertTrue(page1.isDisplayed());
 
-		// Show 5 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").clear();
+		// Show 2 sites
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").sendKeys("2");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).sendKeys("2");
 
-		// Asser only 5 sites displayed
+		// Asser only 2 sites displayed
 
-		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(2) > td.name.ng-binding");
+		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				secondSiteXpath);
 
 		Assert.assertTrue(page2.isDisplayed());
 
-		// Show 1 site
+		// Show 3 site
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").sendKeys("3");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).sendKeys("3");
 
-		// Asser only 1 site displayed
+		// Asser only 3 site displayed
 
-		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.ng-scope > table > tbody > tr:nth-child(3) > td.name.ng-binding");
+		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				thirdSiteXpath);
 
 		Assert.assertTrue(page3.isDisplayed());
 
 		// Show 11 sites
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).clear();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div.pull-right.m10 > input").sendKeys("10");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				sitesPerPageInputXpath).sendKeys("10");
 	}
 
 	public void deleteSite() {
 
 		// Click on Delete icon
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
 
 		homePage.clickOnDeleteSiteIcon();
 
@@ -184,11 +202,9 @@ public class SitesPerPageTest {
 
 		// Refresh teh site
 		driverManager.getDriver().navigate().refresh();
-
 	}
 
 	@Test(priority = 0)
-
 	public void sitesPerPage() {
 
 		// filters

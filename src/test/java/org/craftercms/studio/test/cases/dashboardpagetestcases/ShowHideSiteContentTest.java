@@ -34,6 +34,7 @@ public class ShowHideSiteContentTest {
 	
 	private String userName;
 	private String password;
+	private String adminConsoleXpath;
 	
 
 	@BeforeClass
@@ -53,6 +54,8 @@ public class ShowHideSiteContentTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
 	
 	}
 
@@ -62,7 +65,7 @@ public class ShowHideSiteContentTest {
 	}
 
 	@Test(priority = 0)
-	public void Show_Hide_Site_Content_test() {
+	public void verifyThatTheSiteContentIsDisplayedOrHiddenWhenClicksOnSiteContentTest() {
 
 		// login to application
 
@@ -75,7 +78,7 @@ public class ShowHideSiteContentTest {
 
 		// Assert that the site content is expanded
 		String siteContentExpanded = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#admin-console").getText();
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).getText();
 		
 		Assert.assertEquals(siteContentExpanded, "Site Config");
 
@@ -83,7 +86,7 @@ public class ShowHideSiteContentTest {
 		dashboardPage.clickOnSiteContentOption();
 
 		// Assert that the site content is Collapsed
-		Assert.assertFalse(this.driverManager.isElementPresentBycssSelector("#admin-console"));
+		Assert.assertFalse(this.driverManager.isElementPresentByXpath(adminConsoleXpath));
 	}
 
 }

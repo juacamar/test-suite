@@ -29,6 +29,8 @@ public class ShowAboutUsTest {
 	private String userName;
 	private String password;
 
+	private String aboutUsInfoXpath;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -44,7 +46,7 @@ public class ShowAboutUsTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		aboutUsInfoXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.aboutus.studiodatacontainer");
 	}
 
 	@AfterClass
@@ -66,9 +68,9 @@ public class ShowAboutUsTest {
 		// select the about us option
 		createSitePage.clickOnAboutOption();
 
-		// Assert new users created is present
-		WebElement aboutUsInfo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div:nth-child(2) > div");
+		// Assert 
+		WebElement aboutUsInfo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				aboutUsInfoXpath);
 
 		Assert.assertTrue(aboutUsInfo.isDisplayed());
 

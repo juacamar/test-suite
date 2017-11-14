@@ -1,10 +1,14 @@
 package org.craftercms.studio.test.cases.userspagetestcases;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.List;
+
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.pages.UsersPage;
@@ -28,6 +32,9 @@ public class DeleteUserTest {
 
 	private String userName;
 	private String password;
+	private String deleteYesButtonXpath;
+	private String usersRowsXpath;
+	private String newUserButtonXpath;
 
 
 	@BeforeClass
@@ -46,7 +53,12 @@ public class DeleteUserTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-	
+		deleteYesButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deleteyesbutton");
+		usersRowsXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.usersrows");
+		newUserButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.newuserbutton");
 	}
 
 	@AfterClass
@@ -70,16 +82,19 @@ public class DeleteUserTest {
 
 		// Confirmation to delete user connected
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+						deleteYesButtonXpath)
 				.click();
 
 		// Assert new users created is deleted
+		driverManager.getDriver().navigate().refresh();
+		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
+		
+		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
+		
+		List<WebElement> usersList = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
 
-		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "cssSelector", "#container > div > div > div > div > div > table > tbody");
-
-		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
+		Assert.assertTrue(usersList.size()==1);
 
 	}
 }

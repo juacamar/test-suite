@@ -51,16 +51,24 @@ public class PreviewPage {
 	private SiteConfigPage siteConfigPage;
 	private DashboardPage dashboardPage;
 
+	private String studioLogo;
+	private String siteDropdownElementXPath;
+	private String adminConsoleXpath;
+	private String entryContentTypeBodyXpath;
+	private String entryContentTypeBodyCheckCss;
+
+
 	/**
 	 * 
 	 */
 	public PreviewPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driverManager.getDriver();
-		
+
 		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 		
+
 		adminConsole = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.admin_console_link");
 		openComboSites = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -92,7 +100,6 @@ public class PreviewPage {
 		previewHistory = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.history");
 		previewDependecies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.dependencies");
-		
 		dependenciesSelector = UIElementsPropertiesManager.getSharedUIElementsLocators()
 					.getProperty("dependencies.content_selector");
 		dependenciesCloseButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -107,16 +114,25 @@ public class PreviewPage {
 				.getProperty("bulkoperations.accept_warning");
 		bulkoperationsMessage = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("bulkoperations.message");
-		
-		
+		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+		entryContentTypeBodyXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.body");
+		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.entrycontenttype.bodyrequiredcheck");
+
+
 	}
 
 	// Click on admin console link
 
 	public void clickAdminConsoleOption() {
-		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				adminConsole);
-		
+
 		adminConsoleOption.click();
 
 	}
@@ -133,8 +149,8 @@ public class PreviewPage {
 
 	public void ComboAllSites() {
 
-		WebElement openCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", openComboSites);
-		
+		WebElement openCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", openComboSites);
+
 		openCombo.click();
 
 	}
@@ -150,9 +166,8 @@ public class PreviewPage {
 	// Click on preview tools icon
 
 	public void previewTools() {
-		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
-				clickPreviewTools);
-		
+		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", clickPreviewTools);
+
 		toolsIcon.click();
 
 	}
@@ -168,9 +183,9 @@ public class PreviewPage {
 	// Expand the In Context Menu
 
 	public void expandInContextEditing() {
-		WebElement expandInContextMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement expandInContextMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				expandInContextEditing);
-		
+
 		expandInContextMenu.click();
 
 	}
@@ -186,9 +201,9 @@ public class PreviewPage {
 	// Enable/Diseble In-Context Editing
 
 	public void inContextEditing() {
-		WebElement inContextEditingOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement inContextEditingOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickInContextEdit);
-	
+
 		inContextEditingOption.click();
 
 	}
@@ -204,12 +219,12 @@ public class PreviewPage {
 	// Click on Approve&Publish option
 
 	public void approvePublish() {
-		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		this.driverManager.isElementPresentAndClickableByXpath(approvePublish);
+		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				approvePublish);
-		
 
 		publishIcon.click();
-	
+
 	}
 
 	public void clickOnApprovePublish() {
@@ -223,8 +238,8 @@ public class PreviewPage {
 	// Click on submit button of Approve&Publish
 
 	public void submitApprovePublish() {
-
-		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", submitButtonApprovePublish);
+		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				submitButtonApprovePublish);
 		toolsIcon.click();
 
@@ -241,8 +256,8 @@ public class PreviewPage {
 	// Click on duplicate button of the menu
 
 	public void duplicateButton() {
-		
-		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+
+		WebElement duplicateOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				previewDuplicate);
 		duplicateOption.click();
 
@@ -263,10 +278,10 @@ public class PreviewPage {
 	// Click on delete button of the menu
 
 	public void deleteButton() {
-		
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+
+		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				previewDelete);
-		
+
 		deleteOption.click();
 
 	}
@@ -282,10 +297,10 @@ public class PreviewPage {
 	// Click on delete dependencies
 
 	public void deleteDependencies() {
-		
-		WebElement deleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
+
+		WebElement deleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				deleteDependencies);
-		
+
 		deleteDepen.click();
 
 	}
@@ -301,10 +316,10 @@ public class PreviewPage {
 	// Click on OK to delete dependencies
 
 	public void okDeleteDependencies() {
-	
-		WebElement OKdeleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+
+		WebElement OKdeleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				OKdeleteDependencies);
-		
+
 		OKdeleteDepen.click();
 
 	}
@@ -320,9 +335,9 @@ public class PreviewPage {
 	// Click on edit button of the menu
 
 	public void EditButton() {
-	
-		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", previewEdit);
-	
+
+		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", previewEdit);
+
 		editOption.click();
 
 	}
@@ -338,10 +353,10 @@ public class PreviewPage {
 	// Click on history button of the menu
 
 	public void historyButton() {
-		
-		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+
+		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				previewHistory);
-		
+
 		historyOption.click();
 
 	}
@@ -356,10 +371,10 @@ public class PreviewPage {
 	// Click on dependencies button of the menu
 
 	public void dependenciesButton() {
-		
-		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+
+		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				previewDependecies);
-		
+
 		historyOption.click();
 
 	}
@@ -374,10 +389,10 @@ public class PreviewPage {
 	// Set the new name duplicated
 
 	public void duplicateName(String strDuplicateName) {
-		
-		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+
+		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				duplicateName);
-	
+
 		internalName.sendKeys(strDuplicateName);
 
 	}
@@ -393,10 +408,10 @@ public class PreviewPage {
 	// Click on save and close
 
 	public void SaveAndClose() {
-	
-		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+
+		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				saveAndClose);
-		
+
 		saveClose.click();
 
 	}
@@ -404,10 +419,9 @@ public class PreviewPage {
 	// Expand pages tree
 
 	public void clickPagesTree() {
-		
-		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				pagesTree);
-		
+
+		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
+
 		expandPagesTree.click();
 
 	}
@@ -422,7 +436,8 @@ public class PreviewPage {
 	// Expand global entry content
 
 	public void clickHomeContent() {
-		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
+		this.driverManager.isElementPresentAndClickableByXpath(expandGlobalEntryContent);
+		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				expandGlobalEntryContent);
 		homeContent.click();
 
@@ -447,9 +462,9 @@ public class PreviewPage {
 	// Set the new name of the URL
 
 	public void changeInternalName(String strNewInternalName) {
-		
-		WebElement URLName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", internalName);
-	
+
+		WebElement URLName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", internalName);
+
 		URLName.sendKeys(strNewInternalName);
 
 	}
@@ -465,10 +480,10 @@ public class PreviewPage {
 	// Click save and close
 
 	public void saveAndCloseButton() {
-		
-		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+
+		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				saveAndCloseiFrame);
-		
+
 		saveClose.click();
 
 	}
@@ -482,13 +497,15 @@ public class PreviewPage {
 	}
 
 	public void changeBodyOfEntryContentPageToNotRequired() {
-		
+
 		// Show site content panel
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
 				.click();
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
 
 		// select content types
 		siteConfigPage.selectContentTypeOption();
@@ -503,22 +520,21 @@ public class PreviewPage {
 		// wait for element is clickeable
 		driverManager.getDriver().switchTo().defaultContent();
 
-		
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//span[contains(text(),'Body')]").click();
-		
-	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
+
 		// Mark Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
-	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
+				.click();
+
 		// save
 		siteConfigPage.saveDragAndDropProcess();
 
-		 driverManager.getDriver().switchTo().defaultContent();
-		 
+		driverManager.getDriver().switchTo().defaultContent();
+
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", "#cstudio-logo").click();	
+		this.driverManager.isElementPresentAndClickableById(studioLogo);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 
 	}
 	
