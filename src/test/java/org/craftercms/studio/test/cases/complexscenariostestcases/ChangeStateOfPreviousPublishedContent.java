@@ -7,9 +7,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.Assert;
-
-import static org.testng.Assert.assertTrue;
-
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -32,7 +29,6 @@ public class ChangeStateOfPreviousPublishedContent {
 
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
 	private HomePage homePage;
 	private DashboardPage dashboardPage;
 
@@ -57,16 +53,17 @@ public class ChangeStateOfPreviousPublishedContent {
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
+		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
+				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
+		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
+		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
+		this.createSitePage = new CreateSitePage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -135,17 +132,15 @@ public class ChangeStateOfPreviousPublishedContent {
 
 		Assert.assertTrue(newUserCreated.isDisplayed());
 
-		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-		 "id", "homeSites");
-		
-		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-		 "id", "homeSites").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "homeSites");
 
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-//				"/html/body/ui-view/header/nav/div/div[1]/a/img");
-//
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-//				"/html/body/ui-view/header/nav/div/div[1]/a/img").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "homeSites").click();
+
+		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		// "/html/body/ui-view/header/nav/div/div[1]/a/img");
+		//
+		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		// "/html/body/ui-view/header/nav/div/div[1]/a/img").click();
 
 	}
 
@@ -162,9 +157,8 @@ public class ChangeStateOfPreviousPublishedContent {
 		usersPage.clickOnDeleteUserCreated();
 
 		// Confirmation to delete user connected
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
 		// Assert new users created is deleted
@@ -379,9 +373,8 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				"//*[@id='users-tags-input']/div/auto-complete/div/ul/li/ti-autocomplete-match/ng-include/div/div[1]");
 
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-						"//*[@id='users-tags-input']/div/auto-complete/div/ul/li/ti-autocomplete-match/ng-include/div/div[1]")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				"//*[@id='users-tags-input']/div/auto-complete/div/ul/li/ti-autocomplete-match/ng-include/div/div[1]")
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -390,7 +383,7 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				"//*[@id='container']/div/div/div[2]/div/a").click();
 
-		assertTrue(driverManager.isElementPresentByXpath("//*[@id='container']/div/div/div[2]/table/tbody/tr/td[1]"));
+		Assert.assertTrue(driverManager.isElementPresentByXpath("//*[@id='container']/div/div/div[2]/table/tbody/tr/td[1]"));
 
 		driverManager.getDriver().switchTo().defaultContent();
 		this.driverManager.getDriver().switchTo().activeElement();
@@ -403,7 +396,6 @@ public class ChangeStateOfPreviousPublishedContent {
 
 	}
 
-	
 	private void goToSiteContentPagesStructure() {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				"//SPAN[@class='ng-binding'][text()='Create Site']");
@@ -434,15 +426,16 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.editPageArticleContent(newPageName);
 
 	}
+
 	private void renamePageWithWorkflowCancelation(WebElement parentPage, String newPageName) {
 		dashboardPage.rightClickEditOnAPresentPage(parentPage);
-		
-		//Cancel the Workflow
-		
+
+		// Cancel the Workflow
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", cancelWorkflowContinueButton);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", cancelWorkflowContinueButton).click();
-		
-		//Edit PAge Article
+
+		// Edit PAge Article
 		this.editPageArticleContent(newPageName);
 
 	}
@@ -480,8 +473,7 @@ public class ChangeStateOfPreviousPublishedContent {
 
 	}
 
-	@Test
-	public void changeStateOfPreviousPublishedContent() {
+	public void testScenario() {
 		// Related to the bug:
 		// issue https://github.com/craftercms/craftercms/issues/1557
 
@@ -528,12 +520,10 @@ public class ChangeStateOfPreviousPublishedContent {
 				".//span[contains(text(),'Testing1')]");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				".//span[contains(text(),'Testing1')]").click();
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath",previewDependenciesButton);
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath",previewDependenciesButton).click();	
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", previewDependenciesButton);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", previewDependenciesButton).click();
 
 		// check dependencies are listed
 		previewPage.checkDependencies();
@@ -621,59 +611,59 @@ public class ChangeStateOfPreviousPublishedContent {
 		// check dependencies are listed
 		previewPage.checkDependencies();
 
-		//Cancel the Workflow and Edit again the Page Article Content
-		
-		 newPageArticleName = "Testing1Edited2";
-		 articlePage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-					".//span[contains(text(),'Testing1Edited')]");
+		// Cancel the Workflow and Edit again the Page Article Content
+
+		newPageArticleName = "Testing1Edited2";
+		articlePage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				".//span[contains(text(),'Testing1Edited')]");
 		this.renamePageWithWorkflowCancelation(articlePage, newPageArticleName);
-		
-		//Check on Static Assets that dependencies are not mark as edited
-		
+
+		// Check on Static Assets that dependencies are not mark as edited
+
 		// Collapse Home tree
 		dashboardPage.expandHomeTree();
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-				"xpath",staticAssetsButton);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-				"xpath",staticAssetsButton).click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsButton);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsButton).click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				".//span[contains(text(),'static-assets')]");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				".//span[contains(text(),'static-assets')]").click();
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				".//span[contains(text(),'images')]");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				".//span[contains(text(),'images')]").click();
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-				"xpath", ".//span[contains(text(),'1-gear.png')]");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-				"xpath", ".//span[contains(text(),'1-gear.png')]").click();
-		
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//span[contains(text(),'static-assets')]")
+				.click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//span[contains(text(),'images')]");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//span[contains(text(),'images')]")
+				.click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				".//span[contains(text(),'1-gear.png')]");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				".//span[contains(text(),'1-gear.png')]").click();
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				"//A[@class='cursor'][text()='Dependencies']");
-				
-		String isLifeContent="";
-		
-		while(!(isLifeContent.contains("undefined live")))
-		{
-			isLifeContent= this.driverManager.getDriver()
-			.findElement(By
-			.xpath(
-					"//ul[@id='activeContentActions']/li/span/div/span/span[2]")).getAttribute("class").toString();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-					"xpath", ".//span[contains(text(),'1-gear.png')]").click();
-			this.dashboardPage.expandHomeTree();	
+
+		String isLifeContent = "";
+
+		while (!(isLifeContent.contains("undefined live"))) {
+			isLifeContent = this.driverManager.getDriver()
+					.findElement(By.xpath("//ul[@id='activeContentActions']/li/span/div/span/span[2]"))
+					.getAttribute("class").toString();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					".//span[contains(text(),'1-gear.png')]").click();
+			this.dashboardPage.expandHomeTree();
 		}
-		
+
 		Assert.assertTrue(this.driverManager.getDriver()
-				.findElement(By
-				.xpath(
-				 ".//ul[@id='activeContentActions']/li/span/div/span/span[2]")).getAttribute("class").contains("undefined live"));
-		
+				.findElement(By.xpath(".//ul[@id='activeContentActions']/li/span/div/span/span[2]"))
+				.getAttribute("class").contains("undefined live"));
+
+	}
+
+	@Test
+	public void changeStateOfPreviousPublishedContent() {
+		this.testScenario();
 	}
 
 }
