@@ -30,4 +30,16 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test>
+		<test name="ChangeStateOfPreviousPublishedContent" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+			<class
+				name="org.craftercms.studio.test.cases.complexscenariostestcases.ChangeStateOfPreviousPublishedContent" />
+			<class
+				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+			<class
+				name="org.craftercms.studio.test.cases.userspagetestcases.DeleteUserTest" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->
