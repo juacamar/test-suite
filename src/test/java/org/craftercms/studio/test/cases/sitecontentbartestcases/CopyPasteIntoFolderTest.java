@@ -129,7 +129,9 @@ public class CopyPasteIntoFolderTest {
 		homePage.goToPreviewPage();
 		
 		driverManager.getDriver().navigate().refresh();
-
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
+        .click();
+		
 		this.changeBodyToNotRequiredOnEntryContent();
 
 		// expand pages folder
