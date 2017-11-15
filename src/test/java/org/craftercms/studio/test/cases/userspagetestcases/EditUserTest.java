@@ -133,7 +133,7 @@ public class EditUserTest {
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
-		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(newUserButtonXpath);
 
 	}
 
@@ -163,6 +163,8 @@ public class EditUserTest {
 		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
 		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(newUserButtonXpath);
+		
+		driverManager.getDriver().navigate().refresh();
 		
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(newUserLastNameCellXpath);
 		this.driverManager.isElementPresentByXpath(newUserLastNameCellXpath);

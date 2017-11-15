@@ -39,7 +39,7 @@ public class DeleteOptionTest {
 
 	private String createFormFrameElementCss;
 	private String createFormSaveAndCloseElementId;
-	private String createFormMainTitleElementCss;
+	private String createFormMainTitleElementXPath;
 	private String homeElementXPath;
 	private String testingItemURLXpath;
 	private String studioLogo;
@@ -67,8 +67,8 @@ public class DeleteOptionTest {
 				.getProperty("complexscenarios.general.createformframe");
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormMainTitleElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformMainTitle");
+		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformTitle");
 		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
@@ -156,7 +156,7 @@ public class DeleteOptionTest {
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementCss)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 		
 		// save and close

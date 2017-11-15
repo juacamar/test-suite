@@ -69,7 +69,7 @@ public class CopyPasteContentTest {
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformMainTitle");
+				.getProperty("general.createformTitle");
 		createFromInternalNameXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformfiletitle");
 		copyTestItemXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -110,7 +110,7 @@ public class CopyPasteContentTest {
 
 		// Set the title of main content
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementXPath)
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)

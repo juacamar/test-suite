@@ -68,7 +68,7 @@ public class CopyPasteIntoFolderTest {
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformMainTitle");
+				.getProperty("general.createformTitle");
 		firstCopiedElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
 		secondCopiedElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -108,7 +108,7 @@ public class CopyPasteIntoFolderTest {
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",createFormMainTitleElementXPath)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
 		// save and close
@@ -129,8 +129,6 @@ public class CopyPasteIntoFolderTest {
 		homePage.goToPreviewPage();
 		
 		driverManager.getDriver().navigate().refresh();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
-        .click();
 		
 		this.changeBodyToNotRequiredOnEntryContent();
 

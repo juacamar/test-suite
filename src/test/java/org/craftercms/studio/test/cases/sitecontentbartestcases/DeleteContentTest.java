@@ -40,7 +40,7 @@ public class DeleteContentTest {
 
 	private String createFormFrameElementCss;
 
-	private String createFormMainTitleElementCss;
+	private String createFormMainTitleElementXPath;
 
 	private String createFormSaveAndCloseElementId;
 
@@ -69,8 +69,8 @@ public class DeleteContentTest {
 				.getProperty("complexscenarios.general.createformframe");
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormMainTitleElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformMainTitle");
+		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformTitle");
 		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
@@ -110,7 +110,7 @@ public class DeleteContentTest {
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementCss)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
 		// click necessary to validate all fields required
