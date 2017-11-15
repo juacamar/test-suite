@@ -44,8 +44,7 @@ public class CutPasteContentTest {
 	private String studioLogo;
 	private String createFormFrameElementCss;
 	private String createFormSaveAndCloseElementId;
-	private String createFormMainTitleElementCss;
-
+	private String createFormMainTitleElementXPath;
 	private String testingItemURLXpath;
 	
 	
@@ -78,8 +77,8 @@ public class CutPasteContentTest {
 				.getProperty("complexscenarios.general.createformframe");
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormMainTitleElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformMainTitle");
+		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformTitle");
 		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
 	}
@@ -157,7 +156,7 @@ public class CutPasteContentTest {
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",createFormMainTitleElementCss)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 		
 		// save and close

@@ -499,13 +499,12 @@ public class PreviewPage {
 	public void changeBodyOfEntryContentPageToNotRequired() {
 
 		// Show site content panel
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", ".//a[@id='acn-dropdown-toggler']")
-				.click();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath).click();
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
+		this.driverManager.isElementPresentAndClickableByXpath(adminConsoleXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", adminConsoleXpath).click();
 
 		// select content types
 		siteConfigPage.selectContentTypeOption();

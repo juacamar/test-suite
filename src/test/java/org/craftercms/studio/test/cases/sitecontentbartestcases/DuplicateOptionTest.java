@@ -36,7 +36,7 @@ public class DuplicateOptionTest {
 
 	private String createFormFrameElementCss;
 	private String createFormSaveAndCloseElementId;
-	private String createFormMainTitleElementCss;
+	private String createFormMainTitleElementXPath;
 	private String studioLogo;
 	private String testItemXpath;
 	private String createFormFileTitleElementCss;
@@ -66,8 +66,8 @@ public class DuplicateOptionTest {
 				.getProperty("complexscenarios.general.createformframe");
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormMainTitleElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformMainTitle");
+		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.createformTitle");
 		createFormFileTitleElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformfiletitle");
 		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
@@ -113,7 +113,7 @@ public class DuplicateOptionTest {
 
 		// Set the title of main content
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",createFormMainTitleElementCss)
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)

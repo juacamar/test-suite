@@ -322,7 +322,7 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.switchToAFormByCssSelector(createFormFrameElementCss);
 
 		// Typing new text on title text field
-		WebElement titleElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement titleElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				createFormMainTitleElementXPath);
 
 		// clear the input totally
@@ -598,8 +598,8 @@ public class Crafter3LoadTest1Script {
 
 		myTestFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", mytestFolderLocator);
 
-		dashboardPage.expandParentFolder(myTestFolder);
 		//dashboardPage.expandParentFolder(myTestFolder);
+		dashboardPage.expandParentFolder(myTestFolder);
 
 		this.driverManager.isElementPresentAndClickableByXpath(myTestBigTreeChildFolderLocator);
 		WebElement myTestBigTreeChildFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
@@ -742,8 +742,8 @@ public class Crafter3LoadTest1Script {
 		this.step5();
 		
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.isElementPresentAndClickableById(studioLogo);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
+		//this.driverManager.isElementPresentAndClickableById(studioLogo);
+		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 		// Step6
 		this.step6();
 

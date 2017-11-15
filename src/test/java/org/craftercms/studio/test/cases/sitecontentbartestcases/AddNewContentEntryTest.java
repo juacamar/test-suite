@@ -67,7 +67,7 @@ public class AddNewContentEntryTest {
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformMainTitle");
+				.getProperty("general.createformTitle");
 		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
 		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -109,7 +109,7 @@ public class AddNewContentEntryTest {
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementXPath)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
 		// click necessary to validate all fields required

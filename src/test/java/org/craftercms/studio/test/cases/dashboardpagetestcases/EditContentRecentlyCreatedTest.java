@@ -59,7 +59,7 @@ public class EditContentRecentlyCreatedTest {
 		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
 		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformMainTitle");
+				.getProperty("general.createformTitle");
 		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -111,7 +111,7 @@ public class EditContentRecentlyCreatedTest {
 
 		// Set Main Content
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
 		// save and close
