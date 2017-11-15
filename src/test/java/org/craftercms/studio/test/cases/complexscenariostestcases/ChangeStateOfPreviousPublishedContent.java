@@ -44,6 +44,7 @@ public class ChangeStateOfPreviousPublishedContent {
 	private String previewDependenciesButton;
 	private String cancelWorkflowContinueButton;
 	private String staticAssetsButton;
+	private String homeTree;
 
 	private CreateSitePage createSitePage;
 	private UsersPage usersPage;
@@ -90,12 +91,15 @@ public class ChangeStateOfPreviousPublishedContent {
 				.getProperty("preview.workflow_cancellation_continue_Button");
 		staticAssetsButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.static_assets_button");
+		homeTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.expand_GlobalEntry_Tree");
 
 	}
 
 	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
+		driverManager.getDriver().quit();
 	}
 
 	public void addNewUser() {
@@ -131,16 +135,20 @@ public class ChangeStateOfPreviousPublishedContent {
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
 
 		Assert.assertTrue(newUserCreated.isDisplayed());
+		
+		// Switch to the form
+		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "homeSites");
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "homeSites").click();
-
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// "/html/body/ui-view/header/nav/div/div[1]/a/img");
-		//
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// "/html/body/ui-view/header/nav/div/div[1]/a/img").click();
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "homeSites");
+//
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "homeSites").click();
+		
+		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		 "/html/body/ui-view/header/nav/div/div[1]/a/img");
+		
+		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		 "/html/body/ui-view/header/nav/div/div[1]/a/img").click();
 
 	}
 
@@ -490,6 +498,10 @@ public class ChangeStateOfPreviousPublishedContent {
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				homeTree);
+
 
 		// expand Home tree
 		dashboardPage.expandHomeTree();
@@ -566,6 +578,8 @@ public class ChangeStateOfPreviousPublishedContent {
 
 		// expand Home tree
 		dashboardPage.expandHomeTree();
+		
+		this.driverManager.getDriver().navigate().refresh();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				".//span[contains(text(),'articles')]");
@@ -598,7 +612,7 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.requestPublish(newPageArticleName);
 
 		// Switch back to the dashboard page
-		this.driverManager.getDriver().switchTo().activeElement();
+		this.driverManager.getDriver().switchTo().defaultContent();
 
 		this.driverManager.getDriver().navigate().refresh();
 

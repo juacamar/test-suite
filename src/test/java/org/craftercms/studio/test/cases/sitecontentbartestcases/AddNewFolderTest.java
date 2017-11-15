@@ -96,8 +96,9 @@ public class AddNewFolderTest {
 		dashboardPage.clickCreateButton();
 
 		// Assert find the new folder created
-		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(
-				newFolderXpath));
+				this.driverManager.isElementPresentByXpath(newFolderXpath);
+				Assert.assertTrue(this.driverManager.isElementPresentByXpath(
+						newFolderXpath));
 
 	}
 

@@ -89,10 +89,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		// Click on Create button
 
 		createSitePage.clickOnCreateSiteButton();
-
-//		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
-//		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
-//		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);	
+	
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
@@ -100,11 +97,6 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 				topNavDeleteOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
 				topNavEditOption);
-		
-//		Assert.assertTrue(
-//				(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",topNavStatusIcon).getAttribute("class"))
-//				.contains("undefined live")
-//				);
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 	}
