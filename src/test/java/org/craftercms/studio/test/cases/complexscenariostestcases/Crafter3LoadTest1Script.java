@@ -67,7 +67,7 @@ public class Crafter3LoadTest1Script {
 	private WebElement bigTree2BigTree1ChildFolder;
 	private String siteDropdownElementXPath;
 	private String homeElementXPath;
-	private String createFormMainTitleElementXPath;
+	private String createFormArticleMainTitleElementXPath;
 	private String createFormSaveAndCloseElementId;
 	private String historyFirstItemCheckbBox;
 	private String historySecondItemCheckbBox;
@@ -80,6 +80,7 @@ public class Crafter3LoadTest1Script {
 	private String approveForPublishDialogTitle;
 	private String siteDropDownMenuId;
 	private String createFormFrameElementCss;
+	private String createFormTitleElementXPath;
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -133,8 +134,10 @@ public class Crafter3LoadTest1Script {
 		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormArticleMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformMainTitle");
+		createFormTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformtitle");
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		historyFirstItemCheckbBox = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -290,7 +293,7 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.setBasicFieldsOfNewPageArticleContent(randomURL, randomInternalName, "newPageArticlesTitle");
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormMainTitleElementXPath)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
 		// save and close
@@ -322,8 +325,8 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.switchToAFormByCssSelector(createFormFrameElementCss);
 
 		// Typing new text on title text field
-		WebElement titleElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				createFormMainTitleElementXPath);
+		WebElement titleElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				createFormTitleElementXPath);
 
 		// clear the input totally
 		titleElement.clear();
