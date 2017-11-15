@@ -641,7 +641,10 @@ public class PreviewPage {
 		public void checkDependencies() {
 			
 			// Switch to the frame
+			driverManager.getDriver().switchTo().defaultContent();
 			driverManager.getDriver().switchTo().activeElement();
+			
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesSelector);
 			
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
 					"xpath", dependenciesCloseButton);

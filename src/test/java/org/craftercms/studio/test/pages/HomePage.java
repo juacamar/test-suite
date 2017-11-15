@@ -203,9 +203,8 @@ public class HomePage {
 
 	public void expandAccount() {
 		
-		WebElement expandAccount =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement expandAccount =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				logOutLink);
-				//driver.findElement(By.cssSelector(logOutLink));
 		expandAccount.click();
 
 	}
@@ -214,7 +213,6 @@ public class HomePage {
 		
 		WebElement signOut = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
 				signOutLink);
-				//driver.findElement(By.cssSelector(signOutLink));
 		signOut.click();
 
 	}
