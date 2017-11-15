@@ -114,7 +114,7 @@ public class PaginationOfListOfUsersTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId)
 				.sendKeys("email@email.com");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserUserNameId)
-				.sendKeys("buser" + RandomStringUtils.randomAlphabetic(5));
+				.sendKeys("testuser" + RandomStringUtils.randomAlphabetic(5));
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordId).sendKeys("password");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordVerificationId)
 				.sendKeys("password");

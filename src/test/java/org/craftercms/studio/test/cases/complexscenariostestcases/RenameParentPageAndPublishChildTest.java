@@ -44,11 +44,11 @@ public class RenameParentPageAndPublishChildTest {
 	private String approveSubmitId;
 	private String unselectAllCheckBox;
 	private String createFormFrameElementCss;
-	private String createFormMainTitleElementXPath;
 	private String createFormExpandAll;
 	private String createFormSaveAndCloseElementId;
 	private String toggleNavigationXpath;
 	private String homeExpansorXpath;
+	private String createFormArticleMainTitleElementXPath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -86,7 +86,7 @@ public class RenameParentPageAndPublishChildTest {
 				.getProperty("complexscenarios.renameparentpageandpublishchildtest.unselectallcheckbox");
 		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormArticleMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformMainTitle");
 		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
@@ -168,7 +168,8 @@ public class RenameParentPageAndPublishChildTest {
 		dashboardPage.setBasicFieldsOfNewPageArticleContent(randomURL, randomInternalName, pageName);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
+		//this.driverManager.scrollDown();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
 				.sendKeys(pageName);
 		
 		this.driverManager.scrollUp();
@@ -197,9 +198,10 @@ public class RenameParentPageAndPublishChildTest {
 		dashboardPage.updateBasicFieldsOfNewPageArticleContent(randomInternalName, pageName);
 
 		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
-				.sendKeys(pageName);
 		this.driverManager.scrollUp();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
+				.sendKeys(pageName);
+		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormExpandAll)
 				.click();
 

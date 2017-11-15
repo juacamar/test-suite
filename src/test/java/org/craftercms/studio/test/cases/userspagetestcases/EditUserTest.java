@@ -189,7 +189,6 @@ public class EditUserTest {
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
 		List<WebElement> usersList = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
-
 		Assert.assertTrue(usersList.size() == 1);
 
 	}
