@@ -99,7 +99,6 @@ public class ChangeStateOfPreviousPublishedContent {
 	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
-		driverManager.getDriver().quit();
 	}
 
 	public void addNewUser() {

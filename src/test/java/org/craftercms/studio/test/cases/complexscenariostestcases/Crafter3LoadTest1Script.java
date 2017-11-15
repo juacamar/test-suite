@@ -626,8 +626,6 @@ public class Crafter3LoadTest1Script {
 
 		dashboardPage.clicOnHomeTree();
 
-		// driverManager.getDriver().navigate().refresh();
-
 		dashboardPage.clickOnContextualNavigationEditOption();
 
 		// Step7 b)
