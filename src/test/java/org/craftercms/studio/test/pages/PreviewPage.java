@@ -437,7 +437,7 @@ public class PreviewPage {
 
 	public void clickHomeContent() {
 		this.driverManager.isElementPresentAndClickableByXpath(expandGlobalEntryContent);
-		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		WebElement homeContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				expandGlobalEntryContent);
 		homeContent.click();
 

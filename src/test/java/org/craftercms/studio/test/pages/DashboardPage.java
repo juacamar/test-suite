@@ -1423,7 +1423,7 @@ public class DashboardPage {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
 
 		this.driverManager.isElementPresentAndClickableByXpath(copyOptionLocatorForContentPage);
-		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				copyOptionLocatorForContentPage);
 		copyOption.click();
 	}

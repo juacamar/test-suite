@@ -202,8 +202,8 @@ public class HomePage {
 	// Logout to the crafter
 
 	public void expandAccount() {
-		
-		WebElement expandAccount =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		this.driverManager.isElementPresentAndClickableByXpath(logOutLink);
+		WebElement expandAccount =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
 				logOutLink);
 		expandAccount.click();
 
