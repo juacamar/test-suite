@@ -84,14 +84,15 @@ public class HistoryOptionTest {
 		homePage.goToPreviewPage();
 
 		// Show site content panel
+		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownXpath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				siteDropdownXpath).click();
 		
 		// expand pages folder
 		previewPage.expandPagesTree();
-		
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo);
+		
 		// expand home content
 		previewPage.expandHomeTree();
 

@@ -178,12 +178,15 @@ public class EditUserTest {
 
 		// Click on delete user
 		driverManager.getDriver().navigate().refresh();
+		
 		usersPage.clickOnDeleteUserCreated();
 
 		// Confirmation to delete user 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", deleteYesButtonXpath).click();
 		
 		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().navigate().refresh();
+		
 		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
 		// Assert new users created is deleted
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
