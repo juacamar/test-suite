@@ -195,6 +195,9 @@ public class SitesPerPageTest {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).sendKeys("10");
+		
+		driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitForPageLoad(driverManager.getDriver());
 	}
 
 	public void deleteSite() {
@@ -208,8 +211,10 @@ public class SitesPerPageTest {
 		// Click on YES to confirm the delete.
 
 		homePage.clickOnYesToDeleteSite();
+		
 		// Refresh the site
 		driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitForPageLoad(driverManager.getDriver());
 	}
 
 	@Test(priority = 0)

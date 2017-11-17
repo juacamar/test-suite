@@ -449,5 +449,14 @@ public class WebDriverManager {
 			this.getDriver().navigate().refresh();
 		}
 	}
+	
+	public void waitForPageLoad(WebDriver driver) {
+		Boolean pageIsReady = ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+		
+		while (!pageIsReady){
+		 pageIsReady =
+		            ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+		}
+	}
 
 }

@@ -202,8 +202,10 @@ public class CutPasteContentTest {
 
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().navigate().refresh();
+//		driverManager.getDriver().navigate().refresh();
 		
 		// Assert of the content copied
+		this.driverManager.isElementPresentByXpath(testingItemURLXpath);
 		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				testingItemURLXpath).getText();
 		Assert.assertEquals(contentCopied, "/addnewfolder/test1");
