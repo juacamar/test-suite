@@ -536,6 +536,8 @@ public class Crafter3LoadTest1Script {
 
 	public void step2() {
 		// Step2 a)
+		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
+		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
@@ -703,7 +705,6 @@ public class Crafter3LoadTest1Script {
 
 		this.driverManager.isElementPresentAndClickableByXpath(bigTree2FolderLocator);
 		bigTree2Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", bigTree2FolderLocator);
-		//dashboardPage.expandParentFolder(bigTree2Folder);
 
 		this.driverManager.isElementPresentAndClickableByXpath(bigTree2BigTree1ChildFolderLocator);
 		bigTree2BigTree1ChildFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -729,6 +730,8 @@ public class Crafter3LoadTest1Script {
 		// Step1
 		this.step1();
 
+		driverManager.getDriver().navigate().refresh();
+		
 		// Step2
 		this.step2();
 
@@ -743,8 +746,6 @@ public class Crafter3LoadTest1Script {
 		this.step5();
 		
 		this.driverManager.getDriver().navigate().refresh();
-		//this.driverManager.isElementPresentAndClickableById(studioLogo);
-		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 		// Step6
 		this.step6();
 

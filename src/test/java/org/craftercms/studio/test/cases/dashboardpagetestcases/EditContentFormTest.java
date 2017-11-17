@@ -75,6 +75,8 @@ public class EditContentFormTest {
 
 	private String createFormMainTitle;
 
+	private String homeElementXPath;
+
 	@BeforeClass
 
 	public void beforeTest() {
@@ -126,6 +128,8 @@ public class EditContentFormTest {
 				.getProperty("general.sitedropdown");
 		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.studiologo");
+		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.home");
 	}
 
 	@AfterClass
@@ -258,6 +262,7 @@ public class EditContentFormTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 
 		// wait for element is clickeable
+		this.driverManager.isElementPresentByXpath(homeElementXPath);
 
 		driverManager.getDriver().navigate().refresh();
 
@@ -270,10 +275,10 @@ public class EditContentFormTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert of the test case is fine
-
+		this.driverManager.isElementPresentByXpath(myRecentActivityTestingItem);
 		String contentURL = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",myRecentActivityTestingItem).getText();
 
-		Assert.assertTrue(contentURL.contains(contentURL));
+		Assert.assertTrue(contentURL.contains("Testing1"));
 
 		// reload page
 
