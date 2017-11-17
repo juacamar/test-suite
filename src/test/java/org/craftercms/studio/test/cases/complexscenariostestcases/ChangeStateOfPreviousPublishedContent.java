@@ -41,7 +41,6 @@ public class ChangeStateOfPreviousPublishedContent {
 	private String userOptionsLogout;
 	private String requestPublishButton;
 	private String publishSubmitButton;
-	private String previewDependenciesButton;
 	private String cancelWorkflowContinueButton;
 	private String staticAssetsButton;
 	private String homeTree;
@@ -50,6 +49,8 @@ public class ChangeStateOfPreviousPublishedContent {
 	private UsersPage usersPage;
 	private PreviewPage previewPage;
 	private String articlesFolder;
+
+	private String crafterLogoId;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -85,14 +86,13 @@ public class ChangeStateOfPreviousPublishedContent {
 				.getProperty("preview.request_publish_button");
 		publishSubmitButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.approve&publish_submit");
-		previewDependenciesButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.dependencies_button");
 		cancelWorkflowContinueButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.workflow_cancellation_continue_Button");
 		staticAssetsButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.static_assets_button");
 		homeTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.expand_GlobalEntry_Tree");
+		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 
 	}
 
@@ -126,7 +126,6 @@ public class ChangeStateOfPreviousPublishedContent {
 				.sendKeys("author");
 
 		// Save Button
-
 		usersPage.clickOnSaveNewUser();
 
 		// Assert new users created is present
@@ -134,20 +133,16 @@ public class ChangeStateOfPreviousPublishedContent {
 				"#container > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > a");
 
 		Assert.assertTrue(newUserCreated.isDisplayed());
-		
+
 		// Switch to the form
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().switchTo().defaultContent();
 
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "homeSites");
-//
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "homeSites").click();
-		
-		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		 "/html/body/ui-view/header/nav/div/div[1]/a/img");
-		
-		 this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		 "/html/body/ui-view/header/nav/div/div[1]/a/img").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				"/html/body/ui-view/header/nav/div/div[1]/a/img");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				"/html/body/ui-view/header/nav/div/div[1]/a/img").click();
 
 	}
 
@@ -164,8 +159,9 @@ public class ChangeStateOfPreviousPublishedContent {
 		usersPage.clickOnDeleteUserCreated();
 
 		// Confirmation to delete user connected
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
 				.click();
 
 		// Assert new users created is deleted
@@ -380,8 +376,9 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				"//*[@id='users-tags-input']/div/auto-complete/div/ul/li/ti-autocomplete-match/ng-include/div/div[1]");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				"//*[@id='users-tags-input']/div/auto-complete/div/ul/li/ti-autocomplete-match/ng-include/div/div[1]")
+		this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+						"//*[@id='users-tags-input']/div/auto-complete/div/ul/li/ti-autocomplete-match/ng-include/div/div[1]")
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -390,7 +387,8 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				"//*[@id='container']/div/div/div[2]/div/a").click();
 
-		Assert.assertTrue(driverManager.isElementPresentByXpath("//*[@id='container']/div/div/div[2]/table/tbody/tr/td[1]"));
+		Assert.assertTrue(
+				driverManager.isElementPresentByXpath("//*[@id='container']/div/div/div[2]/table/tbody/tr/td[1]"));
 
 		driverManager.getDriver().switchTo().defaultContent();
 		this.driverManager.getDriver().switchTo().activeElement();
@@ -497,10 +495,8 @@ public class ChangeStateOfPreviousPublishedContent {
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				homeTree);
 
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeTree);
 
 		// expand Home tree
 		dashboardPage.expandHomeTree();
@@ -531,18 +527,6 @@ public class ChangeStateOfPreviousPublishedContent {
 				".//span[contains(text(),'Testing1')]");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				".//span[contains(text(),'Testing1')]").click();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", previewDependenciesButton);
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", previewDependenciesButton).click();
-
-		// check dependencies are listed
-		previewPage.checkDependencies();
-
-		// Switch back to the dashboard page
-		this.driverManager.getDriver().switchTo().activeElement();
-
-		this.driverManager.getDriver().navigate().refresh();
 
 		// Bulk Publish
 		previewPage.bulkPublish();
@@ -575,10 +559,15 @@ public class ChangeStateOfPreviousPublishedContent {
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
+		driverManager.isElementPresentAndClickableById(crafterLogoId);
+
 		// expand Home tree
 		dashboardPage.expandHomeTree();
-		
-		this.driverManager.getDriver().navigate().refresh();
+
+		// Fix race condition expanding Home Tree
+		if (!(this.driverManager.isElementPresentAndClickableByXpath(".//span[contains(text(),'articles')]"))) {
+			this.dashboardPage.expandHomeTree();
+		}
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				".//span[contains(text(),'articles')]");
