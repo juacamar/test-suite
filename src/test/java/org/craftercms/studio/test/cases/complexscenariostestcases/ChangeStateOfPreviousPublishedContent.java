@@ -44,7 +44,22 @@ public class ChangeStateOfPreviousPublishedContent {
 	private String cancelWorkflowContinueButton;
 	private String staticAssetsButton;
 	private String homeTree;
-
+	private String sidebarMenuOption;
+	private String dependenciesMenuOption;
+	private String staticAssetsChildFolder;
+	private String staticAssetsImagesChildFolder;
+	private String navigationElement;
+	private String editAuthorGroupOption;
+	private String groupsAddNewMembersCheckbox;
+	private String groupsAddNewMembersInput;
+	private String groupsAddNewMembersAutocompleteOption1;
+	private String groupsAddNewMembersButton;
+	private String groupsMembersOption1;
+	private String navigationSitebarNameId;
+	private String crafterLogo;
+	private String generalSiteDropdown;
+	private String pageStatus;
+	
 	private CreateSitePage createSitePage;
 	private UsersPage usersPage;
 	private PreviewPage previewPage;
@@ -93,7 +108,36 @@ public class ChangeStateOfPreviousPublishedContent {
 		homeTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.expand_GlobalEntry_Tree");
 		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-
+		sidebarMenuOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"complexscenarios.general.sitedropdownmenuinnerxpath");
+		dependenciesMenuOption =UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"general.dependenciestopnavoption");
+		staticAssetsChildFolder = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"preview.static_assets_child_folder");
+		staticAssetsImagesChildFolder = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"preview.static_assets_images_child_folder");
+		navigationElement = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"complexscenarios.general.togglenavigationelement");
+		editAuthorGroupOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"groups.edit_author_group_option");
+		groupsAddNewMembersCheckbox = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"groups.add_new_members_checkbox");
+		groupsAddNewMembersInput = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"groups.add_new_members_input");
+		groupsAddNewMembersAutocompleteOption1= UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"groups.add_new_members_autocomplete_option1");
+		groupsAddNewMembersButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"groups.add_new_members_button");
+		groupsMembersOption1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"groups.members_list_option1");
+		navigationSitebarNameId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"general.navigation_sitebar_name_id"); 
+		crafterLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"users.crafterlogo"); 
+		generalSiteDropdown = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"general.sitedropdown"); 
+		pageStatus = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"general.pageStatus");
 	}
 
 	@AfterClass
@@ -139,76 +183,11 @@ public class ChangeStateOfPreviousPublishedContent {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"/html/body/ui-view/header/nav/div/div[1]/a/img");
+				crafterLogo);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"/html/body/ui-view/header/nav/div/div[1]/a/img").click();
+				crafterLogo).click();
 
-	}
-
-	public void deleteUser() {
-
-		// login to application
-		loginPage.loginToCrafter(userName, password);
-
-		// click On Users option
-
-		createSitePage.clickOnUsersOption();
-
-		// Click on delete user
-		usersPage.clickOnDeleteUserCreated();
-
-		// Confirmation to delete user connected
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-						"body > div.modal.fade.ng-isolate-scope.centered-dialog.in > div > div > div.modal-footer.ng-scope > button:nth-child(1)")
-				.click();
-
-		// Assert new users created is deleted
-
-		WebElement onlyAdminUserExist = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"#container > div > div > div > div > div > table > tbody");
-
-		Assert.assertTrue(onlyAdminUserExist.isDisplayed());
-
-	}
-
-	public void createSitesRandom() {
-
-		// Click on the create site button
-
-		homePage.clickOnCreateSiteButton();
-
-		// Filling the name of site
-
-		createSitePage.fillSiteName();
-
-		// Filling the description of the site
-
-		createSitePage.fillDescription("Description");
-
-		// Open blueprint combo
-
-		createSitePage.openBlueprintCombo();
-
-		// Select empty blueprint
-
-		createSitePage.selectEmptyBlueprint();
-
-		// Click on Create button
-
-		createSitePage.clickOnCreateSiteButton();
-
-		// go to the sites page
-		String sitesNavOptionElementCssSelector = "#sitesRightNav";
-
-		if (this.driverManager.isElementPresentBycssSelector(sitesNavOptionElementCssSelector))
-			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", sitesNavOptionElementCssSelector)
-					.click();
-		else
-			throw new NoSuchElementException(
-					"Site creation process is taking too long time and the element was not found");
 	}
 
 	public void login(String user, String loginpassword) {
@@ -216,71 +195,6 @@ public class ChangeStateOfPreviousPublishedContent {
 		loginPage.loginToCrafter(user, loginpassword);
 		// go to preview page
 
-	}
-
-	public void publishElement(WebElement element, String pageName) {
-
-		dashboardPage.rightClickOnAContentPage(element);
-		// selecting the Publish option
-		dashboardPage.clickOnPublishOption();
-		// moving to the publish dialog, clicking on Submit and confirm action
-		this.selectOnlyOnePageToPublish(pageName);
-		this.confirmPublishAction();
-
-	}
-
-	private void selectOnlyOnePageToPublish(String pageName) {
-		// Switch to the form
-		driverManager.getDriver().switchTo().activeElement();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "approveSubmit");
-		WebElement unSelectAllCheck = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				"(//INPUT[@type='checkbox'])[1]");
-		unSelectAllCheck.click();
-		String pageNameCheckLocator = ".//table[@class='item-listing scroll-body']/tbody/tr/td/div/span[contains(text(),'"
-				+ pageName + "')]/../../../td/input";
-		WebElement pageNameCheck = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				pageNameCheckLocator);
-
-		pageNameCheck.click();
-	}
-
-	public void confirmPublishAction() {
-		// Switch to the form
-		driverManager.getDriver().switchTo().activeElement();
-
-		// Click on Publish button
-		dashboardPage.clickApproveAndPublishSubmitButton();
-		// switch to default content
-		driverManager.getDriver().switchTo().defaultContent();
-	}
-
-	public void createNewPageArticleContent(String pageName) {
-
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
-		// creating random values for URL field and InternalName field
-		String randomURL = pageName;
-		String randomInternalName = pageName;
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewPageArticleContent(randomURL, randomInternalName, pageName);
-
-		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#title > div > input")
-				.sendKeys(pageName);
-		this.driverManager.scrollUp();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-form-expand-all")
-				.click();
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
-
-		this.driverManager.isElementPresentByXpath(".//span[text()='Toggle navigation']");
 	}
 
 	public void editPageArticleContent(String pageName) {
@@ -308,24 +222,13 @@ public class ChangeStateOfPreviousPublishedContent {
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.isElementPresentByXpath(".//span[text()='Toggle navigation']");
+		this.driverManager.isElementPresentByXpath(navigationElement);
 
-	}
-
-	public void createPageCategoryLandingPage(WebElement folderWebElement, String pageName) {
-		dashboardPage.rightClickCreatePageOnAPresentPage(folderWebElement);
-		// selecting Page Category Landing Page
-		dashboardPage.selectPageArticleContentType();
-		// click on the Ok button to confirm the select content type above
-		dashboardPage.clickOKButton();
-		// creating new Page Article into the empty folder
-		driverManager.getDriver().switchTo().defaultContent();
-		this.createNewPageArticleContent(pageName);
 	}
 
 	public void changeBodyToNotRequiredOnPageArticleContent() {
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", generalSiteDropdown)
 				.click();
 
 		previewPage.changeBodyOfArticlePageToNotRequired();
@@ -351,10 +254,10 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.driverManager.getDriver().switchTo().activeElement();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"(//i[@class='fa fa-pencil'])[2]");
-
+				editAuthorGroupOption);
+		
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", "(//i[@class='fa fa-pencil'])[2]")
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editAuthorGroupOption)
 				.click();
 
 		driverManager.getDriver().switchTo().defaultContent();
@@ -365,37 +268,38 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.driverManager.getDriver().switchTo().activeElement();
 		// id container
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//*[@id='users-tags-input']/div/div");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersCheckbox);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//*[@id='users-tags-input']/div/div")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersCheckbox)
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//*[@id='users-tags-input']/div/div/input")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersInput)
 				.sendKeys("author");
+		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				"//*[@id='users-tags-input']/div/auto-complete/div/ul/li/ti-autocomplete-match/ng-include/div/div[1]");
+				groupsAddNewMembersAutocompleteOption1);
 
 		this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-						"//*[@id='users-tags-input']/div/auto-complete/div/ul/li/ti-autocomplete-match/ng-include/div/div[1]")
+						groupsAddNewMembersAutocompleteOption1)
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//*[@id='container']/div/div/div[2]/div/a");
+				groupsAddNewMembersButton); 
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//*[@id='container']/div/div/div[2]/div/a").click();
+				groupsAddNewMembersButton).click();
 
 		Assert.assertTrue(
-				driverManager.isElementPresentByXpath("//*[@id='container']/div/div/div[2]/table/tbody/tr/td[1]"));
+				driverManager.isElementPresentByXpath(groupsMembersOption1));
 
 		driverManager.getDriver().switchTo().defaultContent();
 		this.driverManager.getDriver().switchTo().activeElement();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "navbar-site-name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", navigationSitebarNameId);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "navbar-site-name").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", navigationSitebarNameId).click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#admin-console");
 
@@ -414,15 +318,6 @@ public class ChangeStateOfPreviousPublishedContent {
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
 
-	}
-
-	public void confirmDeleteAction() {
-
-		// Switch to the form
-		driverManager.getDriver().switchTo().activeElement();
-		// Click on delete button
-		dashboardPage.clickDeleteDeleteSubmitButton();
-		driverManager.getDriver().switchTo().defaultContent();
 	}
 
 	private void renamePage(WebElement parentPage, String newPageName) {
@@ -474,7 +369,7 @@ public class ChangeStateOfPreviousPublishedContent {
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.isElementPresentByXpath(".//span[text()='Toggle navigation']");
+		this.driverManager.isElementPresentByXpath(navigationElement);
 
 	}
 
@@ -511,16 +406,17 @@ public class ChangeStateOfPreviousPublishedContent {
 
 		// Open dependencies for the previous created element
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				".//span[contains(text(),'articles')]");
+				articlesFolder);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				".//span[contains(text(),'articles')]").click();
+				articlesFolder).click();
 
+		
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", "//*[@id='acn-dropdown-inner']")
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", "//*[@id='acn-dropdown-inner']")
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -546,7 +442,7 @@ public class ChangeStateOfPreviousPublishedContent {
 		// Go to the site page
 
 		homePage.goToPreviewPage();
-		String siteDropdownElementXPath = ".//a[@id='acn-dropdown-toggler']";
+		String siteDropdownElementXPath = sidebarMenuOption;
 
 		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
@@ -565,21 +461,21 @@ public class ChangeStateOfPreviousPublishedContent {
 		dashboardPage.expandHomeTree();
 
 		// Fix race condition expanding Home Tree
-		if (!(this.driverManager.isElementPresentAndClickableByXpath(".//span[contains(text(),'articles')]"))) {
+		if (!(this.driverManager.isElementPresentAndClickableByXpath(articlesFolder))) {
 			this.dashboardPage.expandHomeTree();
 		}
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				".//span[contains(text(),'articles')]");
+				articlesFolder);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				".//span[contains(text(),'articles')]").click();
+				articlesFolder).click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", "//*[@id='acn-dropdown-inner']")
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
 				.click();
 
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", "//*[@id='acn-dropdown-inner']")
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -606,9 +502,9 @@ public class ChangeStateOfPreviousPublishedContent {
 
 		// Open dependencies for the previous created element
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//A[@class='cursor'][text()='Dependencies']");
+				dependenciesMenuOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//A[@class='cursor'][text()='Dependencies']").click();
+				dependenciesMenuOption).click();
 
 		// check dependencies are listed
 		previewPage.checkDependencies();
@@ -629,13 +525,15 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsButton).click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				".//span[contains(text(),'static-assets')]");
+				staticAssetsChildFolder);
 		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//span[contains(text(),'static-assets')]")
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", staticAssetsChildFolder)
 				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//span[contains(text(),'images')]");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//span[contains(text(),'images')]")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				"xpath", staticAssetsImagesChildFolder);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+				"xpath", staticAssetsImagesChildFolder)
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -644,13 +542,13 @@ public class ChangeStateOfPreviousPublishedContent {
 				".//span[contains(text(),'1-gear.png')]").click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//A[@class='cursor'][text()='Dependencies']");
+				dependenciesMenuOption);
 
 		String isLifeContent = "";
 
 		while (!(isLifeContent.contains("undefined live"))) {
 			isLifeContent = this.driverManager.getDriver()
-					.findElement(By.xpath("//ul[@id='activeContentActions']/li/span/div/span/span[2]"))
+					.findElement(By.xpath(pageStatus)) 
 					.getAttribute("class").toString();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					".//span[contains(text(),'1-gear.png')]").click();
@@ -658,7 +556,7 @@ public class ChangeStateOfPreviousPublishedContent {
 		}
 
 		Assert.assertTrue(this.driverManager.getDriver()
-				.findElement(By.xpath(".//ul[@id='activeContentActions']/li/span/div/span/span[2]"))
+				.findElement(By.xpath(pageStatus))
 				.getAttribute("class").contains("undefined live"));
 
 	}
