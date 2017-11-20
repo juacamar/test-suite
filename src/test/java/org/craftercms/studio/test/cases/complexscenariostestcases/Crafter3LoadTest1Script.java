@@ -74,7 +74,6 @@ public class Crafter3LoadTest1Script {
 	private String differencesDialogId;
 	private String differencesDialogRemovedMarkXpath;
 	private String differencesDialogAddedMarkXpath;
-	private String historyCompareButton;
 	private String historyInitialCommitRevertButton;
 	private String studioLogo;
 	private String approveForPublishDialogTitle;
@@ -150,8 +149,6 @@ public class Crafter3LoadTest1Script {
 				.getProperty("complexscenarios.crafter3loadtest.differencedialog_removedmark");
 		differencesDialogAddedMarkXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.differencedialog_addedmark");
-		historyCompareButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.crafter3loadtest.historydialog.compareButton");
 		historyInitialCommitRevertButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.initialcommittrevertbutton");
 		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
