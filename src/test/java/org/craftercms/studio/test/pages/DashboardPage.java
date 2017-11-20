@@ -89,7 +89,6 @@ public class DashboardPage {
 	private String homeTreeLocator;
 	private String contextualNavigationEditLocator;
 	private String contextualNavigationHistoryLocator;
-	private String compareButtonLocator;
 	private String closeButtonLocator;
 	private String historyCloseButtonLocator;
 	private String publishOptionLocator;
@@ -106,6 +105,7 @@ public class DashboardPage {
 	private String articlesAuthorInput;
 	private String articlesSummaryInput;
 	private String articleAddImageButton;
+	private String compareButtonByXpath;
 
 	/**
 	 * 
@@ -246,8 +246,8 @@ public class DashboardPage {
 				.getProperty("dashboard.contextualnavigationeditoption");
 		contextualNavigationHistoryLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.contextualnavigationhistoryoption");
-		compareButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.comparebutton");
+		compareButtonByXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.compare_button_xpath");
 		closeButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.closebutton");
 		historyCloseButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -1289,9 +1289,9 @@ public class DashboardPage {
 	}
 
 	public void clickCompareButton() {
-		this.driverManager.isElementPresentAndClickableById(compareButtonLocator);
-		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-				compareButtonLocator);
+		this.driverManager.isElementPresentAndClickableById(compareButtonByXpath);
+		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				compareButtonByXpath);
 		compareButton.click();
 	}
 
