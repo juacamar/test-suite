@@ -46,6 +46,9 @@ public class CutPasteContentTest {
 	private String createFormSaveAndCloseElementId;
 	private String createFormMainTitleElementXPath;
 	private String testingItemURLXpath;
+	private String newFolderCreated;
+	private String dashboardMenuOption;
+	
 	
 	
 	@BeforeClass
@@ -81,6 +84,10 @@ public class CutPasteContentTest {
 				.getProperty("general.createformTitle");
 		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
+		newFolderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.add_new_folder");
+		dashboardMenuOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.dashboard_menu_option");
 	}
 
 	@AfterClass
@@ -129,9 +136,13 @@ public class CutPasteContentTest {
 
 		// save
 		siteConfigPage.saveDragAndDropProcess();
-
+		
+		// Switch to the form
+		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().switchTo().defaultContent();
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", studioLogo);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", studioLogo).click();
 		
 		// expand pages folder
 		dashboardPage.expandPagesTree();
@@ -183,16 +194,11 @@ public class CutPasteContentTest {
 		// Create folder button
 
 		dashboardPage.clickCreateButton();
-
-
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newFolderCreated);
 		
 		// Right click and cut content.
-
 		dashboardPage.rightClickToCutOption();
-
 		
 		// Right click and paste content.
 
@@ -202,13 +208,28 @@ public class CutPasteContentTest {
 
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().navigate().refresh();
-//		driverManager.getDriver().navigate().refresh();
+		
+		this.driverManager.isElementPresentByXpath(testingItemURLXpath);
 		
 		// Assert of the content copied
 		this.driverManager.isElementPresentByXpath(testingItemURLXpath);
 		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				testingItemURLXpath).getText();
+		
+		while(!(contentCopied.contains("/addnewfolder/test1")))
+		{
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
+					"xpath", dashboardMenuOption);
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
+					"xpath", dashboardMenuOption).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+					testingItemURLXpath);
+			 contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+					testingItemURLXpath).getText();
+		}
+		
 		Assert.assertEquals(contentCopied, "/addnewfolder/test1");
+	
 
 	}
 

@@ -74,13 +74,12 @@ public class Crafter3LoadTest1Script {
 	private String differencesDialogId;
 	private String differencesDialogRemovedMarkXpath;
 	private String differencesDialogAddedMarkXpath;
-	private String historyCompareButton;
 	private String historyInitialCommitRevertButton;
 	private String studioLogo;
 	private String approveForPublishDialogTitle;
-	private String siteDropDownMenuId;
 	private String createFormFrameElementCss;
 	private String createFormTitleElementXPath;
+	
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -150,15 +149,13 @@ public class Crafter3LoadTest1Script {
 				.getProperty("complexscenarios.crafter3loadtest.differencedialog_removedmark");
 		differencesDialogAddedMarkXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.differencedialog_addedmark");
-		historyCompareButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.crafter3loadtest.historydialog.compareButton");
 		historyInitialCommitRevertButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.initialcommittrevertbutton");
 		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 		approveForPublishDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.approveforpublishdialogtitle");
-		siteDropDownMenuId = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.sitedropdownmenuinnerid");
+		
+		
 
 	}
 
@@ -378,8 +375,6 @@ public class Crafter3LoadTest1Script {
 		// click on close button
 		dashboardPage.clickCloseButton();
 
-		this.driverManager.isElementPresentAndClickableById(historyCompareButton);
-
 	}
 
 	public void revertLastVersionChanges() {
@@ -421,8 +416,12 @@ public class Crafter3LoadTest1Script {
 		// getting the entire list of content pages on a folder
 		driverManager.elementHasChildsByXPath(folderLocator + "/../../../../../div/div/table/tbody/tr/td/span");
 		this.driverManager.isElementPresentAndClickableByXpath(folderLocator);
+		
+		// Switch to the form
+		driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", siteDropDownMenuId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[1]/table/tbody/tr/td/span");
@@ -438,7 +437,7 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", siteDropDownMenuId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[2]/table/tbody/tr/td/span");
@@ -454,7 +453,7 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", siteDropDownMenuId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[3]/table/tbody/tr/td/span");
@@ -469,7 +468,7 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", siteDropDownMenuId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[4]/table/tbody/tr/td/span");
@@ -484,7 +483,7 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", siteDropDownMenuId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
