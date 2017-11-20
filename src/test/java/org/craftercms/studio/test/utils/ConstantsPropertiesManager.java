@@ -16,7 +16,6 @@ public class ConstantsPropertiesManager {
 			sharedExecutionConstants.load(new FileInputStream(filePath));
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

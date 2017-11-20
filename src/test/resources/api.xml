@@ -4,7 +4,7 @@
 <suite name="CrafterAPISuite">
  <test name="Login">
   <classes>
-   <class name="org.craftercms.studio.test.api.SampleTest"/>
+   <class name="org.craftercms.studio.test.cases.api.SampleTest"/>
   </classes>
  </test>
   
