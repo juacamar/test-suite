@@ -248,16 +248,6 @@
 				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
-	<test name="PreviewSync Test">
-		<classes>
-			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteEmptyTest" />
-			<class
-				name="org.craftercms.studio.test.cases.siteconfigpagetestcases.PreviewSyncTest" />
-			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
-		</classes>
-	</test> <!-- Test -->
 	<test name="Publishing Site Test">
 		<classes>
 			<class

@@ -79,6 +79,7 @@ public class Crafter3LoadTest1Script {
 	private String approveForPublishDialogTitle;
 	private String createFormFrameElementCss;
 	private String createFormTitleElementXPath;
+	private String dashboardMenuOption;
 	
 
 	@BeforeMethod
@@ -154,6 +155,8 @@ public class Crafter3LoadTest1Script {
 		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 		approveForPublishDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.approveforpublishdialogtitle");
+		dashboardMenuOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.dashboard_menu_option");
 		
 		
 
@@ -421,7 +424,7 @@ public class Crafter3LoadTest1Script {
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[1]/table/tbody/tr/td/span");
@@ -437,7 +440,7 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[2]/table/tbody/tr/td/span");
@@ -453,7 +456,7 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[3]/table/tbody/tr/td/span");
@@ -468,7 +471,7 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[4]/table/tbody/tr/td/span");
@@ -483,7 +486,7 @@ public class Crafter3LoadTest1Script {
 		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//A[@id='acn-sites-link']").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
 		this.driverManager.scrollDown();
 		this.driverManager.isElementPresentAndClickableByXpath(
 				folderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
