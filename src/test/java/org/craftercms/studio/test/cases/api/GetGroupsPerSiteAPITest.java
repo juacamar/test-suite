@@ -13,18 +13,21 @@ import org.testng.annotations.Test;
  * Created by Gustavo Ortiz Alfaro.
  */
 
-public class UpdateGroupAPITest {
+public class GetGroupsPerSiteAPITest {
+
+	
 	private SecurityAPI securityAPI;
 	private SiteManagementAPI siteManagementAPI;
 	private GroupManagementAPI groupManagementAPI;
 
-	public UpdateGroupAPITest() {
+
+	public GetGroupsPerSiteAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
-		securityAPI = new SecurityAPI(api, apiConnectionManager);
-		siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
-		groupManagementAPI = new GroupManagementAPI(api, apiConnectionManager);
+		securityAPI = new SecurityAPI(api,apiConnectionManager);
+		siteManagementAPI = new SiteManagementAPI(api,apiConnectionManager);
+		groupManagementAPI = new GroupManagementAPI(api,apiConnectionManager);
 	}
 
 	@BeforeTest
@@ -32,28 +35,17 @@ public class UpdateGroupAPITest {
 		securityAPI.logInIntoStudioUsingAPICall();
 		siteManagementAPI.testCreateSite();
 		groupManagementAPI.testCreateStudioGroup01(siteManagementAPI.getSiteId());
+		groupManagementAPI.testCreateStudioGroup02(siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 1)
-	public void testUpdateGroup() {
-		groupManagementAPI.testUpdateGroup(siteManagementAPI.getSiteId());
+	public void testGetGroupsPerSite() {
+		groupManagementAPI.testGetGroupsPerSite(siteManagementAPI.getSiteId());
 	}
-
-	@Test(priority = 2)
-	public void testInvalidParameters() {
-		groupManagementAPI.testUpdateGroupInvalidParameters(siteManagementAPI.getSiteId());
-	}
-
-	//TODO: Pending to review the response code for this because it returns 500
-//	@Test(priority = 3)
-//	public void testGroupNotFound() {
-//		groupManagementAPI.testUpdateGroupGroupNotFound(siteManagementAPI.getSiteId());
-//	}
-
+	
 	@AfterTest
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite();
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
-
 }

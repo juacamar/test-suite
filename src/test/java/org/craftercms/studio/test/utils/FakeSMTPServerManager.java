@@ -21,7 +21,7 @@ public class FakeSMTPServerManager {
 
 	
 	private int port;
-	private SimpleSmtpServer dumbster;
+	private SimpleSmtpServer simpleSMTPServer;
 
 	public FakeSMTPServerManager() {
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
@@ -31,18 +31,18 @@ public class FakeSMTPServerManager {
 
 	public void startFakeSMTPServer() {
 		try {
-			 dumbster = SimpleSmtpServer.start(port);
+			simpleSMTPServer = SimpleSmtpServer.start(port);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
 	}
 
 	public void stopFakeSMTPServer() {	
-		dumbster.stop();
+		simpleSMTPServer.stop();
 	}
 	
 	public List<SmtpMessage> getMessages() {
-		return dumbster.getReceivedEmails();
+		return simpleSMTPServer.getReceivedEmails();
 	}
 
 	public String getRecentlyGeneratedToken() {
