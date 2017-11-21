@@ -15,16 +15,14 @@ import org.testng.annotations.Test;
 
 public class CreateGroupAPITest {
 
-	private APIConnectionManager apiConnectionManager;
 	private SecurityAPI securityAPI;
 	private SiteManagementAPI siteManagementAPI;
 	private GroupManagementAPI groupManagementAPI;
-	private JsonTester api;
 	
 
 	public CreateGroupAPITest() {
-		apiConnectionManager = new APIConnectionManager();
-		api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+		APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
 		securityAPI = new SecurityAPI(api,apiConnectionManager);
 		siteManagementAPI= new SiteManagementAPI(api,apiConnectionManager);

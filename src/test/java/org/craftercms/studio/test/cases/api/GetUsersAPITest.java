@@ -15,15 +15,12 @@ import org.testng.annotations.Test;
 
 public class GetUsersAPITest {
 	
-	private APIConnectionManager apiConnectionManager;
 	private SecurityAPI securityAPI;
 	private UserManagementAPI userManagementAPI;
-	private JsonTester api;
-
 
 	public GetUsersAPITest() {
-		apiConnectionManager = new APIConnectionManager();
-		api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+		APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
 		securityAPI = new SecurityAPI(api,apiConnectionManager);
 		userManagementAPI = new UserManagementAPI(api,apiConnectionManager);

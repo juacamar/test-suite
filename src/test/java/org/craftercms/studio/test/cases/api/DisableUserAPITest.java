@@ -14,14 +14,14 @@ import org.testng.annotations.Test;
  */
 
 public class DisableUserAPITest {
-	private APIConnectionManager apiConnectionManager;
+
 	private SecurityAPI securityAPI;
 	private UserManagementAPI userManagementAPI;
-	private JsonTester api;
+
 	
 	public DisableUserAPITest() {
-		apiConnectionManager = new APIConnectionManager();
-		api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+		APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
 		securityAPI = new SecurityAPI(api,apiConnectionManager);
 		userManagementAPI = new UserManagementAPI(api,apiConnectionManager);
