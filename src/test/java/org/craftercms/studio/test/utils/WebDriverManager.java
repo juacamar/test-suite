@@ -86,7 +86,7 @@ public class WebDriverManager {
 				throw new FileNotFoundException("Unable to read runtime properties file");
 			}
 		} catch (IOException ex) {
-			throw new TestException("Require Files are not found.");
+			throw new TestException("Required Files are not found.");
 		}
 
 	}
