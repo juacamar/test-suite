@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="craftercms - Crafter Studio UI Sanity Test - Test Suite" preserve-order="true"
+<suite name="craftercms Crafter Studio UI-SanityTestCases Test Suite" preserve-order="true"
 	verbose="3">
 	<test name="Login Test">
 		<classes>
 			<class
-				name="org.craftercms.studio.test.cases.loginpagetestcases.LoginTest" />
+				name="org.craftercms.studio.test.cases.loginlogouttestcases.LoginTest" />
 			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
 			<class
-				name="org.craftercms.studio.test.sanitytesttestcases.VerifyNoErrorsInHomePageOfSiteTest" />
+				name="org.craftercms.studio.test.cases.sanitytesttestcases.VerifyNoErrorsInHomePageOfSiteTest" />
 			<class
-				name="org.craftercms.studio.test.cases.sitespagetestcases.DeleteSiteTest" />
+				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -1,14 +1,13 @@
-package org.craftercms.studio.test.cases.previewtoolstestcases;
+package org.craftercms.studio.test.cases.dashboardtestcases;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
@@ -20,40 +19,44 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DesignOfPreviewToolsPanelTest {
+public class ShowHideSiteContentTest {
 
 	WebDriver driver;
 
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
+	
 	private HomePage homePage;
 
-	private PreviewPage previewPage;
+	private DashboardPage dashboardPage;
+
 	
 	private String userName;
 	private String password;
-
-	private String previewToolsPanel;
+	private String adminConsoleXpath;
+	
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
+
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		previewToolsPanel = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.previewtools.mainpanel");
+		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.adminconsole");
+	
 	}
 
 	@AfterClass
@@ -62,30 +65,28 @@ public class DesignOfPreviewToolsPanelTest {
 	}
 
 	@Test(priority = 0)
+	public void verifyThatTheSiteContentIsDisplayedOrHiddenWhenClicksOnSiteContentTest() {
 
-	public void verifyTheDesignOfPreviewToolsSectionTest() {
 		// login to application
+
 		loginPage.loginToCrafter(userName, password);
 
 		// go to dashboard page
+		homePage.goToDashboardPage();
 
-		homePage.goToPreviewPage();
+		dashboardPage.clickOnSiteContentOption();
 
+		// Assert that the site content is expanded
+		String siteContentExpanded = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", adminConsoleXpath).getText();
 		
-		// Click on Preview Tools icon (show)
-		previewPage.clickOnPreviewTools();
+		Assert.assertEquals(siteContentExpanded, "Site Config");
 
-		// Assert
-		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", previewToolsPanel);
-		Assert.assertTrue(previewToolsShow.isDisplayed());
+		// Collapse the site content panel
+		dashboardPage.clickOnSiteContentOption();
 
-		// Click on Preview Tools icon (hide)
-		previewPage.clickOnPreviewTools();
-
-		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(previewToolsPanel));
-
+		// Assert that the site content is Collapsed
+		Assert.assertFalse(this.driverManager.isElementPresentByXpath(adminConsoleXpath));
 	}
 
 }

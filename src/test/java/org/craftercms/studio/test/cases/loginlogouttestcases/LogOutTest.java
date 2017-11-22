@@ -1,4 +1,4 @@
-package org.craftercms.studio.test.cases.previewtoolstestcases;
+package org.craftercms.studio.test.cases.loginlogouttestcases;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
@@ -16,13 +15,17 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro
+ * @author Gustavo Andrei Ortiz Alfaro 
  *
  */
 
-public class DesignOfPreviewToolsPanelTest {
+public class LogOutTest {
 
 	WebDriver driver;
+
+	LoginPage objLogin;
+
+	HomePage objHomePage;
 
 	private WebDriverManager driverManager;
 
@@ -30,30 +33,32 @@ public class DesignOfPreviewToolsPanelTest {
 
 	private HomePage homePage;
 
-	private PreviewPage previewPage;
-	
 	private String userName;
 	private String password;
 
-	private String previewToolsPanel;
+	private String loginButtonLocator;
+
+	private String createSiteButtonXpath;
+	
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
+		
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
+		
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		previewToolsPanel = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.previewtools.mainpanel");
+		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
+		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.createsitebutton");
+		
 	}
 
 	@AfterClass
@@ -63,29 +68,24 @@ public class DesignOfPreviewToolsPanelTest {
 
 	@Test(priority = 0)
 
-	public void verifyTheDesignOfPreviewToolsSectionTest() {
+	public void logoutFromStudioTest() {
+
 		// login to application
+
 		loginPage.loginToCrafter(userName, password);
 
-		// go to dashboard page
-
-		homePage.goToPreviewPage();
-
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		//this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
 		
-		// Click on Preview Tools icon (show)
-		previewPage.clickOnPreviewTools();
-
-		// Assert
-		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", previewToolsPanel);
-		Assert.assertTrue(previewToolsShow.isDisplayed());
-
-		// Click on Preview Tools icon (hide)
-		previewPage.clickOnPreviewTools();
-
-		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(previewToolsPanel));
-
+		// LogOut
+		homePage.clickLogoutOutCrafter();
+		
+		// Verify login is fine
+	    WebElement signInButtom = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+	    		loginButtonLocator);
+	 
+	    Assert.assertTrue(signInButtom.isDisplayed());
+	
 	}
 
 }
