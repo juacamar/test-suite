@@ -1,7 +1,6 @@
-package org.craftercms.studio.test.cases.previewtoolstestcases;
+package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -20,7 +19,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DesignOfPreviewToolsPanelTest {
+public class HistoryOptionTest {
 
 	WebDriver driver;
 
@@ -31,29 +30,43 @@ public class DesignOfPreviewToolsPanelTest {
 	private HomePage homePage;
 
 	private PreviewPage previewPage;
-	
+
 	private String userName;
 	private String password;
 
-	private String previewToolsPanel;
+	private String siteDropdownXpath;
+
+	private String homeXpath;
+
+	private String historyDialogTitle;
+
+	private String studioLogo;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 	
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		previewToolsPanel = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.previewtools.mainpanel");
+		siteDropdownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		homeXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.home");
+		historyDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.historydialogtitle");
+		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.studiologo");
+		
 	}
 
 	@AfterClass
@@ -62,29 +75,37 @@ public class DesignOfPreviewToolsPanelTest {
 	}
 
 	@Test(priority = 0)
+	public void verifyThatTheHistoryDialogIsDisplayedTest() {
 
-	public void verifyTheDesignOfPreviewToolsSectionTest() {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
-		// go to dashboard page
-
+		// go to preview page
 		homePage.goToPreviewPage();
 
+		// Show site content panel
+		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				siteDropdownXpath).click();
 		
-		// Click on Preview Tools icon (show)
-		previewPage.clickOnPreviewTools();
+		// expand pages folder
+		previewPage.expandPagesTree();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo);
+		
+		// expand home content
+		previewPage.expandHomeTree();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeXpath).click();
+
+		// click on history option
+		previewPage.clickOnHistoryOption();
 
 		// Assert
-		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", previewToolsPanel);
-		Assert.assertTrue(previewToolsShow.isDisplayed());
-
-		// Click on Preview Tools icon (hide)
-		previewPage.clickOnPreviewTools();
-
-		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(previewToolsPanel));
+		String historyPage = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", historyDialogTitle).getText();
+		
+		Assert.assertEquals(historyPage, "Version History");
 
 	}
 

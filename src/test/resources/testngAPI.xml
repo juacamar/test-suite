@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="craftercms - Studio API - Test Suite" preserve-order="true"
+<suite name="craftercms Studio API-General Studio API TestSuite" preserve-order="true"
 	verbose="3">
 	<test name="Create User Test" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.CreateUserAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.CreateUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Get User" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.GetUserAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.GetUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Get Users" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.GetUsersAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.GetUsersAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Get Users Per Site" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.GetUserPerSiteAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.GetUserPerSiteAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Update User" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.UpdateUserAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.UpdateUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Delete User" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.DeleteUserAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.DeleteUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Enable User" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.EnableUserAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.EnableUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Disable User" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.DisableUserAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.DisableUserAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Get User Status" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.GetUserStatusAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.GetUserStatusAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<!-- <test name="Forgot Password Test, Validate Token Test and Set Password 
 		Test" preserve-order="true"> -->
 	<!-- <classes> -->
-	<!-- <class name="org.craftercms.studio.test.cases.api.ForgotPasswordAndValidateTokenAndSetPasswordAPITest" 
+	<!-- <class name="org.craftercms.studio.test.cases.apitestcases.ForgotPasswordAndValidateTokenAndSetPasswordAPITest" 
 		/> -->
 	<!-- </classes> -->
 	<!-- </test> Test -->
 
 	<test name="Change Password" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.ChangePasswordAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.ChangePasswordAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<test name="Reset Password" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.ResetPasswordAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.ResetPasswordAPITest" />
 		</classes>
 	</test> <!-- Test -->
 
 	<!-- Group Management -->
 	<test name="Create Group" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.CreateGroupAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.CreateGroupAPITest" />
 		</classes>
 	</test> <!-- Test -->
 	<test name="Get Group" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.GetGroupAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.GetGroupAPITest" />
 		</classes>
 	</test> <!-- Test -->
 	<test name="Get Groups" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.GetGroupsAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.GetGroupsAPITest" />
 		</classes>
 	</test> <!-- Test -->
 	<test name="Get Groups Per Site" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.GetGroupsPerSiteAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.GetGroupsPerSiteAPITest" />
 		</classes>
 	</test> <!-- Test -->
 	<test name="Get Users Per Group" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.GetUsersPerGroupAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.GetUsersPerGroupAPITest" />
 		</classes>
 	</test> <!-- Test -->
 	<test name="Update Group" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.UpdateGroupAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.UpdateGroupAPITest" />
 		</classes>
 	</test> <!-- Test -->
 	<test name="Delete Group" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.api.DeleteGroupAPITest" />
+			<class name="org.craftercms.studio.test.cases.apitestcases.DeleteGroupAPITest" />
 		</classes>
 	</test> <!-- Test -->	
 </suite> <!-- Suite -->

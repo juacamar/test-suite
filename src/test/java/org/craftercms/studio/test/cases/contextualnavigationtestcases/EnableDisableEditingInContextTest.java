@@ -1,7 +1,6 @@
-package org.craftercms.studio.test.cases.previewtoolstestcases;
+package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -20,7 +19,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DesignOfPreviewToolsPanelTest {
+public class EnableDisableEditingInContextTest {
 
 	WebDriver driver;
 
@@ -31,29 +30,31 @@ public class DesignOfPreviewToolsPanelTest {
 	private HomePage homePage;
 
 	private PreviewPage previewPage;
-	
+
 	private String userName;
 	private String password;
 
-	private String previewToolsPanel;
+	private String previewToolsInContextualEditingButton;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
+
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
 		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		previewToolsPanel = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.previewtools.mainpanel");
+		previewToolsInContextualEditingButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.previewtools.incontextualeditingbutton");
 	}
 
 	@AfterClass
@@ -63,28 +64,27 @@ public class DesignOfPreviewToolsPanelTest {
 
 	@Test(priority = 0)
 
-	public void verifyTheDesignOfPreviewToolsSectionTest() {
+	public void verifyThatTheInContextEditingIsEnabledOrDisabledTest() {
+
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
 		// go to dashboard page
-
 		homePage.goToPreviewPage();
 
-		
-		// Click on Preview Tools icon (show)
+		// Click on Preview Tools icon
 		previewPage.clickOnPreviewTools();
 
-		// Assert
-		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", previewToolsPanel);
-		Assert.assertTrue(previewToolsShow.isDisplayed());
+		// Expand context editing section
+		previewPage.clickToExpandInContextEditing();
 
-		// Click on Preview Tools icon (hide)
-		previewPage.clickOnPreviewTools();
+		// Enable/disable In Context edit
+		previewPage.clickToEnableDisableInContextEditing();
 
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(previewToolsPanel));
+		String editIconActive = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", previewToolsInContextualEditingButton).getText();
+		Assert.assertEquals(editIconActive, "In-Context Edit Off");
 
 	}
 

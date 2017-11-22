@@ -1,14 +1,13 @@
-package org.craftercms.studio.test.cases.previewtoolstestcases;
+package org.craftercms.studio.test.cases.contenttestcases;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
@@ -20,7 +19,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DesignOfPreviewToolsPanelTest {
+public class AddNewFolderTest {
 
 	WebDriver driver;
 
@@ -30,12 +29,15 @@ public class DesignOfPreviewToolsPanelTest {
 
 	private HomePage homePage;
 
-	private PreviewPage previewPage;
+	private DashboardPage dashboardPage;
 	
 	private String userName;
 	private String password;
 
-	private String previewToolsPanel;
+	private String siteDropdownElementXPath;
+
+	private String newFolderXpath;
+	
 
 	@BeforeClass
 	public void beforeTest() {
@@ -43,17 +45,20 @@ public class DesignOfPreviewToolsPanelTest {
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
+		
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
+		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		previewToolsPanel = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.previewtools.mainpanel");
+		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdown");
+		newFolderXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitecontent.newfolder");
+
 	}
 
 	@AfterClass
@@ -63,28 +68,37 @@ public class DesignOfPreviewToolsPanelTest {
 
 	@Test(priority = 0)
 
-	public void verifyTheDesignOfPreviewToolsSectionTest() {
+	public void createANewFolderUsingContextualClickOptionTest() {
+
 		// login to application
+
 		loginPage.loginToCrafter(userName, password);
 
 		// go to dashboard page
 
-		homePage.goToPreviewPage();
+		homePage.goToDashboardPage();
 
-		
-		// Click on Preview Tools icon (show)
-		previewPage.clickOnPreviewTools();
 
-		// Assert
-		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", previewToolsPanel);
-		Assert.assertTrue(previewToolsShow.isDisplayed());
+		// Show site content panel
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownElementXPath)
+				.click();
+	
+		// expand pages folder
+		dashboardPage.expandPagesTree();
 
-		// Click on Preview Tools icon (hide)
-		previewPage.clickOnPreviewTools();
+		// right click to see the the menu
+		dashboardPage.rightClickToFolderOnHome();
 
-		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(previewToolsPanel));
+		// Set the name of the folder
+		dashboardPage.setFolderName("addnewfolder");
+
+		// Create folder button
+		dashboardPage.clickCreateButton();
+
+		// Assert find the new folder created
+				this.driverManager.isElementPresentByXpath(newFolderXpath);
+				Assert.assertTrue(this.driverManager.isElementPresentByXpath(
+						newFolderXpath));
 
 	}
 
