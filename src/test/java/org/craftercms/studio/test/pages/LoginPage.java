@@ -20,10 +20,6 @@ public class LoginPage {
 	private String loginButtonLocator;
 	private String sitesPageTitleLocator;
 	
-
-	/**
-	 * 
-	 */
 	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driverManager.openConnection();
@@ -39,52 +35,37 @@ public class LoginPage {
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
-
 	}
 
 	// Set user name in textbox
-
 	public void setUserName(String strUserName) {
 		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", userNameTextBoxLocator);
-				//driver.findElement(By.cssSelector(userNameTextBoxLocator));
 		userCrafter.clear();
 		userCrafter.sendKeys(strUserName);
-
 	}
 
 	// Set password in password textbox
-
 	public void setPassword(String strPassword) {
 		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", passwordTextBoxLocator);
-				//driver.findElement(By.id(passwordTextBoxLocator));
 		pwdCrafter.clear();
 		pwdCrafter.sendKeys(strPassword);
 
 	}
 
 	// Click on login button
-
 	public void clickLogin() {
 		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", loginButtonLocator);
 		loginButton.click();
-
 	}
 
 	// Login to crafter
 	public void loginToCrafter(String strUserName, String strPasword) {
-
 		// Fill user name
-
 		this.setUserName(strUserName);
-
 		// Fill password
-
 		this.setPassword(strPasword);
-
 		// Click Login button
-
 		this.clickLogin();
-		
 		this.driverManager.isElementPresentByXpath(sitesPageTitleLocator);
 
 	}

@@ -28,7 +28,6 @@ public class ContentTypesAddItemSelectorTest {
 	
 	private String userName;
 	private String password;
-
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionItemSelectorLocator;
@@ -47,14 +46,12 @@ public class ContentTypesAddItemSelectorTest {
 		
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
-		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -69,7 +66,6 @@ public class ContentTypesAddItemSelectorTest {
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-
 	}
 
 	@AfterClass
@@ -144,7 +140,6 @@ public class ContentTypesAddItemSelectorTest {
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerItemSelectorTitleLocator)
 				.getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

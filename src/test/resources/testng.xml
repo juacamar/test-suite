@@ -7,7 +7,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.userstestcases.TryToDeleteUserConnectedTest" />
 		</classes>
-	</test> <!-- Test -->
+	</test> 
 	<test name="Login Test And Logout Test">
 		<classes>
 			<class
@@ -15,7 +15,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.loginlogouttestcases.LogOutTest" />
 		</classes>
-	</test> <!-- Test -->
+	</test> 
 	<test name="Add New Content Entry Test">
 		<classes>
 			<class
@@ -25,7 +25,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> <!-- Test -->
+	</test> 
 	<test name="Add New Folder Test">
 		<classes>
 			<class
@@ -62,7 +62,7 @@
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
 	</test> 
-	<test name="Create Site Blueprint Empty">
+	<test name="Create Site Using Empty Blueprint">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteEmptyTest" />

@@ -30,28 +30,28 @@ public class AddNewFolderTest {
 	private HomePage homePage;
 
 	private DashboardPage dashboardPage;
-	
+
 	private String userName;
 	private String password;
 
 	private String siteDropdownElementXPath;
 
 	private String newFolderXpath;
-	
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
 		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -78,11 +78,9 @@ public class AddNewFolderTest {
 
 		homePage.goToDashboardPage();
 
-
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", siteDropdownElementXPath)
-				.click();
-	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
@@ -96,9 +94,8 @@ public class AddNewFolderTest {
 		dashboardPage.clickCreateButton();
 
 		// Assert find the new folder created
-				this.driverManager.isElementPresentByXpath(newFolderXpath);
-				Assert.assertTrue(this.driverManager.isElementPresentByXpath(
-						newFolderXpath));
+		this.driverManager.isElementPresentByXpath(newFolderXpath);
+		Assert.assertTrue(this.driverManager.isElementPresentByXpath(newFolderXpath));
 
 	}
 

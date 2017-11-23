@@ -21,14 +21,11 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class ShowAboutUsTest {
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private CreateSitePage createSitePage;
 
 	private String userName;
 	private String password;
-
 	private String aboutUsInfoXpath;
 
 	@BeforeClass
@@ -40,7 +37,6 @@ public class ShowAboutUsTest {
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, UIElementsPropertiesManager);
 

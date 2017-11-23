@@ -28,7 +28,6 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 	
 	private String userName;
 	private String password;
-
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionGroupedCheckBoxesLocator;
@@ -46,16 +45,12 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 	
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
-		
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -146,7 +141,6 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerGroupedCheckBoxesTitleLocator).getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

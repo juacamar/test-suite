@@ -28,7 +28,6 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 	
 	private String userName;
 	private String password;
-	
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionImageUploadedFromDesktopLocator;
 	private String contentTypeContainerImageUploadedFromDesktopTitleLocator;
@@ -53,7 +52,6 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
 		this.dataSourceSectionImageUploadedFromDesktopLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -133,7 +131,6 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		String titleText =this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 						contentTypeContainerImageUploadedFromDesktopTitleLocator).getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

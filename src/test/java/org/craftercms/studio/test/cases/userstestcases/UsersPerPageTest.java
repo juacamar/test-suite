@@ -143,7 +143,7 @@ public class UsersPerPageTest {
 		driverManager.getDriver().navigate().refresh();
 		
 		// Show 4 users
-		this.driverManager.isElementPresentAndClickableByXpath( usersPerPageInputXpath);
+		this.driverManager.isElementPresentAndClickableByXpath(usersPerPageInputXpath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("4");
 
@@ -154,7 +154,7 @@ public class UsersPerPageTest {
 		List<WebElement> usersList4items = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
 		Assert.assertTrue(usersList4items.size() == 4);
 
-		this.driverManager.isElementPresentAndClickableByXpath( usersPerPageInputXpath);
+		this.driverManager.isElementPresentAndClickableByXpath(usersPerPageInputXpath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("10");
 	}
@@ -167,7 +167,6 @@ public class UsersPerPageTest {
 		// Confirmation to delete user connected
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
-
 		driverManager.getDriver().navigate().refresh();
 
 		// Click on delete user
@@ -176,7 +175,6 @@ public class UsersPerPageTest {
 
 		// Confirmation to delete user
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
-
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
 
@@ -191,34 +189,24 @@ public class UsersPerPageTest {
 	}
 
 	@Test(priority = 0)
-
-	public void usersPerPage() {
-
+	public void verifyThatTheShowUsersPerPageWorksProperlyTest() {
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
 
 		// Create user 1
-
 		createUserRandom();
-
 		// Create user 2
 		driverManager.getDriver().navigate().refresh();
 		createUserRandom();
-
 		// Create user 3
 		driverManager.getDriver().navigate().refresh();
 		createUserRandom();
-
 		driverManager.getDriver().navigate().refresh();
 		
 		// filters
-
 		filters();
-
-		// Delete users block 1
+		// Delete all users
 		deleteUsers();
-
 	}
 
 }

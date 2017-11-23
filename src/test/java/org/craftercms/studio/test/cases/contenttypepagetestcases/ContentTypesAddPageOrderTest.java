@@ -28,8 +28,6 @@ public class ContentTypesAddPageOrderTest {
 	
 	private String userName;
 	private String password;
-	
-
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionPageOrderLocator;
@@ -57,8 +55,6 @@ public class ContentTypesAddPageOrderTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
-		
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -151,7 +147,6 @@ public class ContentTypesAddPageOrderTest {
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerPageOrderTitleLocator)
 				.getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

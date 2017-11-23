@@ -70,7 +70,6 @@ public class DesignOfPreviewToolsPanelTest {
 		// go to dashboard page
 
 		homePage.goToPreviewPage();
-
 		
 		// Click on Preview Tools icon (show)
 		previewPage.clickOnPreviewTools();

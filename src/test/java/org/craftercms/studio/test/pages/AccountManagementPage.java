@@ -20,10 +20,6 @@ public class AccountManagementPage {
 	private String confirmPassword;
 	private String submitButton;
 	
-
-	/**
-	 * 
-	 */
 	public AccountManagementPage(WebDriverManager driverManager,
 			UIElementsPropertiesManager UIElementsPropertiesManager) {
 
@@ -40,71 +36,49 @@ public class AccountManagementPage {
 	}
 
 	public AccountManagementPage(WebDriver driver) {
-
 		this.driver = driver;
 
 	}
 
 	// Set the current pass
-
 	public void setCurrentPassword(String strCurrentPass) {
-		// this.driverManager.driverWait(300);
 		WebElement currentPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
 				currentPassword);
-		// driver.findElement(By.id(currentPassword));
 		currentPass.sendKeys(strCurrentPass);
 
 	}
 
 	// Set the new pass
-
 	public void setNewPassword(String strNewPassword) {
-		// this.driverManager.driverWait(300);
 		WebElement newPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", newPassword);
-		// driver.findElement(By.id(newPassword));
 		newPass.sendKeys(strNewPassword);
 
 	}
 
 	// Set the new pass confirmation
-
 	public void setConfirmNewPassword(String strConfNewPassword) {
-		// this.driverManager.driverWait(300);
 		WebElement confPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", confirmPassword);
-		// driver.findElement(By.id(confirmPassword));
 		confPass.sendKeys(strConfNewPassword);
-
 	}
 
 	// Click on submit
-
 	public void clickSubmit() {
 		this.driverManager.isElementPresentAndClickableByXpath(submitButton);
 		WebElement submitbtn = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				submitButton);
 		submitbtn.click();
-
 	}
 
 	// change the password
 	public void changeUserPassword(String strCurrentPass, String strNewPassword, String strConfNewPassword) {
-
 		// Fill current pass
-
 		this.setCurrentPassword(strCurrentPass);
-
 		// Fill new pass
-
 		this.setNewPassword(strNewPassword);
-
 		// confirm new pass
-
 		this.setConfirmNewPassword(strConfNewPassword);
-
 		// Click Login button
-
 		this.clickSubmit();
-
 	}
 
 	public WebDriverManager getDriverManager() {

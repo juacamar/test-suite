@@ -113,13 +113,6 @@ public class DeleteContentTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
 
-		// click necessary to validate all fields required
-		// this.driverManager.scrollUp();
-		// this.driverManager
-		// .driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-		// "#cstudio-form-expand-all")
-		// .click();
-
 		// save and close
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 		this.driverManager.isElementPresentByXpath(homeElementXPath);

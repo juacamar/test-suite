@@ -117,11 +117,6 @@ public class DesignOfWorkflowStateSectionTest {
 				processingStateItem);
 		Assert.assertTrue(processing.isDisplayed());
 
-		// Assert disabled is present.
-//		WebElement disabled = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-//				disabledStateItem);
-//		Assert.assertTrue(disabled.isDisplayed());
-
 		// Assert deleted for edit is present.
 		WebElement deleted = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deletedStateItem);
 		Assert.assertTrue(deleted.isDisplayed());

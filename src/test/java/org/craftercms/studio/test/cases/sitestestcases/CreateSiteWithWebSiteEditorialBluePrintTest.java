@@ -29,8 +29,8 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 	private String userName;
 	private String password;
 	private String siteDropdownElementXPath;
-	private String topNavDeleteOption;
-	private String topNavEditOption;
+//	private String topNavDeleteOption;
+//	private String topNavEditOption;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -50,10 +50,10 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		topNavDeleteOption = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.deletetopnavoption");
-		topNavEditOption= uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.edittopnavoption");
+//		topNavDeleteOption = uIElementsPropertiesManager.getSharedUIElementsLocators()
+//				.getProperty("general.deletetopnavoption");
+//		topNavEditOption= uIElementsPropertiesManager.getSharedUIElementsLocators()
+//				.getProperty("general.edittopnavoption");
 
 	}
 
@@ -92,11 +92,11 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 	
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				topNavDeleteOption);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
-				topNavEditOption);
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+//				topNavDeleteOption);
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
+//				topNavEditOption);
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 	}
