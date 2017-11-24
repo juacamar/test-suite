@@ -174,8 +174,8 @@ public class GroupManagementAPI extends BaseAPI {
 		json.put("site_id", siteId);
 		json.put("description", description + "updated");
 
-		api.post("/studio/api/1/services/api/1/group/update.json")
-				.execute().status(404).json("$.message", is("Group not found")).debug();
+		api.post("/studio/api/1/services/api/1/group/update.json").execute().status(404)
+				.json("$.message", is("Group not found")).debug();
 	}
 
 	public void testDeleteGroup(String siteId) {
@@ -184,25 +184,118 @@ public class GroupManagementAPI extends BaseAPI {
 		json.put("site_id", siteId);
 		api.post("/studio/api/1/services/api/1/group/delete.json").json(json).execute().status(204);
 	}
-	
+
 	public void testDeleteGroupInvalidParameters(String siteId) {
 		Map<String, Object> json = new HashMap<>();
 		json.put("group_namenonvalid", groupName1);
 		json.put("site_id", siteId);
-		
-		api.post("/studio/api/1/services/api/1/group/delete.json")
-		.json(json).execute().status(400)
+
+		api.post("/studio/api/1/services/api/1/group/delete.json").json(json).execute().status(400)
 				.json("$.message", is("Invalid parameter(s): [group_name]")).debug();
 	}
 
 	public void testDeleteGroupGroupNotFound(String siteId) {
 		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", groupName1+"nonvalid");
+		json.put("group_name", groupName1 + "nonvalid");
 		json.put("site_id", siteId);
-		
-		api.post("/studio/api/1/services/api/1/group/delete.json")
-		.json(json).execute().status(404)
+
+		api.post("/studio/api/1/services/api/1/group/delete.json").json(json).execute().status(404)
 				.json("$.message", is("Group not found")).debug();
 
 	}
+
+	public void testAddUserToGroup(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", username);
+		json.put("group_name", groupName1);
+		json.put("site_id", siteId);
+		api.post("/studio/api/1/services/api/1/group/add-user.json").json(json).execute().status(200)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name=" + groupName1))
+				.json("$.message", is("OK")).debug();
+	}
+
+	public void testAddUserToGroupInvalidParameters(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("usernameInvalid", username);
+		json.put("group_name", groupName1);
+		json.put("site_id", siteId);
+		api.post("/studio/api/1/services/api/1/group/add-user.json").json(json).execute().status(400)
+				.json("$.message", is("Invalid parameter(s): [username]")).debug();
+
+	}
+
+	public void testAddUserToGroupUserNotFound(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", username + "non-valid");
+		json.put("group_name", groupName1);
+		json.put("site_id", siteId);
+		api.post("/studio/api/1/services/api/1/group/add-user.json").json(json).execute().status(404)
+				.json("$.message", is("User not found")).debug();
+
+	}
+
+	public void testAddUserToGroupGroupNotFound(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", username);
+		json.put("group_name", groupName1 + "non-valid");
+		json.put("site_id", siteId);
+		api.post("/studio/api/1/services/api/1/group/add-user.json").json(json).execute().status(404)
+				.json("$.message", is("Group not found")).debug();
+
+	}
+
+	public void testAddUserToGroupAlreadyInGroup(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", username);
+		json.put("group_name", groupName1);
+		json.put("site_id", siteId);
+
+		api.post("/studio/api/1/services/api/1/group/add-user.json").json(json).execute().status(409)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name=" + groupName1))
+				.json("$.message", is("User already in group")).debug();
+	}
+
+	public void testRemoveUserFromGroup(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", username);
+		json.put("group_name", groupName1);
+		json.put("site_id", siteId);
+
+		api.post("/studio/api/1/services/api/1/group/remove-user.json").json(json).execute().status(204);
+	}
+
+	public void testRemoveUserFromGroupInvalidParameters(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("usernamenonvalid", username);
+		json.put("group_namenonvalid", groupName1);
+		json.put("site_idnonvalid", siteId);
+
+		api.post("/studio/api/1/services/api/1/group/remove-user.json").json(json).execute().status(400)
+				.json("$.message", is("Invalid parameter(s): [group_name, site_id, username]"));
+	}
+
+	public void testRemoveUserFromGroupGroupNotFound(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", username);
+		json.put("group_name", groupName1 + "nonvalid");
+		json.put("site_id", siteId);
+
+		api.post("/studio/api/1/services/api/1/group/remove-user.json").json(json).execute().status(404)
+				.json("$.message", is("Group not found"));
+
+	}
+
+	public void testRemoveUserFromGroupUserNotFound(String username, String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", username + "nonvalid");
+		json.put("group_name", groupName1);
+		json.put("site_id", siteId);
+
+		api.post("/studio/api/1/services/api/1/group/remove-user.json")
+				.json(json).execute().status(404).json("$.message", is("User not found"));
+
+	}
+
 }

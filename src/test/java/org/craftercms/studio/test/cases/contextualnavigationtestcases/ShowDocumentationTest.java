@@ -21,7 +21,6 @@ public class ShowDocumentationTest {
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
 	private CreateSitePage createSitePage;
 	
 	private String userName;
@@ -54,7 +53,6 @@ public class ShowDocumentationTest {
 	public void showDocumentationPageTest() {
 
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
 
 		// click On help option

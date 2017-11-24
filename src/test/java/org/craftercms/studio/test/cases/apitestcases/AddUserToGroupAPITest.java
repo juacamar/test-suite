@@ -1,163 +1,74 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
+import org.craftercms.studio.test.api.objects.GroupManagementAPI;
+import org.craftercms.studio.test.api.objects.SecurityAPI;
+import org.craftercms.studio.test.api.objects.SiteManagementAPI;
+import org.craftercms.studio.test.api.objects.UserManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.Matchers.*;
-import java.util.HashMap;
-import java.util.Map;
+
 /**
  * Created by Gustavo Ortiz Alfaro.
  */
 
 public class AddUserToGroupAPITest {
 
-	private JsonTester api;
-	private String headerLocationBase;
-	private String username = "admin";
-	private String password = "admin";
-	private String siteId = "mysite";
-	private String description = "Description!";
-	private String blueprint = "empty";
-	private String groupName = "contributors";
+	private SecurityAPI securityAPI;
+	private SiteManagementAPI siteManagementAPI;
+	private GroupManagementAPI groupManagementAPI;
+	private UserManagementAPI userManagementAPI;
 
-	private String newusername = "jane.doe";
-	private String newpassword= "SuperSecretPassword123#";
-	private String first_name = "Jane";
-	private String last_name= "Doe";
-	private String email= "jane@example.com";
-	
 	public AddUserToGroupAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
-		api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
-		headerLocationBase = apiConnectionManager.getHeaderLocationBase();
-
+		securityAPI = new SecurityAPI(api, apiConnectionManager);
+		siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
+		groupManagementAPI = new GroupManagementAPI(api, apiConnectionManager);
+		userManagementAPI = new UserManagementAPI(api, apiConnectionManager);
 	}
 
 	@BeforeTest
-	public void login() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("username", username);
-		json.put("password", password);
-		api.post("/studio/api/1/services/api/1/security/login.json")
-		.json(json).execute().status(200);
+	public void beforeTest() {
+		securityAPI.logInIntoStudioUsingAPICall();
+		siteManagementAPI.testCreateSite();
+		groupManagementAPI.testCreateStudioGroup01(siteManagementAPI.getSiteId());
+		userManagementAPI.testCreateUser();
 	}
 
 	@Test(priority = 1)
-	public void testCreateSite() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("site_id", siteId);
-		json.put("description", description);
-		json.put("blueprint", blueprint);
-		
-		api.post("/studio/api/1/services/api/1/site/create.json")
-		.json(json).execute().status(201)
-				.header("Location",
-						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id="+siteId))
-				.json("$.message", is("OK")).debug();
+	public void testAddUserToGroup() {
+		groupManagementAPI.testAddUserToGroup(userManagementAPI.getNewusername(),siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 2)
-	public void testCreateStudioGroup() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("group_name", groupName);
-		json.put("site_id", siteId);
-		json.put("description", description);
-		
-		api.post("/studio/api/1/services/api/1/group/create.json")
-		.json(json).execute().status(201)
-				.header("Location",
-						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
-				.json("$.message", is("OK")).debug();
-
+	public void testInvalidParameters() {
+		groupManagementAPI.testAddUserToGroupInvalidParameters(userManagementAPI.getNewusername(), siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 3)
-	public void testCreateUser() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("username", newusername);
-		json.put("password", newpassword);
-		json.put("first_name", first_name);
-		json.put("last_name", last_name);
-		json.put("email", email);
-		
-		api.post("/studio/api/1/services/api/1/user/create.json")
-		.json(json).execute().status(201)
-				.header("Location", is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?user="+newusername))
-				.json("$.message", is("OK")).debug();
-
+	public void testUserNotFound() {
+		groupManagementAPI.testAddUserToGroupUserNotFound(userManagementAPI.getNewusername(), siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 4)
-	public void testAddUserToGroup() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("username", newusername);
-		json.put("group_name", groupName);
-		json.put("site_id", siteId);
-		
-		api.post("/studio/api/1/services/api/1/group/add-user.json")
-		.json(json).execute().status(200)
-				.header("Location",
-						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
-				.json("$.message", is("OK")).debug();
-
+	public void testGroupNotFound() {
+		groupManagementAPI.testAddUserToGroupGroupNotFound(userManagementAPI.getNewusername(), siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 5)
-	public void testInvalidParameters() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("usernameInvalid", newusername);
-		json.put("group_name", groupName);
-		json.put("site_id", siteId);
-		
-		api.post("/studio/api/1/services/api/1/group/add-user.json")
-		.json(json).execute().status(400)
-				.json("$.message", is("Invalid parameter(s): [username]")).debug();
-
-	}
-
-
-	@Test(priority = 6)
-	public void testUserNotFound() {
-		Map<String, Object> json = new HashMap<>();
-		
-		json.put("username", newusername+"non-valid");
-		json.put("group_name", groupName);
-		json.put("site_id", siteId);
-		
-		api.post("/studio/api/1/services/api/1/group/add-user.json")
-		.json(json).execute().status(404)
-				.json("$.message", is("User not found")).debug();
-
-	}
-
-	@Test(priority = 6)
-	public void testGroupNotFound() {
-		Map<String, Object> json = new HashMap<>();		
-		json.put("username", newusername);
-		json.put("group_name", groupName+"non-valid");
-		json.put("site_id", siteId);
-		
-		api.post("/studio/api/1/services/api/1/group/add-user.json")
-		.json(json).execute().status(404)
-				.json("$.message", is("Group not found")).debug();
-	}
-
-	@Test(priority = 4)
 	public void testUserAlreadyInGroup() {
-		Map<String, Object> json = new HashMap<>();		
-		json.put("username", newusername);
-		json.put("group_name", groupName);
-		json.put("site_id", siteId);
-		
-		api.post("/studio/api/1/services/api/1/group/add-user.json")
-		.json(json).execute().status(409)
-				.header("Location",
-						is(headerLocationBase + "/studio/api/1/services/api/1/group/get.json?group_name="+groupName))
-				.json("$.message", is("User already in group")).debug();
-
+		groupManagementAPI.testAddUserToGroupAlreadyInGroup(userManagementAPI.getNewusername(), siteManagementAPI.getSiteId());
+	}
+	
+	@AfterTest
+	public void afterTest() {
+		userManagementAPI.testDeleteUser();
+		siteManagementAPI.testDeleteSite();
+		securityAPI.logOutFromStudioUsingAPICall();
 	}
 }

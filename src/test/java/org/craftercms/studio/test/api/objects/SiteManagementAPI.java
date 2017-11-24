@@ -8,13 +8,12 @@ import java.util.Map;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 
-public class SiteManagementAPI extends BaseAPI{
-	
+public class SiteManagementAPI extends BaseAPI {
+
 	private String siteId = "mysite";
 	private String description = "Description!";
 	private String blueprint = "empty";
 
-	
 	public SiteManagementAPI(JsonTester api, APIConnectionManager apiConnectionManager) {
 		super(api, apiConnectionManager);
 	}
@@ -24,21 +23,54 @@ public class SiteManagementAPI extends BaseAPI{
 		json.put("site_id", siteId);
 		json.put("description", description);
 		json.put("blueprint", blueprint);
-
 		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(201)
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
 				.json("$.message", is("OK")).debug();
 	}
-	
+
+	public void testCreateSiteInvalidParameters() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_idnonvalid", siteId);
+		json.put("description", description);
+		json.put("blueprint", blueprint);
+
+		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(400)
+				.json("$.message", is("Invalid parameter(s): [site_id]")).debug();
+	}
+
+	public void testCreateSiteSiteAlreadyExists() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		json.put("description", description);
+		json.put("blueprint", blueprint);
+
+		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(409)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
+				.json("$.message", is("Site already exists")).debug();
+	}
+
 	public void testDeleteSite() {
 		Map<String, Object> json = new HashMap<>();
 		json.put("siteId", siteId);
-		
-		api.post("/studio/api/1/services/api/1/site/delete-site.json")
-		.json(json).execute().status(200).json("$", is(true))
-		.debug();
+		api.post("/studio/api/1/services/api/1/site/delete-site.json").json(json).execute().status(200)
+				.json("$", is(true)).debug();
+	}
 
+	public void testClearConfigurationCache() {
+		api.get("/studio/api/1/services/api/1/site/clear-configuration-cache.json").urlParam("site", this.siteId)
+				.execute().status(200);
+	}
+
+	public void testExistsSite() {
+		api.get("/studio/api/1/services/api/1/site/exists.json").urlParam("site", this.siteId).execute().status(200);
+	}
+
+	public void testGetConfigurationOfSite() {
+		api.get("/studio/api/1/services/api/1/site/get-configuration.json")
+		.urlParam("site", this.siteId)
+		.urlParam("path", "/site-config.xml").execute().status(200);
 	}
 
 	public String getSiteId() {
@@ -48,5 +80,5 @@ public class SiteManagementAPI extends BaseAPI{
 	public void setSiteId(String siteId) {
 		this.siteId = siteId;
 	}
-	
+
 }

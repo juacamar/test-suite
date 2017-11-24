@@ -1,12 +1,10 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
-import static org.hamcrest.Matchers.is;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import org.craftercms.studio.test.api.objects.SecurityAPI;
+import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -17,35 +15,30 @@ import org.testng.annotations.Test;
 
 public class DeleteSiteAPITest {
 
-	private JsonTester api;
-	
-	private String username = "admin";
-	private String password = "admin";
-	private String siteId = "mysite";
+	private SecurityAPI securityAPI;
+	private SiteManagementAPI siteManagementAPI;
 
 	public DeleteSiteAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
-		api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
+		securityAPI = new SecurityAPI(api, apiConnectionManager);
+		siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
 	}
 
 	@BeforeTest
-	public void login() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("username", username);
-		json.put("password", password);
-		api.post("/studio/api/1/services/api/1/security/login.json")
-		.json(json).execute().status(200);
+	public void beforeTest() {
+		securityAPI.logInIntoStudioUsingAPICall();
+		siteManagementAPI.testCreateSite();
 	}
 
 	@Test(priority = 1)
-	public void testDeleteSite() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("siteId", siteId);
-		
-		api.post("/studio/api/1/services/api/1/site/delete-site.json")
-		.json(json).execute().status(200).json("$", is(true))
-		.debug();
+	public void testCreateSite() {
+		siteManagementAPI.testDeleteSite();
+	}
 
+	@AfterTest
+	public void afterTest() {
+		securityAPI.logOutFromStudioUsingAPICall();
 	}
 }

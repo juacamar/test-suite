@@ -217,10 +217,8 @@ public class PreviewPage {
 	}
 
 	// Click on Approve&Publish option
-
 	public void approvePublish() {
-		this.driverManager.isElementPresentAndClickableByXpath(approvePublish);
-		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		WebElement publishIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				approvePublish);
 
 		publishIcon.click();
@@ -499,11 +497,9 @@ public class PreviewPage {
 	public void changeBodyOfEntryContentPageToNotRequired() {
 
 		// Show site content panel
-		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath).click();
 
 		// go to admin console page
-		this.driverManager.isElementPresentAndClickableByXpath(adminConsoleXpath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", adminConsoleXpath).click();
 
 		// select content types
@@ -525,15 +521,13 @@ public class PreviewPage {
 		// Mark Body not required
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
 				.click();
-
 		// save
 		siteConfigPage.saveDragAndDropProcess();
 
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// go to dashboard
-		this.driverManager.isElementPresentAndClickableById(studioLogo);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo).click();
 
 	}
 	

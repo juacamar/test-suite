@@ -131,7 +131,7 @@ public class EditOptionTest {
 	}
 
 	public void createNewContent() {
-
+		driverManager.waitUntilPageLoad();
 		// right click to see the the menu
 		dashboardPage.rightClickToSeeMenu();
 

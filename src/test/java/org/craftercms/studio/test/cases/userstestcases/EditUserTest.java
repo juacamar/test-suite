@@ -148,7 +148,6 @@ public class EditUserTest {
 		createSitePage.clickOnUsersOption();
 
 		// create a new user
-
 		createUserToEdit();
 
 		// wait for element is clickeable
@@ -187,7 +186,6 @@ public class EditUserTest {
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().navigate().refresh();
 		
-		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
 		// Assert new users created is deleted
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 

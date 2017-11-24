@@ -74,7 +74,6 @@ public class DeleteUserTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// click On Users option
-
 		createSitePage.clickOnUsersOption();
 
 		// Click on delete user

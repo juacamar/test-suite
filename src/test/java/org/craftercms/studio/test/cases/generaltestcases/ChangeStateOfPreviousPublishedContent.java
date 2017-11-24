@@ -392,7 +392,6 @@ public class ChangeStateOfPreviousPublishedContent {
 		dashboardPage.expandPagesTree();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeTree);
-
 		// expand Home tree
 		dashboardPage.expandHomeTree();
 

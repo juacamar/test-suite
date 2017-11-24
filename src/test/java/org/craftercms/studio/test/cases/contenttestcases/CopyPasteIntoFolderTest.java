@@ -90,6 +90,7 @@ public class CopyPasteIntoFolderTest {
 
 	public void createContent() {
 		// right click to see the the menu
+		driverManager.waitUntilPageLoad();
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
@@ -133,7 +134,6 @@ public class CopyPasteIntoFolderTest {
 		this.changeBodyToNotRequiredOnEntryContent();
 
 		// expand pages folder
-
 		dashboardPage.expandPagesTree();
 
 	    this.createContent();
