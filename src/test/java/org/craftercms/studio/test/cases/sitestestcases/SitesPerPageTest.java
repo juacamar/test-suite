@@ -27,7 +27,6 @@ public class SitesPerPageTest {
 
 	private String userName;
 	private String password;
-
 	private CreateSitePage createSitePage;
 	private String sitesPerPageInputXpath;
 	private String firstSiteXpath;
@@ -74,16 +73,12 @@ public class SitesPerPageTest {
 				.getProperty("general.edittopnavoption");
 		topNavSitesOption= uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.preview.sitesoption");
-		
 		// login to application
 		loginPage.loginToCrafter(userName, password);
-
 		// Create site 1
 		createSitesRandom();
-
 		// Create site 2
 		createSitesRandom();
-
 		// Create site 3
 		createSitesRandom();
 
@@ -91,50 +86,38 @@ public class SitesPerPageTest {
 
 	@AfterClass
 	public void afterTest() {
-
 		// Delete Created site 1
 		deleteSite();
-
 		// Delete Created site 2
 		deleteSite();
-
 		// Delete Created site 3
 		deleteSite();
-
 		driverManager.closeConnection();
 	}
 
 	public void createSitesRandom() {
 
 		// Click on the create site button
-
 		homePage.clickOnCreateSiteButton();
 
 		// Filling the name of site
-
 		createSitePage.fillSiteName();
 
-		// Filling the Id of the site
-
 		// Filling the description of the site
-
 		createSitePage.fillDescription("Description");
 
 		// Open blueprint combo
-
 		createSitePage.openBlueprintCombo();
 
 		// Select empty blueprint
-
 		createSitePage.selectEmptyBlueprint();
 
 		// Click on Create button
-
 		createSitePage.clickOnCreateSiteButton();
 		
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
+		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavDeleteOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavEditOption);
 
@@ -149,79 +132,64 @@ public class SitesPerPageTest {
 		// Show 1 sites
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).clear();
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).sendKeys("1");
 
 		// Assert only 1 sites displayed
-
 		WebElement page1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				firstSiteXpath);
-
 		Assert.assertTrue(page1.isDisplayed());
 
 		// Show 2 sites
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).clear();
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).sendKeys("2");
 
 		// Asser only 2 sites displayed
-
 		WebElement page2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				secondSiteXpath);
-
 		Assert.assertTrue(page2.isDisplayed());
 
 		// Show 3 site
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).clear();
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).sendKeys("3");
 
 		// Asser only 3 site displayed
-
 		WebElement page3 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				thirdSiteXpath);
-
 		Assert.assertTrue(page3.isDisplayed());
 
-		// Show 11 sites
+		// Show 10 sites
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).clear();
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath).sendKeys("10");
 		
 		driverManager.getDriver().navigate().refresh();
-		this.driverManager.waitForPageLoad(driverManager.getDriver());
+		//this.driverManager.waitForPageLoad(driverManager.getDriver());
 	}
 
 	public void deleteSite() {
 
 		// Click on Delete icon
+		//this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
-
 		homePage.clickOnDeleteSiteIcon();
 
 		// Click on YES to confirm the delete.
-
 		homePage.clickOnYesToDeleteSite();
 		
 		// Refresh the site
 		driverManager.getDriver().navigate().refresh();
-		this.driverManager.waitForPageLoad(driverManager.getDriver());
+		//this.driverManager.waitForPageLoad(driverManager.getDriver());
 	}
 
 	@Test(priority = 0)
-	public void sitesPerPage() {
-
+	public void verifyThatTheShowSitesPerPageWorksProperlyTest() {
 		// filters
 		filters();
-
 	}
 }

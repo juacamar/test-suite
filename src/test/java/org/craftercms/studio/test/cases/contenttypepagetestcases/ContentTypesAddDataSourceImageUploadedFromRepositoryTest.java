@@ -28,7 +28,6 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 	
 	private String userName;
 	private String password;
-
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionImageUploadedFromRepositoryLocator;
 	private String contentTypeContainerImageUploadedFromRepositoryTitleLocator;
@@ -45,15 +44,12 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 		
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
-		
-		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		
+	
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
 		this.dataSourceSectionImageUploadedFromRepositoryLocator = uIElementsPropertiesManager
@@ -132,7 +128,6 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerImageUploadedFromRepositoryTitleLocator).getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

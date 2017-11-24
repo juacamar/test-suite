@@ -103,7 +103,7 @@ public class CopyPasteContentTest {
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				 "cssSelector", createFormFrameElementCss));
 		
-		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
+		//this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "AboutUS");
@@ -164,6 +164,7 @@ public class CopyPasteContentTest {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				 "cssSelector", createFormFrameElementCss));
+		
 		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",

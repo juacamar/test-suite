@@ -24,6 +24,7 @@ import org.testng.annotations.Test;
  */
 
 public class ShowUsersPageTest {
+	
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private HomePage homePage;
@@ -31,6 +32,7 @@ public class ShowUsersPageTest {
 	private DashboardPage dashboardPage;
 	private APIConnectionManager apiConnectionManager;
 	private UIElementsPropertiesManager uIElementsPropertiesManager;
+	
 	private String userName;
 	private String password;
 	private String newUserXpath;

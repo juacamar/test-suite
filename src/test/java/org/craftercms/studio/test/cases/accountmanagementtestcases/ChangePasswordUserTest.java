@@ -24,12 +24,10 @@ public class ChangePasswordUserTest {
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
 	private CreateSitePage createSitePage;
-
+	private AccountManagementPage accountManagementPage;
+	
 	private String userName;
 	private String password;
-	
-
-	private AccountManagementPage accountManagementPage;
 	private String sitePageTitleXpath;
 	private String createSiteButtonXpath;
 
@@ -72,15 +70,12 @@ public class ChangePasswordUserTest {
 		createSitePage.clickAdmin();
 
 		// click on settings
-
 		createSitePage.clickOnSettingsOption();
 
 		// change password
-
 		accountManagementPage.changeUserPassword(userName, "123456", "123456");
 
 		// login to application
-
 		loginPage.loginToCrafter(userName, "123456");
 
 		// reload page
@@ -94,18 +89,14 @@ public class ChangePasswordUserTest {
 		createSitePage.clickOnSettingsOption();
 
 		// change password
-
 		accountManagementPage.changeUserPassword("123456", userName, "admin");
 
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
 
 		// Assert create button is present.
-
 		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"xpath", createSiteButtonXpath);
-
 		Assert.assertTrue(createButton.isDisplayed());
 
 	}

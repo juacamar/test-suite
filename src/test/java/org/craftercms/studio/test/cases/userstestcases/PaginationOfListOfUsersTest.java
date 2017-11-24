@@ -21,38 +21,23 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class PaginationOfListOfUsersTest {
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private CreateSitePage createSitePage;
-
 	private UsersPage usersPage;
 
 	private String userName;
 	private String password;
-
 	private String newUserFirstNameId;
-
 	private String newUserLastNameId;
-
 	private String newUserEmailId;
-
 	private String newUserUserNameId;
-
 	private String newUserPasswordId;
-
 	private String newUserPasswordVerificationId;
-
 	private String usersPerPageInputXpath;
-
 	private String lastNumberOfPaginationXpath;
-
 	private String firstNumberOfPaginationXpath;
-
 	private String lastArrowOfPaginationXpath;
-
 	private String firstArrowOfPaginationXpath;
-
 	private String deleteYesButtonXpath;
 
 	@BeforeClass
@@ -184,17 +169,12 @@ public class PaginationOfListOfUsersTest {
 	}
 
 	@Test(priority = 0)
-
-	public void paginationOfTheListOfUsers() {
-
+	public void verifyThatThePaginationOfTheListOfUsersWorksProperlyTest() {
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
 
 		createUserRandom();
-
 		createUserRandom();
-
 		createUserRandom();
 
 		// filters

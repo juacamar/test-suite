@@ -65,6 +65,7 @@ public class Crafter3LoadTest1Script {
 	private WebElement myTestFolder;
 	private WebElement anotherTestFolder;
 	private WebElement bigTree2BigTree1ChildFolder;
+	
 	private String siteDropdownElementXPath;
 	private String homeElementXPath;
 	private String createFormArticleMainTitleElementXPath;
@@ -80,7 +81,6 @@ public class Crafter3LoadTest1Script {
 	private String createFormFrameElementCss;
 	private String createFormTitleElementXPath;
 	private String dashboardMenuOption;
-	
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -157,9 +157,6 @@ public class Crafter3LoadTest1Script {
 				.getProperty("complexscenarios.general.approveforpublishdialogtitle");
 		dashboardMenuOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.dashboard_menu_option");
-		
-		
-
 	}
 
 	@AfterMethod
@@ -168,14 +165,12 @@ public class Crafter3LoadTest1Script {
 	}
 
 	public void createFolderOnAPresentFolder(String folderName, WebElement Parent) {
-
 		// Right click and click on New Folder option
 		dashboardPage.rightClickNewFolderOnAPresentFolder(Parent);
 		// Set the name of the folder
 		dashboardPage.setFolderName(folderName);
 		// Create folder button
 		dashboardPage.clickCreateButton();
-
 	}
 
 	public void createFolderOnHome(String folderName) {
@@ -192,13 +187,11 @@ public class Crafter3LoadTest1Script {
 		loginPage.loginToCrafter(userName, password);
 		// go to preview page
 		homePage.goToPreviewPage();
-
 		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 		else
 			throw new NoSuchElementException(
 					"Site creation process is taking too long time and the element was not found");
-
 	}
 
 	public void prepareTestArea() {
@@ -303,8 +296,6 @@ public class Crafter3LoadTest1Script {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		this.driverManager.isElementPresentAndClickableByXpath(homeElementXPath);
-		this.driverManager.isElementPresentAndClickableByXpath(homeElementXPath);
-
 	}
 
 	public void createPageCategoryLandingPage(WebElement folderWebElement) {
@@ -349,15 +340,14 @@ public class Crafter3LoadTest1Script {
 		driverManager.getDriver().switchTo().activeElement();
 
 		this.driverManager.isElementPresentAndClickableByXpath(historyFirstItemCheckbBox);
-		this.driverManager.isElementPresentAndClickableByXpath(historyFirstItemCheckbBox);
-
+	
 		// Checking the first row version
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historyFirstItemCheckbBox)
 				.click();
 
 		// Checking the second row version
 		this.driverManager.isElementPresentAndClickableByXpath(historySecondItemCheckbBox);
-		this.driverManager.isElementPresentAndClickableByXpath(historySecondItemCheckbBox);
+	
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historySecondItemCheckbBox)
 				.click();
@@ -539,10 +529,9 @@ public class Crafter3LoadTest1Script {
 	public void step2() {
 		// Step2 a)
 		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
+		
 		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", bigTree1FolderLocator)
 				.click();

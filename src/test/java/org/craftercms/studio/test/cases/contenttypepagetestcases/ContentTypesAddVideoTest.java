@@ -28,7 +28,6 @@ public class ContentTypesAddVideoTest {
 	
 	private String userName;
 	private String password;
-	
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionVideoLocator;
@@ -47,15 +46,12 @@ public class ContentTypesAddVideoTest {
 		
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 		
-		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		
+	
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
-		
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -70,7 +66,6 @@ public class ContentTypesAddVideoTest {
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-
 	}
 
 	@AfterClass
@@ -147,7 +142,6 @@ public class ContentTypesAddVideoTest {
 		
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerVideoTitleLocator).getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

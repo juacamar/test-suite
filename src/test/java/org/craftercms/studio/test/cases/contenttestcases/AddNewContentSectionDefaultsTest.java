@@ -21,22 +21,15 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 public class AddNewContentSectionDefaultsTest {
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
 	private DashboardPage dashboardPage;
 
 	private String userName;
 	private String password;
-
 	private String createFormFrameElementCss;
-
 	private String createFormSaveAndCloseElementId;
-
 	private String siteDropDownXpath;
-
 	private String sectionDefaultsXpath;
 	
 
@@ -73,12 +66,10 @@ public class AddNewContentSectionDefaultsTest {
 	public void createLevelDescriptorContent() {
 		
 		// right click to see the the menu
-
 		dashboardPage.rightClickToSeeMenu();
 		
 		// create a content with level descriptor content type
 		// right click to see the the menu
-
 		dashboardPage.selectLDCT(); 
 
 		// Select Entry Content Type
@@ -129,7 +120,6 @@ public class AddNewContentSectionDefaultsTest {
 		String levelDescriptor = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", sectionDefaultsXpath).getText();
 
-		
 		Assert.assertEquals(levelDescriptor, "Section Defaults");
 
 	}

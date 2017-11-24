@@ -28,7 +28,6 @@ public class ContentTypesAddTextAreaTest {
 
 	private String userName;
 	private String password;
-	
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionTextAreaLocator;
@@ -46,15 +45,12 @@ public class ContentTypesAddTextAreaTest {
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
 		
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");

@@ -28,7 +28,6 @@ public class ContentTypesAddDataSourceChildContentTest {
 	
 	private String userName;
 	private String password;
-
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionChildContentLocator;
 	private String contentTypeContainerChildContentTitleLocator;
@@ -44,15 +43,13 @@ public class ContentTypesAddDataSourceChildContentTest {
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
 		
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		
+	
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
 		this.dataSourceSectionChildContentLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -129,7 +126,6 @@ public class ContentTypesAddDataSourceChildContentTest {
 		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerChildContentTitleLocator).getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

@@ -36,7 +36,6 @@ public class CutPasteContentTest {
 
 	private String userName;
 	private String password;
-
 	private String siteDropdownElementXPath;
 	private String adminConsoleXpath;
 	private String entryContentTypeBodyXpath;
@@ -96,7 +95,6 @@ public class CutPasteContentTest {
 	}
 
 	@Test(priority = 0)
-
 	public void cutAndPasteContentUsingContextualClickOptionsTest() {
 
 		// login to application
@@ -140,8 +138,9 @@ public class CutPasteContentTest {
 		// Switch to the form
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().switchTo().defaultContent();
+		
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", studioLogo);
+		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", studioLogo);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", studioLogo).click();
 		
 		// expand pages folder
@@ -209,21 +208,21 @@ public class CutPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().navigate().refresh();
 		
-		this.driverManager.isElementPresentByXpath(testingItemURLXpath);
-		
-		// Assert of the content copied
-		this.driverManager.isElementPresentByXpath(testingItemURLXpath);
+//		this.driverManager.isElementPresentByXpath(testingItemURLXpath);
+//		
+//		// Assert of the content copied
+//		this.driverManager.isElementPresentByXpath(testingItemURLXpath);
 		String contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				testingItemURLXpath).getText();
 		
 		while(!(contentCopied.contains("/addnewfolder/test1")))
 		{
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-					"xpath", dashboardMenuOption);
+//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
+//					"xpath", dashboardMenuOption);
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
 					"xpath", dashboardMenuOption).click();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-					testingItemURLXpath);
+//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+//					testingItemURLXpath);
 			 contentCopied = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 					testingItemURLXpath).getText();
 		}

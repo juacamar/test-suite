@@ -28,7 +28,6 @@ public class ContentTypesAddFileNameTest {
 	
 	private String userName;
 	private String password;
-
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionFileNameLocator;
@@ -54,7 +53,6 @@ public class ContentTypesAddFileNameTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-	
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -147,7 +145,6 @@ public class ContentTypesAddFileNameTest {
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerFileNameTitleLocator)
 				.getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

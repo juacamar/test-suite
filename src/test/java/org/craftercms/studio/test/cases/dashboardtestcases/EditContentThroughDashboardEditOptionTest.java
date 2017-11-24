@@ -22,7 +22,7 @@ import org.craftercms.studio.test.pages.HomePage;
 
 import org.craftercms.studio.test.pages.LoginPage;
 
-import org.craftercms.studio.test.pages.MyRecentActivityFramePage;
+import org.craftercms.studio.test.pages.MyRecentActivityPage;
 
 import org.craftercms.studio.test.pages.PreviewPage;
 
@@ -54,7 +54,7 @@ public class EditContentThroughDashboardEditOptionTest {
 	private HomePage homePage;
 	private PreviewPage previewPage;
 	private SiteConfigPage siteConfigPage;
-	private MyRecentActivityFramePage myRecentActivityFramePage1;
+	private MyRecentActivityPage myRecentActivityFramePage1;
 	private DashboardPage dashboardPage;
 
 	private String userName;
@@ -94,7 +94,7 @@ public class EditContentThroughDashboardEditOptionTest {
 		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
 		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager
 				);
-		this.myRecentActivityFramePage1 = new MyRecentActivityFramePage(driverManager, UIElementsPropertiesManager
+		this.myRecentActivityFramePage1 = new MyRecentActivityPage(driverManager, UIElementsPropertiesManager
 				);
 		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 

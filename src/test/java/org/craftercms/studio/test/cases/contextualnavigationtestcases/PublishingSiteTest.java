@@ -159,8 +159,7 @@ public class PublishingSiteTest {
 		// wait for element is clickeable
 		driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem);
-		// .click();
+		//this.driverManager.isElementPresentAndClickableByXpath(testingContentItem);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
 
 		// approve and publish
@@ -169,12 +168,10 @@ public class PublishingSiteTest {
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().navigate().refresh();
 
-		driverManager.isElementPresentAndClickableById(crafterLogoId);
 		driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", crafterLogoId).click();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
-		//this.driverManager.waitWhileElementIsDisplayedByXpath(testingContentItem);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
 
 		this.driverManager.waitWhileElementIsPresentByXpath(topNavStatusIcon);

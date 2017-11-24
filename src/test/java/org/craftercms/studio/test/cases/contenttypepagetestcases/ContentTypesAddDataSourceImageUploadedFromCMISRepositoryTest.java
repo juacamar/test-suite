@@ -28,7 +28,6 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 	
 	private String userName;
 	private String password;
-	
 	private String contentTypeContainerLocator;
 	private String dataSourceSectionImageUploadedFromCMISRepositoryLocator;
 	private String contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator;
@@ -52,7 +51,6 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
 		this.dataSourceSectionImageUploadedFromCMISRepositoryLocator = uIElementsPropertiesManager
@@ -132,7 +130,6 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator).getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

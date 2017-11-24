@@ -28,7 +28,6 @@ public class ContentTypesAddImageTest {
 	
 	private String userName;
 	private String password;
-	
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionImageLocator;
@@ -54,7 +53,6 @@ public class ContentTypesAddImageTest {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
 		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
 		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -69,7 +67,6 @@ public class ContentTypesAddImageTest {
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-
 	}
 
 	@AfterClass
@@ -144,7 +141,6 @@ public class ContentTypesAddImageTest {
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerImageTitleLocator)
 				.getText();
-
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

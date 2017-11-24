@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
  *
  */
 
-public class MyRecentActivityFramePage {
+public class MyRecentActivityPage {
 
 	private WebDriverManager driverManager;
     private String expandDefaultSection;
@@ -20,7 +20,7 @@ public class MyRecentActivityFramePage {
     /**
      * 
      */
-    public MyRecentActivityFramePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
+    public MyRecentActivityPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
         this.driverManager = driverManager;
         this.driverManager.getDriver();
 
@@ -33,68 +33,44 @@ public class MyRecentActivityFramePage {
 	public void clickExpandOption() {
 		WebElement expandOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", expandDefaultSection);
 		expandOpt.click();
-
 	}
 
 	public void expandDefaultSection() {
-
 		// Expand default section
-
 		this.clickExpandOption();
-
 	}
 
 	// Clear title field
-
 	public void clearTitleField() {
 		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", tittleField1);
-				//driverManager.getDriver().findElement(By.xpath(tittleField1));
 		clearTitleField.clear();
-
-
 	}
 
 	public void cleaningTitleField() {
-
 		// Clear title field
-
 		this.clearTitleField();
-
 	}
 
 	// Type new content on title text field.
-
 	public void typeNewTextOnBodyField(String newText1) {
 		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", tittleField1);
-				//driverManager.getDriver().findElement(By.xpath(tittleField1));
 		clearTitleField.sendKeys(newText1);
-
 	}
 
 	// Type new content on title text field.
-
 	public void typingNewTextOnBodyField(String newText1) {
-
 		// Typing
-
 		this.typeNewTextOnBodyField(newText1);
-
 	}
 
 	// Save and close
-
 	public void saveAndClose() {
 		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", saveCloseButton);
-				//driverManager.getDriver().findElement(By.id(saveCloseButton));
 		clearTitleField.click();
-
 	}
 
 	public void clickOnSaveAndCloseButton() {
-
 		// Save and close
-
 		this.saveAndClose();
-
 	}
 }
