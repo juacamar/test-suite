@@ -289,6 +289,7 @@ public class DashboardPage {
 
 	// Expand pages tree
 	public void clickPagesTree() {
+		this.driverManager.isElementPresentAndClickableByXpath(pagesTree);
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
 		expandPagesTree.click();
 		this.driverManager.isElementPresentByXpath(homeContent);
@@ -1191,8 +1192,6 @@ public class DashboardPage {
 	}
 
 	public void clickOnPublishOption() {
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// publishOptionLocator);
 		this.driverManager.isElementPresentAndClickableByXpath(publishOptionLocator);
 		WebElement publishOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				publishOptionLocator);
@@ -1213,6 +1212,8 @@ public class DashboardPage {
 		WebElement submitButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				approveAndPublishPublishButtonLocator);
 		submitButton.click();
+		
+		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
 	}
 
 	public void clickDeleteDeleteSubmitButton() {

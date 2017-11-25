@@ -168,15 +168,12 @@ public class DuplicateOptionTest {
 				"id", studioLogo).click();
 		
 		// expand pages folder
-
 		dashboardPage.expandPagesTree();
 
 		// expand home content
-
 		dashboardPage.expandHomeTree();
 
 		// create a new content
-
 		createNewContent();
 
 		// reload page
@@ -188,10 +185,8 @@ public class DuplicateOptionTest {
 				"xpath", testItemXpath).click();
 		
 		// Duplicate content created
-
 		duplicateContentCreated();
 
-		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"id", studioLogo).click();
 	

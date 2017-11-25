@@ -336,19 +336,16 @@ public class Crafter3LoadTest1Script {
 	public void compareTwoVersionsOfAContentPage() {
 
 		// Switch to the iframe
-		// driverManager.getDriver().switchTo().defaultContent();
+	    driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
 
 		this.driverManager.isElementPresentAndClickableByXpath(historyFirstItemCheckbBox);
-	
 		// Checking the first row version
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historyFirstItemCheckbBox)
 				.click();
 
 		// Checking the second row version
 		this.driverManager.isElementPresentAndClickableByXpath(historySecondItemCheckbBox);
-	
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historySecondItemCheckbBox)
 				.click();
 

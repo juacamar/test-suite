@@ -27,7 +27,6 @@ public class WebDriverManager {
 	WebDriver driver;
 	private ConstantsPropertiesManager constantsPropertiesManager;
 	private int defaultTimeOut;
-	private int sleepTimeInMilliseconds;
 
 	public void openConnection() {
 
@@ -79,8 +78,6 @@ public class WebDriverManager {
 				driver.get(envProperties.getProperty("baseUrl"));
 				this.defaultTimeOut = Integer.parseInt(
 						constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
-				this.sleepTimeInMilliseconds = Integer.parseInt(constantsPropertiesManager.getSharedExecutionConstants()
-						.getProperty("crafter.sleeptimeinmilliseconds"));
 
 				if (!webBrowserProperty.equalsIgnoreCase("firefox")) {
 					this.maximizeWindow();
@@ -127,50 +124,50 @@ public class WebDriverManager {
 
 		switch (typeOfSelector.toLowerCase()) {
 		case "cssselector":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.cssSelector(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.cssSelector(selectorValue)))))
 				element = this.driver.findElement(By.cssSelector(selectorValue));
 
 			break;
 		case "xpath":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds))
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.xpath(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.xpath(selectorValue)))))
 				element = this.driver.findElement(By.xpath(selectorValue));
 			break;
 		case "id":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds))
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.id(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.id(selectorValue)))))
 				element = this.driver.findElement(By.id(selectorValue));
 			break;
 		case "classname":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.className(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.className(selectorValue)))))
 				element = this.driver.findElement(By.className(selectorValue));
 			break;
 		case "tagname":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.tagName(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.tagName(selectorValue)))))
 				element = this.driver.findElement(By.tagName(selectorValue));
 			break;
 		case "linktext":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.linkText(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.linkText(selectorValue)))))
 				element = this.driver.findElement(By.linkText(selectorValue));
 			break;
 		case "partialLinktext":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(ExpectedConditions
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(ExpectedConditions
 					.and(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(selectorValue)))))
 				element = this.driver.findElement(By.partialLinkText(selectorValue));
 			break;
 		case "name":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds))
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.name(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.name(selectorValue)))))
 				element = this.driver.findElement(By.name(selectorValue));
@@ -188,7 +185,7 @@ public class WebDriverManager {
 
 		switch (typeOfSelector.toLowerCase()) {
 		case "cssselector":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.cssSelector(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.cssSelector(selectorValue)),
 							ExpectedConditions.elementToBeClickable(By.cssSelector(selectorValue)))))
@@ -196,49 +193,49 @@ public class WebDriverManager {
 
 			break;
 		case "xpath":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds))
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.xpath(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.xpath(selectorValue)),
 							ExpectedConditions.elementToBeClickable(By.xpath(selectorValue)))))
 				element = this.driver.findElement(By.xpath(selectorValue));
 			break;
 		case "id":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds))
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.id(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.id(selectorValue)),
 							ExpectedConditions.elementToBeClickable(By.id(selectorValue)))))
 				element = this.driver.findElement(By.id(selectorValue));
 			break;
 		case "classname":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.className(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.className(selectorValue)),
 							ExpectedConditions.elementToBeClickable(By.className(selectorValue)))))
 				element = this.driver.findElement(By.className(selectorValue));
 			break;
 		case "tagname":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.tagName(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.tagName(selectorValue)),
 							ExpectedConditions.elementToBeClickable(By.tagName(selectorValue)))))
 				element = this.driver.findElement(By.tagName(selectorValue));
 			break;
 		case "linktext":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(
 					ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.linkText(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.linkText(selectorValue)),
 							ExpectedConditions.elementToBeClickable(By.linkText(selectorValue)))))
 				element = this.driver.findElement(By.linkText(selectorValue));
 			break;
 		case "partialLinktext":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds)).until(ExpectedConditions
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut)).until(ExpectedConditions
 					.and(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(selectorValue)),
 							ExpectedConditions.elementToBeClickable(By.partialLinkText(selectorValue)))))
 				element = this.driver.findElement(By.partialLinkText(selectorValue));
 			break;
 		case "name":
-			if ((new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds))
+			if ((new WebDriverWait(this.driver, this.defaultTimeOut))
 					.until(ExpectedConditions.and(ExpectedConditions.presenceOfElementLocated(By.name(selectorValue)),
 							ExpectedConditions.visibilityOfElementLocated(By.name(selectorValue)),
 							ExpectedConditions.elementToBeClickable(By.name(selectorValue)))))
@@ -462,9 +459,9 @@ public class WebDriverManager {
 			}
 		};
 		
-		Boolean isLoaded = new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds).until(expectation);
+		Boolean isLoaded = new WebDriverWait(this.driver, this.defaultTimeOut).until(expectation);
 		while(!isLoaded){
-			isLoaded = new WebDriverWait(this.driver, this.defaultTimeOut, sleepTimeInMilliseconds).until(expectation);
+			isLoaded = new WebDriverWait(this.driver, this.defaultTimeOut).until(expectation);
 		}
 
 	}

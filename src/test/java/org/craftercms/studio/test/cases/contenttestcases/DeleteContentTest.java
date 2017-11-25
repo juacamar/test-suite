@@ -89,7 +89,7 @@ public class DeleteContentTest {
 
 	public void createContent() {
 		// right click to see the the menu
-
+		driverManager.waitUntilPageLoad();
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
@@ -138,7 +138,6 @@ public class DeleteContentTest {
 		this.changeBodyToNotRequiredOnEntryContent();
 
 		// expand pages folder
-
 		dashboardPage.expandPagesTree();
 
 		// create content

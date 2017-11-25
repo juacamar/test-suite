@@ -120,7 +120,7 @@ public class RenameParentPageAndPublishChildTest {
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.selectOnlyOnePageToPublish(pageName);
 		this.confirmPublishAction();
-
+		this.driverManager.isElementPresentAndClickableByXpath(toggleNavigationXpath);
 	}
 
 	private void selectOnlyOnePageToPublish(String pageName) {
@@ -143,6 +143,7 @@ public class RenameParentPageAndPublishChildTest {
 		driverManager.getDriver().switchTo().activeElement();
 		// Click on Publish button
 		dashboardPage.clickApproveAndPublishSubmitButton();
+		
 		// switch to default content
 		driverManager.getDriver().switchTo().defaultContent();
 	}
@@ -170,8 +171,6 @@ public class RenameParentPageAndPublishChildTest {
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
-
-		this.driverManager.isElementPresentAndClickableByXpath(toggleNavigationXpath);
 	}
 
 	public void editPageArticleContent(String pageName) {
@@ -195,8 +194,6 @@ public class RenameParentPageAndPublishChildTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
-
-		this.driverManager.isElementPresentAndClickableByXpath(toggleNavigationXpath);
 	}
 
 	public void createPageCategoryLandingPage(WebElement folderWebElement, String pageName) {
@@ -208,6 +205,7 @@ public class RenameParentPageAndPublishChildTest {
 		// creating new Page Article into the empty folder
 		driverManager.getDriver().switchTo().defaultContent();
 		this.createNewPageArticleContent(pageName);
+		this.driverManager.isElementPresentAndClickableByXpath(toggleNavigationXpath);
 	}
 
 	public void testScenario() {
@@ -226,17 +224,16 @@ public class RenameParentPageAndPublishChildTest {
 		Assert.assertTrue(driverManager.isElementPresentByXpath(parentPageLocator));
 		parentPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", parentPageLocator);
 		this.createPageCategoryLandingPage(parentPage, childPage1Name);
-		driverManager.waitUntilPageLoad();
+		//driverManager.waitUntilPageLoad();
 		
 		childPage1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", childPage1Locator);
 		this.createPageCategoryLandingPage(childPage1, childPage2Name);
-		driverManager.waitUntilPageLoad();
+		//driverManager.waitUntilPageLoad();
 		
 		//childPage2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", childPage2Locator);
 
 		this.renamePage(parentPage, parentPageNewName);
-		
-		driverManager.waitUntilPageLoad();
+		//driverManager.waitUntilPageLoad();
 		
 		this.childPage1Locator = this.parentPageNewLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 		.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage1Name + "')]";
@@ -248,27 +245,31 @@ public class RenameParentPageAndPublishChildTest {
 
 		childPage2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator);
 		this.publishElement(childPage2, childPage2Name);
-
+        
 		this.verifyPublishedItemsOnDashboard();
 
 	}
 
 	private void verifyPublishedItemsOnDashboard() {
-
+		
 		String iconNeverPublishedForParentPage = this.parentPageNewLocator
 				+ "/div/span/span[contains(@class,'never-published')]";
 		String iconNeverPublishedForChild1Page = this.childPage1Locator
 				+ "/div/span/span[contains(@class,'never-published')]";
 
-		while (this.driverManager.isElementPresentByXpath(iconNeverPublishedForParentPage)) {
+		this.driverManager.waitUntilPageLoad();
+		
+		boolean isPresent = this.driverManager.isElementPresentAndClickableByXpath(iconNeverPublishedForChild1Page);
+		
+		while (isPresent) {
+			this.driverManager.waitUntilPageLoad();
+			System.out.print("not yet");
 			driverManager.getDriver().navigate().refresh();
-		}
-		while (this.driverManager.isElementPresentByXpath(iconNeverPublishedForChild1Page)) {
-			driverManager.getDriver().navigate().refresh();
+			isPresent = this.driverManager.isElementPresentAndClickableByXpath(iconNeverPublishedForChild1Page);
 		}
 
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(iconNeverPublishedForParentPage));
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(iconNeverPublishedForChild1Page));
+		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(iconNeverPublishedForParentPage));
+		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(iconNeverPublishedForChild1Page));
 
 	}
 

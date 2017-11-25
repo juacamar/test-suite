@@ -88,63 +88,46 @@ public class DesignOfUsersPageTest {
 
 		// Assert header is present.
 		WebElement header = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", usersTitleXpath);
-
 		Assert.assertTrue(header.isDisplayed());
 
 		// Assert crafter logo is present.
-
 		WebElement crafterLogo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				crafterLogoXpath);
-
 		Assert.assertTrue(crafterLogo.isDisplayed());
 
 		// Assert user menu option is present.
-
 		WebElement userMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				usersTopNavOptionXpath);
-
 		Assert.assertTrue(userMenuOption.isDisplayed());
 
 		// Assert sites menu option is present.
-
 		WebElement sitesMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				sitesTopNavOptionXpath);
-
 		Assert.assertTrue(sitesMenuOption.isDisplayed());
 
 		// Assert help menu option is present.
-
 		WebElement helpMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				helpTopNavOptionXpath);
-
 		Assert.assertTrue(helpMenuOption.isDisplayed());
 
 		// Assert admin dropdown option is present.
-
 		WebElement adminOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				accountTopNavOptionXpath);
-
 		Assert.assertTrue(adminOption.isDisplayed());
 
 		// Assert users per page combo option is present.
-
 		WebElement usersPerPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				usersPerPageInputXpath);
-
 		Assert.assertTrue(usersPerPage.isDisplayed());
 
 		// Assert new user option is present.
-
 		WebElement newUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newUserButtonXpath);
-
 		Assert.assertTrue(newUser.isDisplayed());
-
+		
 		// Assert search option is present.
-
 		WebElement search = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				userSearchXpath);
-
 		Assert.assertTrue(search.isDisplayed());
 
 	}

@@ -24,22 +24,15 @@ public class HistoryOptionTest {
 	WebDriver driver;
 
 	private WebDriverManager driverManager;
-
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
 	private PreviewPage previewPage;
 
 	private String userName;
 	private String password;
-
 	private String siteDropdownXpath;
-
 	private String homeXpath;
-
 	private String historyDialogTitle;
-
 	private String studioLogo;
 
 	@BeforeClass
@@ -84,8 +77,7 @@ public class HistoryOptionTest {
 		homePage.goToPreviewPage();
 
 		// Show site content panel
-		this.driverManager.isElementPresentAndClickableByXpath(siteDropdownXpath);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				siteDropdownXpath).click();
 		
 		// expand pages folder
@@ -96,7 +88,8 @@ public class HistoryOptionTest {
 		// expand home content
 		previewPage.expandHomeTree();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeXpath).click();
+		driverManager.waitUntilPageLoad();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeXpath).click();
 
 		// click on history option
 		previewPage.clickOnHistoryOption();

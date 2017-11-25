@@ -26,18 +26,13 @@ public class DependenciesOptionTest {
 	private WebDriverManager driverManager;
 
 	private LoginPage loginPage;
-
 	private HomePage homePage;
-
 	private PreviewPage previewPage;
 
 	private String userName;
 	private String password;
-
 	private String siteDropdownXpath;
-
 	private String homeXpath;
-
 	private String dependeciesDialogTitle;
 
 	@BeforeClass
@@ -92,7 +87,7 @@ public class DependenciesOptionTest {
 		previewPage.expandHomeTree();
 
 		// Select the content to view the history.
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", homeXpath).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeXpath).click();
 		
 		// click on history option
 		previewPage.clickOnDependenciesOption();

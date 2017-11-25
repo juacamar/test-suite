@@ -101,30 +101,22 @@ public class PaginationOfListOfSitesTest {
 	public void createSitesRandom() {
 
 		// Click on the create site button
-
 		homePage.clickOnCreateSiteButton();
 
 		// Filling the name of site
-
 		createSitePage.fillSiteName();
 
 		// Filling the description of the site
-
 		createSitePage.fillDescription("Description");
 
 		// Open blueprint combo
-
 		createSitePage.openBlueprintCombo();
 
 		// Select empty blueprint
-
 		createSitePage.selectEmptyBlueprint();
 
 		// Click on Create button
-
 		createSitePage.clickOnCreateSiteButton();
-
-		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavDeleteOption);
@@ -132,7 +124,6 @@ public class PaginationOfListOfSitesTest {
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 
-		this.driverManager.isElementPresentAndClickableById(topNavSitesOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", topNavSitesOption).click();
 	}
 
@@ -167,22 +158,19 @@ public class PaginationOfListOfSitesTest {
 
 		// Click on Delete icon
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		
 		homePage.clickOnDeleteSiteIcon();
 
 		// Click on YES to confirm the delete.
-
 		homePage.clickOnYesToDeleteSite();
+		
+		//Refresh the page
 		driverManager.getDriver().navigate().refresh();
 
 	}
 
 	@Test(priority = 0)
 	public void paginationOfTheListOfSites() {
-
 		navigationOfPage();
-
 	}
 
 }

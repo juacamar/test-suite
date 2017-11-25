@@ -80,7 +80,6 @@ public class AddNewUserTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// click On Users option
-
 		createSitePage.clickOnUsersOption();
 
 		// click on new user button
@@ -102,7 +101,6 @@ public class AddNewUserTest {
 				.sendKeys("password");
 
 		// Save Button
-
 		usersPage.clickOnSaveNewUser();
 
 		// Assert new users created is present

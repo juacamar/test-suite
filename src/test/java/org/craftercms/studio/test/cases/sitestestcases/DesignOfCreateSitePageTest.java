@@ -48,30 +48,29 @@ public class DesignOfCreateSitePageTest {
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
 		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
 				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		crafterLogoXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.crafterlogo");
-		sitesTitleXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagetitle");
-		createSiteButtonXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-		usersOptionId= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		usersOptionId = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.homeusers");
-		sitesOptionId= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		sitesOptionId = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.homesites");
-		helpOptionId= uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.homehelp");
-		accountDropdownXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		helpOptionId = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.homehelp");
+		accountDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.accountdropdown");
-		sitesPerPageLabelXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		sitesPerPageLabelXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.sitesperpagelabel");
-		sitesPerPageInputXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		sitesPerPageInputXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.sitesperpageinput");
 	}
 
@@ -87,7 +86,6 @@ public class DesignOfCreateSitePageTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// Assert crafter studio logo is present.
-
 		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				crafterLogoXpath);
 
@@ -101,27 +99,22 @@ public class DesignOfCreateSitePageTest {
 
 		// Assert create button is present.
 		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-			createSiteButtonXpath);
+				createSiteButtonXpath);
 
 		Assert.assertTrue(createButton.isDisplayed());
 
 		// Assert admin tools is present.
-		WebElement homeUsers = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
-				usersOptionId);
+		WebElement homeUsers = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", usersOptionId);
 
 		Assert.assertTrue(homeUsers.isDisplayed());
 
 		// Assert sites option is present.
-
-		WebElement sitesOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
-				sitesOptionId);
+		WebElement sitesOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", sitesOptionId);
 
 		Assert.assertTrue(sitesOption.isDisplayed());
 
 		// Assert Help option is present.
-
-		WebElement helpOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
-				helpOptionId);
+		WebElement helpOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", helpOptionId);
 
 		Assert.assertTrue(helpOption.isDisplayed());
 
