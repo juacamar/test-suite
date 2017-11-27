@@ -47,6 +47,8 @@ public class CopyPasteContentTest {
 
 	private String copyTestItemXpath;
 
+	private String homeItemXpath;
+
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -74,6 +76,8 @@ public class CopyPasteContentTest {
 				.getProperty("general.createformfiletitle");
 		copyTestItemXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.copytestitem");
+		homeItemXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.home");
 	}
 
 	@AfterClass
@@ -103,7 +107,7 @@ public class CopyPasteContentTest {
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				 "cssSelector", createFormFrameElementCss));
 		
-		//this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
+		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 		
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "AboutUS");
@@ -116,7 +120,8 @@ public class CopyPasteContentTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
 				.click();
 
-		//this.driverManager.isElementPresentByXpath(defaultTimeOut, ".//span[text()=‘Home’]");
+		this.driverManager.isElementPresentByXpath(homeItemXpath);
+		
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
@@ -145,6 +150,7 @@ public class CopyPasteContentTest {
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
+		this.driverManager.waitUntilPageLoad();
 		// Expand Home Tree
 		dashboardPage.expandHomeTree();
 
