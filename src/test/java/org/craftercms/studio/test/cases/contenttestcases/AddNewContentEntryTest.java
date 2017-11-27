@@ -66,8 +66,6 @@ public class AddNewContentEntryTest {
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-//		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
-//				.getProperty("complexscenarios.general.createformexpandall");
 		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.home");
 		testingItemRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -101,7 +99,7 @@ public class AddNewContentEntryTest {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", createFormFrameElementCss));
-		//this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);>>
+		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
 		// Set basics fields of the new content created
 		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
@@ -109,11 +107,6 @@ public class AddNewContentEntryTest {
 		// Set the title of main content
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormMainTitleElementXPath)
 				.sendKeys("MainTitle");
-
-		// click necessary to validate all fields required
-//		this.driverManager.scrollUp();
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
-//				.click();
 	
 		// save and close
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
@@ -146,6 +139,7 @@ public class AddNewContentEntryTest {
 		// create content
 		createContent();
 
+		driverManager.getDriver().switchTo().defaultContent();
 		dashboardPage.expandHomeTree();
 
 		Assert.assertTrue(driverManager.isElementPresentByXpath(testingItemRecentActivity));
