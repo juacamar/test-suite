@@ -72,7 +72,8 @@ public class HistoryOptionTest {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
-
+		
+        this.driverManager.waitUntilPageLoad();
 		// go to preview page
 		homePage.goToPreviewPage();
 
