@@ -12,12 +12,12 @@ import org.testng.annotations.Test;
  * Created by Gustavo Ortiz Alfaro
  */
 
-public class GetSiteAPITest {
+public class GetSitesPerUserAPITest {
 
 	private SecurityAPI securityAPI;
 	private SiteManagementAPI siteManagementAPI;
 
-	public GetSiteAPITest() {
+	public GetSitesPerUserAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -29,17 +29,21 @@ public class GetSiteAPITest {
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
 		siteManagementAPI.testCreateSite();
-
 	}
 
 	@Test(priority = 1)
-	public void testGetSite() {
-		siteManagementAPI.testGetSite();
+	public void testGetSitesPerUser() {
+		siteManagementAPI.testGetSitesPerUser(securityAPI.getUserName());
 	}
 
 	@Test(priority = 2)
-	public void testGetSiteSiteNotFound() {
-		siteManagementAPI.testGetSiteSiteNotFound();
+	public void testGetSitesPerUserUserNotFound() {
+		siteManagementAPI.testGetSitesPerUserUserNotFound(securityAPI.getUserName());
+	}
+	
+	@Test(priority = 3)
+	public void testGetSitesPerUserInvalidParameters() {
+		siteManagementAPI.testGetSitesPerUserInvalidParameter(securityAPI.getUserName());
 	}
 
 	@AfterTest

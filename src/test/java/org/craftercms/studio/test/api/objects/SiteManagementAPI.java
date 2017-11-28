@@ -72,7 +72,40 @@ public class SiteManagementAPI extends BaseAPI {
 		.urlParam("site", this.siteId)
 		.urlParam("path", "/site-config.xml").execute().status(200);
 	}
+	
+	public void testGetSite() {
+		api.get("/studio/api/1/services/api/1/site/get.json")
+		.urlParam("site_id", siteId).execute()
+		.status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id="+ siteId));
+   	}
+	
+	public void testGetSiteSiteNotFound() {
+    		api.get("/studio/api/1/services/api/1/site/get.json")
+    		.urlParam("site_id", siteId+"nonvalid").execute()
+		.status(404)
+		.json("$.message", is("Site not found")).debug();
+   	}
 
+	public void testGetSitesPerUser(String userName) {
+		api.get("/studio/api/1/services/api/1/site/get-per-user.json")
+		.urlParam("username", userName).execute()
+		.status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get-per-user.json?username="+ userName+"&start=0&number=25"));
+   	}
+	
+	public void testGetSitesPerUserInvalidParameter(String userName) {
+		api.get("/studio/api/1/services/api/1/site/get-per-user.json")
+		.urlParam("usernamenonvalid", userName).execute()
+		.status(400);
+   	}
+	
+	public void testGetSitesPerUserUserNotFound(String userName) {
+		api.get("/studio/api/1/services/api/1/site/get-per-user.json")
+		.urlParam("username", userName+"nonvalid").execute()
+		.status(404);
+   	}
+	
 	public String getSiteId() {
 		return siteId;
 	}
