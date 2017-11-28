@@ -455,6 +455,9 @@ public class ChangeStateOfPreviousPublishedContent {
 		dashboardPage.expandPagesTree();
 
 		driverManager.isElementPresentAndClickableById(crafterLogoId);
+		
+		//refresh
+		this.driverManager.getDriver().navigate().refresh();
 
 		// expand Home tree
 		dashboardPage.expandHomeTree();
