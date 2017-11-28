@@ -138,12 +138,10 @@ public class GroupManagementAPI extends BaseAPI {
 
 	}
 
-	// TODO: Uncomment the check for the location after verify this:
-	// https://github.com/craftercms/craftercms/issues/1637
 	public void testGetGroupsPerSite(String siteId) {
 		api.get("/studio/api/1/services/api/1/group/get-per-site.json").urlParam("site_id", siteId).execute()
-				.status(200);
-		// .header("Location",is(headerLocationBase+"/studio/api/1/services/api/1/group/get-per-site.json?site_id="+siteId+"&start=0&number=25"));
+				.status(200)
+		 .header("Location",is(headerLocationBase+"/studio/api/1/services/api/1/group/get-per-site.json?site_id="+siteId+"&start=0&number=25"));
 	}
 
 	public void testUpdateGroup(String siteId) {

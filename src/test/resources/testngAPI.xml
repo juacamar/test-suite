@@ -56,13 +56,12 @@
 				name="org.craftercms.studio.test.cases.apitestcases.GetUserStatusAPITest" />
 		</classes>
 	</test> <!-- Test -->
-	<!-- <test name="Forgot Password Test, Validate Token Test and Set Password 
-		Test" preserve-order="true"> -->
-	<!-- <classes> -->
-	<!-- <class name="org.craftercms.studio.test.cases.apitestcases.ForgotPasswordAndValidateTokenAndSetPasswordAPITest" 
-		/> -->
-	<!-- </classes> -->
-	<!-- </test> Test -->
+	<test name="Forgot Password Test, Validate Token Test and Set Password" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.ForgotPasswordAndValidateTokenAndSetPasswordAPITest" />
+		</classes>
+	</test>
 	<test name="Change Password" preserve-order="true">
 		<classes>
 			<class
@@ -164,7 +163,30 @@
 	</test> <!-- Test -->
 	<test name="Get Sites Per User" preserve-order="true">
 		<classes>
-			<class name="org.craftercms.studio.test.cases.apitestcases.GetSitesPerUserAPITest" />
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetSitesPerUserAPITest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<!-- Repo Management -->
+	<test name="Sync from Repo" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.SyncFromRepoAPITest" />
+		</classes>
+	</test> 
+	<test name="Rebuild Database" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.RebuildDataBaseAPITest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<!-- Audit -->
+	<test name="Get Audit Log" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetAuditLogAPITest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
