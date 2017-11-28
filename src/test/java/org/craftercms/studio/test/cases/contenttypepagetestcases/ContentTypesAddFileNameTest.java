@@ -35,6 +35,7 @@ public class ContentTypesAddFileNameTest {
 	private String contentTypeContainerFileNameTitleLocator;
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
+	private String adminConsoleContentToolsFrame;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -67,6 +68,8 @@ public class ContentTypesAddFileNameTest {
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
+		adminConsoleContentToolsFrame= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.content_tools_frame");
 
 
 	}
@@ -130,6 +133,7 @@ public class ContentTypesAddFileNameTest {
 		this.dragAndDrop();
 
 		// open content types
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleContentToolsFrame);
 		siteConfigPage.clickExistingTypeOption();
 
 		// Confirm the content type selected
