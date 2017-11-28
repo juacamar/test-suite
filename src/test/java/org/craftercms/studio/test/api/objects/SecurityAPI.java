@@ -55,4 +55,13 @@ public class SecurityAPI extends BaseAPI{
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/logout.json").json(json).execute().status(200);
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 }
