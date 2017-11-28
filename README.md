@@ -10,7 +10,7 @@ A file with this path `PROJECT-ROOT/test-properties.properties` has to be create
 launching the test suite `mvn clean test`. Valid properties are:
 
 ```properties
-webBrowser:chrome|edge|ie|firefox|phantomjs
+webBrowser=chrome|edge|ie|firefox|phantomjs
 phantomjs.binary.path=PATH-TO-BIN
 firefox.driver.path=PATH-TO-BIN
 ie.driver.path=PATH-TO-BIN
