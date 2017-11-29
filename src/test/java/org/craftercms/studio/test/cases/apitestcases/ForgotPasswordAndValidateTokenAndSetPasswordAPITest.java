@@ -5,8 +5,8 @@ import org.craftercms.studio.test.api.objects.UserManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.FakeSMTPServerManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -18,7 +18,9 @@ public class ForgotPasswordAndValidateTokenAndSetPasswordAPITest {
 	private SecurityAPI securityAPI;
 	private UserManagementAPI userManagementAPI;
 	private FakeSMTPServerManager fakeSMTPServerManager;
-
+    private boolean isTheLastPassed=false;
+	private boolean isTheFirstTest=true;
+    
 	public ForgotPasswordAndValidateTokenAndSetPasswordAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
@@ -28,19 +30,20 @@ public class ForgotPasswordAndValidateTokenAndSetPasswordAPITest {
 		fakeSMTPServerManager = new FakeSMTPServerManager();
 	}
 
-	@BeforeTest
+	@BeforeMethod
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
+		if(isTheFirstTest) {
 		userManagementAPI.testCreateUser();
+		fakeSMTPServerManager.startFakeSMTPServer();}
 		
 	}
 	
 	@Test(priority=1)
 	public void testForgotPassword() {
-		fakeSMTPServerManager.startFakeSMTPServer();
+		
 		userManagementAPI.testForgotPassword();
-		userManagementAPI.setToken(fakeSMTPServerManager.getRecentlyGeneratedToken());
-		fakeSMTPServerManager.stopFakeSMTPServer();
+		
 	}
 	
 	@Test(priority=2)
@@ -86,14 +89,15 @@ public class ForgotPasswordAndValidateTokenAndSetPasswordAPITest {
 //		userManagementAPI.testValidateTokenInternalServerError();
 //	}
 	
-	@Test(priority = 9)
+	@Test(priority = 6)
 	public void testSetPassword() {
 		userManagementAPI.testSetPassword();
 	}
 
-	@Test(priority = 10)
+	@Test(priority = 7)
 	public void testSetPasswordInvalidParameters() {
 		userManagementAPI.testSetPasswordInvalidParameters();
+		isTheLastPassed=true;
 	}
 
 	//TODO: This scenario can't be tested because this call is not login dependent
@@ -104,9 +108,18 @@ public class ForgotPasswordAndValidateTokenAndSetPasswordAPITest {
 //		securityAPI.logInIntoStudioUsingAPICall();
 //	}
 	
-	@AfterTest
+	@AfterMethod
 	public void afterTest() {	
+		if(isTheFirstTest)
+		{
+		userManagementAPI.setToken(fakeSMTPServerManager.getRecentlyGeneratedToken());
+		fakeSMTPServerManager.stopFakeSMTPServer();
+		isTheFirstTest=false;
+		}
+		
+		if(isTheLastPassed) {
 		userManagementAPI.testDeleteUser();
 		securityAPI.logOutFromStudioUsingAPICall();
+		}
 	}
 }
