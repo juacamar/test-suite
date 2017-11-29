@@ -13,13 +13,13 @@ import org.testng.annotations.Test;
  * Created by Gustavo Ortiz Alfaro
  */
 
-public class SyncFromRepoAPITest {
+public class RebuildDataBaseAPITest {
 
 	private SecurityAPI securityAPI;
 	private SiteManagementAPI siteManagementAPI;
 	private RepoManagementAPI repoManagementAPI;
 
-	public SyncFromRepoAPITest() {
+	public RebuildDataBaseAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -35,20 +35,16 @@ public class SyncFromRepoAPITest {
 	}
 
     @Test(priority=1)
-   	public void testSyncFromRepo() {
-    	repoManagementAPI.testSyncFromRepo(siteManagementAPI.getSiteId());
+   	public void testRebuildDatabase() {
+    	repoManagementAPI.testRebuildDatabase(siteManagementAPI.getSiteId());
    	}
     
     
-    @Test(priority=2)
-   	public void testInvalidParameter() {
-     	repoManagementAPI.testSyncFromRepoInvalidParameter(siteManagementAPI.getSiteId());
-   	}
-    
-    @Test(priority=3)
-   	public void testSiteNotFound() {
-    	repoManagementAPI.testSyncFromRepoSiteNotFound(siteManagementAPI.getSiteId());
-   	}
+//    @Test(priority=2)
+//   	public void testRebuildDatabaseInvalidParameter() {
+//     	repoManagementAPI.testRebuildDatabaseInvalidParameter(siteManagementAPI.getSiteId());
+//   	}
+//    
     
     @AfterTest
 	public void afterTest() {
