@@ -527,6 +527,7 @@ public class PreviewPage {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// go to dashboard
+		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo).click();
 
 	}
