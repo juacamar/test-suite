@@ -71,7 +71,7 @@ public class AutomateCreatingSiteUsingWebsiteEditorialBlueprint {
 		this.driverManager.getDriver().switchTo().defaultContent();
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-				"xpath", menuSitesButton).click();;
+				"xpath", menuSitesButton).click();
 
 		// Click on Delete icon
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
