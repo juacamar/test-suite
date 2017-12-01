@@ -1,12 +1,10 @@
 package org.craftercms.studio.test.cases.sanitytesttestcases;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
 import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
 import org.craftercms.studio.test.utils.FilesLocations;
@@ -20,12 +18,6 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 //Test to cover ticket https://github.com/craftercms/craftercms/issues/1435
 public class AutomateLoginInToStudio {
-
-	WebDriver driver;
-
-	LoginPage objLogin;
-
-	HomePage objHomePage;
 
 	private WebDriverManager driverManager;
 
@@ -70,7 +62,6 @@ public class AutomateLoginInToStudio {
 	public void loginInToStudioTest() {
 
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
 
 		// Assert create button is present.

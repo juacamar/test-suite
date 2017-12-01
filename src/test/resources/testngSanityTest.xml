@@ -13,7 +13,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 			<class
-				name="org.craftercms.studio.test.cases.sitestestcases.AutomateLoginTestStudio" />
+				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateLoginInToStudio" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
