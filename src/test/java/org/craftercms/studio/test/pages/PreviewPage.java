@@ -639,6 +639,7 @@ public class PreviewPage {
 			driverManager.getDriver().switchTo().defaultContent();
 			driverManager.getDriver().switchTo().activeElement();
 			
+			driverManager.waitUntilPageLoad();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesSelector);
 			
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
