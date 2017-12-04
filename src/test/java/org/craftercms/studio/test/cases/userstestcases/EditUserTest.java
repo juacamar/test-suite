@@ -145,6 +145,7 @@ public class EditUserTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// click On Users option
+		this.driverManager.waitUntilPageLoad();
 		createSitePage.clickOnUsersOption();
 
 		// create a new user

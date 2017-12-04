@@ -194,6 +194,7 @@ public class CreateSitePage {
 
 	// Press on users option
 	public void usersOption() {
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", usersOption);
 		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id",
 				usersOption);
 		users.click();

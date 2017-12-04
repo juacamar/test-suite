@@ -87,9 +87,10 @@ public class UsersPage {
 
 	// Delete User
 	public void clickDeleteOptionCreated() {
-		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
+		this.driverManager.isElementPresentAndClickableBycssSelector(deleteUserOption2);
+		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"cssSelector", deleteUserOption2);
-		previewLink.click();
+		deleteIcon.click();
 	}
 
 	// Delete User

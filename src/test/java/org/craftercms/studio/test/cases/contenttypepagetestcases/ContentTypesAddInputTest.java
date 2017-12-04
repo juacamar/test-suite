@@ -112,6 +112,7 @@ public class ContentTypesAddInputTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// go to preview page
+		this.driverManager.waitUntilPageLoad();
 		homePage.goToPreviewPage();
 
 		// Show site content panel

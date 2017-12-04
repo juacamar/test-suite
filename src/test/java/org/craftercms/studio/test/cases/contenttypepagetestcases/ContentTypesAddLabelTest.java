@@ -112,6 +112,7 @@ public class ContentTypesAddLabelTest {
 				userName,password);
 
 		// go to preview page
+		this.driverManager.waitUntilPageLoad();
 		homePage.goToPreviewPage();
 
 		// Show site content panel
