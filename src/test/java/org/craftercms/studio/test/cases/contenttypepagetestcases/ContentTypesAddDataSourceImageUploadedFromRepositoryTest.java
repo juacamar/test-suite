@@ -98,6 +98,7 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 				userName,password);
 
 		// go to preview page
+		this.driverManager.waitUntilPageLoad();
 		homePage.goToPreviewPage();
 
 		// Show site content panel
@@ -120,6 +121,7 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerImageUploadedFromRepositoryTitleLocator);
 		siteConfigPage.clickDataSourceImageUploadedFromRepositorySection();
 
 		// Asserts that fields are not empty.

@@ -79,6 +79,7 @@ public class AddNewUserTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
+		this.driverManager.waitUntilPageLoad();
 		// click On Users option
 		createSitePage.clickOnUsersOption();
 

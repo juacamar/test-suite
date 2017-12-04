@@ -74,6 +74,7 @@ public class DeleteUserTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// click On Users option
+		this.driverManager.waitUntilPageLoad();
 		createSitePage.clickOnUsersOption();
 
 		// Click on delete user

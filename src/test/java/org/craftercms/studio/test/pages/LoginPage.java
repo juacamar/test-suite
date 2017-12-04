@@ -67,6 +67,7 @@ public class LoginPage {
 		// Click Login button
 		this.clickLogin();
 		this.driverManager.isElementPresentByXpath(sitesPageTitleLocator);
+		this.driverManager.waitUntilPageLoad();
 
 	}
 

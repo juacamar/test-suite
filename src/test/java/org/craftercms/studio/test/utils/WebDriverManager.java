@@ -466,13 +466,13 @@ public class WebDriverManager {
 
 	}
 
-	public void waitForPageLoad(WebDriver driver) {
-		Boolean pageIsReady = ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-		
-		while (!pageIsReady){
-		 pageIsReady =
-		            ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-		}
-	}
+//	public void waitForPageLoad(WebDriver driver) {
+//		Boolean pageIsReady = ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+//		
+//		while (!pageIsReady){
+//		 pageIsReady =
+//		            ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+//		}
+//	}
 
 }
