@@ -41,12 +41,6 @@ public class RebuildDataBaseAPITest {
    	}
     
     
-//    @Test(priority=2)
-//   	public void testRebuildDatabaseInvalidParameter() {
-//     	repoManagementAPI.testRebuildDatabaseInvalidParameter(siteManagementAPI.getSiteId());
-//   	}
-//    
-    
     @AfterTest
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);

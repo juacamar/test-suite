@@ -57,16 +57,6 @@ public class ChangePasswordAPITest {
 		userManagementAPI.testChangePasswordUnauthorized();
 		securityAPI.logInIntoStudioUsingAPICall();
 	}
-
-	//TODO: Pending to review this scenario currently it is returning a 401, expected 404
-//	@Test(priority = 4)
-//	public void tesUserNotFound() {
-//		securityAPI.logOutFromStudioUsingAPICall();
-//		securityAPI.loginWithOtherUser(userManagementAPI.getNewusername(), userManagementAPI.getNewpassword());
-//		userManagementAPI.testChangePasswordUserNotFound();
-//		securityAPI.logOutFromStudioOtherUserUsingAPICall(userManagementAPI.getNewusername(), userManagementAPI.getNewpassword());
-//		securityAPI.logInIntoStudioUsingAPICall();
-//	}
 	
 	@AfterMethod
 	public void afterTest() {

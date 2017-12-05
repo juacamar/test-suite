@@ -33,6 +33,7 @@ public class CreateSiteEmptyTest {
 	private String password;
 	private String siteDropdownElementXPath;
 	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 
 	@BeforeClass
@@ -54,6 +55,8 @@ public class CreateSiteEmptyTest {
 				.getProperty("complexscenarios.general.sitedropdown");
 		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -69,7 +72,8 @@ public class CreateSiteEmptyTest {
 		loginPage.loginToCrafter(userName, password);
 
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		
 		// Click on the create site button
 		homePage.clickOnCreateSiteButton();
 
@@ -90,13 +94,6 @@ public class CreateSiteEmptyTest {
 		createSitePage.clickOnCreateSiteButton();
 
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
-		
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-//				topNavDeleteOption);
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
-//				topNavEditOption);
-
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 	}

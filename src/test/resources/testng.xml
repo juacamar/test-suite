@@ -80,16 +80,6 @@
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
 	</test> 
-	<test name="Add Input Control to an existing Content Type">
-		<classes>
-			<class
-				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteEmptyTest" />
-			<class
-				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddInputTest" />
-			<class
-				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
-		</classes>
-	</test> 
 	<test name="Cut Paste Content">
 		<classes>
 			<class
@@ -315,49 +305,49 @@
 			<class
 				name="org.craftercms.studio.test.cases.userstestcases.DesignOfUsersPageTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Users Per Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userstestcases.UsersPerPageTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Pagination of Users Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userstestcases.PaginationOfListOfUsersTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Pagination of List Sites Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.PaginationOfListOfSitesTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Sites Per Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.SitesPerPageTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="About Us Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.contextualnavigationtestcases.ShowAboutUsTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Show Documentation Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.contextualnavigationtestcases.ShowDocumentationTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Change Password User Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.accountmanagementtestcases.ChangePasswordUserTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add New Content Section Defaults Test">
 		<classes>
 			<class
@@ -367,7 +357,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Show Users Page Test">
 		<classes>
 			<class
@@ -377,7 +367,17 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
+	<test name="Add Input Control to an existing Content Type">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteEmptyTest" />
+			<class
+				name="org.craftercms.studio.test.cases.contenttypepagetestcases.ContentTypesAddInputTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
+		</classes>
+	</test>
 	<test name="Add RepeatingGroup Control to an existing Content Type">
 		<classes>
 			<class
@@ -387,7 +387,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add TextArea Control to an existing Content Type">
 		<classes>
 			<class
@@ -397,7 +397,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add RTE Control to an existing Content Type">
 		<classes>
 			<class
@@ -407,7 +407,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add Dropdown Control to an existing Content Type">
 		<classes>
 			<class
@@ -417,7 +417,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add DateTime Control to an existing Content Type">
 		<classes>
 			<class
@@ -427,7 +427,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add CheckBox Control to an existing Content Type">
 		<classes>
 			<class
@@ -437,7 +437,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add GroupedCheckBoxes Control to an existing Content Type">
 		<classes>
 			<class
@@ -447,7 +447,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add ItemSelector Control to an existing Content Type">
 		<classes>
 			<class
@@ -457,7 +457,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add Image Control to an existing Content Type">
 		<classes>
 			<class
@@ -467,7 +467,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add Video Control to an existing Content Type">
 		<classes>
 			<class
@@ -477,7 +477,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add Label Control to an existing Content Type">
 		<classes>
 			<class
@@ -487,7 +487,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add PageOrder Control to an existing Content Type">
 		<classes>
 			<class
@@ -497,7 +497,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add FileName Control to an existing Content Type">
 		<classes>
 			<class
@@ -507,7 +507,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add AutoFileName Control to an existing Content Type">
 		<classes>
 			<class
@@ -517,7 +517,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test name="Add DataSource_ChildContent to an existing Content Type">
 		<classes>
 			<class
@@ -527,7 +527,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test
 		name="Add DataSource_ImageUploadedFromDesktop to an existing Content Type">
 		<classes>
@@ -538,7 +538,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test
 		name="Add DataSource_ImageUploadedFromRepository to an existing Content Type">
 		<classes>
@@ -549,7 +549,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
+	</test>
 	<test
 		name="Add DataSource_ImageUploadedFromCMISRepository to an existing Content Type">
 		<classes>
