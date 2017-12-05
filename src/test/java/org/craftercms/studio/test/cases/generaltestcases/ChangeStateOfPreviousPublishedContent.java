@@ -458,10 +458,10 @@ public class ChangeStateOfPreviousPublishedContent {
 		driverManager.isElementPresentAndClickableById(crafterLogoId);
 		
 		//refresh
-		this.driverManager.getDriver().navigate().refresh();
+		//this.driverManager.getDriver().navigate().refresh();
 
 		// expand Home tree
-		dashboardPage.expandHomeTree();
+		//dashboardPage.expandHomeTree();
 
 		// Fix race condition expanding Home Tree
 		if (!(this.driverManager.isElementPresentAndClickableByXpath(articlesFolder))) {
@@ -508,6 +508,7 @@ public class ChangeStateOfPreviousPublishedContent {
 				dependenciesMenuOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption).click();
+		
 
 		// check dependencies are listed
 		previewPage.checkDependencies();
@@ -548,14 +549,16 @@ public class ChangeStateOfPreviousPublishedContent {
 				dependenciesMenuOption);
 
 		String isLifeContent = "";
+		int maxNumberofTries = 10;
 
-		while (!(isLifeContent.contains("undefined live"))) {
+		while (!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0))) {
 			isLifeContent = this.driverManager.getDriver()
 					.findElement(By.xpath(pageStatus)) 
 					.getAttribute("class").toString();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					".//span[contains(text(),'1-gear.png')]").click();
 			this.dashboardPage.expandHomeTree();
+			maxNumberofTries--;
 		}
 
 		Assert.assertTrue(this.driverManager.getDriver()
@@ -563,6 +566,7 @@ public class ChangeStateOfPreviousPublishedContent {
 				.getAttribute("class").contains("undefined live"));
 
 	}
+	
 
 	@Test
 	public void changeStateOfPreviousPublishedContent() {
