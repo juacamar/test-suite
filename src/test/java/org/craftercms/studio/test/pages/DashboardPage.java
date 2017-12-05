@@ -1308,12 +1308,8 @@ public class DashboardPage {
 	}
 
 	public void addAnImageToAnArticle() {
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// articleAddImageButton);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleAddImageButton)
 				.click();
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-		// "xpath", "//*[@id='image']/div/div/div[2]/div[2]/div[2]/div[2]");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				"//*[@id='image']/div/div/div[2]/div[2]/div[2]/div[2]").click();
 		// Switch to the iframe
@@ -1323,8 +1319,6 @@ public class DashboardPage {
 		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
 		driverManager.getDriver().switchTo().defaultContent();
 		this.driverManager.getDriver().switchTo().frame(2);
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-//				"//*[@id='cstudio-wcm-search-result']/div[2]/div/div[1]/div[2]/div[1]/span[5]/a");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				"//*[@id='cstudio-wcm-search-result']/div[2]/div/div[1]/div[2]/div[1]/span[5]/a").click();
 

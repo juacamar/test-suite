@@ -20,7 +20,6 @@ public class PreviewPage {
 
 	private WebDriverManager driverManager;
 	private String adminConsole;
-	private String openComboSites;
 	private String clickPreviewTools;
 	private String expandInContextEditing;
 	private String clickInContextEdit;
@@ -71,8 +70,6 @@ public class PreviewPage {
 
 		adminConsole = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.admin_console_link");
-		openComboSites = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.open_combo_sites");
 		clickPreviewTools = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.preview_tools");
 		expandInContextEditing = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -145,26 +142,8 @@ public class PreviewPage {
 
 	}
 
-	// Open combo all sites
-
-	public void ComboAllSites() {
-
-		WebElement openCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", openComboSites);
-
-		openCombo.click();
-
-	}
-
-	public void OpenComboAllSites() {
-
-		// Open combo all sites
-
-		this.ComboAllSites();
-
-	}
 
 	// Click on preview tools icon
-
 	public void previewTools() {
 		WebElement toolsIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", clickPreviewTools);
 
@@ -739,10 +718,7 @@ public class PreviewPage {
 					.xpath(
 					 ".//ul[@id='activeContentActions']/li/span/div/span/span[2]")).getAttribute("class").contains("undefined live"));
 			
-		}
-		
-		
-		
+		}	
 	}
 	
 	

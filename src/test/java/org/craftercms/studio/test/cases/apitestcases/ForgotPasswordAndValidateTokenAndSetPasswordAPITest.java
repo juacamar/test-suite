@@ -66,28 +66,6 @@ public class ForgotPasswordAndValidateTokenAndSetPasswordAPITest {
 	public void testValidateTokenInvalidParameters() {
 		userManagementAPI.testValidateTokenInvalidParameters();
 	}
-
-	//TODO: This scenario can't be tested because this call is not login dependent
-//	@Test(priority = 6)
-//	public void testValidateTokenUnauthorized() {
-//		securityAPI.logOutFromStudioUsingAPICall();
-//		userManagementAPI.testValidateTokenUnauthorized();
-//		securityAPI.logInIntoStudioUsingAPICall();
-//	}
-
-	
-	//TODO: This scenario can't be tested because LDAP is needed for this
-//	@Test(priority = 7)
-//	public void testValidateTokenExternallyManagedUser() {
-//		userManagementAPI.testUpdateUserToExternallyManaged();
-//		userManagementAPI.testValidateTokenExternallyManagedUser();
-//	}
-
-	//TODO: This scenario can't be executed because there are no way to cause the return of 500
-//	@Test(priority = 8)
-//	public void testValidateTokenInternalServerError() {
-//		userManagementAPI.testValidateTokenInternalServerError();
-//	}
 	
 	@Test(priority = 6)
 	public void testSetPassword() {
@@ -99,15 +77,6 @@ public class ForgotPasswordAndValidateTokenAndSetPasswordAPITest {
 		userManagementAPI.testSetPasswordInvalidParameters();
 		isTheLastPassed=true;
 	}
-
-	//TODO: This scenario can't be tested because this call is not login dependent
-//	@Test(priority = 11)
-//	public void testSetPasswordUnauthorized() {
-//		securityAPI.logOutFromStudioUsingAPICall();
-//		userManagementAPI.testSetPasswordUnauthorized();
-//		securityAPI.logInIntoStudioUsingAPICall();
-//	}
-	
 	@AfterMethod
 	public void afterTest() {	
 		if(isTheFirstTest)

@@ -21,7 +21,6 @@ public class StatusAPITest {
     @Test
     public void testStatus(){
 		api.get("/studio/api/1/services/api/1/monitor/status.json").execute().status(200);
-		//.json("$.message", is("OK")).debug();
     }
 
 
