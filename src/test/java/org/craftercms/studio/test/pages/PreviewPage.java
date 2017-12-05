@@ -613,6 +613,13 @@ public class PreviewPage {
 	}
 	
 		public void checkDependencies() {
+			//We need to check this 
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			// Switch to the frame
 			driverManager.getDriver().switchTo().defaultContent();
@@ -620,9 +627,6 @@ public class PreviewPage {
 			
 			driverManager.waitUntilPageLoad();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesSelector);
-			
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-					"xpath", dependenciesCloseButton);
 			
 			Select categoriesDropDown = new Select(
 					this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dependenciesSelector));
@@ -702,8 +706,9 @@ public class PreviewPage {
 					"//A[@class='cursor'][text()='Edit']");
 					
 			String isLifeContent="";
+			int maxNumberofTries = 10;
 			
-			while(!(isLifeContent.contains("undefined live")))
+			while(!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0)))
 			{
 				isLifeContent= this.driverManager.getDriver()
 				.findElement(By
@@ -711,6 +716,7 @@ public class PreviewPage {
 						"//ul[@id='activeContentActions']/li/span/div/span/span[2]")).getAttribute("class").toString();
 				driverManager.getDriver().navigate().refresh();
 				this.dashboardPage.expandHomeTree();	
+				maxNumberofTries--;
 			}
 					
 			Assert.assertTrue(this.driverManager.getDriver()

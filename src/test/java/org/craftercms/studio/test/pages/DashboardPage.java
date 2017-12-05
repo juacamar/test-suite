@@ -106,6 +106,8 @@ public class DashboardPage {
 	private String articlesSummaryInput;
 	private String articleAddImageButton;
 	private String compareButtonByXpath;
+	private String existingImagesButton;
+	private String addCloseGearImageButton;
 
 	/**
 	 * 
@@ -280,6 +282,10 @@ public class DashboardPage {
 				.getProperty("frame2.article_summary_input");
 		articleAddImageButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.article_add_image_button");
+		existingImagesButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("frame2.article_existing_images_button");
+		addCloseGearImageButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("frame2.article_addclose_gear_image");
 
 	}
 
@@ -1310,8 +1316,10 @@ public class DashboardPage {
 	public void addAnImageToAnArticle() {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleAddImageButton)
 				.click();
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//*[@id='image']/div/div/div[2]/div[2]/div[2]/div[2]").click();
+				existingImagesButton).click();
+		
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager
@@ -1320,7 +1328,7 @@ public class DashboardPage {
 		driverManager.getDriver().switchTo().defaultContent();
 		this.driverManager.getDriver().switchTo().frame(2);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//*[@id='cstudio-wcm-search-result']/div[2]/div/div[1]/div[2]/div[1]/span[5]/a").click();
+				addCloseGearImageButton).click();
 
 	}
 
