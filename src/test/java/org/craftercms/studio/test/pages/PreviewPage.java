@@ -649,9 +649,6 @@ public class PreviewPage {
 			driverManager.waitUntilPageLoad();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesSelector);
 			
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-					"xpath", dependenciesCloseButton);
-			
 			Select categoriesDropDown = new Select(
 					this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dependenciesSelector));
 			categoriesDropDown.selectByValue("depends-on-me");
