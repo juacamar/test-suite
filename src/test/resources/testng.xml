@@ -278,22 +278,14 @@
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
 	</test> 
-	<test name="New User Test">
+	<test name="New User Test and Delete User Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userstestcases.AddNewUserTest" />
 			<class
 				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
 		</classes>
-	</test> 
-	<test name="Delete User Test">
-		<classes>
-			<class
-				name="org.craftercms.studio.test.cases.userstestcases.AddNewUserTest" />
-			<class
-				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
-		</classes>
-	</test> 
+	</test>  
 	<test name="Edit User Test">
 		<classes>
 			<class
