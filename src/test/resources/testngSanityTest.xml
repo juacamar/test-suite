@@ -8,8 +8,6 @@
 				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateLoginInToStudio" />
 			<class
 				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateCreatingSiteUsingWebsiteEditorialBlueprint" />
-			<class
-				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
