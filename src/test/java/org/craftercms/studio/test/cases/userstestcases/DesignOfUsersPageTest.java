@@ -35,6 +35,7 @@ public class DesignOfUsersPageTest {
 	private String usersPerPageInputXpath;
 	private String newUserButtonXpath;
 	private String userSearchXpath;
+	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -69,6 +70,8 @@ public class DesignOfUsersPageTest {
 				.getProperty("general.users.newuserbutton");
 		userSearchXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.userssearchinput");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -84,6 +87,8 @@ public class DesignOfUsersPageTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// click On Users option
+		this.driverManager.isElementPresentAndClickableByXpath(sitesTitleXpath);
+		this.driverManager.waitUntilPageLoad();
 		createSitePage.clickOnUsersOption();
 
 		// Assert header is present.
@@ -96,7 +101,7 @@ public class DesignOfUsersPageTest {
 		Assert.assertTrue(crafterLogo.isDisplayed());
 
 		// Assert user menu option is present.
-		WebElement userMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement userMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				usersTopNavOptionXpath);
 		Assert.assertTrue(userMenuOption.isDisplayed());
 

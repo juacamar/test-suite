@@ -31,8 +31,6 @@ public class ValidateSessionAPITest {
 		json.put("username", username);
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200);
     }
     
@@ -49,8 +47,6 @@ public class ValidateSessionAPITest {
 		json.put("password", password);
 		
 		api.post("/studio/api/1/services/api/1/security/logout.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200)
 		.json("$.message", is("OK")).debug();
     }

@@ -72,6 +72,7 @@ public class ShowHideSiteContentTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// go to dashboard page
+		this.driverManager.waitUntilPageLoad();
 		homePage.goToDashboardPage();
 
 		dashboardPage.clickOnSiteContentOption();

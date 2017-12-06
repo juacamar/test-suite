@@ -32,8 +32,6 @@ public class LogoutAPITest {
 		json.put("password", password);
 		
 		api.post("/studio/api/1/services/api/1/security/logout.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
 		.json(json).execute().status(200)
 		.json("$.message", is("OK")).debug();
     }

@@ -88,7 +88,6 @@ public class ContentTypesAddVideoTest {
 
 		WebElement FromVideo = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", controlsSectionVideoLocator);
-				//driverManager.getDriver().findElement(By.xpath(controlsSectionVideoLocator));
 
 		WebElement ToDefaultSection =  this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentTypeContainerFormSectionContainerLocator);

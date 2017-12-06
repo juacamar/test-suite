@@ -47,7 +47,6 @@ public class WebDriverManager {
 					break;
 				case "firefox":
 					capabilities = DesiredCapabilities.firefox();
-					// capabilities.setCapability("marionette", true);
 					System.setProperty("webdriver.gecko.driver", envProperties.getProperty("firefox.driver.path"));
 					driver = new FirefoxDriver(capabilities);
 					break;
@@ -282,7 +281,7 @@ public class WebDriverManager {
 			@SuppressWarnings("unused")
 			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					xpathOfTheElement);
-			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
+			
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -298,7 +297,7 @@ public class WebDriverManager {
 		try {
 			@SuppressWarnings("unused")
 			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed("id", id);
-			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
+			
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -314,7 +313,7 @@ public class WebDriverManager {
 		try {
 			@SuppressWarnings("unused")
 			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayedAndClickable("name", name);
-			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
+			
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -330,7 +329,7 @@ public class WebDriverManager {
 		try {
 			@SuppressWarnings("unused")
 			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", id);
-			// this.getDriver().findElement(By.xpath(xpathOfTheElement));
+		
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -346,7 +345,7 @@ public class WebDriverManager {
 		try {
 			@SuppressWarnings("unused")
 			WebElement webElement = this.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", cssSelector);
-			// this.getDriver().findElement(By.cssSelector(cssSelector));
+			
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -418,17 +417,33 @@ public class WebDriverManager {
 		// commit the actions above
 		action.perform();
 	}
+	
+	public boolean isElementPresentByXpathWithoutFluentWait(String xpath) {
+		Boolean isPresent = false;
+
+			try {
+				this.getDriver().findElement(By.xpath(xpath));
+				isPresent = true;
+			} catch (NoSuchElementException e) {
+				//stills be false
+				isPresent = false;
+			} catch (Exception e) {
+				//stills be false
+				isPresent = false;
+			}
+		return isPresent;
+	}
 
 	public void waitWhileElementIsDisplayedAndClickableByXpath(String xpath) {
-		Boolean isPresent = this.isElementPresentAndClickableByXpath(xpath);
+		Boolean isPresent = this.isElementPresentByXpathWithoutFluentWait(xpath);
 
 		while (!isPresent) {
-			isPresent = this.isElementPresentAndClickableByXpath(xpath);
+			isPresent = this.isElementPresentByXpathWithoutFluentWait(xpath);
 		}
 	}
 
 	public void waitWhileElementIsPresentByXpath(String xpath) {
-		Boolean isPresent = this.isElementPresentByXpath(xpath);
+		Boolean isPresent = this.isElementPresentByXpathWithoutFluentWait(xpath);
 
 		while (!isPresent) {
 			try {
@@ -443,10 +458,10 @@ public class WebDriverManager {
 	}
 
 	public void waitWhileElementIsNotDisplayedByXpath(String xpath) {
-		Boolean isPresent = this.isElementPresentAndClickableByXpath(xpath);
+		Boolean isPresent = this.isElementPresentByXpathWithoutFluentWait(xpath);
 
 		while (isPresent) {
-			isPresent = this.isElementPresentAndClickableByXpath(xpath);
+			isPresent = this.isElementPresentByXpathWithoutFluentWait(xpath);
 			this.getDriver().navigate().refresh();
 		}
 	}
@@ -465,14 +480,5 @@ public class WebDriverManager {
 		}
 
 	}
-
-//	public void waitForPageLoad(WebDriver driver) {
-//		Boolean pageIsReady = ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-//		
-//		while (!pageIsReady){
-//		 pageIsReady =
-//		            ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-//		}
-//	}
 
 }

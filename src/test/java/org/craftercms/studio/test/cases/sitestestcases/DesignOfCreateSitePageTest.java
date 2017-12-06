@@ -104,7 +104,7 @@ public class DesignOfCreateSitePageTest {
 		Assert.assertTrue(createButton.isDisplayed());
 
 		// Assert admin tools is present.
-		WebElement homeUsers = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", usersOptionId);
+		WebElement homeUsers = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", usersOptionId);
 
 		Assert.assertTrue(homeUsers.isDisplayed());
 
@@ -132,7 +132,6 @@ public class DesignOfCreateSitePageTest {
 		// Assert site name is present.
 		WebElement sitesPerPageCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesPerPageInputXpath);
-
 		Assert.assertTrue(sitesPerPageCombo.isDisplayed());
 
 	}

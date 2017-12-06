@@ -45,12 +45,6 @@ public class UpdateGroupAPITest {
 		groupManagementAPI.testUpdateGroupInvalidParameters(siteManagementAPI.getSiteId());
 	}
 
-	//TODO: Pending to review the response code for this because it returns 500
-//	@Test(priority = 3)
-//	public void testGroupNotFound() {
-//		groupManagementAPI.testUpdateGroupGroupNotFound(siteManagementAPI.getSiteId());
-//	}
-
 	@AfterTest
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);

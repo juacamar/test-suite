@@ -1314,7 +1314,6 @@ public class DashboardPage {
 	}
 
 	public void addAnImageToAnArticle() {
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleAddImageButton)
 				.click();
 

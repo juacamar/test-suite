@@ -76,8 +76,8 @@ public class DeleteSiteTest {
 		homePage.clickOnYesToDeleteSite();
 		
 		driverManager.getDriver().navigate().refresh();
-		// Assert
 		
+		// Assert
 		this.driverManager.waitWhileElementIsNotDisplayedByXpath(deletedSiteRow);
 		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(deletedSiteRow));
 	}
