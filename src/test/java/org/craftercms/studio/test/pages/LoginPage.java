@@ -19,6 +19,7 @@ public class LoginPage {
 	private String passwordTextBoxLocator;
 	private String loginButtonLocator;
 	private String sitesTitleXpath;
+	private String createSiteButtonXpath;
 	
 	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
@@ -32,6 +33,9 @@ public class LoginPage {
 		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
 		sitesTitleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagetitle");
+		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		
 	}
 
 	public LoginPage(WebDriver driver) {
@@ -68,8 +72,8 @@ public class LoginPage {
 		// Click Login button
 		this.clickLogin();
 		
-		this.driverManager.isElementPresentAndClickableByXpath(sitesTitleXpath);
-		this.driverManager.waitUntilPageLoad();
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 
 	}
 

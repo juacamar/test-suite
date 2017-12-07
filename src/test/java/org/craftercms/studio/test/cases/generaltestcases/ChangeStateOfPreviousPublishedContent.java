@@ -67,6 +67,8 @@ public class ChangeStateOfPreviousPublishedContent {
 	private String articlesFolder;
 
 	private String crafterLogoId;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -141,6 +143,10 @@ public class ChangeStateOfPreviousPublishedContent {
 				"general.pageStatus");
 		staticAssetsGearImageId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
 				"preview.staticassets.gear.image.id");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 		
 		
 	}
@@ -442,7 +448,8 @@ public class ChangeStateOfPreviousPublishedContent {
 		loginPage.loginToCrafter("author", "author");
 
 		// Go to the site page
-        this.driverManager.waitUntilPageLoad();
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
         
 		homePage.goToPreviewPage();
 		String siteDropdownElementXPath = sidebarMenuOption;

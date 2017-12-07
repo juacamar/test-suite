@@ -30,7 +30,7 @@ public class ChangePasswordUserTest {
 	private String password;
 	private String sitePageTitleXpath;
 	private String createSiteButtonXpath;
-	private String sitesPageTitleLocator;
+	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -53,9 +53,10 @@ public class ChangePasswordUserTest {
 				.getProperty("general.sites.pagetitle");
 		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.pagetitle");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
-
+	
 	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
@@ -69,8 +70,8 @@ public class ChangePasswordUserTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// wait for element is clickeable
-		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(sitesPageTitleLocator);
-		this.driverManager.waitUntilPageLoad();
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 		createSitePage.clickAdmin();
 
 		// click on settings

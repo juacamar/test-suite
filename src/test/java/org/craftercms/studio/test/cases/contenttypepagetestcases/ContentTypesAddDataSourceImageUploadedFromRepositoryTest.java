@@ -33,6 +33,8 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 	private String contentTypeContainerImageUploadedFromRepositoryTitleLocator;
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -62,6 +64,10 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -98,7 +104,9 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest {
 				userName,password);
 
 		// go to preview page
-		this.driverManager.waitUntilPageLoad();
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		
 		homePage.goToPreviewPage();
 
 		// Show site content panel

@@ -36,6 +36,8 @@ public class ContentTypesAddFileNameTest {
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
 	private String adminConsoleContentToolsFrame;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -70,6 +72,10 @@ public class ContentTypesAddFileNameTest {
 				.getProperty("general.adminconsole");
 		adminConsoleContentToolsFrame= uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.content_tools_frame");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 
 
 	}
@@ -115,8 +121,10 @@ public class ContentTypesAddFileNameTest {
 		loginPage.loginToCrafter(
 				userName,password);
 
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		
 		// go to preview page
-		this.driverManager.waitUntilPageLoad();
 		homePage.goToPreviewPage();
 
 		// Show site content panel
