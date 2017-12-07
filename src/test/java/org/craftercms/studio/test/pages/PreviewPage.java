@@ -27,7 +27,6 @@ public class PreviewPage {
 	private String submitButtonApprovePublish;
 	private String previewDuplicate;
 	private String duplicateName;
-	private String saveAndClose;
 	private String pagesTree;
 	private String expandGlobalEntryContent;
 	private String previewDelete;
@@ -38,7 +37,6 @@ public class PreviewPage {
 	private String saveAndCloseiFrame;
 	private String previewHistory;
 	private String previewDependecies;
-	
 	private String dependenciesSelector;
 	private String dependenciesCloseButton;
 	private String siteconfigBulkOperationsoption;
@@ -73,7 +71,7 @@ public class PreviewPage {
 		clickPreviewTools = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.preview_tools");
 		expandInContextEditing = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.expand_in_context_editing");
+			.getProperty("preview.expand_in_context_editing");
 		clickInContextEdit = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.enable_disable_in_context_edit");
 		approvePublish = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -82,13 +80,12 @@ public class PreviewPage {
 				.getProperty("preview.approve&publish_submit");
 		previewDuplicate = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.duplicate");
 		duplicateName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.duplicate_name");
-		saveAndClose = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.save_close");
 		pagesTree = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.expand_pages");
 		expandGlobalEntryContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.expand_GlobalEntry_Tree");
 		previewDelete = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.delete");
 		deleteDependencies = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.delete_dependencies");
+			.getProperty("preview.delete_dependencies");
 		OKdeleteDependencies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.ok_delete_dependencies");
 		previewEdit = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("preview.edit");
@@ -178,11 +175,9 @@ public class PreviewPage {
 	}
 
 	// Enable/Diseble In-Context Editing
-
 	public void inContextEditing() {
 		WebElement inContextEditingOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickInContextEdit);
-
 		inContextEditingOption.click();
 
 	}
@@ -190,7 +185,6 @@ public class PreviewPage {
 	public void clickToEnableDisableInContextEditing() {
 
 		// Enable/Diseble In-Context Editing
-
 		this.inContextEditing();
 
 	}
@@ -346,7 +340,6 @@ public class PreviewPage {
 	}
 
 	// Click on dependencies button of the menu
-
 	public void dependenciesButton() {
 
 		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
@@ -364,7 +357,6 @@ public class PreviewPage {
 	}
 
 	// Set the new name duplicated
-
 	public void duplicateName(String strDuplicateName) {
 
 		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
@@ -382,19 +374,7 @@ public class PreviewPage {
 
 	}
 
-	// Click on save and close
-
-	public void SaveAndClose() {
-
-		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				saveAndClose);
-
-		saveClose.click();
-
-	}
-
 	// Expand pages tree
-
 	public void clickPagesTree() {
 
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
@@ -425,14 +405,6 @@ public class PreviewPage {
 		// Expand global entry content
 
 		this.clickHomeContent();
-
-	}
-
-	public void clickOnSaveAndClose() {
-
-		// Click on save and close
-
-		this.SaveAndClose();
 
 	}
 

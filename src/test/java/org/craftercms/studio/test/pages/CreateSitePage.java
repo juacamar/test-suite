@@ -25,8 +25,6 @@ public class CreateSitePage {
 	private String plutonBlueprint;
 	private String createSiteButton;
 	private String cancelButton;
-	private String corporateBlueprint;
-	private String AngMemGamBlueprint;
 	private String usersOption;
 	private String helpOption;
 	private String aboutOption;
@@ -52,10 +50,6 @@ public class CreateSitePage {
 		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.create_button");
 		cancelButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
-		corporateBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.corporate_blueprint");
-		AngMemGamBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.ang_mem_gam_blueprint");
 		usersOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.users_option");
 		helpOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_help_option");
 		aboutOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_about_option");
@@ -150,35 +144,8 @@ public class CreateSitePage {
 		// select blue empty print
 		this.selectEmptyBlueprint();
 	}
-
-	// select blue corporate print
-	public void corporateBlueprint() {
-		WebElement blueprintCorporate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				corporateBlueprint);
-		blueprintCorporate.click();
-
-	}
-
-	public void selectComporateBlueprint() {
-		// select blue corporate print
-		this.corporateBlueprint();
-	}
-
-	// select blue angular memory game print
-
-	public void angMemGamBlueprint() {
-		WebElement blueprintCorporate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				AngMemGamBlueprint);
-		blueprintCorporate.click();
-	}
-
-	public void selectAngMemGamBlueprint() {
-		// select blue angular memory game print
-		this.angMemGamBlueprint();
-	}
-
+	
 	// Press on create site
-
 	public void createButton() {
 		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				createSiteButton);
