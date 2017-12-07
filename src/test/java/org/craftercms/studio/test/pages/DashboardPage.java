@@ -207,7 +207,7 @@ public class DashboardPage {
 				.getProperty("frame2.article_existing_images_button");
 		addCloseGearImageButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.article_addclose_gear_image");
-		sidebarSelector = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.sidebar");
+		sidebarSelector = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sidebar");
 
 	}
 
@@ -420,6 +420,9 @@ public class DashboardPage {
 		WebElement folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", setFolderName);
 		folderName.clear();
 		folderName.sendKeys(strFolderName);
+
+		// wait for the text to be complete
+		driverManager.waitUntilAttributeIs("id", setFolderName, "value", strFolderName);
 	}
 
 	public void setFolderName(String strFolderName) {

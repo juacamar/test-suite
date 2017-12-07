@@ -132,6 +132,8 @@ public class CopyPasteContentTest {
 
 		loginPage.loginToCrafter(userName, password);
 
+		driverManager.waitUntilLoginCloses();
+
 		// go to preview page
 		homePage.goToPreviewPage();
 

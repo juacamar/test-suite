@@ -54,6 +54,7 @@ public class PreviewPage {
 	private String entryContentTypeBodyXpath;
 	private String entryContentTypeBodyCheckCss;
 
+	private String sidebarSelector;
 
 	/**
 	 * 
@@ -117,7 +118,7 @@ public class PreviewPage {
 				.getProperty("general.entrycontenttype.body");
 		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
-
+		sidebarSelector = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sidebar");
 
 	}
 
@@ -479,6 +480,7 @@ public class PreviewPage {
 
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo).click();
 
 	}

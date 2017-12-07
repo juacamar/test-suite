@@ -160,7 +160,7 @@ public class SiteConfigPage {
 	public void saveSectionDropped() {
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", saveButton);
 		okButtonOpt.click();
-		this.driverManager.isElementPresentByXpath(contentTypeSavedNotification);
+		this.driverManager.waitUntilElementIsDisplayed("xpath", contentTypeSavedNotification);
 	}
 
 	public void saveDragAndDropProcess() {

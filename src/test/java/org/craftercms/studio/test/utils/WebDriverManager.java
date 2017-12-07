@@ -158,14 +158,18 @@ public class WebDriverManager {
 
 	public void waitUntilAttributeIs(String selectorType, String selectorValue, String attributeName, String
 		attributeValue) {
-		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe
-			(getSelector(selectorType, selectorValue), attributeName, attributeValue)));
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.attributeToBe
+			(getSelector(selectorType, selectorValue), attributeName, attributeValue));
 	}
 
 	public void waitUntilAttributeContains(String selectorType, String selectorValue, String attributeName, String
 		attributeValue) {
-		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions
-			.attributeContains(getSelector(selectorType, selectorValue), attributeName, attributeValue)));
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions
+			.attributeContains(getSelector(selectorType, selectorValue), attributeName, attributeValue));
+	}
+
+	public void waitUntilElementIsRemoved(WebElement element) {
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.stalenessOf(element));
 	}
 
 	public WebElement findElement(String selectorType, String selectorValue) {
