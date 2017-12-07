@@ -50,10 +50,10 @@ public class ChangePasswordUserTest {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		sitePageTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+				.getProperty("sites.pagetitle");
 		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.pagetitle");
+		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
 	}
 
 	@AfterClass

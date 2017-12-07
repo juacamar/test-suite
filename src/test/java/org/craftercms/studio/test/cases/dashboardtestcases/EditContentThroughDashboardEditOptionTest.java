@@ -290,7 +290,7 @@ public class EditContentThroughDashboardEditOptionTest {
 
 		// Click on edit option of recent activity section
 
-		homePage.clickEditOptionOfRecentActivitySection();
+		dashboardPage.clickEditOptionOfRecentActivitySection();
 
 		// Switch to the iframe
 
@@ -330,7 +330,7 @@ public class EditContentThroughDashboardEditOptionTest {
 
 		// Click on edit option of recent activity section
 
-		homePage.clickEditOptionOfRecentActivitySection();
+		dashboardPage.clickEditOptionOfRecentActivitySection();
 
 		// Switch to the iframe
 

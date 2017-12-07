@@ -39,16 +39,13 @@ public class DashboardPage {
 	private String deleteContentOK;
 	private String submittalCompleteOK;
 	private String editParentOption;
-	private String previewSync;
 	private String editRecentlyContentCreated;
 	private String selectEntryCT;
 	private String pageArticleContentTypeLocator;
 	private String homeTree;
-	private String crafterComponent;
 	private String folderCreated;
 	private String previewDuplicate;
 	private String levelDescriptorContentType;
-	private String contentCreatedToCut;
 	private String pasteContent;
 	private String newFolderCreated;
 	private String deleteContent;
@@ -71,8 +68,6 @@ public class DashboardPage {
 	private String addNewContentOption;
 	private String deleteOKButtonLocator;
 	private String copyOptionLocatorForContentPage;
-	private String addNewContentOption3;
-	private String deleteOption2Locator;
 	private String articlesSubjectInput;
 	private String articlesAuthorInput;
 	private String articlesSummaryInput;
@@ -80,6 +75,8 @@ public class DashboardPage {
 	private String compareButtonByXpath;
 	private String existingImagesButton;
 	private String addCloseGearImageButton;
+	private String editRecentActivity;
+	private String seeThePageEdited;
 
 	/**
 	 * 
@@ -104,19 +101,16 @@ public class DashboardPage {
 				.getProperty("dashboard.entry_Content_Type");
 		okButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.ok_Button");
 		setPageURL = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.page_URL");
-		setInternalName = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("frame2.internal_Name");
+		setInternalName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.internal_Name");
 		saveCloseButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.save_Close_Button");
 		saveDraft1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.save_Draft");
-		createButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.create_Button");
+		createButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.create_Button");
 		setFolderName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
 		copyContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
 		aboutUSContentPage = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.aboutuscontentpage");
-		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.paste_content");
+		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content");
 		pasteContentXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.paste_contentXpath");
 		deleteContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -129,21 +123,16 @@ public class DashboardPage {
 		deleteContentOK = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_content_OK");
 		submittalCompleteOK = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.submittal_complete");
+				.getProperty("general.submitall.ok");
 		editParentOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.edit_parent_option");
-		previewSync = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.preview_sync");
 		editRecentlyContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.edit_recently_content_created");
-		crafterComponent = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.crafter_component");
 		folderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.folder_created");
 		previewDuplicate = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate");
 		levelDescriptorContentType = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.level_descriptor");
-		contentCreatedToCut = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.content_created_testing");
 		newFolderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.add_new_folder");
 		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -165,9 +154,9 @@ public class DashboardPage {
 		cutOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.rightclickcutoption");
 		contextualNavigationEditLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.contextualnavigationeditoption");
+				.getProperty("general.edittopnavoption");
 		contextualNavigationHistoryLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.contextualnavigationhistoryoption");
+				.getProperty("general.historytopnavoption");
 		compareButtonByXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.compare_button");
 		closeButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -190,10 +179,6 @@ public class DashboardPage {
 				.getProperty("dashboard.deleteOkbutton");
 		copyOptionLocatorForContentPage = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.rightclickcopyoptionforcontentpage");
-		addNewContentOption3 = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.add_New_Content3");
-		deleteOption2Locator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickdeleteoption2");
 		articlesSubjectInput = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.article_subject_input");
 		articlesAuthorInput = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -206,6 +191,10 @@ public class DashboardPage {
 				.getProperty("frame2.article_existing_images_button");
 		addCloseGearImageButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.article_addclose_gear_image");
+		editRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.myrecentactivty.editoption");
+		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.myrecentactivty.viewpage");
 
 	}
 
@@ -238,7 +227,7 @@ public class DashboardPage {
 		// Expand global entry content
 		this.clickGlobalEntryContent();
 	}
-	
+
 	// Expand home content
 	public void clickHomeContent() {
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
@@ -434,8 +423,8 @@ public class DashboardPage {
 
 	// Press right click and press copy option (about us page)
 	public void rightClickCopyOptionAboutUs() {
-		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				aboutUSContentPage);
+		WebElement copypasteContent = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", aboutUSContentPage);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
 		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				this.copyContent);
@@ -503,11 +492,12 @@ public class DashboardPage {
 
 	// Press right click and press cut option
 	public void rightClickCutOption() {
-		this.driverManager.isElementPresentAndClickableByName(contentCreatedToCut);
+		this.driverManager.isElementPresentAndClickableByName(newContentCreated);
 		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				contentCreatedToCut);
+				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), cutpasteContent, false);
-		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", this.cutContent);
+		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				this.cutContent);
 		cutContent.click();
 	}
 
@@ -519,7 +509,7 @@ public class DashboardPage {
 	// Press right click and copy the component to new folder created.
 	public void rightClickCopyComponent() {
 		WebElement copyComponent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				crafterComponent);
+				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyComponent, false);
 		WebElement copyComponentToNewFolder = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", copyContent);
@@ -594,9 +584,9 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void deleteContent() {
-		this.driverManager.isElementPresentAndClickableByXpath(crafterComponent);
+		this.driverManager.isElementPresentAndClickableByXpath(newContentCreated);
 		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				crafterComponent);
+				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu, false);
 		WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				deleteContent);
@@ -632,25 +622,12 @@ public class DashboardPage {
 		// Ok submittal complete
 		this.submittalCompleteOK();
 	}
-	
-	// click on preview sync option
-	public void previewSyncOption() {
-		WebElement previewSyncOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				previewSync);
-		previewSyncOpt.click();
-	}
-
-	public void clickOnPreviewSyncOption() {
-		// click on preview sync option
-		this.previewSyncOption();
-	}
 
 	// Press right click and select edit to the content created
-
 	public void rightClickToEdit() {
-		this.driverManager.isElementPresentAndClickableByXpath(crafterComponent);
+		this.driverManager.isElementPresentAndClickableByXpath(newContentCreated);
 		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				crafterComponent);
+				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), editContent, false);
 		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				editRecentlyContentCreated);
@@ -832,7 +809,7 @@ public class DashboardPage {
 		WebElement submitButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				approveAndPublishPublishButtonLocator);
 		submitButton.click();
-		
+
 		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
 	}
 
@@ -887,7 +864,7 @@ public class DashboardPage {
 	public void rightClickDeleteAPage(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
 		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				deleteOption2Locator);
+				deleteContent);
 		deleteOption.click();
 	}
 
@@ -916,7 +893,7 @@ public class DashboardPage {
 	public void rightClickCreatePageOnAPresentPage(WebElement webElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement, false);
 		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				addNewContentOption3);
+				addNewContent);
 		addContent.click();
 	}
 
@@ -931,9 +908,9 @@ public class DashboardPage {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleAddImageButton)
 				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				existingImagesButton).click();
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", existingImagesButton)
+				.click();
+
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().frame(this.driverManager
@@ -941,9 +918,32 @@ public class DashboardPage {
 		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
 		driverManager.getDriver().switchTo().defaultContent();
 		this.driverManager.getDriver().switchTo().frame(2);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				addCloseGearImageButton).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", addCloseGearImageButton)
+				.click();
 
+	}
+
+	public void clickEditOptionOfRecentActivitySection() {
+		WebElement editOptionMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				editRecentActivity);
+		editOptionMyRecentActivity.click();
+	}
+
+	public void clickOnEditOptionRecentActivity() {
+		// Click on edit option of my recent activity senction
+		this.clickEditOptionOfRecentActivitySection();
+	}
+
+	// See the page edited
+	public void displayPageEdited() {
+		WebElement seeThePageMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				seeThePageEdited);
+		seeThePageMyRecentActivity.click();
+	}
+
+	public void seeThePageEdited() {
+		// See the page edited
+		this.displayPageEdited();
 	}
 
 }

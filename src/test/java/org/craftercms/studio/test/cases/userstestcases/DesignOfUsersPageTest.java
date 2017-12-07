@@ -71,7 +71,7 @@ public class DesignOfUsersPageTest {
 		userSearchXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.userssearchinput");
 		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+				.getProperty("sites.pagetitle");
 	}
 
 	@AfterClass

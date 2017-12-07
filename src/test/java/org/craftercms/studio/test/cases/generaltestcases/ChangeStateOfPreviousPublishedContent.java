@@ -99,9 +99,9 @@ public class ChangeStateOfPreviousPublishedContent {
 		userOptionsLogout = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.user_options_logout");
 		requestPublishButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.request_publish_button");
+				.getProperty("general.requestpublishtopnavoption");
 		publishSubmitButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.approve&publish_submit");
+				.getProperty("general.approve&publish.submit");
 		cancelWorkflowContinueButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.workflow_cancellation_continue_Button");
 		staticAssetsButton = UIElementsPropertiesManager.getSharedUIElementsLocators()

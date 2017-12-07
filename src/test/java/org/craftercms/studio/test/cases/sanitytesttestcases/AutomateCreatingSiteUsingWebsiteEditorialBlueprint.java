@@ -66,7 +66,7 @@ public class AutomateCreatingSiteUsingWebsiteEditorialBlueprint {
 		menuSitesButton = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.sites.menu.button");
 		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+				.getProperty("sites.pagetitle");
 	}
 	
 	public void deleteSite() {
