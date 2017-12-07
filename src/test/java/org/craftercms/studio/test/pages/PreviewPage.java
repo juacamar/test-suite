@@ -96,10 +96,8 @@ public class PreviewPage {
 				.getProperty("general.historytopnavoption");
 		previewDependecies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.dependenciestopnavoption");
-		
 		dependenciesSelector = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dependencies.content_selector");
-		
 		dependenciesCloseButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dependencies.close_button");
 		siteconfigBulkOperationsoption = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -127,11 +125,9 @@ public class PreviewPage {
 	// Click on admin console link
 
 	public void clickAdminConsoleOption() {
-		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				adminConsole);
-
 		adminConsoleOption.click();
-
 	}
 
 	public void goToAdminConsolePage() {
@@ -323,7 +319,7 @@ public class PreviewPage {
 
 	public void historyButton() {
 
-		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				previewHistory);
 
 		historyOption.click();
@@ -331,15 +327,13 @@ public class PreviewPage {
 	}
 
 	public void clickOnHistoryOption() {
-
 		// Click on history button of the menu
 		this.historyButton();
-
 	}
 
 	// Click on dependencies button of the menu
 	public void dependenciesButton() {
-		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				previewDependecies);
 		historyOption.click();
 

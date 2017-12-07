@@ -35,14 +35,12 @@ public class ContentTypesDragAndDropTest {
 	
 	private String userName;
 	private String password;
-
 	private String siteDropdownXpath;
-
 	private String controlsSectionFromSection;
-
 	private String contentFormName;
-
 	private String contentFormContentSection;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 
 	@BeforeClass
@@ -70,6 +68,10 @@ public class ContentTypesDragAndDropTest {
 				.getProperty("adminconsole.contenttype.entry.contentformname");
 		contentFormContentSection = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contentformcontentsection");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -84,8 +86,10 @@ public class ContentTypesDragAndDropTest {
 		loginPage.loginToCrafter(
 				userName,password);
 
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+
 		// go to preview page
-		this.driverManager.waitUntilPageLoad();
 		homePage.goToPreviewPage();
 
 		// Show site content panel

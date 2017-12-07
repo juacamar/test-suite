@@ -42,6 +42,8 @@ public class EditUserTest {
 	private String newUserLastNameCellXpath;
 	private String deleteYesButtonXpath;
 	private String usersRowsXpath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -80,6 +82,10 @@ public class EditUserTest {
 				.getProperty("general.users.deleteyesbutton");
 		usersRowsXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersrows");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -144,8 +150,10 @@ public class EditUserTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		
 		// click On Users option
-		this.driverManager.waitUntilPageLoad();
 		createSitePage.clickOnUsersOption();
 
 		// create a new user

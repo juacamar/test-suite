@@ -35,6 +35,8 @@ public class ContentTypesAddRichTextEditorTest {
 	private String contentTypeContainerRTETitleLocator;
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -67,6 +69,10 @@ public class ContentTypesAddRichTextEditorTest {
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 
 	}
 
@@ -107,8 +113,10 @@ public class ContentTypesAddRichTextEditorTest {
 		loginPage.loginToCrafter(
 				userName,password);
 
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+
 		// go to preview page
-		this.driverManager.waitUntilPageLoad();
 		homePage.goToPreviewPage();
 
 		// Show site content panel

@@ -32,7 +32,7 @@ public class UsersPage {
 		saveNewUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("users.save_new_user");
 		deleteUserOptionNonAdmin = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("delete_option_nonadminuser");
+				.getProperty("users.delete_option_nonadminuser");
 		editUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.edit_option");
 		usersPageTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.page_title");
 		crafterLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.crafterlogo");

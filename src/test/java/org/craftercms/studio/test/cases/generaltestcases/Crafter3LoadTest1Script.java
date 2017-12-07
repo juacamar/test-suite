@@ -614,7 +614,7 @@ public class Crafter3LoadTest1Script {
 		// Step7 a)
 		this.driverManager.isElementPresentByXpath(homeElementXPath);
 
-		dashboardPage.clicOnHomeTree();
+		dashboardPage.clickHomeTree();
 
 		dashboardPage.clickOnContextualNavigationEditOption();
 
@@ -627,7 +627,7 @@ public class Crafter3LoadTest1Script {
 		// Step8
 		this.driverManager.isElementPresentByXpath(homeElementXPath);
 
-		dashboardPage.clicOnHomeTree();
+		dashboardPage.clickHomeTree();
 
 		dashboardPage.clickOnContextualNavigationHistoryOption();
 	}

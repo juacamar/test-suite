@@ -36,6 +36,8 @@ public class ContentTypesAddDateTimeTest {
 	private String contentTypeContainerDateTimeTitleLocator;
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -69,7 +71,10 @@ public class ContentTypesAddDateTimeTest {
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -112,9 +117,11 @@ public class ContentTypesAddDateTimeTest {
 		// login to application
 		loginPage.loginToCrafter(
 				userName,password);
+		
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 
 		// go to preview page
-		this.driverManager.waitUntilPageLoad();
 		homePage.goToPreviewPage();
 
 		// Show site content panel
