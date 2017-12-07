@@ -32,10 +32,12 @@ public class ShowUsersPageTest {
 	private DashboardPage dashboardPage;
 	private APIConnectionManager apiConnectionManager;
 	private UIElementsPropertiesManager uIElementsPropertiesManager;
-	
+
 	private String userName;
 	private String password;
 	private String newUserXpath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 	
 	@BeforeClass
 	public void beforeTest() {
@@ -56,6 +58,11 @@ public class ShowUsersPageTest {
 		this.dashboardPage = new DashboardPage(driverManager, uIElementsPropertiesManager);
 		newUserXpath = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user");
 		apiConnectionManager = new APIConnectionManager();
+		
+		createSiteButtonXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -70,6 +77,9 @@ public class ShowUsersPageTest {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 
 		// Click on the Users Contextual Navigation Option
 		homePage.clickUsersContextualNavigationOption();

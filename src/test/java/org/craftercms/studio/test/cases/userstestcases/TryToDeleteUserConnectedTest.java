@@ -42,9 +42,10 @@ public class TryToDeleteUserConnectedTest {
 	private String errorMessageXpath;
 
 	private CreateSitePage createSitePage;
-
+	
 	private String sitesTitleXpath;
-
+	private String createSiteButtonXpath;
+	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -68,6 +69,8 @@ public class TryToDeleteUserConnectedTest {
 				.getProperty("sites.pagetitle");
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
 
 	}
 
@@ -82,8 +85,8 @@ public class TryToDeleteUserConnectedTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);	
 	
-		this.driverManager.isElementPresentAndClickableByXpath(sitesTitleXpath);
-		this.driverManager.waitUntilPageLoad();
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 		
 		// click On Users option
 		createSitePage.clickOnUsersOption();

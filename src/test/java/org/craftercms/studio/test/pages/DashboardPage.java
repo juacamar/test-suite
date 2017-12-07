@@ -19,7 +19,6 @@ public class DashboardPage {
 	private WebDriver driver;
 
 	private String pagesTree;
-	private String homeContentTree;
 	private String homeContent;
 	private String addNewContent;
 	private String okButton;
@@ -77,6 +76,7 @@ public class DashboardPage {
 	private String addCloseGearImageButton;
 	private String editRecentActivity;
 	private String seeThePageEdited;
+	private String copyContentButton;
 
 	/**
 	 * 
@@ -89,8 +89,6 @@ public class DashboardPage {
 				.getProperty("dashboard.expand_Pages_Tree");
 		homeTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.expand_GlobalEntry_Tree");
-		homeContentTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.expand_Home_Tree");
 		homeContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.home_Content_Page");
 		addNewContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -108,6 +106,7 @@ public class DashboardPage {
 		createButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.create_Button");
 		setFolderName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
 		copyContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
+		copyContentButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_contentButton");
 		aboutUSContentPage = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.aboutuscontentpage");
 		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content");
@@ -230,8 +229,8 @@ public class DashboardPage {
 
 	// Expand home content
 	public void clickHomeContent() {
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				homeContentTree);
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				homeContent);
 		home.click();
 	}
 
@@ -555,7 +554,7 @@ public class DashboardPage {
 
 	// copy button
 	public void copyButton() {
-		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", copyContent);
+		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", copyContentButton);
 		buttonCopy.click();
 	}
 
@@ -746,13 +745,6 @@ public class DashboardPage {
 		WebElement checkAllTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", folderXPath);
 		if (!checkAllTree.getAttribute("checked").equals("true"))
 			checkAllTree.click();
-	}
-
-	public void clicOnHomeTree() {
-		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
-		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				this.homeTree);
-		homeTree.click();
 	}
 
 	public void clickOnContextualNavigationEditOption() {

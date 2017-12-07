@@ -54,8 +54,9 @@ public class ChangePasswordUserTest {
 		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
 		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
-	}
 
+	}
+	
 	@AfterClass
 	public void afterTest() {
 		driverManager.closeConnection();
@@ -69,8 +70,8 @@ public class ChangePasswordUserTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// wait for element is clickeable
-		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(sitesPageTitleLocator);
-		this.driverManager.waitUntilPageLoad();
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesPageTitleLocator);
 		createSitePage.clickAdmin();
 
 		// click on settings

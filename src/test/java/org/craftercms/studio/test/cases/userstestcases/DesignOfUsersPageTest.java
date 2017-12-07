@@ -36,6 +36,7 @@ public class DesignOfUsersPageTest {
 	private String newUserButtonXpath;
 	private String userSearchXpath;
 	private String sitesTitleXpath;
+	private String createSiteButtonXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -70,8 +71,9 @@ public class DesignOfUsersPageTest {
 				.getProperty("general.users.newuserbutton");
 		userSearchXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.userssearchinput");
-		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("sites.pagetitle");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
 	}
 
 	@AfterClass
@@ -87,8 +89,8 @@ public class DesignOfUsersPageTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// click On Users option
-		this.driverManager.isElementPresentAndClickableByXpath(sitesTitleXpath);
-		this.driverManager.waitUntilPageLoad();
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 		createSitePage.clickOnUsersOption();
 
 		// Assert header is present.
