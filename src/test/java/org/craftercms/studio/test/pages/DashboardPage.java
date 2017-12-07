@@ -108,6 +108,7 @@ public class DashboardPage {
 	private String compareButtonByXpath;
 	private String existingImagesButton;
 	private String addCloseGearImageButton;
+	private String sidebarSelector;
 
 	/**
 	 * 
@@ -286,6 +287,7 @@ public class DashboardPage {
 				.getProperty("frame2.article_existing_images_button");
 		addCloseGearImageButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.article_addclose_gear_image");
+		sidebarSelector = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.sidebar");
 
 	}
 
@@ -345,7 +347,9 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void rightClickHome() {
-		this.driverManager.isElementPresentAndClickableByXpath(homeContent);
+		// wait for the animation to end
+		driverManager.waitUntilElementIsDisplayed("cssSelector", sidebarSelector);
+
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
@@ -423,12 +427,14 @@ public class DashboardPage {
 	public void selectEntryCT() {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
+		driverManager.waitUntilElementIsDisplayed("cssSelector", selectEntryCT);
 		Assert.assertTrue(driverManager.isElementPresentBycssSelector(selectEntryCT));
 	}
 
 	public void selectPageArticleContentType() {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
+		driverManager.waitUntilElementIsDisplayed("cssSelector", pageArticleContentTypeLocator);
 		Assert.assertTrue(driverManager.isElementPresentBycssSelector(pageArticleContentTypeLocator));
 	}
 

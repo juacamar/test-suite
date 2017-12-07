@@ -150,7 +150,6 @@ public class CopyPasteContentTest {
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.waitUntilPageLoad();
 		// Expand Home Tree
 		dashboardPage.expandHomeTree();
 
@@ -186,6 +185,7 @@ public class CopyPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert of the content copied
+		driverManager.waitUntilElementIsDisplayed("xpath", copyTestItemXpath);
 		Assert.assertTrue(this.driverManager.isElementPresentByXpath(copyTestItemXpath));
 
 	}

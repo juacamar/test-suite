@@ -1,6 +1,5 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -20,8 +19,6 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  */
 
 public class AddNewFolderTest {
-
-	WebDriver driver;
 
 	private WebDriverManager driverManager;
 
@@ -74,6 +71,8 @@ public class AddNewFolderTest {
 
 		loginPage.loginToCrafter(userName, password);
 
+		driverManager.waitUntilLoginCloses();
+
 		// go to dashboard page
 
 		homePage.goToDashboardPage();
@@ -83,10 +82,13 @@ public class AddNewFolderTest {
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
-		
-		driverManager.waitUntilPageLoad();
+
 		// right click to see the the menu
 		dashboardPage.rightClickToFolderOnHome();
+
+		// wait for the animation to end
+		driverManager.waitUntilAttributeContains("cssSelector", "div.yui-panel-container.yui-dialog", "style",
+			"opacity: 1");
 
 		// Set the name of the folder
 		dashboardPage.setFolderName("addnewfolder");
@@ -95,7 +97,7 @@ public class AddNewFolderTest {
 		dashboardPage.clickCreateButton();
 
 		// Assert find the new folder created
-		this.driverManager.isElementPresentByXpath(newFolderXpath);
+		this.driverManager.waitUntilElementIsDisplayed("xpath", newFolderXpath);
 		Assert.assertTrue(this.driverManager.isElementPresentByXpath(newFolderXpath));
 
 	}
