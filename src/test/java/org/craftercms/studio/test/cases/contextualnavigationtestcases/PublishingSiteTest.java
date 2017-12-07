@@ -41,6 +41,8 @@ public class PublishingSiteTest {
 	private String testingContentItem;
 	private String topNavStatusIcon;
 	private String siteDropdownElementXPath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 	private String homeXpath;
 
@@ -78,6 +80,10 @@ public class PublishingSiteTest {
 				.getProperty("complexscenarios.general.sitedropdown");
 		homeXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 
 	}
 
@@ -137,8 +143,10 @@ public class PublishingSiteTest {
 	public void publishingSite() {
 
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
+		
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 
 		// go to preview page
 		homePage.goToPreviewPage();

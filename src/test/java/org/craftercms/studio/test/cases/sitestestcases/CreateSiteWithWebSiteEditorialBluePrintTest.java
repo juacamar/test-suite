@@ -29,6 +29,9 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 	private String userName;
 	private String password;
 	private String siteDropdownElementXPath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
+
 
 	@BeforeClass
 	public void beforeTest() {
@@ -48,6 +51,10 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 
 	}
 
@@ -61,9 +68,11 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 
 		// Click on the create site button
-		this.driverManager.waitUntilPageLoad();
 		homePage.clickOnCreateSiteButton();
 
 		// Filling the name of site

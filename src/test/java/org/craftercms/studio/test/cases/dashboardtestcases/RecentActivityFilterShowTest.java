@@ -35,23 +35,17 @@ public class RecentActivityFilterShowTest {
 	
 
 	private PreviewPage previewPage;
-
 	private String createFormFrameElementCss;
-
 	private String createFormMainTitleElementXPath;
-
 	private String createFormExpandAll;
-
 	private String createFormSaveAndCloseElementId;
-
 	private String homeElementXPath;
-
 	private String myRecentActivityShowInputXPath;
-
 	private String myRecentActivityFirstItemURLXPath;
-
 	private String myRecentActivitySecondItemURLXPath;
-
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
+	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -87,6 +81,10 @@ public class RecentActivityFilterShowTest {
 				.getProperty("general.myrecentactivity.firstelementurl");
 		myRecentActivitySecondItemURLXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.secondelementurl");
+		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	
 	}
 
@@ -223,6 +221,9 @@ public class RecentActivityFilterShowTest {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 
 		// go to preview page
 		homePage.goToPreviewPage();
