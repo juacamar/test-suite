@@ -39,6 +39,8 @@ public class CreateSiteEmptyTest extends BaseTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
+		driverManager.waitUntilLoginCloses();
+
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
 		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 		
