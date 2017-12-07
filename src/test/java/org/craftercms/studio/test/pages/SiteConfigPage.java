@@ -18,8 +18,6 @@ public class SiteConfigPage {
 	private String okButton;
 	private String saveButton;
 	private String genericTitle;
-	private String displayTemplateField;
-	private String editFTLOption;
 	private String inputTitle;
 	private String inputIceGroup;
 	private String inputDescription;
@@ -56,10 +54,6 @@ public class SiteConfigPage {
 		saveButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.save_Button");
 		genericTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.generic_title");
-		displayTemplateField = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.display_Template_Field");
-		editFTLOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.edit_FTL_Option");
 		inputTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("adminconsole.input_Title");
 		inputIceGroup = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.input_Ice_Group");
@@ -185,31 +179,6 @@ public class SiteConfigPage {
 	public void doClickOnGenericTitle() {
 		// Click on generic title to edit the context type selected.
 		this.clickOnGenericTitle();
-	}
-
-	// Click on display template field.
-	public void clickOnDisplayTemplateField() {
-		WebElement showTemplate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				displayTemplateField);
-		showTemplate.click();
-	}
-
-	public void doClickOnDisplayTemplateField() {
-		// Click on display template field.
-		this.clickOnDisplayTemplateField();
-	}
-
-	// Edit ftl option
-
-	public void clickOnEditFTLOption() {
-		WebElement editFLTopt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				editFTLOption);
-		editFLTopt.click();
-	}
-
-	public void doClickOnEditFTLOption() {
-		// Edit ftl option
-		this.clickOnEditFTLOption();
 	}
 
 	// Set title

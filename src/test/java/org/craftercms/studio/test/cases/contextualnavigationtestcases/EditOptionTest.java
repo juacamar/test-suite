@@ -232,7 +232,7 @@ public class EditOptionTest {
 		//reload page
         driverManager.getDriver().navigate().refresh();
 		
-		dashboardPage.expandHomeTree2();
+		dashboardPage.expandHomeTree();
 
 		// wait for element is clickeable
 		editingContent();

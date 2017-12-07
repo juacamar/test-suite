@@ -235,7 +235,7 @@ public class EditContentThroughDashboardEditOptionTest {
 
 		// right click to see the the menu
 
-		dashboardPage.rightClickToSeeMenu2();
+		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
 
