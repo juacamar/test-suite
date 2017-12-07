@@ -81,8 +81,6 @@ public class LogOutTest {
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
 		this.driverManager.isElementPresentByXpath(sitesPageTitleLocator);
 		
-		this.driverManager.waitUntilPageLoad();
-		
 		// LogOut
 		homePage.clickLogoutOutCrafter();
 

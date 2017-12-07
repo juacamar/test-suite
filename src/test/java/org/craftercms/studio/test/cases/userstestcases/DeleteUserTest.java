@@ -35,6 +35,8 @@ public class DeleteUserTest {
 	private String deleteYesButtonXpath;
 	private String usersRowsXpath;
 	private String newUserButtonXpath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 
 
 	@BeforeClass
@@ -59,6 +61,10 @@ public class DeleteUserTest {
 				.getProperty("general.users.usersrows");
 		newUserButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.newuserbutton");
+		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -74,7 +80,9 @@ public class DeleteUserTest {
 		loginPage.loginToCrafter(userName, password);
 
 		// click On Users option
-		this.driverManager.waitUntilPageLoad();
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		
 		createSitePage.clickOnUsersOption();
 
 		// Click on delete user

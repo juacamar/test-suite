@@ -35,6 +35,8 @@ public class ShowHideSiteContentTest {
 	private String userName;
 	private String password;
 	private String adminConsoleXpath;
+	private String createSiteButtonXpath;
+	private String sitesTitleXpath;
 	
 
 	@BeforeClass
@@ -56,6 +58,10 @@ public class ShowHideSiteContentTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
+		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesTitleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.pagetitle");
 	
 	}
 
@@ -70,9 +76,12 @@ public class ShowHideSiteContentTest {
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
+		
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 
 		// go to dashboard page
-		this.driverManager.waitUntilPageLoad();
+		
 		homePage.goToDashboardPage();
 
 		dashboardPage.clickOnSiteContentOption();
