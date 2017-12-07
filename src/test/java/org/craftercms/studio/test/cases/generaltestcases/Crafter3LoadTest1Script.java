@@ -185,6 +185,9 @@ public class Crafter3LoadTest1Script {
 	public void loginAndGoToSiteContentPagesStructure() {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+
+		driverManager.waitUntilLoginCloses();
+
 		// go to preview page
 		homePage.goToPreviewPage();
 		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))

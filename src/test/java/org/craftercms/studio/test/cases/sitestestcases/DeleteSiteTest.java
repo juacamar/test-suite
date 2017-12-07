@@ -36,6 +36,8 @@ public class DeleteSiteTest extends BaseTest {
 		loginPage.loginToCrafter(
 				userName,password);
 
+		driverManager.waitUntilLoginCloses();
+
 		// Click on Delete icon
         this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
 		homePage.clickOnDeleteSiteIcon();
