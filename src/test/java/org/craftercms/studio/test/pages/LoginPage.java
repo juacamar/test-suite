@@ -15,9 +15,9 @@ public class LoginPage {
 
 	private WebDriverManager driverManager;
 	private WebDriver driver;
-	private String userNameTextBoxLocator;
-	private String passwordTextBoxLocator;
-	private String loginButtonLocator;
+	private String userNameXpath;
+	private String passwordXpath;
+	private String loginXpath;
 	private String sitesTitleXpath;
 	private String createSiteButtonXpath;
 	
@@ -26,16 +26,16 @@ public class LoginPage {
 		this.driverManager.openConnection();
 		this.driver = this.driverManager.getDriver();
 		
-		userNameTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("login.txtbox_UserName");
-		passwordTextBoxLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("login.txtbox_Password");
-		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
+		userNameXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("login.username");
+		passwordXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("login.password");
+		loginXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.login");
 		sitesTitleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+				.getProperty("sites.pagetitle");
 		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-		
+	
 	}
 
 	public LoginPage(WebDriver driver) {
@@ -44,14 +44,14 @@ public class LoginPage {
 
 	// Set user name in textbox
 	public void setUserName(String strUserName) {
-		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", userNameTextBoxLocator);
+		WebElement userCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", userNameXpath);
 		userCrafter.clear();
 		userCrafter.sendKeys(strUserName);
 	}
 
 	// Set password in password textbox
 	public void setPassword(String strPassword) {
-		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", passwordTextBoxLocator);
+		WebElement pwdCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", passwordXpath);
 		pwdCrafter.clear();
 		pwdCrafter.sendKeys(strPassword);
 
@@ -59,7 +59,7 @@ public class LoginPage {
 
 	// Click on login button
 	public void clickLogin() {
-		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", loginButtonLocator);
+		WebElement loginButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", loginXpath);
 		loginButton.click();
 	}
 

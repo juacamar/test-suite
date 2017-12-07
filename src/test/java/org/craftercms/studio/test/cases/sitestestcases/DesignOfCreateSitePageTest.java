@@ -58,7 +58,7 @@ public class DesignOfCreateSitePageTest {
 		crafterLogoXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.crafterlogo");
 		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+				.getProperty("sites.pagetitle");
 		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
 		usersOptionId = uIElementsPropertiesManager.getSharedUIElementsLocators()

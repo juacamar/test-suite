@@ -66,7 +66,7 @@ public class TryToDeleteUserConnectedTest {
 		errorMessageXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.deletenotallowederrorparagraph");
 		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+				.getProperty("sites.pagetitle");
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
 		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()

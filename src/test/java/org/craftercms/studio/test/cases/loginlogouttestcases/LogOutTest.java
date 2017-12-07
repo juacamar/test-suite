@@ -58,10 +58,10 @@ public class LogOutTest {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
+		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.login");
 		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-		sitesPageTitleLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.pagetitle");
+		sitesPageTitleLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
 
 	}
 

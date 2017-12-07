@@ -71,8 +71,7 @@ public class DesignOfUsersPageTest {
 				.getProperty("general.users.newuserbutton");
 		userSearchXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.userssearchinput");
-		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
 		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
 	}

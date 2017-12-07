@@ -15,10 +15,9 @@ public class HomePage {
 
 	private WebDriverManager driverManager;
 	private WebDriver driver;
-	private String previewSite1;
-	private String dashboardSite2;
-	private String editRecentActivity;
-	private String seeThePageEdited;
+	private String previewSite;
+	private String dashboardSite;
+	//private String seeThePageEdited;
 	private String createSiteButton;
 	private String deleteSiteIcon;
 	private String yesDeleteButton;
@@ -30,20 +29,15 @@ public class HomePage {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
 
-		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
-		previewSite1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.preview_link");
-		dashboardSite2 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.dashboard_link");
-		editRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.edit_my_recent_activty");
-		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.see_page_recent_activity");
+		previewSite = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.previewlink");
+		dashboardSite = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.dashboardlink");
 		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.create_site_button");
-		deleteSiteIcon = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.delete_site_icon");
+				.getProperty("home.createsitebutton");
+		deleteSiteIcon = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.deletesiteicon");
 		yesDeleteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.confirm_to_delete");
-		logOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.expand_account");
-		signOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.sign_out");
+				.getProperty("home.confirmtodelete");
+		logOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.expandaccount");
+		signOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.signout");
 		usersContextualNavigationOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("home.userscontextualnavigationoption");
 
@@ -51,9 +45,9 @@ public class HomePage {
 
 	// Click on preview link
 	public void clickPreviewOption() {
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", previewSite1);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", previewSite);
 		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				previewSite1);
+				previewSite);
 		previewLink.click();
 	}
 
@@ -65,9 +59,9 @@ public class HomePage {
 	// Click on dashboard link
 
 	public void clickDashboardOption() {
-		this.driverManager.isElementPresentAndClickableByXpath(dashboardSite2);
+		this.driverManager.isElementPresentAndClickableByXpath(dashboardSite);
 		WebElement dashboardLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				dashboardSite2);
+				dashboardSite);
 		dashboardLink.click();
 	}
 
@@ -75,32 +69,8 @@ public class HomePage {
 		// Click on dashboard
 		this.clickDashboardOption();
 	}
-
-	// Click on edit option of my recent activity senction
-
-	public void clickEditOptionOfRecentActivitySection() {
-		WebElement editOptionMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				editRecentActivity);
-		editOptionMyRecentActivity.click();
-	}
-
-	public void clickOnEditOptionRecentActivity() {
-		// Click on edit option of my recent activity senction
-		this.clickEditOptionOfRecentActivitySection();
-	}
-
-	// See the page edited
-
-	public void displayPageEdited() {
-		WebElement seeThePageMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				seeThePageEdited);
-		seeThePageMyRecentActivity.click();
-	}
-
-	public void seeThePageEdited() {
-		// See the page edited
-		this.displayPageEdited();
-	}
+	
+	
 
 	public WebDriverManager getDriverManager() {
 		return driverManager;

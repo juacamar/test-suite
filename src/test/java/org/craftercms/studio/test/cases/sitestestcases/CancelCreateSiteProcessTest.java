@@ -55,7 +55,7 @@ public class CancelCreateSiteProcessTest {
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
 		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.pagetitle");
+		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
 
 	}
 

@@ -164,7 +164,7 @@ public class CopyPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Click on edit option of recent activity section
-		homePage.clickOnEditOptionRecentActivity();
+		dashboardPage.clickOnEditOptionRecentActivity();
 
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().defaultContent();

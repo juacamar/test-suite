@@ -30,7 +30,7 @@ public class ChangePasswordUserTest {
 	private String password;
 	private String sitePageTitleXpath;
 	private String createSiteButtonXpath;
-	private String sitesTitleXpath;
+	private String sitesPageTitleLocator;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -50,11 +50,11 @@ public class ChangePasswordUserTest {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		sitePageTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+				.getProperty("sites.pagetitle");
 		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
+		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
+
 	}
 	
 	@AfterClass
@@ -71,7 +71,7 @@ public class ChangePasswordUserTest {
 
 		// wait for element is clickeable
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		this.driverManager.isElementPresentByXpath(sitesPageTitleLocator);
 		createSitePage.clickAdmin();
 
 		// click on settings
