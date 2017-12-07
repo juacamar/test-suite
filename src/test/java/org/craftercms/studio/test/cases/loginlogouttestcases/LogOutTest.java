@@ -15,7 +15,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
- * @author Gustavo Andrei Ortiz Alfaro 
+ * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
@@ -39,26 +39,30 @@ public class LogOutTest {
 	private String loginButtonLocator;
 
 	private String createSiteButtonXpath;
-	
+
+	private String sitesPageTitleLocator;
 
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
-		
+
 		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
 				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
+		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
+				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
+
 		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
+
 		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.btn_Login");
-		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.createsitebutton");
-		
+		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		sitesPageTitleLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.pagetitle");
+
 	}
 
 	@AfterClass
@@ -75,17 +79,19 @@ public class LogOutTest {
 		loginPage.loginToCrafter(userName, password);
 
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		//this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
+		this.driverManager.isElementPresentByXpath(sitesPageTitleLocator);
+		
+		this.driverManager.waitUntilPageLoad();
 		
 		// LogOut
 		homePage.clickLogoutOutCrafter();
-		
+
 		// Verify login is fine
-	    WebElement signInButtom = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-	    		loginButtonLocator);
-	 
-	    Assert.assertTrue(signInButtom.isDisplayed());
-	
+		WebElement signInButtom = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				loginButtonLocator);
+
+		Assert.assertTrue(signInButtom.isDisplayed());
+
 	}
 
 }

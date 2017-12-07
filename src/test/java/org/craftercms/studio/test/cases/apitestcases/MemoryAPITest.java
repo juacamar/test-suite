@@ -42,12 +42,6 @@ public class MemoryAPITest {
 		.json("$.message", is("OK")).debug();
     }
     
-    
-//    @Test(priority=3)
-//    public void testInternalServerError(){
-//    	api.get("/studio/api/1/monitor/memory.json").execute().status(200)
-//		.json("$.message", is("Internal server error")).debug();;
-//    }
 
  
 }

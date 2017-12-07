@@ -60,11 +60,10 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 	public void createSiteWithWebSiteEditorialBluePrintTest() {
 
 		// login to application
-		loginPage.loginToCrafter(
-				userName,password);
+		loginPage.loginToCrafter(userName, password);
 
 		// Click on the create site button
-
+		this.driverManager.waitUntilPageLoad();
 		homePage.clickOnCreateSiteButton();
 
 		// Filling the name of site
@@ -83,9 +82,8 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		// Click on Create button
 
 		createSitePage.clickOnCreateSiteButton();
-	
+
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
-		
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 	}

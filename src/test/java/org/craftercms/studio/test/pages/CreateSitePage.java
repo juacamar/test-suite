@@ -25,8 +25,6 @@ public class CreateSitePage {
 	private String plutonBlueprint;
 	private String createSiteButton;
 	private String cancelButton;
-	private String corporateBlueprint;
-	private String AngMemGamBlueprint;
 	private String usersOption;
 	private String helpOption;
 	private String aboutOption;
@@ -34,14 +32,13 @@ public class CreateSitePage {
 	private String adminDropdownOption;
 	private String settingsOption;
 
-
 	/**
 	 * 
 	 */
 	public CreateSitePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
-		
+
 		siteName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.site_name");
 		siteID = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.id_name");
 		descriptionSite = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -53,10 +50,6 @@ public class CreateSitePage {
 		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.create_button");
 		cancelButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
-		corporateBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.corporate_blueprint");
-		AngMemGamBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.ang_mem_gam_blueprint");
 		usersOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.users_option");
 		helpOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_help_option");
 		aboutOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create_about_option");
@@ -77,7 +70,7 @@ public class CreateSitePage {
 	// Set site name
 
 	public void setSiteName() {
-		WebElement nameNewSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement nameNewSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				siteName);
 		nameNewSite.sendKeys("testsite" + RandomStringUtils.randomAlphabetic(5).toLowerCase());
 
@@ -91,7 +84,7 @@ public class CreateSitePage {
 	// Set site ID
 
 	public void setSiteId(String strSiteID) {
-		WebElement idSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", siteID);
+		WebElement idSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", siteID);
 		idSite.sendKeys(strSiteID);
 	}
 
@@ -103,7 +96,7 @@ public class CreateSitePage {
 	// Set description
 
 	public void setDescription(String strDescription) {
-		WebElement description = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement description = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				descriptionSite);
 		description.sendKeys(strDescription);
 	}
@@ -116,7 +109,7 @@ public class CreateSitePage {
 	// Open blueprint combo
 
 	public void blueprintCombo() {
-		WebElement comboBlueprint = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement comboBlueprint = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				blueprintCombo);
 		comboBlueprint.click();
 	}
@@ -129,7 +122,7 @@ public class CreateSitePage {
 	// select blue pluton print
 
 	public void plutonBlueprint() {
-		WebElement blueprintPluton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement blueprintPluton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				plutonBlueprint);
 		blueprintPluton.click();
 	}
@@ -142,8 +135,7 @@ public class CreateSitePage {
 	// select blue empty print
 
 	public void selectEmptyBlueprint() {
-		WebElement bluePrintCombo =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
-				"blueprint");
+		WebElement bluePrintCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "blueprint");
 		Select select = new Select(bluePrintCombo);
 		select.selectByVisibleText("Empty");
 	}
@@ -152,37 +144,10 @@ public class CreateSitePage {
 		// select blue empty print
 		this.selectEmptyBlueprint();
 	}
-
-	// select blue corporate print
-	public void corporateBlueprint() {
-		WebElement blueprintCorporate =  this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				corporateBlueprint);
-		blueprintCorporate.click();
-
-	}
-
-	public void selectComporateBlueprint() {
-		// select blue corporate print
-		this.corporateBlueprint();
-	}
-
-	// select blue angular memory game print
-
-	public void angMemGamBlueprint() {
-		WebElement blueprintCorporate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				AngMemGamBlueprint);
-		blueprintCorporate.click();
-	}
-
-	public void selectAngMemGamBlueprint() {
-		// select blue angular memory game print
-		this.angMemGamBlueprint();
-	}
-
+	
 	// Press on create site
-
 	public void createButton() {
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				createSiteButton);
 		createButton.click();
 	}
@@ -194,8 +159,8 @@ public class CreateSitePage {
 
 	// Press on users option
 	public void usersOption() {
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", usersOption);
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id",
+		this.driverManager.isElementPresentAndClickableByXpath(usersOption);
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				usersOption);
 		users.click();
 
@@ -208,7 +173,7 @@ public class CreateSitePage {
 
 	// Press on Cancel button of the create site process.
 	public void cancelButton() {
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				cancelButton);
 		createButton.click();
 	}
@@ -220,8 +185,7 @@ public class CreateSitePage {
 
 	// Press on help option
 	public void clickHelp() {
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id",
-				helpOption);
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", helpOption);
 		users.click();
 	}
 
@@ -232,8 +196,7 @@ public class CreateSitePage {
 
 	// Press on about option
 	public void clickAbout() {
-		WebElement about = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
-				aboutOption);
+		WebElement about = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", aboutOption);
 		about.click();
 	}
 
@@ -244,7 +207,7 @@ public class CreateSitePage {
 
 	// Press on documentation option
 	public void clickDocumentation() {
-		WebElement documentation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		WebElement documentation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				documentationOption);
 		documentation.click();
 	}
@@ -256,7 +219,6 @@ public class CreateSitePage {
 
 	// Press on admin option
 	public void clickAdmin() {
-		this.driverManager.isElementPresentAndClickableByXpath( adminDropdownOption);
 		WebElement admin = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				adminDropdownOption);
 		admin.click();
@@ -269,8 +231,8 @@ public class CreateSitePage {
 
 	// Press on settings option
 	public void clickSettings() {
-		this.driverManager.isElementPresentAndClickableBycssSelector( settingsOption);
-		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.isElementPresentAndClickableBycssSelector(settingsOption);
+		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				settingsOption);
 		settings.click();
 	}
@@ -315,8 +277,7 @@ public class CreateSitePage {
 	}
 
 	private void selectWebSiteEditorialBluePrint() {
-		WebElement bluePrintCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
-				"blueprint");		
+		WebElement bluePrintCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "blueprint");
 		Select select = new Select(bluePrintCombo);
 		select.selectByVisibleText("Website_editorial");
 	}

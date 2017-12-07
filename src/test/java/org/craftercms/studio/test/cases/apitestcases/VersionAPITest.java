@@ -24,7 +24,6 @@ public class VersionAPITest {
     @Test
     public void version(){
 		api.get("/studio/api/1/monitor/version.json").execute().status(200);
-		//.json("$.message", is("OK")).debug();
     }
 
 
