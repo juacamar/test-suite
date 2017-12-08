@@ -216,7 +216,7 @@ public class DashboardPage {
 
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
-		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",homeTree);
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
 		globalEntry.click();
