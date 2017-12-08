@@ -133,7 +133,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerImageUploadedFromDesktopTitleLocator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",contentTypeContainerImageUploadedFromDesktopTitleLocator);
 		siteConfigPage.clickDataSourceImageUploadedFromDesktopSection();
 
 		// Asserts that fields are not empty.
