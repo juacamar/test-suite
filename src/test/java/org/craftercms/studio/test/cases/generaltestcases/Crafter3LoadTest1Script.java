@@ -3,18 +3,12 @@
  */
 package org.craftercms.studio.test.cases.generaltestcases;
 
+import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
@@ -22,14 +16,7 @@ import org.openqa.selenium.WebElement;
  * @author luishernandez
  *
  */
-public class Crafter3LoadTest1Script {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-
-	private HomePage homePage;
-	private DashboardPage dashboardPage;
+public class Crafter3LoadTest1Script extends BaseTest {
 
 	private String userName;
 	private String password;
@@ -84,16 +71,6 @@ public class Crafter3LoadTest1Script {
 
 	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-
 		this.parentFolderName = "tester-" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
 		this.harnessFolderName = "harness";
 		this.emptyFolderName = "empty-folder";
@@ -105,63 +82,58 @@ public class Crafter3LoadTest1Script {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
-		this.parentFolderLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.parentFolderLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.parentfolder") + this.parentFolderName + "')]";
-		harnessFolderLocator = this.parentFolderLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		harnessFolderLocator = this.parentFolderLocator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.harnessFolderName + "')]";
-		emptyFolderLocator = harnessFolderLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		emptyFolderLocator = harnessFolderLocator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.emptyFolderName + "')]";
-		bigTree1FolderLocator = harnessFolderLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		bigTree1FolderLocator = harnessFolderLocator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.bigTree1FolderName + "')]";
-		bigTree2FolderLocator = harnessFolderLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		bigTree2FolderLocator = harnessFolderLocator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.bigTree2FolderName + "')]";
-		mytestFolderLocator = harnessFolderLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		mytestFolderLocator = harnessFolderLocator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.myTestFolderName + "')]";
-		anotherTestFolderLocator = harnessFolderLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		anotherTestFolderLocator = harnessFolderLocator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.anotherTestFolderName + "')]";
-		parentFolderDivOnTreeSelectorLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		parentFolderDivOnTreeSelectorLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.parentfolderdivontreeselector");
-		styleLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		styleLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.stylecontentpage");
-		entertainmentLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		entertainmentLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.entertaimentcontentpage");
-		healthLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		healthLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.healthcontentpage");
-		technologyLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		technologyLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.technologycontentpage");
-		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		homeElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormArticleMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormArticleMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformMainTitle");
-		createFormTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformtitle");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		historyFirstItemCheckbBox = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		historyFirstItemCheckbBox = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.firstitemcheckbox");
-		historySecondItemCheckbBox = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		historySecondItemCheckbBox = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.seconditemcheckbox");
-		differencesDialogId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		differencesDialogId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.differencedialogid");
-		differencesDialogRemovedMarkXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		differencesDialogRemovedMarkXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.differencedialog_removedmark");
-		differencesDialogAddedMarkXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		differencesDialogAddedMarkXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.differencedialog_addedmark");
-		historyInitialCommitRevertButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		historyInitialCommitRevertButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.initialcommittrevertbutton");
-		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		approveForPublishDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		approveForPublishDialogTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.approveforpublishdialogtitle");
-		dashboardMenuOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		dashboardMenuOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.dashboard_menu_option");
-	}
-
-	@AfterMethod
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void createFolderOnAPresentFolder(String folderName, WebElement Parent) {
@@ -169,8 +141,6 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.rightClickNewFolderOnAPresentFolder(Parent);
 		// Set the name of the folder
 		dashboardPage.setFolderName(folderName);
-		// Create folder button
-		dashboardPage.clickCreateButton();
 	}
 
 	public void createFolderOnHome(String folderName) {
@@ -178,8 +148,6 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.rightClickToFolderOnHome();
 		// Set the name of the folder
 		dashboardPage.setFolderName(folderName);
-		// Create folder button
-		dashboardPage.clickCreateButton();
 	}
 
 	public void loginAndGoToSiteContentPagesStructure() {
@@ -202,6 +170,7 @@ public class Crafter3LoadTest1Script {
 		this.createFolderOnHome(parentFolderName);
 
 		// Checking if parent folder is present
+		driverManager.waitUntilElementIsDisplayed("xpath", parentFolderLocator);
 		Assert.assertTrue(driverManager.isElementPresentByXpath(parentFolderLocator));
 		WebElement parentFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				parentFolderLocator);
@@ -274,29 +243,20 @@ public class Crafter3LoadTest1Script {
 
 	public void createNewPageArticleContent() {
 
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
+		driverManager.usingCrafterForm(createFormFrameElementCss, () -> {
+			// creating random values for URL field and InternalName field
+			String randomURL = "newPageURL" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
+			String randomInternalName = "newPageInternalName" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
 
-		driverManager.isElementPresentBycssSelector(createFormFrameElementCss);
+			// Set basics fields of the new content created
+			dashboardPage.setBasicFieldsOfNewPageArticleContent(randomURL, randomInternalName, "newPageArticlesTitle");
 
-		// creating random values for URL field and InternalName field
-		String randomURL = "newPageURL" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
-		String randomInternalName = "newPageInternalName" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
+			// Set the title of main content
+			driverManager.sendText("xpath", createFormArticleMainTitleElementXPath, "MainTitle");
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewPageArticleContent(randomURL, randomInternalName, "newPageArticlesTitle");
-
-		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
-				.sendKeys("MainTitle");
-
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
+			// save and close
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
+		});
 
 		this.driverManager.isElementPresentAndClickableByXpath(homeElementXPath);
 	}
@@ -319,13 +279,7 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.switchToAFormByCssSelector(createFormFrameElementCss);
 
 		// Typing new text on title text field
-		WebElement titleElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				createFormTitleElementXPath);
-
-		// clear the input totally
-		titleElement.clear();
-		// set new value for title
-		titleElement.sendKeys(RandomStringUtils.randomAlphabetic(5).toLowerCase());
+		driverManager.sendText("xpath", createFormTitleElementXPath, RandomStringUtils.randomAlphabetic(5).toLowerCase());
 
 		// Save and close button.
 		dashboardPage.clickSaveClose();
@@ -550,7 +504,7 @@ public class Crafter3LoadTest1Script {
 				bigTree2FolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(bigTree2Folder);
 
-		bigTree2BigTree1ChildFolderLocator = bigTree2FolderLocator + UIElementsPropertiesManager
+		bigTree2BigTree1ChildFolderLocator = bigTree2FolderLocator + uiElementsPropertiesManager
 				.getSharedUIElementsLocators().getProperty("complexscenarios.crafter3loadtest.childfolder")
 				+ this.bigTree1FolderName + "')]";
 	}
@@ -571,11 +525,10 @@ public class Crafter3LoadTest1Script {
 		dashboardPage.selectAllTreeOnSelector(bigTree1FolderDivOnSelectorXPath);
 		dashboardPage.clickCopyButtonOnTreeSelector();
 
-		this.driverManager.isElementPresentAndClickableByXpath(mytestFolderLocator);
 		myTestFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", mytestFolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(myTestFolder);
 
-		myTestBigTreeChildFolderLocator = mytestFolderLocator + UIElementsPropertiesManager
+		myTestBigTreeChildFolderLocator = mytestFolderLocator + uiElementsPropertiesManager
 				.getSharedUIElementsLocators().getProperty("complexscenarios.crafter3loadtest.childfolder")
 				+ this.bigTree1FolderName + "')]";
 	}
@@ -597,7 +550,6 @@ public class Crafter3LoadTest1Script {
 		//dashboardPage.expandParentFolder(myTestFolder);
 		dashboardPage.expandParentFolder(myTestFolder);
 
-		this.driverManager.isElementPresentAndClickableByXpath(myTestBigTreeChildFolderLocator);
 		WebElement myTestBigTreeChildFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				myTestBigTreeChildFolderLocator);
 
@@ -608,14 +560,14 @@ public class Crafter3LoadTest1Script {
 
 		dashboardPage.rightClickPasteOnAFolder(anotherTestFolder);
 
-		anotherTestBigTreeChildFolderLocator = anotherTestFolderLocator + UIElementsPropertiesManager
+		anotherTestBigTreeChildFolderLocator = anotherTestFolderLocator + uiElementsPropertiesManager
 				.getSharedUIElementsLocators().getProperty("complexscenarios.crafter3loadtest.childfolder")
 				+ this.bigTree1FolderName + "')]";
 	}
 
 	public void step7() {
 		// Step7 a)
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
+		driverManager.waitUntilSidebarOpens();
 
 		dashboardPage.clicOnHomeTree();
 

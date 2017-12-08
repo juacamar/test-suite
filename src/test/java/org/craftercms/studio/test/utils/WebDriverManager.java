@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
+import java.util.function.Function;
 
 public class WebDriverManager {
 
@@ -338,6 +339,38 @@ public class WebDriverManager {
 
 	public void waitUntilLoginCloses() {
 		new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+	}
+
+	public void waitUntilSidebarOpens() {
+		waitUntilElementIsDisplayed("cssSelector", "div.acn-resize.ui-resizable");
+	}
+
+	// Wrappers
+
+	public void sendText(String selectorType, String selectorValue, String text) {
+		WebElement input = waitUntilElementIsClickable(selectorType, selectorValue);
+		input.clear();
+		input.sendKeys(text);
+		waitUntilAttributeIs(selectorType, selectorValue, "value", text);
+	}
+
+	public void usingYuiDialog(Runnable actions) {
+		String selector = ".//div[contains(@class, 'yui-panel-container') and contains(@class, 'yui-dialog') and contains(@style, 'visibility: visible;')]";
+		WebElement dialog = waitUntilElementIsDisplayed("xpath", selector);
+		waitUntilAttributeContains("xpath", selector, "style", "opacity: 1;");
+		actions.run();
+		waitUntilElementIsHidden(dialog);
+	}
+
+	public void usingCrafterForm(String selector, Runnable actions) {
+		driver.switchTo().defaultContent();
+		WebElement frame = waitUntilElementIsDisplayed("cssSelector", selector);
+		driver.switchTo().frame(frame);
+
+		actions.run();
+
+		driver.switchTo().defaultContent();
+		waitUntilElementIsHidden(frame);
 	}
 
 	// Old API, kept to avoid a huge refactor

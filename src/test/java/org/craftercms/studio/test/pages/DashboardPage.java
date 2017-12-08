@@ -287,7 +287,7 @@ public class DashboardPage {
 
 	// Press right click select new folder
 	public void rightClickNewFolderOnHome() {
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
+		driverManager.waitUntilSidebarOpens();
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
@@ -364,17 +364,12 @@ public class DashboardPage {
 
 	// Set page URL
 	public void setPageURL1(String strPageURL) {
-		WebElement pageUrl = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", setPageURL);
-		pageUrl.clear();
-		pageUrl.sendKeys(strPageURL);
+		driverManager.sendText("xpath", setPageURL, strPageURL.toLowerCase());
 	}
 
 	// Set internal name
 	public void setInternalName1(String strInternalName) {
-		WebElement internalName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				setInternalName);
-		internalName.clear();
-		internalName.sendKeys(strInternalName);
+		driverManager.sendText("xpath", setInternalName, strInternalName);
 	}
 
 	// Click on save and close button
@@ -417,12 +412,10 @@ public class DashboardPage {
 
 	// Set the name of the folder
 	public void folderName(String strFolderName) {
-		WebElement folderName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", setFolderName);
-		folderName.clear();
-		folderName.sendKeys(strFolderName);
-
-		// wait for the text to be complete
-		driverManager.waitUntilAttributeIs("id", setFolderName, "value", strFolderName);
+		driverManager.usingYuiDialog(() -> {
+			driverManager.sendText("id", setFolderName, strFolderName);
+			createButton();
+		});
 	}
 
 	public void setFolderName(String strFolderName) {
@@ -735,25 +728,13 @@ public class DashboardPage {
 	}
 
 	public void setArticlesTitle(String strArticlesTitle) {
-		WebElement articlesTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				articlesTitleLocator);
-		articlesTitle.clear();
-		articlesTitle.sendKeys(strArticlesTitle);
+		driverManager.sendText("xpath", articlesTitleLocator, strArticlesTitle);
 	}
 
 	public void setNewArticleContentSection(String subject, String author, String summary) {
-		WebElement articlePageSubject = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				articlesSubjectInput);
-		articlePageSubject.clear();
-		articlePageSubject.sendKeys(subject);
-		WebElement articlePageAuthor = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				articlesAuthorInput);
-		articlePageAuthor.clear();
-		articlePageAuthor.sendKeys(author);
-		WebElement articlePageSummary = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				articlesSummaryInput);
-		articlePageSummary.clear();
-		articlePageSummary.sendKeys(summary);
+		driverManager.sendText("xpath", articlesSubjectInput, subject);
+		driverManager.sendText("xpath", articlesAuthorInput, author);
+		driverManager.sendText("xpath", articlesSummaryInput, summary);
 	}
 
 	public void selectFirstCategoryOfPagArticle() {
@@ -781,28 +762,24 @@ public class DashboardPage {
 	}
 
 	public void clicOnHomeTree() {
-		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
 		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				this.homeTree);
 		homeTree.click();
 	}
 
 	public void clickOnContextualNavigationEditOption() {
-		this.driverManager.isElementPresentAndClickableByXpath(contextualNavigationEditLocator);
 		WebElement contextualNavigationEdit = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", contextualNavigationEditLocator);
 		contextualNavigationEdit.click();
 	}
 
 	public void clickOnContextualNavigationHistoryOption() {
-		this.driverManager.isElementPresentAndClickableByXpath(contextualNavigationHistoryLocator);
 		WebElement contextualNavigationHistory = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", contextualNavigationHistoryLocator);
 		contextualNavigationHistory.click();
 	}
 
 	public void clickCompareButton() {
-		this.driverManager.isElementPresentAndClickableById(compareButtonByXpath);
 		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				compareButtonByXpath);
 		compareButton.click();
@@ -821,7 +798,6 @@ public class DashboardPage {
 	}
 
 	public void clickOnPublishOption() {
-		this.driverManager.isElementPresentAndClickableByXpath(publishOptionLocator);
 		WebElement publishOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				publishOptionLocator);
 
