@@ -140,7 +140,7 @@ public class ContentTypesAddItemSelectorTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickItemSelectorSection();
 
 		// Asserts that fields are not empty.
