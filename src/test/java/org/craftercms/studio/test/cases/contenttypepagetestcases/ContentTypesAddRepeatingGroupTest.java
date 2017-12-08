@@ -141,11 +141,14 @@ public class ContentTypesAddRepeatingGroupTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		
 		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+        this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",contentTypeContainerFormSectionContainerLocator);  
+      
 		siteConfigPage.clickRepeatingGroupSection();
 
 		// Asserts that fields are not empty.
-		this.driverManager.isElementPresentByXpath(contentTypeContainerRepeatingGroupTitleLocator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeContainerRepeatingGroupTitleLocator);
 
 		String titleText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", contentTypeContainerRepeatingGroupTitleLocator)

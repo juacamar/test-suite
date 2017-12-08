@@ -90,7 +90,7 @@ public class RenameParentPageAndPublishChildTest {
 		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		toggleNavigationXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.renameparentpageandpublishchildtest.togglenavigationelement");
+				.getProperty("complexscenarios.general.togglenavigationelement");
 		homeExpansorXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.homeexpansor");
 	}
@@ -105,7 +105,8 @@ public class RenameParentPageAndPublishChildTest {
 		loginPage.loginToCrafter(userName, password);
 		// go to preview page
 		homePage.goToPreviewPage();
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+		
+		if (this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath))
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 		else
 			throw new NoSuchElementException(
@@ -209,6 +210,7 @@ public class RenameParentPageAndPublishChildTest {
 	}
 
 	public void testScenario() {
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
 		WebElement homeParent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
 		this.createPageCategoryLandingPage(homeParent, parentPageName);
 

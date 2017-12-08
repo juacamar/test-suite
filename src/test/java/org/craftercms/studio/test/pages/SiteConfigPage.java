@@ -123,7 +123,7 @@ public class SiteConfigPage {
 	// Click on open existing Type option
 
 	public void clickOpenExistingTypeOption() {
-		this.driverManager.isElementPresentAndClickableByXpath(openExistingTypeOption);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",openExistingTypeOption);
 		WebElement openExistingTypeOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				openExistingTypeOption);
 		openExistingTypeOpt.click();
@@ -143,12 +143,17 @@ public class SiteConfigPage {
 
 	// Confirm the content type selected
 	public void okContentTypeSelected() {
-		this.driverManager.isElementPresentAndClickableById(okButton);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",okButton);
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				okButton);
 		okButtonOpt.click();
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeVisualContainer);
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeVisualContainer);
+		  try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeVisualContainer);
 	}
 
 	public void confirmContentTypeSelected() {
@@ -160,7 +165,7 @@ public class SiteConfigPage {
 	public void saveSectionDropped() {
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", saveButton);
 		okButtonOpt.click();
-		this.driverManager.isElementPresentByXpath(contentTypeSavedNotification);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeSavedNotification);
 	}
 
 	public void saveDragAndDropProcess() {
@@ -232,7 +237,7 @@ public class SiteConfigPage {
 
 	// Click on input section to can view the properties
 	public void clickOnInputSectionToViewTheProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnInputSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnInputSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				clickOnInputSection);
 		showSection.click();
@@ -250,8 +255,8 @@ public class SiteConfigPage {
 
 	// Click on Repeating group to view the properties of it
 	public void clickOnRepeatingGroupToViewTheProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnRepeatingGroupSection);
-		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(clickOnRepeatingGroupSection);
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				clickOnRepeatingGroupSection);
 		showSection.click();
 	}
@@ -263,7 +268,7 @@ public class SiteConfigPage {
 
 	// Click on Repeating group to view the properties of it
 	public void clickOnTextAreaToViewTheProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnTextAreaSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnTextAreaSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnTextAreaSection);
 		showSection.click();
@@ -291,7 +296,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickRTESectionToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnRTESection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnRTESection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnRTESection);
 		showSection.click();
@@ -303,7 +308,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickDropdownSectionToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnDropdownSection);
+		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(clickOnDropdownSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnDropdownSection);
 		showSection.click();
@@ -314,7 +319,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickDateTimeSectionToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnDropdownSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", clickOnDropdownSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnDropdownSection);
 		showSection.click();
@@ -325,7 +330,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickCheckBoxSectionToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnCheckBoxSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnCheckBoxSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnCheckBoxSection);
 		showSection.click();
@@ -337,7 +342,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickGroupedCheckBoxesSectionToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnGroupedCheckBoxesSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnGroupedCheckBoxesSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnGroupedCheckBoxesSection);
 		showSection.click();
@@ -348,7 +353,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickItemSelectorToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnItemSelectorSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnItemSelectorSection);
 		WebElement showItemSelectorSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnItemSelectorSection);
 		showItemSelectorSection.click();
@@ -359,7 +364,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickImageToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnImageSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnImageSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnImageSection);
 		showSection.click();
@@ -370,7 +375,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickVideoToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnVideoSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnVideoSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnVideoSection);
 		showSection.click();
@@ -381,7 +386,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickLabelToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnLabelSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnLabelSection);
 		WebElement showLabelSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnLabelSection);
 		showLabelSection.click();
@@ -392,7 +397,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickPageOrderToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnPageOrderSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnPageOrderSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnPageOrderSection);
 		showSection.click();
@@ -403,7 +408,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickFileNameToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnFileNameSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnFileNameSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnFileNameSection);
 		showSection.click();
@@ -423,7 +428,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickAutoFileNameToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnAutoFileNameSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",clickOnAutoFileNameSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnAutoFileNameSection);
 		showSection.click();
@@ -443,7 +448,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickDataSourceChildContentToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnDataSourceChildContentSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",clickOnDataSourceChildContentSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnDataSourceChildContentSection);
 		showSection.click();
@@ -454,7 +459,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickDataSourceImageUploadedFromDesktopToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnDataSourceImageUploadedFromDesktopSection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",clickOnDataSourceImageUploadedFromDesktopSection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnDataSourceImageUploadedFromDesktopSection);
 		showSection.click();
@@ -465,10 +470,11 @@ public class SiteConfigPage {
 	}
 
 	public void clickDataSourceImageUploadedFromRepositoryToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnDataSourceImageUploadedFromRepositorySection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",clickOnDataSourceImageUploadedFromRepositorySection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnDataSourceImageUploadedFromRepositorySection);
 		showSection.click();
+		
 	}
 
 	public void clickDataSourceImageUploadedFromRepositorySection() {
@@ -476,7 +482,7 @@ public class SiteConfigPage {
 	}
 
 	public void clickDataSourceImageUploadedFromCMISRepositoryToViewProperties() {
-		this.driverManager.isElementPresentAndClickableByXpath(clickOnDataSourceImageUploadedFromCMISRepositorySection);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",clickOnDataSourceImageUploadedFromCMISRepositorySection);
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnDataSourceImageUploadedFromCMISRepositorySection);
 		showSection.click();

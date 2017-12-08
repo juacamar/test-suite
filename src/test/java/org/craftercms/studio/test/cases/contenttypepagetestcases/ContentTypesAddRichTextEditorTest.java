@@ -138,7 +138,7 @@ public class ContentTypesAddRichTextEditorTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickRTESection();
 		
 		// Asserts that fields are not empty.

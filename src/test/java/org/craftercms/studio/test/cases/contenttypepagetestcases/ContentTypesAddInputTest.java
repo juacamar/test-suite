@@ -144,7 +144,7 @@ public class ContentTypesAddInputTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickInputSection();
 
 		// Asserts that fields are not empty.

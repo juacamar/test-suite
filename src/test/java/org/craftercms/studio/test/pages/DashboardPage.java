@@ -762,7 +762,7 @@ public class DashboardPage {
 	}
 
 	public void clickCompareButton() {
-		this.driverManager.isElementPresentAndClickableById(compareButtonByXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",compareButtonByXpath);
 		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				compareButtonByXpath);
 		compareButton.click();
