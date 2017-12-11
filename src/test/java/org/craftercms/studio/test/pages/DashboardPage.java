@@ -216,7 +216,7 @@ public class DashboardPage {
 
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
-		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",homeTree);
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
 		globalEntry.click();
@@ -762,7 +762,7 @@ public class DashboardPage {
 	}
 
 	public void clickCompareButton() {
-		this.driverManager.isElementPresentAndClickableById(compareButtonByXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",compareButtonByXpath);
 		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				compareButtonByXpath);
 		compareButton.click();

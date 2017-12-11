@@ -141,6 +141,9 @@ public class ContentTypesAddDropdownTest {
 
 		// Click on input section to can view the properties
 		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+        this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",contentTypeContainerFormSectionContainerLocator);
+        
+		
 		siteConfigPage.clickDropdownSection();
 
 		// Asserts that fields are not empty.

@@ -142,7 +142,7 @@ public class ContentTypesAddGroupedCheckBoxesTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeContainerFormSectionContainerLocator);
 		siteConfigPage.clickGroupedCheckBoxSection();
 
 		// Asserts that fields are not empty.
