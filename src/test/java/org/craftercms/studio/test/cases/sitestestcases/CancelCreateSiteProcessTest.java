@@ -72,6 +72,8 @@ public class CancelCreateSiteProcessTest {
 		loginPage.loginToCrafter(
 				userName,password);
 
+		driverManager.waitUntilLoginCloses();
+
 		// Click on the create site button
 
 		homePage.clickOnCreateSiteButton();

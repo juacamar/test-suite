@@ -69,8 +69,7 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 		
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		driverManager.waitUntilLoginCloses();
 
 		// Click on the create site button
 		homePage.clickOnCreateSiteButton();

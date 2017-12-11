@@ -54,7 +54,7 @@ public class PreviewPage {
 	private String adminConsoleXpath;
 	private String entryContentTypeBodyXpath;
 	private String entryContentTypeBodyCheckCss;
-
+	
 	/**
 	 * 
 	 */
@@ -119,7 +119,6 @@ public class PreviewPage {
 				.getProperty("general.entrycontenttype.body");
 		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
-
 	}
 
 	// Click on admin console link
@@ -463,6 +462,7 @@ public class PreviewPage {
 
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo).click();
 
 	}
@@ -565,14 +565,14 @@ public class PreviewPage {
 	}
 
 	public void checkDependencies() {
-		// We need to check this
+		// TODO: Delete this when expected condition is established for animation
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-
+		
 		// Switch to the frame
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
