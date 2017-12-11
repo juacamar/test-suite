@@ -28,13 +28,10 @@ public class CreateSiteEmptyTest extends BaseTest {
 				.getProperty("complexscenarios.general.sitedropdown");
 		createSiteButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-<<<<<<< HEAD
-		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("sites.pagetitle");
-=======
 		sitesTitleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
->>>>>>> b048b43f3f780a876fd450c783dad48150f1c2df
+				.getProperty("sites.pagetitle");
+
+
 	}
 
 	@Test(priority = 0)
