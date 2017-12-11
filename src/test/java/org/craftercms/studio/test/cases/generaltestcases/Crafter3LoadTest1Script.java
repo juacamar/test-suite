@@ -275,19 +275,13 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void editSelectedContent() {
 
-		// switch to from
-		dashboardPage.switchToAFormByCssSelector(createFormFrameElementCss);
+		driverManager.usingCrafterForm(createFormFrameElementCss, () -> {
+			// Typing new text on title text field
+			driverManager.sendText("xpath", createFormTitleElementXPath, RandomStringUtils.randomAlphabetic(5).toLowerCase());
 
-		// Typing new text on title text field
-		driverManager.sendText("xpath", createFormTitleElementXPath, RandomStringUtils.randomAlphabetic(5).toLowerCase());
-
-		// Save and close button.
-		dashboardPage.clickSaveClose();
-
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
+			// Save and close button.
+			dashboardPage.clickSaveClose();
+		});
 	}
 
 	public void compareTwoVersionsOfAContentPage() {
@@ -296,31 +290,31 @@ public class Crafter3LoadTest1Script extends BaseTest {
 	    driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
 
-		this.driverManager.isElementPresentAndClickableByXpath(historyFirstItemCheckbBox);
-		// Checking the first row version
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historyFirstItemCheckbBox)
+		driverManager.usingYuiContainer(() -> {
+			// Checking the first row version
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historyFirstItemCheckbBox)
 				.click();
 
-		// Checking the second row version
-		this.driverManager.isElementPresentAndClickableByXpath(historySecondItemCheckbBox);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historySecondItemCheckbBox)
+			// Checking the second row version
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historySecondItemCheckbBox)
 				.click();
 
-		// click on Compare button
-		dashboardPage.clickCompareButton();
+			// click on Compare button
+			dashboardPage.clickCompareButton();
 
-		// switching to the compare frame
-		driverManager.getDriver().switchTo().frame(differencesDialogId);
-		this.driverManager.isElementPresentAndClickableByName(differencesDialogId);
+			// switching to the compare frame
+			//driverManager.getDriver().switchTo().frame(differencesDialogId);
+			driverManager.usingCrafterForm(differencesDialogId, () -> {
+				// checkin if is present the removed-red-highlight text
+				Assert.assertTrue(driverManager.isElementPresentByXpath(differencesDialogRemovedMarkXpath));
 
-		// checkin if is present the removed-red-highlight text
-		Assert.assertTrue(driverManager.isElementPresentByXpath(differencesDialogRemovedMarkXpath));
+				// checkin if is present the added-green-highlight text
+				Assert.assertTrue(driverManager.isElementPresentByXpath(differencesDialogAddedMarkXpath));
 
-		// checkin if is present the added-green-highlight text
-		Assert.assertTrue(driverManager.isElementPresentByXpath(differencesDialogAddedMarkXpath));
-
-		// click on close button
-		dashboardPage.clickCloseButton();
+				// click on close button
+				dashboardPage.clickCloseButton();
+			});
+		});
 
 	}
 
@@ -339,7 +333,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// Click on close button
 		dashboardPage.clickHistoryCloseButton();
 
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
+		driverManager.waitUntilSidebarOpens();
 
 		// switch to default content
 		driverManager.getDriver().switchTo().defaultContent();
@@ -580,7 +574,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step8() {
 		// Step8
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
+		driverManager.waitUntilSidebarOpens();
 
 		dashboardPage.clicOnHomeTree();
 

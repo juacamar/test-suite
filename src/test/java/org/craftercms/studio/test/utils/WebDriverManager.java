@@ -362,6 +362,14 @@ public class WebDriverManager {
 		waitUntilElementIsHidden(dialog);
 	}
 
+	public void usingYuiContainer(Runnable actions) {
+		String selector = "div.yui-panel-container.yui-dialog.yui-simple-dialog.cstudio-dialogue";
+		WebElement dialog = waitUntilElementIsDisplayed("cssSelector", selector);
+		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
+		actions.run();
+		//waitUntilElementIsHidden(dialog);
+	}
+
 	public void usingCrafterForm(String selector, Runnable actions) {
 		driver.switchTo().defaultContent();
 		WebElement frame = waitUntilElementIsDisplayed("cssSelector", selector);
