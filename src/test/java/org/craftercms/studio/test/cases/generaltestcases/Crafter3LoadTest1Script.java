@@ -243,7 +243,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void createNewPageArticleContent() {
 
-		driverManager.usingCrafterForm(createFormFrameElementCss, () -> {
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// creating random values for URL field and InternalName field
 			String randomURL = "newPageURL" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
 			String randomInternalName = "newPageInternalName" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
@@ -275,7 +275,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void editSelectedContent() {
 
-		driverManager.usingCrafterForm(createFormFrameElementCss, () -> {
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// Typing new text on title text field
 			driverManager.sendText("xpath", createFormTitleElementXPath, RandomStringUtils.randomAlphabetic(5).toLowerCase());
 
@@ -304,7 +304,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 			// switching to the compare frame
 			//driverManager.getDriver().switchTo().frame(differencesDialogId);
-			driverManager.usingCrafterForm(differencesDialogId, () -> {
+			driverManager.usingCrafterDialog("cssSelector", differencesDialogId, () -> {
 				// checkin if is present the removed-red-highlight text
 				Assert.assertTrue(driverManager.isElementPresentByXpath(differencesDialogRemovedMarkXpath));
 
@@ -593,6 +593,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step11() {
 		// Step11
+
+		driverManager.waitUntilSidebarOpens();
 
 		this.driverManager.isElementPresentAndClickableByXpath(anotherTestFolderLocator);
 		anotherTestFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",

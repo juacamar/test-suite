@@ -173,6 +173,12 @@ public class WebDriverManager {
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.stalenessOf(element));
 	}
 
+	public WebElement waitUntilElementIsSelected(String selectorType, String selectorValue) {
+		By selector = getSelector(selectorType, selectorValue);
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.elementToBeSelected(selector));
+		return driver.findElement(selector);
+	}
+
 	public WebElement findElement(String selectorType, String selectorValue) {
 		return driver.findElement(getSelector(selectorType, selectorValue));
 	}
@@ -370,14 +376,47 @@ public class WebDriverManager {
 		//waitUntilElementIsHidden(dialog);
 	}
 
-	public void usingCrafterForm(String selector, Runnable actions) {
+	public void usingCrafterForm(String selectorType, String selectorValue, Runnable actions) {
 		driver.switchTo().defaultContent();
-		WebElement frame = waitUntilElementIsDisplayed("cssSelector", selector);
+
+		// Wait until animation completes
+		WebElement frame = waitUntilElementIsDisplayed(selectorType, selectorValue);
+
+		// Switch to iframe
 		driver.switchTo().frame(frame);
 
+		// Wait until the first input is selected
+		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)]");
+		new WebDriverWait(driver, defaultTimeOut)
+			.until(webDriver -> firstInput.equals(webDriver.switchTo().activeElement()));
+
+		// Do stuff
 		actions.run();
 
+		// Exit ifreame
 		driver.switchTo().defaultContent();
+
+		// Wait until iframe is hidden
+		waitUntilElementIsHidden(frame);
+	}
+
+	// Same as previuous but without inputs
+	public void usingCrafterDialog(String selectorType, String selectorValue, Runnable actions) {
+		driver.switchTo().defaultContent();
+
+		// Wait until animation completes
+		WebElement frame = waitUntilElementIsDisplayed(selectorType, selectorValue);
+
+		// Switch to iframe
+		driver.switchTo().frame(frame);
+
+		// Do stuff
+		actions.run();
+
+		// Exit ifreame
+		driver.switchTo().defaultContent();
+
+		// Wait until iframe is hidden
 		waitUntilElementIsHidden(frame);
 	}
 
