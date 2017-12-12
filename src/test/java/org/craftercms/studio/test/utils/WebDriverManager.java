@@ -359,6 +359,16 @@ public class WebDriverManager {
 		waitUntilAttributeIs(selectorType, selectorValue, "value", text);
 	}
 
+	public void usingContextMenu(Runnable actions) {
+		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";
+		WebElement menu = waitUntilElementIsDisplayed("cssSelector", selector);
+		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
+
+		actions.run();
+
+		waitUntilElementIsHidden(menu);
+	}
+
 	public void usingYuiDialog(Runnable actions) {
 		String selector = ".//div[contains(@class, 'yui-panel-container') and contains(@class, 'yui-dialog') and contains(@style, 'visibility: visible;')]";
 		WebElement dialog = waitUntilElementIsDisplayed("xpath", selector);
@@ -369,11 +379,13 @@ public class WebDriverManager {
 
 	public void usingYuiContainer(Runnable actions) {
 		String selector = "div.yui-panel-container.yui-dialog.yui-simple-dialog.cstudio-dialogue";
+		driver.switchTo().defaultContent();
 		@SuppressWarnings("unused")
 		WebElement dialog = waitUntilElementIsDisplayed("cssSelector", selector);
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
+		driver.switchTo().activeElement();
 		actions.run();
-		//waitUntilElementIsHidden(dialog);
+		driver.switchTo().defaultContent();
 	}
 
 	public void usingCrafterForm(String selectorType, String selectorValue, Runnable actions) {
