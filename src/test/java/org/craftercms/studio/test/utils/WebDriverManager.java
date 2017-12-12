@@ -360,7 +360,7 @@ public class WebDriverManager {
 	}
 
 	public void usingContextMenu(Runnable actions) {
-		String selector = "div#ContextmenuWrapper0.visible";
+		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";
 		WebElement menu = waitUntilElementIsDisplayed("cssSelector", selector);
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
 
