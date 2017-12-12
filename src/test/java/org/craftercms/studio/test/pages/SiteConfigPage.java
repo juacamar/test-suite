@@ -147,10 +147,12 @@ public class SiteConfigPage {
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				okButton);
 		okButtonOpt.click();
+		
+		// TODO: Delete this when expected condition is established for animation
 		  try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeVisualContainer);
@@ -165,7 +167,7 @@ public class SiteConfigPage {
 	public void saveSectionDropped() {
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", saveButton);
 		okButtonOpt.click();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeSavedNotification);
+		this.driverManager.waitUntilElementIsDisplayed("xpath", contentTypeSavedNotification);
 	}
 
 	public void saveDragAndDropProcess() {

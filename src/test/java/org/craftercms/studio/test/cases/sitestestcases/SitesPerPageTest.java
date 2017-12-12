@@ -75,6 +75,10 @@ public class SitesPerPageTest {
 				.getProperty("general.preview.sitesoption");
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
+		
 		// Create site 1
 		createSitesRandom();
 		// Create site 2

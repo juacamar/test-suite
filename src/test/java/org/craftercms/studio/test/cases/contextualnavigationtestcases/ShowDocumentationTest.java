@@ -54,6 +54,9 @@ public class ShowDocumentationTest {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// click On help option
 		createSitePage.clickOnHelpOption();

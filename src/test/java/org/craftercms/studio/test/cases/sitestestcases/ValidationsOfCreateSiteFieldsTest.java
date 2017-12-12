@@ -68,6 +68,9 @@ public class ValidationsOfCreateSiteFieldsTest {
 		// login to application
 		loginPage.loginToCrafter(
 				userName,password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// Click on the create site button
 		homePage.clickOnCreateSiteButton();

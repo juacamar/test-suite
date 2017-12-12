@@ -205,6 +205,8 @@ public class ChangeStateOfPreviousPublishedContent {
 		// login to application
 		loginPage.loginToCrafter(user, loginpassword);
 		// go to preview page
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 	}
 
