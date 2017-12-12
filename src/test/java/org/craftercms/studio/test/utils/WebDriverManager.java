@@ -385,7 +385,6 @@ public class WebDriverManager {
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
 		driver.switchTo().activeElement();
 		actions.run();
-		//waitUntilElementIsHidden(dialog);
 		driver.switchTo().defaultContent();
 	}
 
