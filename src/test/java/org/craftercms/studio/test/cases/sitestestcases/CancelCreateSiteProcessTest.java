@@ -72,22 +72,20 @@ public class CancelCreateSiteProcessTest {
 		loginPage.loginToCrafter(
 				userName,password);
 
+
+		//Wait for login page to close
 		driverManager.waitUntilLoginCloses();
 
 		// Click on the create site button
-
 		homePage.clickOnCreateSiteButton();
 
 		// Filling the name of site
-
 		createSitePage.fillSiteName();
 
 		// Filling the Id of the site
-
 		createSitePage.fillIdSite("");
 
 		// Filling the description of the site
-
 		createSitePage.fillDescription("Description");
 
 		// Open blueprint combo
@@ -95,11 +93,9 @@ public class CancelCreateSiteProcessTest {
 		createSitePage.openBlueprintCombo();
 
 		// Click on Cancel button
-
 		createSitePage.clickOnCancelButtonOfTheCreateSiteProcess();
 
 		// Assert
-
 		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				sitesPageTitleLocator);
 

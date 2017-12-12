@@ -204,6 +204,9 @@ public class RecentActivityItemTypesSectionTest {
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
 		homePage.goToDashboardPage();

@@ -37,7 +37,6 @@ public class AutomateCreatingSiteUsingWebsiteEditorialBlueprint {
 	private String editorialSitePreviewPageTitle;
 	private String createSiteButtonXpath;
 	private String menuSitesButton;
-	private String sitesTitleXpath;
 	
 	@BeforeClass
 	public void beforeTest() {
@@ -65,8 +64,6 @@ public class AutomateCreatingSiteUsingWebsiteEditorialBlueprint {
 				.getProperty("general.sites.createsitebutton");
 		menuSitesButton = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("preview.sites.menu.button");
-		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("sites.pagetitle");
 	}
 	
 	public void deleteSite() {
@@ -101,8 +98,8 @@ public class AutomateCreatingSiteUsingWebsiteEditorialBlueprint {
 		loginPage.loginToCrafter(
 				userName,password);
 		
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// Click on the create site button
 		homePage.clickOnCreateSiteButton();

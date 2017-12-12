@@ -34,8 +34,7 @@ public class HistoryOptionTest {
 	private String homeXpath;
 	private String historyDialogTitle;
 	private String studioLogo;
-	private String createSiteButtonXpath;
-	private String sitesTitleXpath;
+
 
 	@BeforeClass
 	public void beforeTest() {
@@ -61,10 +60,6 @@ public class HistoryOptionTest {
 				.getProperty("general.historydialogtitle");
 		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.studiologo");
-		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
-		sitesTitleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
 		
 	}
 
@@ -79,8 +74,8 @@ public class HistoryOptionTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 		
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 		
 		// go to preview page
 		homePage.goToPreviewPage();

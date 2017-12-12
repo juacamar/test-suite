@@ -82,8 +82,10 @@ public class DesignOfWorkflowStateSectionTest {
 	public void verifyAllWorkflowStatesOnIconGuideTest() {
 
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
 		homePage.goToDashboardPage();
@@ -101,7 +103,6 @@ public class DesignOfWorkflowStateSectionTest {
 		// Assert edited is present.
 		WebElement edited = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", editedStateItem);
 		Assert.assertTrue(edited.isDisplayed());
-
 
 		// Assert in workflow is present.
 		WebElement inWorkflow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", inWorkFlowItem);

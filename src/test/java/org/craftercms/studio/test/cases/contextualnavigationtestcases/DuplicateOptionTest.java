@@ -154,8 +154,10 @@ public class DuplicateOptionTest {
 	public void duplicatePageUsingContextualNavigationDuplicateOptionOption() {
 
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// goto preview page
 		goToPreviewPage();

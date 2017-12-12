@@ -63,7 +63,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 	private String differencesDialogAddedMarkXpath;
 	private String historyInitialCommitRevertButton;
 	private String studioLogo;
-	private String approveForPublishDialogTitle;
 	private String createFormFrameElementCss;
 	private String createFormTitleElementXPath;
 	private String dashboardMenuOption;
@@ -129,8 +128,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		historyInitialCommitRevertButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.initialcommittrevertbutton");
 		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		approveForPublishDialogTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.approveforpublishdialogtitle");
 		dashboardMenuOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.dashboard_menu_option");
 	}
@@ -153,6 +150,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
+		//Wait for login page to close
 		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
@@ -242,10 +240,11 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void createNewPageArticleContent() {
 
-		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+	driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// creating random values for URL field and InternalName field
 			String randomURL = "newPageURL" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
 			String randomInternalName = "newPageInternalName" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
+
 
 			// Set basics fields of the new content created
 			dashboardPage.setBasicFieldsOfNewPageArticleContent(randomURL, randomInternalName, "newPageArticlesTitle");
@@ -257,7 +256,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 		});
 
-		this.driverManager.isElementPresentAndClickableByXpath(homeElementXPath);
+		this.driverManager.waitUntilSidebarOpens();
+
 	}
 
 	public void createPageCategoryLandingPage(WebElement folderWebElement) {
@@ -320,7 +320,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 	public void revertLastVersionChanges() {
 
 		// Switch to the iframe
-		// driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
 
 		// Clickin the revert changes option for the initial version
@@ -340,15 +339,19 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void confirmPublishAction() {
 		// Switch to the form
-		driverManager.getDriver().switchTo().activeElement();
-		this.driverManager.isElementPresentByXpath(approveForPublishDialogTitle);
-		// Click on Publish button
-		dashboardPage.clickApproveAndPublishSubmitButton();
+		driverManager.usingYuiContainer(() -> {
+			
+			// Click on Publish button
+			dashboardPage.clickApproveAndPublishSubmitButton();
+		});
+//		driverManager.getDriver().switchTo().activeElement();
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",approveForPublishDialogTitle);
+
 
 		// switch to default content
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
+		this.driverManager.waitUntilSidebarOpens();
 
-		driverManager.getDriver().switchTo().defaultContent();
+		//driverManager.getDriver().switchTo().defaultContent();
 
 	}
 
@@ -463,7 +466,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step1() {
 		emptyFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", emptyFolderLocator);
-		// driverManager.getDriver().findElement(By.xpath(emptyFolderLocator));
 
 		// Step 1
 		this.createPageCategoryLandingPage(emptyFolder);
@@ -475,11 +477,9 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step2() {
 		// Step2 a)
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 		
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", bigTree1FolderLocator)
 				.click();
 		dashboardPage.rightClickCopyFolder(bigTree1Folder);
@@ -492,7 +492,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.clickCopyButtonOnTreeSelector();
 
 		// Step2 c)
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree2FolderLocator);
 		bigTree2Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2FolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(bigTree2Folder);
@@ -510,7 +509,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step4() {
 		// Step4
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 		dashboardPage.rightClickCopyFolder(bigTree1Folder);
@@ -528,7 +526,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step5() {
 		harnessFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", harnessFolderLocator);
-		this.driverManager.isElementPresentAndClickableByXpath(harnessFolderLocator);
 		this.createFolderOnAPresentFolder(anotherTestFolderName, harnessFolder);
 		anotherTestFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				anotherTestFolderLocator);
@@ -536,11 +533,10 @@ public class Crafter3LoadTest1Script extends BaseTest {
 	}
 
 	public void step6() {
-		// Step6
 
+		// Step6
 		myTestFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", mytestFolderLocator);
 
-		//dashboardPage.expandParentFolder(myTestFolder);
 		dashboardPage.expandParentFolder(myTestFolder);
 
 		WebElement myTestBigTreeChildFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
@@ -595,12 +591,10 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		driverManager.waitUntilSidebarOpens();
 
-		this.driverManager.isElementPresentAndClickableByXpath(anotherTestFolderLocator);
 		anotherTestFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				anotherTestFolderLocator);
 		dashboardPage.expandParentFolder(anotherTestFolder);
 
-		this.driverManager.isElementPresentAndClickableByXpath(anotherTestBigTreeChildFolderLocator);
 		WebElement anotherTestBigTreeChildFolder = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestBigTreeChildFolderLocator);
 		dashboardPage.expandParentFolder(anotherTestBigTreeChildFolder);
@@ -689,7 +683,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.isElementPresentAndClickableById(studioLogo);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 
 		// Step7
@@ -697,7 +690,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.isElementPresentAndClickableById(studioLogo);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 
 		// Step8

@@ -99,6 +99,9 @@ public class AddNewContentSectionDefaultsTest {
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();

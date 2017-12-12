@@ -34,8 +34,6 @@ public class DependenciesOptionTest {
 	private String siteDropdownXpath;
 	private String homeXpath;
 	private String dependeciesDialogTitle;
-	private String createSiteButtonXpath;
-	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -58,10 +56,6 @@ public class DependenciesOptionTest {
 				.getProperty("general.home");
 		dependeciesDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.dependeciesdialogtitle");
-		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
-		sitesTitleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -76,8 +70,8 @@ public class DependenciesOptionTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 		
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();

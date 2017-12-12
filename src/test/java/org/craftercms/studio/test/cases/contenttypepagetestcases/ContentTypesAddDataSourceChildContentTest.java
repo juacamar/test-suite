@@ -33,8 +33,6 @@ public class ContentTypesAddDataSourceChildContentTest {
 	private String contentTypeContainerChildContentTitleLocator;
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
-	private String createSiteButtonXpath;
-	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -62,10 +60,6 @@ public class ContentTypesAddDataSourceChildContentTest {
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
-		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -100,8 +94,8 @@ public class ContentTypesAddDataSourceChildContentTest {
 		loginPage.loginToCrafter(
 			userName,password);
 		
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();

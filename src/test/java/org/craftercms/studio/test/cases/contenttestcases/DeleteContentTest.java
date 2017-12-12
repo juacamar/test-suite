@@ -127,6 +127,9 @@ public class DeleteContentTest {
 	public void deletePageUsingContextualClickDeleteOptionTest() {
 
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
