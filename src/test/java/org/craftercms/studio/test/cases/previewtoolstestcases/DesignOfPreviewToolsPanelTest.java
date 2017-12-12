@@ -66,9 +66,11 @@ public class DesignOfPreviewToolsPanelTest {
 	public void verifyTheDesignOfPreviewToolsSectionTest() {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
-
 		homePage.goToPreviewPage();
 		
 		// Click on Preview Tools icon (show)

@@ -101,6 +101,9 @@ public class CutPasteContentTest {
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for loging page to close
+		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
 

@@ -38,30 +38,19 @@ public class DesignOfPreviewPageTest {
 	private String password;
 
 	private String crafterLogoId;
-
 	private String siteDropDownXpath;
-
 	private String searchTopBarOptionId;
-
 	private String accountDropdownTopBarOptionId;
-
 	private String topNavDeleteOption;
-
 	private String topNavEditOption;
-
 	private String topNavHistoryOption;
-
 	private String topNavDependenciesOption;
-
 	private String dashboardOptionXpath;
-
 	private String adminConsoleXpath;
-
 	private String topNavUsersOption;
-
 	private String topNavSitesOption;
 
-	private String createSiteButtonXpath;
+
 
 	@BeforeClass
 	public void beforeTest() {
@@ -102,8 +91,6 @@ public class DesignOfPreviewPageTest {
 				.getProperty("general.userstopnavoption");
 		topNavSitesOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitestopnavoption");
-		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
 
 	}
 
@@ -119,9 +106,11 @@ public class DesignOfPreviewPageTest {
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
 		homePage.goToPreviewPage();
 
 		// reload page

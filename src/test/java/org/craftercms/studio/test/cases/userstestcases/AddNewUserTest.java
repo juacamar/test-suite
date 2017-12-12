@@ -36,8 +36,6 @@ public class AddNewUserTest {
 	private String newUserPasswordId;
 	private String newUserPasswordVerificationId;
 	private String newUserUserNameCreatedXpath;
-	private String createSiteButtonXpath;
-	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -67,10 +65,6 @@ public class AddNewUserTest {
 				.getProperty("general.users.passwordVerification");
 		newUserUserNameCreatedXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usernamecreated");
-		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
-		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
 	}
 
 	@AfterClass
@@ -85,8 +79,8 @@ public class AddNewUserTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 		
 		// click On Users option
 		createSitePage.clickOnUsersOption();

@@ -405,7 +405,6 @@ public class WebDriverManager {
 		// Do stuff
 		actions.run();
 
-		// Exit ifreame
 		driver.switchTo().defaultContent();
 
 		// Wait until iframe is hidden

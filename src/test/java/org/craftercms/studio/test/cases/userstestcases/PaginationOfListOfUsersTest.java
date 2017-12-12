@@ -170,8 +170,12 @@ public class PaginationOfListOfUsersTest {
 
 	@Test(priority = 0)
 	public void verifyThatThePaginationOfTheListOfUsersWorksProperlyTest() {
+		
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		createUserRandom();
 		createUserRandom();

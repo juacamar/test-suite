@@ -207,10 +207,8 @@ public class DashboardPage {
 
 	// Expand pages tree
 	public void clickPagesTree() {
-		this.driverManager.isElementPresentAndClickableByXpath(pagesTree);
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
 		expandPagesTree.click();
-		this.driverManager.isElementPresentByXpath(homeContent);
 	}
 
 	public void expandPagesTree() {
@@ -819,7 +817,6 @@ public class DashboardPage {
 	}
 
 	public void rightClickCopyFolder(WebElement parentWebElement) {
-		this.driverManager.isElementPresentAndClickableById(parentWebElement.getAttribute("id"));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
 		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				copyOptionLocator);
@@ -828,7 +825,6 @@ public class DashboardPage {
 
 	public void rightClickPasteOnAFolder(WebElement parentWebElement) {
 		this.driverManager.contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-		this.driverManager.isElementPresentAndClickableByXpath(pasteOptionLocator);
 		WebElement pasteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				pasteOptionLocator);
 		pasteOption.click();
@@ -856,7 +852,6 @@ public class DashboardPage {
 	}
 
 	public void expandParentFolder(WebElement parentElement) {
-		this.driverManager.isElementPresentAndClickableById(parentElement.getAttribute("id"));
 		parentElement.click();
 	}
 

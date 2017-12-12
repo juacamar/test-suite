@@ -192,6 +192,9 @@ public class UsersPerPageTest {
 	public void verifyThatTheShowUsersPerPageWorksProperlyTest() {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// Create user 1
 		createUserRandom();
