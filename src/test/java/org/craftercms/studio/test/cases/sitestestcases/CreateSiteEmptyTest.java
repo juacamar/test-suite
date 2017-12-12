@@ -18,7 +18,6 @@ public class CreateSiteEmptyTest extends BaseTest {
 	private String password;
 	private String siteDropdownElementXPath;
 
-
 	@BeforeClass
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");

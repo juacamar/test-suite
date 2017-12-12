@@ -393,7 +393,6 @@ public class WebDriverManager {
 		// Do stuff
 		actions.run();
 
-		// Exit iframe
 		driver.switchTo().defaultContent();
 
 		// Wait until iframe is hidden
