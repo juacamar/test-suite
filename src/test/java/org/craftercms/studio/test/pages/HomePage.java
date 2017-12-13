@@ -26,7 +26,7 @@ public class HomePage {
 	private String logOutLink;
 	private String signOutLink;
 	private String usersContextualNavigationOption;
-	final static Logger logger = LogManager.getLogger(HomePage.class);
+	private static Logger logger = LogManager.getLogger(HomePage.class);
 	
 
 	public HomePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {

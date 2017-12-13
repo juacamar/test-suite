@@ -30,7 +30,7 @@ public class WebDriverManager {
 	WebDriver driver;
 	private ConstantsPropertiesManager constantsPropertiesManager;
 	private int defaultTimeOut;
-	final static Logger logger = LogManager.getLogger(WebDriverManager.class);
+	private static Logger logger = LogManager.getLogger(WebDriverManager.class);
 
 	public void openConnection() {
 

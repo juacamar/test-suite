@@ -79,7 +79,7 @@ public class DashboardPage {
 	private String editRecentActivity;
 	private String seeThePageEdited;
 	private String copyContentButton;
-	final static Logger logger = LogManager.getLogger(DashboardPage.class);
+	private static Logger logger = LogManager.getLogger(DashboardPage.class);
 
 	/**
 	 * 

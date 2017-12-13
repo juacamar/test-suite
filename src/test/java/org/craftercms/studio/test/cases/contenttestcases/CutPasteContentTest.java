@@ -30,7 +30,7 @@ public class CutPasteContentTest extends BaseTest {
 	private String newFolderCreated;
 	private String newFolderSpanXpath;
 	private String testingItemURLXpath;
-	final static Logger logger = LogManager.getLogger(CutPasteContentTest.class);
+	private static Logger logger = LogManager.getLogger(CutPasteContentTest.class);
 
 	@BeforeMethod
 	public void beforeTest() {

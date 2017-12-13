@@ -20,7 +20,7 @@ public class LoginPage {
 	private String userNameXpath;
 	private String passwordXpath;
 	private String loginXpath;
-	final static Logger logger = LogManager.getLogger(LoginPage.class);
+	private static Logger logger = LogManager.getLogger(LoginPage.class);
 
 	
 	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {

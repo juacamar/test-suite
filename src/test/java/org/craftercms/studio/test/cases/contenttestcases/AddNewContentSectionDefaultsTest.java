@@ -22,7 +22,7 @@ public class AddNewContentSectionDefaultsTest extends BaseTest {
 	private String createFormSaveAndCloseElementId;
 	private String siteDropDownXpath;
 	private String sectionDefaultsXpath;
-	final static Logger logger = LogManager.getLogger(AddNewContentSectionDefaultsTest.class);
+	private static Logger logger = LogManager.getLogger(AddNewContentSectionDefaultsTest.class);
 	
 
 	@BeforeMethod

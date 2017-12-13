@@ -45,7 +45,7 @@ public class SiteConfigPage {
 	public String clickOnDataSourceImageUploadedFromCMISRepositorySection;
 	private String contentTypeVisualContainer;
 	private String contentTypeSavedNotification;
-	final static Logger logger = LogManager.getLogger(SiteConfigPage.class);
+	private static Logger logger = LogManager.getLogger(SiteConfigPage.class);
 
 	public SiteConfigPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
