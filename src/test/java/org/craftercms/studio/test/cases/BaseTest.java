@@ -31,7 +31,6 @@ public class BaseTest {
     protected CreateSitePage createSitePage;
     protected AccountManagementPage accountManagementPage;
     protected SiteConfigPage siteConfigPage;
-    
 
     @BeforeClass
     public void setUp() {
@@ -47,7 +46,6 @@ public class BaseTest {
         createSitePage = new CreateSitePage(driverManager, uiElementsPropertiesManager);
         accountManagementPage = new AccountManagementPage(driverManager, uiElementsPropertiesManager);
         siteConfigPage = new SiteConfigPage(driverManager, uiElementsPropertiesManager);
-   
     }
 
     @AfterClass

@@ -1,5 +1,7 @@
 package org.craftercms.studio.test.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebElement;
@@ -43,6 +45,7 @@ public class SiteConfigPage {
 	public String clickOnDataSourceImageUploadedFromCMISRepositorySection;
 	private String contentTypeVisualContainer;
 	private String contentTypeSavedNotification;
+	private static Logger logger = LogManager.getLogger(SiteConfigPage.class);
 
 	public SiteConfigPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
@@ -117,6 +120,7 @@ public class SiteConfigPage {
 
 	public void selectContentTypeOption() {
 		// Click on Content Type option
+		logger.debug("select content types");
 		this.clickContentTypeOption();
 	}
 
@@ -135,6 +139,7 @@ public class SiteConfigPage {
 	}
 
 	public void selectPageArticleContentTypeOption() {
+		logger.debug("Click on Existing Type Option");
 		WebElement selectPageArticleOption = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", pageArticleContentTypeOption);
 		selectPageArticleOption.click();
@@ -147,19 +152,13 @@ public class SiteConfigPage {
 		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				okButton);
 		okButtonOpt.click();
-		
-		// TODO: Delete this when expected condition is established for animation
-		  try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				
-				e.printStackTrace();
-			}
+		// Delete thread of 2 seconds
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",contentTypeVisualContainer);
 	}
 
 	public void confirmContentTypeSelected() {
 		// Confirm the content type selected
+		logger.info("Confirm Selected type");
 		this.okContentTypeSelected();
 	}
 
@@ -172,6 +171,7 @@ public class SiteConfigPage {
 
 	public void saveDragAndDropProcess() {
 		// Save the section dropped.
+		logger.debug("Click on Save button");
 		this.saveSectionDropped();
 	}
 

@@ -1,12 +1,12 @@
 package org.craftercms.studio.test.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 /**
@@ -79,6 +79,7 @@ public class DashboardPage {
 	private String editRecentActivity;
 	private String seeThePageEdited;
 	private String copyContentButton;
+	private static Logger logger = LogManager.getLogger(DashboardPage.class);
 
 	/**
 	 * 
@@ -213,6 +214,7 @@ public class DashboardPage {
 
 	public void expandPagesTree() {
 		// Expand pages tree
+		logger.info("Expanding Pages tree");
 		this.clickPagesTree();
 	}
 
@@ -225,6 +227,7 @@ public class DashboardPage {
 
 	public void expandHomeTree() {
 		// Expand global entry content
+		logger.info("Expanding Home tree");
 		this.clickGlobalEntryContent();
 	}
 
@@ -258,6 +261,7 @@ public class DashboardPage {
 	}
 
 	public void rightClickToSeeMenu() {
+		logger.info("Right Click to see Menu");
 		// Press right click and select new content
 		this.rightClickHome();
 	}
@@ -312,6 +316,7 @@ public class DashboardPage {
 
 	public void rightClickToFolderOnHome() {
 		// Press right click select new folder
+		logger.info("Right Click  on Folder Home");
 		this.rightClickNewFolderOnHome();
 	}
 
@@ -331,6 +336,7 @@ public class DashboardPage {
 	}
 
 	public void clickEntryCT() {
+		logger.info("Select Entry Content Type");
 		// Select Generic Content type
 		this.selectEntryCT();
 	}
@@ -418,6 +424,7 @@ public class DashboardPage {
 
 	public void setFolderName(String strFolderName) {
 		// Set the name of the folder
+		logger.info("Create a new folder with add newfolder name");
 		this.folderName(strFolderName);
 	}
 
@@ -441,9 +448,6 @@ public class DashboardPage {
 		WebElement copypasteContent = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", aboutUSContentPage);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
-
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// aboutUSContentPage);
 
 		driverManager.usingContextMenu(() -> {
 			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
@@ -510,6 +514,7 @@ public class DashboardPage {
 
 	public void rightClickToPasteIntoFolder() {
 		// Press right click and press paste option
+		logger.debug("Right Click to Paste into Folder");
 		this.rightClickToPasteIntoFolderToTest();
 	}
 
@@ -535,6 +540,7 @@ public class DashboardPage {
 
 	public void rightClickToCutOption() {
 		// Press right click and press cut option
+		logger.debug("Right Click to Cut Option");
 		this.rightClickCutOption();
 	}
 
