@@ -51,7 +51,6 @@ public class CreateSiteEmptyTest extends BaseTest {
 		createSitePage.selectEmptyBluePrintOption();
 
 		// Click on Create button
-
 		createSitePage.clickOnCreateSiteButton();
 
 		this.driverManager.waitUntilElementIsClickable("xpath", siteDropdownElementXPath);
