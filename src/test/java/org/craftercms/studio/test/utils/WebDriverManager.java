@@ -398,7 +398,7 @@ public class WebDriverManager {
 		driver.switchTo().frame(frame);
 
 		// Wait until the first input is selected
-		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)]");
+		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
 		new WebDriverWait(driver, defaultTimeOut)
 			.until(webDriver -> firstInput.equals(webDriver.switchTo().activeElement()));
 

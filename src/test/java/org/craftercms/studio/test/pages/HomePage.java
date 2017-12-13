@@ -45,7 +45,6 @@ public class HomePage {
 
 	// Click on preview link
 	public void clickPreviewOption() {
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", previewSite);
 		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				previewSite);
 		previewLink.click();

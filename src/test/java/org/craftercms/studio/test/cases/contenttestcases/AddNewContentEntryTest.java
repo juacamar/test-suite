@@ -1,9 +1,8 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
 import org.craftercms.studio.test.cases.BaseTest;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -16,16 +15,14 @@ public class AddNewContentEntryTest extends BaseTest {
 
 	private String userName;
 	private String password;
-
 	private String createFormFrameElementCss;
-
 	private String createFormSaveAndCloseElementId;
-
 	private String createFormMainTitleElementXPath;
-
 	private String testingItemRecentActivity;
+	private String randomURL;
+	private String randomInternalName;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -37,13 +34,14 @@ public class AddNewContentEntryTest extends BaseTest {
 			.getProperty("general.createformTitle");
 		testingItemRecentActivity = uiElementsPropertiesManager.getSharedUIElementsLocators()
 			.getProperty("general.testingcontentitem.myrecentactivity");
+		
+		 randomURL = "Test1";
+		 randomInternalName = "Testing1";
 
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {
-
 		previewPage.changeBodyOfEntryContentPageToNotRequired();
-
 	}
 
 	public void createContent() {
@@ -57,27 +55,22 @@ public class AddNewContentEntryTest extends BaseTest {
 		// Confirm the Content Type selected
 		dashboardPage.clickOKButton();
 
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
+		
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// creating random values for URL field and InternalName field
 
-		WebElement iframe = driverManager.waitUntilElementIsClickable(
-			"cssSelector", createFormFrameElementCss);
-		driverManager.getDriver().switchTo().frame(iframe);
+			// Set basics fields of the new content created
+			dashboardPage.setBasicFieldsOfNewContent(randomURL, randomInternalName);
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+			// Set the title of main content
+			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
-		// Set the title of main content
-		this.driverManager.waitUntilElementIsDisplayed( "xpath", createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
-	
-		// save and close
-		this.driverManager.waitUntilElementIsClickable( "id", createFormSaveAndCloseElementId).click();
+			// save and close
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
+		});
 
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
-
-		driverManager.waitUntilElementIsHidden(iframe);
+		this.driverManager.waitUntilSidebarOpens();
+		
 
 	}
 
@@ -106,7 +99,7 @@ public class AddNewContentEntryTest extends BaseTest {
 
 		dashboardPage.expandHomeTree();
 
-		Assert.assertNotNull(driverManager.findElement("xpath", testingItemRecentActivity));
+		Assert.assertNotNull(driverManager.waitUntilElementIsDisplayed("xpath", testingItemRecentActivity));
 	}
 
 }

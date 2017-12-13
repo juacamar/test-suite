@@ -77,8 +77,6 @@ public class DashboardPage {
 	private String editRecentActivity;
 	private String seeThePageEdited;
 	private String copyContentButton;
-	private String sidebarSelector;
-
 
 	/**
 	 * 
@@ -108,7 +106,8 @@ public class DashboardPage {
 		createButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.create_Button");
 		setFolderName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
 		copyContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
-		copyContentButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_contentButton");
+		copyContentButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.copy_contentButton");
 		aboutUSContentPage = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.aboutuscontentpage");
 		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content");
@@ -196,8 +195,6 @@ public class DashboardPage {
 				.getProperty("dashboard.myrecentactivty.editoption");
 		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.myrecentactivty.viewpage");
-		sidebarSelector = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sidebar");
-
 
 	}
 
@@ -218,7 +215,6 @@ public class DashboardPage {
 
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",homeTree);
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
 		globalEntry.click();
@@ -231,8 +227,7 @@ public class DashboardPage {
 
 	// Expand home content
 	public void clickHomeContent() {
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				homeContent);
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
 		home.click();
 	}
 
@@ -244,14 +239,20 @@ public class DashboardPage {
 	// Press right click and select new content
 	public void rightClickHome() {
 		// wait for the animation to end
-		driverManager.waitUntilElementIsDisplayed("cssSelector", sidebarSelector);
+		driverManager.waitUntilSidebarOpens();
 
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
 
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewContent);
-		addContent.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
+
+		driverManager.usingContextMenu(() -> {
+			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+					addNewContent);
+			addContent.click();
+		});
+
 	}
 
 	public void rightClickToSeeMenu() {
@@ -275,13 +276,20 @@ public class DashboardPage {
 
 	// Press right click select new folder
 	public void rightClickNewFolderOnHome() {
+		// wait for the animation to end
 		driverManager.waitUntilSidebarOpens();
+
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
-		WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				addNewFolder);
-		addFolder.click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
+
+		driverManager.usingContextMenu(() -> {
+			WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					addNewFolder);
+			addFolder.click();
+		});
 	}
 
 	// Press right click select new folder
@@ -424,12 +432,23 @@ public class DashboardPage {
 
 	// Press right click and press copy option (about us page)
 	public void rightClickCopyOptionAboutUs() {
+
+		// wait for the animation to end
+		driverManager.waitUntilSidebarOpens();
+
 		WebElement copypasteContent = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", aboutUSContentPage);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
-		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				this.copyContent);
-		copyContent.click();
+
+		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		// aboutUSContentPage);
+
+		driverManager.usingContextMenu(() -> {
+			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+					this.copyContent);
+			copyContent.click();
+		});
+
 	}
 
 	public void rightClickToCopyOptionAboutUs() {
@@ -454,12 +473,21 @@ public class DashboardPage {
 
 	// Press right click and press paste option
 	public void rightClickPasteOption() {
+
+		// wait for the animation to end
+		driverManager.waitUntilSidebarOpens();
+
 		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				this.pasteContent);
-		pasteContent.click();
+
+		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		// aboutUSContentPage);
+		driverManager.usingContextMenu(() -> {
+			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+					this.pasteContent);
+			pasteContent.click();
+		});
 	}
 
 	public void rightClickToPasteOption() {
@@ -487,8 +515,9 @@ public class DashboardPage {
 	public void editInternalName(String strInternalName) {
 		// Fill internal name
 		this.setInternalName1(strInternalName);
-		// Click on save and draft button
-		this.clickSaveDraft();
+		
+		// Save and close button.
+		this.clickSaveClose();
 	}
 
 	// Press right click and press cut option
@@ -736,7 +765,6 @@ public class DashboardPage {
 		if (!checkAllTree.getAttribute("checked").equals("true"))
 			checkAllTree.click();
 	}
-
 
 	public void clicOnHomeTree() {
 		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
