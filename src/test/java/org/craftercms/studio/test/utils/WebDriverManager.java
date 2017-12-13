@@ -385,7 +385,6 @@ public class WebDriverManager {
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
 		driver.switchTo().activeElement();
 		actions.run();
-		//waitUntilElementIsHidden(dialog);
 		driver.switchTo().defaultContent();
 	}
 
@@ -406,7 +405,6 @@ public class WebDriverManager {
 		// Do stuff
 		actions.run();
 
-		// Exit ifreame
 		driver.switchTo().defaultContent();
 
 		// Wait until iframe is hidden
