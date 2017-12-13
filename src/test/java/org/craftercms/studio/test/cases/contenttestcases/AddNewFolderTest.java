@@ -1,7 +1,6 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
 import org.craftercms.studio.test.cases.BaseTest;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,11 +16,8 @@ public class AddNewFolderTest extends BaseTest {
 
 	private String userName;
 	private String password;
-
 	private String siteDropdownElementXPath;
-
 	private String newFolderXpath;
-	private String newFolderDialogSelector;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -31,8 +27,6 @@ public class AddNewFolderTest extends BaseTest {
 				.getProperty("complexscenarios.general.sitedropdown");
 		newFolderXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.newfolder");
-		newFolderDialogSelector = uiElementsPropertiesManager.getSharedUIElementsLocators()
-			.getProperty("general.yui.dialog");
 	}
 
 	@AfterClass
@@ -63,28 +57,16 @@ public class AddNewFolderTest extends BaseTest {
 		// right click to see the the menu
 		dashboardPage.rightClickToFolderOnHome();
 
-		// wait for the dialog to open
-		WebElement dialog = driverManager.waitUntilElementIsDisplayed("cssSelector", newFolderDialogSelector);
-
-		// wait for the animation to end
-		driverManager.waitUntilAttributeContains("cssSelector", newFolderDialogSelector, "style",
-			"opacity: 1;");
-
 		// Set the name of the folder
 		dashboardPage.setFolderName("addnewfolder");
-
-		// Create folder button
-		dashboardPage.clickCreateButton();
-
-		// wait for animation to end
-		driverManager.waitUntilElementIsRemoved(dialog);
-
+		
 		driverManager.getDriver().navigate().refresh();
 
-		dashboardPage.clickHomeTree();
-
+		dashboardPage.expandHomeTree();
+		
 		// Assert find the new folder created
 		this.driverManager.waitUntilElementIsDisplayed("xpath", newFolderXpath);
+		
 		Assert.assertTrue(this.driverManager.isElementPresentByXpath(newFolderXpath));
 
 	}
