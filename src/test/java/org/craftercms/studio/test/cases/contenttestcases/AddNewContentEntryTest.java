@@ -99,7 +99,7 @@ public class AddNewContentEntryTest extends BaseTest {
 
 		dashboardPage.expandHomeTree();
 
-		Assert.assertNotNull(driverManager.findElement("xpath", testingItemRecentActivity));
+		Assert.assertNotNull(driverManager.waitUntilElementIsDisplayed("xpath", testingItemRecentActivity));
 	}
 
 }

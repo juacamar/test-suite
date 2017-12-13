@@ -432,12 +432,23 @@ public class DashboardPage {
 
 	// Press right click and press copy option (about us page)
 	public void rightClickCopyOptionAboutUs() {
+
+		// wait for the animation to end
+		driverManager.waitUntilSidebarOpens();
+
 		WebElement copypasteContent = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", aboutUSContentPage);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
-		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				this.copyContent);
-		copyContent.click();
+
+		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		// aboutUSContentPage);
+
+		driverManager.usingContextMenu(() -> {
+			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+					this.copyContent);
+			copyContent.click();
+		});
+
 	}
 
 	public void rightClickToCopyOptionAboutUs() {
@@ -462,12 +473,21 @@ public class DashboardPage {
 
 	// Press right click and press paste option
 	public void rightClickPasteOption() {
+
+		// wait for the animation to end
+		driverManager.waitUntilSidebarOpens();
+
 		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				this.pasteContent);
-		pasteContent.click();
+
+		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		// aboutUSContentPage);
+		driverManager.usingContextMenu(() -> {
+			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+					this.pasteContent);
+			pasteContent.click();
+		});
 	}
 
 	public void rightClickToPasteOption() {
@@ -495,8 +515,9 @@ public class DashboardPage {
 	public void editInternalName(String strInternalName) {
 		// Fill internal name
 		this.setInternalName1(strInternalName);
-		// Click on save and draft button
-		this.clickSaveDraft();
+		
+		// Save and close button.
+		this.clickSaveClose();
 	}
 
 	// Press right click and press cut option
