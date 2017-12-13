@@ -1,18 +1,13 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
-import org.openqa.selenium.WebDriver;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+
 
 /**
  * 
@@ -20,19 +15,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CutPasteContentTest {
-
-	WebDriver driver;
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
-
-	private DashboardPage dashboardPage;
-
-	private SiteConfigPage siteConfigPage;
+public class CutPasteContentTest extends BaseTest {
 
 	private String userName;
 	private String password;
@@ -45,92 +28,77 @@ public class CutPasteContentTest {
 	private String createFormSaveAndCloseElementId;
 	private String createFormMainTitleElementXPath;
 	private String newFolderCreated;
-
 	private String newFolderSpanXpath;
-
 	private String testingItemURLXpath;
+	final static Logger logger = LogManager.getLogger(CutPasteContentTest.class);
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, UIElementsPropertiesManager);
-
+		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-		entryContentTypeBodyXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		entryContentTypeBodyXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.entrycontenttype.body");
-		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		entryContentTypeBodyCheckCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
-		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		testingItemURLXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.cutpaste.pastedelement");
-		newFolderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		newFolderCreated = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.add_new_folder");
-		newFolderSpanXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		newFolderSpanXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.newfolder");
+		
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
 
 	@Test(priority = 0)
 	public void cutAndPasteContentUsingContextualClickOptionsTest() {
 
 		// login to application
-
 		loginPage.loginToCrafter(userName, password);
 		
 		//Wait for loging page to close
 		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
-
 		homePage.goToDashboardPage();
 
 		driverManager.getDriver().navigate().refresh();
 
 		// Show site content panel
+		logger.debug("Click on Site Dropdown");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 
 		// go to admin console page
+		logger.debug("Click on Admin Console");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
 
 		// select content types
 		siteConfigPage.selectContentTypeOption();
 
 		// open content types
-
 		siteConfigPage.clickExistingTypeOption();
 
 		// Confirm the content type selected
 		siteConfigPage.confirmContentTypeSelected();
 
 		// select main content
+		logger.debug("Select Main content");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
 
 		// Body not required
+		logger.debug("Disable RTE for the selected content");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
 				.click();
 
@@ -141,62 +109,52 @@ public class CutPasteContentTest {
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().switchTo().defaultContent();
 
-		// go to dashboard
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable(
-		// "id", studioLogo);
+		logger.debug("Return to preview page.");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo).click();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
 		// right click to see the the menu
+		
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
+		
 		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, ()->{
+			
+			// Set basics fields of the new content created
+			logger.info("Set the fields of the new content");
+			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-		this.driverManager.isElementPresentBycssSelector(createFormFrameElementCss);
+			// Set the title of main content
+			
+			this.driverManager.sendText("xpath", createFormMainTitleElementXPath,"MainTitle");
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
-
-		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
-
-		// save and close
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId).click();
-		// save and close
-
-		driverManager.getDriver().switchTo().defaultContent();
-
+			// save and close
+			logger.info("Click on Save and close button");
+			this.driverManager
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId).click();	
+			
+		});
+	
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
 		// expand home content
-
 		dashboardPage.expandHomeTree();
 
 		// right click to see the menu
-
 		dashboardPage.rightClickToFolderOnHome();
 
 		// Set the name of the folder
-
 		dashboardPage.setFolderName("addnewfolder");
-
-		// Create folder button
-
-		dashboardPage.clickCreateButton();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newFolderCreated);
 
@@ -209,18 +167,14 @@ public class CutPasteContentTest {
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
-		driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.isElementPresentAndClickableByXpath(newFolderSpanXpath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", newFolderSpanXpath).click();
-		
-		this.driverManager.waitUntilPageLoad();
 		
 		// Assert of the content copied
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(testingItemURLXpath);
 		String contentCopied = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", testingItemURLXpath).getText();
-		Assert.assertEquals(contentCopied, "Testing1");
+		Assert.assertEquals(contentCopied, "Testing1", "NNew folder does not contain the cu/paste content");
 
 	}
 

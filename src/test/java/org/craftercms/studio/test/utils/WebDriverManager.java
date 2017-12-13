@@ -1,5 +1,7 @@
 package org.craftercms.studio.test.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -28,6 +30,7 @@ public class WebDriverManager {
 	WebDriver driver;
 	private ConstantsPropertiesManager constantsPropertiesManager;
 	private int defaultTimeOut;
+	final static Logger logger = LogManager.getLogger(WebDriverManager.class);
 
 	public void openConnection() {
 
@@ -343,6 +346,7 @@ public class WebDriverManager {
 	}
 
 	public void waitUntilLoginCloses() {
+		logger.debug("wait Until Login Closes");
 		new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
 	}
 
