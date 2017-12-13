@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.cases;
 
+import org.craftercms.studio.test.pages.AccountManagementPage;
 import org.craftercms.studio.test.pages.CreateSitePage;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
@@ -11,6 +12,7 @@ import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+
 
 /**
  * All Test Cases should extend this class
@@ -26,6 +28,8 @@ public class BaseTest {
     protected DashboardPage dashboardPage;
     protected PreviewPage previewPage;
     protected CreateSitePage createSitePage;
+    protected AccountManagementPage accountManagementPage;
+    
 
     @BeforeClass
     public void setUp() {
@@ -39,11 +43,13 @@ public class BaseTest {
         previewPage = new PreviewPage(driverManager, uiElementsPropertiesManager);
         dashboardPage = new DashboardPage(driverManager, uiElementsPropertiesManager);
         createSitePage = new CreateSitePage(driverManager, uiElementsPropertiesManager);
+        accountManagementPage = new AccountManagementPage(driverManager, uiElementsPropertiesManager);
+   
     }
 
     @AfterClass
     public void close() {
         driverManager.closeConnection();
     }
-
+    	
 }

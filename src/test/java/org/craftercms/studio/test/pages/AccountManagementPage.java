@@ -63,7 +63,6 @@ public class AccountManagementPage {
 
 	// Click on submit
 	public void clickSubmit() {
-		this.driverManager.isElementPresentAndClickableByXpath(submitButton);
 		WebElement submitbtn = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				submitButton);
 		submitbtn.click();
