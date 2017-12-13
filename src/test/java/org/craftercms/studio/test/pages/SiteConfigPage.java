@@ -190,9 +190,7 @@ public class SiteConfigPage {
 
 	// Set title
 	public void setTitle(String strTitle) {
-		WebElement typeTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				inputTitle);
-		typeTitle.sendKeys(strTitle);
+		driverManager.sendText("cssSelector", inputTitle, strTitle);
 	}
 
 	// Set ICE group

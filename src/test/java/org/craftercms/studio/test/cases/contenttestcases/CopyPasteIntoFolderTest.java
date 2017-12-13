@@ -1,18 +1,11 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
-import org.openqa.selenium.WebDriver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
@@ -20,19 +13,9 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CopyPasteIntoFolderTest {
+public class CopyPasteIntoFolderTest extends BaseTest {
 
-	WebDriver driver;
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
-
-	private DashboardPage dashboardPage;
-
-	private PreviewPage previewPage;
+	private static final Logger logger = LogManager.getLogger(CopyPasteIntoFolderTest.class);
 
 	private String userName;
 	private String password;
@@ -49,46 +32,29 @@ public class CopyPasteIntoFolderTest {
 
 	@BeforeClass
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
-
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		firstCopiedElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		firstCopiedElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
-		secondCopiedElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		secondCopiedElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.secondelementurl");
 		
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
-
-
 	public void changeBodyToNotRequiredOnEntryContent() {
-
+		logger.info("Changing body to not required");
 		previewPage.changeBodyOfEntryContentPageToNotRequired();
 
 	}
 
 	public void createContent() {
+		logger.info("Creating new content");
 		// right click to see the the menu
 		driverManager.waitUntilPageLoad();
 		dashboardPage.rightClickToSeeMenu();
@@ -100,30 +66,22 @@ public class CopyPasteIntoFolderTest {
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", createFormFrameElementCss));
-		this.driverManager.isElementPresentBycssSelector(createFormFrameElementCss);
-		
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// Set basics fields of the new content created
+			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
+			// Set the title of main content
+			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
-	
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
-		
+			// save and close
+			this.driverManager.waitUntilElementIsClickable( "id", createFormSaveAndCloseElementId).click();
+		});
 
 	}
 	
 	@Test(priority = 0)
 	public void copyAndPasteIntoFolderUsingContextualClickOptionsTest() {
-
+		logger.info("Starting test case");
 		loginPage.loginToCrafter(userName,password);
 		
 		driverManager.waitUntilLoginCloses();
@@ -147,15 +105,11 @@ public class CopyPasteIntoFolderTest {
 		dashboardPage.expandHomeTree();
 
 		// right click to see the the menu
+		logger.info("Creating new folder");
 		dashboardPage.rightClickNewFolderOnHome();
 
 		// Set the name of the folder
-
-		dashboardPage.setFolderName("FolderToCopy");
-
-		// Create folder button
-
-		dashboardPage.clickCreateButton();
+		dashboardPage.setFolderName("foldertocopy");
 
 		// reload page
 		driverManager.getDriver().navigate().refresh();
@@ -173,10 +127,6 @@ public class CopyPasteIntoFolderTest {
 		// paste the content in the new folder created
 
 		dashboardPage.rightClickToPasteToNewFolder();
-
-		// reload page
-
-		driverManager.getDriver().navigate().refresh();
 
 		Assert.assertTrue(this.driverManager.isElementPresentByXpath(firstCopiedElementXPath));
 		Assert.assertTrue(this.driverManager.isElementPresentByXpath(secondCopiedElementXPath));

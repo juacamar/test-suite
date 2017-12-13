@@ -1,5 +1,7 @@
 package org.craftercms.studio.test.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -24,6 +26,8 @@ import java.util.List;
 import java.util.Properties;
 
 public class WebDriverManager {
+
+	private static final Logger logger = LogManager.getLogger(WebDriverManager.class);
 
 	WebDriver driver;
 	private ConstantsPropertiesManager constantsPropertiesManager;
@@ -141,38 +145,47 @@ public class WebDriverManager {
 	}
 
 	public WebElement waitUntilElementIsDisplayed(String typeOfSelector, String selectorValue) {
+		logger.debug("Waiting for element to be displayed: {}, {}", typeOfSelector, selectorValue);
 		By selector = getSelector(typeOfSelector, selectorValue);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.visibilityOfElementLocated(selector));
 		return driver.findElement(selector);
 	}
 
 	public WebElement waitUntilElementIsClickable(String typeOfSelector, String selectorValue) {
+		logger.debug("Waiting for element to be clickable: {}, {}", typeOfSelector, selectorValue);
 		By selector = getSelector(typeOfSelector, selectorValue);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.elementToBeClickable(selector));
 		return driver.findElement(selector);
 	}
 
 	public void waitUntilElementIsHidden(WebElement element) {
+		logger.debug("Waiting for element to be hidden: {}", element);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.invisibilityOf(element));
 	}
 
 	public void waitUntilAttributeIs(String selectorType, String selectorValue, String attributeName, String
 		attributeValue) {
+		logger.debug("Waiting for element {}, {} to have attribute {} = {}",selectorType, selectorValue,
+			attributeName, attributeValue);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.attributeToBe
 			(getSelector(selectorType, selectorValue), attributeName, attributeValue));
 	}
 
 	public void waitUntilAttributeContains(String selectorType, String selectorValue, String attributeName, String
 		attributeValue) {
+		logger.debug("Waiting for element {}, {} to have attribute {} with {}",selectorType, selectorValue,
+			attributeName, attributeValue);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions
 			.attributeContains(getSelector(selectorType, selectorValue), attributeName, attributeValue));
 	}
 
 	public void waitUntilElementIsRemoved(WebElement element) {
+		logger.debug("Waiting for element to be removed: {}", element);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.stalenessOf(element));
 	}
 
 	public WebElement waitUntilElementIsSelected(String selectorType, String selectorValue) {
+		logger.debug("Waiting for element to be selected: {}, {}", selectorType, selectorValue);
 		By selector = getSelector(selectorType, selectorValue);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.elementToBeSelected(selector));
 		return driver.findElement(selector);
@@ -297,6 +310,10 @@ public class WebDriverManager {
 		return isElementPresent;
 	}
 
+	public void contextClick(String selectorType, String selectorValue, boolean executeThroughJavaScript) {
+		contextClick(driver, waitUntilElementIsClickable(selectorType, selectorValue), executeThroughJavaScript);
+	}
+
 	public void contextClick(WebDriver driver, WebElement element, Boolean executeThroughJavaScript) {
 		if (executeThroughJavaScript) {
 			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');" + "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
@@ -343,16 +360,24 @@ public class WebDriverManager {
 	}
 
 	public void waitUntilLoginCloses() {
+		logger.debug("Waiting for login dialog to close");
 		new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
 	}
 
 	public void waitUntilSidebarOpens() {
+		logger.debug("Waiting for sidebar to open");
 		waitUntilElementIsDisplayed("cssSelector", "div.acn-resize.ui-resizable");
+	}
+
+	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
+		logger.debug("Waiting for folder to open: {}, {}", selectorType, selectorValue);
+		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");
 	}
 
 	// Wrappers
 
 	public void sendText(String selectorType, String selectorValue, String text) {
+		logger.debug("Filling element {}, {} with value {}", selectorType, selectorValue, text);
 		WebElement input = waitUntilElementIsClickable(selectorType, selectorValue);
 		input.clear();
 		input.sendKeys(text);
@@ -378,6 +403,7 @@ public class WebDriverManager {
 	}
 
 	public void usingYuiContainer(Runnable actions) {
+		logger.debug("Switching to YUI container");
 		String selector = "div.yui-panel-container.yui-dialog.yui-simple-dialog.cstudio-dialogue";
 		driver.switchTo().defaultContent();
 		@SuppressWarnings("unused")
@@ -389,6 +415,7 @@ public class WebDriverManager {
 	}
 
 	public void usingCrafterForm(String selectorType, String selectorValue, Runnable actions) {
+		logger.debug("Switching to iframe for form: {}, {}", selectorType, selectorValue);
 		driver.switchTo().defaultContent();
 
 		// Wait until animation completes
@@ -413,6 +440,7 @@ public class WebDriverManager {
 
 	// Same as previuous but without inputs
 	public void usingCrafterDialog(String selectorType, String selectorValue, Runnable actions) {
+		logger.debug("Switching to iframe for form: {}, {}", selectorType, selectorValue);
 		driver.switchTo().defaultContent();
 
 		// Wait until animation completes
