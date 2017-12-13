@@ -17,8 +17,6 @@ public class CreateSiteEmptyTest extends BaseTest {
 	private String userName;
 	private String password;
 	private String siteDropdownElementXPath;
-	private String createSiteButtonXpath;
-	private String sitesTitleXpath;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -26,12 +24,6 @@ public class CreateSiteEmptyTest extends BaseTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		createSiteButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
-		sitesTitleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("sites.pagetitle");
-
-
 	}
 
 	@Test(priority = 0)
@@ -42,9 +34,6 @@ public class CreateSiteEmptyTest extends BaseTest {
 		loginPage.loginToCrafter(userName, password);
 
 		driverManager.waitUntilLoginCloses();
-
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
 		
 		// Click on the create site button
 		homePage.clickOnCreateSiteButton();

@@ -32,8 +32,7 @@ public class EnableDisableEditingInContextTest {
 	private String password;
 
 	private String previewToolsInContextualEditingButton;
-	private String createSiteButtonXpath;
-	private String sitesTitleXpath;
+
 
 	@BeforeClass
 	public void beforeTest() {
@@ -54,10 +53,6 @@ public class EnableDisableEditingInContextTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		previewToolsInContextualEditingButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.previewtools.incontextualeditingbutton");
-		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
-		sitesTitleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagetitle");
 		
 	}
 
@@ -73,8 +68,8 @@ public class EnableDisableEditingInContextTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 		
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
 		homePage.goToPreviewPage();

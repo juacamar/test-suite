@@ -35,12 +35,7 @@ public class LogOutTest {
 
 	private String userName;
 	private String password;
-
 	private String loginButtonLocator;
-
-	private String createSiteButtonXpath;
-
-	private String sitesPageTitleLocator;
 
 	@BeforeClass
 	public void beforeTest() {
@@ -59,9 +54,6 @@ public class LogOutTest {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		loginButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("login.login");
-		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
-		sitesPageTitleLocator = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
 
 	}
 
@@ -78,8 +70,8 @@ public class LogOutTest {
 
 		loginPage.loginToCrafter(userName, password);
 
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesPageTitleLocator);
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 		
 		// LogOut
 		homePage.clickLogoutOutCrafter();

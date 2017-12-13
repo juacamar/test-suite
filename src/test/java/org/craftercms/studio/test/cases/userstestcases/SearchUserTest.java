@@ -162,9 +162,11 @@ public class SearchUserTest {
 
 	public void searchUser() {
 
-		// login to application
-
+		// login to applicatioN
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// create new user
 		createUser();

@@ -77,6 +77,10 @@ public class PaginationOfListOfSitesTest {
 				.getProperty("general.sites.createsitebutton");
 
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
+		
 		// Create Site 1
 		createSitesRandom();
 		// Create Site 2

@@ -360,7 +360,7 @@ public class WebDriverManager {
 	}
 
 	public void usingContextMenu(Runnable actions) {
-		String selector = "div#ContextmenuWrapper0.visible";
+		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";
 		WebElement menu = waitUntilElementIsDisplayed("cssSelector", selector);
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
 
@@ -385,7 +385,6 @@ public class WebDriverManager {
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
 		driver.switchTo().activeElement();
 		actions.run();
-		//waitUntilElementIsHidden(dialog);
 		driver.switchTo().defaultContent();
 	}
 
@@ -399,14 +398,13 @@ public class WebDriverManager {
 		driver.switchTo().frame(frame);
 
 		// Wait until the first input is selected
-		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)]");
+		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
 		new WebDriverWait(driver, defaultTimeOut)
 			.until(webDriver -> firstInput.equals(webDriver.switchTo().activeElement()));
 
 		// Do stuff
 		actions.run();
 
-		// Exit ifreame
 		driver.switchTo().defaultContent();
 
 		// Wait until iframe is hidden

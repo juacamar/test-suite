@@ -43,9 +43,6 @@ public class TryToDeleteUserConnectedTest {
 
 	private CreateSitePage createSitePage;
 	
-	private String sitesTitleXpath;
-	private String createSiteButtonXpath;
-	
 	@BeforeClass
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
@@ -65,12 +62,9 @@ public class TryToDeleteUserConnectedTest {
 				.getProperty("general.users.deletenotallowedparagraph");
 		errorMessageXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.deletenotallowederrorparagraph");
-		sitesTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("sites.pagetitle");
 		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
 		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
-		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
+
 
 	}
 
@@ -85,8 +79,8 @@ public class TryToDeleteUserConnectedTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);	
 	
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		this.driverManager.isElementPresentByXpath(sitesTitleXpath);
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 		
 		// click On Users option
 		createSitePage.clickOnUsersOption();

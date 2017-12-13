@@ -70,7 +70,6 @@ public class WrongLoginTest {
 
 		loginPage.loginToCrafter(userName+"wrong", password);
 		
-
 		// Assert No login for invalid user.
 		WebElement signInWrongUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				alertWrongUserOrPasswordXpath);
