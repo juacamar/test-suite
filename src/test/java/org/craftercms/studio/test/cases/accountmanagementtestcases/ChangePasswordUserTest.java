@@ -1,16 +1,11 @@
 package org.craftercms.studio.test.cases.accountmanagementtestcases;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.AccountManagementPage;
-import org.craftercms.studio.test.pages.CreateSitePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -19,69 +14,50 @@ import org.openqa.selenium.WebElement;
  *
  */
 
-public class ChangePasswordUserTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private CreateSitePage createSitePage;
-	private AccountManagementPage accountManagementPage;
+public class ChangePasswordUserTest extends BaseTest {
 	
 	private String userName;
 	private String password;
-	private String sitePageTitleXpath;
 	private String createSiteButtonXpath;
+	final static Logger logger = LogManager.getLogger(ChangePasswordUserTest.class);
 
-	@BeforeClass
+
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.accountManagementPage = new AccountManagementPage(driverManager, uIElementsPropertiesManager
-				);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		sitePageTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("sites.pagetitle");
-		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		createSiteButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
+		
 	}
 	
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
-
 	@Test(priority = 0)
 
 	public void changePasswordUser() {
-
+		
 		// login to application
+		logger.info("Login into Crafter");
 		loginPage.loginToCrafter(userName, password);
 
-		// wait for element is clickeable
+		// wait for login page to close
 		driverManager.waitUntilLoginCloses();
+		
+		// wait for element is clickable
 		createSitePage.clickAdmin();
 
 		// click on settings
 		createSitePage.clickOnSettingsOption();
 
 		// change password
+		logger.info("Change actual User Password");
 		accountManagementPage.changeUserPassword(userName, "123456", "123456");
 
 		// login to application
+		logger.info("Login into Crafter with the new password");
 		loginPage.loginToCrafter(userName, "123456");
-
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-		this.driverManager.isElementPresentByXpath(sitePageTitleXpath);
+		
+		// wait for login page to close
+		driverManager.waitUntilLoginCloses();
 		
 		// click On admin option
 		createSitePage.clickAdmin();
@@ -90,15 +66,21 @@ public class ChangePasswordUserTest {
 		createSitePage.clickOnSettingsOption();
 
 		// change password
+		logger.info("Restore user admin default password");
 		accountManagementPage.changeUserPassword("123456", userName, "admin");
 
 		// login to application
+		logger.info("Login into Crafter");
 		loginPage.loginToCrafter(userName, password);
+		
+		// wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// Assert create button is present.
+		logger.info("Verify login is correct and Create Site page is displayed");
 		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
 				"xpath", createSiteButtonXpath);
-		Assert.assertTrue(createButton.isDisplayed());
+		Assert.assertTrue(createButton.isDisplayed(),"Create Site Button is not displayed");
 
 	}
 }
