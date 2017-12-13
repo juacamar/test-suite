@@ -1,5 +1,7 @@
 package org.craftercms.studio.test.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +20,7 @@ public class LoginPage {
 	private String userNameXpath;
 	private String passwordXpath;
 	private String loginXpath;
+	private static Logger logger = LogManager.getLogger(LoginPage.class);
 
 	
 	public LoginPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
@@ -60,6 +63,7 @@ public class LoginPage {
 
 	// Login to crafter
 	public void loginToCrafter(String strUserName, String strPasword) {
+		logger.info("Login into Crafter");
 		// Fill user name
 		this.setUserName(strUserName);
 		// Fill password
