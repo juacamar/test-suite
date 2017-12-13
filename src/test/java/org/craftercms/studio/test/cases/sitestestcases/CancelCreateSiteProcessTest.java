@@ -72,6 +72,7 @@ public class CancelCreateSiteProcessTest {
 		loginPage.loginToCrafter(
 				userName,password);
 
+
 		//Wait for login page to close
 		driverManager.waitUntilLoginCloses();
 

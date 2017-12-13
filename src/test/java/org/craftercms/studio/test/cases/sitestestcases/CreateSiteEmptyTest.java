@@ -18,7 +18,6 @@ public class CreateSiteEmptyTest extends BaseTest {
 	private String password;
 	private String siteDropdownElementXPath;
 
-
 	@BeforeClass
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
@@ -52,7 +51,6 @@ public class CreateSiteEmptyTest extends BaseTest {
 		createSitePage.selectEmptyBluePrintOption();
 
 		// Click on Create button
-
 		createSitePage.clickOnCreateSiteButton();
 
 		this.driverManager.waitUntilElementIsClickable("xpath", siteDropdownElementXPath);

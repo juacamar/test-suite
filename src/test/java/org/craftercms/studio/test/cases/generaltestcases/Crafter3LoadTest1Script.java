@@ -240,10 +240,11 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void createNewPageArticleContent() {
 
-		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+	driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// creating random values for URL field and InternalName field
 			String randomURL = "newPageURL" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
 			String randomInternalName = "newPageInternalName" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
+
 
 			// Set basics fields of the new content created
 			dashboardPage.setBasicFieldsOfNewPageArticleContent(randomURL, randomInternalName, "newPageArticlesTitle");
@@ -256,6 +257,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		});
 
 		this.driverManager.waitUntilSidebarOpens();
+
 	}
 
 	public void createPageCategoryLandingPage(WebElement folderWebElement) {
