@@ -522,7 +522,7 @@ public class DashboardPage {
 	public void editInternalName(String strInternalName) {
 		// Fill internal name
 		this.setInternalName1(strInternalName);
-		
+
 		// Save and close button.
 		this.clickSaveClose();
 	}
@@ -663,13 +663,19 @@ public class DashboardPage {
 
 	// Press right click and select edit to the content created
 	public void rightClickToEdit() {
-		this.driverManager.isElementPresentAndClickableByXpath(newContentCreated);
+
+		// wait for the animation to end
+		driverManager.waitUntilSidebarOpens();
+
 		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), editContent, false);
-		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				editRecentlyContentCreated);
-		editOption.click();
+
+		driverManager.usingContextMenu(() -> {
+			WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+					editRecentlyContentCreated);
+			editOption.click();
+		});
 	}
 
 	public void rightClickToSelectEditOption() {
