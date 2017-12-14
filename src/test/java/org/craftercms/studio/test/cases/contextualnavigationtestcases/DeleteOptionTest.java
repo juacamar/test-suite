@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -20,19 +21,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DeleteOptionTest {
-
-	WebDriver driver;
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
-
-	private PreviewPage previewPage;
-
-	private DashboardPage dashboardPage;
+public class DeleteOptionTest extends BaseTest {
 	
 	private String userName;
 	private String password;
@@ -49,31 +38,20 @@ public class DeleteOptionTest {
 
 	@BeforeClass
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
-		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
-		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		homeElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
+		testingItemURLXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
-		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		testItemXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.testingcontentitem");
+		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		testItemXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general"
+			+ ".testingcontentitem");
 	}
 
 	@AfterClass
@@ -100,6 +78,8 @@ public class DeleteOptionTest {
 
 		// body not required
 		this.changeBodyToNotRequiredOnEntryContent();
+
+		driverManager.getDriver().switchTo().defaultContent();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
