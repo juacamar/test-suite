@@ -31,7 +31,6 @@ public class BaseTest {
     protected CreateSitePage createSitePage;
     protected AccountManagementPage accountManagementPage;
     protected SiteConfigPage siteConfigPage;
- 
 
     @BeforeClass
     public void setUp() {

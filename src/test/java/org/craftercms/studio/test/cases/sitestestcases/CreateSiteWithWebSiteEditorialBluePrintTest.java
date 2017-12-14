@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.cases.sitestestcases;
 
+import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -19,12 +20,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CreateSiteWithWebSiteEditorialBluePrintTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private CreateSitePage createSitePage;
+public class CreateSiteWithWebSiteEditorialBluePrintTest extends BaseTest {
 
 	private String userName;
 	private String password;
@@ -33,28 +29,11 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest {
 
 	@BeforeClass
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(this.driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(this.driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(this.driverManager, uIElementsPropertiesManager);
-
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
 
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)
