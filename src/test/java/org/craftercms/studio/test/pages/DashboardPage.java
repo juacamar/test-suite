@@ -1,5 +1,7 @@
 package org.craftercms.studio.test.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -77,6 +79,7 @@ public class DashboardPage {
 	private String editRecentActivity;
 	private String seeThePageEdited;
 	private String copyContentButton;
+	private static Logger logger = LogManager.getLogger(DashboardPage.class);
 
 	/**
 	 * 
@@ -206,10 +209,12 @@ public class DashboardPage {
 	public void clickPagesTree() {
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
 		expandPagesTree.click();
+		driverManager.waitUntilFolderOpens("id", "pages-tree");
 	}
 
 	public void expandPagesTree() {
 		// Expand pages tree
+		logger.info("Expanding Pages tree");
 		this.clickPagesTree();
 	}
 
@@ -222,6 +227,7 @@ public class DashboardPage {
 
 	public void expandHomeTree() {
 		// Expand global entry content
+		logger.info("Expanding Home tree");
 		this.clickGlobalEntryContent();
 	}
 
@@ -238,14 +244,13 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void rightClickHome() {
-		// wait for the animation to end
-		driverManager.waitUntilSidebarOpens();
-
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);
+
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+			homeContent);
 
 		driverManager.usingContextMenu(() -> {
 			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
@@ -256,6 +261,7 @@ public class DashboardPage {
 	}
 
 	public void rightClickToSeeMenu() {
+		logger.info("Right Click to see Menu");
 		// Press right click and select new content
 		this.rightClickHome();
 	}
@@ -310,6 +316,7 @@ public class DashboardPage {
 
 	public void rightClickToFolderOnHome() {
 		// Press right click select new folder
+		logger.info("Right Click  on Folder Home");
 		this.rightClickNewFolderOnHome();
 	}
 
@@ -329,6 +336,7 @@ public class DashboardPage {
 	}
 
 	public void clickEntryCT() {
+		logger.info("Select Entry Content Type");
 		// Select Generic Content type
 		this.selectEntryCT();
 	}
@@ -416,6 +424,7 @@ public class DashboardPage {
 
 	public void setFolderName(String strFolderName) {
 		// Set the name of the folder
+		logger.info("Create a new folder with add newfolder name");
 		this.folderName(strFolderName);
 	}
 
@@ -439,9 +448,6 @@ public class DashboardPage {
 		WebElement copypasteContent = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", aboutUSContentPage);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
-
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// aboutUSContentPage);
 
 		driverManager.usingContextMenu(() -> {
 			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
@@ -508,6 +514,7 @@ public class DashboardPage {
 
 	public void rightClickToPasteIntoFolder() {
 		// Press right click and press paste option
+		logger.debug("Right Click to Paste into Folder");
 		this.rightClickToPasteIntoFolderToTest();
 	}
 
@@ -515,7 +522,7 @@ public class DashboardPage {
 	public void editInternalName(String strInternalName) {
 		// Fill internal name
 		this.setInternalName1(strInternalName);
-		
+
 		// Save and close button.
 		this.clickSaveClose();
 	}
@@ -533,6 +540,7 @@ public class DashboardPage {
 
 	public void rightClickToCutOption() {
 		// Press right click and press cut option
+		logger.debug("Right Click to Cut Option");
 		this.rightClickCutOption();
 	}
 
@@ -614,13 +622,14 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void deleteContent() {
-		this.driverManager.isElementPresentAndClickableByXpath(newContentCreated);
 		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu, false);
-		WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				deleteContent);
-		delContent.click();
+			delContent.click();
+		});
 	}
 
 	public void rightClickToDeleteContent() {
@@ -630,7 +639,6 @@ public class DashboardPage {
 
 	// Ok delete content option
 	public void deleteContentOK() {
-		this.driverManager.isElementPresentAndClickableById(deleteContentOK);
 		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				deleteContentOK);
 		confirmDelete.click();
@@ -655,13 +663,19 @@ public class DashboardPage {
 
 	// Press right click and select edit to the content created
 	public void rightClickToEdit() {
-		this.driverManager.isElementPresentAndClickableByXpath(newContentCreated);
+
+		// wait for the animation to end
+		driverManager.waitUntilSidebarOpens();
+
 		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), editContent, false);
-		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				editRecentlyContentCreated);
-		editOption.click();
+
+		driverManager.usingContextMenu(() -> {
+			WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+					editRecentlyContentCreated);
+			editOption.click();
+		});
 	}
 
 	public void rightClickToSelectEditOption() {

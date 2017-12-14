@@ -1,17 +1,10 @@
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
@@ -19,12 +12,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class ContentTypesAddDataSourceChildContentTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private SiteConfigPage siteConfigPage;
+public class ContentTypesAddDataSourceChildContentTest extends BaseTest {
 	
 	private String userName;
 	private String password;
@@ -36,35 +24,18 @@ public class ContentTypesAddDataSourceChildContentTest {
 
 	@BeforeClass
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-	
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.dataSourceSectionChildContentLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.datasourcechildcontent");
-		this.contentTypeContainerChildContentTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("adminconsole.contenttype.entry.contenttypecontainerchildcontenttitle");
-		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sitedropdown");
-		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.adminconsole");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
+		this.contentTypeContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty
+			("adminconsole.contenttype.entry.contenttypecontainer");
+		this.dataSourceSectionChildContentLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
+			.getProperty("adminconsole.contenttype.entry.datasourcechildcontent");
+		this.contentTypeContainerChildContentTitleLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
+			.getProperty("adminconsole.contenttype.entry.contenttypecontainerchildcontenttitle");
+		siteDropdownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general"
+			+ ".sitedropdown");
+		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general"
+			+ ".adminconsole");
 	}
 
 	public void dragAndDrop() {

@@ -70,10 +70,7 @@ public class CreateSitePage {
 	// Set site name
 
 	public void setSiteName() {
-		WebElement nameNewSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				siteName);
-		nameNewSite.sendKeys("testsite" + RandomStringUtils.randomAlphabetic(5).toLowerCase());
-
+		driverManager.sendText("cssSelector", siteName, "testsite" + RandomStringUtils.randomAlphabetic(5).toLowerCase());
 	}
 
 	public void fillSiteName() {
@@ -96,9 +93,7 @@ public class CreateSitePage {
 	// Set description
 
 	public void setDescription(String strDescription) {
-		WebElement description = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				descriptionSite);
-		description.sendKeys(strDescription);
+		driverManager.sendText("cssSelector", descriptionSite, strDescription);
 	}
 
 	public void fillDescription(String strDescription) {

@@ -1,16 +1,12 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.craftercms.studio.test.cases.BaseTest;
+
 
 /**
  * 
@@ -18,12 +14,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class AddNewContentSectionDefaultsTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private DashboardPage dashboardPage;
+public class AddNewContentSectionDefaultsTest extends BaseTest {
 
 	private String userName;
 	private String password;
@@ -31,36 +22,22 @@ public class AddNewContentSectionDefaultsTest {
 	private String createFormSaveAndCloseElementId;
 	private String siteDropDownXpath;
 	private String sectionDefaultsXpath;
+	private static Logger logger = LogManager.getLogger(AddNewContentSectionDefaultsTest.class);
 	
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
-		
+			
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		siteDropDownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropDownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
-		sectionDefaultsXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		sectionDefaultsXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.sectiondefaults");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void createLevelDescriptorContent() {
@@ -97,7 +74,7 @@ public class AddNewContentSectionDefaultsTest {
 	public void addLevelDescriptorItemUsingContextualClickOptionsTest() {
 
 		// login to application
-
+		logger.info("Login into Crafter");
 		loginPage.loginToCrafter(userName, password);
 		
 		//Wait for login page closes
@@ -111,19 +88,24 @@ public class AddNewContentSectionDefaultsTest {
 				.click();
 
 		// expand pages folder
+		logger.info("Expanding pages folder");
 		dashboardPage.expandPagesTree();
 		
 		// Expand Home Tree
+		logger.info("Expanding Home Tree");
 		dashboardPage.expandHomeTree();
 
 		// Create level descriptor content
+		logger.info("Creating level Descriptor content");
 		createLevelDescriptorContent();
 
 		// Assert of the test case is fine
 		String levelDescriptor = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", sectionDefaultsXpath).getText();
 
-		Assert.assertEquals(levelDescriptor, "Section Defaults");
+		logger.info("Verify Level Descriptor was created");
+		Assert.assertEquals(levelDescriptor, "Section Defaults",
+				"Level descriptors are not the same, check if the level descriptor was succesfully created");
 
 	}
 
