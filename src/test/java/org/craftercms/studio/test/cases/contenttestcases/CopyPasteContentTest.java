@@ -1,8 +1,7 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.cases.BaseTest;
 
@@ -24,7 +23,7 @@ public class CopyPasteContentTest extends BaseTest {
 	private String randomURL;
 	private String randomInternalName;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
@@ -42,11 +41,6 @@ public class CopyPasteContentTest extends BaseTest {
 
 		randomURL = "Test1";
 		randomInternalName = "AboutUS";
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {

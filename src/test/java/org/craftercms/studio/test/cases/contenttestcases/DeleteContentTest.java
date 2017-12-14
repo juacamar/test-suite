@@ -1,18 +1,11 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
-import org.openqa.selenium.WebDriver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
@@ -21,19 +14,9 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DeleteContentTest {
+public class DeleteContentTest extends BaseTest {
 
-	WebDriver driver;
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
-
-	private DashboardPage dashboardPage;
-
-	private PreviewPage previewPage;
+	private static final Logger logger = LogManager.getLogger(DeleteContentTest.class);
 
 	private String userName;
 	private String password;
@@ -50,35 +33,17 @@ public class DeleteContentTest {
 
 	@BeforeClass
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
-
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
-		testingItemURLXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		homeElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
+		testingItemURLXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {
@@ -88,8 +53,10 @@ public class DeleteContentTest {
 	}
 
 	public void createContent() {
-		// right click to see the the menu
+		logger.info("Creating new content");
 		driverManager.waitUntilPageLoad();
+		driverManager.waitUntilSidebarOpens();
+		// right click to see the the menu
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
@@ -101,31 +68,23 @@ public class DeleteContentTest {
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
-		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// Set basics fields of the new content created
+			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+			// Set the title of main content
+			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
-		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
-
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
+			// save and close
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
+		});
 
 	}
 
 	@Test(priority = 0)
 
 	public void deletePageUsingContextualClickDeleteOptionTest() {
-
+		logger.info("Starting test case");
 		loginPage.loginToCrafter(userName, password);
 		
 		//Wait for login page to closes
@@ -134,11 +93,10 @@ public class DeleteContentTest {
 		// go to preview page
 		homePage.goToPreviewPage();
 
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-
 		// body not required
 		this.changeBodyToNotRequiredOnEntryContent();
+
+		driverManager.waitUntilSidebarOpens();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
@@ -146,6 +104,8 @@ public class DeleteContentTest {
 		// create content
 
 		createContent();
+
+		driverManager.waitUntilSidebarOpens();
 
 		// Expand Home Tree
 		dashboardPage.expandHomeTree();
@@ -160,10 +120,6 @@ public class DeleteContentTest {
 
 		// submittal complete ok
 		dashboardPage.clickOKSubmittalComplete();
-
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-		driverManager.getDriver().navigate().refresh();
 
 		String contentCopied = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", testingItemURLXpath).getText();

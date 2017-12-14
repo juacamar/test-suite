@@ -209,6 +209,7 @@ public class DashboardPage {
 	public void clickPagesTree() {
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
 		expandPagesTree.click();
+		driverManager.waitUntilFolderOpens("id", "pages-tree");
 	}
 
 	public void expandPagesTree() {
@@ -243,14 +244,13 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void rightClickHome() {
-		// wait for the animation to end
-		driverManager.waitUntilSidebarOpens();
-
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);
+
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+			homeContent);
 
 		driverManager.usingContextMenu(() -> {
 			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
@@ -522,7 +522,7 @@ public class DashboardPage {
 	public void editInternalName(String strInternalName) {
 		// Fill internal name
 		this.setInternalName1(strInternalName);
-		
+
 		// Save and close button.
 		this.clickSaveClose();
 	}
@@ -622,13 +622,14 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void deleteContent() {
-		this.driverManager.isElementPresentAndClickableByXpath(newContentCreated);
 		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu, false);
-		WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				deleteContent);
-		delContent.click();
+			delContent.click();
+		});
 	}
 
 	public void rightClickToDeleteContent() {
@@ -638,7 +639,6 @@ public class DashboardPage {
 
 	// Ok delete content option
 	public void deleteContentOK() {
-		this.driverManager.isElementPresentAndClickableById(deleteContentOK);
 		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				deleteContentOK);
 		confirmDelete.click();
@@ -663,13 +663,19 @@ public class DashboardPage {
 
 	// Press right click and select edit to the content created
 	public void rightClickToEdit() {
-		this.driverManager.isElementPresentAndClickableByXpath(newContentCreated);
+
+		// wait for the animation to end
+		driverManager.waitUntilSidebarOpens();
+
 		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), editContent, false);
-		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				editRecentlyContentCreated);
-		editOption.click();
+
+		driverManager.usingContextMenu(() -> {
+			WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+					editRecentlyContentCreated);
+			editOption.click();
+		});
 	}
 
 	public void rightClickToSelectEditOption() {
