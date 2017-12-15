@@ -157,6 +157,12 @@ public class WebDriverManager {
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.elementToBeClickable(selector));
 		return driver.findElement(selector);
 	}
+	
+	public void waitUntilElementIsNotDisplayed(String typeOfSelector, String selectorValue) {
+		logger.debug("Waiting for element to be hidden: {} , {}", typeOfSelector, selectorValue);
+		By selector = getSelector(typeOfSelector, selectorValue);
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.invisibilityOf(driver.findElement(selector)));
+	}
 
 	public void waitUntilElementIsHidden(WebElement element) {
 		logger.debug("Waiting for element to be hidden: {}", element);
@@ -375,6 +381,11 @@ public class WebDriverManager {
 		waitUntilElementIsDisplayed("cssSelector", "div.acn-resize.ui-resizable");
 	}
 
+	public void waitUntilSidebarCloses() {
+		logger.debug("Waiting for sidebar to close");
+		waitUntilElementIsNotDisplayed("cssSelector", "div.acn-resize.ui-resizable");	
+	}
+	
 	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
 		logger.debug("Waiting for folder to open: {}, {}", selectorType, selectorValue);
 		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");
