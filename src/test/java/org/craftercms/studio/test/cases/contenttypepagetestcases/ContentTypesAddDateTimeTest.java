@@ -3,10 +3,7 @@
  */
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
-import org.craftercms.studio.test.cases.contextualnavigationtestcases.DuplicateOptionTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

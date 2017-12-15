@@ -27,8 +27,6 @@ public class DeleteContentTest extends BaseTest {
 
 	private String createFormSaveAndCloseElementId;
 
-	private String homeElementXPath;
-
 	private String testingItemURLXpath;
 
 	@BeforeClass
@@ -41,7 +39,6 @@ public class DeleteContentTest extends BaseTest {
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		homeElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 		testingItemURLXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
 	}
