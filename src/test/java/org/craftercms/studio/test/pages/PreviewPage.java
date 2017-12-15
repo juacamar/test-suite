@@ -132,7 +132,6 @@ public class PreviewPage {
 	public void goToAdminConsolePage() {
 
 		// Click on admin console link
-
 		this.clickAdminConsoleOption();
 
 	}
@@ -149,7 +148,6 @@ public class PreviewPage {
 	public void clickOnPreviewTools() {
 
 		// Click on preview tools icon
-
 		this.previewTools();
 
 	}

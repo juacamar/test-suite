@@ -45,6 +45,8 @@ public class PublishingSiteTest extends BaseTest {
 	private String homeXpath;
 
 	private String crafterLogoId;
+	
+	private String generalEditoption;
 
 	private static Logger logger = LogManager.getLogger(PublishingSiteTest.class);
 
@@ -83,6 +85,8 @@ public class PublishingSiteTest extends BaseTest {
 		homeXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 
 		crafterLogoId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		
+		generalEditoption = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.edittopnavoption");
 
 	}
 
@@ -202,18 +206,22 @@ public class PublishingSiteTest extends BaseTest {
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",topNavStatusIcon);
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 
 		String isLifeContent = "";
+		int maxNumberofTries = 10;
 
-		while (!(isLifeContent.contains("undefined live"))) {
-			isLifeContent = this.driverManager.getDriver().findElement(By.xpath(topNavStatusIcon))
-					.getAttribute("class");
+		while (!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0))) {
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditoption);
+			isLifeContent = this.driverManager.getDriver()
+					.findElement(By.xpath(topNavStatusIcon)) 
+					.getAttribute("class").toString();
 			driverManager.getDriver().navigate().refresh();
-			this.dashboardPage.expandHomeTree();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					testingContentItem).click();
+			maxNumberofTries--;
 		}
-
+		
 		String elementClassValue = this.driverManager.getDriver().findElement(By.xpath(topNavStatusIcon))
 				.getAttribute("class");
 		Assert.assertTrue(elementClassValue.contains("undefined live"));
