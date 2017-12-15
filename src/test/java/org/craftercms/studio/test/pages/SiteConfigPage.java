@@ -319,7 +319,9 @@ public class SiteConfigPage {
 	}
 
 	public void clickDateTimeSectionToViewProperties() {
-		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(clickOnDropdownSection);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",clickOnDropdownSection);
+
 		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				clickOnDropdownSection);
 		showSection.click();
