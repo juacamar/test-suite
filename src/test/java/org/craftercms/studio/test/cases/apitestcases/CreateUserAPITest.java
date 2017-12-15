@@ -4,9 +4,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.UserManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterGroups;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -32,28 +30,28 @@ public class CreateUserAPITest {
 		securityAPI.logInIntoStudioUsingAPICall();
 	}
 
-	@Test(priority = 1,groups={"test"})
+	@Test(priority = 1,groups={"createUser"})
 	public void testCreateUser() {
 		userManagementAPI.testCreateUser();
 	}
 
-	@Test(priority = 2,groups={"test"})
+	@Test(priority = 2,groups={"createUser"})
 	public void testUserExist() {
 		userManagementAPI.testCreateUserUserExist();
 	}
 
-	@Test(priority = 3,groups={"test"})
+	@Test(priority = 3,groups={"createUser"})
 	public void testInvalidParameters() {
 		userManagementAPI.testCreateUserInvalidParameters();
 	}
 	
-	@AfterGroups(groups={"test"})
+	@AfterGroups(groups={"createUser"})
 	public void afterTest() {
 		userManagementAPI.testDeleteUser();
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 	
-	@Test(dependsOnGroups={"test"})
+	@Test(dependsOnGroups={"createUser"})
 	public void testCreateUserUnauthorized(){
 		userManagementAPI.testCreateUserUnauthorized();
 	}

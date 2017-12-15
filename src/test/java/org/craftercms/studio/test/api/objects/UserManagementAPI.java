@@ -107,6 +107,12 @@ public class UserManagementAPI extends BaseAPI {
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?username=" + newusername));
 	}
+	
+	public void testGetUserUnauthorized() {
+		api.get("/studio/api/1/services/api/1/user/get.json").urlParam("username", newusername).execute().status(401)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/user/get.json?username=" + newusername));
+	}
 
 	public void testGetUserInvalidParameters() {
 		api.get("/studio/api/1/services/api/1/user/get.json").urlParam("usernamenonvalid", newusername).execute()
@@ -127,6 +133,12 @@ public class UserManagementAPI extends BaseAPI {
 						is(headerLocationBase + "/studio/api/1/services/api/1/user/get-all.json?start=0&number=25"));
 	}
 
+	public void testGetUsersUnauthorized() {
+		api.get("/studio/api/1/services/api/1/user/get-all.json").urlParam("start", "0").urlParam("number", "25")
+				.execute().status(401).header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/user/get-all.json?start=0&number=25"));
+	}
+	
 	public void testGetUsersPerSite(String siteId) {
 		api.get("/studio/api/1/services/api/1/user/get-per-site.json").urlParam("site_id", siteId).execute().status(200)
 				.header("Location",
@@ -145,6 +157,14 @@ public class UserManagementAPI extends BaseAPI {
 	public void testGetUsersPerSiteNotFound() {
 	
 		api.get("/studio/api/1/services/api/1/user/get-per-site.json").urlParam("site_id", "invalid").execute().status(404)
+		.header("Location",
+				is(headerLocationBase + "/studio/api/1/services/api/1/user/get-per-site.json?site_id=invalid&start=0&number=25"));
+
+	}
+	
+	public void testGetUsersPerSiteUnauthorized() {
+		
+		api.get("/studio/api/1/services/api/1/user/get-per-site.json").urlParam("site_id", "").execute().status(401)
 		.header("Location",
 				is(headerLocationBase + "/studio/api/1/services/api/1/user/get-per-site.json?site_id=invalid&start=0&number=25"));
 
