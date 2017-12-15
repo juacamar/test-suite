@@ -20,20 +20,6 @@ public class UserManagementAPI extends BaseAPI {
 	public UserManagementAPI(JsonTester api, APIConnectionManager apiConnectionManager) {
 		super(api, apiConnectionManager);
 	}
-	
-	
-	public void testCreateUserBad() {
-		Map<String, Object> json = new HashMap<>();
-		json.put("username", newusername);
-		json.put("password", newpassword);
-		json.put("first_name", first_name);
-		json.put("last_name", last_name);
-		json.put("email", email);
-
-		api.post("/studio/api/1/services/api/1/user/create.json").json(json).execute().status(400)
-				.json("$.message", is("OK")).debug();
-		
-	}
 
 	public void testCreateUser() {
 		Map<String, Object> json = new HashMap<>();

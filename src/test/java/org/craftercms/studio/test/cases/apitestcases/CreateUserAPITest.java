@@ -45,15 +45,6 @@ public class CreateUserAPITest {
 		userManagementAPI.testCreateUserInvalidParameters();
 	}
 	
-	@Test(priority = 4)
-	public void testCreateUserUnauthorized() {
-
-		securityAPI.logOutFromStudioUsingAPICall();
-		userManagementAPI.testCreateUserUnauthorized();
-		securityAPI.logInIntoStudioUsingAPICall();
-	}
-	
-	
 	@AfterTest
 	public void afterTest() {
 		userManagementAPI.testDeleteUser();
