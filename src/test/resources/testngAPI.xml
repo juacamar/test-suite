@@ -242,6 +242,20 @@
 		</classes>
 	</test>
 	
+<!--	 Publish -->	
+	<test name="Start Publisher" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.StartPublisherAPITest" />
+		</classes>
+	</test>
+	<test name="Stop Publisher" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.StopPublisherAPITest" />
+		</classes>
+	</test>
+	
 <!--	 Preview -->
 	<test name="Preview Sync" preserve-order="true">
 		<classes>
