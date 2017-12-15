@@ -48,6 +48,16 @@ public class GetUserPerSiteAPITest {
 		userManagementAPI.testGetUsersPerSite(siteManagementAPI.getSiteId());
 	}	
 	
+	@Test(priority=2)
+	public void testGetUsersPerSiteInvalidParameters() {
+		userManagementAPI.testGetUsersPerSiteInvalidParameters();
+	}	
+	
+	@Test(priority=3)
+	public void testGetUsersPerSiteNotFound() {
+		userManagementAPI.testGetUsersPerSiteNotFound();
+	}	
+	
 	@AfterTest
 	public void afterTest() {
 		userManagementAPI.testDeleteUser();

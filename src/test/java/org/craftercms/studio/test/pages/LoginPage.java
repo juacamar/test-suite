@@ -76,6 +76,16 @@ public class LoginPage {
 
 	}
 
+	public void loginToCrafterWithWrongCredentials(String strUserName, String strPasword) {
+		logger.info("Login into Crafter");
+		// Fill user name
+		this.setUserName(strUserName);
+		// Fill password
+		this.setPassword(strPasword);
+		// Click Login button
+		this.clickLogin();
+	}
+	
 	public WebDriverManager getDriverManager() {
 		return driverManager;
 	}

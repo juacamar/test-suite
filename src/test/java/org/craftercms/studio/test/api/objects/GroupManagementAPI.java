@@ -124,7 +124,7 @@ public class GroupManagementAPI extends BaseAPI {
 		api.get("/studio/api/1/services/api/1/group/get-all.json").json(json).execute().status(200).header("Location",
 				is(headerLocationBase + "/studio/api/1/services/api/1/group/get-all.json?start=0&number=25"));
 	}
-
+	
 	public void testGetUsersPerGroup(String siteId) {
 		api.get("/studio/api/1/services/api/1/group/users.json").urlParam("group_name", groupName1)
 				.urlParam("site_id", siteId).execute().status(200)
@@ -132,6 +132,12 @@ public class GroupManagementAPI extends BaseAPI {
 						+ siteId + "&group_name=" + this.groupName1 + "&start=0&number=25"));
 	}
 
+	public void testGetUsersPerGroupInvalidParameters(String siteId) {
+		api.get("/studio/api/1/services/api/1/group/users.json").urlParam("group_name", groupName1)
+				.urlParam("site_idnonvalid", siteId).execute().status(400).debug();
+
+	}
+	
 	public void testGetUsersPerGroupSiteNotFound(String siteId) {
 		api.get("/studio/api/1/services/api/1/group/users.json").urlParam("group_name", groupName1)
 				.urlParam("site_id", siteId + "nonvalid").execute().status(404).debug();
@@ -142,6 +148,16 @@ public class GroupManagementAPI extends BaseAPI {
 		api.get("/studio/api/1/services/api/1/group/get-per-site.json").urlParam("site_id", siteId).execute()
 				.status(200)
 		 .header("Location",is(headerLocationBase+"/studio/api/1/services/api/1/group/get-per-site.json?site_id="+siteId+"&start=0&number=25"));
+	}
+	
+	public void testGetGroupsPerSiteInvalidParameters(String siteId) {
+		api.get("/studio/api/1/services/api/1/group/users.json").urlParam("group_name", groupName1)
+		.urlParam("site_idnonvalid",siteId).execute().status(400).debug();
+	}
+	
+	public void testGetGroupsPerSiteNotFound(String siteId) {
+		api.get("/studio/api/1/services/api/1/group/users.json").urlParam("group_name", groupName1)
+		.urlParam("site_id",siteId + "nonvalid").execute().status(404).debug();
 	}
 
 	public void testUpdateGroup(String siteId) {

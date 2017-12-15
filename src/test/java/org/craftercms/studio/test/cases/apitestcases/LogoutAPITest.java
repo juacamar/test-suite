@@ -1,39 +1,37 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
+import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
-
-import java.util.HashMap;
-import java.util.Map;
-
 
 /**
- * Created by gustavo ortiz
+ * Created by gustavo ortiz 
  */
 
 public class LogoutAPITest {
 
-    private JsonTester api;
-    private String username = "admin";
-   	private String password = "admin";
-
+    private SecurityAPI securityAPI;
+	
     public LogoutAPITest(){
     	APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+				apiConnectionManager.getPort());
+    	
+    	securityAPI = new SecurityAPI(api, apiConnectionManager);
 		api = new JsonTester(apiConnectionManager.getProtocol()
 				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
     }
-
-    @Test
-    public void logout(){
-    	Map<String, Object> json = new HashMap<>();
-		json.put("username", username);
-		json.put("password", password);
-		
-		api.post("/studio/api/1/services/api/1/security/logout.json")
-		.json(json).execute().status(200)
-		.json("$.message", is("OK")).debug();
+    
+    @BeforeTest
+    public void beforeTest(){
+    	securityAPI.logInIntoStudioUsingAPICall();
+    }
+    
+    @Test(priority = 1)
+    public void testLogout(){
+    	securityAPI.logOutFromStudioUsingAPICall();
     }
 
 

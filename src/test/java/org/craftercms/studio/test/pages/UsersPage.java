@@ -1,5 +1,7 @@
 package org.craftercms.studio.test.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +14,8 @@ import org.openqa.selenium.WebElement;
  */
 
 public class UsersPage {
+
+	private static final Logger logger = LogManager.getLogger(UsersPage.class);
 
 	private WebDriverManager driverManager;
 	private WebDriver driver;
@@ -46,6 +50,7 @@ public class UsersPage {
 	// Try to delete the user connected
 
 	public void clickDeleteOption() {
+		logger.info("Deleting user");
 		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				deleteUserOption);
 		previewLink.click();
