@@ -81,6 +81,12 @@ public class SiteManagementAPI extends BaseAPI {
 		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id="+ siteId));
    	}
 	
+	public void testGetSiteInvalidParameters() {
+		api.get("/studio/api/1/services/api/1/site/get.json")
+		.urlParam("site_idnonvalid", siteId).execute()
+		.status(400);
+   	}
+	
 	public void testGetSiteSiteNotFound() {
     		api.get("/studio/api/1/services/api/1/site/get.json")
     		.urlParam("site_id", siteId+"nonvalid").execute()

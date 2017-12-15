@@ -43,6 +43,16 @@ public class GetGroupsPerSiteAPITest {
 		groupManagementAPI.testGetGroupsPerSite(siteManagementAPI.getSiteId());
 	}
 	
+	@Test(priority = 2)
+	public void testGetGroupsPerSiteInvalidParameters() {
+		groupManagementAPI.testGetGroupsPerSiteInvalidParameters(siteManagementAPI.getSiteId());
+	}
+	
+	@Test(priority = 3)
+	public void testGetGroupsPerSiteNotFound() {
+		groupManagementAPI.testGetGroupsPerSiteNotFound(siteManagementAPI.getSiteId());
+	}
+	
 	@AfterTest
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);

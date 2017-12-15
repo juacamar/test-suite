@@ -39,6 +39,11 @@ public class GetSiteAPITest {
 	}
 
 	@Test(priority = 2)
+	public void testGetSiteInvalidParameters() {
+		siteManagementAPI.testGetSiteInvalidParameters();
+	}
+	
+	@Test(priority = 3)
 	public void testGetSiteSiteNotFound() {
 		siteManagementAPI.testGetSiteSiteNotFound();
 	}

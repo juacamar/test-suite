@@ -1,6 +1,6 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
-import org.craftercms.studio.test.api.objects.PublishAPI;
+import org.craftercms.studio.test.api.objects.ClipboardAPI;
 import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
@@ -10,24 +10,24 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
- * Created by gustavo ortiz
+ * @author chris lim
+ *
  */
 
-public class StartPublisherAPITest {
-
-	private SiteManagementAPI siteManagementAPI;
+public class CopyItemAPITest {
 	private SecurityAPI securityAPI;
-	private PublishAPI publishAPI;
-
-	public StartPublisherAPITest() {
+	private SiteManagementAPI siteManagementAPI;
+	private ClipboardAPI clipboardAPI;
+	
+	public CopyItemAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
-    	securityAPI = new SecurityAPI(api, apiConnectionManager);
-    	publishAPI = new PublishAPI(api, apiConnectionManager);
-    	siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
+		securityAPI = new SecurityAPI(api, apiConnectionManager);
+		siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
+		clipboardAPI = new ClipboardAPI(api, apiConnectionManager);
 	}
-
+	
 	@BeforeTest
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
@@ -35,24 +35,13 @@ public class StartPublisherAPITest {
 	}
 
 	@Test(priority = 1)
-	public void testStartPublisher() {
-		publishAPI.testStartPublisher(siteManagementAPI.getSiteId());
-	}
-
-	@Test(priority = 2)
-	public void testStartPublisherInvalidParameters() {
-		publishAPI.testStartPublisherInvalidParameters(siteManagementAPI.getSiteId());
-	}
-
-	@Test(priority = 3)
-	public void testStartPublisherSiteNotFound() {
-		publishAPI.testStartPublisherSiteNotFound(siteManagementAPI.getSiteId());
+	public void testCopyItem() {
+		clipboardAPI.testCopyItem(siteManagementAPI.getSiteId());
 	}
 	
 	@AfterTest
-	public void afterTest(){
+	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
-
 }

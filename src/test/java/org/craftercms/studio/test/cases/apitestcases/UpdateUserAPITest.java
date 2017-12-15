@@ -36,7 +36,12 @@ public class UpdateUserAPITest {
 		userManagementAPI.testUpdateUser();
 	}
 	
-	@Test(priority=2)   
+	@Test(priority=2)
+	public void testUpdateUserInvalidParameters() {
+		userManagementAPI.testUpdateUserInvalidParameters();
+	}
+	
+	@Test(priority=3)   
 	public void testUserNotFound() {
 		userManagementAPI.testUpdateUserUserNotFound();
 	}	
