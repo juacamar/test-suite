@@ -44,8 +44,7 @@ public class PublishAPI extends BaseAPI {
 		
 		api.post("/studio/api/1/publish/start.json")
 		.json(json).execute().status(404)
-				// .json("$.message", is("site not found"))
-				.debug();
+		.debug();
 	}
 	
 	public void testStopPublisher(String siteId) {
