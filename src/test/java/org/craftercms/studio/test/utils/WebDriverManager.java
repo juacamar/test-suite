@@ -162,6 +162,12 @@ public class WebDriverManager {
 		logger.debug("Waiting for element to be hidden: {}", element);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.invisibilityOf(element));
 	}
+	
+	public void waitUntilPopupIsHidden() {
+		logger.debug("Waiting for Popup to be hidden");
+		WebElement popupElement = driverWaitUntilElementIsPresentAndDisplayed("id","cstudio-wcm-popup-div_mask");
+		waitUntilElementIsHidden(popupElement);
+	}
 
 	public void waitUntilAttributeIs(String selectorType, String selectorValue, String attributeName, String
 		attributeValue) {

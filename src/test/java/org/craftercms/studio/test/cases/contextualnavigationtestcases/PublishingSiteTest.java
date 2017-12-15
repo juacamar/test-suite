@@ -1,135 +1,150 @@
 package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+
+import org.testng.annotations.BeforeMethod;
+
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+
+import org.apache.logging.log4j.LogManager;
+
+import org.apache.logging.log4j.Logger;
+
+import org.craftercms.studio.test.cases.BaseTest;
+
 import org.openqa.selenium.By;
 
 /**
  * 
+ * 
+ * 
  * @author Gustavo Andrei Ortiz Alfaro
  *
+ * 
+ * 
  */
 
-public class PublishingSiteTest {
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
-
-	private PreviewPage previewPage;
-
-	private DashboardPage dashboardPage;
+public class PublishingSiteTest extends BaseTest {
 
 	private String userName;
-	private String password;
-	private String createFormFrameElementCss;
-	private String createFormMainTitleElementXPath;
-	private String createFormSaveAndCloseElementId;
-	private String studioLogo;
-	private String testingContentItem;
-	private String topNavStatusIcon;
-	private String siteDropdownElementXPath;
 
+	private String password;
+
+	private String createFormFrameElementCss;
+
+	private String createFormMainTitleElementXPath;
+
+	private String createFormSaveAndCloseElementId;
+
+	private String testingContentItem;
+
+	private String topNavStatusIcon;
+
+	private String siteDropdownElementXPath;
 
 	private String homeXpath;
 
 	private String crafterLogoId;
 
-	@BeforeClass
+	private static Logger logger = LogManager.getLogger(PublishingSiteTest.class);
+
+	@BeforeMethod
+
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
+
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
+
 				.getProperty("general.createformframe");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.createformMainTitle");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+
+		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+
+				.getProperty("general.createformTitle");
+
+		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+
 				.getProperty("general.saveandclosebutton");
-		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		testingContentItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+
+		testingContentItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
+
 				.getProperty("general.testingcontentitem");
-		topNavStatusIcon = UIElementsPropertiesManager.getSharedUIElementsLocators()
+
+		topNavStatusIcon = uiElementsPropertiesManager.getSharedUIElementsLocators()
+
 				.getProperty("general.statustopbaricon");
-		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+
+		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+
 				.getProperty("complexscenarios.general.sitedropdown");
-		homeXpath = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
-		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 
-	}
+		homeXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
+		crafterLogoId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {
 
 		previewPage.changeBodyOfEntryContentPageToNotRequired();
+
 	}
 
-	public void createContent() {
+	public void createNewContent() {
 
 		// right click to see the the menu
+
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
+
 		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
+
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
-		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
-		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
-		// reload page
-		driverManager.getDriver().navigate().refresh();
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+
+			// Set basics fields of the new content created
+
+			logger.info("Set the fields of the new content");
+
+			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+
+			// Set the title of main content
+
+			this.driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
+
+			// save and close
+
+			logger.info("Click on Save and close button");
+
+			this.driverManager
+
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.click();
+
+		});
 
 	}
 
 	public void approveAndPublish() {
 
 		// approve and publish
+
 		previewPage.clickOnApprovePublish();
 
 		// submit
+
 		previewPage.clickOnSubmitButtonOfApprovePublish();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeXpath);
+
 	}
 
 	@Test(priority = 0)
@@ -137,46 +152,57 @@ public class PublishingSiteTest {
 	public void publishingSite() {
 
 		// login to application
+
 		loginPage.loginToCrafter(userName, password);
-		
-		//Wait for login page to close
+
+		// Wait for login page to closes
+
 		driverManager.waitUntilLoginCloses();
 
-		// go to preview page
+		// goto preview page
+
 		homePage.goToPreviewPage();
+
+		// select the content type to the test
 
 		changeBodyToNotRequiredOnEntryContent();
 
-		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
+		// Switch to the form
+
+		driverManager.getDriver().navigate().refresh();
+
+		driverManager.getDriver().switchTo().defaultContent();
 
 		// expand pages folder
+
 		dashboardPage.expandPagesTree();
 
-		// create content
-		createContent();
+		// expand home content
 
 		dashboardPage.expandHomeTree();
 
-		// wait for element is clickeable
+		// create a new content
+
+		createNewContent();
+
+		// reload page
 		driverManager.getDriver().navigate().refresh();
 
-		//this.driverManager.isElementPresentAndClickableByXpath(testingContentItem);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
 
 		// approve and publish
 		approveAndPublish();
 
 		driverManager.getDriver().navigate().refresh();
-		driverManager.getDriver().navigate().refresh();
 
 		driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", crafterLogoId).click();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
+		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
 
-		this.driverManager.waitWhileElementIsPresentByXpath(topNavStatusIcon);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",topNavStatusIcon);
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 
 		String isLifeContent = "";
@@ -192,6 +218,6 @@ public class PublishingSiteTest {
 				.getAttribute("class");
 		Assert.assertTrue(elementClassValue.contains("undefined live"));
 
-	}
-
+}
+	
 }
