@@ -106,7 +106,6 @@ public class HomePage {
 
 	// Click on Delete icon to the site
 	public void clickDeleteSiteIcon() {
-		this.driverManager.isElementPresentAndClickableByXpath(deleteSiteIcon);
 		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				deleteSiteIcon);
 		deleteIcon.click();

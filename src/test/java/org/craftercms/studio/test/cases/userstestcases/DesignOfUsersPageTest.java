@@ -2,15 +2,9 @@ package org.craftercms.studio.test.cases.userstestcases;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.CreateSitePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 
 /**
  * 
@@ -18,11 +12,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DesignOfUsersPageTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private CreateSitePage createSitePage;
+public class DesignOfUsersPageTest extends BaseTest{
 
 	private String userName;
 	private String password;
@@ -36,49 +26,34 @@ public class DesignOfUsersPageTest {
 	private String newUserButtonXpath;
 	private String userSearchXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		usersTitleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		usersTitleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.userstitle");
-		crafterLogoXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		crafterLogoXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.crafterlogo");
-		usersTopNavOptionXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		usersTopNavOptionXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.homeusers");
-		sitesTopNavOptionXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		sitesTopNavOptionXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.homesites");
-		helpTopNavOptionXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		helpTopNavOptionXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.homehelp");
-		accountTopNavOptionXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		accountTopNavOptionXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.accountdropdown");
-		usersPerPageInputXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		usersPerPageInputXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersperpageinput");
-		newUserButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		newUserButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.newuserbutton");
-		userSearchXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		userSearchXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.userssearchinput");
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
 
 	@Test(priority = 0)
-
-	public void desingOfUsersPageTest() {
+	public void verifyTheDesingOfUsersPageTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);

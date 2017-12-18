@@ -2,14 +2,9 @@ package org.craftercms.studio.test.cases.sanitytesttestcases;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 
 /**
  * 
@@ -17,44 +12,25 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  */
 
 //Test to cover ticket https://github.com/craftercms/craftercms/issues/1435
-public class AutomateLoginInToStudio {
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
+public class AutomateLoginInToStudio extends BaseTest{
 
 	private String userName;
 	private String password;
-
 	private String createSiteButtonXpath;
 	private String sitesPageTitle;
 	private String sitesPageURL;
 	
-	@BeforeClass
+	@BeforeMethod 
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		createSiteButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createSiteButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-		sitesPageTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		sitesPageTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.sitespagetitle"); 
-		sitesPageURL = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		sitesPageURL = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.sitepageurl");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)

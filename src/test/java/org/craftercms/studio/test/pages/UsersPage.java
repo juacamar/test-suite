@@ -77,7 +77,6 @@ public class UsersPage {
 
 	// Click on Save New User Button
 	public void clickSaveNewUserButton() {
-		this.driverManager.isElementPresentBycssSelector(saveNewUserOption);
 		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				saveNewUserOption);
 		saveNewUser.click();
@@ -91,7 +90,6 @@ public class UsersPage {
 
 	// Delete User
 	public void clickDeleteOptionCreated() {
-		this.driverManager.isElementPresentAndClickableBycssSelector(deleteUserOptionNonAdmin);
 		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				deleteUserOptionNonAdmin);
 		deleteIcon.click();
