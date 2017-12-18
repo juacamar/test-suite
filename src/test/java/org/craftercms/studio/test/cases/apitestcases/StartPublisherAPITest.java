@@ -5,7 +5,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -34,25 +34,30 @@ public class StartPublisherAPITest {
 		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups={"startPublisher"})
 	public void testStartPublisher() {
 		publishAPI.testStartPublisher(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2,groups={"startPublisher"})
 	public void testStartPublisherInvalidParameters() {
 		publishAPI.testStartPublisherInvalidParameters(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3,groups={"startPublisher"})
 	public void testStartPublisherSiteNotFound() {
 		publishAPI.testStartPublisherSiteNotFound(siteManagementAPI.getSiteId());
 	}
 	
-	@AfterTest
+	@AfterGroups(groups={"startPublisher"})
 	public void afterTest(){
 		siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
 		securityAPI.logOutFromStudioUsingAPICall();
+	}
+	
+	@Test(dependsOnGroups={"startPublisher"})
+	public void testStartPublisherUnauthorized(){
+		publishAPI.testStartPublisherUnauthorized(siteManagementAPI.getSiteId());
 	}
 
 }

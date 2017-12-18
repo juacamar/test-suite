@@ -47,6 +47,15 @@ public class PublishAPI extends BaseAPI {
 		.debug();
 	}
 	
+	public void testStartPublisherUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		
+		api.post("/studio/api/1/services/api/1/publish/start.json")
+		.json(json).execute().status(401)
+				.debug();
+	}
+	
 	public void testStopPublisher(String siteId) {
 		Map<String, Object> json = new HashMap<>();
 		json.put("site_id", siteId);
@@ -72,6 +81,15 @@ public class PublishAPI extends BaseAPI {
 		api.post("/studio/api/1/services/api/1/publish/stop.json")
 		.json(json).execute().status(404)
 				// .json("$.message", is("site not found"))
+				.debug();
+	}
+	
+	public void testStopPublisherUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		
+		api.post("/studio/api/1/services/api/1/publish/stop.json")
+		.json(json).execute().status(401)
 				.debug();
 	}
 }
