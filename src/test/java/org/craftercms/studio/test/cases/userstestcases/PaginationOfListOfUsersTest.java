@@ -1,16 +1,9 @@
 package org.craftercms.studio.test.cases.userstestcases;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.craftercms.studio.test.pages.CreateSitePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.UsersPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 
 /**
  * 
@@ -18,12 +11,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class PaginationOfListOfUsersTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private CreateSitePage createSitePage;
-	private UsersPage usersPage;
+public class PaginationOfListOfUsersTest extends BaseTest{
 
 	private String userName;
 	private String password;
@@ -40,50 +28,36 @@ public class PaginationOfListOfUsersTest {
 	private String firstArrowOfPaginationXpath;
 	private String deleteYesButtonXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-		this.usersPage = new UsersPage(driverManager, uIElementsPropertiesManager);
-		newUserFirstNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		newUserFirstNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.firstname");
-		newUserLastNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		newUserLastNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.lastname");
-		newUserEmailId = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.users.email");
-		newUserUserNameId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		newUserEmailId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.users.email");
+		newUserUserNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.username");
-		newUserPasswordId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		newUserPasswordId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.password");
-		newUserPasswordVerificationId = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		newUserPasswordVerificationId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.passwordVerification");
-		usersPerPageInputXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		usersPerPageInputXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersperpageinput");
-		lastNumberOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		lastNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagination.lastnumberelement");
-		firstNumberOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		firstNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagination.firstnumberelement");
-		lastArrowOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		lastArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagination.lastarrowelement");
-		firstArrowOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		firstArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagination.firstarrowelement");
-		deleteYesButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		deleteYesButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.deleteyesbutton");
 
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void createUserRandom() {
