@@ -53,4 +53,9 @@ public class CreateSiteAPITest {
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 
+	@Test(dependsOnGroups={"createSite"})
+	public void testCreateSiteUnauthorized(){
+		
+		
+	}
 }
