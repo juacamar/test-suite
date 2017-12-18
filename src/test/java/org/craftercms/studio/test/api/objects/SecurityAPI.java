@@ -36,6 +36,14 @@ public class SecurityAPI extends BaseAPI{
 		json.put("password", password);
 		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(200);
 	}
+	
+	public void testLogInUnauthorized() {
+		Map<String, Object> json = new HashMap<>();
+		json.put("username", userName+"nonvalid");
+		json.put("password", password+"nonvalid");
+		api.post("/studio/api/1/services/api/1/security/login.json").json(json).execute().status(401);
+		
+	}
 
 	public void logOutFromStudioUsingAPICall() {
 		Map<String, Object> json = new HashMap<>();

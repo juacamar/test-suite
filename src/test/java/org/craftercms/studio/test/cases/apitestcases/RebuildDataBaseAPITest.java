@@ -40,7 +40,6 @@ public class RebuildDataBaseAPITest {
     	repoManagementAPI.testRebuildDatabase(siteManagementAPI.getSiteId());
    	}
     
-    
     @AfterTest
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);
