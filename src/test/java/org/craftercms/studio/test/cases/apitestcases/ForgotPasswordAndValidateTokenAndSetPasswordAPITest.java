@@ -47,32 +47,36 @@ public class ForgotPasswordAndValidateTokenAndSetPasswordAPITest {
 	}
 	
 	@Test(priority=2)
-	public void testForgotPasswordUserNotFound() {
-		userManagementAPI.testForgotPasswordUserNotFound();
-
+	public void testForgotPasswordInvalidParameters() {
+		userManagementAPI.testForgotPasswordInvalidParameters();
 	}
 	
 	@Test(priority=3)
+	public void testForgotPasswordUserNotFound() {
+		userManagementAPI.testForgotPasswordUserNotFound();
+	}
+	
+	@Test(priority=4)
 	public void testForgotPasswordInternalServerError() {
 		userManagementAPI.testForgotPasswordInternalServerError();
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void testValidateToken() {
 		userManagementAPI.testValidateToken();
 	}
 
-	@Test(priority = 5)
+	@Test(priority = 6)
 	public void testValidateTokenInvalidParameters() {
 		userManagementAPI.testValidateTokenInvalidParameters();
 	}
 	
-	@Test(priority = 6)
+	@Test(priority = 7)
 	public void testSetPassword() {
 		userManagementAPI.testSetPassword();
 	}
 
-	@Test(priority = 7)
+	@Test(priority = 8)
 	public void testSetPasswordInvalidParameters() {
 		userManagementAPI.testSetPasswordInvalidParameters();
 		isTheLastPassed=true;

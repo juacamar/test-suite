@@ -1,44 +1,50 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
+import org.craftercms.studio.test.api.objects.PreviewAPI;
 import org.craftercms.studio.test.api.objects.SecurityAPI;
+import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-
 /**
- * Created by gustavo ortiz 
+ * Created by chris lim
  */
 
-public class ValidateSessionAPITest {
+public class PreviewSyncAPITest {
 
+    private PreviewAPI previewAPI;
+    private SiteManagementAPI siteManagementAPI;
     private SecurityAPI securityAPI;
-	
-    public ValidateSessionAPITest(){
+    private String siteId = "previewSyncSiteTest";
+    
+    public PreviewSyncAPITest(){
     	APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
     	
+		previewAPI = new PreviewAPI(api, apiConnectionManager);
+    	siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
     	securityAPI = new SecurityAPI(api, apiConnectionManager);
-		api = new JsonTester(apiConnectionManager.getProtocol()
-				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
     }
 
     @BeforeTest
-    public void beforeTest(){
+    public void beforeTest() {
     	securityAPI.logInIntoStudioUsingAPICall();
+    	siteManagementAPI.testCreateSite(siteId);
     }
     
     @Test(priority=1)
-    public void validateSession(){
-    	securityAPI.testValidateSession();
+    public void testPreviewSync(){
+    	previewAPI.testPreviewSync(siteId);
     }
     
-    @Test(priority=2)
-    public void testValidateSessionUnauthorized(){
+    @AfterTest
+    public void afterTest() {
+    	
+    	siteManagementAPI.testDeleteSite(siteId);
     	securityAPI.logOutFromStudioUsingAPICall();
-    	securityAPI.testValidateSessionUnauthorized();
     }
- 
 }

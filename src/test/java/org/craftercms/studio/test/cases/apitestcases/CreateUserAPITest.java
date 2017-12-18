@@ -44,7 +44,7 @@ public class CreateUserAPITest {
 	public void testInvalidParameters() {
 		userManagementAPI.testCreateUserInvalidParameters();
 	}
-
+	
 	@AfterTest
 	public void afterTest() {
 		userManagementAPI.testDeleteUser();

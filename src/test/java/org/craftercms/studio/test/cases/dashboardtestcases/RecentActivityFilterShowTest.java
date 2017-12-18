@@ -1,18 +1,12 @@
 package org.craftercms.studio.test.cases.dashboardtestcases;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
@@ -20,21 +14,13 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class RecentActivityFilterShowTest {
+public class RecentActivityFilterShowTest extends BaseTest {
 
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
-
-	private DashboardPage dashboardPage;
+	private static final Logger logger = LogManager.getLogger(RecentActivityFilterShowTest.class);
 	
 	private String userName;
 	private String password;
-	
 
-	private PreviewPage previewPage;
 	private String createFormFrameElementCss;
 	private String createFormMainTitleElementXPath;
 	private String createFormExpandAll;
@@ -46,45 +32,25 @@ public class RecentActivityFilterShowTest {
 	
 	@BeforeClass
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
-
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormExpandAll= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformMainTitle");
-		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		homeElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.home");
-		myRecentActivityShowInputXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		myRecentActivityShowInputXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.showinput");
-		myRecentActivityFirstItemURLXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		myRecentActivityFirstItemURLXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
-		myRecentActivitySecondItemURLXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		myRecentActivitySecondItemURLXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.secondelementurl");
 	
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {
@@ -94,7 +60,10 @@ public class RecentActivityFilterShowTest {
 	}
 
 	public void createContent() {
+		logger.info("Creating first content");
 
+		driverManager.waitUntilPageLoad();
+		driverManager.waitUntilSidebarOpens();
 		// right click to see the the menu
 		dashboardPage.rightClickToSeeMenu();
 
@@ -105,39 +74,31 @@ public class RecentActivityFilterShowTest {
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "cssSelector", createFormFrameElementCss));
-		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// Set basics fields of the new content created
+			dashboardPage.setBasicFieldsOfNewContent("AboutUs", "AboutUs");
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("AboutUs", "AboutUs");
+			// Set the title of main content
+			driverManager.sendText("cssSelector", createFormMainTitleElementXPath, "MainTitle");
 
-		// Set the title of main content
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
-
-		// click necessary to validate all fields required
-		this.driverManager.scrollUp();
-		this.driverManager
+			// click necessary to validate all fields required
+			this.driverManager.scrollUp();
+			this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
 				.click();
 
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
+			// save and close
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
 				.click();
-
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
-
+		});
 	}
 
 	public void createSecondContent() {
-		// right click to see the the menu
+		logger.info("Creating second content");
 
+		driverManager.waitUntilPageLoad();
+		driverManager.waitUntilSidebarOpens();
+		// right click to see the the menu
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
@@ -148,32 +109,23 @@ public class RecentActivityFilterShowTest {
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				 "cssSelector", createFormFrameElementCss));
-		this.driverManager.isElementPresentAndClickableBycssSelector( createFormFrameElementCss);
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// Set basics fields of the new content created
+			dashboardPage.setBasicFieldsOfNewContent("AboutUs1", "AboutUs1");
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("AboutUs1", "AboutUs1");
+			// Set the title of main content
+			driverManager.sendText("cssSelector", createFormMainTitleElementXPath, "MainTitle");
 
-		// Set the title of main content
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
-
-		// click necessary to validate all fields required
-		this.driverManager.scrollUp();
-		this.driverManager
+			// click necessary to validate all fields required
+			this.driverManager.scrollUp();
+			this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
 				.click();
 
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
+			// save and close
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
 				.click();
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
+		});
 	}
 
 	public void filtersAndAsserts() {
@@ -183,10 +135,11 @@ public class RecentActivityFilterShowTest {
 				myRecentActivityShowInputXPath).clear();
 
 		// Show only 1 item edited
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				myRecentActivityShowInputXPath).sendKeys("1", Keys.ENTER);
+		driverManager.sendText("xpath", myRecentActivityShowInputXPath, "1");
+		driverManager.waitUntilElementIsDisplayed( "xpath", myRecentActivityShowInputXPath)
+			.sendKeys(Keys.ENTER);
 
-		this.driverManager.isElementPresentByXpath(myRecentActivityFirstItemURLXPath);
+		driverManager.waitUntilElementIsDisplayed("xpath", myRecentActivityFirstItemURLXPath);
 		
 		// Assert filter 1
 		String edit1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
@@ -199,10 +152,11 @@ public class RecentActivityFilterShowTest {
 				myRecentActivityShowInputXPath).clear();
 
 		// Show only 1 item edited
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				myRecentActivityShowInputXPath).sendKeys("2", Keys.ENTER);
+		driverManager.sendText("xpath", myRecentActivityShowInputXPath, "2");
+		driverManager.waitUntilElementIsDisplayed( "xpath", myRecentActivityShowInputXPath)
+			.sendKeys(Keys.ENTER);
 
-		this.driverManager.isElementPresentByXpath(myRecentActivitySecondItemURLXPath);
+		driverManager.waitUntilElementIsDisplayed("xpath", myRecentActivitySecondItemURLXPath);
 		
 		// Assert filter 1
 		String edit2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
@@ -212,6 +166,7 @@ public class RecentActivityFilterShowTest {
 
 	@Test(priority = 0)
 	public void verifyThatTheShowInputWorksProperlyOnRecentActivityWidgetTest() {
+		logger.info("Starting test case");
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);

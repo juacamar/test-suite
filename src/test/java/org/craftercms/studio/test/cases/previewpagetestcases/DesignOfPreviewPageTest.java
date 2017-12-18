@@ -1,17 +1,11 @@
 package org.craftercms.studio.test.cases.previewpagetestcases;
 
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 
 /**
  * 
@@ -20,19 +14,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DesignOfPreviewPageTest {
-
-	WebDriver driver;
-
-	LoginPage objLogin;
-
-	HomePage objHomePage;
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
+public class DesignOfPreviewPageTest extends BaseTest {
 
 	private String userName;
 	private String password;
@@ -52,51 +34,35 @@ public class DesignOfPreviewPageTest {
 
 
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		crafterLogoId = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		siteDropDownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		crafterLogoId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
+		siteDropDownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
-		searchTopBarOptionId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		searchTopBarOptionId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.preview.searchtopbaroption");
-		accountDropdownTopBarOptionId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		accountDropdownTopBarOptionId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.preview.accountdropdowntopbaroption");
-		topNavDeleteOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavDeleteOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.deletetopnavoption");
-		topNavEditOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavEditOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.edittopnavoption");
-		topNavHistoryOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavHistoryOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.historytopnavoption");
-		topNavDependenciesOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavDependenciesOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.dependenciestopnavoption");
-		dashboardOptionXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		dashboardOptionXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.dashboard");
-		adminConsoleXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-		topNavUsersOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavUsersOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.userstopnavoption");
-		topNavSitesOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavSitesOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitestopnavoption");
 
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)
@@ -118,47 +84,47 @@ public class DesignOfPreviewPageTest {
 
 		// Assert crafter studio logo is present.
 		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId);
-		Assert.assertTrue(logoCrafter.isDisplayed());
+		Assert.assertTrue(logoCrafter.isDisplayed(), "ERROR: Crafter logo is not displayed");
 
 		// Assert site content option is present.
 		WebElement siteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				siteDropDownXpath);
 
-		Assert.assertTrue(siteContent.isDisplayed());
+		Assert.assertTrue(siteContent.isDisplayed(), "ERROR: Site content option is not displayed");
 
 		// Assert search field is present.
 		WebElement searchField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				searchTopBarOptionId);
 
-		Assert.assertTrue(searchField.isDisplayed());
+		Assert.assertTrue(searchField.isDisplayed(), "ERROR: Search Field is not displayed");
 
 		// Assert account option is present.
 		WebElement signUp = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				accountDropdownTopBarOptionId);
 
-		Assert.assertTrue(signUp.isDisplayed());
+		Assert.assertTrue(signUp.isDisplayed(), "ERROR: Account option is not displayed");
 
 		// Assert Edit option is present.
 		WebElement editOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				topNavEditOption);
 
-		Assert.assertTrue(editOption.isDisplayed());
+		Assert.assertTrue(editOption.isDisplayed(), "ERROR: Edit option is not displayed");
 
 		// Assert delete option is present.
 		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				topNavDeleteOption);
 
-		Assert.assertTrue(deleteOption.isDisplayed());
+		Assert.assertTrue(deleteOption.isDisplayed(), "ERROR: Delete option is not displayed");
 
 		// Assert history option is present.
 		WebElement historyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				topNavHistoryOption);
-		Assert.assertTrue(historyOption.isDisplayed());
+		Assert.assertTrue(historyOption.isDisplayed(), "ERROR: history option is not displayed");
 
 		// Assert history option is present.
 		WebElement dependencies = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				topNavDependenciesOption);
-		Assert.assertTrue(dependencies.isDisplayed());
+		Assert.assertTrue(dependencies.isDisplayed(), "ERROR: Dependencies option is not displayed");
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
@@ -167,22 +133,22 @@ public class DesignOfPreviewPageTest {
 		// Assert all Sites Dropdown option is present.
 		WebElement dashboard = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				dashboardOptionXpath);
-		Assert.assertTrue(dashboard.isDisplayed());
+		Assert.assertTrue(dashboard.isDisplayed(), "ERROR: All sites option is not displayed");
 
 		// Assert Users option is present.
 		WebElement usersOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				topNavUsersOption);
-		Assert.assertTrue(usersOption.isDisplayed());
+		Assert.assertTrue(usersOption.isDisplayed(), "ERROR: Users option is not displayed");
 
 		// Assert sites option is present.
 		WebElement sitesOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				topNavSitesOption);
-		Assert.assertTrue(sitesOption.isDisplayed());
+		Assert.assertTrue(sitesOption.isDisplayed(), "ERROR: All sites option is not displayed");
 
 		// Assert admin console option is present.
 		WebElement adminConsoleOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				adminConsoleXpath);
-		Assert.assertTrue(adminConsoleOption.isDisplayed());
+		Assert.assertTrue(adminConsoleOption.isDisplayed(), "ERROR: Admin Console option is not displayed");
 
 	}
 

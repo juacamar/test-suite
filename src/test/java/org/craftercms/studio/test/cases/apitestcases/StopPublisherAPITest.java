@@ -10,16 +10,16 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
- * Created by gustavo ortiz
+ * Created by chris lim
  */
 
-public class StartPublisherAPITest {
+public class StopPublisherAPITest {
 
 	private SiteManagementAPI siteManagementAPI;
 	private SecurityAPI securityAPI;
 	private PublishAPI publishAPI;
 
-	public StartPublisherAPITest() {
+	public StopPublisherAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -35,18 +35,18 @@ public class StartPublisherAPITest {
 	}
 
 	@Test(priority = 1)
-	public void testStartPublisher() {
-		publishAPI.testStartPublisher(siteManagementAPI.getSiteId());
+	public void testStopPublisher() {
+		publishAPI.testStopPublisher(siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 2)
-	public void testStartPublisherInvalidParameters() {
-		publishAPI.testStartPublisherInvalidParameters(siteManagementAPI.getSiteId());
+	public void testStopPublisherInvalidParameters() {
+		publishAPI.testStopPublisherInvalidParameters(siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 3)
-	public void testStartPublisherSiteNotFound() {
-		publishAPI.testStartPublisherSiteNotFound(siteManagementAPI.getSiteId());
+	public void testStopPublisherSiteNotFound() {
+		publishAPI.testStopPublisherSiteNotFound(siteManagementAPI.getSiteId());
 	}
 	
 	@AfterTest

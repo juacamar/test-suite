@@ -1,5 +1,7 @@
 package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -14,14 +16,15 @@ import org.testng.annotations.Test;
  */
 
 public class DeleteOptionTest extends BaseTest {
-	
+
+	private static final Logger logger = LogManager.getLogger(DeleteOptionTest.class);
+
 	private String userName;
 	private String password;
 
 	private String createFormFrameElementCss;
 	private String createFormSaveAndCloseElementId;
 	private String createFormMainTitleElementXPath;
-	private String homeElementXPath;
 	private String testingItemURLXpath;
 	private String studioLogo;
 
@@ -38,7 +41,6 @@ public class DeleteOptionTest extends BaseTest {
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		homeElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
 		testingItemURLXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
 		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
@@ -46,14 +48,9 @@ public class DeleteOptionTest extends BaseTest {
 			+ ".testingcontentitem");
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
-
 	@Test(priority = 0)
 	public void deletePageUsingContextualNavigationDeleteOptionTest() {
-
+		logger.info("Starting test case");
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
@@ -63,7 +60,6 @@ public class DeleteOptionTest extends BaseTest {
 
 		// go to preview page
 		homePage.goToPreviewPage();
-
 	
 		// reload page
 		driverManager.getDriver().navigate().refresh();
@@ -111,6 +107,9 @@ public class DeleteOptionTest extends BaseTest {
 	}
 	
 	public void createContent() {
+		logger.info("Creating new content");
+		driverManager.waitUntilPageLoad();
+		driverManager.waitUntilSidebarOpens();
 		// right click to see the the menu
 		dashboardPage.rightClickToSeeMenu();
 
@@ -121,27 +120,16 @@ public class DeleteOptionTest extends BaseTest {
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", createFormFrameElementCss));
-		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// Set basics fields of the new content created
+			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
+			// Set the title of main content
+			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
-
-		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
-		
-		// save and close
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
-		
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
+			// save and close
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
+		});
 
 	}
 

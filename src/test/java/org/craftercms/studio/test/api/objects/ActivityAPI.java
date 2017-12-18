@@ -1,0 +1,11 @@
+package org.craftercms.studio.test.api.objects;
+
+import org.craftercms.studio.test.utils.APIConnectionManager;
+import org.craftercms.studio.test.utils.JsonTester;
+
+public class ActivityAPI extends BaseAPI{
+
+	public ActivityAPI(JsonTester api, APIConnectionManager apiConnectionManager) {
+		super(api, apiConnectionManager);
+	}
+}

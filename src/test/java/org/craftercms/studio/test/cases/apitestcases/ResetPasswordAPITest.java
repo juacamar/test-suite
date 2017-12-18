@@ -39,6 +39,11 @@ public class ResetPasswordAPITest {
 	}
 	
 	@Test(priority=2)
+	public void testResetPasswordInvalidParameters() {
+		userManagementAPI.testResetPasswordInvalidParameters();
+	}
+	
+	@Test(priority=3)
 	public void testUserNotFound() {
 		userManagementAPI.testResetPasswordUserNotFound();
 	}
