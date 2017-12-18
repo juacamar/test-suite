@@ -270,6 +270,14 @@ public class GroupManagementAPI extends BaseAPI {
 				.json("$.message", is("Group not found")).debug();
 
 	}
+	
+	public void testDeleteGroupUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("group_name", groupName1);
+		json.put("site_id", siteId);
+		api.post("/studio/api/1/services/api/1/group/delete.json").json(json).execute().status(401);
+	}
+
 
 	public void testAddUserToGroup(String username, String siteId) {
 		Map<String, Object> json = new HashMap<>();
