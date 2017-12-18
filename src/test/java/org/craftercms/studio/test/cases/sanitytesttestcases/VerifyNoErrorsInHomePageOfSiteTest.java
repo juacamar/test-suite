@@ -3,7 +3,7 @@
  */
 package org.craftercms.studio.test.cases.sanitytesttestcases;
 
-import org.testng.annotations.AfterMethod;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,9 +11,7 @@ import org.testng.annotations.Test;
  * @author luishernandez
  *
  */
-public class VerifyNoErrorsInHomePageOfSiteTest {
-
-//	private WebDriverManager driverManager;
+public class VerifyNoErrorsInHomePageOfSiteTest extends BaseTest{
 
 //	private String userName;
 //	private String password;
@@ -34,15 +32,8 @@ public class VerifyNoErrorsInHomePageOfSiteTest {
 
 	}
 
-	@AfterMethod
-	public void afterTest() {
-		//driverManager.closeConnection();
+	@Test(priority = 0)
+	public void verifyNoErrorsInHomePageOfSiteTest() {
 	}
-
-
-	@Test(priority = 0, sequential = true)
-	public void crafter3LoadTestTestUser1() {
-	}
-
 
 }
