@@ -8,4 +8,8 @@ public class ContentAssetAPI extends BaseAPI{
 	public ContentAssetAPI(JsonTester api, APIConnectionManager apiConnectionManager) {
 		super(api, apiConnectionManager);
 	}
+	
+	public void testWriteContent() {
+		
+	}
 }
