@@ -101,7 +101,7 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest extend
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerLocator);
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickDataSourceImageUploadedFromCMISRepositorySection();
 
 		// Asserts that fields are not empty.
