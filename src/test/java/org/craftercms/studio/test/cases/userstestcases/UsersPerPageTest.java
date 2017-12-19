@@ -86,8 +86,7 @@ public class UsersPerPageTest extends BaseTest{
 
 		// Show 1 user
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", usersPerPageInputXpath);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("1");
+		driverManager.sendText("xpath",usersPerPageInputXpath,"1");
 
 		// Asser only 1 users displayed
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",lastNumberOfPaginationXpath);
@@ -100,20 +99,18 @@ public class UsersPerPageTest extends BaseTest{
 		
 		// Show 4 users
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",usersPerPageInputXpath);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("4");
+		driverManager.sendText("xpath",usersPerPageInputXpath,"3");
 
 		// Asser 4 users displayed
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",lastNumberOfPaginationXpath);
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
 		List<WebElement> usersList4items = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
-		Assert.assertTrue(usersList4items.size() == 4);
+		Assert.assertTrue(usersList4items.size() == 3);
 
 		//this.driverManager.isElementPresentAndClickableByXpath(usersPerPageInputXpath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",usersPerPageInputXpath);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", usersPerPageInputXpath).sendKeys("10");
+		driverManager.sendText("xpath",usersPerPageInputXpath,"10");
 	}
 
 	public void deleteUsers() {
