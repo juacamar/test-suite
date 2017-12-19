@@ -92,7 +92,7 @@ public class ContentTypesAddDataSourceChildContentTest extends BaseTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",contentTypeContainerLocator);
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickDataSourceChildContentSection();
 
 		// Asserts that fields are not empty.

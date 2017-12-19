@@ -104,6 +104,7 @@ public class ContentTypesAddDropdownTest extends BaseTest{
 		// Confirm the content type selected
 		siteConfigPage.confirmContentTypeSelected();
 
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickDropdownSection();
 
 		// Asserts that fields are not empty.

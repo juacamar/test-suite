@@ -94,6 +94,7 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest extends Ba
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickDataSourceImageUploadedFromRepositorySection();
 
 		// Asserts that fields are not empty.

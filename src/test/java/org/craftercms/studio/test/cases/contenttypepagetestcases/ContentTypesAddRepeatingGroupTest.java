@@ -111,6 +111,7 @@ public class ContentTypesAddRepeatingGroupTest extends BaseTest{
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickRepeatingGroupSection();
 
 		// Asserts that fields are not empty.

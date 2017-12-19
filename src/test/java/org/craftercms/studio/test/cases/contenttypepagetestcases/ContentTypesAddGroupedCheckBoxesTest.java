@@ -108,6 +108,7 @@ public class ContentTypesAddGroupedCheckBoxesTest  extends BaseTest{
 		// Confirm the content type selected
 		siteConfigPage.confirmContentTypeSelected();
 
+		driverManager.waitUntilPopupIsHidden();
 		// Click on input section to can view the properties
 		siteConfigPage.clickGroupedCheckBoxSection();
 

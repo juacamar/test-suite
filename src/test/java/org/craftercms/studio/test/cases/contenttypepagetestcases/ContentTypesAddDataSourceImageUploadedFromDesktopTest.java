@@ -98,7 +98,7 @@ public class ContentTypesAddDataSourceImageUploadedFromDesktopTest extends BaseT
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",contentTypeContainerImageUploadedFromDesktopTitleLocator);
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickDataSourceImageUploadedFromDesktopSection();
 
 		// Asserts that fields are not empty.

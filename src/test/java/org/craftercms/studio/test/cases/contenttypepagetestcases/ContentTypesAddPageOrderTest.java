@@ -119,6 +119,7 @@ public class ContentTypesAddPageOrderTest extends BaseTest{
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickPageOrderSection();
 
 		// Asserts that fields are not empty.
