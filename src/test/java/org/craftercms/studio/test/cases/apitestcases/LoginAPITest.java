@@ -24,7 +24,12 @@ public class LoginAPITest {
 				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
+    public void testLoginUnauthorized(){
+    	securityAPI.testLogInUnauthorized();
+    }
+    
+    @Test(priority = 2)
     public void testLogin(){
     	securityAPI.logInIntoStudioUsingAPICall();
     }

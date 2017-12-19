@@ -4,7 +4,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.UserManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -32,15 +32,20 @@ public class GetUsersAPITest {
 		userManagementAPI.testCreateUser();
 	}
 	
-	@Test(priority=1)
+	@Test(priority=1,groups={"getUsers"})
 	public void testGetUsers() {
 		userManagementAPI.testGetUsers();
 	}
 	
-	@AfterTest
+	@AfterGroups(groups={"getUsers"})
 	public void afterTest() {
 		userManagementAPI.testDeleteUser();
 		securityAPI.logOutFromStudioUsingAPICall();
+	}
+	
+	@Test(dependsOnGroups={"getUsers"})
+	public void testGetUsersUnauthorized(){
+		userManagementAPI.testGetUsersUnauthorized();
 	}
 
 }

@@ -5,7 +5,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -35,26 +35,26 @@ public class SyncFromRepoAPITest {
 		siteManagementAPI.testCreateSite(siteId);
 	}
 
-    @Test(priority=1)
+    @Test(priority=1,groups={"syncFromRepo"})
    	public void testSyncFromRepo() {
     	repoManagementAPI.testSyncFromRepo(siteManagementAPI.getSiteId());
    	}
     
     
-    @Test(priority=2)
+    @Test(priority=2,groups={"syncFromRepo"})
    	public void testInvalidParameter() {
      	repoManagementAPI.testSyncFromRepoInvalidParameter(siteManagementAPI.getSiteId());
    	}
     
-    @Test(priority=3)
+    @Test(priority=3,groups={"syncFromRepo"})
    	public void testSiteNotFound() {
     	repoManagementAPI.testSyncFromRepoSiteNotFound(siteManagementAPI.getSiteId());
    	}
     
-    @AfterTest
+    @AfterGroups(groups={"syncFromRepo"})
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
-    
+
 }

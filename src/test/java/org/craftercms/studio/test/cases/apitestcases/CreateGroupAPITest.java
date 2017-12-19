@@ -5,7 +5,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -35,25 +35,29 @@ public class CreateGroupAPITest {
 		siteManagementAPI.testCreateSite(siteId);
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups={"createGroup"})
 	public void testCreateStudioGroup() {
 		groupManagementAPI.testCreateStudioGroup01(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2,groups={"createGroup"})
 	public void testInvalidParameters() {
 		groupManagementAPI.testCreateStudioGroupInvalidParameters(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3,groups={"createGroup"})
 	public void testGroupAlreadyExists() {
 		groupManagementAPI.testCreateStudioGroupAlreadyExists(siteManagementAPI.getSiteId());
 	}
 	
-	@AfterTest
+	@AfterGroups(groups={"createGroup"})
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 
+	@Test(dependsOnGroups={"createGroup"})
+	public void testCreateGroupUnauthorized(){
+		groupManagementAPI.testCreateStudioGroupUnauthorized(siteManagementAPI.getSiteId());
+	}
 }

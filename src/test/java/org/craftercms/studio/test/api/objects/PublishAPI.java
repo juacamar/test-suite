@@ -24,7 +24,7 @@ public class PublishAPI extends BaseAPI {
 		Map<String, Object> json = new HashMap<>();
 		json.put("site_id", siteId);
 		
-		api.post("/studio/api/1/publish/start.json")
+		api.post("/studio/api/1/services/api/1/publish/start.json")
 		.json(json).execute().status(200)
 				.debug();
 	}
@@ -33,25 +33,34 @@ public class PublishAPI extends BaseAPI {
 		Map<String, Object> json = new HashMap<>();
 		json.put("site_idnonvalid", siteId);
 		
-		api.post("/studio/api/1/publish/start.json")
+		api.post("/studio/api/1/services/api/1/publish/start.json")
 		.json(json).execute().status(400)
 				.debug();
 	}
 
 	public void testStartPublisherSiteNotFound(String siteId) {
 		Map<String, Object> json = new HashMap<>();
-		json.put("site_id", siteId+"nonvalid");
+		json.put("site_id", "nonvalid");
 		
-		api.post("/studio/api/1/publish/start.json")
+		api.post("/studio/api/1/services/api/1/publish/start.json")
 		.json(json).execute().status(404)
 		.debug();
+	}
+	
+	public void testStartPublisherUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		
+		api.post("/studio/api/1/services/api/1/publish/start.json")
+		.json(json).execute().status(401)
+				.debug();
 	}
 	
 	public void testStopPublisher(String siteId) {
 		Map<String, Object> json = new HashMap<>();
 		json.put("site_id", siteId);
 		
-		api.post("/studio/api/1/publish/stop.json")
+		api.post("/studio/api/1/services/api/1/publish/stop.json")
 		.json(json).execute().status(200)
 				.debug();
 	}
@@ -60,7 +69,7 @@ public class PublishAPI extends BaseAPI {
 		Map<String, Object> json = new HashMap<>();
 		json.put("site_idnonvalid", siteId);
 		
-		api.post("/studio/api/1/publish/stop.json")
+		api.post("/studio/api/1/services/api/1/publish/stop.json")
 		.json(json).execute().status(400)
 				.debug();
 	}
@@ -69,9 +78,18 @@ public class PublishAPI extends BaseAPI {
 		Map<String, Object> json = new HashMap<>();
 		json.put("site_id", siteId+"nonvalid");
 		
-		api.post("/studio/api/1/publish/stop.json")
+		api.post("/studio/api/1/services/api/1/publish/stop.json")
 		.json(json).execute().status(404)
 				// .json("$.message", is("site not found"))
+				.debug();
+	}
+	
+	public void testStopPublisherUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		
+		api.post("/studio/api/1/services/api/1/publish/stop.json")
+		.json(json).execute().status(401)
 				.debug();
 	}
 }
