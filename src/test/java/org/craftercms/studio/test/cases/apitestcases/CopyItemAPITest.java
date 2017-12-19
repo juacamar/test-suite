@@ -1,6 +1,6 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
-import org.craftercms.studio.test.api.objects.RepoManagementAPI;
+import org.craftercms.studio.test.api.objects.ClipboardAPI;
 import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
@@ -10,40 +10,38 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
- * Created by Gustavo Ortiz Alfaro
+ * @author chris lim
+ *
  */
 
-public class RebuildDataBaseAPITest {
-
+public class CopyItemAPITest {
 	private SecurityAPI securityAPI;
 	private SiteManagementAPI siteManagementAPI;
-	private RepoManagementAPI repoManagementAPI;
-	private String siteId="siteRebuildDataBaseAPITest";
+	private ClipboardAPI clipboardAPI;
 	
-	public RebuildDataBaseAPITest() {
+	public CopyItemAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
 		securityAPI = new SecurityAPI(api, apiConnectionManager);
 		siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
-		repoManagementAPI = new RepoManagementAPI(api, apiConnectionManager);
+		clipboardAPI = new ClipboardAPI(api, apiConnectionManager);
 	}
-
+	
 	@BeforeTest
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
-		siteManagementAPI.testCreateSite(siteId);
+		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
 	}
 
-    @Test(priority=1)
-   	public void testRebuildDatabase() {
-    	repoManagementAPI.testRebuildDatabase(siteManagementAPI.getSiteId());
-   	}
-    
-    @AfterTest
+	@Test(priority = 1)
+	public void testCopyItem() {
+		clipboardAPI.testCopyItem(siteManagementAPI.getSiteId());
+	}
+	
+	@AfterTest
 	public void afterTest() {
-		siteManagementAPI.testDeleteSite(siteId);
+		siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
-    
 }

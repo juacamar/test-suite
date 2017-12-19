@@ -10,16 +10,16 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
- * Created by gustavo ortiz
+ * Created by chris lim
  */
 
-public class StartPublisherAPITest {
+public class StopPublisherAPITest {
 
 	private SiteManagementAPI siteManagementAPI;
 	private SecurityAPI securityAPI;
 	private PublishAPI publishAPI;
 
-	public StartPublisherAPITest() {
+	public StopPublisherAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -34,30 +34,30 @@ public class StartPublisherAPITest {
 		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 1,groups={"startPublisher"})
-	public void testStartPublisher() {
-		publishAPI.testStartPublisher(siteManagementAPI.getSiteId());
+	@Test(priority = 1,groups={"stopPublisher"})
+	public void testStopPublisher() {
+		publishAPI.testStopPublisher(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 2,groups={"startPublisher"})
-	public void testStartPublisherInvalidParameters() {
-		publishAPI.testStartPublisherInvalidParameters(siteManagementAPI.getSiteId());
+	@Test(priority = 2,groups={"stopPublisher"})
+	public void testStopPublisherInvalidParameters() {
+		publishAPI.testStopPublisherInvalidParameters(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 3,groups={"startPublisher"})
-	public void testStartPublisherSiteNotFound() {
-		publishAPI.testStartPublisherSiteNotFound(siteManagementAPI.getSiteId());
+	@Test(priority = 3,groups={"stopPublisher"})
+	public void testStopPublisherSiteNotFound() {
+		publishAPI.testStopPublisherSiteNotFound(siteManagementAPI.getSiteId());
 	}
 	
-	@AfterGroups(groups={"startPublisher"})
+	@AfterGroups(groups={"stopPublisher"})
 	public void afterTest(){
 		siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 	
-	@Test(dependsOnGroups={"startPublisher"})
-	public void testStartPublisherUnauthorized(){
-		publishAPI.testStartPublisherUnauthorized(siteManagementAPI.getSiteId());
+	@Test(dependsOnGroups={"stopPublisher"})
+	public void testStopPublisherUnauthorized(){
+		publishAPI.testStopPublisherUnauthorized(siteManagementAPI.getSiteId());
 	}
 
 }

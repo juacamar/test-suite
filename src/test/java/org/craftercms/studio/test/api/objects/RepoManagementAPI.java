@@ -70,4 +70,12 @@ public class RepoManagementAPI extends BaseAPI {
 
    	}
 
+ 	public void testSyncFromRepoUnauthorized(String siteId) {
+    	Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		
+   		api.post("/studio/api/1/services/api/1/repo/sync-from-repo.json")
+   		.json(json).execute().status(401).debug();
+
+   	}
 }

@@ -4,7 +4,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -32,25 +32,30 @@ public class CreateSiteAPITest {
 		
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups={"createSite"})
 	public void testCreateSite() {
 		siteManagementAPI.testCreateSite(siteId);
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2,groups={"createSite"})
 	public void testCreateSiteInvalidParameters() {
 		siteManagementAPI.testCreateSiteInvalidParameters();
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3,groups={"createSite"})
 	public void testSiteAlreadyExists() {
 		siteManagementAPI.testCreateSiteSiteAlreadyExists();
 	}
 
-	@AfterTest
+	@AfterGroups(groups={"createSite"})
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 
+	@Test(dependsOnGroups={"createSite"})
+	public void testCreateSiteUnauthorized(){
+		
+		siteManagementAPI.testCreateSiteUnauthorized(siteId);
+	}
 }

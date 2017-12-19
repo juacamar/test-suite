@@ -189,4 +189,99 @@
 				name="org.craftercms.studio.test.cases.apitestcases.GetAuditLogAPITest" />
 		</classes>
 	</test> 
+	
+<!--	 Security -->	
+	<test name="Login" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.LoginAPITest" />
+		</classes>
+	</test> 
+	<test name="Logout" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.LogoutAPITest" />
+		</classes>
+	</test> 
+	<test name="Validate Session" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.ValidateSessionAPITest" />
+		</classes>
+	</test>
+	<test name="Get User Permissions" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetUserPermissionsAPITest" />
+		</classes>
+	</test>
+	<test name="Get User Roles" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetUserRolesAPITest" />
+		</classes>
+	</test>
+	
+<!--	 Monitoring -->
+	<test name="Version" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.VersionAPITest" />
+		</classes>
+	</test>
+	<test name="Status" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.StatusAPITest" />
+		</classes>
+	</test>
+	<test name="Memory" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.MemoryAPITest" />
+		</classes>
+	</test>
+	
+<!--	 Publish -->	
+	<test name="Start Publisher" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.StartPublisherAPITest" />
+		</classes>
+	</test>
+	<test name="Stop Publisher" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.StopPublisherAPITest" />
+		</classes>
+	</test>
+	
+<!--	 Preview -->
+	<test name="Preview Sync" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.PreviewSyncAPITest" />
+		</classes>
+	</test>
+	
+<!-- 	 Server -->
+	<test name="Get Available Languages" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetAvailableLanguagesAPITest" />
+		</classes>
+	</test>
+	<test name="Get Loggers" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetLoggersAPITest" />
+		</classes>
+	</test>
+	<test name="Set Logger State" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.SetLoggerStateAPITest" />
+		</classes>
+	</test> 
+	
 </suite> <!-- Suite -->

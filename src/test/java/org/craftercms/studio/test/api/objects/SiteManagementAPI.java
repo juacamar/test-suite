@@ -51,6 +51,18 @@ public class SiteManagementAPI extends BaseAPI {
 						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
 				.json("$.message", is("Site already exists")).debug();
 	}
+	
+	public void testCreateSiteUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		json.put("description", description);
+		json.put("blueprint", blueprint);
+		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(401)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
+				.debug();
+	}
+
 
 	public void testDeleteSite(String siteId) {
 		Map<String, Object> json = new HashMap<>();
@@ -81,6 +93,19 @@ public class SiteManagementAPI extends BaseAPI {
 		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id="+ siteId));
    	}
 	
+	public void testGetSiteUnauthorized() {
+		api.get("/studio/api/1/services/api/1/site/get.json")
+		.urlParam("site_id", siteId).execute()
+		.status(401)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id="+ siteId));
+   	}
+	
+	public void testGetSiteInvalidParameters() {
+		api.get("/studio/api/1/services/api/1/site/get.json")
+		.urlParam("site_idnonvalid", siteId).execute()
+		.status(400);
+   	}
+	
 	public void testGetSiteSiteNotFound() {
     		api.get("/studio/api/1/services/api/1/site/get.json")
     		.urlParam("site_id", siteId+"nonvalid").execute()
@@ -105,6 +130,13 @@ public class SiteManagementAPI extends BaseAPI {
 		api.get("/studio/api/1/services/api/1/site/get-per-user.json")
 		.urlParam("username", userName+"nonvalid").execute()
 		.status(404);
+   	}
+	
+	public void testGetSitesPerUserUnauthorized(String userName) {
+		api.get("/studio/api/1/services/api/1/site/get-per-user.json")
+		.urlParam("username", userName).execute()
+		.status(401)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get-per-user.json?username="+ userName+"&start=0&number=25"));
    	}
 	
 	public String getSiteId() {

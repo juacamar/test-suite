@@ -4,7 +4,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.UserManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -31,25 +31,30 @@ public class GetUserStatusAPITest {
 		userManagementAPI.testCreateUser();
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups={"getUserStatus"})
 	public void testGetUserStatus() {
 		userManagementAPI.testGetUserStatus();
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2,groups={"getUserStatus"})
 	public void testInvalidParameter() {
 		userManagementAPI.testGetUserStatusInvalidParameter();
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3,groups={"getUserStatus"})
 	public void testUserNotFound() {
 		userManagementAPI.testGetUserStatusUserNotFound();
 	}
 
-	@AfterTest
+	@AfterGroups(groups={"getUserStatus"})
 	public void afterTest() {
 		userManagementAPI.testDeleteUser();
 		securityAPI.logOutFromStudioUsingAPICall();
+	}
+	
+	@Test(dependsOnGroups={"getUserStatus"})
+	public void testGetUserStatusUnauthorized(){
+		userManagementAPI.testGetUserStatusUnauthorized();
 	}
 
 }
