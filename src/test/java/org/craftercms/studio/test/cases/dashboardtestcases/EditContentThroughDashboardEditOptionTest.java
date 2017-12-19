@@ -139,7 +139,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 		// go to admin console page
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", adminConsoleXpath).click();
 
 		// select content types
 

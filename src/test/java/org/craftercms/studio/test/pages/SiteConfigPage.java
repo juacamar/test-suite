@@ -345,8 +345,8 @@ public class SiteConfigPage {
 	}
 
 	public void clickGroupedCheckBoxesSectionToViewProperties() {
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",clickOnGroupedCheckBoxesSection);
-		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",clickOnGroupedCheckBoxesSection);
+		WebElement showSection = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				clickOnGroupedCheckBoxesSection);
 		showSection.click();
 	}

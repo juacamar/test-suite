@@ -132,18 +132,7 @@ public class EditUserTest extends BaseTest{
 
 		// Assert
 		driverManager.getDriver().navigate().refresh();
-		
-//		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
-//		this.driverManager.isElementPresentAndClickableByXpath(newUserButtonXpath);
-//		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(newUserButtonXpath);
-//		
-//		driverManager.getDriver().navigate().refresh();
-//		
-//		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(newUserLastNameCellXpath);
-//		this.driverManager.isElementPresentByXpath(newUserLastNameCellXpath);
-//		this.driverManager
-//		.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameCellXpath);
-//		
+				
 		String nameElementText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameCellXpath).getText();
 
