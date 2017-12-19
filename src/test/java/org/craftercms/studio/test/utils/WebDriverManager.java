@@ -312,7 +312,6 @@ public class WebDriverManager {
 
 		try {
 			@SuppressWarnings("unused") WebElement webElement = this.findElement("cssSelector", cssSelector);
-			// this.getDriver().findElement(By.cssSelector(cssSelector));
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -385,6 +384,13 @@ public class WebDriverManager {
 		logger.debug("Waiting for sidebar to close");
 		waitUntilElementIsNotDisplayed("cssSelector", "div.acn-resize.ui-resizable");	
 	}
+	
+	public void waitUntilModalCloses() {
+		logger.debug("Waiting for notification modal to close");
+		WebElement element = this.waitUntilElementIsDisplayed("xpath", ".//*[@class='modal fade ng-isolate-scope centered-dialog studioMedium in']");
+		waitUntilElementIsRemoved(element);	
+	}
+	
 	
 	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
 		logger.debug("Waiting for folder to open: {}, {}", selectorType, selectorValue);

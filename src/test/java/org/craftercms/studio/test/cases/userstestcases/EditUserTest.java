@@ -125,13 +125,13 @@ public class EditUserTest extends BaseTest{
 		createUserToEdit();
 
 		// wait for element is clickeable
-		driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitUntilModalCloses();
+		//driverManager.getDriver().navigate().refresh();
 
 		// edit user
 		editingUser();
 
-		// Assert
-		//driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitUntilModalCloses();
 				
 		String nameElementText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameCellXpath).getText();
@@ -139,14 +139,15 @@ public class EditUserTest extends BaseTest{
 		Assert.assertEquals(nameElementText, "Test");
 
 		// Click on delete user
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
 		
 		usersPage.clickOnDeleteUserCreated();
 
 		// Confirmation to delete user 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", deleteYesButtonXpath).click();
 		
-		driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitUntilModalCloses();
+		//driverManager.getDriver().navigate().refresh();
 	
 		// Assert new users created is deleted
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
