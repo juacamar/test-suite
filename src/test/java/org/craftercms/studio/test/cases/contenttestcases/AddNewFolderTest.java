@@ -2,8 +2,7 @@ package org.craftercms.studio.test.cases.contenttestcases;
 
 import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -18,8 +17,9 @@ public class AddNewFolderTest extends BaseTest {
 	private String password;
 	private String siteDropdownElementXPath;
 	private String newFolderXpath;
+	private String homeTree;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -27,11 +27,8 @@ public class AddNewFolderTest extends BaseTest {
 				.getProperty("complexscenarios.general.sitedropdown");
 		newFolderXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.newfolder");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
+		homeTree = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.home_Content_Page");
 	}
 
 	@Test(priority = 0)
@@ -65,6 +62,9 @@ public class AddNewFolderTest extends BaseTest {
 		dashboardPage.expandHomeTree();
 		
 		// Assert find the new folder created
+		this.driverManager.waitUntilSidebarOpens();
+		this.driverManager.waitUntilFolderOpens("xpath", homeTree);
+		
 		this.driverManager.waitUntilElementIsDisplayed("xpath", newFolderXpath);
 		
 		Assert.assertTrue(this.driverManager.isElementPresentByXpath(newFolderXpath));
