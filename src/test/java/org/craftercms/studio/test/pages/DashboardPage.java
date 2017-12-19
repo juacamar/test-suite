@@ -244,6 +244,9 @@ public class DashboardPage {
 
 	// Press right click and select new content
 	public void rightClickHome() {
+		this.driverManager.waitUntilPageLoad();
+		this.driverManager.waitUntilSidebarOpens();
+		
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);
 

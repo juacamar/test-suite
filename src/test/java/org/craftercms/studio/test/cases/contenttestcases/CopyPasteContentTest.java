@@ -49,7 +49,6 @@ public class CopyPasteContentTest extends BaseTest {
 
 	public void createContent() {
 		// right click to see the the menu
-
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
