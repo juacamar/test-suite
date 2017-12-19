@@ -207,6 +207,7 @@ public class DashboardPage {
 
 	// Expand pages tree
 	public void clickPagesTree() {
+		this.driverManager.waitUntilSidebarOpens();
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
 		expandPagesTree.click();
 		driverManager.waitUntilFolderOpens("id", "pages-tree");

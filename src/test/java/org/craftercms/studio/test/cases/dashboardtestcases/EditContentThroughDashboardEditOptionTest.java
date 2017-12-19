@@ -136,36 +136,30 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 	}
 
 	public void bodyNotRequiered() {
-
 		// go to admin console page
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", adminConsoleXpath).click();
 
 		// select content types
-
 		siteConfigPage.selectContentTypeOption();
 
 		// open content types
-
 		siteConfigPage.clickExistingTypeOption();
 
 		// Confirm the content type selected
 
 		siteConfigPage.confirmContentTypeSelected();
 
-		// select main content
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
-
-		// Body not required
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
-				.click();
-
-		// save
-		siteConfigPage.saveDragAndDropProcess();
+		// wait for element is clickeable
 		driverManager.getDriver().switchTo().defaultContent();
 
+		// select main content
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
+
+		// Mark Body not required
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
+				.click();
+		// save
+		siteConfigPage.saveDragAndDropProcess();
 	}
 
 	public void createNewContent() {
@@ -291,6 +285,8 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropDownXpath).click();
 
+		this.driverManager.waitUntilSidebarOpens();
+
 		// Select the content type and drag and drop
 		dragAndDrop();
 
@@ -298,20 +294,17 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 		goToDashboard();
 
-		dashboardPage.expandPagesTree();
-
-		dashboardPage.expandHomeTree();
-
-		// Select an existing content type
-
 		bodyNotRequiered();
 
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// go to dashboard
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
+		
+		dashboardPage.expandPagesTree();
 
+		dashboardPage.expandHomeTree();
+		
 		// create a new content
 		createNewContent();
 
