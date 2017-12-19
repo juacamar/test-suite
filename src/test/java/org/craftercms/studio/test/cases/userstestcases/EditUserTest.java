@@ -131,7 +131,7 @@ public class EditUserTest extends BaseTest{
 		editingUser();
 
 		// Assert
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
 				
 		String nameElementText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameCellXpath).getText();
@@ -147,8 +147,7 @@ public class EditUserTest extends BaseTest{
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", deleteYesButtonXpath).click();
 		
 		driverManager.getDriver().navigate().refresh();
-		//driverManager.getDriver().navigate().refresh();
-		
+	
 		// Assert new users created is deleted
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
