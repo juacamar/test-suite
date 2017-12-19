@@ -222,7 +222,6 @@ public class DashboardPage {
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
 		this.driverManager.waitUntilSidebarOpens();
-		
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
 		globalEntry.click();
@@ -249,6 +248,7 @@ public class DashboardPage {
 	public void rightClickHome() {
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
+		this.driverManager.waitUntilFolderOpens("id", "pages-tree");
 		
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);

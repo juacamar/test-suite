@@ -89,26 +89,20 @@ public class UsersPerPageTest extends BaseTest{
 		driverManager.sendText("xpath",usersPerPageInputXpath,"1");
 
 		// Asser only 1 users displayed
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",lastNumberOfPaginationXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",lastNumberOfPaginationXpath);
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
 		List<WebElement> usersList1item = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
 		Assert.assertTrue(usersList1item.size() == 1);
 		
-		driverManager.getDriver().navigate().refresh();
-		
-		// Show 4 users
+		// Show 3 users
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",usersPerPageInputXpath);
 		driverManager.sendText("xpath",usersPerPageInputXpath,"3");
 
-		// Asser 4 users displayed
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",lastNumberOfPaginationXpath);
+		// Assert 3 users displayed
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",lastNumberOfPaginationXpath);
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
-		List<WebElement> usersList4items = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
-		Assert.assertTrue(usersList4items.size() == 3);
-
-		//this.driverManager.isElementPresentAndClickableByXpath(usersPerPageInputXpath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",usersPerPageInputXpath);
 		driverManager.sendText("xpath",usersPerPageInputXpath,"10");
 	}
