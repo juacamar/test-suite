@@ -131,12 +131,11 @@ public class DuplicateOptionTest extends BaseTest {
 		// goto preview page
 		goToPreviewPage();
 
+		// reload page
+		driverManager.getDriver().navigate().refresh();
+
 		// select the content type to the test
 		changeBodyToNotRequiredOnEntryContent();
-
-		// Switch to the form
-		driverManager.getDriver().navigate().refresh();
-		driverManager.getDriver().switchTo().defaultContent();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
@@ -144,7 +143,7 @@ public class DuplicateOptionTest extends BaseTest {
 		// expand home content
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
-		
+
 		dashboardPage.expandHomeTree();
 
 		// create a new content
