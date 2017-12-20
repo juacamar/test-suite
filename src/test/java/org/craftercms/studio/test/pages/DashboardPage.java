@@ -224,7 +224,12 @@ public class DashboardPage {
 		this.driverManager.waitUntilSidebarOpens();
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
-		globalEntry.click();
+		
+		//Verify if the home tree is already expanded
+		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
+		if (!home.getAttribute("class").contains("open")) {
+			globalEntry.click();
+		}
 	}
 
 	public void expandHomeTree() {
@@ -249,14 +254,14 @@ public class DashboardPage {
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-		
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				homeContent);
 
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
+		// WebElement home =
+		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		// homeContent);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-			homeContent);
+		this.getDriverManager().contextClick("xpath", homeContent, false);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
 
 		driverManager.usingContextMenu(() -> {
 			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
@@ -633,7 +638,7 @@ public class DashboardPage {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				deleteContent);
+					deleteContent);
 			delContent.click();
 		});
 	}
