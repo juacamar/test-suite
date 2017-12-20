@@ -27,16 +27,16 @@ public class AddNewContentEntryTest extends BaseTest {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
-			.getProperty("complexscenarios.general.createformframe");
+				.getProperty("complexscenarios.general.createformframe");
 		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
-			.getProperty("complexscenarios.general.saveandclosebutton");
+				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-			.getProperty("general.createformTitle");
+				.getProperty("general.createformTitle");
 		testingItemRecentActivity = uiElementsPropertiesManager.getSharedUIElementsLocators()
-			.getProperty("general.testingcontentitem.myrecentactivity");
-		
-		 randomURL = "Test1";
-		 randomInternalName = "Testing1";
+				.getProperty("general.testingcontentitem.myrecentactivity");
+
+		randomURL = "Test1";
+		randomInternalName = "Testing1";
 
 	}
 
@@ -55,7 +55,6 @@ public class AddNewContentEntryTest extends BaseTest {
 		// Confirm the Content Type selected
 		dashboardPage.clickOKButton();
 
-		
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// creating random values for URL field and InternalName field
 
@@ -66,11 +65,11 @@ public class AddNewContentEntryTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+					.click();
 		});
 
 		this.driverManager.waitUntilSidebarOpens();
-		
 
 	}
 
@@ -96,6 +95,9 @@ public class AddNewContentEntryTest extends BaseTest {
 
 		// create content
 		createContent();
+
+		// reload page
+		driverManager.getDriver().navigate().refresh();
 
 		dashboardPage.expandHomeTree();
 

@@ -2,7 +2,7 @@ package org.craftercms.studio.test.cases.sitestestcases;
 
 import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -18,7 +18,7 @@ public class DeleteSiteTest extends BaseTest {
 	private String deletedSiteRow;
 	private String createSiteButton;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -26,7 +26,6 @@ public class DeleteSiteTest extends BaseTest {
 				.getProperty("general.sites.deletedsiterow");
 		createSiteButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-
 	}
 
 	@Test(priority = 0)
@@ -45,7 +44,7 @@ public class DeleteSiteTest extends BaseTest {
 		// Click on YES to confirm the delete.
 		homePage.clickOnYesToDeleteSite();
 		
-		driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitUntilDeleteSiteModalCloses();	
 		
 		// Assert
 		this.driverManager.waitWhileElementIsNotDisplayedByXpath(deletedSiteRow);

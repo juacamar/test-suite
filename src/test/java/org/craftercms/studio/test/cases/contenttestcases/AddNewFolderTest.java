@@ -32,7 +32,6 @@ public class AddNewFolderTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void createANewFolderUsingContextualClickOptionTest() {
 
 		// login to application
@@ -57,18 +56,16 @@ public class AddNewFolderTest extends BaseTest {
 		// Set the name of the folder
 		dashboardPage.setFolderName("addnewfolder");
 		
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
 
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
 		
 		dashboardPage.expandHomeTree();
-		
-		// Assert find the new folder created
-		
 		this.driverManager.waitUntilFolderOpens("xpath", homeTree);
 		
-		this.driverManager.waitUntilElementIsDisplayed("xpath", newFolderXpath);
+		// Assert find the new folder created	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", newFolderXpath);
 		
 		Assert.assertTrue(this.driverManager.isElementPresentByXpath(newFolderXpath));
 

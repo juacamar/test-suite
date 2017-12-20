@@ -210,7 +210,7 @@ public class DashboardPage {
 		this.driverManager.waitUntilSidebarOpens();
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
 		expandPagesTree.click();
-		driverManager.waitUntilFolderOpens("id", "pages-tree");
+		driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 	}
 
 	public void expandPagesTree() {
@@ -222,7 +222,6 @@ public class DashboardPage {
 	// Expand global entry content
 	public void clickGlobalEntryContent() {
 		this.driverManager.waitUntilSidebarOpens();
-		
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
 		globalEntry.click();
@@ -249,6 +248,7 @@ public class DashboardPage {
 	public void rightClickHome() {
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeContent);

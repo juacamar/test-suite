@@ -6,8 +6,7 @@ package org.craftercms.studio.test.cases.contenttypepagetestcases;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -27,7 +26,7 @@ public class ContentTypesAddFileNameTest extends BaseTest{
 	private String adminConsoleXpath;
 	private String adminConsoleContentToolsFrame;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
@@ -48,11 +47,6 @@ public class ContentTypesAddFileNameTest extends BaseTest{
 				.getProperty("general.adminconsole");
 		adminConsoleContentToolsFrame= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.content_tools_frame");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void dragAndDrop() {

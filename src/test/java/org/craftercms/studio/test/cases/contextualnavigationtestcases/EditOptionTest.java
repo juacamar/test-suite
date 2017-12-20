@@ -137,16 +137,11 @@ public class EditOptionTest extends BaseTest {
 		// click edit option of the menu
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",topNavEditOption).click();
 
-
 		// Switch to the iframe
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// edit internal title
 			driverManager.sendText("xpath", createFormInternalNameTitle, "EDITED");
-
-			// Expand all fields
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormExpandAll)
-				.click();
-
+			
 			// save and close
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
 		});
@@ -182,8 +177,6 @@ public class EditOptionTest extends BaseTest {
 
 		// create a new content
 		createNewContent();
-		
-		driverManager.getDriver().switchTo().defaultContent();
 		
 		//reload page
         driverManager.getDriver().navigate().refresh();
