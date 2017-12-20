@@ -440,30 +440,42 @@ public class WebDriverManager {
 		actions.run();
 		driver.switchTo().defaultContent();
 	}
-
+	
 	public void usingCrafterForm(String selectorType, String selectorValue, Runnable actions) {
-		logger.debug("Switching to iframe for form: {}, {}", selectorType, selectorValue);
-		driver.switchTo().defaultContent();
+        logger.debug("Switching to iframe for form: {}, {}", selectorType, selectorValue);
+        driver.switchTo().defaultContent();
 
-		// Wait until animation completes
-		WebElement frame = waitUntilElementIsDisplayed(selectorType, selectorValue);
+        // Wait until animation completes
+        WebElement frame = waitUntilElementIsDisplayed(selectorType, selectorValue);
 
-		// Switch to iframe
-		driver.switchTo().frame(frame);
+        // Switch to iframe
+        driver.switchTo().frame(frame);
 
-		// Wait until the first input is selected
-		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
-		new WebDriverWait(driver, defaultTimeOut)
-			.until(webDriver -> firstInput.equals(webDriver.switchTo().activeElement()));
+        // Wait until any input is selected
+        new WebDriverWait(driver, defaultTimeOut).until(webDriver ->
+            webDriver.switchTo().activeElement().getTagName().equals("input")
+        );
 
-		// Do stuff
-		actions.run();
+        // Check if it is the first one
+        WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
+        if(!firstInput.equals(driver.switchTo().activeElement())) {
+            // Change focus to the right input
+            firstInput.click();
+        }
 
-		driver.switchTo().defaultContent();
+        // Wait again for focus
+        new WebDriverWait(driver, defaultTimeOut).until(webDriver ->
+            webDriver.switchTo().activeElement().equals(firstInput)
+        );
 
-		// Wait until iframe is hidden
-		waitUntilElementIsHidden(frame);
-	}
+        // Do stuff
+        actions.run();
+
+        driver.switchTo().defaultContent();
+
+        // Wait until iframe is hidden
+        waitUntilElementIsHidden(frame);
+    }
 
 	// Same as previuous but without inputs
 	public void usingCrafterDialog(String selectorType, String selectorValue, Runnable actions) {

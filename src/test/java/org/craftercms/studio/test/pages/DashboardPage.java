@@ -220,12 +220,17 @@ public class DashboardPage {
 	}
 
 	// Expand global entry content
-	public void clickGlobalEntryContent() {
-		this.driverManager.waitUntilSidebarOpens();
-		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				homeTree);
-		globalEntry.click();
-	}
+    public void clickGlobalEntryContent() {
+        this.driverManager.waitUntilSidebarOpens();
+        WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+                homeTree);
+        
+        //Verify if the home tree is already expanded
+        WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
+        if (!home.getAttribute("class").contains("open")) {
+            globalEntry.click();
+        }
+    }
 
 	public void expandHomeTree() {
 		// Expand global entry content
@@ -244,27 +249,23 @@ public class DashboardPage {
 		this.clickHomeContent();
 	}
 
+
 	// Press right click and select new content
-	public void rightClickHome() {
-		this.driverManager.waitUntilPageLoad();
-		this.driverManager.waitUntilSidebarOpens();
-		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-		
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				homeContent);
-
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-			homeContent);
-
-		driverManager.usingContextMenu(() -> {
-			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-					addNewContent);
-			addContent.click();
-		});
-
-	}
+    public void rightClickHome() {
+        this.driverManager.waitUntilPageLoad();
+        this.driverManager.waitUntilSidebarOpens();
+        this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
+        // WebElement home =
+        // this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+        // homeContent);
+        this.getDriverManager().contextClick("xpath", homeContent, false);
+        this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
+        driverManager.usingContextMenu(() -> {
+            WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+                    addNewContent);
+            addContent.click();
+        });
+    }
 
 	public void rightClickToSeeMenu() {
 		logger.info("Right Click to see Menu");
@@ -627,16 +628,16 @@ public class DashboardPage {
 	}
 
 	// Press right click and select new content
-	public void deleteContent() {
-		WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				newContentCreated);
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu, false);
-		driverManager.usingContextMenu(() -> {
-			WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				deleteContent);
-			delContent.click();
-		});
-	}
+		public void deleteContent() {
+			WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					newContentCreated);
+			this.getDriverManager().contextClick(this.getDriverManager().getDriver(), showMenu, false);
+			driverManager.usingContextMenu(() -> {
+				WebElement delContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+						deleteContent);
+				delContent.click();
+			});
+		}
 
 	public void rightClickToDeleteContent() {
 		// Press right click and select new content
