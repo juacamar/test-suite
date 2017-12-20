@@ -45,55 +45,37 @@ public class PublishingSiteTest extends BaseTest {
 	private String homeXpath;
 
 	private String crafterLogoId;
-	
+
 	private String generalEditoption;
 
 	private static Logger logger = LogManager.getLogger(PublishingSiteTest.class);
 
 	@BeforeMethod
-
 	public void beforeTest() {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
-
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
-
 				.getProperty("general.createformframe");
-
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-
 				.getProperty("general.createformTitle");
-
 		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
-
 				.getProperty("general.saveandclosebutton");
-
 		testingContentItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
-
 				.getProperty("general.testingcontentitem");
-
 		topNavStatusIcon = uiElementsPropertiesManager.getSharedUIElementsLocators()
-
 				.getProperty("general.statustopbaricon");
-
 		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-
 				.getProperty("complexscenarios.general.sitedropdown");
-
 		homeXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
-
 		crafterLogoId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		
-		generalEditoption = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.edittopnavoption");
+		generalEditoption = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.edittopnavoption");
 
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {
-
 		previewPage.changeBodyOfEntryContentPageToNotRequired();
-
 	}
 
 	public void createNewContent() {
@@ -182,7 +164,9 @@ public class PublishingSiteTest extends BaseTest {
 		dashboardPage.expandPagesTree();
 
 		// expand home content
-
+		this.driverManager.waitUntilPageLoad();
+		this.driverManager.waitUntilSidebarOpens();
+		
 		dashboardPage.expandHomeTree();
 
 		// create a new content
@@ -203,7 +187,7 @@ public class PublishingSiteTest extends BaseTest {
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
-		
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
 
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
@@ -211,21 +195,20 @@ public class PublishingSiteTest extends BaseTest {
 		String isLifeContent = "";
 		int maxNumberofTries = 10;
 
-		while (!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0))) {
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditoption);
-			isLifeContent = this.driverManager.getDriver()
-					.findElement(By.xpath(topNavStatusIcon)) 
-					.getAttribute("class").toString();
+		while (!(isLifeContent.contains("undefined live") && (maxNumberofTries != 0))) {
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", generalEditoption);
+			isLifeContent = this.driverManager.getDriver().findElement(By.xpath(topNavStatusIcon)).getAttribute("class")
+					.toString();
 			driverManager.getDriver().navigate().refresh();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-					testingContentItem).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem)
+					.click();
 			maxNumberofTries--;
 		}
-		
+
 		String elementClassValue = this.driverManager.getDriver().findElement(By.xpath(topNavStatusIcon))
 				.getAttribute("class");
 		Assert.assertTrue(elementClassValue.contains("undefined live"));
 
-}
-	
+	}
+
 }
