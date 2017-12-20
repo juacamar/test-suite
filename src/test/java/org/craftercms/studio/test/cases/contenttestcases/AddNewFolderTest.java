@@ -32,7 +32,6 @@ public class AddNewFolderTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void createANewFolderUsingContextualClickOptionTest() {
 
 		// login to application
