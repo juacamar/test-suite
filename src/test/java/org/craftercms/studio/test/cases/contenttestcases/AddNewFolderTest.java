@@ -56,7 +56,7 @@ public class AddNewFolderTest extends BaseTest {
 		// Set the name of the folder
 		dashboardPage.setFolderName("addnewfolder");
 		
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
 
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();

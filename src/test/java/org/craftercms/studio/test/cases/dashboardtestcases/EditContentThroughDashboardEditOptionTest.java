@@ -303,6 +303,9 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 		
 		dashboardPage.expandPagesTree();
 
+		this.driverManager.waitUntilPageLoad();
+		this.driverManager.waitUntilSidebarOpens();
+		
 		dashboardPage.expandHomeTree();
 		
 		// create a new content
