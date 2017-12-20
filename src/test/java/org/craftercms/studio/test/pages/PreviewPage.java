@@ -54,6 +54,7 @@ public class PreviewPage {
 	private String adminConsoleXpath;
 	private String entryContentTypeBodyXpath;
 	private String entryContentTypeBodyCheckCss;
+	private String createFormFrameElementCss;
 	
 	/**
 	 * 
@@ -119,6 +120,8 @@ public class PreviewPage {
 				.getProperty("general.entrycontenttype.body");
 		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
+		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.createformframe");
 	}
 
 	// Click on admin console link
@@ -523,42 +526,41 @@ public class PreviewPage {
 
 		// Confirm the Content Type selected
 		dashboardPage.clickOKButton();
+		
+		
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// Fill the New Article page Fields
+			dashboardPage.setPageURL1(url);
+			dashboardPage.setInternalName1(name);
+			dashboardPage.setArticlesTitle(title);
 
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", selectedCategories);
 
-		// Fill the New Article page Fields
-		dashboardPage.setPageURL1(url);
-		dashboardPage.setInternalName1(name);
-		dashboardPage.setArticlesTitle(title);
+			// Fill the New Article Content Section
+			dashboardPage.setNewArticleContentSection(subject, author, summary);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", selectedCategories);
+			// Select the catergory of the Article Page
+			dashboardPage.selectCategoriesOfNewPageArticle(selectedCategories);
 
-		// Fill the New Article Content Section
-		dashboardPage.setNewArticleContentSection(subject, author, summary);
+			// Select the segment of the Article Page
+			dashboardPage.selectSegmentsOfNewPageArticle(selectedSegments);
 
-		// Select the catergory of the Article Page
-		dashboardPage.selectCategoriesOfNewPageArticle(selectedCategories);
+			this.driverManager.scrollDown();
 
-		// Select the segment of the Article Page
-		dashboardPage.selectSegmentsOfNewPageArticle(selectedSegments);
+			// Add an Image
+			dashboardPage.addAnImageToAnArticle();
 
-		this.driverManager.scrollDown();
+			// Switch to the iframe
+			driverManager.getDriver().switchTo().defaultContent();
+			driverManager.getDriver().switchTo().frame(this.driverManager
+					.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
+			this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
 
-		// Add an Image
-		dashboardPage.addAnImageToAnArticle();
+			// save and close
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
+		});
 
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", ".studio-ice-dialog > .bd iframe"));
-		this.driverManager.isElementPresentAndClickableBycssSelector(".studio-ice-dialog > .bd iframe");
-
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "cstudioSaveAndClose").click();
+		this.driverManager.waitUntilSidebarOpens();		
 
 	}
 
