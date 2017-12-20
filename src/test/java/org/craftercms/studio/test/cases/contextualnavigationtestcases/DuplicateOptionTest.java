@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 
-
 /**
  * 
  * @author Gustavo Andrei Ortiz Alfaro
@@ -15,7 +14,7 @@ import org.craftercms.studio.test.cases.BaseTest;
  */
 
 public class DuplicateOptionTest extends BaseTest {
-	
+
 	private String userName;
 	private String password;
 
@@ -29,15 +28,13 @@ public class DuplicateOptionTest extends BaseTest {
 
 	private String copyTestItemXpath;
 	private static Logger logger = LogManager.getLogger(DuplicateOptionTest.class);
-	
 
 	@BeforeMethod
 	public void beforeTest() {
-	
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
+
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
 		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -47,8 +44,10 @@ public class DuplicateOptionTest extends BaseTest {
 		createFormFileTitleElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformfiletitle");
 		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		testItemXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.testingcontentitem");
-		duplicateButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.duplicatedialog.duplicate");
+		testItemXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.testingcontentitem");
+		duplicateButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.duplicatedialog.duplicate");
 		copyTestItemXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.copytestitem");
 	}
@@ -60,7 +59,7 @@ public class DuplicateOptionTest extends BaseTest {
 	}
 
 	public void createNewContent() {
-		
+
 		// right click to see the the menu
 		dashboardPage.rightClickToSeeMenu();
 
@@ -69,47 +68,44 @@ public class DuplicateOptionTest extends BaseTest {
 
 		// Confirm the Content Type selected
 		dashboardPage.clickOKButton();
-		
-		
+
 		// Switch to the iframe
-		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, ()->{
-			
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+
 			// Set basics fields of the new content created
 			logger.info("Set the fields of the new content");
 			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 			// Set the title of main content
-			
-			this.driverManager.sendText("xpath", createFormMainTitleElementXPath,"MainTitle");
+
+			this.driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
 			logger.info("Click on Save and close button");
 			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId).click();	
-			
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.click();
+
 		});
 
-	
 	}
 
 	public void duplicateContentCreated() {
 		dashboardPage.clickOnDuplicateOption();
 
 		// click on duplicate in the popup
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", duplicateButtonXpath).click();
-		
-		
-		// Switch to the iframe
-				driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, ()->{
-					
-					// Set basics fields of the new content created
-					this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-							"xpath", createFormFileTitleElementCss).clear();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", duplicateButtonXpath).click();
 
-					// edit internal name
-					dashboardPage.editInternalName("COPY");
-				});
+		// Switch to the iframe
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+
+			// Set basics fields of the new content created
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormFileTitleElementCss)
+					.clear();
+
+			// edit internal name
+			dashboardPage.editInternalName("COPY");
+		});
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
@@ -128,8 +124,8 @@ public class DuplicateOptionTest extends BaseTest {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
-		
-		//Wait for login page to closes
+
+		// Wait for login page to closes
 		driverManager.waitUntilLoginCloses();
 
 		// goto preview page
@@ -141,11 +137,14 @@ public class DuplicateOptionTest extends BaseTest {
 		// Switch to the form
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().switchTo().defaultContent();
-		
+
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
 		// expand home content
+		this.driverManager.waitUntilPageLoad();
+		this.driverManager.waitUntilSidebarOpens();
+		
 		dashboardPage.expandHomeTree();
 
 		// create a new content
@@ -155,17 +154,15 @@ public class DuplicateOptionTest extends BaseTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Select the content to duplicate.
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", testItemXpath).click();
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", testItemXpath).click();
+
 		// Duplicate content created
 		duplicateContentCreated();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"id", studioLogo).click();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", copyTestItemXpath).click();
-		Assert.assertTrue(driverManager.isElementPresentByXpath(copyTestItemXpath),"Duplicated Option is not displayed");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", copyTestItemXpath).click();
+		Assert.assertTrue(driverManager.isElementPresentByXpath(copyTestItemXpath),
+				"Duplicated Option is not displayed");
 
 	}
 
