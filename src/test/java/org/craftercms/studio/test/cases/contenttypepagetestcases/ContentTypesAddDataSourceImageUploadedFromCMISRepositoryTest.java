@@ -3,8 +3,7 @@ package org.craftercms.studio.test.cases.contenttypepagetestcases;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -23,7 +22,7 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest extend
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -39,11 +38,6 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest extend
 				.getProperty("general.sitedropdown");
 		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void dragAndDrop() {

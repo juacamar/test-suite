@@ -391,6 +391,10 @@ public class WebDriverManager {
 		waitUntilElementIsRemoved(element);	
 	}
 	
+	public void waitUntilDeleteSiteModalCloses() {
+		logger.debug("Waiting for delete site dialog to close");
+		new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+	}
 	
 	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
 		logger.debug("Waiting for folder to open: {}, {}", selectorType, selectorValue);
