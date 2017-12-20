@@ -220,6 +220,7 @@ public class DashboardPage {
 	}
 
 	// Expand global entry content
+
     public void clickGlobalEntryContent() {
         this.driverManager.waitUntilSidebarOpens();
         WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -249,15 +250,12 @@ public class DashboardPage {
 		this.clickHomeContent();
 	}
 
-
 	// Press right click and select new content
     public void rightClickHome() {
         this.driverManager.waitUntilPageLoad();
         this.driverManager.waitUntilSidebarOpens();
         this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-        // WebElement home =
-        // this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-        // homeContent);
+ 
         this.getDriverManager().contextClick("xpath", homeContent, false);
         this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
         driverManager.usingContextMenu(() -> {
@@ -266,6 +264,7 @@ public class DashboardPage {
             addContent.click();
         });
     }
+
 
 	public void rightClickToSeeMenu() {
 		logger.info("Right Click to see Menu");
@@ -628,6 +627,7 @@ public class DashboardPage {
 	}
 
 	// Press right click and select new content
+
 		public void deleteContent() {
 			WebElement showMenu = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					newContentCreated);
@@ -638,6 +638,7 @@ public class DashboardPage {
 				delContent.click();
 			});
 		}
+
 
 	public void rightClickToDeleteContent() {
 		// Press right click and select new content
