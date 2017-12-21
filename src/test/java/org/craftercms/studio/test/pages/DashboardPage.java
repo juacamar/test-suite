@@ -291,11 +291,9 @@ public class DashboardPage {
 	// Press right click select new folder
 	public void rightClickNewFolderOnHome() {
 		// wait for the animation to end
-		driverManager.waitUntilSidebarOpens();
-
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				homeContent);
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
+		this.driverManager.waitUntilSidebarOpens();
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
+		this.getDriverManager().contextClick("xpath", homeContent, false);
 
 		driverManager.usingContextMenu(() -> {
 			WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
