@@ -364,7 +364,9 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickOnAContentPageByJavascript(firstChild);
 		// selecting the Publish option
-		dashboardPage.clickOnPublishOption();
+		driverManager.usingContextMenu(() -> {
+			dashboardPage.clickOnPublishOption();
+		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
 		
@@ -376,7 +378,9 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickOnAContentPageByJavascript(secondChild);
 		// selecting the Publish option
-		dashboardPage.clickOnPublishOption();
+		driverManager.usingContextMenu(() -> {
+			dashboardPage.clickOnPublishOption();
+		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
 		
@@ -387,7 +391,9 @@ public class Crafter3LoadTest1Script extends BaseTest {
 				folderLocator + "/../../../../../div/div[3]/table/tbody/tr/td/span");
 		dashboardPage.rightClickOnAContentPageByJavascript(thirdChild);
 		// selecting the Publish option
-		dashboardPage.clickOnPublishOption();
+		driverManager.usingContextMenu(() -> {
+			dashboardPage.clickOnPublishOption();
+		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
 		
@@ -398,7 +404,9 @@ public class Crafter3LoadTest1Script extends BaseTest {
 				folderLocator + "/../../../../../div/div[4]/table/tbody/tr/td/span");
 		dashboardPage.rightClickOnAContentPageByJavascript(fourthChild);
 		// selecting the Publish option
-		dashboardPage.clickOnPublishOption();
+		driverManager.usingContextMenu(() -> {
+			dashboardPage.clickOnPublishOption();
+		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
 		
@@ -410,7 +418,9 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickOnAContentPageByJavascript(fifthChild);
 		// selecting the Publish option
-		dashboardPage.clickOnPublishOption();
+		driverManager.usingContextMenu(() -> {
+			dashboardPage.clickOnPublishOption();
+		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
 		

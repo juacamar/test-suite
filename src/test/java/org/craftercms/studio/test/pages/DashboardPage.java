@@ -282,8 +282,10 @@ public class DashboardPage {
 		WebElement folderLocationElement = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", folderLocation);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), folderLocationElement, false);
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewContent);
-		addContent.click();
+		driverManager.usingContextMenu(() -> {
+			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addNewContent);
+			addContent.click();
+		});
 	}
 
 	// Press right click select new folder
@@ -295,8 +297,6 @@ public class DashboardPage {
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), home, false);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
-
 		driverManager.usingContextMenu(() -> {
 			WebElement addFolder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					addNewFolder);
@@ -307,17 +307,21 @@ public class DashboardPage {
 	// Press right click select new folder
 	public void rightClickNewFolderOnAPresentFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-		WebElement addFolderOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement addFolderOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				addNewFolderOption);
-		addFolderOption.click();
+			addFolderOption.click();
+		});
 	}
 
 	// Press right click to see the menu
 	public void rightClickCreatePageOnAPresentFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				addNewContentOption);
-		addContent.click();
+			addContent.click();
+		});
 	}
 
 	public void rightClickToFolderOnHome() {
@@ -473,9 +477,11 @@ public class DashboardPage {
 		WebElement copypasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
-		WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		driverManager.usingContextMenu(() -> {
+			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				this.copyContent);
-		copyContent.click();
+			copyContent.click();
+		});
 	}
 
 	public void rightClickToCopyOptionService() {
@@ -493,8 +499,6 @@ public class DashboardPage {
 				homeContent);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
 
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// aboutUSContentPage);
 		driverManager.usingContextMenu(() -> {
 			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 					this.pasteContent);
@@ -513,9 +517,11 @@ public class DashboardPage {
 		WebElement newFolderElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newFolderCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), newFolderElement, false);
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				pasteContentXpath);
-		pasteContent.click();
+			pasteContent.click();
+		});
 	}
 
 	public void rightClickToPasteIntoFolder() {
@@ -539,9 +545,11 @@ public class DashboardPage {
 		WebElement cutpasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), cutpasteContent, false);
-		WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement cutContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				this.cutContent);
-		cutContent.click();
+			cutContent.click();
+		});
 	}
 
 	public void rightClickToCutOption() {
@@ -555,9 +563,11 @@ public class DashboardPage {
 		WebElement copyComponent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyComponent, false);
-		WebElement copyComponentToNewFolder = this.driverManager
+		driverManager.usingContextMenu(() -> {
+			WebElement copyComponentToNewFolder = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", copyContent);
-		copyComponentToNewFolder.click();
+			copyComponentToNewFolder.click();
+		});
 	}
 
 	public void rightClickToCopyComponentToNewFolder() {
@@ -571,9 +581,11 @@ public class DashboardPage {
 		WebElement copyNewContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyNewContent, false);
-		WebElement copyNewContentToNewFolder = this.driverManager
+		driverManager.usingContextMenu(() -> {
+			WebElement copyNewContentToNewFolder = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", this.copyContent);
-		copyNewContentToNewFolder.click();
+			copyNewContentToNewFolder.click();
+		});
 	}
 
 	public void rightClickToCopyNewContentToNewFolder() {
@@ -587,9 +599,11 @@ public class DashboardPage {
 		WebElement pasteAllContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				folderCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteAllContent, false);
-		WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				pasteContentXpath);
-		pasteContent.click();
+			pasteContent.click();
+		});
 	}
 
 	public void rightClickToPasteToNewFolder() {
@@ -868,37 +882,47 @@ public class DashboardPage {
 
 	public void rightClickCopyFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				copyOptionLocator);
-		copyOption.click();
+			copyOption.click();
+		});
 	}
 
 	public void rightClickPasteOnAFolder(WebElement parentWebElement) {
 		this.driverManager.contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-		WebElement pasteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement pasteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				pasteOptionLocator);
-		pasteOption.click();
+			pasteOption.click();
+		});
 	}
 
 	public void rightClickCutAFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-		WebElement cutOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement cutOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				cutOptionLocator);
-		cutOption.click();
+			cutOption.click();
+		});
 	}
 
 	public void rightClickDeleteAFolder(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, true);
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				deleteOptionLocator);
-		deleteOption.click();
+			deleteOption.click();
+		});
 	}
 
 	public void rightClickDeleteAPage(WebElement parentWebElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-		WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement deleteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				deleteContent);
-		deleteOption.click();
+			deleteOption.click();
+		});
 	}
 
 	public void expandParentFolder(WebElement parentElement) {
@@ -919,24 +943,29 @@ public class DashboardPage {
 	public void rightClickCopyContentPage(WebElement parentWebElement) {
 		this.driverManager.isElementPresentAndClickableById(parentWebElement.getAttribute("id"));
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-		this.driverManager.isElementPresentAndClickableByXpath(copyOptionLocatorForContentPage);
-		WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				copyOptionLocatorForContentPage);
-		copyOption.click();
+			copyOption.click();
+		});
 	}
 
 	public void rightClickCreatePageOnAPresentPage(WebElement webElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement, false);
-		WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				addNewContent);
-		addContent.click();
+			addContent.click();
+		});
 	}
 
 	public void rightClickEditOnAPresentPage(WebElement webElement) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement, false);
-		WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		driverManager.usingContextMenu(() -> {
+			WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				editParentOption);
-		editContent.click();
+			editContent.click();
+		});
 	}
 
 	public void addAnImageToAnArticle() {

@@ -5,7 +5,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -36,25 +36,29 @@ public class GetAuditLogAPITest {
 
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups={"getAuditLog"})
 	public void testGetAuditLog() {
 		auditAPI.testGetAuditLog(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2,groups={"getAuditLog"})
 	public void testGetAuditLogInvalidParameters() {
 		auditAPI.testGetAuditLogInvalidParameter(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3,groups={"getAuditLog"})
 	public void testGetAuditLogSiteNotFound() {
 		auditAPI.testGetAuditLogSiteNotFound(siteManagementAPI.getSiteId());
 	}
 
-	@AfterTest
+	@AfterGroups(groups={"getAuditLog"})
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 
+	@Test(dependsOnGroups={"getAuditLog"})
+	public void testGetAuditLogUnauthorized() {
+		auditAPI.testGetAuditLogUnauthorized(siteManagementAPI.getSiteId());
+	}
 }
