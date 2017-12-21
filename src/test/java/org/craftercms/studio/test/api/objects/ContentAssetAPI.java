@@ -17,10 +17,6 @@ public class ContentAssetAPI extends BaseAPI{
 		super(api, apiConnectionManager);
 	}
 	
-	public void testWriteContent() {
-		
-	}
-	
 	public void testContentExists(String siteId) {
 				
 		api.get("/studio/api/1/services/api/1/content/content-exists.json")
