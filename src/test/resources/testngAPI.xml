@@ -264,6 +264,14 @@
 		</classes>
 	</test>
 	
+<!-- 	 Content -->
+	<test name="Preview Sync" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.ContentExistsAPITest" />
+		</classes>
+	</test>
+	
 <!-- 	 Server -->
 	<test name="Get Available Languages" preserve-order="true">
 		<classes>
