@@ -265,7 +265,7 @@
 	</test>
 	
 <!-- 	 Content -->
-	<test name="Preview Sync" preserve-order="true">
+	<test name="Content Exists" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.apitestcases.ContentExistsAPITest" />
