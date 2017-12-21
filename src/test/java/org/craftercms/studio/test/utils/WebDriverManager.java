@@ -150,6 +150,13 @@ public class WebDriverManager {
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.visibilityOfElementLocated(selector));
 		return driver.findElement(selector);
 	}
+	
+	public WebElement waitUntilElementIsPresent(String typeOfSelector, String selectorValue) {
+		logger.debug("Waiting for element to be displayed: {}, {}", typeOfSelector, selectorValue);
+		By selector = getSelector(typeOfSelector, selectorValue);
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.presenceOfElementLocated(selector));
+		return driver.findElement(selector);
+	}
 
 	public WebElement waitUntilElementIsClickable(String typeOfSelector, String selectorValue) {
 		logger.debug("Waiting for element to be clickable: {}, {}", typeOfSelector, selectorValue);
@@ -401,6 +408,15 @@ public class WebDriverManager {
 		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");
 	}
 
+	public void waitUntilContentTooltipIsHidden() {
+		logger.debug("Waiting for contetn tooltip is hidden");
+		WebElement element =  this.waitUntilElementIsPresent("xpath", ".//div[@id='acn-context-tooltipWrapper']");
+		
+		if(!element.getAttribute("style").contains("visibility: hidden;")) {
+			waitUntilElementIsHidden(element);
+		}	
+	}
+	
 	// Wrappers
 
 	public void sendText(String selectorType, String selectorValue, String text) {
@@ -420,6 +436,7 @@ public class WebDriverManager {
 
 		waitUntilElementIsHidden(menu);
 	}
+	
 
 	public void usingYuiDialog(Runnable actions) {
 		String selector = ".//div[contains(@class, 'yui-panel-container') and contains(@class, 'yui-dialog') and contains(@style, 'visibility: visible;')]";

@@ -19,7 +19,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	private String userName;
 	private String password;
-
 	private String parentFolderName;
 	private String harnessFolderName;
 	private String emptyFolderName;
@@ -65,7 +64,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 	private String studioLogo;
 	private String createFormFrameElementCss;
 	private String createFormTitleElementXPath;
-	private String dashboardMenuOption;
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -128,8 +126,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		historyInitialCommitRevertButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.initialcommittrevertbutton");
 		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		dashboardMenuOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.dashboard_menu_option");
+
 	}
 
 	public void createFolderOnAPresentFolder(String folderName, WebElement Parent) {
@@ -203,7 +200,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickCopyContentPage(styleCategoryLandingStyle);
 
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
+		//this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", bigTree1FolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
 
@@ -212,7 +209,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickCopyContentPage(entertainmentCategoryLandingStyle);
 
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
+		//this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
@@ -222,7 +219,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickCopyContentPage(healthCategoryLandingStyle);
 
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
+		//this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
@@ -230,7 +227,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		WebElement technologyCategoryLandingStyle = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", technologyLocator);
 
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
+		//this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		dashboardPage.rightClickCopyContentPage(technologyCategoryLandingStyle);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
@@ -322,12 +319,16 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// Switch to the iframe
 		driverManager.getDriver().switchTo().activeElement();
 
+		this.driverManager.scrollDown();
+		
 		// Clickin the revert changes option for the initial version
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", historyInitialCommitRevertButton)
 				.click();
 
 		// Comparing first two versions of the content
 		compareTwoVersionsOfAContentPage();
+		
+		
 		// Click on close button
 		dashboardPage.clickHistoryCloseButton();
 
@@ -344,30 +345,20 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			// Click on Publish button
 			dashboardPage.clickApproveAndPublishSubmitButton();
 		});
-//		driverManager.getDriver().switchTo().activeElement();
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",approveForPublishDialogTitle);
-
 
 		// switch to default content
 		this.driverManager.waitUntilSidebarOpens();
-
-		//driverManager.getDriver().switchTo().defaultContent();
 
 	}
 
 	public void publishAllPagesOnAFolder(String folderLocator) {
 		// getting the entire list of content pages on a folder
 		driverManager.elementHasChildsByXPath(folderLocator + "/../../../../../div/div/table/tbody/tr/td/span");
-		this.driverManager.isElementPresentAndClickableByXpath(folderLocator);
 		
 		// Switch to the form
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
-		this.driverManager.scrollDown();
-		this.driverManager.isElementPresentAndClickableByXpath(
-				folderLocator + "/../../../../../div/div[1]/table/tbody/tr/td/span");
 		WebElement firstChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[1]/table/tbody/tr/td/span");
 
@@ -376,14 +367,10 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.clickOnPublishOption();
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
+		
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.getDriver().navigate().refresh();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
-		this.driverManager.scrollDown();
-		this.driverManager.isElementPresentAndClickableByXpath(
-				folderLocator + "/../../../../../div/div[2]/table/tbody/tr/td/span");
+		
 		WebElement secondChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[2]/table/tbody/tr/td/span");
 
@@ -392,14 +379,10 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.clickOnPublishOption();
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
+		
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.getDriver().navigate().refresh();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
-		this.driverManager.scrollDown();
-		this.driverManager.isElementPresentAndClickableByXpath(
-				folderLocator + "/../../../../../div/div[3]/table/tbody/tr/td/span");
+		
 		WebElement thirdChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[3]/table/tbody/tr/td/span");
 		dashboardPage.rightClickOnAContentPageByJavascript(thirdChild);
@@ -407,14 +390,10 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.clickOnPublishOption();
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
+		
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.getDriver().navigate().refresh();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
-		this.driverManager.scrollDown();
-		this.driverManager.isElementPresentAndClickableByXpath(
-				folderLocator + "/../../../../../div/div[4]/table/tbody/tr/td/span");
+	
 		WebElement fourthChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[4]/table/tbody/tr/td/span");
 		dashboardPage.rightClickOnAContentPageByJavascript(fourthChild);
@@ -422,14 +401,10 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.clickOnPublishOption();
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
+		
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.getDriver().navigate().refresh();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dashboardMenuOption).click();
-		this.driverManager.scrollDown();
-		this.driverManager.isElementPresentAndClickableByXpath(
-				folderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
+		
 		WebElement fifthChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
 
@@ -438,8 +413,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.clickOnPublishOption();
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
+		
 		// refreshing
-		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.getDriver().navigate().refresh();
 
 	}
@@ -596,30 +571,25 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.expandParentFolder(anotherTestFolder);
 
 		WebElement anotherTestBigTreeChildFolder = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestBigTreeChildFolderLocator);
+				.waitUntilElementIsClickable("xpath", anotherTestBigTreeChildFolderLocator);
 		dashboardPage.expandParentFolder(anotherTestBigTreeChildFolder);
 
-		this.driverManager.isElementPresentAndClickableByXpath(anotherTestBigTreeChildFolderLocator);
-		this.driverManager.isElementPresentAndClickableByXpath(
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", 
 				anotherTestBigTreeChildFolderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
 		this.publishAllPagesOnAFolder(anotherTestBigTreeChildFolderLocator);
 
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree2FolderLocator);
 		bigTree2Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2FolderLocator);
 		dashboardPage.expandParentFolder(bigTree2Folder);
 
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree2BigTree1ChildFolderLocator);
 		bigTree2BigTree1ChildFolder = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", bigTree2BigTree1ChildFolderLocator);
 		dashboardPage.expandParentFolder(bigTree2BigTree1ChildFolder);
 
-		this.driverManager.isElementPresentAndClickableByXpath(bigTree2BigTree1ChildFolderLocator);
-		this.driverManager.isElementPresentAndClickableByXpath(
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2BigTree1ChildFolderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
 		this.publishAllPagesOnAFolder(bigTree2BigTree1ChildFolderLocator);
 
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
 	}
 
 	public void step12() {
@@ -670,14 +640,12 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// Step3
 		this.step3();
 		
-		driverManager.getDriver().navigate().refresh();
 		// Step4
 		this.step4();
 
 		// Step5
 		this.step5();
 		
-		this.driverManager.getDriver().navigate().refresh();
 		// Step6
 		this.step6();
 

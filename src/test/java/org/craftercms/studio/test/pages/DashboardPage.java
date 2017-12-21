@@ -430,7 +430,7 @@ public class DashboardPage {
 
 	public void setFolderName(String strFolderName) {
 		// Set the name of the folder
-		logger.info("Create a new folder with add newfolder name");
+		logger.info("Creating a new folder");
 		this.folderName(strFolderName);
 	}
 
@@ -902,7 +902,10 @@ public class DashboardPage {
 	}
 
 	public void expandParentFolder(WebElement parentElement) {
-		parentElement.click();
+		if (!parentElement.getAttribute("class").contains("open")) {
+			this.driverManager.waitUntilContentTooltipIsHidden();
+			parentElement.click();
+		}
 	}
 
 	public void switchToAFormByCssSelector(String cSSSelector) {
