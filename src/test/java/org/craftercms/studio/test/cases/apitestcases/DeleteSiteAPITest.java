@@ -4,7 +4,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -33,13 +33,18 @@ public class DeleteSiteAPITest {
 		siteManagementAPI.testCreateSite(siteId);
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups={"deleteSite"})
 	public void testDeleteSite() {
 		siteManagementAPI.testDeleteSite(siteId);
 	}
 
-	@AfterTest
+	@AfterGroups(groups={"deleteSite"})
 	public void afterTest() {
 		securityAPI.logOutFromStudioUsingAPICall();
+	}
+	
+	@Test(dependsOnGroups={"deleteSite"})
+	public void testDeleteSiteUnauthorized() {
+		siteManagementAPI.testDeleteSiteUnauthorized(siteId);
 	}
 }

@@ -53,4 +53,8 @@ public class GetSitesPerUserAPITest {
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 
+	@Test(dependsOnGroups={"getSitesPerUser"})
+	public void testGetSitesPerUserUnauthorized() {
+		siteManagementAPI.testGetSitesPerUserUnauthorized(securityAPI.getUserName());
+	}
 }
