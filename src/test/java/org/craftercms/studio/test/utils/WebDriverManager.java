@@ -453,10 +453,9 @@ public class WebDriverManager {
 
 	public void usingContextMenu(Runnable actions) {
 		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";
-		WebElement menu = waitUntilElementIsDisplayed("cssSelector", selector);
-		
+		WebElement menu = waitUntilElementIsClickable("cssSelector", selector);
 		this.waitForAnimation();
-
+		actions.run();
 		waitUntilElementIsHidden(menu);
 	}
 
