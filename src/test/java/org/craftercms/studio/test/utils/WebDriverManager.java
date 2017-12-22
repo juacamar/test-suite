@@ -77,10 +77,8 @@ public class WebDriverManager {
 					driver = new InternetExplorerDriver(internetExplorerOptions);
 					break;
 				case "chrome":
-//				    capabilities = DesiredCapabilities.chrome();
 					ChromeOptions chromeOptions = new ChromeOptions();
 					chromeOptions.addArguments("--incognito");
-//					chromeOptions.setCapability(ChromeOptions.CAPABILITY, capabilities);	
 					System.setProperty("webdriver.chrome.driver", envProperties.getProperty("chrome.driver.path"));
 					driver = new ChromeDriver(chromeOptions);
 					break;
