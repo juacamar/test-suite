@@ -209,8 +209,10 @@ public class DashboardPage {
 	public void clickPagesTree() {
 		this.driverManager.waitUntilSidebarOpens();
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
+		if(!expandPagesTree.getAttribute("class").contains("open")) {
 		expandPagesTree.click();
 		driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
+		}
 	}
 
 	public void expandPagesTree() {
@@ -254,8 +256,8 @@ public class DashboardPage {
 	public void rightClickHome() {
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
-		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");		
+		this.driverManager.waitForAnimation();
 		this.getDriverManager().contextClick("xpath", homeContent, false);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
 		driverManager.usingContextMenu(() -> {

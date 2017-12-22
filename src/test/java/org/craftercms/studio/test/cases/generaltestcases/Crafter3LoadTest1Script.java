@@ -200,7 +200,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickCopyContentPage(styleCategoryLandingStyle);
 
-		// this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", bigTree1FolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
 
@@ -209,7 +208,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickCopyContentPage(entertainmentCategoryLandingStyle);
 
-		// this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
@@ -219,7 +217,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		dashboardPage.rightClickCopyContentPage(healthCategoryLandingStyle);
 
-		// this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 		dashboardPage.rightClickPasteOnAFolder(bigTree1Folder);
@@ -227,7 +224,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		WebElement technologyCategoryLandingStyle = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", technologyLocator);
 
-		// this.driverManager.isElementPresentAndClickableByXpath(bigTree1FolderLocator);
 		dashboardPage.rightClickCopyContentPage(technologyCategoryLandingStyle);
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
@@ -467,9 +463,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		bigTree1Folder = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree1FolderLocator);
 
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// bigTree1FolderLocator)
-		// .click();
 		dashboardPage.rightClickCopyFolder(bigTree1Folder);
 
 		// Step2 b)

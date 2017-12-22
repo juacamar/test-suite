@@ -10,7 +10,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -34,6 +36,7 @@ public class WebDriverManager {
 	private ConstantsPropertiesManager constantsPropertiesManager;
 	private int defaultTimeOut;
 
+	@SuppressWarnings("deprecation")
 	public void openConnection() {
 
 		final Properties runtimeProperties = new Properties();
@@ -49,13 +52,13 @@ public class WebDriverManager {
 				case "phantomjs":
 					capabilities = DesiredCapabilities.phantomjs();
 					System.setProperty("phantomjs.binary.path", envProperties.getProperty("phantomjs.binary.path"));
-
 					driver = new PhantomJSDriver(capabilities);
 					break;
 				case "firefox":
 					capabilities = DesiredCapabilities.firefox();
+					FirefoxOptions firefoxOptions = new FirefoxOptions(capabilities);
 					System.setProperty("webdriver.gecko.driver", envProperties.getProperty("firefox.driver.path"));
-					driver = new FirefoxDriver(capabilities);
+					driver = new FirefoxDriver(firefoxOptions);
 					break;
 				case "edge":
 					capabilities = DesiredCapabilities.edge();
@@ -68,16 +71,18 @@ public class WebDriverManager {
 					capabilities = DesiredCapabilities.internetExplorer();
 					capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 							true);
+					InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions(capabilities);
+
 					System.setProperty("webdriver.ie.driver", envProperties.getProperty("ie.driver.path"));
-					driver = new InternetExplorerDriver(capabilities);
+					driver = new InternetExplorerDriver(internetExplorerOptions);
 					break;
 				case "chrome":
-					capabilities = DesiredCapabilities.chrome();
+//				    capabilities = DesiredCapabilities.chrome();
 					ChromeOptions chromeOptions = new ChromeOptions();
 					chromeOptions.addArguments("--incognito");
-					capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+//					chromeOptions.setCapability(ChromeOptions.CAPABILITY, capabilities);	
 					System.setProperty("webdriver.chrome.driver", envProperties.getProperty("chrome.driver.path"));
-					driver = new ChromeDriver(capabilities);
+					driver = new ChromeDriver(chromeOptions);
 					break;
 				default:
 					throw new IllegalArgumentException(
@@ -451,13 +456,8 @@ public class WebDriverManager {
 	public void usingContextMenu(Runnable actions) {
 		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";
 		WebElement menu = waitUntilElementIsDisplayed("cssSelector", selector);
-		//waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		actions.run();
+		
+		this.waitForAnimation();
 
 		waitUntilElementIsHidden(menu);
 	}
@@ -580,4 +580,11 @@ public class WebDriverManager {
 		}
 	}
 
+	public void waitForAnimation() {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
