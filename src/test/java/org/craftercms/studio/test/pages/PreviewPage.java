@@ -565,14 +565,7 @@ public class PreviewPage {
 	}
 
 	public void checkDependencies() {
-		// TODO: Delete this when expected condition is established for animation
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			
-			e.printStackTrace();
-		}
-		
+		this.driverManager.waitForAnimation();
 		// Switch to the frame
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
