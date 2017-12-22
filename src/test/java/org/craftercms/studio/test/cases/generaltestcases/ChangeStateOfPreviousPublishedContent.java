@@ -356,6 +356,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.goToSiteContentPagesStructure();
 		
 		// expand pages folder
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		this.dashboardPage.expandPagesTree();
 		
 		this.driverManager.waitUntilSidebarOpens();
@@ -371,6 +372,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				"admin-console");
 
 		// expand Home tree
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		this.dashboardPage.expandHomeTree();
 		
 		this.driverManager.getDriver().navigate().refresh();
@@ -438,8 +440,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditOption);
 		
 		//waituntilfolderopens
-		driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-		
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		this.dashboardPage.expandHomeTree();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -503,6 +504,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",generalEditOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeTree);
 		
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		this.dashboardPage.expandHomeTree();
 
 		logger.info("Click the Static Assets Button");
@@ -537,6 +539,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 					.getAttribute("class").toString();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 					staticAssetsGearImageId).click();
+			this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 			this.dashboardPage.expandHomeTree();
 			maxNumberofTries--;
 		}
