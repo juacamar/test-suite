@@ -506,7 +506,7 @@ public class PreviewPage {
 		// save
 		siteConfigPage.saveDragAndDropProcess();
 
-		driverManager.getDriver().switchTo().defaultContent();
+		this.driverManager.getDriver().switchTo().defaultContent();
 
 		// go to dashboard
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-logo").click();
