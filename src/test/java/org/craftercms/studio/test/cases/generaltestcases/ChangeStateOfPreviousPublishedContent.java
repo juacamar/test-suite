@@ -6,6 +6,8 @@ package org.craftercms.studio.test.cases.generaltestcases;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.Assert;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -47,6 +49,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String articlesFolder;
 	private String createFormFrameElementCss;
 	private String generalEditOption;
+	private static Logger logger = LogManager.getLogger(ChangeStateOfPreviousPublishedContent.class);
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -202,6 +205,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	}
 
 	public void addUserToAuthorGroup() {
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id","admin-console");
 
 		WebElement siteConfigButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
 				"admin-console");
@@ -342,24 +347,37 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		this.login(userName, password);
 
+		logger.info("Adding New User");
 		this.addNewUser();
+		
+		this.driverManager.getDriver().navigate().refresh();
 
+		logger.info("Go to Site Preview");
 		this.goToSiteContentPagesStructure();
+		
+		// expand pages folder
+		this.dashboardPage.expandPagesTree();
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
+		
+		this.driverManager.waitUntilSidebarOpens();
 
+		logger.info("Add previous created user to Author Group");
 		this.addUserToAuthorGroup();
 
 		// body not required Page-Article
+		logger.info("Change Article Page body content to not required");
 		this.changeBodyToNotRequiredOnPageArticleContent();
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+				"admin-console");
 
-		// expand pages folder
-		dashboardPage.expandPagesTree();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeTree);
 		// expand Home tree
-		dashboardPage.expandHomeTree();
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
+		this.dashboardPage.expandHomeTree();
 		
 		this.driverManager.getDriver().navigate().refresh();
 		
+		logger.info("Create Article Content");
 		previewPage.createPageArticleContent("test", "Testing1", "test", articlesFolder, selectAllCategoriesCheckBox,
 				selectAllSegmentsCheckBox, "ArticleSubject", "ArticleAuthor", "ArticleSummary");
 
@@ -385,6 +403,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.waitUntilSidebarOpens();	
 
 		// Bulk Publish
+		logger.info("Executing bulk publish");
 		previewPage.bulkPublish();
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -393,14 +412,18 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				articlesFolder).click();
 
 		// Verify Article is published
+		logger.info("Verify Article is published");
 		previewPage.verifyPageArticleIsPublished();
 
 		// logout from Crafter
+		logger.info("logout from Crafter");
 		this.logoutFromCrafter();
 
 		// login to application with author user
+		logger.info("login to application with author user");
 		loginPage.loginToCrafter("author", "author");
         
+		logger.info("Go to Preview Page");
 		homePage.goToPreviewPage();
 		String siteDropdownElementXPath = sidebarMenuOption;
 
@@ -416,9 +439,10 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditOption);
 		
+		//waituntilfolderopens
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		this.dashboardPage.expandHomeTree();
 
-		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -443,10 +467,12 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				".//span[contains(text(),'Testing1')]");
 
 		// Edit content Page with the Author User
+		logger.info("Edit content Page with the Author User");
 		String newPageArticleName = "Testing1Edited";
 		this.renamePage(articlePage, newPageArticleName);
 
 		// request publish
+		logger.info("Request Publish");
 		this.requestPublish(newPageArticleName);
 
 		// Switch back to the dashboard page
@@ -462,6 +488,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		
 
 		// check dependencies are listed
+		logger.info("Check Listed Dependencies");
 		previewPage.checkDependencies();
 
 		// Cancel the Workflow and Edit again the Page Article Content
@@ -469,14 +496,18 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		newPageArticleName = "Testing1Edited2";
 		articlePage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				".//span[contains(text(),'Testing1Edited')]");
+		logger.info("Edit again the Page Article Page");
 		this.renamePageWithWorkflowCancelation(articlePage, newPageArticleName);
 
 		// Collapse Home tree
+		logger.info("Collapse Home tree");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",generalEditOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeTree);
 		
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		this.dashboardPage.expandHomeTree();
 
+		logger.info("Click the Static Assets Button");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsButton);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsButton).click();
 
@@ -508,6 +539,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 					.getAttribute("class").toString();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 					staticAssetsGearImageId).click();
+			this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 			this.dashboardPage.expandHomeTree();
 			maxNumberofTries--;
 		}
