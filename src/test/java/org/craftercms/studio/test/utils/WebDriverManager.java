@@ -78,7 +78,6 @@ public class WebDriverManager {
 					break;
 				case "chrome":
 					ChromeOptions chromeOptions = new ChromeOptions();
-//					chromeOptions.addArguments("--incognito");
 					System.setProperty("webdriver.chrome.driver", envProperties.getProperty("chrome.driver.path"));
 					driver = new ChromeDriver(chromeOptions);
 					break;
