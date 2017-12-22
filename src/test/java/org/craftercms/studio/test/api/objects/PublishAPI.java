@@ -92,4 +92,28 @@ public class PublishAPI extends BaseAPI {
 		.json(json).execute().status(401)
 				.debug();
 	}
+	
+	public void testPublishStatus(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/publish/status.json").urlParam("site_id", siteId)
+		.execute().status(200).debug();
+	}
+	
+	public void testPublishStatusInvalidParameters(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/publish/status.json").urlParam("site_idnonvalid", siteId)
+		.execute().status(400).debug();
+	}
+	
+	public void testPublishStatusSiteNotFound(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/publish/status.json").urlParam("site_id", siteId+"nonvalid")
+		.execute().status(404).debug();
+	}
+	
+	public void testPublishStatusUnauthorized(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/publish/status.json").urlParam("site_id", siteId)
+		.execute().status(401).debug();
+	}
 }

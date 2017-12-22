@@ -121,7 +121,9 @@ public class RenameParentPageAndPublishChildTest {
 
 		dashboardPage.rightClickOnAContentPage(element);
 		// selecting the Publish option
-		dashboardPage.clickOnPublishOption();
+		driverManager.usingContextMenu(() -> {
+			dashboardPage.clickOnPublishOption();
+		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.selectOnlyOnePageToPublish(pageName);
 		this.confirmPublishAction();

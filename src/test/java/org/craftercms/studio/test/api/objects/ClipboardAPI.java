@@ -16,6 +16,6 @@ public class ClipboardAPI extends BaseAPI {
 		Map<String, Object> json = new HashMap<>();
 		json.put("site", siteId);
 		
-		api.post("studio/api/1/services/api/1/clipboard/copy-item.json").json(json).execute().debug();
+		api.post("studio/api/1/services/api/1/clipboard/copy-item.json").json(json).execute().status(200).debug();
 	}
 }

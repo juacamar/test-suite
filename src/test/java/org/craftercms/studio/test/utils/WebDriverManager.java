@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -71,6 +72,9 @@ public class WebDriverManager {
 						break;
 					case "chrome":
 						capabilities = DesiredCapabilities.chrome();
+						ChromeOptions chromeOptions = new ChromeOptions();
+						chromeOptions.addArguments("--incognito");
+						capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 						System.setProperty("webdriver.chrome.driver", envProperties.getProperty("chrome.driver.path"));
 						driver = new ChromeDriver(capabilities);
 						break;
@@ -413,7 +417,7 @@ public class WebDriverManager {
 
 	public void usingContextMenu(Runnable actions) {
 		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";
-		WebElement menu = waitUntilElementIsDisplayed("cssSelector", selector);
+		WebElement menu = waitUntilElementIsClickable("cssSelector", selector);
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
 
 		actions.run();
