@@ -356,8 +356,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.goToSiteContentPagesStructure();
 		
 		// expand pages folder
-		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		this.dashboardPage.expandPagesTree();
+		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 		
 		this.driverManager.waitUntilSidebarOpens();
 
