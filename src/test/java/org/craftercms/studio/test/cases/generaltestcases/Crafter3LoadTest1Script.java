@@ -298,7 +298,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			dashboardPage.clickCompareButton();
 
 			// switching to the compare frame
-			// driverManager.getDriver().switchTo().frame(differencesDialogId);
 			driverManager.usingCrafterDialog("cssSelector", differencesDialogId, () -> {
 				// checkin if is present the removed-red-highlight text
 				Assert.assertTrue(driverManager.isElementPresentByXpath(differencesDialogRemovedMarkXpath));
@@ -351,12 +350,14 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void publishAllPagesOnAFolder(String folderLocator) {
 		// getting the entire list of content pages on a folder
+		//The xpath bellow is a dynamical xpath according with folder name of the folderLocator
 		driverManager.elementHasChildsByXPath(folderLocator + "/../../../../../div/div/table/tbody/tr/td/span");
 
 		// Switch to the form
 		driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().switchTo().defaultContent();
 
+		//The xpath bellow is a dynamical xpath according with folder name of the folderLocator
 		WebElement firstChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[1]/table/tbody/tr/td/span");
 
@@ -371,6 +372,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
 
+		//The xpath bellow is a dynamical xpath according with folder name of the folderLocator
 		WebElement secondChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[2]/table/tbody/tr/td/span");
 
@@ -385,6 +387,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
 
+		//The xpath bellow is a dynamical xpath according with folder name of the folderLocator
 		WebElement thirdChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[3]/table/tbody/tr/td/span");
 		dashboardPage.rightClickOnAContentPageByJavascript(thirdChild);
@@ -398,6 +401,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
 
+		//The xpath bellow is a dynamical xpath according with folder name of the folderLocator
 		WebElement fourthChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[4]/table/tbody/tr/td/span");
 		dashboardPage.rightClickOnAContentPageByJavascript(fourthChild);
@@ -411,6 +415,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
 
+		//The xpath bellow is a dynamical xpath according with folder name of the folderLocator
 		WebElement fifthChild = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				folderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
 
