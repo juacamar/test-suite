@@ -70,6 +70,13 @@ public class SiteManagementAPI extends BaseAPI {
 		api.post("/studio/api/1/services/api/1/site/delete-site.json").json(json).execute().status(200);
 				
 	}
+	
+	public void testDeleteSiteUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("siteId", siteId);
+		api.post("/studio/api/1/services/api/1/site/delete-site.json").json(json).execute().status(401);
+				
+	}
 
 	public void testClearConfigurationCache() {
 		api.get("/studio/api/1/services/api/1/site/clear-configuration-cache.json").urlParam("site", this.siteId)

@@ -57,4 +57,8 @@ public class SyncFromRepoAPITest {
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 
+    @Test(dependsOnGroups={"syncFromRepo"})
+   	public void testSyncFromRepoUnauthorized() {
+    	repoManagementAPI.testSyncFromRepoUnauthorized(siteManagementAPI.getSiteId());
+   	}
 }

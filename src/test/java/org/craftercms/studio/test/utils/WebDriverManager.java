@@ -6,10 +6,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -33,6 +36,7 @@ public class WebDriverManager {
 	private ConstantsPropertiesManager constantsPropertiesManager;
 	private int defaultTimeOut;
 
+	@SuppressWarnings("deprecation")
 	public void openConnection() {
 
 		final Properties runtimeProperties = new Properties();
@@ -45,41 +49,47 @@ public class WebDriverManager {
 				String webBrowserProperty = envProperties.getProperty("webBrowser");
 				DesiredCapabilities capabilities;
 				switch (webBrowserProperty.toLowerCase()) {
-					case "phantomjs":
-						capabilities = DesiredCapabilities.phantomjs();
-						System.setProperty("phantomjs.binary.path", envProperties.getProperty("phantomjs.binary.path"));
+				case "phantomjs":
+					capabilities = DesiredCapabilities.phantomjs();
+					System.setProperty("phantomjs.binary.path", envProperties.getProperty("phantomjs.binary.path"));
+					driver = new PhantomJSDriver(capabilities);
+					break;
+				case "firefox":
+					capabilities = DesiredCapabilities.firefox();
+					FirefoxOptions firefoxOptions = new FirefoxOptions(capabilities);
+					System.setProperty("webdriver.gecko.driver", envProperties.getProperty("firefox.driver.path"));
+					driver = new FirefoxDriver(firefoxOptions);
+					break;
+				case "edge":
+					capabilities = DesiredCapabilities.edge();
+					System.setProperty("webdriver.edge.driver", envProperties.getProperty("edge.driver.path"));
+					EdgeOptions options = new EdgeOptions();
+					options.setPageLoadStrategy("eager");
+					driver = new EdgeDriver();
+					break;
+				case "ie":
+					capabilities = DesiredCapabilities.internetExplorer();
+					capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+							true);
+					InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions(capabilities);
 
-						driver = new PhantomJSDriver(capabilities);
-						break;
-					case "firefox":
-						capabilities = DesiredCapabilities.firefox();
-						System.setProperty("webdriver.gecko.driver", envProperties.getProperty("firefox.driver.path"));
-						driver = new FirefoxDriver(capabilities);
-						break;
-					case "edge":
-						capabilities = DesiredCapabilities.edge();
-						System.setProperty("webdriver.edge.driver", envProperties.getProperty("edge.driver.path"));
-						EdgeOptions options = new EdgeOptions();
-						options.setPageLoadStrategy("eager");
-						driver = new EdgeDriver();
-						break;
-					case "ie":
-						capabilities = DesiredCapabilities.internetExplorer();
-						capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-						System.setProperty("webdriver.ie.driver", envProperties.getProperty("ie.driver.path"));
-						driver = new InternetExplorerDriver(capabilities);
-						break;
-					case "chrome":
-						capabilities = DesiredCapabilities.chrome();
-						System.setProperty("webdriver.chrome.driver", envProperties.getProperty("chrome.driver.path"));
-						driver = new ChromeDriver(capabilities);
-						break;
-					default:
-						throw new IllegalArgumentException("webBrowser property is needed, valid values are:" + "chrome,edge,ie,firefox,phantomjs");
+					System.setProperty("webdriver.ie.driver", envProperties.getProperty("ie.driver.path"));
+					driver = new InternetExplorerDriver(internetExplorerOptions);
+					break;
+				case "chrome":
+					ChromeOptions chromeOptions = new ChromeOptions();
+					chromeOptions.addArguments("--incognito");
+					System.setProperty("webdriver.chrome.driver", envProperties.getProperty("chrome.driver.path"));
+					driver = new ChromeDriver(chromeOptions);
+					break;
+				default:
+					throw new IllegalArgumentException(
+							"webBrowser property is needed, valid values are:" + "chrome,edge,ie,firefox,phantomjs");
 				}
 
 				driver.get(envProperties.getProperty("baseUrl"));
-				this.defaultTimeOut = Integer.parseInt(constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
+				this.defaultTimeOut = Integer.parseInt(
+						constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.defaulttimeout"));
 
 				if (!webBrowserProperty.equalsIgnoreCase("firefox")) {
 					this.maximizeWindow();
@@ -102,8 +112,8 @@ public class WebDriverManager {
 	public void maximizeWindow() {
 		// Getting the size width and height
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		int width = (int)toolkit.getScreenSize().getWidth();
-		int height = (int)toolkit.getScreenSize().getHeight();
+		int width = (int) toolkit.getScreenSize().getWidth();
+		int height = (int) toolkit.getScreenSize().getHeight();
 		// locating webdriver at coordinate 0,0
 		this.driver.manage().window().setPosition(new Point(0, 0));
 		// maximize the window at normal size
@@ -123,24 +133,25 @@ public class WebDriverManager {
 
 	protected By getSelector(String typeOfSelector, String selectorValue) {
 		switch (typeOfSelector.toLowerCase()) {
-			case "cssselector":
-				return By.cssSelector(selectorValue);
-			case "xpath":
-				return By.xpath(selectorValue);
-			case "id":
-				return By.id(selectorValue);
-			case "classname":
-				return By.className(selectorValue);
-			case "tagname":
-				return By.tagName(selectorValue);
-			case "linktext":
-				return By.linkText(selectorValue);
-			case "partialLinktext":
-				return By.partialLinkText(selectorValue);
-			case "name":
-				return By.name(selectorValue);
-			default:
-				throw new IllegalArgumentException("selectortype is needed, valid values are:" + "xpath,cssselector,id,tagname,classname,linktext,partiallinkText,name");
+		case "cssselector":
+			return By.cssSelector(selectorValue);
+		case "xpath":
+			return By.xpath(selectorValue);
+		case "id":
+			return By.id(selectorValue);
+		case "classname":
+			return By.className(selectorValue);
+		case "tagname":
+			return By.tagName(selectorValue);
+		case "linktext":
+			return By.linkText(selectorValue);
+		case "partialLinktext":
+			return By.partialLinkText(selectorValue);
+		case "name":
+			return By.name(selectorValue);
+		default:
+			throw new IllegalArgumentException("selectortype is needed, valid values are:"
+					+ "xpath,cssselector,id,tagname,classname,linktext,partiallinkText,name");
 		}
 	}
 
@@ -151,44 +162,52 @@ public class WebDriverManager {
 		return driver.findElement(selector);
 	}
 
+	public WebElement waitUntilElementIsPresent(String typeOfSelector, String selectorValue) {
+		logger.debug("Waiting for element to be displayed: {}, {}", typeOfSelector, selectorValue);
+		By selector = getSelector(typeOfSelector, selectorValue);
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.presenceOfElementLocated(selector));
+		return driver.findElement(selector);
+	}
+
 	public WebElement waitUntilElementIsClickable(String typeOfSelector, String selectorValue) {
 		logger.debug("Waiting for element to be clickable: {}, {}", typeOfSelector, selectorValue);
 		By selector = getSelector(typeOfSelector, selectorValue);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.elementToBeClickable(selector));
 		return driver.findElement(selector);
 	}
-	
+
 	public void waitUntilElementIsNotDisplayed(String typeOfSelector, String selectorValue) {
 		logger.debug("Waiting for element to be hidden: {} , {}", typeOfSelector, selectorValue);
 		By selector = getSelector(typeOfSelector, selectorValue);
-		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.invisibilityOf(driver.findElement(selector)));
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(ExpectedConditions.invisibilityOf(driver.findElement(selector)));
 	}
 
 	public void waitUntilElementIsHidden(WebElement element) {
 		logger.debug("Waiting for element to be hidden: {}", element);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.invisibilityOf(element));
 	}
-	
+
 	public void waitUntilPopupIsHidden() {
 		logger.debug("Waiting for Popup to be hidden");
-		WebElement popupElement = driverWaitUntilElementIsPresentAndDisplayed("id","cstudio-wcm-popup-div_mask");
+		WebElement popupElement = driverWaitUntilElementIsPresentAndDisplayed("id", "cstudio-wcm-popup-div_mask");
 		waitUntilElementIsHidden(popupElement);
 	}
 
-	public void waitUntilAttributeIs(String selectorType, String selectorValue, String attributeName, String
-		attributeValue) {
-		logger.debug("Waiting for element {}, {} to have attribute {} = {}",selectorType, selectorValue,
-			attributeName, attributeValue);
-		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.attributeToBe
-			(getSelector(selectorType, selectorValue), attributeName, attributeValue));
+	public void waitUntilAttributeIs(String selectorType, String selectorValue, String attributeName,
+			String attributeValue) {
+		logger.debug("Waiting for element {}, {} to have attribute {} = {}", selectorType, selectorValue, attributeName,
+				attributeValue);
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions
+				.attributeToBe(getSelector(selectorType, selectorValue), attributeName, attributeValue));
 	}
 
-	public void waitUntilAttributeContains(String selectorType, String selectorValue, String attributeName, String
-		attributeValue) {
-		logger.debug("Waiting for element {}, {} to have attribute {} with {}",selectorType, selectorValue,
-			attributeName, attributeValue);
+	public void waitUntilAttributeContains(String selectorType, String selectorValue, String attributeName,
+			String attributeValue) {
+		logger.debug("Waiting for element {}, {} to have attribute {} with {}", selectorType, selectorValue,
+				attributeName, attributeValue);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions
-			.attributeContains(getSelector(selectorType, selectorValue), attributeName, attributeValue));
+				.attributeContains(getSelector(selectorType, selectorValue), attributeName, attributeValue));
 	}
 
 	public void waitUntilElementIsRemoved(WebElement element) {
@@ -212,7 +231,8 @@ public class WebDriverManager {
 		Actions builder = new Actions(this.getDriver());
 
 		// Creating the action for click and hold from the origin web element
-		Action dragAndDrop = builder.clickAndHold(fromWebElement).moveToElement(toWebElement).release(toWebElement).build();
+		Action dragAndDrop = builder.clickAndHold(fromWebElement).moveToElement(toWebElement).release(toWebElement)
+				.build();
 
 		// commit the actions above
 		dragAndDrop.perform();
@@ -222,7 +242,8 @@ public class WebDriverManager {
 		boolean isElementPresent = true;
 
 		try {
-			@SuppressWarnings("unused") WebElement webElement = this.findElement("xpath", xpathOfTheElement);
+			@SuppressWarnings("unused")
+			WebElement webElement = this.findElement("xpath", xpathOfTheElement);
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -236,7 +257,8 @@ public class WebDriverManager {
 		boolean isElementPresent = true;
 
 		try {
-			@SuppressWarnings("unused") WebElement webElement = findElement("xpath", xpathOfTheElement);
+			@SuppressWarnings("unused")
+			WebElement webElement = findElement("xpath", xpathOfTheElement);
 
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
@@ -251,7 +273,8 @@ public class WebDriverManager {
 		boolean isElementPresent = true;
 
 		try {
-			@SuppressWarnings("unused") WebElement webElement = this.findElement("id", id);
+			@SuppressWarnings("unused")
+			WebElement webElement = this.findElement("id", id);
 
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
@@ -266,7 +289,8 @@ public class WebDriverManager {
 		boolean isElementPresent = true;
 
 		try {
-			@SuppressWarnings("unused") WebElement webElement = this.findElement("name", name);
+			@SuppressWarnings("unused")
+			WebElement webElement = this.findElement("name", name);
 
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
@@ -281,7 +305,8 @@ public class WebDriverManager {
 		boolean isElementPresent = true;
 
 		try {
-			@SuppressWarnings("unused") WebElement webElement = this.findElement("id", id);
+			@SuppressWarnings("unused")
+			WebElement webElement = this.findElement("id", id);
 
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
@@ -296,7 +321,8 @@ public class WebDriverManager {
 		boolean isElementPresent = true;
 
 		try {
-			@SuppressWarnings("unused") WebElement webElement = this.findElement("cssSelector", cssSelector);
+			@SuppressWarnings("unused")
+			WebElement webElement = this.findElement("cssSelector", cssSelector);
 
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
@@ -311,7 +337,8 @@ public class WebDriverManager {
 		boolean isElementPresent = true;
 
 		try {
-			@SuppressWarnings("unused") WebElement webElement = this.findElement("cssSelector", cssSelector);
+			@SuppressWarnings("unused")
+			WebElement webElement = this.findElement("cssSelector", cssSelector);
 		} catch (NoSuchElementException e) {
 			isElementPresent = false;
 		} catch (Exception e) {
@@ -327,19 +354,20 @@ public class WebDriverManager {
 
 	public void contextClick(WebDriver driver, WebElement element, Boolean executeThroughJavaScript) {
 		if (executeThroughJavaScript) {
-			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');" + "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
-			((JavascriptExecutor)driver).executeScript(script, new Object[] {element});
+			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
+					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
+			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
 		} else {
 			(new Actions(driver)).contextClick(element).build().perform();
 		}
 	}
 
 	public void scrollUp() {
-		((JavascriptExecutor)driver).executeScript("window.scrollTo(0,0)");
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
 	}
 
 	public void scrollDown() {
-		((JavascriptExecutor)driver).executeScript("window.scrollTo(0,2000)");
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,2000)");
 	}
 
 	public ConstantsPropertiesManager getConstantsPropertiesManager() {
@@ -372,7 +400,8 @@ public class WebDriverManager {
 
 	public void waitUntilLoginCloses() {
 		logger.debug("Waiting for login dialog to close");
-		new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+		new WebDriverWait(this.driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
 	}
 
 	public void waitUntilSidebarOpens() {
@@ -382,23 +411,34 @@ public class WebDriverManager {
 
 	public void waitUntilSidebarCloses() {
 		logger.debug("Waiting for sidebar to close");
-		waitUntilElementIsNotDisplayed("cssSelector", "div.acn-resize.ui-resizable");	
+		waitUntilElementIsNotDisplayed("cssSelector", "div.acn-resize.ui-resizable");
 	}
-	
+
 	public void waitUntilModalCloses() {
 		logger.debug("Waiting for notification modal to close");
-		WebElement element = this.waitUntilElementIsDisplayed("xpath", ".//*[@class='modal fade ng-isolate-scope centered-dialog studioMedium in']");
-		waitUntilElementIsRemoved(element);	
+		WebElement element = this.waitUntilElementIsDisplayed("xpath",
+				".//*[@class='modal fade ng-isolate-scope centered-dialog studioMedium in']");
+		waitUntilElementIsRemoved(element);
 	}
-	
+
 	public void waitUntilDeleteSiteModalCloses() {
 		logger.debug("Waiting for delete site dialog to close");
-		new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+		new WebDriverWait(this.driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
 	}
-	
+
 	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
 		logger.debug("Waiting for folder to open: {}, {}", selectorType, selectorValue);
 		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");
+	}
+
+	public void waitUntilContentTooltipIsHidden() {
+		logger.debug("Waiting for contetn tooltip is hidden");
+		WebElement element = this.waitUntilElementIsPresent("xpath", ".//div[@id='acn-context-tooltipWrapper']");
+
+		if (!element.getAttribute("style").contains("visibility: hidden;")) {
+			waitUntilElementIsHidden(element);
+		}
 	}
 
 	// Wrappers
@@ -414,9 +454,8 @@ public class WebDriverManager {
 	public void usingContextMenu(Runnable actions) {
 		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";
 		WebElement menu = waitUntilElementIsDisplayed("cssSelector", selector);
-		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
-
-		actions.run();
+		
+		this.waitForAnimation();
 
 		waitUntilElementIsHidden(menu);
 	}
@@ -440,42 +479,40 @@ public class WebDriverManager {
 		actions.run();
 		driver.switchTo().defaultContent();
 	}
-	
+
 	public void usingCrafterForm(String selectorType, String selectorValue, Runnable actions) {
-        logger.debug("Switching to iframe for form: {}, {}", selectorType, selectorValue);
-        driver.switchTo().defaultContent();
+		logger.debug("Switching to iframe for form: {}, {}", selectorType, selectorValue);
+		driver.switchTo().defaultContent();
 
-        // Wait until animation completes
-        WebElement frame = waitUntilElementIsDisplayed(selectorType, selectorValue);
+		// Wait until animation completes
+		WebElement frame = waitUntilElementIsDisplayed(selectorType, selectorValue);
 
-        // Switch to iframe
-        driver.switchTo().frame(frame);
+		// Switch to iframe
+		driver.switchTo().frame(frame);
 
-        // Wait until any input is selected
-        new WebDriverWait(driver, defaultTimeOut).until(webDriver ->
-            webDriver.switchTo().activeElement().getTagName().equals("input")
-        );
+		// Wait until any input is selected
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(webDriver -> webDriver.switchTo().activeElement().getTagName().equals("input"));
 
-        // Check if it is the first one
-        WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
-        if(!firstInput.equals(driver.switchTo().activeElement())) {
-            // Change focus to the right input
-            firstInput.click();
-        }
+		// Check if it is the first one
+		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
+		if (!firstInput.equals(driver.switchTo().activeElement())) {
+			// Change focus to the right input
+			firstInput.click();
+		}
 
-        // Wait again for focus
-        new WebDriverWait(driver, defaultTimeOut).until(webDriver ->
-            webDriver.switchTo().activeElement().equals(firstInput)
-        );
+		// Wait again for focus
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(webDriver -> webDriver.switchTo().activeElement().equals(firstInput));
 
-        // Do stuff
-        actions.run();
+		// Do stuff
+		actions.run();
 
-        driver.switchTo().defaultContent();
+		driver.switchTo().defaultContent();
 
-        // Wait until iframe is hidden
-        waitUntilElementIsHidden(frame);
-    }
+		// Wait until iframe is hidden
+		waitUntilElementIsHidden(frame);
+	}
 
 	// Same as previuous but without inputs
 	public void usingCrafterDialog(String selectorType, String selectorValue, Runnable actions) {
@@ -500,11 +537,11 @@ public class WebDriverManager {
 
 	// Old API, kept to avoid a huge refactor
 
-	
 	public void waitUntilPageLoad() {
 		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				return ((JavascriptExecutor)driver).executeScript("return document.readyState").toString().equals("complete");
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+						.equals("complete");
 			}
 		};
 
@@ -515,27 +552,23 @@ public class WebDriverManager {
 
 	}
 
-	
 	public WebElement driverWaitUntilElementIsPresentAndDisplayed(String typeOfSelector, String selectorValue) {
 		return waitUntilElementIsDisplayed(typeOfSelector, selectorValue);
 	}
 
-
-	public WebElement driverWaitUntilElementIsPresentAndDisplayedAndClickable(String typeOfSelector, String selectorValue) {
+	public WebElement driverWaitUntilElementIsPresentAndDisplayedAndClickable(String typeOfSelector,
+			String selectorValue) {
 		return waitUntilElementIsClickable(typeOfSelector, selectorValue);
 	}
 
-	
 	public void waitWhileElementIsDisplayedAndClickableByXpath(String xpath) {
 		waitUntilElementIsClickable("xpath", xpath);
 	}
 
-	
 	public void waitWhileElementIsPresentByXpath(String xpath) {
 		waitUntilElementIsDisplayed("xpath", xpath);
 	}
 
-	
 	public void waitWhileElementIsNotDisplayedByXpath(String xpath) {
 		Boolean isPresent = this.isElementPresentAndClickableByXpath(xpath);
 
@@ -545,4 +578,11 @@ public class WebDriverManager {
 		}
 	}
 
+	public void waitForAnimation() {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

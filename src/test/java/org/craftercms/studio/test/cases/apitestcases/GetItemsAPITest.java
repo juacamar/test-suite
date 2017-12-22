@@ -1,60 +1,47 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
+import org.craftercms.studio.test.api.objects.ClipboardAPI;
 import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterGroups;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
- * Created by Gustavo Ortiz Alfaro
+ * @author chris lim
+ *
  */
 
-public class GetSiteAPITest {
-
+public class GetItemsAPITest {
 	private SecurityAPI securityAPI;
 	private SiteManagementAPI siteManagementAPI;
-	private String siteId="siteGetSiteAPITest";
+	private ClipboardAPI clipboardAPI;
 	
-	public GetSiteAPITest() {
+	public GetItemsAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
 		securityAPI = new SecurityAPI(api, apiConnectionManager);
 		siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
+		clipboardAPI = new ClipboardAPI(api, apiConnectionManager);
 	}
-
+	
 	@BeforeTest
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
-		siteManagementAPI.testCreateSite(siteId);
+		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 1,groups={"getSite"})
-	public void testGetSite() {
-		siteManagementAPI.testGetSite();
-	}
-
-	@Test(priority = 2,groups={"getSite"})
-	public void testGetSiteInvalidParameters() {
-		siteManagementAPI.testGetSiteInvalidParameters();
+	@Test(priority = 1)
+	public void testCopyItem() {
+		clipboardAPI.testCopyItem(siteManagementAPI.getSiteId());
 	}
 	
-	@Test(priority = 3,groups={"getSite"})
-	public void testGetSiteSiteNotFound() {
-		siteManagementAPI.testGetSiteSiteNotFound();
-	}
-
-	@AfterGroups(groups={"getSite"})
+	@AfterTest
 	public void afterTest() {
-		siteManagementAPI.testDeleteSite(siteId);
+		siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
 		securityAPI.logOutFromStudioUsingAPICall();
-	}
-
-	@Test(dependsOnGroups={"getSite"}) 
-	public void testGetSiteUnauthorized(){
-		siteManagementAPI.testGetSiteUnauthorized();
 	}
 }
