@@ -73,8 +73,7 @@ public class SecurityAPI extends BaseAPI{
 	
     public void testValidateSessionUnauthorized(){
 		api.get("/studio/api/1/services/api/1/security/validate-session.json")
-		.execute().status(401)
-		.json("$.message", is("Unauthorized")).debug();
+		.execute().status(401).debug();
     }
     
     public void testGetUserPermissions(String siteId){
