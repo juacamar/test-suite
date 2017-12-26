@@ -425,15 +425,15 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
         
 		logger.info("Go to Preview Page");
 		homePage.goToPreviewPage();
-		String siteDropdownElementXPath = sidebarMenuOption;
-
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
-		else
-			throw new NoSuchElementException(
-					"Site creation process is taking too long time and the element was not found");
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+//		String siteDropdownElementXPath = sidebarMenuOption;
+//
+//		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+//		else
+//			throw new NoSuchElementException(
+//					"Site creation process is taking too long time and the element was not found");
+//
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 		
 		this.driverManager.waitUntilSidebarOpens();
 
@@ -441,9 +441,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		
 		//waituntilfolderopens
 		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-		this.dashboardPage.expandHomeTree();
-		
-		this.driverManager.waitUntilFolderOpens("xpath",".//span[text()='Home']/../../td[1]");
+//		this.dashboardPage.expandHomeTree();
+//		this.dashboardPage.expandHomeTree();
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder);
