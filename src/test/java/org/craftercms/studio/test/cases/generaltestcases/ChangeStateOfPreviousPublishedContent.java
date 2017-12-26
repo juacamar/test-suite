@@ -425,15 +425,15 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
         
 		logger.info("Go to Preview Page");
 		this.homePage.goToPreviewPage();
-//		String siteDropdownElementXPath = sidebarMenuOption;
-//
-//		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
-//		else
-//			throw new NoSuchElementException(
-//					"Site creation process is taking too long time and the element was not found");
-//
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+		String siteDropdownElementXPath = sidebarMenuOption;
+
+		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+		else
+			throw new NoSuchElementException(
+					"Site creation process is taking too long time and the element was not found");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 		
 		this.driverManager.waitUntilSidebarOpens();
 
@@ -479,7 +479,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 //		// Switch back to the dashboard page
 //		this.driverManager.getDriver().switchTo().defaultContent();
 //
-//		this.driverManager.getDriver().navigate().refresh();
+		this.driverManager.getDriver().navigate().refresh();
 		
 
 		// Open dependencies for the previous created element
