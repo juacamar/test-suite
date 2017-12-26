@@ -29,7 +29,6 @@ public class DesignOfPreviewToolsPanelTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void verifyTheDesignOfPreviewToolsSectionTest() {
 		// login to application
 		loginPage.loginToCrafter(userName, password);

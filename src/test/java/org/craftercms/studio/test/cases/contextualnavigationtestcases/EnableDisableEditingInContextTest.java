@@ -30,7 +30,6 @@ public class EnableDisableEditingInContextTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void verifyThatTheInContextEditingIsEnabledOrDisabledTest() {
 
 		// login to application

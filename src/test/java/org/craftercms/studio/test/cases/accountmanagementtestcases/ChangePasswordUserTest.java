@@ -32,7 +32,6 @@ public class ChangePasswordUserTest extends BaseTest {
 	}
 	
 	@Test(priority = 0)
-
 	public void changePasswordUser() {
 		
 		// login to application

@@ -2,8 +2,7 @@ package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.cases.BaseTest;
 
@@ -18,16 +17,11 @@ public class ShowAboutUsTest extends BaseTest{
 	private String password;
 	private String aboutUsInfoXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		aboutUsInfoXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.aboutus.studiodatacontainer");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)
