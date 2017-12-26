@@ -482,6 +482,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.getDriver().navigate().refresh();
 
 		// Open dependencies for the previous created element
+		logger.info("Request Publish");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
