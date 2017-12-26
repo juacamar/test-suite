@@ -14,17 +14,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 
-/**
- * 
- * 
- * 
- * 
- * 
- * @author Gustavo Andrei Ortiz Alfaro
- *
- * 
- * 
- */
 
 public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
@@ -209,7 +198,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 		dashboardPage.clickEditOptionOfRecentActivitySection();
 
-		driverManager.getDriver().switchTo().defaultContent();
+		this.driverManager.waitForAnimation();
 
 		// Switch to the iframe
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {

@@ -538,6 +538,7 @@ public class DashboardPage {
 		this.setInternalName1(strInternalName);
 		
 		this.driverManager.waitForAnimation();
+		
 		// Save and close button.
 		this.clickSaveClose();
 	}

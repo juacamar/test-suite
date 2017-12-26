@@ -76,6 +76,8 @@ public class EditContentTest extends BaseTest {
 
 		dashboardPage.rightClickToSelectEditOption();
 
+		this.driverManager.waitForAnimation();
+		
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// edit internal name
 			dashboardPage.editInternalName("Edited");
@@ -117,7 +119,6 @@ public class EditContentTest extends BaseTest {
 
 		Assert.assertNotNull(driverManager.waitUntilElementIsDisplayed("xpath", myRecentActivityTestingItem),
 				"Content page is not displayed on the My Recent Activity Widget");
-		// Assert.assertTrue(this.driverManager.isElementPresentByXpath(myRecentActivityTestingItem));
 	}
 
 }

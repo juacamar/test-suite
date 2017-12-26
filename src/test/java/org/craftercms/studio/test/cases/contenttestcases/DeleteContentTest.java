@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -20,16 +20,12 @@ public class DeleteContentTest extends BaseTest {
 
 	private String userName;
 	private String password;
-
 	private String createFormFrameElementCss;
-
 	private String createFormMainTitleElementXPath;
-
 	private String createFormSaveAndCloseElementId;
-
 	private String testingItemURLXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -118,9 +114,10 @@ public class DeleteContentTest extends BaseTest {
 		// submittal complete ok
 		dashboardPage.clickOKSubmittalComplete();
 
-		String contentCopied = this.driverManager
+		this.driverManager.waitForAnimation();
+		String contentDeleted = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", testingItemURLXpath).getText();
-		Assert.assertEquals(contentCopied, "/test1");
+		Assert.assertEquals(contentDeleted, "/test1");
 
 	}
 

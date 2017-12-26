@@ -23,7 +23,6 @@ public class DuplicateOptionTest extends BaseTest {
 	private String createFormMainTitleElementXPath;
 	private String studioLogo;
 	private String testItemXpath;
-	private String createFormFileTitleElementCss;
 	private String duplicateButtonXpath;
 
 	private String copyTestItemXpath;
@@ -41,8 +40,6 @@ public class DuplicateOptionTest extends BaseTest {
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		createFormFileTitleElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.createformfiletitle");
 		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 		testItemXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.testingcontentitem");
@@ -95,13 +92,11 @@ public class DuplicateOptionTest extends BaseTest {
 
 		// click on duplicate in the popup
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", duplicateButtonXpath).click();
+		
+		this.driverManager.waitForAnimation();
 
 		// Switch to the iframe
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
-
-			// Set basics fields of the new content created
-			//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormFileTitleElementCss)
-				//	.clear();
 			// edit internal name
 			dashboardPage.editInternalName("COPY");
 		});

@@ -116,7 +116,6 @@ public class WebDriverManager {
 		// locating webdriver at coordinate 0,0
 		this.driver.manage().window().setPosition(new Point(0, 0));
 		// maximize the window at normal size
-		// this.driver.manage().window().maximize();
 		// //scaling to full screen
 		this.driver.manage().window().setSize(new Dimension(width, height));
 
@@ -360,7 +359,10 @@ public class WebDriverManager {
 		else {
 			 element =  waitUntilElementIsClickable(selectorType, selectorValue);
 			(new Actions(driver)).moveToElement(element).build().perform();	
+			
 			this.waitUntilContentTooltipIsHidden();	
+			this.waitForAnimation();
+			
 			element =  waitUntilElementIsClickable(selectorType, selectorValue);
 			(new Actions(driver)).contextClick(element).build().perform();
 		}
@@ -450,7 +452,7 @@ public class WebDriverManager {
 	}
 
 	public void waitUntilContentTooltipIsHidden() {
-		logger.debug("Waiting for contetn tooltip is hidden");
+		logger.debug("Waiting for content tooltip is hidden");
 		WebElement element = this.waitUntilElementIsPresent("xpath", ".//div[@id='acn-context-tooltipWrapper']");
 
 		if (!element.getAttribute("style").contains("visibility: hidden;")) {
@@ -497,6 +499,7 @@ public class WebDriverManager {
 	}
 
 	public void usingCrafterForm(String selectorType, String selectorValue, Runnable actions) {
+		waitForAnimation();
 		logger.debug("Switching to iframe for form: {}, {}", selectorType, selectorValue);
 		driver.switchTo().defaultContent();
 

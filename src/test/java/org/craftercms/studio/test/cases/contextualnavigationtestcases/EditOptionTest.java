@@ -28,7 +28,6 @@ public class EditOptionTest extends BaseTest {
 	private String createFormMainTitleElementXPath;
 	private String testingContentItem;
 	private String topNavEditOption;
-	private String createFormInternalNameTitle;
 	private String siteDropDownXpath;
 	private String crafterLogoId;
 	private String testingItemEditedXpath;
@@ -57,8 +56,6 @@ public class EditOptionTest extends BaseTest {
 				.getProperty("general.testingcontentitem");
 		topNavEditOption= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.edittopnavoption");
-		createFormInternalNameTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.createformfiletitle");
 		siteDropDownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
 		crafterLogoId = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -137,13 +134,12 @@ public class EditOptionTest extends BaseTest {
 		// click edit option of the menu
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",topNavEditOption).click();
 
+		this.driverManager.waitForAnimation();
+		
 		// Switch to the iframe
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// edit internal title
-			driverManager.sendText("xpath", createFormInternalNameTitle, "EDITED");
-			
-			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
+			dashboardPage.editInternalName("EDITED");
 		});
 	}
 
@@ -160,8 +156,6 @@ public class EditOptionTest extends BaseTest {
 
 		// go to preview page
 		homePage.goToPreviewPage();
-
-		//driverManager.waitUntilSidebarOpens();
 
 		// Show site content panel
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropDownXpath)
@@ -187,7 +181,6 @@ public class EditOptionTest extends BaseTest {
 		editingContent();
 
 		// reload page
-
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert find the new content created edited
