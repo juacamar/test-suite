@@ -337,7 +337,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.isElementPresentByXpath(navigationElement);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",navigationElement);
 
 	}
 
@@ -477,9 +477,9 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		logger.info("Request Publish");
 		this.requestPublish(newPageArticleName);
 
-//		// Switch back to the dashboard page
-//		this.driverManager.getDriver().switchTo().defaultContent();
-//
+		// Switch back to the dashboard page
+		//this.driverManager.getDriver().switchTo().defaultContent();
+
 		this.driverManager.getDriver().navigate().refresh();
 		
 
