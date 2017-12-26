@@ -536,20 +536,45 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		String isLifeContent = "";
 		int maxNumberofTries = 10;
 		logger.info("Assert is lifecontent");
-		while (!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0))) {
+		
+//		while (!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0))) {
+//			isLifeContent = this.driverManager.getDriver()
+//					.findElement(By.xpath(pageStatus)) 
+//					.getAttribute("class").toString();
+//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+//					staticAssetsGearImageId).click();
+////			this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
+////			this.dashboardPage.expandHomeTree();
+//			maxNumberofTries--;
+//		}
+//
+//		Assert.assertTrue(this.driverManager.getDriver()
+//				.findElement(By.xpath(pageStatus))
+//				.getAttribute("class").contains("undefined live"));
+		
+		
+		/////
+		
+
+		while (!(isLifeContent.contains("undefined live") && (maxNumberofTries != 0))) {
 			isLifeContent = this.driverManager.getDriver()
-					.findElement(By.xpath(pageStatus)) 
+					.findElement(By.xpath("//ul[@id='activeContentActions']/li/span/div/span/span[2]"))
 					.getAttribute("class").toString();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-					staticAssetsGearImageId).click();
-//			this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-//			this.dashboardPage.expandHomeTree();
+			driverManager.getDriver().navigate().refresh();
+			this.dashboardPage.expandHomeTree();
 			maxNumberofTries--;
 		}
 
 		Assert.assertTrue(this.driverManager.getDriver()
 				.findElement(By.xpath(pageStatus))
 				.getAttribute("class").contains("undefined live"));
+		
+		
+		
+		
+		
+		
+		
 
 	}
 	
