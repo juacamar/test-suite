@@ -347,7 +347,7 @@ public class WebDriverManager {
 	}
 
 	public void contextClick(String selectorType, String selectorValue, boolean executeThroughJavaScript) {
-		//contextClick(driver, waitUntilElementIsClickable(selectorType, selectorValue), executeThroughJavaScript);
+	
 		WebElement element =  waitUntilElementIsClickable(selectorType, selectorValue);
 		if (executeThroughJavaScript) {
 			

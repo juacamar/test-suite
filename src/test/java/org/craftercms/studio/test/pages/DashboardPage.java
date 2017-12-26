@@ -296,8 +296,13 @@ public class DashboardPage {
 	// Press right click select new folder
 	public void rightClickNewFolderOnHome() {
 		// wait for the animation to end
+		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
+		
 		this.driverManager.waitUntilFolderOpens("xpath", pagesTree);
+		this.driverManager.waitForAnimation();
+		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
 		this.getDriverManager().contextClick("xpath", homeContent, false);
 
 		driverManager.usingContextMenu(() -> {
@@ -805,7 +810,7 @@ public class DashboardPage {
 			checkAllTree.click();
 	}
 
-	public void clicOnHomeTree() {
+	public void clickOnHomeTree() {
 		WebElement homeTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				this.homeTree);
 		homeTree.click();

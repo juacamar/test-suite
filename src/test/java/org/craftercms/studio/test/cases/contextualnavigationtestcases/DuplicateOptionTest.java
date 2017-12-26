@@ -99,6 +99,7 @@ public class DuplicateOptionTest extends BaseTest {
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// edit internal name
 			dashboardPage.editInternalName("COPY");
+			this.driverManager.waitForAnimation();
 		});
 
 		// Switch back to the dashboard page
