@@ -333,12 +333,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", publishSubmitButton);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", publishSubmitButton)
 				.click();
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
-
-		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",navigationElement);
-
 	}
 
 	public void testScenario() {
@@ -478,11 +472,10 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.requestPublish(newPageArticleName);
 
 		// Switch back to the dashboard page
-		//this.driverManager.getDriver().switchTo().defaultContent();
-
+		this.driverManager.waitUntilSidebarOpens();
+		this.driverManager.getDriver().switchTo().activeElement();
 		this.driverManager.getDriver().navigate().refresh();
 		
-
 		// Open dependencies for the previous created element
 		logger.info("Open dependencies for the previous created element");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -490,7 +483,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption).click();
 		
-
 		// check dependencies are listed
 		logger.info("Check Listed Dependencies");
 		previewPage.checkDependencies();
