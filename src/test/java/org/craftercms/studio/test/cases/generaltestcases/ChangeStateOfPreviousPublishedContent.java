@@ -424,7 +424,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		loginPage.loginToCrafter("author", "author");
         
 		logger.info("Go to Preview Page");
-		homePage.goToPreviewPage();
+		this.goToSiteContentPagesStructure();
+		//this.homePage.goToPreviewPage();
 //		String siteDropdownElementXPath = sidebarMenuOption;
 //
 //		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
