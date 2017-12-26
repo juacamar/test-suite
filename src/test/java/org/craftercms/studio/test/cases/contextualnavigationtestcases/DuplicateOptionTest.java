@@ -100,9 +100,8 @@ public class DuplicateOptionTest extends BaseTest {
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 
 			// Set basics fields of the new content created
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormFileTitleElementCss)
-					.clear();
-
+			//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormFileTitleElementCss)
+				//	.clear();
 			// edit internal name
 			dashboardPage.editInternalName("COPY");
 		});
