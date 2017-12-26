@@ -440,6 +440,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditOption);
 		
 		//waituntilfolderopens
+		this.driverManager.getDriver().navigate().refresh();
 		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
 //		this.dashboardPage.expandHomeTree();
 //		this.dashboardPage.expandHomeTree();
