@@ -485,10 +485,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				driverManager.getDriver().switchTo().defaultContent();
 				this.driverManager.getDriver().switchTo().activeElement();
 
-				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "navbar-site-name");
-
-				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "navbar-site-name").click();
-
 				this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#admin-console");
 
 		// Open dependencies for the previous created element
