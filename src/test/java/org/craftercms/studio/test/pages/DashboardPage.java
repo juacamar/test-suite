@@ -275,6 +275,7 @@ public class DashboardPage {
 		// Press right click and select new content
 		driverManager.waitUntilPageLoad();
 		driverManager.waitUntilSidebarOpens();
+		
 		this.rightClickHome();
 	}
 
