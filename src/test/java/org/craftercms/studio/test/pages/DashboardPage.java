@@ -209,9 +209,9 @@ public class DashboardPage {
 	public void clickPagesTree() {
 		this.driverManager.waitUntilSidebarOpens();
 		WebElement expandPagesTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", pagesTree);
-		if(!expandPagesTree.getAttribute("class").contains("open")) {
-		expandPagesTree.click();
-		driverManager.waitUntilFolderOpens("xpath", pagesTree);
+		if (!expandPagesTree.getAttribute("class").contains("open")) {
+			expandPagesTree.click();
+			driverManager.waitUntilFolderOpens("xpath", pagesTree);
 		}
 	}
 
@@ -256,10 +256,13 @@ public class DashboardPage {
 	public void rightClickHome() {
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
-		this.driverManager.waitUntilFolderOpens("xpath",pagesTree);		
+		
+		this.driverManager.waitUntilFolderOpens("xpath", pagesTree);
 		this.driverManager.waitForAnimation();
-		this.getDriverManager().contextClick("xpath", homeContent, false);
+		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeContent);
+		this.getDriverManager().contextClick("xpath", homeContent, false);
+		
 		driverManager.usingContextMenu(() -> {
 			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 					addNewContent);
@@ -388,7 +391,6 @@ public class DashboardPage {
 
 	// Click on save and close button
 	public void clickSaveClose() {
-		this.driverManager.isElementPresentAndClickableById(this.saveCloseButton);
 		WebElement saveCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				this.saveCloseButton);
 		saveCloseButton.click();
@@ -534,7 +536,7 @@ public class DashboardPage {
 	public void editInternalName(String strInternalName) {
 		// Fill internal name
 		this.setInternalName1(strInternalName);
-
+		this.driverManager.waitForAnimation();
 		// Save and close button.
 		this.clickSaveClose();
 	}

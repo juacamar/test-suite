@@ -348,7 +348,23 @@ public class WebDriverManager {
 	}
 
 	public void contextClick(String selectorType, String selectorValue, boolean executeThroughJavaScript) {
-		contextClick(driver, waitUntilElementIsClickable(selectorType, selectorValue), executeThroughJavaScript);
+		//contextClick(driver, waitUntilElementIsClickable(selectorType, selectorValue), executeThroughJavaScript);
+		WebElement element =  waitUntilElementIsClickable(selectorType, selectorValue);
+		if (executeThroughJavaScript) {
+			
+			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
+					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
+			
+			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
+		} else {
+			 element =  waitUntilElementIsClickable(selectorType, selectorValue);
+			(new Actions(driver)).moveToElement(element,0,0).build().perform();
+			this.waitUntilContentTooltipIsHidden();
+			
+			element =  waitUntilElementIsClickable(selectorType, selectorValue);
+			(new Actions(driver)).contextClick(element).build().perform();
+		}
+		
 	}
 
 	public void contextClick(WebDriver driver, WebElement element, Boolean executeThroughJavaScript) {
@@ -357,6 +373,8 @@ public class WebDriverManager {
 					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
 			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
 		} else {
+			(new Actions(driver)).moveToElement(element,0,0).build().perform();
+			this.waitUntilContentTooltipIsHidden();
 			(new Actions(driver)).contextClick(element).build().perform();
 		}
 	}
