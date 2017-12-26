@@ -474,7 +474,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		// Switch back to the dashboard page
 		this.driverManager.waitUntilSidebarOpens();
 		this.driverManager.getDriver().switchTo().activeElement();
-		this.driverManager.getDriver().navigate().refresh();
+		
 		
 		// Open dependencies for the previous created element
 		logger.info("Open dependencies for the previous created element");
