@@ -356,11 +356,11 @@ public class WebDriverManager {
 					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
 			
 			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
-		} else {
+		} 
+		else {
 			 element =  waitUntilElementIsClickable(selectorType, selectorValue);
-			(new Actions(driver)).moveToElement(element,0,0).build().perform();
-			this.waitUntilContentTooltipIsHidden();
-			
+			(new Actions(driver)).moveToElement(element).build().perform();	
+			this.waitUntilContentTooltipIsHidden();	
 			element =  waitUntilElementIsClickable(selectorType, selectorValue);
 			(new Actions(driver)).contextClick(element).build().perform();
 		}

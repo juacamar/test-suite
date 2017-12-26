@@ -536,6 +536,7 @@ public class DashboardPage {
 	public void editInternalName(String strInternalName) {
 		// Fill internal name
 		this.setInternalName1(strInternalName);
+		
 		this.driverManager.waitForAnimation();
 		// Save and close button.
 		this.clickSaveClose();
