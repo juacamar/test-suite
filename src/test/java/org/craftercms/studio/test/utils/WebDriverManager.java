@@ -488,20 +488,8 @@ public class WebDriverManager {
 		// Switch to iframe
 		driver.switchTo().frame(frame);
 
-		// Wait until any input is selected
-		new WebDriverWait(driver, defaultTimeOut)
-				.until(webDriver -> webDriver.switchTo().activeElement().getTagName().equals("input"));
-
 		// Check if it is the first one
-		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
-		if (!firstInput.equals(driver.switchTo().activeElement())) {
-			// Change focus to the right input
-			firstInput.click();
-		}
-
-		// Wait again for focus
-		new WebDriverWait(driver, defaultTimeOut)
-				.until(webDriver -> webDriver.switchTo().activeElement().equals(firstInput));
+	    waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
 
 		// Do stuff
 		actions.run();
