@@ -425,17 +425,17 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
         
 		logger.info("Go to Preview Page");
 		this.homePage.goToPreviewPage();
-		String siteDropdownElementXPath = sidebarMenuOption;
-
-		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
-		else
-			throw new NoSuchElementException(
-					"Site creation process is taking too long time and the element was not found");
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+//		String siteDropdownElementXPath = sidebarMenuOption;
+//
+//		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+//		else
+//			throw new NoSuchElementException(
+//					"Site creation process is taking too long time and the element was not found");
+//
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
 		
-		this.driverManager.waitUntilSidebarOpens();
+		//this.driverManager.waitUntilSidebarOpens();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditOption);
 		
