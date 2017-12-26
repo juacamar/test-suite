@@ -476,13 +476,23 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		logger.info("Request Publish");
 		this.requestPublish(newPageArticleName);
 
+//		// Switch back to the dashboard page
+//		this.driverManager.getDriver().switchTo().defaultContent();
+//
+//		this.driverManager.getDriver().navigate().refresh();
+		
 		// Switch back to the dashboard page
-		this.driverManager.getDriver().switchTo().defaultContent();
+				driverManager.getDriver().switchTo().defaultContent();
+				this.driverManager.getDriver().switchTo().activeElement();
 
-		this.driverManager.getDriver().navigate().refresh();
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "navbar-site-name");
+
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "navbar-site-name").click();
+
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#admin-console");
 
 		// Open dependencies for the previous created element
-		logger.info("Request Publish");
+		logger.info("Open dependencies for the previous created element");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
@@ -534,15 +544,15 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		String isLifeContent = "";
 		int maxNumberofTries = 10;
-
+		logger.info("Assert is lifecontent");
 		while (!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0))) {
 			isLifeContent = this.driverManager.getDriver()
 					.findElement(By.xpath(pageStatus)) 
 					.getAttribute("class").toString();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 					staticAssetsGearImageId).click();
-			this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-			this.dashboardPage.expandHomeTree();
+//			this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
+//			this.dashboardPage.expandHomeTree();
 			maxNumberofTries--;
 		}
 
