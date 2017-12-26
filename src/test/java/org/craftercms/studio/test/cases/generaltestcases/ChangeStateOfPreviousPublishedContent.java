@@ -337,7 +337,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",navigationElement);
+		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",navigationElement);
 
 	}
 
