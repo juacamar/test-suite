@@ -91,7 +91,7 @@ public class DuplicateOptionTest extends BaseTest {
 		dashboardPage.clickOnDuplicateOption();
 
 		// click on duplicate in the popup
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", duplicateButtonXpath).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", duplicateButtonXpath).click();
 		
 		this.driverManager.waitForAnimation();
 
@@ -99,7 +99,6 @@ public class DuplicateOptionTest extends BaseTest {
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// edit internal name
 			dashboardPage.editInternalName("COPY");
-			this.driverManager.waitForAnimation();
 		});
 
 		// Switch back to the dashboard page

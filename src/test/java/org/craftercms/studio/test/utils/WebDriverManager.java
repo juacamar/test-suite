@@ -347,26 +347,25 @@ public class WebDriverManager {
 	}
 
 	public void contextClick(String selectorType, String selectorValue, boolean executeThroughJavaScript) {
-	
-		WebElement element =  waitUntilElementIsClickable(selectorType, selectorValue);
+
+		WebElement element = waitUntilElementIsClickable(selectorType, selectorValue);
 		if (executeThroughJavaScript) {
-			
+
 			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
 					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
-			
+
 			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
-		} 
-		else {
-			 element =  waitUntilElementIsClickable(selectorType, selectorValue);
-			(new Actions(driver)).moveToElement(element).build().perform();	
-			
-			this.waitUntilContentTooltipIsHidden();	
+		} else {
+			element = waitUntilElementIsClickable(selectorType, selectorValue);
+			(new Actions(driver)).moveToElement(element).build().perform();
+
+			this.waitUntilContentTooltipIsHidden();
 			this.waitForAnimation();
-			
-			element =  waitUntilElementIsClickable(selectorType, selectorValue);
+
+			element = waitUntilElementIsClickable(selectorType, selectorValue);
 			(new Actions(driver)).contextClick(element).build().perform();
 		}
-		
+
 	}
 
 	public void contextClick(WebDriver driver, WebElement element, Boolean executeThroughJavaScript) {
@@ -375,7 +374,7 @@ public class WebDriverManager {
 					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
 			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
 		} else {
-			(new Actions(driver)).moveToElement(element,0,0).build().perform();
+			(new Actions(driver)).moveToElement(element, 0, 0).build().perform();
 			this.waitUntilContentTooltipIsHidden();
 			(new Actions(driver)).contextClick(element).build().perform();
 		}
@@ -509,8 +508,9 @@ public class WebDriverManager {
 		// Switch to iframe
 		driver.switchTo().frame(frame);
 
-		// Check if it is the first one
-	    waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
+		 // Wait until any input is selected
+        new WebDriverWait(driver, defaultTimeOut)
+                .until(webDriver -> webDriver.switchTo().activeElement().getTagName().equals("input")); 
 
 		// Do stuff
 		actions.run();
@@ -518,7 +518,20 @@ public class WebDriverManager {
 		driver.switchTo().defaultContent();
 
 		// Wait until iframe is hidden
-		waitUntilElementIsHidden(frame);
+		try {
+			waitUntilElementIsHidden(frame);
+		} catch (TimeoutException e) {
+			logger.warn("Forcing exit from form");
+			
+			driver.switchTo().frame(frame);
+
+			WebElement saveCloseButton = this.
+					driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "cstudioSaveAndClose");
+			
+			saveCloseButton.click();
+			this.waitForAnimation();
+			driver.switchTo().defaultContent();
+		}
 	}
 
 	// Same as previuous but without inputs

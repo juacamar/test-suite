@@ -47,8 +47,6 @@ public class DeleteContentTest extends BaseTest {
 
 	public void createContent() {
 		logger.info("Creating new content");
-		driverManager.waitUntilPageLoad();
-		driverManager.waitUntilSidebarOpens();
 		// right click to see the the menu
 		dashboardPage.rightClickToSeeMenu();
 

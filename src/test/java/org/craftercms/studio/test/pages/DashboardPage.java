@@ -273,6 +273,8 @@ public class DashboardPage {
 	public void rightClickToSeeMenu() {
 		logger.info("Right Click to see Menu");
 		// Press right click and select new content
+		driverManager.waitUntilPageLoad();
+		driverManager.waitUntilSidebarOpens();
 		this.rightClickHome();
 	}
 

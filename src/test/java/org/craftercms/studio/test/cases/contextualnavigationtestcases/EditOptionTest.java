@@ -96,8 +96,6 @@ public class EditOptionTest extends BaseTest {
 
 	public void createNewContent() {
 		logger.info("Creating new content");
-		driverManager.waitUntilPageLoad();
-		driverManager.waitUntilSidebarOpens();
 		// right click to see the the menu
 		dashboardPage.rightClickToSeeMenu();
 
@@ -144,7 +142,6 @@ public class EditOptionTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void verifyTheEditionOfAPageUsingContextualNavigationEditOptionTest() {
 		logger.info("Starting test case");
 		// login to application
