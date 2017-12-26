@@ -302,9 +302,6 @@ public class ChangeStateOfPreviousPublishedContent {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				groupsAddNewMembersButton).click();
 
-		Assert.assertTrue(
-				driverManager.isElementPresentByXpath(groupsMembersOption1));
-
 		driverManager.getDriver().switchTo().defaultContent();
 		this.driverManager.getDriver().switchTo().activeElement();
 
