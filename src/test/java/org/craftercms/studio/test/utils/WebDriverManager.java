@@ -359,21 +359,29 @@ public class WebDriverManager {
 	}
 
 	public void contextClick(String selectorType, String selectorValue, boolean executeThroughJavaScript) {
+		for(int i = 0; i < 3; i++) {
+			try {
+				waitUntilElementIsClickable(selectorType, selectorValue);
+				if (executeThroughJavaScript) {
+					String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');" +
+						"event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
+					((JavascriptExecutor)driver).executeScript(script, new Object[] {
+						waitUntilElementIsClickable(selectorType, selectorValue)});
+					break;
+				} else {
+					(new Actions(driver)).moveToElement
+						(waitUntilElementIsClickable(selectorType, selectorValue)).build().perform();
 
-		waitUntilElementIsClickable(selectorType, selectorValue);
-		if (executeThroughJavaScript) {
+					this.waitUntilContentTooltipIsHidden();
+					this.waitForAnimation();
 
-			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
-					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
-
-			((JavascriptExecutor) driver).executeScript(script, new Object[] { waitUntilElementIsClickable(selectorType, selectorValue) });
-		} else {
-			(new Actions(driver)).moveToElement(waitUntilElementIsClickable(selectorType, selectorValue)).build().perform();
-
-			this.waitUntilContentTooltipIsHidden();
-			this.waitForAnimation();
-
-			(new Actions(driver)).contextClick(waitUntilElementIsClickable(selectorType, selectorValue)).build().perform();
+					(new Actions(driver)).contextClick(
+						waitUntilElementIsClickable(selectorType, selectorValue)).build().perform();
+					break;
+				}
+			} catch (StaleElementReferenceException e) {
+				logger.warn("Element was moved or changed {}, {}, trying again", selectorType, selectorValue);
+			}
 		}
 
 	}
