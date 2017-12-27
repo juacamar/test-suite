@@ -150,6 +150,24 @@
 				name="org.craftercms.studio.test.cases.apitestcases.DeleteSiteAPITest" />
 		</classes>
 	</test> 
+	<test name="Site Exists" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.ExistsSiteAPITest" />
+		</classes>
+	</test> 
+	<test name="Get Available Blueprints" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetAvailableBlueprintsAPITest" />
+		</classes>
+	</test> 
+	<test name="Get Canned Message" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetCannedMessageAPITest" />
+		</classes>
+	</test> 
 	<test name="Get Configuration of Site" preserve-order="true">
 		<classes>
 			<class
