@@ -271,6 +271,24 @@
 				name="org.craftercms.studio.test.cases.apitestcases.ContentExistsAPITest" />
 		</classes>
 	</test>
+	<test name="Create Folder" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CreateFolderAPITest" />
+		</classes>
+	</test>
+	<test name="Rename Folder" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CreateFolderAPITest" />
+		</classes>
+	</test>
+	<test name="Get Content at Path" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetContentAtPathAPITest" />
+		</classes>
+	</test>
 	
 <!-- 	 Server -->
 	<test name="Get Available Languages" preserve-order="true">
