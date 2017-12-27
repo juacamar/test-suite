@@ -477,6 +477,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		// Open dependencies for the previous created element
 		logger.info("Open dependencies for the previous created element");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				generalEditOption);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption).click();
@@ -520,6 +522,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				staticAssetsGearImageId);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				staticAssetsGearImageId).click();
+		//wait until tooltip se desaparesca
+		//this.driverManager.waitUntilContentTooltipIsHidden();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption);
