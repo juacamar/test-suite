@@ -156,24 +156,24 @@ public class WebDriverManager {
 	public WebElement waitUntilElementIsDisplayed(String typeOfSelector, String selectorValue) {
 		logger.debug("Waiting for element to be displayed: {}, {}", typeOfSelector, selectorValue);
 		By selector = getSelector(typeOfSelector, selectorValue);
-		new WebDriverWait(driver, defaultTimeOut).until(
-			ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(selector)));
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(selector)));
 		return driver.findElement(selector);
 	}
 
 	public WebElement waitUntilElementIsPresent(String typeOfSelector, String selectorValue) {
 		logger.debug("Waiting for element to be displayed: {}, {}", typeOfSelector, selectorValue);
 		By selector = getSelector(typeOfSelector, selectorValue);
-		new WebDriverWait(driver, defaultTimeOut).until(
-			ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(selector)));
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(selector)));
 		return driver.findElement(selector);
 	}
 
 	public WebElement waitUntilElementIsClickable(String typeOfSelector, String selectorValue) {
 		logger.debug("Waiting for element to be clickable: {}, {}", typeOfSelector, selectorValue);
 		By selector = getSelector(typeOfSelector, selectorValue);
-		new WebDriverWait(driver, defaultTimeOut).until(
-			ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(selector)));
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(selector)));
 		try {
 			return driver.findElement(selector);
 		} catch (NoSuchElementException e) {
@@ -182,17 +182,27 @@ public class WebDriverManager {
 		}
 	}
 
+	public void waitUntilContentTypeNotificationIsNotDisplayed(String typeOfSelector, String selectorValueForChilds,
+			WebElement parentElement) {
+		logger.debug("Waiting for element has childs");
+		By selector = getSelector(typeOfSelector, selectorValueForChilds);
+		int hasChild = parentElement.findElements(selector).size();
+		while (hasChild == 1) {
+			hasChild = parentElement.findElements(selector).size();
+		}
+	}
+
 	public void waitUntilElementIsNotDisplayed(String typeOfSelector, String selectorValue) {
 		logger.debug("Waiting for element to be hidden: {} , {}", typeOfSelector, selectorValue);
 		By selector = getSelector(typeOfSelector, selectorValue);
-		new WebDriverWait(driver, defaultTimeOut).until(
-			ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(driver.findElement(selector))));
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(driver.findElement(selector))));
 	}
 
 	public void waitUntilElementIsHidden(WebElement element) {
 		logger.debug("Waiting for element to be hidden: {}", element);
-		new WebDriverWait(driver, defaultTimeOut).until(
-			ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(element)));
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(element)));
 	}
 
 	public void waitUntilPopupIsHidden() {
@@ -205,18 +215,16 @@ public class WebDriverManager {
 			String attributeValue) {
 		logger.debug("Waiting for element {}, {} to have attribute {} = {}", selectorType, selectorValue, attributeName,
 				attributeValue);
-		new WebDriverWait(driver, defaultTimeOut).until(
-			ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(
-				getSelector(selectorType, selectorValue), attributeName, attributeValue)));
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions
+				.attributeToBe(getSelector(selectorType, selectorValue), attributeName, attributeValue)));
 	}
 
 	public void waitUntilAttributeContains(String selectorType, String selectorValue, String attributeName,
 			String attributeValue) {
 		logger.debug("Waiting for element {}, {} to have attribute {} with {}", selectorType, selectorValue,
 				attributeName, attributeValue);
-		new WebDriverWait(driver, defaultTimeOut).until(
-			ExpectedConditions.refreshed(ExpectedConditions.attributeContains(
-				getSelector(selectorType, selectorValue), attributeName, attributeValue)));
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions
+				.attributeContains(getSelector(selectorType, selectorValue), attributeName, attributeValue)));
 	}
 
 	public void waitUntilElementIsRemoved(WebElement element) {
@@ -227,8 +235,8 @@ public class WebDriverManager {
 	public WebElement waitUntilElementIsSelected(String selectorType, String selectorValue) {
 		logger.debug("Waiting for element to be selected: {}, {}", selectorType, selectorValue);
 		By selector = getSelector(selectorType, selectorValue);
-		new WebDriverWait(driver, defaultTimeOut).until(
-			ExpectedConditions.refreshed(ExpectedConditions.elementToBeSelected(selector)));
+		new WebDriverWait(driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeSelected(selector)));
 		return driver.findElement(selector);
 	}
 
@@ -359,24 +367,24 @@ public class WebDriverManager {
 	}
 
 	public void contextClick(String selectorType, String selectorValue, boolean executeThroughJavaScript) {
-		for(int i = 0; i < 3; i++) {
+		for (int i = 0; i < 3; i++) {
 			try {
 				waitUntilElementIsClickable(selectorType, selectorValue);
 				if (executeThroughJavaScript) {
-					String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');" +
-						"event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
-					((JavascriptExecutor)driver).executeScript(script, new Object[] {
-						waitUntilElementIsClickable(selectorType, selectorValue)});
+					String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
+							+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
+					((JavascriptExecutor) driver).executeScript(script,
+							new Object[] { waitUntilElementIsClickable(selectorType, selectorValue) });
 					break;
 				} else {
-					(new Actions(driver)).moveToElement
-						(waitUntilElementIsClickable(selectorType, selectorValue)).build().perform();
+					(new Actions(driver)).moveToElement(waitUntilElementIsClickable(selectorType, selectorValue))
+							.build().perform();
 
 					this.waitUntilContentTooltipIsHidden();
 					this.waitForAnimation();
 
-					(new Actions(driver)).contextClick(
-						waitUntilElementIsClickable(selectorType, selectorValue)).build().perform();
+					(new Actions(driver)).contextClick(waitUntilElementIsClickable(selectorType, selectorValue)).build()
+							.perform();
 					break;
 				}
 			} catch (StaleElementReferenceException e) {
@@ -477,8 +485,6 @@ public class WebDriverManager {
 		}
 	}
 
-	// Wrappers
-
 	public void sendText(String selectorType, String selectorValue, String text) {
 		logger.debug("Filling element {}, {} with value {}", selectorType, selectorValue, text);
 		WebElement input = waitUntilElementIsClickable(selectorType, selectorValue);
@@ -526,9 +532,13 @@ public class WebDriverManager {
 		// Switch to iframe
 		driver.switchTo().frame(frame);
 
-		 // Wait until any input is selected
-        new WebDriverWait(driver, defaultTimeOut)
-                .until(webDriver -> webDriver.switchTo().activeElement().getTagName().equals("input")); 
+		// Wait until any input is selected
+		try {
+			new WebDriverWait(driver, defaultTimeOut)
+					.until(webDriver -> webDriver.switchTo().activeElement().getTagName().equals("input"));
+		} catch (TimeoutException e) {
+			logger.warn("No input was selected by Studio, this may cause an error later");
+		}
 
 		// Do stuff
 		actions.run();
@@ -540,12 +550,12 @@ public class WebDriverManager {
 			waitUntilElementIsHidden(frame);
 		} catch (TimeoutException e) {
 			logger.warn("Forcing exit from form");
-			
+
 			driver.switchTo().frame(frame);
 
-			WebElement saveCloseButton = this.
-					driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "cstudioSaveAndClose");
-			
+			WebElement saveCloseButton = this.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+					"cstudioSaveAndClose");
+
 			saveCloseButton.click();
 			this.waitForAnimation();
 			driver.switchTo().defaultContent();

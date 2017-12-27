@@ -464,12 +464,16 @@ public class PreviewPage {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// select main content
+		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
 
 		// Mark Body not required
+		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
 				.click();
+		
 		// save
+		this.driverManager.waitForAnimation();
 		siteConfigPage.saveDragAndDropProcess();
 
 		driverManager.getDriver().switchTo().defaultContent();

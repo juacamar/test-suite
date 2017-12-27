@@ -121,7 +121,6 @@ public class RenameParentPageAndPublishChildTest {
 		driverManager.usingContextMenu(() -> {
 			dashboardPage.clickOnPublishOption();
 		});
-		
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.selectOnlyOnePageToPublish(pageName);
 		this.confirmPublishAction();
@@ -180,10 +179,12 @@ public class RenameParentPageAndPublishChildTest {
 			dashboardPage.updateBasicFieldsOfNewPageArticleContent(randomInternalName, pageName);
 			// Set the title of main content
 			this.driverManager.scrollUp();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
-			.sendKeys(pageName);
+			this.driverManager
+					.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
+					.sendKeys(pageName);
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+					.click();
 		});
 		this.driverManager.waitUntilSidebarOpens();
 	}
@@ -209,11 +210,11 @@ public class RenameParentPageAndPublishChildTest {
 					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeExpansorXpath);
 			expansorElementForHome.click();
 		}
-		
+
 		Assert.assertTrue(driverManager.waitUntilElementIsClickable("xpath", parentPageLocator).isDisplayed());
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				parentPageLocator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", parentPageLocator);
+
 		this.createPageCategoryLandingPage(parentPageLocator, childPage1Name);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", childPage1Locator);
@@ -223,14 +224,14 @@ public class RenameParentPageAndPublishChildTest {
 
 		this.childPage1Locator = this.parentPageNewLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage1Name + "')]";
-		
+
+
 		this.childPage2Locator = this.childPage1Locator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage2Name + "')]";
-		
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator).click();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				childPage2Locator);
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator);
+
 		this.publishElement(childPage2Locator, childPage2Name);
 		this.verifyPublishedItemsOnDashboard();
 
@@ -244,6 +245,7 @@ public class RenameParentPageAndPublishChildTest {
 				+ "/div/span/span[contains(@class,'never-published')]";
 
 		this.driverManager.waitUntilPageLoad();
+		this.driverManager.waitForAnimation();
 
 		boolean isPresent = this.driverManager.isElementPresentAndClickableByXpath(iconNeverPublishedForChild1Page);
 
