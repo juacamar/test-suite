@@ -174,7 +174,12 @@ public class WebDriverManager {
 		By selector = getSelector(typeOfSelector, selectorValue);
 		new WebDriverWait(driver, defaultTimeOut).until(
 			ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(selector)));
-		return driver.findElement(selector);
+		try {
+			return driver.findElement(selector);
+		} catch (NoSuchElementException e) {
+			logger.warn("Element has been removed {}, {}", typeOfSelector, selectorValue);
+			return waitUntilElementIsDisplayed(typeOfSelector, selectorValue);
+		}
 	}
 
 	public void waitUntilElementIsNotDisplayed(String typeOfSelector, String selectorValue) {
