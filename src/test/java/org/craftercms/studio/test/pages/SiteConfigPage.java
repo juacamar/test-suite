@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -165,9 +164,9 @@ public class SiteConfigPage {
 
 	// Save the section dropped.
 	public void saveSectionDropped() {
+		this.driverManager.waitForAnimation();
 		this.driverManager.waitUntilElementIsClickable("xpath", saveButton).click();
-		//this.driverManager.waitUntilElementIsDisplayed("xpath", contentTypeSavedNotification);
-		WebElement notification = this.driverManager.waitUntilElementIsDisplayed("xpath",".//div[@class='notifyjs-corner']");
+		WebElement notification = this.driverManager.waitUntilElementIsDisplayed("xpath",contentTypeSavedNotification);
 		this.driverManager.waitUntilContentTypeNotificationIsNotDisplayed("xpath", "div" , notification);
 	}
 

@@ -114,13 +114,14 @@ public class RenameParentPageAndPublishChildTest {
 					"Site creation process is taking too long time and the element was not found");
 	}
 
-	public void publishElement(WebElement element, String pageName) {
+	public void publishElement(String elementLocator, String pageName) {
 
-		dashboardPage.rightClickOnAContentPage(element);
+		dashboardPage.rightClickOnAContentPage(elementLocator);
 		// selecting the Publish option
 		driverManager.usingContextMenu(() -> {
 			dashboardPage.clickOnPublishOption();
 		});
+
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.selectOnlyOnePageToPublish(pageName);
 		this.confirmPublishAction();
@@ -179,16 +180,18 @@ public class RenameParentPageAndPublishChildTest {
 			dashboardPage.updateBasicFieldsOfNewPageArticleContent(randomInternalName, pageName);
 			// Set the title of main content
 			this.driverManager.scrollUp();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
-			.sendKeys(pageName);
+			this.driverManager
+					.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
+					.sendKeys(pageName);
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+					.click();
 		});
 		this.driverManager.waitUntilSidebarOpens();
 	}
 
-	public void createPageCategoryLandingPage(WebElement folderWebElement, String pageName) {
-		dashboardPage.rightClickCreatePageOnAPresentPage(folderWebElement);
+	public void createPageCategoryLandingPage(String folderWebElementSelector, String pageName) {
+		dashboardPage.rightClickCreatePageOnAPresentPage(folderWebElementSelector);
 		// selecting Page Category Landing Page
 		dashboardPage.selectPageArticleContentType();
 		// click on the Ok button to confirm the select content type above
@@ -200,7 +203,7 @@ public class RenameParentPageAndPublishChildTest {
 
 	public void testScenario() {
 		WebElement homeParent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
-		this.createPageCategoryLandingPage(homeParent, parentPageName);
+		this.createPageCategoryLandingPage(homeContent, parentPageName);
 
 		homeParent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
 		if (!homeParent.getAttribute("class").contains("open")) {
@@ -209,31 +212,26 @@ public class RenameParentPageAndPublishChildTest {
 			expansorElementForHome.click();
 		}
 
-		WebElement parentPage;
-		WebElement childPage1;
-		WebElement childPage2;
-
 		Assert.assertTrue(driverManager.waitUntilElementIsClickable("xpath", parentPageLocator).isDisplayed());
 
-		parentPage = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				parentPageLocator);
-		this.createPageCategoryLandingPage(parentPage, childPage1Name);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", parentPageLocator);
+		this.createPageCategoryLandingPage(parentPageLocator, childPage1Name);
 
-		childPage1 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", childPage1Locator);
-		this.createPageCategoryLandingPage(childPage1, childPage2Name);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", childPage1Locator);
+		this.createPageCategoryLandingPage(childPage1Locator, childPage2Name);
 
-		this.renamePage(parentPage, parentPageNewName);
+		this.renamePage(parentPageLocator, parentPageNewName);
 
 		this.childPage1Locator = this.parentPageNewLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage1Name + "')]";
-		
+
 		this.childPage2Locator = this.childPage1Locator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage2Name + "')]";
+
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator).click();
-		childPage2 = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				childPage2Locator);
-		
-		this.publishElement(childPage2, childPage2Name);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator);
+
+		this.publishElement(childPage2Locator, childPage2Name);
 		this.verifyPublishedItemsOnDashboard();
 
 	}
@@ -246,6 +244,7 @@ public class RenameParentPageAndPublishChildTest {
 				+ "/div/span/span[contains(@class,'never-published')]";
 
 		this.driverManager.waitUntilPageLoad();
+		this.driverManager.waitForAnimation();
 
 		boolean isPresent = this.driverManager.isElementPresentAndClickableByXpath(iconNeverPublishedForChild1Page);
 
@@ -270,8 +269,8 @@ public class RenameParentPageAndPublishChildTest {
 		driverManager.getDriver().switchTo().defaultContent();
 	}
 
-	private void renamePage(WebElement parentPage, String newPageName) {
-		dashboardPage.rightClickEditOnAPresentPage(parentPage);
+	private void renamePage(String pageLocator, String newPageName) {
+		dashboardPage.rightClickEditOnAPresentPage(pageLocator);
 		// creating new Page Article into the empty folder
 		this.editPageArticleContent(newPageName);
 	}
