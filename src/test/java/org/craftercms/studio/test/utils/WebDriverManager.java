@@ -181,6 +181,15 @@ public class WebDriverManager {
 			return waitUntilElementIsDisplayed(typeOfSelector, selectorValue);
 		}
 	}
+	
+	public void waitUntilContentTypeNotificationIsNotDisplayed(String typeOfSelector, String selectorValueForChilds, WebElement parentElement) {
+		logger.debug("Waiting for element has childs");
+		By selector = getSelector(typeOfSelector, selectorValueForChilds);
+		int hasChild = parentElement.findElements(selector).size();
+		while(hasChild == 1) {
+			hasChild = parentElement.findElements(selector).size();
+		}		
+	}
 
 	public void waitUntilElementIsNotDisplayed(String typeOfSelector, String selectorValue) {
 		logger.debug("Waiting for element to be hidden: {} , {}", typeOfSelector, selectorValue);
