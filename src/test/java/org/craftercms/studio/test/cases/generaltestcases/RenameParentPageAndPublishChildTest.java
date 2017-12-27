@@ -121,7 +121,6 @@ public class RenameParentPageAndPublishChildTest {
 		driverManager.usingContextMenu(() -> {
 			dashboardPage.clickOnPublishOption();
 		});
-
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.selectOnlyOnePageToPublish(pageName);
 		this.confirmPublishAction();
@@ -215,6 +214,7 @@ public class RenameParentPageAndPublishChildTest {
 		Assert.assertTrue(driverManager.waitUntilElementIsClickable("xpath", parentPageLocator).isDisplayed());
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", parentPageLocator);
+
 		this.createPageCategoryLandingPage(parentPageLocator, childPage1Name);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", childPage1Locator);
@@ -224,6 +224,7 @@ public class RenameParentPageAndPublishChildTest {
 
 		this.childPage1Locator = this.parentPageNewLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage1Name + "')]";
+
 
 		this.childPage2Locator = this.childPage1Locator + UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage2Name + "')]";

@@ -857,8 +857,10 @@ public class DashboardPage {
 	}
 
 	public void rightClickOnAContentPage(String elementLocator) {
+
 		this.getDriverManager().contextClick("xpath", elementLocator, false);
 	}
+
 
 	public void rightClickOnAContentPageByJavascript(WebElement element) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), element, true);
@@ -978,6 +980,7 @@ public class DashboardPage {
 			editContent.click();
 		});
 	}
+
 
 	public void addAnImageToAnArticle() {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleAddImageButton)

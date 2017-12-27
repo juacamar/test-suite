@@ -66,9 +66,11 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String newUserPasswordVerificationId;
 	private String newUserUserNameCreatedXpath;
 	private String articleContentCreatedName;
+	private String gearImageXpath;
 	private static Logger logger = LogManager.getLogger(ChangeStateOfPreviousPublishedContent.class);
 
 	@BeforeMethod
+
 	public void beforeTest() {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
@@ -159,6 +161,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.getProperty("general.users.authorusernamecreated");
 		articleContentCreatedName = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.testingcontentitem");
+		gearImageXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.gearimagexpath");
 	}
 
 	public void addNewUser() {
@@ -501,15 +505,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder).click();
 		
-		///
-//		WebElement articlesFolderElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-//				articlesFolder);
-//		if (!articlesFolderElement.getAttribute("class").contains("open")) {
-//			this.driverManager.waitUntilContentTooltipIsHidden();
-//			articlesFolderElement.click();
-//		}
-		
-		
 		this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
 				.click();
@@ -650,35 +645,20 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		String isLifeContent = "";
 		int maxNumberofTries = 10;
-
-//		while (!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0))) {
-//		isLifeContent = this.driverManager.getDriver()
-//				.findElement(By.xpath(pageStatus)) 
-//				.getAttribute("class").toString();
-//		this.driverManager.getDriver().navigate().refresh();
-//		this.driverManager.waitForAnimation();
-//		this.driverManager.getDriver().switchTo().activeElement();
-//		this.driverManager.waitUntilFolderOpens("xpath", staticAssetsImagesChildFolder);
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-//				staticAssetsGearImageId).click();
-//		maxNumberofTries--;
-//	}
 		while (!(isLifeContent.contains("undefined live") && (maxNumberofTries != 0))) {
 			this.driverManager.waitForAnimation();
 			isLifeContent = this.driverManager.getDriver()
 			.findElement(By.xpath(pageStatus)).getAttribute("class").toString();
 			driverManager.getDriver().navigate().refresh();
 			this.driverManager.waitForAnimation();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-					staticAssetsGearImageId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					gearImageXpath).click();
 			maxNumberofTries--;
 
 			}
-		
 		Assert.assertTrue(this.driverManager.getDriver()
 				.findElement(By.xpath(pageStatus))
 				.getAttribute("class").contains("undefined live"));
-
 	}
 	@Test
 	public void changeStateOfPreviousPublishedContent() {
