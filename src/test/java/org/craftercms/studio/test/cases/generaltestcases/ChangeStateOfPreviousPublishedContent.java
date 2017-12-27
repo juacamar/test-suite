@@ -505,15 +505,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder).click();
 		
-		///
-//		WebElement articlesFolderElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-//				articlesFolder);
-//		if (!articlesFolderElement.getAttribute("class").contains("open")) {
-//			this.driverManager.waitUntilContentTooltipIsHidden();
-//			articlesFolderElement.click();
-//		}
-		
-		
 		this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
 				.click();
