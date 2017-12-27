@@ -72,7 +72,7 @@ public class LoginPage {
 		this.clickLogin();
 		
 		//Wait for login page to close
-		driverManager.waitUntilLoginCloses();
+		this.driverManager.waitUntilLoginCloses();
 
 	}
 

@@ -55,6 +55,10 @@ public class PreviewPage {
 	private String entryContentTypeBodyXpath;
 	private String entryContentTypeBodyCheckCss;
 	private String createFormFrameElementCss;
+	private String articleContentCreatedName;
+	private String generalDeleteOption;
+	private String generalEditOption;
+	private String siteStatusIcon;
 	
 	/**
 	 * 
@@ -122,6 +126,15 @@ public class PreviewPage {
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
 		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
+		articleContentCreatedName = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.testingcontentitem");
+		generalDeleteOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.deletetopnavoption");
+		generalEditOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.edittopnavoption");
+		siteStatusIcon = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.statustopbaricon");
+	
 	}
 
 	// Click on admin console link
@@ -506,7 +519,7 @@ public class PreviewPage {
 		// save
 		siteConfigPage.saveDragAndDropProcess();
 
-		driverManager.getDriver().switchTo().defaultContent();
+		this.driverManager.getDriver().switchTo().defaultContent();
 
 		// go to dashboard
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-logo").click();
@@ -639,22 +652,22 @@ public class PreviewPage {
 	public void verifyPageArticleIsPublished() {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				".//span[contains(text(),'Testing1')]");
+				articleContentCreatedName);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				".//span[contains(text(),'Testing1')]").click();
+				articleContentCreatedName).click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//A[@class='cursor'][text()='Delete']");
+				generalDeleteOption);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				"//A[@class='cursor'][text()='Edit']");
+				generalEditOption);
 
 		String isLifeContent = "";
 		int maxNumberofTries = 10;
 
 		while (!(isLifeContent.contains("undefined live") && (maxNumberofTries != 0))) {
 			isLifeContent = this.driverManager.getDriver()
-					.findElement(By.xpath("//ul[@id='activeContentActions']/li/span/div/span/span[2]"))
+					.findElement(By.xpath(siteStatusIcon))
 					.getAttribute("class").toString();
 			driverManager.getDriver().navigate().refresh();
 			this.dashboardPage.expandHomeTree();
@@ -662,7 +675,7 @@ public class PreviewPage {
 		}
 
 		Assert.assertTrue(this.driverManager.getDriver()
-				.findElement(By.xpath(".//ul[@id='activeContentActions']/li/span/div/span/span[2]"))
+				.findElement(By.xpath(siteStatusIcon))
 				.getAttribute("class").contains("undefined live"));
 
 	}
