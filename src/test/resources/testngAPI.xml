@@ -274,6 +274,20 @@
 		</classes>
 	</test>
 	
+<!--	 Dependency -->
+	<test name="Get Dependant Items" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetDependantItemsAPITest" />
+		</classes>
+	</test>
+	<test name="Get Simple Dependencies" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetSimpleDependenciesAPITest" />
+		</classes>
+	</test>
+	
 <!--	 Preview -->
 	<test name="Preview Sync" preserve-order="true">
 		<classes>
