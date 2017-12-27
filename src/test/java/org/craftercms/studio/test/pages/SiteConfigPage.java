@@ -164,8 +164,7 @@ public class SiteConfigPage {
 
 	// Save the section dropped.
 	public void saveSectionDropped() {
-		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", saveButton);
-		okButtonOpt.click();
+		this.driverManager.waitUntilElementIsClickable("xpath", saveButton).click();
 		this.driverManager.waitUntilElementIsDisplayed("xpath", contentTypeSavedNotification);
 	}
 
