@@ -21,8 +21,6 @@ public class ValidateSessionAPITest {
 				apiConnectionManager.getPort());
     	
     	securityAPI = new SecurityAPI(api, apiConnectionManager);
-		api = new JsonTester(apiConnectionManager.getProtocol()
-				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
     }
 
     @BeforeTest

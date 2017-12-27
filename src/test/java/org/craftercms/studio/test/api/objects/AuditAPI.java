@@ -37,5 +37,10 @@ public class AuditAPI extends BaseAPI {
   		api.get("studio/api/1/services/api/1/audit/get.json")
    		.urlParam("site_id", siteId+"nonvalid").execute().status(404);
    	}
+  	
+  	public void testGetAuditLogUnauthorized(String siteId) {
+  		api.get("studio/api/1/services/api/1/audit/get.json")
+   		.urlParam("site_id", siteId).execute().status(401);
+   	}
 
 }
