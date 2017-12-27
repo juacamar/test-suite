@@ -14,18 +14,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 
-/**
- * 
- * 
- * 
- * 
- * 
- * @author Gustavo Andrei Ortiz Alfaro
- *
- * 
- * 
- */
-
 public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 	private String userName;
@@ -47,7 +35,6 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 	private static Logger logger = LogManager.getLogger(EditContentThroughDashboardEditOptionTest.class);
 
 	@BeforeMethod
-
 	public void beforeTest() {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
@@ -209,7 +196,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 		dashboardPage.clickEditOptionOfRecentActivitySection();
 
-		driverManager.getDriver().switchTo().defaultContent();
+		this.driverManager.waitForAnimation();
 
 		// Switch to the iframe
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
@@ -246,18 +233,34 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 		dashboardPage.clickEditOptionOfRecentActivitySection();
 
+		this.driverManager.waitForAnimation();
 		// Switch to the iframe
 
-		driverManager.getDriver().switchTo().defaultContent();
+		// Switch to the iframe
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
-		driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
+			// Expand default section
+			myRecentActivityFramePage1.expandDefaultSection();
+			// Assert validation
+			this.driverManager.scrollDown();
+			
+			String textTitle = this.driverManager
 
-		// Expand default section
+					.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormTitle)
 
-		myRecentActivityFramePage1.expandDefaultSection();
+					.getAttribute("value");
 
+			Assert.assertEquals(textTitle, "TestQA", "Content is not eddited properly");
+
+			// save and close
+			logger.info("Click on Save and close button");
+
+			this.driverManager
+
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.click();
+
+		});
 	}
 
 	public void goToDashboard() {
@@ -300,14 +303,12 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 		// go to dashboard
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
-		
+
 		dashboardPage.expandPagesTree();
 
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
-		
-		dashboardPage.expandHomeTree();
-		
+
 		// create a new content
 		createNewContent();
 
@@ -323,16 +324,6 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 		// click on edit option of recently activity section
 
 		clickOnEditOptionOfRecentActivitySection();
-
-		// Assert validation
-
-		String textTitle = this.driverManager
-
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormTitle)
-
-				.getAttribute("value");
-
-		Assert.assertEquals(textTitle, "TestQA", "Content is not eddited properly");
 
 	}
 

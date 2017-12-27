@@ -32,7 +32,6 @@ public class ValidationsOfCreateSiteFieldsTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void verifyThatTheValidationsAreDisplayedForCreateSiteDialog() {
 
 		// login to application

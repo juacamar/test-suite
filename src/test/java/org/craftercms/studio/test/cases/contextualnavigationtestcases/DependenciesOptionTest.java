@@ -35,7 +35,6 @@ public class DependenciesOptionTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void dependenciesOptionTest() {
 
 		// login to application

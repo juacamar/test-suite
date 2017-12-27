@@ -50,6 +50,7 @@ public class AddNewFolderTest extends BaseTest {
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
+		
 		// right click to see the the menu
 		dashboardPage.rightClickToFolderOnHome();
 

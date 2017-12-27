@@ -32,8 +32,6 @@ public class DesignOfPreviewPageTest extends BaseTest {
 	private String topNavUsersOption;
 	private String topNavSitesOption;
 
-
-
 	@BeforeMethod
 	public void beforeTest() {
 
@@ -66,7 +64,6 @@ public class DesignOfPreviewPageTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void verifyTheDesignOfPreviewPageTest() {
 
 		// login to application

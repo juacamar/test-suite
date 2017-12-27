@@ -29,7 +29,6 @@ public class WrongLoginTest extends BaseTest{
 	
 
 	@Test(priority = 0)
-
 	public void tryToLoginUsingNonValidCredientialsTest() {
 
 		// login to application
