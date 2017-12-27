@@ -68,6 +68,7 @@ public class HistoryOptionTest extends BaseTest{
 		previewPage.clickOnHistoryOption();
 
 		// Assert
+		this.driverManager.waitForAnimation();
 		String historyPage = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", historyDialogTitle).getText();
 		

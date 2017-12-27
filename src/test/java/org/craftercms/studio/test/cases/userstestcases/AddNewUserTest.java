@@ -47,7 +47,6 @@ public class AddNewUserTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void addNewUser() {
 
 		// login to application

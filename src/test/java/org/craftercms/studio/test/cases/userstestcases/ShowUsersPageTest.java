@@ -33,7 +33,6 @@ public class ShowUsersPageTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void showUsersPage() {
 
 		// login to application

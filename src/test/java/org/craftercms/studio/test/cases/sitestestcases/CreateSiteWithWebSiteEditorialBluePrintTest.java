@@ -3,7 +3,7 @@ package org.craftercms.studio.test.cases.sitestestcases;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.annotations.Test;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 
 /**
@@ -20,13 +20,12 @@ public class CreateSiteWithWebSiteEditorialBluePrintTest extends BaseTest {
 	private String siteDropdownElementXPath;
 
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-
 	}
 
 	@Test(priority = 0)

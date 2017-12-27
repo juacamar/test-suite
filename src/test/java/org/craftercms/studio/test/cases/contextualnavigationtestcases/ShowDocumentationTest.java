@@ -1,7 +1,7 @@
 package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.cases.BaseTest;
 
@@ -17,20 +17,14 @@ public class ShowDocumentationTest extends BaseTest{
 	private String userName;
 	private String password;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
-
 	@Test(priority = 0)
-
 	public void showDocumentationPageTest() {
 
 		// login to application

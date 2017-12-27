@@ -30,7 +30,6 @@ public class LogOutTest extends BaseTest{
 
 
 	@Test(priority = 0)
-
 	public void logoutFromStudioTest() {
 
 		// login to application

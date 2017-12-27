@@ -25,27 +25,16 @@ import org.openqa.selenium.By;
  */
 
 public class PublishingSiteTest extends BaseTest {
-
 	private String userName;
-
 	private String password;
-
 	private String createFormFrameElementCss;
-
 	private String createFormMainTitleElementXPath;
-
 	private String createFormSaveAndCloseElementId;
-
 	private String testingContentItem;
-
 	private String topNavStatusIcon;
-
 	private String siteDropdownElementXPath;
-
 	private String homeXpath;
-
 	private String crafterLogoId;
-
 	private String generalEditoption;
 
 	private static Logger logger = LogManager.getLogger(PublishingSiteTest.class);

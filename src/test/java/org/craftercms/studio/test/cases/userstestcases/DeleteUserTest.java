@@ -57,6 +57,7 @@ public class DeleteUserTest extends BaseTest{
 				.click();
 
 		// Assert new users created is deleted
+		this.driverManager.waitForAnimation();
 		driverManager.getDriver().navigate().refresh();
 		
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));	
