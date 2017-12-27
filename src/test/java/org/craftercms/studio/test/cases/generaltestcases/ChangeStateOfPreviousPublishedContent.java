@@ -417,27 +417,25 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		logger.info("login to application with author user");
 		loginPage.loginToCrafter("author", "author");
         
-		logger.info("Go to Preview Page");
-		this.homePage.goToPreviewPage();
-//		String siteDropdownElementXPath = sidebarMenuOption;
+//		logger.info("Go to Preview Page");
+//		this.homePage.goToPreviewPage();
 //
-//		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
-//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
-//		else
-//			throw new NoSuchElementException(
-//					"Site creation process is taking too long time and the element was not found");
-//
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditOption);
+//		
+//		//waituntilfolderopens
+//		this.driverManager.waitUntilSidebarOpens();
 		
-		//this.driverManager.waitUntilSidebarOpens();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditOption);
-		
-		//waituntilfolderopens
 		this.driverManager.getDriver().navigate().refresh();
+
+		logger.info("Go to Site Preview");
+		this.goToSiteContentPagesStructure();
+		
+		// expand pages folder
+		this.dashboardPage.expandPagesTree();
 		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-//		this.dashboardPage.expandHomeTree();
-//		this.dashboardPage.expandHomeTree();
+		
+		this.driverManager.waitUntilSidebarOpens();
+
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder);
