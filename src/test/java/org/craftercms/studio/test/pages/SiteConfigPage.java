@@ -182,6 +182,7 @@ public class SiteConfigPage {
 	public void saveDragAndDropProcess() {
 		// Save the section dropped.
 		logger.debug("Click on Save button");
+		this.driverManager.waitForAnimation();
 		this.saveSectionDropped();
 	}
 
@@ -205,23 +206,17 @@ public class SiteConfigPage {
 
 	// Set ICE group
 	public void setIceGroup(String strICEGroup) {
-		WebElement typeIceGroup = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				inputIceGroup);
-		typeIceGroup.sendKeys(strICEGroup);
+		driverManager.sendText("cssSelector",inputIceGroup,strICEGroup);
 	}
 
 	// Set description
 	public void setDescription(String strDescription) {
-		WebElement typeDescription = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				inputDescription);
-		typeDescription.sendKeys(strDescription);
+		driverManager.sendText("cssSelector",inputDescription,strDescription);
 	}
 
 	// Set default value
 	public void setDefaultValue(String strDefaultValue) {
-		WebElement typeDefaultValue = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				inputDefaultValue);
-		typeDefaultValue.sendKeys(strDefaultValue);
+		driverManager.sendText("cssSelector",inputDefaultValue,strDefaultValue);
 	}
 
 	public void completeControlsFieldsBasics(String strTitle, String strICEGroup, String strDescription,
