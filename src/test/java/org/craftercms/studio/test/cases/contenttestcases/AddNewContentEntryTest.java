@@ -46,7 +46,8 @@ public class AddNewContentEntryTest extends BaseTest {
 
 	public void createContent() {
 		// right click to see the the menu
-
+		driverManager.waitUntilPageLoad();
+		driverManager.waitUntilSidebarOpens();
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type

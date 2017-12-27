@@ -18,7 +18,6 @@ public class CopyPasteContentTest extends BaseTest {
 	private String createFormFrameElementCss;
 	private String createFormMainTitleElementXPath;
 	private String createFormSaveAndCloseElementId;
-	private String createFromInternalNameXpath;
 	private String copyTestItemXpath;
 	private String randomURL;
 	private String randomInternalName;
@@ -34,8 +33,6 @@ public class CopyPasteContentTest extends BaseTest {
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		createFromInternalNameXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.createformfiletitle");
 		copyTestItemXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.copytestitem");
 
@@ -114,10 +111,9 @@ public class CopyPasteContentTest extends BaseTest {
 		// Click on edit option of recent activity section
 		dashboardPage.clickOnEditOptionRecentActivity();
 
+		this.driverManager.waitForAnimation();
+		
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
-			// clear the Internal name input
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFromInternalNameXpath)
-					.clear();
 			// edit internal name
 			dashboardPage.editInternalName("COPY");	
 		});

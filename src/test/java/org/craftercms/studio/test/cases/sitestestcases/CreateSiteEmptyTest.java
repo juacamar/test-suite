@@ -2,7 +2,7 @@ package org.craftercms.studio.test.cases.sitestestcases;
 
 import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -18,7 +18,7 @@ public class CreateSiteEmptyTest extends BaseTest {
 	private String password;
 	private String siteDropdownElementXPath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -27,7 +27,6 @@ public class CreateSiteEmptyTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-
 	public void createSiteEmpty() {
 
 		// login to application

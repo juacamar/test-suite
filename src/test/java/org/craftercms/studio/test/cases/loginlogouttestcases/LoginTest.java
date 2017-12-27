@@ -28,7 +28,6 @@ public class LoginTest extends BaseTest{
 	}
 
 	@Test(priority = 0)
-
 	public void loginInToStudioTest() {
 
 		// login to application

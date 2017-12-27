@@ -31,7 +31,7 @@ public class MyRecentActivityPage {
 	// Expand default section
 
 	public void clickExpandOption() {
-		WebElement expandOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", expandDefaultSection);
+		WebElement expandOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "id", expandDefaultSection);
 		expandOpt.click();
 	}
 

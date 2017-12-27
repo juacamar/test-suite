@@ -34,7 +34,6 @@ public class AutomateLoginInToStudio extends BaseTest{
 	}
 
 	@Test(priority = 0)
-
 	public void loginInToStudioTest() {
 
 		// login to application

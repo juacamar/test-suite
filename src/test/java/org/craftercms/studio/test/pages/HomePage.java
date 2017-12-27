@@ -19,7 +19,6 @@ public class HomePage {
 	private WebDriver driver;
 	private String previewSite;
 	private String dashboardSite;
-	//private String seeThePageEdited;
 	private String createSiteButton;
 	private String deleteSiteIcon;
 	private String yesDeleteButton;
@@ -122,6 +121,7 @@ public class HomePage {
 		WebElement yesButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
 				yesDeleteButton);
 		yesButton.click();
+		this.driverManager.waitForAnimation();
 	}
 
 	public void clickOnYesToDeleteSite() {

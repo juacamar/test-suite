@@ -116,7 +116,6 @@ public class WebDriverManager {
 		// locating webdriver at coordinate 0,0
 		this.driver.manage().window().setPosition(new Point(0, 0));
 		// maximize the window at normal size
-		// this.driver.manage().window().maximize();
 		// //scaling to full screen
 		this.driver.manage().window().setSize(new Dimension(width, height));
 
@@ -348,7 +347,25 @@ public class WebDriverManager {
 	}
 
 	public void contextClick(String selectorType, String selectorValue, boolean executeThroughJavaScript) {
-		contextClick(driver, waitUntilElementIsClickable(selectorType, selectorValue), executeThroughJavaScript);
+
+		WebElement element = waitUntilElementIsClickable(selectorType, selectorValue);
+		if (executeThroughJavaScript) {
+
+			String script = "var element = arguments[0];" + "var event = document.createEvent('HTMLEvents');"
+					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
+
+			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
+		} else {
+			element = waitUntilElementIsClickable(selectorType, selectorValue);
+			(new Actions(driver)).moveToElement(element).build().perform();
+
+			this.waitUntilContentTooltipIsHidden();
+			this.waitForAnimation();
+
+			element = waitUntilElementIsClickable(selectorType, selectorValue);
+			(new Actions(driver)).contextClick(element).build().perform();
+		}
+
 	}
 
 	public void contextClick(WebDriver driver, WebElement element, Boolean executeThroughJavaScript) {
@@ -357,6 +374,8 @@ public class WebDriverManager {
 					+ "event.initEvent('contextmenu', true, false);" + "element.dispatchEvent(event);";
 			((JavascriptExecutor) driver).executeScript(script, new Object[] { element });
 		} else {
+			(new Actions(driver)).moveToElement(element, 0, 0).build().perform();
+			this.waitUntilContentTooltipIsHidden();
 			(new Actions(driver)).contextClick(element).build().perform();
 		}
 	}
@@ -432,7 +451,7 @@ public class WebDriverManager {
 	}
 
 	public void waitUntilContentTooltipIsHidden() {
-		logger.debug("Waiting for contetn tooltip is hidden");
+		logger.debug("Waiting for content tooltip is hidden");
 		WebElement element = this.waitUntilElementIsPresent("xpath", ".//div[@id='acn-context-tooltipWrapper']");
 
 		if (!element.getAttribute("style").contains("visibility: hidden;")) {
@@ -479,6 +498,7 @@ public class WebDriverManager {
 	}
 
 	public void usingCrafterForm(String selectorType, String selectorValue, Runnable actions) {
+		waitForAnimation();
 		logger.debug("Switching to iframe for form: {}, {}", selectorType, selectorValue);
 		driver.switchTo().defaultContent();
 
@@ -488,20 +508,9 @@ public class WebDriverManager {
 		// Switch to iframe
 		driver.switchTo().frame(frame);
 
-		// Wait until any input is selected
-		new WebDriverWait(driver, defaultTimeOut)
-				.until(webDriver -> webDriver.switchTo().activeElement().getTagName().equals("input"));
-
-		// Check if it is the first one
-		WebElement firstInput = waitUntilElementIsClickable("xpath", ".//input[not(@disabled)] [not(@type='button')]");
-		if (!firstInput.equals(driver.switchTo().activeElement())) {
-			// Change focus to the right input
-			firstInput.click();
-		}
-
-		// Wait again for focus
-		new WebDriverWait(driver, defaultTimeOut)
-				.until(webDriver -> webDriver.switchTo().activeElement().equals(firstInput));
+		 // Wait until any input is selected
+        new WebDriverWait(driver, defaultTimeOut)
+                .until(webDriver -> webDriver.switchTo().activeElement().getTagName().equals("input")); 
 
 		// Do stuff
 		actions.run();
@@ -509,7 +518,20 @@ public class WebDriverManager {
 		driver.switchTo().defaultContent();
 
 		// Wait until iframe is hidden
-		waitUntilElementIsHidden(frame);
+		try {
+			waitUntilElementIsHidden(frame);
+		} catch (TimeoutException e) {
+			logger.warn("Forcing exit from form");
+			
+			driver.switchTo().frame(frame);
+
+			WebElement saveCloseButton = this.
+					driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", "cstudioSaveAndClose");
+			
+			saveCloseButton.click();
+			this.waitForAnimation();
+			driver.switchTo().defaultContent();
+		}
 	}
 
 	// Same as previuous but without inputs

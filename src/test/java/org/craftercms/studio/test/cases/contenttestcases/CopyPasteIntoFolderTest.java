@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -30,7 +30,9 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 
 	private String firstCopiedElementXPath;
 
-	@BeforeClass
+	private String myRecentActivityBodyXpath;
+
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
@@ -44,7 +46,9 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 				.getProperty("general.myrecentactivity.firstelementurl");
 		secondCopiedElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.secondelementurl");
-		
+		myRecentActivityBodyXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.myrecentactivity.body");
+
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {
@@ -74,33 +78,33 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.waitUntilElementIsClickable( "id", createFormSaveAndCloseElementId).click();
+			this.driverManager.waitUntilElementIsClickable("id", createFormSaveAndCloseElementId).click();
 		});
 
 	}
-	
+
 	@Test(priority = 0)
 	public void copyAndPasteIntoFolderUsingContextualClickOptionsTest() {
 		logger.info("Starting test case");
-		loginPage.loginToCrafter(userName,password);
-		
+		loginPage.loginToCrafter(userName, password);
+
 		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
-		
+
 		driverManager.getDriver().navigate().refresh();
-		
+
 		this.changeBodyToNotRequiredOnEntryContent();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
-	    this.createContent();
-	    
-	    //reload page
-        driverManager.getDriver().navigate().refresh();
-	    
+		this.createContent();
+
+		// reload page
+		driverManager.getDriver().navigate().refresh();
+
 		// Expand Home Tree
 		dashboardPage.expandHomeTree();
 
@@ -120,18 +124,27 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 		// paste the crafter component in the new folder created
 		dashboardPage.rightClickToPasteToNewFolder();
 
-		// Copy the new content to the new folder created
+		// reload page
+		driverManager.getDriver().navigate().refresh();
 
+		// Copy the new content to the new folder created
 		dashboardPage.rightClickToCopyNewContentToNewFolder();
 
 		// paste the content in the new folder created
 
 		dashboardPage.rightClickToPasteToNewFolder();
-
-		Assert.assertTrue(this.driverManager.isElementPresentByXpath(firstCopiedElementXPath));
-		Assert.assertTrue(this.driverManager.isElementPresentByXpath(secondCopiedElementXPath));
+		
+		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilAttributeContains("id", myRecentActivityBodyXpath, "style", "display: block;");
+		
+		this.driverManager.waitUntilPageLoad();
+		this.driverManager.waitForAnimation();
+		
+		Assert.assertTrue(this.driverManager.waitUntilElementIsDisplayed("xpath", firstCopiedElementXPath).getText()
+				.contains("/foldertocopy/test1-"));
+		Assert.assertTrue(this.driverManager.waitUntilElementIsDisplayed("xpath", secondCopiedElementXPath).getText()
+				.equalsIgnoreCase("/foldertocopy/test1"));
 
 	}
 
 }
-
