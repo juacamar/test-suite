@@ -856,9 +856,9 @@ public class DashboardPage {
 		publishOption.click();
 	}
 
-	public void rightClickOnAContentPage(WebElement element) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), element, false);
-	}
+	public void rightClickOnAContentPage(String elementLocator) {
+        this.getDriverManager().contextClick("xpath", elementLocator, false);
+    }
 
 	public void rightClickOnAContentPageByJavascript(WebElement element) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), element, true);
@@ -961,23 +961,23 @@ public class DashboardPage {
 		});
 	}
 
-	public void rightClickCreatePageOnAPresentPage(WebElement webElement) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement, false);
-		driverManager.usingContextMenu(() -> {
-			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-					addNewContent);
-			addContent.click();
-		});
-	}
+	public void rightClickCreatePageOnAPresentPage(String webElementLocator) {
+        this.getDriverManager().contextClick("xpath", webElementLocator, false);
+        driverManager.usingContextMenu(() -> {
+            WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+                    addNewContent);
+            addContent.click();
+        });
+    }
 
-	public void rightClickEditOnAPresentPage(WebElement webElement) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), webElement, false);
-		driverManager.usingContextMenu(() -> {
-			WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-					editParentOption);
-			editContent.click();
-		});
-	}
+	public void rightClickEditOnAPresentPage(String webElementLocator) {
+        this.getDriverManager().contextClick("xpath", webElementLocator, false);
+        driverManager.usingContextMenu(() -> {
+            WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+                    editParentOption);
+            editContent.click();
+        });
+    }
 
 	public void addAnImageToAnArticle() {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleAddImageButton)
