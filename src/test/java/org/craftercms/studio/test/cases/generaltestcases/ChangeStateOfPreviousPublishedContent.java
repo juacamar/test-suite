@@ -35,7 +35,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String dependenciesMenuOption;
 	private String staticAssetsChildFolder;
 	private String staticAssetsImagesChildFolder;
-	private String navigationElement;
 	private String editAuthorGroupOption;
 	private String groupsAddNewMembersCheckbox;
 	private String groupsAddNewMembersInput;
@@ -49,6 +48,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String articlesFolder;
 	private String createFormFrameElementCss;
 	private String generalEditOption;
+	private String expandPagesTree;
 	private static Logger logger = LogManager.getLogger(ChangeStateOfPreviousPublishedContent.class);
 
 	@BeforeMethod
@@ -86,8 +86,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				"preview.static_assets_child_folder");
 		staticAssetsImagesChildFolder = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
 				"preview.static_assets_images_child_folder");
-		navigationElement = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"complexscenarios.general.togglenavigationelement");
 		editAuthorGroupOption = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
 				"groups.edit_author_group_option");
 		groupsAddNewMembersCheckbox = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
@@ -112,6 +110,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.getProperty("complexscenarios.general.createformframe");
 		generalEditOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.edittopnavoption");
+		expandPagesTree = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.expand_Pages_Tree");
 	}
 
 	public void addNewUser() {
@@ -162,7 +162,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	public void login(String user, String loginpassword) {
 		// login to application
 		loginPage.loginToCrafter(user, loginpassword);
-		// go to preview page
 		//Wait for login page to close
 		driverManager.waitUntilLoginCloses();
 
@@ -175,8 +174,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 			
 			// creating random values for URL field and InternalName field
 			String randomInternalName = pageName;
+			
 			// Set basics fields of the new content created
-
 			dashboardPage.updateFieldsOfPageArticleContent(randomInternalName, pageName);
 
 			// Set the title of main content
@@ -217,7 +216,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteconfigGroupsOption)
 				.click();
 		
-		
 		driverManager.getDriver().switchTo().defaultContent();
 		this.driverManager.getDriver().switchTo()
 				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//iframe"));
@@ -238,7 +236,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.isElementPresentAndClickableByXpath(".//iframe");
 
 		this.driverManager.getDriver().switchTo().activeElement();
-		// id container
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersCheckbox);
 
@@ -366,7 +363,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				"admin-console");
 
 		// expand Home tree
-		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
+		this.driverManager.waitUntilFolderOpens("xpath", expandPagesTree);
 		this.dashboardPage.expandHomeTree();
 		
 		this.driverManager.getDriver().navigate().refresh();
@@ -417,25 +414,13 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		logger.info("login to application with author user");
 		loginPage.loginToCrafter("author", "author");
         
-//		logger.info("Go to Preview Page");
-//		this.homePage.goToPreviewPage();
-//
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditOption);
-//		
-//		//waituntilfolderopens
-//		this.driverManager.waitUntilSidebarOpens();
-		
-		this.driverManager.getDriver().navigate().refresh();
+		logger.info("Go to Preview Page");
+		this.homePage.goToPreviewPage();
 
-		logger.info("Go to Site Preview");
-		this.goToSiteContentPagesStructure();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",generalEditOption);
 		
-		// expand pages folder
-		this.dashboardPage.expandPagesTree();
-		this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-		
+		//waituntilfolderopens
 		this.driverManager.waitUntilSidebarOpens();
-
 		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder);
@@ -520,35 +505,13 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				staticAssetsGearImageId);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				staticAssetsGearImageId).click();
-		//wait until tooltip se desaparesca
-		//this.driverManager.waitUntilContentTooltipIsHidden();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption);
 
 		String isLifeContent = "";
 		int maxNumberofTries = 10;
-		logger.info("Assert is lifecontent");
 		
-//		while (!(isLifeContent.contains("undefined live")&&(maxNumberofTries!=0))) {
-//			isLifeContent = this.driverManager.getDriver()
-//					.findElement(By.xpath(pageStatus)) 
-//					.getAttribute("class").toString();
-//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-//					staticAssetsGearImageId).click();
-////			this.driverManager.waitUntilFolderOpens("xpath", ".//a[@id='pages-tree']");
-////			this.dashboardPage.expandHomeTree();
-//			maxNumberofTries--;
-//		}
-//
-//		Assert.assertTrue(this.driverManager.getDriver()
-//				.findElement(By.xpath(pageStatus))
-//				.getAttribute("class").contains("undefined live"));
-		
-		
-		/////
-		
-
 		while (!(isLifeContent.contains("undefined live") && (maxNumberofTries != 0))) {
 			isLifeContent = this.driverManager.getDriver()
 					.findElement(By.xpath("//ul[@id='activeContentActions']/li/span/div/span/span[2]"))
@@ -562,13 +525,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.findElement(By.xpath(pageStatus))
 				.getAttribute("class").contains("undefined live"));
 		
-		
-		
-		
-		
-		
-		
-
 	}
 	
 	@Test
