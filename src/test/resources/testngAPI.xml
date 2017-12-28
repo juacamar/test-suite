@@ -297,6 +297,18 @@
 	</test>
 	
 <!-- 	 Content -->
+	<test name="Write Content" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.WriteContentAPITest" />
+		</classes>
+	</test>
+	<test name="Change Template" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.ChangeContentTypeAPITest" />
+		</classes>
+	</test>
 	<test name="Content Exists" preserve-order="true">
 		<classes>
 			<class

@@ -2,6 +2,9 @@ package org.craftercms.studio.test.api.objects;
 
 import static org.hamcrest.Matchers.is;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 
@@ -13,6 +16,15 @@ public class ContentAssetAPI extends BaseAPI{
 	
 	public ContentAssetAPI(JsonTester api, APIConnectionManager apiConnectionManager) {
 		super(api, apiConnectionManager);
+	}
+	
+	public void testChangeContentType(String siteId){
+		
+		api.post("/studio/api/1/services/api/1/content/change-content-type.json")
+		.urlParam("site", siteId)
+		.urlParam("path", contentPath + "/" + fileName)
+		.urlParam("contentType", "/page/entry")
+		.execute().status(200).debug();
 	}
 	
 	public void testContentExists(String siteId) {
@@ -45,14 +57,26 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 
+	public void testDeleteContent(String siteId){
+		
+		api.get("/studio/api/1/services/api/1/content/delete-content.json")
+		.urlParam("site", siteId)
+		.urlParam("path", contentPath + "/" + fileName)
+		.execute().status(200).debug();
+	}
+	
 	public void testWriteContent(String siteId){
 		
-		api.post("/studio/api/1/services/api/1/content/rename-folder.json")
+		File test = new File("src/test/resources/index.xml");
+		
+		api.post("/studio/api/1/services/api/1/content/write-content.json")
 		.urlParam("site", siteId)
-		.urlParam("path", contentPath)
+		.urlParam("path", "site/website/")
+		.urlParam("phase", "onSave")
 		.urlParam("fileName", fileName)
-		.urlParam("contentType", "/page/home")
+		.urlParam("contentType", "/page/entry")
 		.urlParam("unlock", "true")
+		.file("file", test)
 		.execute().status(200).debug();
 	}
 	
