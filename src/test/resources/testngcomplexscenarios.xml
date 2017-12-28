@@ -26,7 +26,7 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test>
+	</test> 
 		<test name="ChangeStateOfPreviousPublishedContent" preserve-order="true">
 		<classes>
 			<class
