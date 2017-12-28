@@ -517,6 +517,7 @@ public class WebDriverManager {
 		WebElement dialog = waitUntilElementIsDisplayed("cssSelector", selector);
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
 		driver.switchTo().activeElement();
+		this.waitForAnimation();
 		actions.run();
 		driver.switchTo().defaultContent();
 	}

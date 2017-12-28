@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -175,6 +176,10 @@ public class SiteConfigPage {
 				break;
 			} catch (TimeoutException e) {
 				logger.warn("Click on Save button didn't work, trying again");
+			} catch (WebDriverException exception) {
+				WebElement error = this.driverManager.waitUntilElementIsDisplayed("xpath",
+						".//div[@class='bd']");
+				logger.warn("Error dialog was displayed, the error is: {}", error.getText());		
 			}
 		}
 	}

@@ -285,16 +285,21 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		driverManager.usingYuiContainer(() -> {
 			// Checking the first row version
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilElementIsDisplayed("xpath", ".//div[text()='Actions']");
+			
 			this.driverManager
 					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historyFirstItemCheckbBox)
 					.click();
 
 			// Checking the second row version
+			this.driverManager.waitForAnimation();
 			this.driverManager
 					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", historySecondItemCheckbBox)
 					.click();
 
 			// click on Compare button
+			this.driverManager.waitForAnimation();
 			dashboardPage.clickCompareButton();
 
 			// switching to the compare frame
