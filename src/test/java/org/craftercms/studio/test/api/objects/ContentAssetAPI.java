@@ -9,6 +9,7 @@ public class ContentAssetAPI extends BaseAPI{
 
 	private String contentPath = "/site/website";
 	private String folderName = "newFolder";
+	private String fileName = "index.xml";
 	
 	public ContentAssetAPI(JsonTester api, APIConnectionManager apiConnectionManager) {
 		super(api, apiConnectionManager);
@@ -42,6 +43,29 @@ public class ContentAssetAPI extends BaseAPI{
 		.urlParam("site", siteId).urlParam("path",contentPath).execute().status(200)
 		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-content-at-path.json?site="+siteId+"&path="+contentPath))
 		.debug();
+	}
+
+	public void testWriteContent(String siteId){
+		
+		api.post("/studio/api/1/services/api/1/content/rename-folder.json")
+		.urlParam("site", siteId)
+		.urlParam("path", contentPath)
+		.urlParam("fileName", fileName)
+		.urlParam("contentType", "/page/home")
+		.urlParam("unlock", "true")
+		.execute().status(200).debug();
+	}
+	
+	public String getContentPath() {
+		return contentPath;
+	}
+
+	public String getFolderName() {
+		return folderName;
+	}
+
+	public String getFileName() {
+		return fileName;
 	}
 	
 }
