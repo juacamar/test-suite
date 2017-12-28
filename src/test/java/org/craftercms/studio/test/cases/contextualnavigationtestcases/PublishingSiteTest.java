@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 
 /**
  * 
@@ -32,10 +33,7 @@ public class PublishingSiteTest extends BaseTest {
 	private String createFormSaveAndCloseElementId;
 	private String testingContentItem;
 	private String topNavStatusIcon;
-	private String siteDropdownElementXPath;
 	private String homeXpath;
-	private String crafterLogoId;
-	private String generalEditoption;
 
 	private static Logger logger = LogManager.getLogger(PublishingSiteTest.class);
 
@@ -54,12 +52,7 @@ public class PublishingSiteTest extends BaseTest {
 				.getProperty("general.testingcontentitem");
 		topNavStatusIcon = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.statustopbaricon");
-		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.sitedropdown");
 		homeXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.home");
-		crafterLogoId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		generalEditoption = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.edittopnavoption");
 
 	}
 
@@ -155,7 +148,7 @@ public class PublishingSiteTest extends BaseTest {
 		// expand home content
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitUntilSidebarOpens();
-		
+
 		dashboardPage.expandHomeTree();
 
 		// create a new content
@@ -170,28 +163,21 @@ public class PublishingSiteTest extends BaseTest {
 		// approve and publish
 		approveAndPublish();
 
-		driverManager.getDriver().navigate().refresh();
-
-		driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", crafterLogoId).click();
+		this.driverManager.waitForAnimation();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem).click();
-
-		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
-
-		String isLifeContent = "";
-		int maxNumberofTries = 10;
-
-		while (!(isLifeContent.contains("undefined live") && (maxNumberofTries != 0))) {
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", generalEditoption);
-			isLifeContent = this.driverManager.getDriver().findElement(By.xpath(topNavStatusIcon)).getAttribute("class")
-					.toString();
-			driverManager.getDriver().navigate().refresh();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem)
-					.click();
-			maxNumberofTries--;
+		for (int i = 0; i < 3; i++) {
+			try {
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", testingContentItem)
+						.click();
+				this.driverManager.waitUntilAttributeContains("xpath", topNavStatusIcon, "class", "undefined live");
+				break;
+			} catch (TimeoutException e) {
+				this.driverManager.takeScreenshot();
+				logger.warn("Content page is not published yet, checking again if it has published icon on top bar");
+			}
 		}
 
 		String elementClassValue = this.driverManager.getDriver().findElement(By.xpath(topNavStatusIcon))
