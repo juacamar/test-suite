@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -163,22 +164,27 @@ public class SiteConfigPage {
 		this.okContentTypeSelected();
 	}
 
-	// Save the section dropped.
-	public void saveSectionDropped() {
-		this.driverManager.waitForAnimation();
-		for (int i = 0; i < 3; i++) {
-			try {
-				this.driverManager.waitUntilElementIsClickable("xpath", saveButton).click();
-				WebElement notification = this.driverManager.waitUntilElementIsDisplayed("xpath",
-						contentTypeSavedNotification);
-				this.driverManager.waitUntilContentTypeNotificationIsNotDisplayed("xpath", "div", notification);
-				break;
-			} catch (TimeoutException e) {
-				logger.warn("Click on Save button didn't work, trying again");
-			}
-		}
-	}
-
+	 // Save the section dropped.
+    public void saveSectionDropped() {
+        this.driverManager.waitForAnimation();
+        for (int i = 0; i < 3; i++) {
+            try {
+                this.driverManager.waitUntilElementIsClickable("xpath", saveButton).click();
+                WebElement notification = this.driverManager.waitUntilElementIsDisplayed("xpath",
+                        contentTypeSavedNotification);
+                this.driverManager.waitUntilContentTypeNotificationIsNotDisplayed("xpath", "div", notification);
+                break;
+            } catch (TimeoutException e) {
+                logger.warn("Click on Save button didn't work, trying again");
+            } catch (WebDriverException exception) {
+                driverManager.takeScreenshot();
+                WebElement error = this.driverManager.waitUntilElementIsDisplayed("xpath",
+                        ".//div[@class='bd']");
+                logger.warn("Error dialog was displayed, the error is: {}", error.getText());        
+            }
+        }
+    }
+   
 	public void saveDragAndDropProcess() {
 		// Save the section dropped.
 		logger.debug("Click on Save button");

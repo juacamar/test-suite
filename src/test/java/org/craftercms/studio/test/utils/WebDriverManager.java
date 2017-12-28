@@ -1,5 +1,6 @@
 package org.craftercms.studio.test.utils;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -22,6 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.TestException;
 import java.awt.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -513,10 +515,15 @@ public class WebDriverManager {
 		logger.debug("Switching to YUI container");
 		String selector = "div.yui-panel-container.yui-dialog.yui-simple-dialog.cstudio-dialogue";
 		driver.switchTo().defaultContent();
-		@SuppressWarnings("unused")
-		WebElement dialog = waitUntilElementIsDisplayed("cssSelector", selector);
+		
+		waitUntilElementIsDisplayed("cssSelector", selector);
+		this.waitForAnimation();
+		
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
+		this.waitForAnimation();
+		
 		driver.switchTo().activeElement();
+		
 		actions.run();
 		driver.switchTo().defaultContent();
 	}
@@ -628,9 +635,19 @@ public class WebDriverManager {
 
 	public void waitForAnimation() {
 		try {
-			Thread.sleep(200);
+			Thread.sleep(300);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	 public void takeScreenshot() {
+	        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	        try {
+	            FileUtils.copyFile(screenshot, new File(FilesLocations.SCREENSHOTSFOLDEPATH, screenshot.getName()));
+	            logger.info("Screenshot saved: {}", screenshot.getName());
+	        } catch (IOException e) {
+	            logger.warn("Couldn't take screenshot", e);
+	        }
+	    }
 }
