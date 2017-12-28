@@ -87,6 +87,18 @@ public class SiteManagementAPI extends BaseAPI {
 		api.get("/studio/api/1/services/api/1/site/exists.json").urlParam("site", this.siteId).execute().status(200);
 	}
 
+	public void testGetAvailableBlueprints() {
+		api.get("/studio/api/1/services/api/1/site/get-available-blueprints.json").execute().status(200);
+	}
+	
+	public void testGetCannedMessage(String siteId) {
+		api.get("/studio/api/1/services/api/1/site/get-canned-message.json")
+		.urlParam("site", siteId)
+		.urlParam("locale", "en")
+		.urlParam("type", "NotApproved")
+		.execute().status(200);
+	}
+	
 	public void testGetConfigurationOfSite() {
 		api.get("/studio/api/1/services/api/1/site/get-configuration.json")
 		.urlParam("site", this.siteId)
