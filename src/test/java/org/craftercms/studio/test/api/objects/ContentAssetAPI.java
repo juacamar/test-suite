@@ -2,15 +2,12 @@ package org.craftercms.studio.test.api.objects;
 
 import static org.hamcrest.Matchers.is;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 
 public class ContentAssetAPI extends BaseAPI{
 
-	private String contentPath = "";
+	private String contentPath = "/site/website";
 	private String folderName = "newFolder";
 	
 	public ContentAssetAPI(JsonTester api, APIConnectionManager apiConnectionManager) {
@@ -26,11 +23,25 @@ public class ContentAssetAPI extends BaseAPI{
 	}
 	
 	public void testCreateFolder(String siteId) {
-		Map<String, Object> json = new HashMap<>();
-		json.put("site", siteId);
-		json.put("path", contentPath);
-		json.put("name", folderName);
 		
-		api.post("/studio/api/1/services/api/1/content/create-folder.json").json(json).execute().status(200).debug();
+		api.post("/studio/api/1/services/api/1/content/create-folder.json")
+		.urlParam("site", siteId).urlParam("path", contentPath).urlParam("name", folderName)
+		.execute().status(200).debug();
 	}
+	
+	public void testRenameFolder(String siteId) {
+
+		api.post("/studio/api/1/services/api/1/content/rename-folder.json")
+		.urlParam("site", siteId).urlParam("path", contentPath+"/"+folderName).urlParam("name", "newer"+folderName)
+		.execute().status(200).debug();
+	}
+	
+	public void testGetContentAtPath(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-content-at-path.json")
+		.urlParam("site", siteId).urlParam("path",contentPath).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-content-at-path.json?site="+siteId+"&path="+contentPath))
+		.debug();
+	}
+	
 }

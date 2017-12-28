@@ -150,6 +150,24 @@
 				name="org.craftercms.studio.test.cases.apitestcases.DeleteSiteAPITest" />
 		</classes>
 	</test> 
+	<test name="Site Exists" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.ExistsSiteAPITest" />
+		</classes>
+	</test> 
+	<test name="Get Available Blueprints" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetAvailableBlueprintsAPITest" />
+		</classes>
+	</test> 
+	<test name="Get Canned Message" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetCannedMessageAPITest" />
+		</classes>
+	</test> 
 	<test name="Get Configuration of Site" preserve-order="true">
 		<classes>
 			<class
@@ -256,6 +274,20 @@
 		</classes>
 	</test>
 	
+<!--	 Dependency -->
+	<test name="Get Dependant Items" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetDependantItemsAPITest" />
+		</classes>
+	</test>
+	<test name="Get Simple Dependencies" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetSimpleDependenciesAPITest" />
+		</classes>
+	</test>
+	
 <!--	 Preview -->
 	<test name="Preview Sync" preserve-order="true">
 		<classes>
@@ -269,6 +301,24 @@
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.apitestcases.ContentExistsAPITest" />
+		</classes>
+	</test>
+	<test name="Create Folder" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CreateFolderAPITest" />
+		</classes>
+	</test>
+	<test name="Rename Folder" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CreateFolderAPITest" />
+		</classes>
+	</test>
+	<test name="Get Content at Path" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetContentAtPathAPITest" />
 		</classes>
 	</test>
 	
