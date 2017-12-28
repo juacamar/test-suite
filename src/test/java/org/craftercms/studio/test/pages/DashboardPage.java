@@ -857,8 +857,10 @@ public class DashboardPage {
 	}
 
 	public void rightClickOnAContentPage(String elementLocator) {
-        this.getDriverManager().contextClick("xpath", elementLocator, false);
-    }
+
+		this.getDriverManager().contextClick("xpath", elementLocator, false);
+	}
+
 
 	public void rightClickOnAContentPageByJavascript(WebElement element) {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), element, true);
@@ -962,22 +964,23 @@ public class DashboardPage {
 	}
 
 	public void rightClickCreatePageOnAPresentPage(String webElementLocator) {
-        this.getDriverManager().contextClick("xpath", webElementLocator, false);
-        driverManager.usingContextMenu(() -> {
-            WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-                    addNewContent);
-            addContent.click();
-        });
-    }
+		this.getDriverManager().contextClick("xpath", webElementLocator, false);
+		driverManager.usingContextMenu(() -> {
+			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					addNewContent);
+			addContent.click();
+		});
+	}
 
 	public void rightClickEditOnAPresentPage(String webElementLocator) {
-        this.getDriverManager().contextClick("xpath", webElementLocator, false);
-        driverManager.usingContextMenu(() -> {
-            WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-                    editParentOption);
-            editContent.click();
-        });
-    }
+		this.getDriverManager().contextClick("xpath", webElementLocator, false);
+		driverManager.usingContextMenu(() -> {
+			WebElement editContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					editParentOption);
+			editContent.click();
+		});
+	}
+
 
 	public void addAnImageToAnArticle() {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleAddImageButton)

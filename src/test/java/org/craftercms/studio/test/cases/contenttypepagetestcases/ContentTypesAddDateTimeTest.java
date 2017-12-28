@@ -110,8 +110,7 @@ public class ContentTypesAddDateTimeTest extends BaseTest{
 		// Confirm the content type selected
 		siteConfigPage.confirmContentTypeSelected();
 
-		// Click on input section to can view the properties
-		
+		// Click on input section to can view the properties	
 		driverManager.waitUntilPopupIsHidden();
 		
 		siteConfigPage.clickDateTimeSection();
