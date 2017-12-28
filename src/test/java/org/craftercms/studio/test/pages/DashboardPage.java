@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -316,8 +317,8 @@ public class DashboardPage {
 	}
 
 	// Press right click select new folder
-	public void rightClickNewFolderOnAPresentFolder(WebElement parentWebElement) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
+	public void rightClickNewFolderOnAPresentFolder(String parentWebElementLocator) {
+		this.getDriverManager().contextClick("xpath", parentWebElementLocator, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement addFolderOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 					addNewFolderOption);
@@ -326,8 +327,8 @@ public class DashboardPage {
 	}
 
 	// Press right click to see the menu
-	public void rightClickCreatePageOnAPresentFolder(WebElement parentWebElement) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
+	public void rightClickCreatePageOnAPresentFolder(String parentWebElementLocator) {
+		this.getDriverManager().contextClick("xpath", parentWebElementLocator, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement addContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 					addNewContentOption);
@@ -832,9 +833,15 @@ public class DashboardPage {
 	}
 
 	public void clickCompareButton() {
-		WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				compareButtonByXpath);
-		compareButton.click();
+		try {
+			WebElement compareButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					compareButtonByXpath);
+			compareButton.click();
+		} catch (WebDriverException e) {
+			this.driverManager.takeScreenshot();
+			logger.warn("Compare button can't be clicked, The History dialog is not completely rendered");
+		}
+		
 	}
 
 	public void clickCloseButton() {
@@ -893,8 +900,8 @@ public class DashboardPage {
 		okButton.click();
 	}
 
-	public void rightClickCopyFolder(WebElement parentWebElement) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
+	public void rightClickCopyFolder(String parentWebElementLocator) {
+		this.getDriverManager().contextClick("xpath", parentWebElementLocator, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					copyOptionLocator);
@@ -902,17 +909,16 @@ public class DashboardPage {
 		});
 	}
 
-	public void rightClickPasteOnAFolder(WebElement parentWebElement) {
-		this.driverManager.contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
-
+	public void rightClickPasteOnAFolder(String parentWebElementLocator) {
+		this.driverManager.contextClick("xpath", parentWebElementLocator, false);
 		WebElement pasteOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				pasteOptionLocator);
 		pasteOption.click();
 
 	}
 
-	public void rightClickCutAFolder(WebElement parentWebElement) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
+	public void rightClickCutAFolder(String parentWebElementLocator) {
+		this.getDriverManager().contextClick("xpath", parentWebElementLocator, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement cutOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					cutOptionLocator);
@@ -920,8 +926,8 @@ public class DashboardPage {
 		});
 	}
 
-	public void rightClickDeleteAFolder(WebElement parentWebElement) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, true);
+	public void rightClickDeleteAFolder(String parentWebElementLocator) {
+		this.getDriverManager().contextClick("xpath", parentWebElementLocator, true);
 		driverManager.usingContextMenu(() -> {
 			WebElement deleteOption = this.driverManager
 					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", deleteOptionLocator);
@@ -938,7 +944,9 @@ public class DashboardPage {
 		});
 	}
 
-	public void expandParentFolder(WebElement parentElement) {
+	public void expandParentFolder(String parentElementLocator) {
+		WebElement parentElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", parentElementLocator);
+		
 		if (!parentElement.getAttribute("class").contains("open")) {
 			this.driverManager.waitUntilContentTooltipIsHidden();
 			parentElement.click();
@@ -953,9 +961,8 @@ public class DashboardPage {
 		this.driverManager.isElementPresentAndClickableBycssSelector(cSSSelector);
 	}
 
-	public void rightClickCopyContentPage(WebElement parentWebElement) {
-		this.driverManager.isElementPresentAndClickableById(parentWebElement.getAttribute("id"));
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), parentWebElement, false);
+	public void rightClickCopyContentPage(String parentWebElementLocator) {
+		this.getDriverManager().contextClick("xpath", parentWebElementLocator, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement copyOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					copyOptionLocatorForContentPage);
