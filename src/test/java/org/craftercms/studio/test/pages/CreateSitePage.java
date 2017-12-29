@@ -179,7 +179,7 @@ public class CreateSitePage {
 
 	// Press on help option
 	public void clickHelp() {
-		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", helpOption);
+		WebElement users = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", helpOption);
 		users.click();
 	}
 
@@ -201,7 +201,7 @@ public class CreateSitePage {
 
 	// Press on documentation option
 	public void clickDocumentation() {
-		WebElement documentation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement documentation = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				documentationOption);
 		documentation.click();
 	}
