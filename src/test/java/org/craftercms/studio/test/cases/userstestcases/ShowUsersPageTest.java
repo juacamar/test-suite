@@ -33,7 +33,7 @@ public class ShowUsersPageTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-	public void showUsersPage() {
+	public void verifyThatStudioAllowsToAccessTheUsersPageWhenUserClicksOnUsersOptionTopNavigationBar() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);

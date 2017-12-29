@@ -47,7 +47,7 @@ public class AddNewUserTest extends BaseTest {
 	}
 
 	@Test(priority = 0)
-	public void addNewUser() {
+	public void verifyThatStudioAllowsToCreateANewUser() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);

@@ -304,7 +304,7 @@
 				name="org.craftercms.studio.test.cases.userstestcases.UsersPerPageTest" />
 		</classes>
 	</test>
-	<test name="Pagination of Users Page Test">
+	<test name="Pagination of List Users Page Test">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.userstestcases.PaginationOfListOfUsersTest" />

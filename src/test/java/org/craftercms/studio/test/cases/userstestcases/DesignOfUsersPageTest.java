@@ -79,12 +79,12 @@ public class DesignOfUsersPageTest extends BaseTest{
 		Assert.assertTrue(userMenuOption.isDisplayed());
 
 		// Assert sites menu option is present.
-		WebElement sitesMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement sitesMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				sitesTopNavOptionXpath);
 		Assert.assertTrue(sitesMenuOption.isDisplayed());
 
 		// Assert help menu option is present.
-		WebElement helpMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement helpMenuOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				helpTopNavOptionXpath);
 		Assert.assertTrue(helpMenuOption.isDisplayed());
 
