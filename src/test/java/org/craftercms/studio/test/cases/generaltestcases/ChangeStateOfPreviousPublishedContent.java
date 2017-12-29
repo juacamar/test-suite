@@ -544,7 +544,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.waitUntilSidebarOpens();
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
-		if (this.driverManager.isElementPresentAndClickableByXpath(articlesFolder)==false) {
+		if (!this.driverManager.isElementPresentAndClickableByXpath(articlesFolder)) {
 			globalEntry.click();
 		}
 		
