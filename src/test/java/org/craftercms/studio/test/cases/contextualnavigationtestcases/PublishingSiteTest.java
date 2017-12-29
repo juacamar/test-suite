@@ -177,6 +177,7 @@ public class PublishingSiteTest extends BaseTest {
 			} catch (TimeoutException e) {
 				this.driverManager.takeScreenshot();
 				logger.warn("Content page is not published yet, checking again if it has published icon on top bar");
+				driverManager.getDriver().navigate().refresh();
 			}
 		}
 

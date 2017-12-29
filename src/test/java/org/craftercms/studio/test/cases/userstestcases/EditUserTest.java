@@ -109,7 +109,7 @@ public class EditUserTest extends BaseTest{
 	}
 
 	@Test(priority = 0)
-	public void editUser() {
+	public void verifyThatStudioAllowsToEditAnUser() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);

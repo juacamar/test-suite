@@ -226,6 +226,7 @@ public class DashboardPage {
 
 	public void clickGlobalEntryContent() {
 		this.driverManager.waitUntilSidebarOpens();
+		this.driverManager.waitForAnimation();
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
 

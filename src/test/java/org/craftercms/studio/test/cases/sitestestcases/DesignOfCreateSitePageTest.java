@@ -85,12 +85,12 @@ public class DesignOfCreateSitePageTest extends BaseTest {
 		Assert.assertTrue(homeUsers.isDisplayed(), "Error:  admin tools is not displayed");
 
 		// Assert sites option is present.
-		WebElement sitesOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", sitesOptionId);
+		WebElement sitesOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", sitesOptionId);
 
 		Assert.assertTrue(sitesOption.isDisplayed(),"Error:  Sites option is not displayed");
 
 		// Assert Help option is present.
-		WebElement helpOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", helpOptionId);
+		WebElement helpOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", helpOptionId);
 
 		Assert.assertTrue(helpOption.isDisplayed(), "Error:  Help option is not displayed");
 
