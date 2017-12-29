@@ -54,7 +54,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String adminConsole;
 	private String cssArticleTitle;
 	private String expandAllId;
-	private String adminConsoleId;
 	private String addTouserIframe;
 	private String createSiteButton;
 	private String siteDropdownElementXPath;
@@ -138,8 +137,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.getProperty("complexscenarios.general.cssarticletitle");
 		expandAllId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
-		adminConsoleId = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.adminconsoleid");
 		addTouserIframe = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.adduser.iframe");
 		createSiteButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -272,10 +269,10 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 	public void addUserToAuthorGroup() {
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", adminConsoleId);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", adminConsole);
 
-		WebElement siteConfigButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
-				adminConsoleId);
+		WebElement siteConfigButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				adminConsole);
 
 		siteConfigButton.click();
 
@@ -542,11 +539,16 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		logger.info("Go to Preview Page");
 		this.homePage.goToPreviewPage();
 		
-		this.driverManager.getDriver().navigate().refresh();
-		
 		this.driverManager.waitForAnimation();
 		
-		this.dashboardPage.expandHomeTree();
+		this.driverManager.waitUntilSidebarOpens();
+		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				homeTree);
+		if (!this.driverManager.isElementPresentAndClickableByXpath(articlesFolder)) {
+			globalEntry.click();
+		}
+		
+		this.driverManager.waitForAnimation();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", generalEditOption);
 
@@ -654,8 +656,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					gearImageXpath).click();
 			maxNumberofTries--;
-
 			}
+		
 		Assert.assertTrue(this.driverManager.getDriver()
 				.findElement(By.xpath(pageStatus))
 				.getAttribute("class").contains("undefined live"));
