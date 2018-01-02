@@ -870,8 +870,8 @@ public class DashboardPage {
 	}
 
 
-	public void rightClickOnAContentPageByJavascript(WebElement element) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), element, true);
+	public void rightClickOnAContentPageByJavascript(String elementLocator) {
+		this.getDriverManager().contextClick("xpath", elementLocator, true);
 	}
 
 	public void clickApproveAndPublishSubmitButton() {
