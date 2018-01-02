@@ -275,6 +275,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				adminConsole);
 
 		siteConfigButton.click();
+		
+		this.driverManager.waitForAnimation();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteconfigGroupsOption);
 
@@ -541,10 +543,9 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		
 		this.driverManager.waitForAnimation();
 		
-		this.driverManager.waitUntilSidebarOpens();
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
-		if (!this.driverManager.isElementPresentAndClickableByXpath(articlesFolder)) {
+		if (!(this.driverManager.isElementPresentAndClickableByXpath(articlesFolder))) {
 			globalEntry.click();
 		}
 		
@@ -554,18 +555,24 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder);
+		
+		this.driverManager.waitUntilContentTooltipIsHidden();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder).click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
-				.click();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
-				.click();
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
+//				.click();
+//
+//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
+//				.click();
+		
+		this.driverManager.waitForAnimation();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articleContentCreatedName);
+		
+		this.driverManager.waitUntilContentTooltipIsHidden();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articleContentCreatedName).click();
@@ -647,7 +654,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		String isLifeContent = "";
 		int maxNumberofTries = 10;
-		while (!(isLifeContent.contains("undefined live") && (maxNumberofTries != 0))) {
+		while ((!(isLifeContent.contains("undefined live")) && (maxNumberofTries != 0))) {
 			this.driverManager.waitForAnimation();
 			isLifeContent = this.driverManager.getDriver()
 			.findElement(By.xpath(pageStatus)).getAttribute("class").toString();
