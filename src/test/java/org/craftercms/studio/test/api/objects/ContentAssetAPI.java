@@ -3,7 +3,6 @@ package org.craftercms.studio.test.api.objects;
 import static org.hamcrest.Matchers.is;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
@@ -13,6 +12,7 @@ public class ContentAssetAPI extends BaseAPI{
 	private String contentPath = "/site/website";
 	private String folderName = "newFolder";
 	private String fileName = "index.xml";
+	private String contentType = "/page/entry";
 	
 	public ContentAssetAPI(JsonTester api, APIConnectionManager apiConnectionManager) {
 		super(api, apiConnectionManager);
@@ -65,6 +65,73 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 
+	public void testGetContentType(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-content-type.json")
+		.urlParam("site", siteId).urlParam("type",contentType).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-content-type.json?site="+siteId+"&type="+contentType))
+		.debug();
+	}
+	
+	public void testGetContentTypes(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-content-types.json")
+		.urlParam("site", siteId).urlParam("path",contentPath).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-content-types.json?site="+siteId+"&path="+contentPath))
+		.debug();
+	}
+	
+	public void testGetContentItem(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-item.json")
+		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-item.json?site="+siteId+"&path="+contentPath+"/"+fileName))
+		.debug();
+	}
+	
+	public void testGetItemOrders(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-item-orders.json")
+		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-item-orders.json?site="+siteId+"&path="+contentPath+"/"+fileName))
+		.debug();
+	}
+	
+	public void testGetItemStates(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-item-states.json")
+		.urlParam("site", siteId).urlParam("state","ALL").execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-item-states.json?site="+siteId+"&state=ALL"))
+		.debug();
+	}
+	
+	public void testGetItemVersions(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-item-versions.json")
+		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-item-versions.json?site="+siteId+"&path="+contentPath+"/"+fileName))
+		.debug();
+	}
+	
+	public void testGetItemsTree(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-items-tree.json")
+		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).urlParam("depth","1").execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-items-tree.json?site="+siteId+"&path="+contentPath+"/"+fileName+"&depth=1"))
+		.debug();
+	}
+	
+	public void testGetPages(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-pages.json")
+		.urlParam("site", siteId)
+		.urlParam("path",contentPath+"/"+fileName)
+		.urlParam("depth","1")
+		.urlParam("order","default")
+		.execute().status(200)
+		.debug();
+	}
+	
 	public void testDeleteContent(String siteId){
 		
 		api.get("/studio/api/1/services/api/1/content/delete-content.json")
@@ -82,7 +149,7 @@ public class ContentAssetAPI extends BaseAPI{
 		.urlParam("path", "site/website/")
 		.urlParam("phase", "onSave")
 		.urlParam("fileName", fileName)
-		.urlParam("contentType", "/page/entry")
+		.urlParam("contentType", contentType)
 		.urlParam("unlock", "true")
 		.file("file", test)
 		.execute().status(200).debug();
