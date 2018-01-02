@@ -475,7 +475,7 @@ public class WebDriverManager {
 
 	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
 		logger.debug("Waiting for folder to open: {}, {}", selectorType, selectorValue);
-		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");
+		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");		
 	}
 
 	public void waitUntilContentTooltipIsHidden() {
