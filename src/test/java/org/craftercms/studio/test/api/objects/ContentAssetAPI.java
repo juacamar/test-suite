@@ -48,6 +48,14 @@ public class ContentAssetAPI extends BaseAPI{
 		.urlParam("site", siteId).urlParam("path", contentPath+"/"+folderName).urlParam("name", "newer"+folderName)
 		.execute().status(200).debug();
 	}
+
+	public void testGetContent(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-content.json")
+		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-content.json?site="+siteId+"&path="+contentPath+"/"+fileName))
+		.debug();
+	}
 	
 	public void testGetContentAtPath(String siteId) {
 		

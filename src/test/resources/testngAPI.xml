@@ -327,6 +327,12 @@
 				name="org.craftercms.studio.test.cases.apitestcases.CreateFolderAPITest" />
 		</classes>
 	</test>
+	<test name="Get Content" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetContentAPITest" />
+		</classes>
+	</test>
 	<test name="Get Content at Path" preserve-order="true">
 		<classes>
 			<class

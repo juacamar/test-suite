@@ -40,7 +40,7 @@ public class WriteContentAPITest {
     
     @AfterTest
     public void afterTest(){
-    	//siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
+    	siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
     	securityAPI.logOutFromStudioUsingAPICall();;
     }
     
