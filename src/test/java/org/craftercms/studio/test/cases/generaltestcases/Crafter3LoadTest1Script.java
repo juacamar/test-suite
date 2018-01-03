@@ -346,7 +346,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		this.driverManager.waitForAnimation();
 		String firstChild = folderLocator + "/../../../../../div/div[1]/table/tbody/tr/td/span";
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", firstChild);
-
 		dashboardPage.rightClickOnAContentPageByJavascript(firstChild);
 		// selecting the Publish option
 		driverManager.usingContextMenu(() -> {
@@ -357,13 +356,13 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().switchTo().defaultContent();
 
 		// The xpath bellow is a dynamic xpath according with folder name of the
 		// folderLocator
 		this.driverManager.waitForAnimation();
 		String secondChild = folderLocator + "/../../../../../div/div[2]/table/tbody/tr/td/span";
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", secondChild);
-
 		dashboardPage.rightClickOnAContentPageByJavascript(secondChild);
 		// selecting the Publish option
 		driverManager.usingContextMenu(() -> {
@@ -374,6 +373,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().switchTo().defaultContent();
 
 		// The xpath bellow is a dynamic xpath according with folder name of the
 		// folderLocator
@@ -390,6 +390,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().switchTo().defaultContent();
 
 		// The xpath bellow is a dynamic xpath according with folder name of the
 		// folderLocator
@@ -406,6 +407,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().switchTo().defaultContent();
 
 		// The xpath bellow is a dynamic xpath according with folder name of the
 		// folderLocator
@@ -422,6 +424,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
+		driverManager.getDriver().switchTo().defaultContent();
+
 
 	}
 
@@ -555,9 +559,11 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// Step11
 
 		driverManager.waitUntilSidebarOpens();
+		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestFolderLocator);
 		dashboardPage.expandParentFolder(anotherTestFolderLocator);
 
+		this.driverManager.waitForAnimation();
 		this.driverManager.waitUntilElementIsClickable("xpath", anotherTestBigTreeChildFolderLocator);
 		dashboardPage.expandParentFolder(anotherTestBigTreeChildFolderLocator);
 
@@ -571,6 +577,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", bigTree2FolderLocator);
 		dashboardPage.expandParentFolder(bigTree2FolderLocator);
 
+		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2BigTree1ChildFolderLocator);
 		dashboardPage.expandParentFolder(bigTree2BigTree1ChildFolderLocator);

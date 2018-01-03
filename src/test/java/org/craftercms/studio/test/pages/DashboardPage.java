@@ -946,8 +946,7 @@ public class DashboardPage {
 	}
 
 	public void expandParentFolder(String parentElementLocator) {
-		WebElement parentElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", parentElementLocator);
-		
+		WebElement parentElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", parentElementLocator);		
 		if (!parentElement.getAttribute("class").contains("open")) {
 			this.driverManager.waitUntilContentTooltipIsHidden();
 			parentElement.click();
