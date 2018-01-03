@@ -666,10 +666,11 @@ public class PreviewPage {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				generalEditOption);
 
-		String isLifeContent = "";
-		int maxNumberofTries = 10;
-
-		while (!(isLifeContent.contains("undefined live") && (maxNumberofTries != 0))) {
+		String isLifeContent = this.driverManager.getDriver()
+				.findElement(By.xpath(siteStatusIcon))
+				.getAttribute("class").toString();
+		int maxNumberofTries = 8;
+		while ((!(isLifeContent.contains("undefined live")) && (maxNumberofTries != 0))) {
 			isLifeContent = this.driverManager.getDriver()
 					.findElement(By.xpath(siteStatusIcon))
 					.getAttribute("class").toString();
