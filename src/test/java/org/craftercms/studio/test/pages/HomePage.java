@@ -176,7 +176,7 @@ public class HomePage {
 			this.driverManager.waitForAnimation();
 			this.driverManager.waitUntilPageLoad();		
 			// get the delete button element
-			WebElement element = this.driverManager.waitUntilElementIsClickable("xpath", "deleteIconsListXpath");
+			WebElement element = this.driverManager.waitUntilElementIsClickable("xpath", deleteIconsListXpath);
 			// click on the delete button
 			element.click();
 			// confirm and wait
