@@ -149,14 +149,6 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 	
-	public void testDeleteContent(String siteId){
-		
-		api.get("/studio/api/1/services/api/1/content/delete-content.json")
-		.urlParam("site", siteId)
-		.urlParam("path", contentPath + "/" + fileName)
-		.execute().status(200).debug();
-	}
-	
 	public void testUnlockContent(String siteId) {
 		
 		api.get("/studio/api/1/services/api/1/content/unlock-content.json")
