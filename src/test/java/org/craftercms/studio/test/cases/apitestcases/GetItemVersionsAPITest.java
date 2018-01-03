@@ -9,13 +9,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class GetContentAtPathAPITest {
+public class GetItemVersionsAPITest {
 	
 	private SiteManagementAPI siteManagementAPI;
 	private SecurityAPI securityAPI;
 	private ContentAssetAPI contentAssetAPI;
 
-	public GetContentAtPathAPITest() {
+	public GetItemVersionsAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -32,8 +32,8 @@ public class GetContentAtPathAPITest {
 	}
 
 	@Test(priority = 1)
-	public void testGetContentAtPath() {
-		contentAssetAPI.testGetContentAtPath(siteManagementAPI.getSiteId());
+	public void testGetItemVersions() {
+		contentAssetAPI.testGetItemVersions(siteManagementAPI.getSiteId());
 	}
 	
 	@AfterTest

@@ -297,6 +297,18 @@
 	</test>
 	
 <!-- 	 Content -->
+	<test name="Write Content" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.WriteContentAPITest" />
+		</classes>
+	</test>
+	<test name="Change Template" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.ChangeContentTypeAPITest" />
+		</classes>
+	</test>
 	<test name="Content Exists" preserve-order="true">
 		<classes>
 			<class
@@ -315,13 +327,79 @@
 				name="org.craftercms.studio.test.cases.apitestcases.CreateFolderAPITest" />
 		</classes>
 	</test>
+	<test name="Get Content" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetContentAPITest" />
+		</classes>
+	</test>
 	<test name="Get Content at Path" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.apitestcases.GetContentAtPathAPITest" />
 		</classes>
 	</test>
-	
+	<test name="Get Content Type" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetContentTypeAPITest" />
+		</classes>
+	</test>
+	<test name="Get Content Types" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetContentTypesAPITest" />
+		</classes>
+	</test>
+	<test name="Get Content Item" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetContentItemAPITest" />
+		</classes>
+	</test>
+	<test name="Get Item Orders" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetItemOrdersAPITest" />
+		</classes>
+	</test>
+	<test name="Get Item States" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetItemStatesAPITest" />
+		</classes>
+	</test>
+	<test name="Get Item Versions" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetItemVersionsAPITest" />
+		</classes>
+	</test>
+	<test name="Get Items Tree" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetItemsTreeAPITest" />
+		</classes>
+	</test>
+	<test name="Get Next Items Order" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetNextItemOrderAPITest" />
+		</classes>
+	</test>
+	<test name="Get Pages" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetPagesAPITest" />
+		</classes>
+	</test>
+		<test name="Unlock Content Item" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.UnlockContentAPITest" />
+		</classes>
+	</test>
+			
 <!-- 	 Server -->
 	<test name="Get Available Languages" preserve-order="true">
 		<classes>

@@ -28,6 +28,7 @@ public class ContentExistsAPITest {
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
 		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
+		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 1)

@@ -9,13 +9,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class GetContentAtPathAPITest {
+public class GetContentTypeAPITest {
 	
 	private SiteManagementAPI siteManagementAPI;
 	private SecurityAPI securityAPI;
 	private ContentAssetAPI contentAssetAPI;
 
-	public GetContentAtPathAPITest() {
+	public GetContentTypeAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -28,12 +28,11 @@ public class GetContentAtPathAPITest {
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
 		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
-		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 1)
-	public void testGetContentAtPath() {
-		contentAssetAPI.testGetContentAtPath(siteManagementAPI.getSiteId());
+	public void testGetContentType() {
+		contentAssetAPI.testGetContentType(siteManagementAPI.getSiteId());
 	}
 	
 	@AfterTest
