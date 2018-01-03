@@ -475,7 +475,12 @@ public class WebDriverManager {
 
 	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
 		logger.debug("Waiting for folder to open: {}, {}", selectorType, selectorValue);
-		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");		
+		try {
+		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");
+		}catch (TimeoutException e) {
+			takeScreenshot();
+            logger.warn("Something went wrong, the folder is not opened or the icon is missing");   
+		}		
 	}
 
 	public void waitUntilContentTooltipIsHidden() {
@@ -515,15 +520,15 @@ public class WebDriverManager {
 		logger.debug("Switching to YUI container");
 		String selector = "div.yui-panel-container.yui-dialog.yui-simple-dialog.cstudio-dialogue";
 		driver.switchTo().defaultContent();
-		
+
 		waitUntilElementIsDisplayed("cssSelector", selector);
 		this.waitForAnimation();
-		
+
 		waitUntilAttributeContains("cssSelector", selector, "style", "visibility: visible;");
 		this.waitForAnimation();
-		
+
 		driver.switchTo().activeElement();
-		
+
 		actions.run();
 		driver.switchTo().defaultContent();
 	}
@@ -640,14 +645,14 @@ public class WebDriverManager {
 			e.printStackTrace();
 		}
 	}
-	
-	 public void takeScreenshot() {
-	        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-	        try {
-	            FileUtils.copyFile(screenshot, new File(FilesLocations.SCREENSHOTSFOLDEPATH, screenshot.getName()));
-	            logger.info("Screenshot saved: {}", screenshot.getName());
-	        } catch (IOException e) {
-	            logger.warn("Couldn't take screenshot", e);
-	        }
-	    }
+
+	public void takeScreenshot() {
+		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(screenshot, new File(FilesLocations.SCREENSHOTSFOLDEPATH, screenshot.getName()));
+			logger.info("Screenshot saved: {}", screenshot.getName());
+		} catch (IOException e) {
+			logger.warn("Couldn't take screenshot", e);
+		}
+	}
 }

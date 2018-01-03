@@ -527,27 +527,34 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitForAnimation();
+		
+		this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestFolderLocator);
 		dashboardPage.expandParentFolder(anotherTestFolderLocator);
 
 		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilFolderOpens("xpath", anotherTestFolderLocator);
 		this.driverManager.waitUntilElementIsClickable("xpath", anotherTestBigTreeChildFolderLocator);
 		dashboardPage.expandParentFolder(anotherTestBigTreeChildFolderLocator);
 
+		this.driverManager.waitUntilFolderOpens("xpath", anotherTestBigTreeChildFolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				anotherTestBigTreeChildFolderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
 		this.publishAllPagesOnAFolder(anotherTestBigTreeChildFolderLocator);
 
 		driverManager.waitUntilSidebarOpens();	
 		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", bigTree2FolderLocator);
 		dashboardPage.expandParentFolder(bigTree2FolderLocator);
 
 		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilFolderOpens("xpath", bigTree2FolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2BigTree1ChildFolderLocator);
 		dashboardPage.expandParentFolder(bigTree2BigTree1ChildFolderLocator);
 
+		this.driverManager.waitUntilFolderOpens("xpath", bigTree2BigTree1ChildFolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2BigTree1ChildFolderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
 		this.publishAllPagesOnAFolder(bigTree2BigTree1ChildFolderLocator);
@@ -558,18 +565,21 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// Step12
 		driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilFolderOpens("xpath",harnessFolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", mytestFolderLocator);
 		dashboardPage.rightClickDeleteAFolder(mytestFolderLocator);
 		this.confirmDeleteAction();
 
 		driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilFolderOpens("xpath",harnessFolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestFolderLocator);
 		dashboardPage.rightClickDeleteAFolder(anotherTestFolderLocator);
 		this.confirmDeleteAction();
 
 		driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilFolderOpens("xpath",harnessFolderLocator);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2BigTree1ChildFolderLocator);
 		dashboardPage.rightClickDeleteAFolder(bigTree2BigTree1ChildFolderLocator);
