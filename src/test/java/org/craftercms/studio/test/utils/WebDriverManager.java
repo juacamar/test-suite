@@ -476,7 +476,7 @@ public class WebDriverManager {
 	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
 		logger.debug("Waiting for folder to open: {}, {}", selectorType, selectorValue);
 		try {
-		waitUntilAttributeContains(selectorType, selectorValue, "class", "open");
+		waitUntilAttributeContains(selectorType, selectorValue, "class", "acn-expanded-tree-node-label open");
 		}catch (TimeoutException e) {
 			takeScreenshot();
             logger.warn("Something went wrong, the folder is not opened or the icon is missing");   
