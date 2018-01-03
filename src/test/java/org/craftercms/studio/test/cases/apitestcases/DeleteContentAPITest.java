@@ -42,8 +42,8 @@ public class DeleteContentAPITest {
     @AfterTest
     public void afterTest(){
     	
-    	//siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
-    	securityAPI.logOutFromStudioUsingAPICall();;
+    	siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
+    	securityAPI.logOutFromStudioUsingAPICall();
     }
     
 }
