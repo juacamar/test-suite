@@ -870,8 +870,8 @@ public class DashboardPage {
 	}
 
 
-	public void rightClickOnAContentPageByJavascript(WebElement element) {
-		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), element, true);
+	public void rightClickOnAContentPageByJavascript(String elementLocator) {
+		this.getDriverManager().contextClick("xpath", elementLocator, true);
 	}
 
 	public void clickApproveAndPublishSubmitButton() {
@@ -879,8 +879,7 @@ public class DashboardPage {
 		WebElement submitButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				approveAndPublishPublishButtonLocator);
 		submitButton.click();
-
-		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
+		this.driverManager.waitForAnimation();
 	}
 
 	public void clickDeleteDeleteSubmitButton() {
@@ -946,8 +945,7 @@ public class DashboardPage {
 	}
 
 	public void expandParentFolder(String parentElementLocator) {
-		WebElement parentElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", parentElementLocator);
-		
+		WebElement parentElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", parentElementLocator);		
 		if (!parentElement.getAttribute("class").contains("open")) {
 			this.driverManager.waitUntilContentTooltipIsHidden();
 			parentElement.click();
