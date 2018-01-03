@@ -7,7 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.craftercms.studio.test.utils.APIConnectionManager;
+import org.craftercms.studio.test.utils.JsonResponse;
 import org.craftercms.studio.test.utils.JsonTester;
+
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 
 public class ContentAssetAPI extends BaseAPI{
 
@@ -114,12 +119,11 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 	
-	public void testGetItemVersions(String siteId) {
+	public JsonResponse testGetItemVersions(String siteId) {
 		
-		api.get("/studio/api/1/services/api/1/content/get-item-versions.json")
+		return api.get("/studio/api/1/services/api/1/content/get-item-versions.json")
 		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).execute().status(200)
-		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-item-versions.json?site="+siteId+"&path="+contentPath+"/"+fileName))
-		.debug();
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-item-versions.json?site="+siteId+"&path="+contentPath+"/"+fileName));
 	}
 	
 	public void testGetItemsTree(String siteId) {
@@ -162,6 +166,17 @@ public class ContentAssetAPI extends BaseAPI{
 		api.get("/studio/api/1/services/api/1/content/reorder-items.json")
 		.urlParam("site", siteId).urlParam("path",path).urlParam("after",after).execute().status(200)
 		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/reorder-items.json?site="+siteId+"&path="+path+"&after="+after))
+		.debug();
+	}
+	
+	public void testRevertContentItem(String siteId) {
+		
+		String response = testGetItemVersions(siteId).getRaw();
+		String versionNum = response.substring(response.lastIndexOf("versionNumber")).split("\"")[2];
+		
+		api.get("/studio/api/1/services/api/1/content/revert-content.json")
+		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).urlParam("version",versionNum).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/reorder-items.json?site="+siteId+"&path="+contentPath+"/"+fileName+"&version="+versionNum))
 		.debug();
 	}
 	
@@ -221,6 +236,34 @@ public class ContentAssetAPI extends BaseAPI{
 		.urlParam("contentType", contentType)
 		.urlParam("unlock", "true")
 		.file("file", test)
+		.execute().status(200).debug();
+	}
+	
+	public void writeImageContent(String siteId){
+		
+		File test = new File("src/test/resources/logo.png");
+		
+		api.post("/studio/api/1/services/api/1/content/write-content.json")
+		.urlParam("site", siteId)
+		.urlParam("path", "static-assets/images/")
+		.urlParam("phase", "onSave")
+		.urlParam("fileName", "logo.png")
+		.urlParam("isImage", "true")
+		.urlParam("unlock", "true")
+		.file("file", test)
+		.execute().debug();
+	}
+	
+	public void testCropImage(String siteId){
+		
+		api.get("/studio/api/1/services/api/1/content/crop-image.json")
+		.urlParam("site", siteId)
+		.urlParam("path", "/static-assets/images/logo.png")
+		.urlParam("newname", "croppedlogo.png")
+		.urlParam("t", "10")
+		.urlParam("l", "10")
+		.urlParam("w", "214")
+		.urlParam("h", "115")
 		.execute().status(200).debug();
 	}
 	

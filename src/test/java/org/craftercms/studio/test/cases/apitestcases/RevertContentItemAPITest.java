@@ -1,43 +1,48 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
+import org.craftercms.studio.test.api.objects.ContentAssetAPI;
 import org.craftercms.studio.test.api.objects.SecurityAPI;
-import org.craftercms.studio.test.api.objects.ServerAPI;
+import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-/**
- * Created by chris lim
- */
+public class RevertContentItemAPITest {
 
-public class GetUIResourceOverrideAPITest {
-
-    private ServerAPI serverAPI;
+    private ContentAssetAPI contentAssetAPI;
     private SecurityAPI securityAPI;
+    private SiteManagementAPI siteManagementAPI;
     
-    public GetUIResourceOverrideAPITest(){
+    public RevertContentItemAPITest(){
     	APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
-    	
-		serverAPI = new ServerAPI(api, apiConnectionManager);
+		
 		securityAPI = new SecurityAPI(api, apiConnectionManager);
+    	contentAssetAPI = new ContentAssetAPI(api, apiConnectionManager);
+    	siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
     }
-
+    
     @BeforeTest
     public void beforeTest(){
     	securityAPI.logInIntoStudioUsingAPICall();
+    	siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
+    	contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
+    	contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
     }
     
     @Test(priority=1)
-    public void testGetUIResourceOverride(){
-    	serverAPI.testGetUIResourceOverride();
+    public void testRevertContentItem(){
+    	
+    	contentAssetAPI.testRevertContentItem(siteManagementAPI.getSiteId());
     }
     
     @AfterTest
     public void afterTest(){
+    	siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
     	securityAPI.logOutFromStudioUsingAPICall();
     }
+    
 }
