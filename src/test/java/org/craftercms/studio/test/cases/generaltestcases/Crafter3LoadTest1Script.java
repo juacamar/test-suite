@@ -614,7 +614,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
-		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 
 		// Step8
 		this.step8();
