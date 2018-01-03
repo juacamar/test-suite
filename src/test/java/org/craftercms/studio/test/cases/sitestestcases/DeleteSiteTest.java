@@ -39,13 +39,9 @@ public class DeleteSiteTest extends BaseTest {
 
 		// Click on Delete icon
         this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
-		homePage.clickOnDeleteSiteIcon();
 		
-		// Click on YES to confirm the delete.
-		homePage.clickOnYesToDeleteSite();
-		
-		this.driverManager.waitUntilDeleteSiteModalCloses();	
-		
+        this.homePage.deleteAllSites();
+       	
 		// Assert
 		this.driverManager.waitWhileElementIsNotDisplayedByXpath(deletedSiteRow);
 		Assert.assertFalse(this.driverManager.isElementPresentAndClickableByXpath(deletedSiteRow));

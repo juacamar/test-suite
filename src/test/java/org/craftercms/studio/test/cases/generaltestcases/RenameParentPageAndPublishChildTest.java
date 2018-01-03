@@ -219,7 +219,10 @@ public class RenameParentPageAndPublishChildTest {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", childPage1Locator);
 		this.createPageCategoryLandingPage(childPage1Locator, childPage2Name);
-
+		driverManager.getDriver().navigate().refresh();
+		
+		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilSidebarOpens();
 		this.renamePage(parentPageLocator, parentPageNewName);
 
 		this.childPage1Locator = this.parentPageNewLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -251,7 +254,6 @@ public class RenameParentPageAndPublishChildTest {
 
 		while (isPresent) {
 			this.driverManager.waitUntilPageLoad();
-			System.out.print("not yet");
 			driverManager.getDriver().navigate().refresh();
 			isPresent = this.driverManager.isElementPresentAndClickableByXpath(iconNeverPublishedForChild1Page);
 		}

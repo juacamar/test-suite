@@ -1,9 +1,12 @@
 package org.craftercms.studio.test.pages;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -25,8 +28,8 @@ public class HomePage {
 	private String logOutLink;
 	private String signOutLink;
 	private String usersContextualNavigationOption;
+	private String deleteIconsListXpath;
 	private static Logger logger = LogManager.getLogger(HomePage.class);
-	
 
 	public HomePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
@@ -37,13 +40,13 @@ public class HomePage {
 		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("home.createsitebutton");
 		deleteSiteIcon = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.deletesiteicon");
-		yesDeleteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.confirmtodelete");
+		yesDeleteButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.confirmtodelete");
 		logOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.expandaccount");
 		signOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.signout");
 		usersContextualNavigationOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("home.userscontextualnavigationoption");
-
+		deleteIconsListXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("home.deletesiteiconlist");
 	}
 
 	// Click on preview link
@@ -71,8 +74,6 @@ public class HomePage {
 		logger.debug("Go to Dashboard Page");
 		this.clickDashboardOption();
 	}
-	
-	
 
 	public WebDriverManager getDriverManager() {
 		return driverManager;
@@ -164,5 +165,26 @@ public class HomePage {
 		this.clickOnDeleteSiteIcon();
 		// Click on YES to confirm the delete.
 		this.clickOnYesToDeleteSite();
+	}
+
+	public void deleteAllSites() {
+		List<WebElement> siteListitem = this.driverManager.getDriver()
+				.findElements(By.xpath(deleteIconsListXpath));
+
+		siteListitem.size();
+		for (int i = 0; i < siteListitem.size(); i++) {
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilPageLoad();		
+			// get the delete button element
+			WebElement element = this.driverManager.waitUntilElementIsClickable("xpath", deleteIconsListXpath);
+			// click on the delete button
+			element.click();
+			// confirm and wait
+			this.clickOnYesToDeleteSite();
+			
+			this.driverManager.waitUntilDeleteSiteModalCloses();	
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilElementIsRemoved(element);
+		}
 	}
 }
