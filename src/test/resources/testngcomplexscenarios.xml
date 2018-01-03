@@ -26,17 +26,17 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
-<!-- 		<test name="ChangeStateOfPreviousPublishedContent" preserve-order="true"> -->
-<!-- 		<classes> -->
-<!-- 			<class -->
-<!-- 				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" /> -->
-<!-- 			<class -->
-<!-- 				name="org.craftercms.studio.test.cases.generaltestcases.ChangeStateOfPreviousPublishedContent" /> -->
-<!-- 			<class -->
-<!-- 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" /> -->
-<!-- 			<class -->
-<!-- 				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+	</test>
+	<test name="ChangeStateOfPreviousPublishedContent" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+			<class
+				name="org.craftercms.studio.test.cases.generaltestcases.ChangeStateOfPreviousPublishedContent" />
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
+			<class
+				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->
