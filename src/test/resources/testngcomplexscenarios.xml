@@ -26,8 +26,8 @@
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
-	</test> 
-		<test name="ChangeStateOfPreviousPublishedContent" preserve-order="true">
+	</test>
+	<test name="ChangeStateOfPreviousPublishedContent" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
