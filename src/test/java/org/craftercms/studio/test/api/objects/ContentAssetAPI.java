@@ -42,6 +42,13 @@ public class ContentAssetAPI extends BaseAPI{
 		.execute().status(200).debug();
 	}
 	
+	public void testCreateFolder(String siteId, String folderName) {
+		
+		api.post("/studio/api/1/services/api/1/content/create-folder.json")
+		.urlParam("site", siteId).urlParam("path", contentPath).urlParam("name", folderName)
+		.execute().status(200).debug();
+	}
+	
 	public void testRenameFolder(String siteId) {
 
 		api.post("/studio/api/1/services/api/1/content/rename-folder.json")
@@ -121,6 +128,14 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 	
+	public void testGetNextItemOrder(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/get-next-item-order.json")
+		.urlParam("site", siteId).urlParam("parentpath",contentPath+"/"+fileName).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-next-item-order.json?site="+siteId+"&parentpath="+contentPath+"/"+fileName))
+		.debug();
+	}
+	
 	public void testGetPages(String siteId) {
 		
 		api.get("/studio/api/1/services/api/1/content/get-pages.json")
@@ -140,6 +155,22 @@ public class ContentAssetAPI extends BaseAPI{
 		.execute().status(200).debug();
 	}
 	
+	public void testUnlockContent(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/content/unlock-content.json")
+		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/unlock-content.json?site="+siteId+"&path="+contentPath+"/"+fileName))
+		.debug();
+	}
+	
+	public void testReorderContentItems(String siteId, String path, String before, String after) {
+		
+		api.get("/studio/api/1/services/api/1/content/reorder-items.json")
+		.urlParam("site", siteId).urlParam("path",path).urlParam("before",before).urlParam("after",after).execute()
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/reorder-items.json?site="+siteId+"&path="+path+"&before="+before+"&after="+after))
+		.debug();
+	}
+	
 	public void testWriteContent(String siteId){
 		
 		File test = new File("src/test/resources/index.xml");
@@ -147,6 +178,21 @@ public class ContentAssetAPI extends BaseAPI{
 		api.post("/studio/api/1/services/api/1/content/write-content.json")
 		.urlParam("site", siteId)
 		.urlParam("path", "site/website/")
+		.urlParam("phase", "onSave")
+		.urlParam("fileName", fileName)
+		.urlParam("contentType", contentType)
+		.urlParam("unlock", "true")
+		.file("file", test)
+		.execute().status(200).debug();
+	}
+	
+	public void testWriteContent(String siteId, String newPath){
+		
+		File test = new File("src/test/resources/index.xml");
+		
+		api.post("/studio/api/1/services/api/1/content/write-content.json")
+		.urlParam("site", siteId)
+		.urlParam("path", newPath)
 		.urlParam("phase", "onSave")
 		.urlParam("fileName", fileName)
 		.urlParam("contentType", contentType)

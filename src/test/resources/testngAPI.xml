@@ -381,10 +381,22 @@
 				name="org.craftercms.studio.test.cases.apitestcases.GetItemsTreeAPITest" />
 		</classes>
 	</test>
+	<test name="Get Next Items Order" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetNextItemOrderAPITest" />
+		</classes>
+	</test>
 	<test name="Get Pages" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.apitestcases.GetPagesAPITest" />
+		</classes>
+	</test>
+		<test name="Unlock Content Item" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.UnlockContentAPITest" />
 		</classes>
 	</test>
 			

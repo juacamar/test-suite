@@ -27,7 +27,7 @@ public class SiteManagementAPI extends BaseAPI {
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
 				.json("$.message", is("OK")).debug();
-		this.setSiteId(siteId);;
+		this.setSiteId(siteId);
 	}
 
 	public void testCreateSiteInvalidParameters() {
@@ -165,5 +165,4 @@ public class SiteManagementAPI extends BaseAPI {
 	public void setSiteId(String siteId) {
 		this.siteId = siteId;
 	}
-
 }
