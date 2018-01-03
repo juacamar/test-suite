@@ -3,6 +3,8 @@ package org.craftercms.studio.test.api.objects;
 import static org.hamcrest.Matchers.is;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
@@ -163,12 +165,41 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 	
-	public void testReorderContentItems(String siteId, String path, String before, String after) {
+	public void testReorderContentItems(String siteId, String path, String after) {
 		
 		api.get("/studio/api/1/services/api/1/content/reorder-items.json")
-		.urlParam("site", siteId).urlParam("path",path).urlParam("before",before).urlParam("after",after).execute()
-		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/reorder-items.json?site="+siteId+"&path="+path+"&before="+before+"&after="+after))
+		.urlParam("site", siteId).urlParam("path",path).urlParam("after",after).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/reorder-items.json?site="+siteId+"&path="+path+"&after="+after))
 		.debug();
+	}
+	
+	public void testSearch(String siteId) {
+		
+		Map<String, Object> json = new HashMap<>();
+		json.put("contentTypes", new String[0]);
+		json.put("includeAspects", new String[0]);
+		json.put("excludeAspects", new String[0]);
+		json.put("keyword", "index");
+		json.put("page", "1");
+		json.put("pageSize", "20");
+		json.put("sortBy", "");
+		json.put("sortAscending", "true");
+		json.put("filters", new int[0]);
+		json.put("columns", new int[0]);
+		
+		api.post("/studio/api/1/services/api/1/content/search.json")
+		.urlParam("site", siteId).json(json).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/search.json?site="+siteId))
+		.debug();
+	}
+	
+	public void testSetItemState(String siteId) {
+		
+		api.post("/studio/api/1/services/api/1/content/set-item-state.json")
+		.urlParam("site", siteId)
+		.urlParam("path",contentPath+"/"+fileName)
+		.urlParam("state","EXISTING_UNEDITED_UNLOCKED")
+		.urlParam("systemprocessing", "false").execute().status(200).debug();
 	}
 	
 	public void testWriteContent(String siteId){
