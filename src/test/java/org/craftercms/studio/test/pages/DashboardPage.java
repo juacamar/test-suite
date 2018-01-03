@@ -879,8 +879,7 @@ public class DashboardPage {
 		WebElement submitButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
 				approveAndPublishPublishButtonLocator);
 		submitButton.click();
-
-		this.driverManager.isElementPresentAndClickableByXpath(homeTree);
+		this.driverManager.waitForAnimation();
 	}
 
 	public void clickDeleteDeleteSubmitButton() {

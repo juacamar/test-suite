@@ -328,7 +328,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// switch to default content
 		this.driverManager.waitUntilSidebarOpens();
-
+		this.driverManager.waitForAnimation();
 	}
 
 	public void publishAllPagesOnAFolder(String folderLocator) {
@@ -391,41 +391,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		// refreshing
 		this.driverManager.getDriver().navigate().refresh();
 		driverManager.getDriver().switchTo().defaultContent();
-
-		// The xpath bellow is a dynamic xpath according with folder name of the
-		// folderLocator
-		this.driverManager.waitForAnimation();
-		String fourthChild = folderLocator + "/../../../../../div/div[4]/table/tbody/tr/td/span";
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", fourthChild);
-		dashboardPage.rightClickOnAContentPageByJavascript(fourthChild);
-		// selecting the Publish option
-		driverManager.usingContextMenu(() -> {
-			dashboardPage.clickOnPublishOption();
-		});
-		// moving to the publish dialog, clicking on Submit and confirm action
-		this.confirmPublishAction();
-
-		// refreshing
-		this.driverManager.getDriver().navigate().refresh();
-		driverManager.getDriver().switchTo().defaultContent();
-
-		// The xpath bellow is a dynamic xpath according with folder name of the
-		// folderLocator
-		this.driverManager.waitForAnimation();
-		String fifthChild = folderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span";
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", fifthChild);
-		dashboardPage.rightClickOnAContentPageByJavascript(fifthChild);
-		// selecting the Publish option
-		driverManager.usingContextMenu(() -> {
-			dashboardPage.clickOnPublishOption();
-		});
-		// moving to the publish dialog, clicking on Submit and confirm action
-		this.confirmPublishAction();
-
-		// refreshing
-		this.driverManager.getDriver().navigate().refresh();
-		driverManager.getDriver().switchTo().defaultContent();
-
 
 	}
 
@@ -543,6 +508,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.clickHomeTree();
 
 		dashboardPage.clickOnContextualNavigationHistoryOption();
+		
+		this.driverManager.waitForAnimation();
 	}
 
 	public void step9() {
@@ -647,7 +614,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
+		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
 
 		// Step8
 		this.step8();
