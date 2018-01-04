@@ -72,10 +72,10 @@ public class ContentTypesDragAndDropTest extends BaseTest{
 
 		// wait for element is clickeable
 		WebElement From = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", controlsSectionFromSection);
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", controlsSectionFromSection);
 		
 		WebElement To = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector", contentFormName);
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", contentFormName);
 
 		Actions builder = new Actions(driverManager.getDriver());
 
@@ -94,7 +94,7 @@ public class ContentTypesDragAndDropTest extends BaseTest{
 		siteConfigPage.saveDragAndDropProcess();
 		// validate the control added
 
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector(contentFormContentSection));
+		Assert.assertTrue(driverManager.isElementPresentByXpath(contentFormContentSection));
 		
 	}
 

@@ -113,14 +113,14 @@ public class EditOptionTest extends BaseTest {
 			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 			// Expand all fields
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormExpandAll)
 				.click();
 
 			// Set the title of main content
 			driverManager.sendText("cssSelector", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElementId).click();
 		});
 	}
 
@@ -162,7 +162,7 @@ public class EditOptionTest extends BaseTest {
 		bodyNotRequiered();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", crafterLogoId).click();
 		
 		dashboardPage.expandPagesTree();
 

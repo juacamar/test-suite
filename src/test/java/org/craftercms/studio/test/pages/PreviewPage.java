@@ -34,7 +34,6 @@ public class PreviewPage {
 
 	private String OKdeleteDependencies;
 	private String previewEdit;
-	private String internalName;
 	private String saveAndCloseiFrame;
 	private String previewHistory;
 	private String previewDependecies;
@@ -59,6 +58,7 @@ public class PreviewPage {
 	private String generalDeleteOption;
 	private String generalEditOption;
 	private String siteStatusIcon;
+	private String siteContentXpath;
 	
 	/**
 	 * 
@@ -95,7 +95,6 @@ public class PreviewPage {
 		OKdeleteDependencies = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.submitall.ok");
 		previewEdit = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.edittopnavoption");
-		internalName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.internal_Name");
 		saveAndCloseiFrame = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.save_close");
 		previewHistory = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.historytopnavoption");
@@ -134,6 +133,8 @@ public class PreviewPage {
 				.getProperty("general.edittopnavoption");
 		siteStatusIcon = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.statustopbaricon");
+		siteContentXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.site_content");
 	
 	}
 
@@ -295,7 +296,7 @@ public class PreviewPage {
 
 	public void okDeleteDependencies() {
 
-		WebElement OKdeleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement OKdeleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				OKdeleteDependencies);
 
 		OKdeleteDepen.click();
@@ -404,29 +405,10 @@ public class PreviewPage {
 
 	}
 
-	// Set the new name of the URL
-
-	public void changeInternalName(String strNewInternalName) {
-
-		WebElement URLName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", internalName);
-
-		URLName.sendKeys(strNewInternalName);
-
-	}
-
-	public void setNewInternalName(String strNewInternalName) {
-
-		// Set the new name of the URL
-
-		this.changeInternalName(strNewInternalName);
-
-	}
-
 	// Click save and close
-
 	public void saveAndCloseButton() {
 
-		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement saveClose = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				saveAndCloseiFrame);
 
 		saveClose.click();
@@ -481,18 +463,18 @@ public class PreviewPage {
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", studioLogo).click();
 
 	}
 
 	public void changeBodyOfArticlePageToNotRequired() {
 
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", ".//a[@id='acn-dropdown-toggler']")
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteContentXpath)
 				.click();
 
 		// go to admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#admin-console").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
 
 		// Click on Content Types Option
 		siteConfigPage.clickContentTypeOption();

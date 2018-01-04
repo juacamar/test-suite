@@ -47,7 +47,7 @@ public class PublishingSiteTest extends BaseTest {
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
 		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.saveandclosebutton");
+				.getProperty("complexscenarios.general.saveandclosebutton");
 		testingContentItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.testingcontentitem");
 		topNavStatusIcon = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -94,7 +94,7 @@ public class PublishingSiteTest extends BaseTest {
 
 			this.driverManager
 
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElementId)
 					.click();
 
 		});

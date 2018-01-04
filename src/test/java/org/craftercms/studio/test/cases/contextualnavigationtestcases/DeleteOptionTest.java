@@ -73,7 +73,7 @@ public class DeleteOptionTest extends BaseTest {
 
 		this.createContent();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", studioLogo).click();
 
 		// wait for element is clickeable
 		dashboardPage.expandHomeTree();
@@ -94,7 +94,7 @@ public class DeleteOptionTest extends BaseTest {
 
 		previewPage.clickOnOKDeleteDependencies();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", studioLogo).click();
 
 		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				testingItemURLXpath).getText();
@@ -127,7 +127,7 @@ public class DeleteOptionTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElementId).click();
 		});
 
 	}

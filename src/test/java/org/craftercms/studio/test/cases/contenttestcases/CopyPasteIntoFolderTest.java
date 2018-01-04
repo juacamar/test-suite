@@ -78,7 +78,7 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.waitUntilElementIsClickable("id", createFormSaveAndCloseElementId).click();
+			this.driverManager.waitUntilElementIsClickable("xpath", createFormSaveAndCloseElementId).click();
 		});
 
 	}

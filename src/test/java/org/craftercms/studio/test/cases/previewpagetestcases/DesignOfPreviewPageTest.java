@@ -80,7 +80,7 @@ public class DesignOfPreviewPageTest extends BaseTest {
 		driverManager.getDriver().navigate().refresh();
 
 		// Assert crafter studio logo is present.
-		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId);
+		WebElement logoCrafter = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", crafterLogoId);
 		Assert.assertTrue(logoCrafter.isDisplayed(), "ERROR: Crafter logo is not displayed");
 
 		// Assert site content option is present.

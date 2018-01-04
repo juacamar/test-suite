@@ -57,7 +57,7 @@ public class HistoryOptionTest extends BaseTest{
 		// expand pages folder
 		previewPage.expandPagesTree();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", studioLogo);
 		
 		// expand home content
 		previewPage.expandHomeTree();

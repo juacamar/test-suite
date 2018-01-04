@@ -110,7 +110,7 @@ public class CutPasteContentTest extends BaseTest {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		logger.debug("Return to preview page.");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", studioLogo).click();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
@@ -140,7 +140,7 @@ public class CutPasteContentTest extends BaseTest {
 			// save and close
 			logger.info("Click on Save and close button");
 			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId).click();	
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElementId).click();	
 			
 		});
 	

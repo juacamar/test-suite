@@ -45,7 +45,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String crafterLogo;
 	private String generalSiteDropdown;
 	private String pageStatus;
-	private String staticAssetsGearImageId;
+	private String staticAssetsGearImageXpath;
 	private String articlesFolder;
 	private String createFormFrameElementCss;
 	private String generalEditOption;
@@ -121,8 +121,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				"general.sitedropdown");
 		pageStatus = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
 				"general.pageStatus");
-		staticAssetsGearImageId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"preview.staticassets.gear.image.id");
+		staticAssetsGearImageXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"preview.staticassets.gear.image.xpath");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
 		generalEditOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -173,18 +173,18 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserFirstNameId).sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserFirstNameId).sendKeys("Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserLastNameId).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId).sendKeys("Last Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId)
 				.sendKeys("email@email.com");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserUserNameId).sendKeys("author");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserUserNameId).sendKeys("author");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordId).sendKeys("author");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordId).sendKeys("author");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordVerificationId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordVerificationId)
 				.sendKeys("author");
 		
 		// Save Button
@@ -244,7 +244,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 			this.driverManager.scrollUp();
 
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", expandAllId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", expandAllId)
 					.click();
 
 			// save and close
@@ -350,9 +350,9 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		this.driverManager.getDriver().switchTo().activeElement();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", navigationSitebarNameId);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", navigationSitebarNameId);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", navigationSitebarNameId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", navigationSitebarNameId)
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsole);
@@ -645,10 +645,10 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				"xpath", staticAssetsImagesChildFolder)
 				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-				staticAssetsGearImageId);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-				staticAssetsGearImageId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				staticAssetsGearImageXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				staticAssetsGearImageXpath).click();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption);
 

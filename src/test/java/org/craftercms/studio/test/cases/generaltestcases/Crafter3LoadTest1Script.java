@@ -219,7 +219,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			driverManager.sendText("xpath", createFormArticleMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElementId)
 					.click();
 		});
 
@@ -623,7 +623,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", studioLogo).click();
 
 		// Step7
 		this.step7();

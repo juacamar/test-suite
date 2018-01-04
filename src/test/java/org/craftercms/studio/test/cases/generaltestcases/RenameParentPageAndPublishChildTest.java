@@ -161,7 +161,7 @@ public class RenameParentPageAndPublishChildTest {
 			driverManager.sendText("xpath", createFormArticleMainTitleElementXPath, pageName);
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElementId)
 					.click();
 		});
 		this.driverManager.waitUntilSidebarOpens();
@@ -183,7 +183,7 @@ public class RenameParentPageAndPublishChildTest {
 					.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
 					.sendKeys(pageName);
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElementId)
 					.click();
 		});
 		this.driverManager.waitUntilSidebarOpens();

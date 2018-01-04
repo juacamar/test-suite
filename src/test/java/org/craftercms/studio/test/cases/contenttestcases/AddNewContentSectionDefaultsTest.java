@@ -61,7 +61,7 @@ public class AddNewContentSectionDefaultsTest extends BaseTest {
 				"cssSelector", createFormFrameElementCss));
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElementId).click();
 	
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();

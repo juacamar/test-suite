@@ -35,7 +35,7 @@ public class DashboardPage {
 	private String copyContent;
 	private String aboutUSContentPage;
 	private String cutContent;
-	private String pasteContentXpath;
+	//private String pasteContentXpath;
 	private String newContentCreated;
 	private String clickOnSiteContent;
 	private String deleteContentOK;
@@ -109,17 +109,15 @@ public class DashboardPage {
 		saveDraft1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.save_Draft");
 		createButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.create_Button");
 		setFolderName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
-		copyContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.copy_content");
+		copyContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.copyoption");
 		copyContentButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.copy_contentButton");
 		aboutUSContentPage = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.aboutuscontentpage");
-		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.paste_content");
-		pasteContentXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.paste_contentXpath");
+		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.pasteoption");
 		deleteContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.delete_content");
-		cutContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.cut_content");
+		cutContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.cutoption");
 		newContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.new_content");
 		clickOnSiteContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -129,7 +127,7 @@ public class DashboardPage {
 		submittalCompleteOK = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.submitall.ok");
 		editParentOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.edit_parent_option");
+				.getProperty("rightclick.editoption");
 		editRecentlyContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.edit_recently_content_created");
 		folderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -139,8 +137,6 @@ public class DashboardPage {
 				.getProperty("dashboard.level_descriptor");
 		newFolderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.add_new_folder");
-		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.paste_content_copied");
 		usersContextualNavigationOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.userscontextualnavigationoption");
 		pageArticleContentTypeLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -347,8 +343,8 @@ public class DashboardPage {
 	public void selectEntryCT() {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
-		driverManager.waitUntilElementIsDisplayed("cssSelector", selectEntryCT);
-		Assert.assertTrue(driverManager.isElementPresentBycssSelector(selectEntryCT));
+		driverManager.waitUntilElementIsDisplayed("xpath", selectEntryCT);
+		Assert.assertTrue(driverManager.isElementPresentByXpath(selectEntryCT));
 	}
 
 	public void selectPageArticleContentType() {
@@ -368,7 +364,7 @@ public class DashboardPage {
 	public void selectLDCT() {
 		driverManager.getDriver().switchTo().defaultContent();
 		driverManager.getDriver().switchTo().activeElement();
-		WebElement levelDescriptorCT = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement levelDescriptorCT = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				levelDescriptorContentType);
 		levelDescriptorCT.click();
 	}
@@ -380,7 +376,7 @@ public class DashboardPage {
 
 	// Confirm the CT selected
 	public void confirmCTSelected() {
-		WebElement okButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", this.okButton);
+		WebElement okButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", this.okButton);
 		okButton.click();
 	}
 
@@ -439,7 +435,7 @@ public class DashboardPage {
 	// Set the name of the folder
 	public void folderName(String strFolderName) {
 		driverManager.usingYuiDialog(() -> {
-			driverManager.sendText("id", setFolderName, strFolderName);
+			driverManager.sendText("xpath", setFolderName, strFolderName);
 			createButton();
 		});
 	}
@@ -452,7 +448,7 @@ public class DashboardPage {
 
 	// create button
 	public void createButton() {
-		WebElement buttonCreate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createButton);
+		WebElement buttonCreate = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createButton);
 		buttonCreate.click();
 	}
 
@@ -472,7 +468,7 @@ public class DashboardPage {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
 
 		driverManager.usingContextMenu(() -> {
-			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 					this.copyContent);
 			copyContent.click();
 		});
@@ -490,7 +486,7 @@ public class DashboardPage {
 				newContentCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
 		driverManager.usingContextMenu(() -> {
-			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+			WebElement copyContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 					this.copyContent);
 			copyContent.click();
 		});
@@ -512,7 +508,7 @@ public class DashboardPage {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copypasteContent, false);
 
 		driverManager.usingContextMenu(() -> {
-			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 					this.pasteContent);
 			pasteContent.click();
 		});
@@ -530,9 +526,9 @@ public class DashboardPage {
 				newFolderCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), newFolderElement, false);
 		driverManager.usingContextMenu(() -> {
-			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-					pasteContentXpath);
-			pasteContent.click();
+			WebElement pasteContentElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+					pasteContent);
+			pasteContentElement.click();
 		});
 	}
 
@@ -614,9 +610,9 @@ public class DashboardPage {
 				folderCreated);
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), pasteAllContent, false);
 		driverManager.usingContextMenu(() -> {
-			WebElement pasteContent = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-					pasteContentXpath);
-			pasteContent.click();
+			WebElement pasteContentElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+					pasteContent);
+			pasteContentElement.click();
 		});
 	}
 
@@ -627,7 +623,7 @@ public class DashboardPage {
 
 	// copy button
 	public void copyButton() {
-		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", copyContentButton);
+		WebElement buttonCopy = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", copyContentButton);
 		buttonCopy.click();
 	}
 
@@ -674,7 +670,7 @@ public class DashboardPage {
 
 	// Ok delete content option
 	public void deleteContentOK() {
-		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				deleteContentOK);
 		confirmDelete.click();
 	}
@@ -686,7 +682,7 @@ public class DashboardPage {
 
 	// Ok submittal complete
 	public void submittalCompleteOK() {
-		WebElement submittalComplete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement submittalComplete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				submittalCompleteOK);
 		submittalComplete.click();
 	}
