@@ -47,7 +47,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 	private String technologyLocator;
 	private String siteDropdownElementXPath;
 	private String createFormArticleMainTitleElementXPath;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String historyFirstItemCheckbBox;
 	private String historySecondItemCheckbBox;
 	private String differencesDialogId;
@@ -105,7 +105,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 				.getProperty("complexscenarios.general.createformMainTitle");
 		createFormTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformtitle");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		historyFirstItemCheckbBox = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.firstitemcheckbox");
@@ -219,7 +219,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			driverManager.sendText("xpath", createFormArticleMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
 					.click();
 		});
 

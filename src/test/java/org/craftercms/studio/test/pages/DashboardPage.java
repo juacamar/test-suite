@@ -401,7 +401,7 @@ public class DashboardPage {
 
 	// Click on save and close button
 	public void clickSaveClose() {
-		WebElement saveCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+		WebElement saveCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				this.saveCloseButton);
 		saveCloseButton.click();
 	}
@@ -674,7 +674,7 @@ public class DashboardPage {
 
 	// Ok delete content option
 	public void deleteContentOK() {
-		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement confirmDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				deleteContentOK);
 		confirmDelete.click();
 	}
@@ -884,7 +884,7 @@ public class DashboardPage {
 
 	public void clickDeleteDeleteSubmitButton() {
 		this.driverManager.isElementPresentAndClickableById(deleteDeletButtonLocator);
-		WebElement deleteButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement deleteButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				deleteDeletButtonLocator);
 		deleteButton.click();
 		this.acceptDeletionAction();

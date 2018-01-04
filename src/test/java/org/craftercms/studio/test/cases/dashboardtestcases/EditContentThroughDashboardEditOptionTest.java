@@ -26,7 +26,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 	private String entryContentTypeBodyXpath;
 	private String entryContentTypeBodyCheckCss;
 	private String createFormFrameElementCss;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String createFormTitle;
 	private String siteDropDownXpath;
 	private String crafterLogoId;
@@ -55,7 +55,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformfiletitle");
@@ -183,7 +183,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 			this.driverManager
 
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement)
 					.click();
 
 		});
@@ -217,7 +217,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 			this.driverManager
 
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement)
 					.click();
 
 		});
@@ -257,7 +257,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 			this.driverManager
 
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement)
 					.click();
 
 		});
