@@ -27,7 +27,7 @@ public class ServerAPI extends BaseAPI {
  	
  	public void testGetUIResourceOverride(){
 
-   		api.get("studio/api/1/services/api/1/server/get-ui-resource-override.json").urlParam("resource", "logo.jpg")
+   		api.get("studio/api/1/services/api/1/server/get-ui-resource-override.json").urlParam("resource", "src/test/resources/logo.png")
    		.execute().status(200).debug();
  	}
  	

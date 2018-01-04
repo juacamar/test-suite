@@ -9,13 +9,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class DeleteContentAPITest {
+public class RevertContentItemAPITest {
 
     private ContentAssetAPI contentAssetAPI;
     private SecurityAPI securityAPI;
     private SiteManagementAPI siteManagementAPI;
     
-    public DeleteContentAPITest(){
+    public RevertContentItemAPITest(){
     	APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -27,21 +27,20 @@ public class DeleteContentAPITest {
     
     @BeforeTest
     public void beforeTest(){
-    	
     	securityAPI.logInIntoStudioUsingAPICall();
     	siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
+    	contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
     	contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
     }
     
     @Test(priority=1)
-    public void testDeleteContent(){
+    public void testRevertContentItem(){
     	
-    	contentAssetAPI.testDeleteContent(siteManagementAPI.getSiteId());
+    	contentAssetAPI.testRevertContentItem(siteManagementAPI.getSiteId());
     }
     
     @AfterTest
     public void afterTest(){
-    	
     	siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
     	securityAPI.logOutFromStudioUsingAPICall();
     }
