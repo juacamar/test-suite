@@ -1,13 +1,11 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 
 /**
  * 
@@ -34,7 +32,7 @@ public class CutPasteContentTest extends BaseTest {
 
 	@BeforeMethod
 	public void beforeTest() {
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -58,17 +56,16 @@ public class CutPasteContentTest extends BaseTest {
 				.getProperty("dashboard.add_new_folder");
 		newFolderSpanXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.newfolder");
-		
-	}
 
+	}
 
 	@Test(priority = 0)
 	public void cutAndPasteContentUsingContextualClickOptionsTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
-		
-		//Wait for loging page to close
+
+		// Wait for loging page to close
 		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
@@ -110,40 +107,42 @@ public class CutPasteContentTest extends BaseTest {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		logger.debug("Return to preview page.");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", studioLogo).click();
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
 
 		// right click to see the the menu
-		
+
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
-		
+
 		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, ()->{
-			
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+
 			// Set basics fields of the new content created
 			logger.info("Set the fields of the new content");
 			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 			// Set the title of main content
-			
-			this.driverManager.sendText("xpath", createFormMainTitleElementXPath,"MainTitle");
+
+			this.driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
 			logger.info("Click on Save and close button");
 			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement).click();	
-			
+
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement)
+					.click();
+
 		});
-	
+
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
@@ -169,7 +168,7 @@ public class CutPasteContentTest extends BaseTest {
 		driverManager.getDriver().navigate().refresh();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", newFolderSpanXpath).click();
-		
+
 		// Assert of the content copied
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(testingItemURLXpath);
 		String contentCopied = this.driverManager

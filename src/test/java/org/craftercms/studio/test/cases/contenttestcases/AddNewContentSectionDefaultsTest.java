@@ -62,6 +62,7 @@ public class AddNewContentSectionDefaultsTest extends BaseTest {
 
 		// save and close
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElement).click();
+
 	
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();

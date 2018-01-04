@@ -118,8 +118,8 @@ public class HomePage {
 
 	// Click on YES button
 	public void clickYesButton() {
-		this.driverManager.isElementPresentAndClickableBycssSelector(yesDeleteButton);
-		WebElement yesButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		this.driverManager.isElementPresentAndClickableByXpath(yesDeleteButton);
+		WebElement yesButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				yesDeleteButton);
 		yesButton.click();
 		this.driverManager.waitForAnimation();
@@ -139,7 +139,7 @@ public class HomePage {
 	}
 
 	public void clickSignOut() {
-		WebElement signOut = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", signOutLink);
+		WebElement signOut = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", signOutLink);
 		signOut.click();
 	}
 

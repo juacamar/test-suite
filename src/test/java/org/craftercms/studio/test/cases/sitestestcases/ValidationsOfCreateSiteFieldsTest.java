@@ -45,7 +45,7 @@ public class ValidationsOfCreateSiteFieldsTest extends BaseTest {
 		homePage.clickOnCreateSiteButton();
 
 		// Click on description to show the validations
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createSiteDescriptionId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createSiteDescriptionId).click();
 
 		// Assert Id site is required.
 		WebElement siteID = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",

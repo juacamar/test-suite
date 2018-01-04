@@ -81,7 +81,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Drag and drop Form Section
-		WebElement From = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement From = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				controlsSectionFromSection);
 
 		WebElement To = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", contentFormName);
@@ -182,7 +182,6 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 			logger.info("Click on Save and close button");
 
 			this.driverManager
-
 					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement)
 					.click();
 
@@ -216,7 +215,6 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 			logger.info("Click on Save and close button");
 
 			this.driverManager
-
 					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement)
 					.click();
 
@@ -243,7 +241,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 			myRecentActivityFramePage1.expandDefaultSection();
 			// Assert validation
 			this.driverManager.scrollDown();
-			
+
 			String textTitle = this.driverManager
 
 					.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormTitle)
@@ -256,7 +254,6 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 			logger.info("Click on Save and close button");
 
 			this.driverManager
-
 					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement)
 					.click();
 
@@ -267,7 +264,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 
 		// Go to dashboard page
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", crafterLogoId).click();
 
 	}
 
@@ -302,7 +299,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", crafterLogoId).click();
 
 		dashboardPage.expandPagesTree();
 

@@ -84,7 +84,7 @@ public class RecentActivityFilterShowTest extends BaseTest {
 			// click necessary to validate all fields required
 			this.driverManager.scrollUp();
 			this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormExpandAll)
 				.click();
 
 			// save and close
@@ -119,10 +119,11 @@ public class RecentActivityFilterShowTest extends BaseTest {
 			// click necessary to validate all fields required
 			this.driverManager.scrollUp();
 			this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormExpandAll)
 				.click();
 
 			// save and close
+
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElement)
 				.click();
 		});

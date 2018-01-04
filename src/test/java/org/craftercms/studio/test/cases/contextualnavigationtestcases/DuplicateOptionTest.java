@@ -80,7 +80,7 @@ public class DuplicateOptionTest extends BaseTest {
 			// save and close
 			logger.info("Click on Save and close button");
 			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElementId)
 					.click();
 
 		});
@@ -152,7 +152,7 @@ public class DuplicateOptionTest extends BaseTest {
 		// Duplicate content created
 		duplicateContentCreated();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", studioLogo).click();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", copyTestItemXpath).click();
 		Assert.assertTrue(driverManager.isElementPresentByXpath(copyTestItemXpath),
 				"Duplicated Option is not displayed");

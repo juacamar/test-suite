@@ -79,6 +79,7 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 
 			// save and close
 			this.driverManager.waitUntilElementIsClickable("xpath", createFormSaveAndCloseElement).click();
+
 		});
 
 	}

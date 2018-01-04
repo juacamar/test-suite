@@ -47,7 +47,7 @@ public class PublishingSiteTest extends BaseTest {
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
 		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.saveandclosebutton");
+				.getProperty("complexscenarios.general.saveandclosebutton");
 		testingContentItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.testingcontentitem");
 		topNavStatusIcon = uiElementsPropertiesManager.getSharedUIElementsLocators()
