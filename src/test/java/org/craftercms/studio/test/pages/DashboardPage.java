@@ -35,7 +35,6 @@ public class DashboardPage {
 	private String copyContent;
 	private String aboutUSContentPage;
 	private String cutContent;
-	//private String pasteContentXpath;
 	private String newContentCreated;
 	private String clickOnSiteContent;
 	private String deleteContentOK;
@@ -397,7 +396,7 @@ public class DashboardPage {
 
 	// Click on save and close button
 	public void clickSaveClose() {
-		WebElement saveCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+		WebElement saveCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				this.saveCloseButton);
 		saveCloseButton.click();
 	}
@@ -880,7 +879,7 @@ public class DashboardPage {
 
 	public void clickDeleteDeleteSubmitButton() {
 		this.driverManager.isElementPresentAndClickableById(deleteDeletButtonLocator);
-		WebElement deleteButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement deleteButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				deleteDeletButtonLocator);
 		deleteButton.click();
 		this.acceptDeletionAction();

@@ -9,13 +9,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class WriteContentAPITest {
+public class CropImageAPITest {
 
     private ContentAssetAPI contentAssetAPI;
     private SecurityAPI securityAPI;
     private SiteManagementAPI siteManagementAPI;
     
-    public WriteContentAPITest(){
+    public CropImageAPITest(){
     	APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -29,12 +29,13 @@ public class WriteContentAPITest {
     public void beforeTest(){
     	securityAPI.logInIntoStudioUsingAPICall();
     	siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
+    	contentAssetAPI.writeImageContent(siteManagementAPI.getSiteId());
     }
     
     @Test(priority=1)
-    public void testWriteContent(){
+    public void testCropImage(){
     	
-    	contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
+    	contentAssetAPI.testCropImage(siteManagementAPI.getSiteId());
     }
     
     @AfterTest

@@ -31,7 +31,6 @@ public class PreviewPage {
 	private String expandHomeTree;
 	private String previewDelete;
 	private String deleteDependencies;
-
 	private String OKdeleteDependencies;
 	private String previewEdit;
 	private String saveAndCloseiFrame;
@@ -44,10 +43,8 @@ public class PreviewPage {
 	private String bulkoperationsPublishButton;
 	private String bulkoperationsAcceptWarning;
 	private String bulkoperationsMessage;
-
 	private SiteConfigPage siteConfigPage;
 	private DashboardPage dashboardPage;
-
 	private String studioLogo;
 	private String siteDropdownElementXPath;
 	private String adminConsoleXpath;
@@ -84,7 +81,7 @@ public class PreviewPage {
 				.getProperty("general.approve&publish.submit");
 		previewDuplicate = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.duplicate");
 		duplicateName = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.onduplicate.title");
+				.getProperty("general.onduplicate.internalname");
 		expandPagesTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.expandpages");
 		expandHomeTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -277,7 +274,7 @@ public class PreviewPage {
 
 	public void deleteDependencies() {
 
-		WebElement deleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement deleteDepen = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				deleteDependencies);
 
 		deleteDepen.click();

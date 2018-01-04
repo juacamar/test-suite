@@ -22,7 +22,7 @@ public class DeleteContentTest extends BaseTest {
 	private String password;
 	private String createFormFrameElementCss;
 	private String createFormMainTitleElementXPath;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String testingItemURLXpath;
 
 	@BeforeMethod
@@ -31,7 +31,7 @@ public class DeleteContentTest extends BaseTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
@@ -67,7 +67,8 @@ public class DeleteContentTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElementId).click();
+
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement).click();
 		});
 
 	}

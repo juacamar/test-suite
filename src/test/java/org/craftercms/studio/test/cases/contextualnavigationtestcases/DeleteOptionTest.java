@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 /**
  * 
  * @author Gustavo Andrei Ortiz Alfaro
@@ -22,13 +21,12 @@ public class DeleteOptionTest extends BaseTest {
 	private String password;
 
 	private String createFormFrameElementCss;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String createFormMainTitleElementXPath;
 	private String testingItemURLXpath;
 	private String studioLogo;
 
 	private String testItemXpath;
-	
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -36,15 +34,15 @@ public class DeleteOptionTest extends BaseTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
 		testingItemURLXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.myrecentactivity.firstelementurl");
 		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
-		testItemXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general"
-			+ ".testingcontentitem");
+		testItemXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general" + ".testingcontentitem");
 	}
 
 	@Test(priority = 0)
@@ -53,13 +51,13 @@ public class DeleteOptionTest extends BaseTest {
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
-		
-		//Wait for login page to closes
+
+		// Wait for login page to closes
 		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
-	
+
 		// reload page
 		driverManager.getDriver().navigate().refresh();
 
@@ -73,15 +71,13 @@ public class DeleteOptionTest extends BaseTest {
 
 		this.createContent();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", studioLogo).click();
 
 		// wait for element is clickeable
 		dashboardPage.expandHomeTree();
 
 		// Select the content to delete.
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", testItemXpath)
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", testItemXpath).click();
 
 		// click on delete option
 		previewPage.clickOnDeleteOption();
@@ -94,17 +90,17 @@ public class DeleteOptionTest extends BaseTest {
 
 		previewPage.clickOnOKDeleteDependencies();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", studioLogo).click();
 
-		String contentDelete = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				testingItemURLXpath).getText();
+		String contentDelete = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", testingItemURLXpath).getText();
 		Assert.assertEquals(contentDelete, "/test1");
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {
-		previewPage.changeBodyOfEntryContentPageToNotRequired();	
+		previewPage.changeBodyOfEntryContentPageToNotRequired();
 	}
-	
+
 	public void createContent() {
 		logger.info("Creating new content");
 		driverManager.waitUntilPageLoad();
@@ -127,7 +123,10 @@ public class DeleteOptionTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElementId).click();
+
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
+					.click();
+
 		});
 
 	}

@@ -16,7 +16,7 @@ public class AddNewContentEntryTest extends BaseTest {
 	private String userName;
 	private String password;
 	private String createFormFrameElementCss;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String createFormMainTitleElementXPath;
 	private String testingItemRecentActivity;
 	private String randomURL;
@@ -28,7 +28,7 @@ public class AddNewContentEntryTest extends BaseTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
@@ -66,7 +66,8 @@ public class AddNewContentEntryTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElementId)
+
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
 					.click();
 		});
 
