@@ -22,7 +22,7 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 
 	private String createFormFrameElementCss;
 
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 
 	private String createFormMainTitleElementXPath;
 
@@ -38,7 +38,7 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
@@ -78,7 +78,7 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.waitUntilElementIsClickable("id", createFormSaveAndCloseElementId).click();
+			this.driverManager.waitUntilElementIsClickable("xpath", createFormSaveAndCloseElement).click();
 		});
 
 	}

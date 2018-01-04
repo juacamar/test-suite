@@ -17,7 +17,7 @@ public class EditContentTest extends BaseTest {
 	private String password;
 	private String createFormFrameElementCss;
 	private String createFormMainTitleElementXPath;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String myRecentActivityTestingItem;
 	private String randomURL;
 	private String randomInternalName;
@@ -31,7 +31,7 @@ public class EditContentTest extends BaseTest {
 				.getProperty("complexscenarios.general.createformframe");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		myRecentActivityTestingItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.testingcontentitemedited.myrecentactivity");
@@ -65,7 +65,7 @@ public class EditContentTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
 					.click();
 		});
 

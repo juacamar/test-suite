@@ -19,7 +19,7 @@ public class AddNewContentSectionDefaultsTest extends BaseTest {
 	private String userName;
 	private String password;
 	private String createFormFrameElementCss;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String siteDropDownXpath;
 	private String sectionDefaultsXpath;
 	private static Logger logger = LogManager.getLogger(AddNewContentSectionDefaultsTest.class);
@@ -32,7 +32,7 @@ public class AddNewContentSectionDefaultsTest extends BaseTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		siteDropDownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
@@ -61,7 +61,7 @@ public class AddNewContentSectionDefaultsTest extends BaseTest {
 				"cssSelector", createFormFrameElementCss));
 
 		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElement).click();
 	
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();

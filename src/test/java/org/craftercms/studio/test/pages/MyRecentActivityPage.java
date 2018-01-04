@@ -65,7 +65,7 @@ public class MyRecentActivityPage {
 
 	// Save and close
 	public void saveAndClose() {
-		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", saveCloseButton);
+		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", saveCloseButton);
 		clearTitleField.click();
 	}
 

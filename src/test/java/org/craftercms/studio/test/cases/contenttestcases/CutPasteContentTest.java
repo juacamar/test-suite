@@ -25,7 +25,7 @@ public class CutPasteContentTest extends BaseTest {
 	private String entryContentTypeBodyCheckCss;
 	private String studioLogo;
 	private String createFormFrameElementCss;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String createFormMainTitleElementXPath;
 	private String newFolderCreated;
 	private String newFolderSpanXpath;
@@ -48,7 +48,7 @@ public class CutPasteContentTest extends BaseTest {
 		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.studiologo");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
@@ -140,7 +140,7 @@ public class CutPasteContentTest extends BaseTest {
 			// save and close
 			logger.info("Click on Save and close button");
 			this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId).click();	
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement).click();	
 			
 		});
 	

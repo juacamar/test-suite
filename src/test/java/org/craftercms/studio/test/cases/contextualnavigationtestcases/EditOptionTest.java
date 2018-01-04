@@ -23,7 +23,7 @@ public class EditOptionTest extends BaseTest {
 	private String entryContentTypeBodyXpath;
 	private String entryContentTypeBodyCheckCss;
 	private String createFormFrameElementCss;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String createFormExpandAll;
 	private String createFormMainTitleElementXPath;
 	private String testingContentItem;
@@ -46,7 +46,7 @@ public class EditOptionTest extends BaseTest {
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormExpandAll= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
@@ -120,7 +120,7 @@ public class EditOptionTest extends BaseTest {
 			driverManager.sendText("cssSelector", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElement).click();
 		});
 	}
 
