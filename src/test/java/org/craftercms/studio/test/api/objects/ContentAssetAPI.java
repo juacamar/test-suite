@@ -10,10 +10,6 @@ import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonResponse;
 import org.craftercms.studio.test.utils.JsonTester;
 
-import net.minidev.json.JSONObject;
-import net.minidev.json.parser.JSONParser;
-import net.minidev.json.parser.ParseException;
-
 public class ContentAssetAPI extends BaseAPI{
 
 	private String contentPath = "/site/website";
