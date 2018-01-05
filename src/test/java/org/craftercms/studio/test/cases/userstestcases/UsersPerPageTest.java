@@ -30,7 +30,6 @@ public class UsersPerPageTest extends BaseTest{
 	private String newUserPasswordId;
 	private String newUserPasswordVerificationId;
 	private String usersPerPageInputXpath;
-	private String deleteYesButtonXpath;
 	private String usersRowsXpath;
 	private String lastNumberOfPaginationXpath;
 
@@ -52,8 +51,6 @@ public class UsersPerPageTest extends BaseTest{
 				.getProperty("general.users.passwordVerification");
 		usersPerPageInputXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersperpageinput");
-		deleteYesButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.users.deleteyesbutton");
 		usersRowsXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersrows");
 		lastNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -110,30 +107,7 @@ public class UsersPerPageTest extends BaseTest{
 	public void deleteUsers() {
 		// Click on delete user
 		driverManager.getDriver().navigate().refresh();
-		usersPage.clickOnDeleteUserCreated();
-
-		// Confirmation to delete user connected
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
-		driverManager.getDriver().navigate().refresh();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// Confirmation to delete user
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
-		// wait for element is clickeable
-		driverManager.getDriver().navigate().refresh();
-
-		// Click on delete user
-		usersPage.clickOnDeleteUserCreated();
-
-		// Confirmation to delete user
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
-
-		driverManager.getDriver().navigate().refresh();
-
+		usersPage.deleteAllUsersExceptAdmin();
 	}
 
 	@Test(priority = 0)

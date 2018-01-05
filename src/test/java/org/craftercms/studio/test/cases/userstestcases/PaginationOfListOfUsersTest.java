@@ -26,8 +26,7 @@ public class PaginationOfListOfUsersTest extends BaseTest{
 	private String firstNumberOfPaginationXpath;
 	private String lastArrowOfPaginationXpath;
 	private String firstArrowOfPaginationXpath;
-	private String deleteYesButtonXpath;
-
+	
 	@BeforeMethod
 	public void beforeTest() {
 
@@ -55,8 +54,6 @@ public class PaginationOfListOfUsersTest extends BaseTest{
 				.getProperty("general.users.pagination.lastarrowelement");
 		firstArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.pagination.firstarrowelement");
-		deleteYesButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.users.deleteyesbutton");
 
 	}
 
@@ -113,33 +110,7 @@ public class PaginationOfListOfUsersTest extends BaseTest{
 	public void deleteUsers() {
 		// Click on delete user
 		driverManager.getDriver().navigate().refresh();
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// Confirmation to delete user
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// Confirmation to delete user
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
-
-		// wait for element is clickeable
-
-		driverManager.getDriver().navigate().refresh();
-
-		// Click on delete user
-
-		usersPage.clickOnDeleteUserCreated();
-
-		// Confirmation to delete user connected
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
-		driverManager.getDriver().navigate().refresh();
+		usersPage.deleteAllUsersExceptAdmin();
 	}
 
 	@Test(priority = 0)

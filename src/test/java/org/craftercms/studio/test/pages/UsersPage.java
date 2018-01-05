@@ -1,9 +1,12 @@
 package org.craftercms.studio.test.pages;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -27,6 +30,8 @@ public class UsersPage {
 	private String usersPageTitle;
 	private String crafterLogo;
 
+	private String deleteYesButtonXpath;
+
 	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
@@ -40,6 +45,8 @@ public class UsersPage {
 		editUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.edit_option");
 		usersPageTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.page_title");
 		crafterLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.crafterlogo");
+		deleteYesButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deleteyesbutton");
 
 	}
 
@@ -103,7 +110,8 @@ public class UsersPage {
 
 	// edit User
 	public void clickEditOptionCreated() {
-		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editUserOption);
+		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				editUserOption);
 		edit.click();
 	}
 
@@ -137,5 +145,28 @@ public class UsersPage {
 		WebElement crafterLogoWebElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				crafterLogo);
 		crafterLogoWebElement.click();
+	}
+
+	public void deleteAllUsersExceptAdmin() {
+		List<WebElement> usersListitem = this.driverManager.getDriver()
+				.findElements(By.xpath(".//td[@class='remove']/a"));
+
+		for (int i = 1; i < usersListitem.size(); i++) {
+
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilPageLoad();
+
+			// get the delete button element
+			WebElement element = this.driverManager.waitUntilElementIsClickable("xpath",
+					".//tbody/tr[2]//td[@class='remove']/a");
+			// click on the delete button
+			element.click();
+
+			// confirm and wait
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
+			this.driverManager.waitUntilDeleteSiteModalCloses();
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilElementIsRemoved(element);
+		}
 	}
 }
