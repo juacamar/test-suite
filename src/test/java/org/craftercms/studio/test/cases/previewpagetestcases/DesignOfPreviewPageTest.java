@@ -90,13 +90,13 @@ public class DesignOfPreviewPageTest extends BaseTest {
 		Assert.assertTrue(siteContent.isDisplayed(), "ERROR: Site content option is not displayed");
 
 		// Assert search field is present.
-		WebElement searchField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement searchField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				searchTopBarOptionId);
 
 		Assert.assertTrue(searchField.isDisplayed(), "ERROR: Search Field is not displayed");
 
 		// Assert account option is present.
-		WebElement signUp = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement signUp = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				accountDropdownTopBarOptionId);
 
 		Assert.assertTrue(signUp.isDisplayed(), "ERROR: Account option is not displayed");

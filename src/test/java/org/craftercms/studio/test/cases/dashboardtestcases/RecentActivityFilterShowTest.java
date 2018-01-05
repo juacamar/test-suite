@@ -74,12 +74,12 @@ public class RecentActivityFilterShowTest extends BaseTest {
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+		driverManager.usingCrafterForm("cssselector", createFormFrameElementCss, () -> {
 			// Set basics fields of the new content created
 			dashboardPage.setBasicFieldsOfNewContent("AboutUs", "AboutUs");
 
 			// Set the title of main content
-			driverManager.sendText("cssSelector", createFormMainTitleElementXPath, "MainTitle");
+			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// click necessary to validate all fields required
 			this.driverManager.scrollUp();
@@ -109,12 +109,12 @@ public class RecentActivityFilterShowTest extends BaseTest {
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+		driverManager.usingCrafterForm("cssselector", createFormFrameElementCss, () -> {
 			// Set basics fields of the new content created
 			dashboardPage.setBasicFieldsOfNewContent("AboutUs1", "AboutUs1");
 
 			// Set the title of main content
-			driverManager.sendText("cssSelector", createFormMainTitleElementXPath, "MainTitle");
+			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// click necessary to validate all fields required
 			this.driverManager.scrollUp();

@@ -48,13 +48,13 @@ public class PaginationOfListOfUsersTest extends BaseTest{
 		usersPerPageInputXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersperpageinput");
 		lastNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.lastnumberelement");
+				.getProperty("general.users.pagination.lastnumberelement");
 		firstNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.firstnumberelement");
+				.getProperty("general.users.pagination.firstnumberelement");
 		lastArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.lastarrowelement");
+				.getProperty("general.users.pagination.lastarrowelement");
 		firstArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.firstarrowelement");
+				.getProperty("general.users.pagination.firstarrowelement");
 		deleteYesButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.deleteyesbutton");
 

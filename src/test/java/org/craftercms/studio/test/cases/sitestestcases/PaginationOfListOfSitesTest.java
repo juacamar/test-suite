@@ -103,7 +103,7 @@ public class PaginationOfListOfSitesTest extends BaseTest{
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", topNavSitesOption).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavSitesOption).click();
 	}
 
 	public void navigationOfPage() {
