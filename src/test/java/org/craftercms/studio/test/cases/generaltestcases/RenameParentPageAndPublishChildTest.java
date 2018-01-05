@@ -183,6 +183,7 @@ public class RenameParentPageAndPublishChildTest {
 					.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
 					.sendKeys(pageName);
 			// save and close
+
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
 					.click();
 		});

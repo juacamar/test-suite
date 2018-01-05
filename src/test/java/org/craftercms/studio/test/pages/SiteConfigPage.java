@@ -143,15 +143,15 @@ public class SiteConfigPage {
 	public void selectPageArticleContentTypeOption() {
 		logger.debug("Click on Existing Type Option");
 		WebElement selectPageArticleOption = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", pageArticleContentTypeOption);
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", pageArticleContentTypeOption);
 		selectPageArticleOption.click();
 
 	}
 
 	// Confirm the content type selected
 	public void okContentTypeSelected() {
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", okButton);
-		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", okButton);
+		WebElement okButtonOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				okButton);
 		okButtonOpt.click();
 		// Delete thread of 2 seconds
@@ -173,6 +173,7 @@ public class SiteConfigPage {
                 WebElement notification = this.driverManager.waitUntilElementIsDisplayed("xpath",
                         contentTypeSavedNotification);
                 this.driverManager.waitUntilContentTypeNotificationIsNotDisplayed("xpath", "div", notification);
+                this.driverManager.waitForAnimation();
                 break;
             } catch (TimeoutException e) {
                 logger.warn("Click on Save button didn't work, trying again");
@@ -195,7 +196,7 @@ public class SiteConfigPage {
 	// Click on generic title to edit the context type selected.
 
 	public void clickOnGenericTitle() {
-		WebElement ClickTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement ClickTitle = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				genericTitle);
 		ClickTitle.click();
 	}
@@ -207,22 +208,22 @@ public class SiteConfigPage {
 
 	// Set title
 	public void setTitle(String strTitle) {
-		driverManager.sendText("cssSelector", inputTitle, strTitle);
+		driverManager.sendText("xpath", inputTitle, strTitle);
 	}
 
 	// Set ICE group
 	public void setIceGroup(String strICEGroup) {
-		driverManager.sendText("cssSelector",inputIceGroup,strICEGroup);
+		driverManager.sendText("xpath",inputIceGroup,strICEGroup);
 	}
 
 	// Set description
 	public void setDescription(String strDescription) {
-		driverManager.sendText("cssSelector",inputDescription,strDescription);
+		driverManager.sendText("xpath",inputDescription,strDescription);
 	}
 
 	// Set default value
 	public void setDefaultValue(String strDefaultValue) {
-		driverManager.sendText("cssSelector",inputDefaultValue,strDefaultValue);
+		driverManager.sendText("xpath",inputDefaultValue,strDefaultValue);
 	}
 
 	public void completeControlsFieldsBasics(String strTitle, String strICEGroup, String strDescription,

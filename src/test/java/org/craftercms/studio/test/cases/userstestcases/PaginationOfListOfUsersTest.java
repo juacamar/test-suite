@@ -48,13 +48,13 @@ public class PaginationOfListOfUsersTest extends BaseTest{
 		usersPerPageInputXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersperpageinput");
 		lastNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.lastnumberelement");
+				.getProperty("general.users.pagination.lastnumberelement");
 		firstNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.firstnumberelement");
+				.getProperty("general.users.pagination.firstnumberelement");
 		lastArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.lastarrowelement");
+				.getProperty("general.users.pagination.lastarrowelement");
 		firstArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.firstarrowelement");
+				.getProperty("general.users.pagination.firstarrowelement");
 		deleteYesButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.deleteyesbutton");
 
@@ -68,14 +68,14 @@ public class PaginationOfListOfUsersTest extends BaseTest{
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserFirstNameId).sendKeys("Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserLastNameId).sendKeys("Last Name");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserFirstNameId).sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId)
 				.sendKeys("email@email.com");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserUserNameId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserUserNameId)
 				.sendKeys("testuser" + RandomStringUtils.randomAlphabetic(5));
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordId).sendKeys("password");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordVerificationId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordId).sendKeys("password");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordVerificationId)
 				.sendKeys("password");
 
 		// Save Button

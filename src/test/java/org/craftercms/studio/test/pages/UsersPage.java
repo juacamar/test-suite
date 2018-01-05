@@ -51,7 +51,7 @@ public class UsersPage {
 
 	public void clickDeleteOption() {
 		logger.info("Deleting user");
-		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				deleteUserOption);
 		previewLink.click();
 	}
@@ -77,7 +77,7 @@ public class UsersPage {
 
 	// Click on Save New User Button
 	public void clickSaveNewUserButton() {
-		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				saveNewUserOption);
 		saveNewUser.click();
 	}
@@ -90,7 +90,7 @@ public class UsersPage {
 
 	// Delete User
 	public void clickDeleteOptionCreated() {
-		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				deleteUserOptionNonAdmin);
 		deleteIcon.click();
 	}
@@ -103,7 +103,7 @@ public class UsersPage {
 
 	// edit User
 	public void clickEditOptionCreated() {
-		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", editUserOption);
+		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editUserOption);
 		edit.click();
 	}
 

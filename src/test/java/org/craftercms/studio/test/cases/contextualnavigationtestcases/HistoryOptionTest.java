@@ -57,7 +57,7 @@ public class HistoryOptionTest extends BaseTest{
 		// expand pages folder
 		previewPage.expandPagesTree();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", studioLogo);
 		
 		// expand home content
 		previewPage.expandHomeTree();
@@ -70,7 +70,7 @@ public class HistoryOptionTest extends BaseTest{
 		// Assert
 		this.driverManager.waitForAnimation();
 		String historyPage = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", historyDialogTitle).getText();
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", historyDialogTitle).getText();
 		
 		Assert.assertEquals(historyPage, "Version History");
 

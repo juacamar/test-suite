@@ -42,7 +42,7 @@ public class AccountManagementPage {
 
 	// Set the current pass
 	public void setCurrentPassword(String strCurrentPass) {
-		WebElement currentPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id",
+		WebElement currentPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				currentPassword);
 		currentPass.sendKeys(strCurrentPass);
 
@@ -50,14 +50,14 @@ public class AccountManagementPage {
 
 	// Set the new pass
 	public void setNewPassword(String strNewPassword) {
-		WebElement newPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", newPassword);
+		WebElement newPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", newPassword);
 		newPass.sendKeys(strNewPassword);
 
 	}
 
 	// Set the new pass confirmation
 	public void setConfirmNewPassword(String strConfNewPassword) {
-		WebElement confPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", confirmPassword);
+		WebElement confPass = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", confirmPassword);
 		confPass.sendKeys(strConfNewPassword);
 	}
 

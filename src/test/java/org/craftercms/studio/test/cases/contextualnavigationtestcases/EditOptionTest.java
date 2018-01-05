@@ -85,7 +85,7 @@ public class EditOptionTest extends BaseTest {
 		
 
 		// Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "cssSelector",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				entryContentTypeBodyCheckCss).click();
 
 		// save
@@ -108,19 +108,20 @@ public class EditOptionTest extends BaseTest {
 		dashboardPage.clickOKButton();
 
 		// Switch to the iframe
-		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+		driverManager.usingCrafterForm("cssselector", createFormFrameElementCss, () -> {
 			// Set basics fields of the new content created
 			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 			// Expand all fields
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormExpandAll)
 				.click();
 
 			// Set the title of main content
-			driverManager.sendText("cssSelector", createFormMainTitleElementXPath, "MainTitle");
+			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElement).click();
+
 		});
 	}
 
@@ -162,7 +163,7 @@ public class EditOptionTest extends BaseTest {
 		bodyNotRequiered();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", crafterLogoId).click();
 		
 		dashboardPage.expandPagesTree();
 

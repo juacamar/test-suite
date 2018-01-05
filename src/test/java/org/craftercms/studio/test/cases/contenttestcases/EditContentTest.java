@@ -65,6 +65,7 @@ public class EditContentTest extends BaseTest {
 			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
+
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
 					.click();
 		});
@@ -77,7 +78,7 @@ public class EditContentTest extends BaseTest {
 		dashboardPage.rightClickToSelectEditOption();
 
 		this.driverManager.waitForAnimation();
-		
+
 		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
 			// edit internal name
 			dashboardPage.editInternalName("Edited");

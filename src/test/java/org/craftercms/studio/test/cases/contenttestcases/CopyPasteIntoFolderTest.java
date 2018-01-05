@@ -79,6 +79,7 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 
 			// save and close
 			this.driverManager.waitUntilElementIsClickable("xpath", createFormSaveAndCloseElement).click();
+
 		});
 
 	}
@@ -135,7 +136,7 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 		dashboardPage.rightClickToPasteToNewFolder();
 		
 		this.driverManager.waitForAnimation();
-		this.driverManager.waitUntilAttributeContains("id", myRecentActivityBodyXpath, "style", "display: block;");
+		this.driverManager.waitUntilAttributeContains("xpath", myRecentActivityBodyXpath, "style", "display: block;");
 		
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitForAnimation();

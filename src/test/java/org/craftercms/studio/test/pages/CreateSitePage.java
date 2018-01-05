@@ -22,7 +22,6 @@ public class CreateSitePage {
 	private String siteID;
 	private String descriptionSite;
 	private String blueprintCombo;
-	private String plutonBlueprint;
 	private String createSiteButton;
 	private String cancelButton;
 	private String usersOption;
@@ -45,8 +44,6 @@ public class CreateSitePage {
 				.getProperty("create.description_site");
 		blueprintCombo = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.blueprint_combo");
-		plutonBlueprint = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("create.pluton_blueprint");
 		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("create.create_button");
 		cancelButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("create.cancel_button");
@@ -70,7 +67,7 @@ public class CreateSitePage {
 	// Set site name
 
 	public void setSiteName() {
-		driverManager.sendText("cssSelector", siteName, "testsite" + RandomStringUtils.randomAlphabetic(5).toLowerCase());
+		driverManager.sendText("xpath", siteName, "testsite" + RandomStringUtils.randomAlphabetic(5).toLowerCase());
 	}
 
 	public void fillSiteName() {
@@ -81,7 +78,7 @@ public class CreateSitePage {
 	// Set site ID
 
 	public void setSiteId(String strSiteID) {
-		WebElement idSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", siteID);
+		WebElement idSite = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteID);
 		idSite.sendKeys(strSiteID);
 	}
 
@@ -93,7 +90,7 @@ public class CreateSitePage {
 	// Set description
 
 	public void setDescription(String strDescription) {
-		driverManager.sendText("cssSelector", descriptionSite, strDescription);
+		driverManager.sendText("xpath", descriptionSite, strDescription);
 	}
 
 	public void fillDescription(String strDescription) {
@@ -104,7 +101,7 @@ public class CreateSitePage {
 	// Open blueprint combo
 
 	public void blueprintCombo() {
-		WebElement comboBlueprint = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement comboBlueprint = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				blueprintCombo);
 		comboBlueprint.click();
 	}
@@ -114,21 +111,7 @@ public class CreateSitePage {
 		this.blueprintCombo();
 	}
 
-	// select blue pluton print
-
-	public void plutonBlueprint() {
-		WebElement blueprintPluton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				plutonBlueprint);
-		blueprintPluton.click();
-	}
-
-	public void selectPlutonBlueprint() {
-		// select blue pluton print
-		this.plutonBlueprint();
-	}
-
 	// select blue empty print
-
 	public void selectEmptyBlueprint() {
 		WebElement bluePrintCombo = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", "blueprint");
 		Select select = new Select(bluePrintCombo);
@@ -142,7 +125,7 @@ public class CreateSitePage {
 	
 	// Press on create site
 	public void createButton() {
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				createSiteButton);
 		createButton.click();
 	}
@@ -167,7 +150,7 @@ public class CreateSitePage {
 
 	// Press on Cancel button of the create site process.
 	public void cancelButton() {
-		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		WebElement createButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				cancelButton);
 		createButton.click();
 	}
@@ -190,7 +173,7 @@ public class CreateSitePage {
 
 	// Press on about option
 	public void clickAbout() {
-		WebElement about = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", aboutOption);
+		WebElement about = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", aboutOption);
 		about.click();
 	}
 
@@ -225,8 +208,8 @@ public class CreateSitePage {
 
 	// Press on settings option
 	public void clickSettings() {
-		this.driverManager.isElementPresentAndClickableBycssSelector(settingsOption);
-		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		this.driverManager.isElementPresentAndClickableByXpath(settingsOption);
+		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				settingsOption);
 		settings.click();
 	}
