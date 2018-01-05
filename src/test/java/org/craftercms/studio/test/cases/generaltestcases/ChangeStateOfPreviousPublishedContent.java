@@ -45,14 +45,14 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String crafterLogo;
 	private String generalSiteDropdown;
 	private String pageStatus;
-	private String staticAssetsGearImageId;
+	private String staticAssetsGearImageXpath;
 	private String articlesFolder;
 	private String createFormFrameElementCss;
 	private String generalEditOption;
 	private String expandPagesTree;
 	private String editedPageArticleName;
 	private String adminConsole;
-	private String cssArticleTitle;
+	private String articleTitle;
 	private String expandAllId;
 	private String addTouserIframe;
 	private String createSiteButton;
@@ -66,6 +66,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String newUserUserNameCreatedXpath;
 	private String articleContentCreatedName;
 	private String gearImageXpath;
+	private String homeContent;
 	private static Logger logger = LogManager.getLogger(ChangeStateOfPreviousPublishedContent.class);
 
 	@BeforeMethod
@@ -121,8 +122,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				"general.sitedropdown");
 		pageStatus = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
 				"general.pageStatus");
-		staticAssetsGearImageId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"preview.staticassets.gear.image.id");
+		staticAssetsGearImageXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
+				"preview.staticassets.gear.image.xpath");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
 		generalEditOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -133,7 +134,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.getProperty("complexscenarios.general.editedarticlename");
 		adminConsole = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-		cssArticleTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		articleTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.cssarticletitle");
 		expandAllId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
@@ -160,6 +161,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.getProperty("general.testingcontentitem");
 		gearImageXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.gearimagexpath");
+		homeContent = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.home_Content_Page");
 	}
 
 	public void addNewUser() {
@@ -173,18 +176,18 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserFirstNameId).sendKeys("Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserFirstNameId).sendKeys("Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserLastNameId).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId).sendKeys("Last Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserEmailId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId)
 				.sendKeys("email@email.com");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserUserNameId).sendKeys("author");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserUserNameId).sendKeys("author");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordId).sendKeys("author");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordId).sendKeys("author");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", newUserPasswordVerificationId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordVerificationId)
 				.sendKeys("author");
 		
 		// Save Button
@@ -238,13 +241,13 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 			// Set the title of main content
 
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", cssArticleTitle)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", articleTitle)
 
 					.sendKeys(pageName);
 
 			this.driverManager.scrollUp();
 
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", expandAllId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", expandAllId)
 					.click();
 
 			// save and close
@@ -350,9 +353,9 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		this.driverManager.getDriver().switchTo().activeElement();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", navigationSitebarNameId);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", navigationSitebarNameId);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", navigationSitebarNameId)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", navigationSitebarNameId)
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsole);
@@ -557,15 +560,13 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				articlesFolder);
 		
 		this.driverManager.waitUntilContentTooltipIsHidden();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articlesFolder).click();
-
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
-//				.click();
-//
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
-//				.click();
+		
+		WebElement articlesFolderElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				articlesFolder);
+		
+		if (!(articlesFolderElement.getAttribute("class").contains("acn-expanded-tree-node-label open"))) {
+			articlesFolderElement.click();
+		}
 		
 		this.driverManager.waitForAnimation();
 
@@ -573,6 +574,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				articleContentCreatedName);
 		
 		this.driverManager.waitUntilContentTooltipIsHidden();
+		
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articleContentCreatedName).click();
@@ -645,10 +647,10 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				"xpath", staticAssetsImagesChildFolder)
 				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-				staticAssetsGearImageId);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
-				staticAssetsGearImageId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				staticAssetsGearImageXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				staticAssetsGearImageXpath).click();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption);
 

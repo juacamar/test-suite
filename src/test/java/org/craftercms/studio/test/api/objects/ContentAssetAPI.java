@@ -3,8 +3,11 @@ package org.craftercms.studio.test.api.objects;
 import static org.hamcrest.Matchers.is;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.craftercms.studio.test.utils.APIConnectionManager;
+import org.craftercms.studio.test.utils.JsonResponse;
 import org.craftercms.studio.test.utils.JsonTester;
 
 public class ContentAssetAPI extends BaseAPI{
@@ -112,12 +115,11 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 	
-	public void testGetItemVersions(String siteId) {
+	public JsonResponse testGetItemVersions(String siteId) {
 		
-		api.get("/studio/api/1/services/api/1/content/get-item-versions.json")
+		return api.get("/studio/api/1/services/api/1/content/get-item-versions.json")
 		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).execute().status(200)
-		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-item-versions.json?site="+siteId+"&path="+contentPath+"/"+fileName))
-		.debug();
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/get-item-versions.json?site="+siteId+"&path="+contentPath+"/"+fileName));
 	}
 	
 	public void testGetItemsTree(String siteId) {
@@ -147,14 +149,6 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 	
-	public void testDeleteContent(String siteId){
-		
-		api.get("/studio/api/1/services/api/1/content/delete-content.json")
-		.urlParam("site", siteId)
-		.urlParam("path", contentPath + "/" + fileName)
-		.execute().status(200).debug();
-	}
-	
 	public void testUnlockContent(String siteId) {
 		
 		api.get("/studio/api/1/services/api/1/content/unlock-content.json")
@@ -163,12 +157,52 @@ public class ContentAssetAPI extends BaseAPI{
 		.debug();
 	}
 	
-	public void testReorderContentItems(String siteId, String path, String before, String after) {
+	public void testReorderContentItems(String siteId, String path, String after) {
 		
 		api.get("/studio/api/1/services/api/1/content/reorder-items.json")
-		.urlParam("site", siteId).urlParam("path",path).urlParam("before",before).urlParam("after",after).execute()
-		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/reorder-items.json?site="+siteId+"&path="+path+"&before="+before+"&after="+after))
+		.urlParam("site", siteId).urlParam("path",path).urlParam("after",after).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/reorder-items.json?site="+siteId+"&path="+path+"&after="+after))
 		.debug();
+	}
+	
+	public void testRevertContentItem(String siteId) {
+		
+		String response = testGetItemVersions(siteId).getRaw();
+		String versionNum = response.substring(response.lastIndexOf("versionNumber")).split("\"")[2];
+		
+		api.get("/studio/api/1/services/api/1/content/revert-content.json")
+		.urlParam("site", siteId).urlParam("path",contentPath+"/"+fileName).urlParam("version",versionNum).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/reorder-items.json?site="+siteId+"&path="+contentPath+"/"+fileName+"&version="+versionNum))
+		.debug();
+	}
+	
+	public void testSearch(String siteId) {
+		
+		Map<String, Object> json = new HashMap<>();
+		json.put("contentTypes", new String[0]);
+		json.put("includeAspects", new String[0]);
+		json.put("excludeAspects", new String[0]);
+		json.put("keyword", "index");
+		json.put("page", "1");
+		json.put("pageSize", "20");
+		json.put("sortBy", "");
+		json.put("sortAscending", "true");
+		json.put("filters", new int[0]);
+		json.put("columns", new int[0]);
+		
+		api.post("/studio/api/1/services/api/1/content/search.json")
+		.urlParam("site", siteId).json(json).execute().status(200)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/content/search.json?site="+siteId))
+		.debug();
+	}
+	
+	public void testSetItemState(String siteId) {
+		
+		api.post("/studio/api/1/services/api/1/content/set-item-state.json")
+		.urlParam("site", siteId)
+		.urlParam("path",contentPath+"/"+fileName)
+		.urlParam("state","EXISTING_UNEDITED_UNLOCKED")
+		.urlParam("systemprocessing", "false").execute().status(200).debug();
 	}
 	
 	public void testWriteContent(String siteId){
@@ -198,6 +232,34 @@ public class ContentAssetAPI extends BaseAPI{
 		.urlParam("contentType", contentType)
 		.urlParam("unlock", "true")
 		.file("file", test)
+		.execute().status(200).debug();
+	}
+	
+	public void writeImageContent(String siteId){
+		
+		File test = new File("src/test/resources/logo.png");
+		
+		api.post("/studio/api/1/services/api/1/content/write-content.json")
+		.urlParam("site", siteId)
+		.urlParam("path", "static-assets/images/")
+		.urlParam("phase", "onSave")
+		.urlParam("fileName", "logo.png")
+		.urlParam("isImage", "true")
+		.urlParam("unlock", "true")
+		.file("file", test)
+		.execute().debug();
+	}
+	
+	public void testCropImage(String siteId){
+		
+		api.get("/studio/api/1/services/api/1/content/crop-image.json")
+		.urlParam("site", siteId)
+		.urlParam("path", "/static-assets/images/logo.png")
+		.urlParam("newname", "croppedlogo.png")
+		.urlParam("t", "10")
+		.urlParam("l", "10")
+		.urlParam("w", "214")
+		.urlParam("h", "115")
 		.execute().status(200).debug();
 	}
 	

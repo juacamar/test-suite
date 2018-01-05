@@ -44,7 +44,7 @@ public class RenameParentPageAndPublishChildTest {
 	private String approveSubmitId;
 	private String unselectAllCheckBox;
 	private String createFormFrameElementCss;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String homeExpansorXpath;
 	private String createFormArticleMainTitleElementXPath;
 
@@ -86,7 +86,7 @@ public class RenameParentPageAndPublishChildTest {
 				.getProperty("complexscenarios.general.createformframe");
 		createFormArticleMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformMainTitle");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		homeExpansorXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.homeexpansor");
@@ -161,7 +161,7 @@ public class RenameParentPageAndPublishChildTest {
 			driverManager.sendText("xpath", createFormArticleMainTitleElementXPath, pageName);
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
 					.click();
 		});
 		this.driverManager.waitUntilSidebarOpens();
@@ -183,7 +183,8 @@ public class RenameParentPageAndPublishChildTest {
 					.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormArticleMainTitleElementXPath)
 					.sendKeys(pageName);
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
 					.click();
 		});
 		this.driverManager.waitUntilSidebarOpens();

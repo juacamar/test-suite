@@ -321,6 +321,12 @@
 				name="org.craftercms.studio.test.cases.apitestcases.CreateFolderAPITest" />
 		</classes>
 	</test>
+	<test name="Crop Image" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CropImageAPITest" />
+		</classes>
+	</test>
 	<test name="Rename Folder" preserve-order="true">
 		<classes>
 			<class
@@ -393,7 +399,31 @@
 				name="org.craftercms.studio.test.cases.apitestcases.GetPagesAPITest" />
 		</classes>
 	</test>
-		<test name="Unlock Content Item" preserve-order="true">
+	<test name="Reorder Content Items" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.ReorderContentItemsAPITest" />
+		</classes>
+	</test>
+	<test name="Revert Content Item" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.RevertContentItemAPITest" />
+		</classes>
+	</test>
+	<test name="Search Content" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.SearchAPITest" />
+		</classes>
+	</test>
+	<test name="Set Item State" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.SetItemStateAPITest" />
+		</classes>
+	</test>
+	<test name="Unlock Content Item" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.apitestcases.UnlockContentAPITest" />

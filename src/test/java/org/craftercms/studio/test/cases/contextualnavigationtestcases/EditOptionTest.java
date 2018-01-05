@@ -23,7 +23,7 @@ public class EditOptionTest extends BaseTest {
 	private String entryContentTypeBodyXpath;
 	private String entryContentTypeBodyCheckCss;
 	private String createFormFrameElementCss;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String createFormExpandAll;
 	private String createFormMainTitleElementXPath;
 	private String testingContentItem;
@@ -46,7 +46,7 @@ public class EditOptionTest extends BaseTest {
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormExpandAll= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
@@ -113,14 +113,15 @@ public class EditOptionTest extends BaseTest {
 			dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
 
 			// Expand all fields
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormExpandAll)
 				.click();
 
 			// Set the title of main content
 			driverManager.sendText("cssSelector", createFormMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElement).click();
+
 		});
 	}
 
@@ -162,7 +163,7 @@ public class EditOptionTest extends BaseTest {
 		bodyNotRequiered();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", crafterLogoId).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", crafterLogoId).click();
 		
 		dashboardPage.expandPagesTree();
 

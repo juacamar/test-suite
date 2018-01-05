@@ -30,7 +30,7 @@ public class PublishingSiteTest extends BaseTest {
 	private String password;
 	private String createFormFrameElementCss;
 	private String createFormMainTitleElementXPath;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String testingContentItem;
 	private String topNavStatusIcon;
 	private String homeXpath;
@@ -46,8 +46,8 @@ public class PublishingSiteTest extends BaseTest {
 				.getProperty("general.createformframe");
 		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.saveandclosebutton");
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.saveandclosebutton");
 		testingContentItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.testingcontentitem");
 		topNavStatusIcon = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -94,7 +94,7 @@ public class PublishingSiteTest extends BaseTest {
 
 			this.driverManager
 
-					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", createFormSaveAndCloseElementId)
+					.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", createFormSaveAndCloseElement)
 					.click();
 
 		});

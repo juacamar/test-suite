@@ -47,7 +47,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 	private String technologyLocator;
 	private String siteDropdownElementXPath;
 	private String createFormArticleMainTitleElementXPath;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String historyFirstItemCheckbBox;
 	private String historySecondItemCheckbBox;
 	private String differencesDialogId;
@@ -105,7 +105,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 				.getProperty("complexscenarios.general.createformMainTitle");
 		createFormTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformtitle");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		historyFirstItemCheckbBox = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.historydialog.firstitemcheckbox");
@@ -219,7 +219,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			driverManager.sendText("xpath", createFormArticleMainTitleElementXPath, "MainTitle");
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId)
+
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
 					.click();
 		});
 
@@ -508,7 +509,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.clickHomeTree();
 
 		dashboardPage.clickOnContextualNavigationHistoryOption();
-		
+
 		this.driverManager.waitForAnimation();
 	}
 
@@ -531,14 +532,16 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		dashboardPage.expandParentFolder(anotherTestFolderLocator);
 
 		this.driverManager.waitForAnimation();
-		this.driverManager.waitUntilElementIsClickable("xpath", anotherTestBigTreeChildFolderLocator);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				anotherTestBigTreeChildFolderLocator);
 		dashboardPage.expandParentFolder(anotherTestBigTreeChildFolderLocator);
 
+		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				anotherTestBigTreeChildFolderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
 		this.publishAllPagesOnAFolder(anotherTestBigTreeChildFolderLocator);
 
-		driverManager.waitUntilSidebarOpens();	
+		driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", bigTree2FolderLocator);
 		dashboardPage.expandParentFolder(bigTree2FolderLocator);
@@ -548,6 +551,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 				bigTree2BigTree1ChildFolderLocator);
 		dashboardPage.expandParentFolder(bigTree2BigTree1ChildFolderLocator);
 
+		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				bigTree2BigTree1ChildFolderLocator + "/../../../../../div/div[5]/table/tbody/tr/td/span");
 		this.publishAllPagesOnAFolder(bigTree2BigTree1ChildFolderLocator);
@@ -556,24 +560,33 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step12() {
 		// Step12
-		driverManager.waitUntilSidebarOpens();
-		this.driverManager.waitForAnimation();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", mytestFolderLocator);
-		dashboardPage.rightClickDeleteAFolder(mytestFolderLocator);
-		this.confirmDeleteAction();
+		try {
+			driverManager.waitUntilSidebarOpens();
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", mytestFolderLocator);
+			dashboardPage.rightClickDeleteAFolder(mytestFolderLocator);
+			this.confirmDeleteAction();
 
-		driverManager.waitUntilSidebarOpens();
-		this.driverManager.waitForAnimation();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestFolderLocator);
-		dashboardPage.rightClickDeleteAFolder(anotherTestFolderLocator);
-		this.confirmDeleteAction();
+			driverManager.waitUntilSidebarOpens();
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					anotherTestFolderLocator);
+			dashboardPage.rightClickDeleteAFolder(anotherTestFolderLocator);
+			this.confirmDeleteAction();
 
-		driverManager.waitUntilSidebarOpens();
-		this.driverManager.waitForAnimation();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				bigTree2BigTree1ChildFolderLocator);
-		dashboardPage.rightClickDeleteAFolder(bigTree2BigTree1ChildFolderLocator);
-		this.confirmDeleteAction();
+			driverManager.waitUntilSidebarOpens();
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					bigTree2BigTree1ChildFolderLocator);
+			dashboardPage.rightClickDeleteAFolder(bigTree2BigTree1ChildFolderLocator);
+			this.confirmDeleteAction();
+		} catch (TimeoutException e) {
+			this.driverManager.takeScreenshot();
+			logger.warn("Something went wrong, the folder is not opened or the icon is missing");
+		}
 	}
 
 	public void crafter3LoadTest() {
@@ -612,7 +625,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", studioLogo).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", studioLogo).click();
 
 		// Step7
 		this.step7();

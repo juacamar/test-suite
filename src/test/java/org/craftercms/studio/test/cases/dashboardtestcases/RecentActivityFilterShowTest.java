@@ -24,7 +24,7 @@ public class RecentActivityFilterShowTest extends BaseTest {
 	private String createFormFrameElementCss;
 	private String createFormMainTitleElementXPath;
 	private String createFormExpandAll;
-	private String createFormSaveAndCloseElementId;
+	private String createFormSaveAndCloseElement;
 	private String homeElementXPath;
 	private String myRecentActivityShowInputXPath;
 	private String myRecentActivityFirstItemURLXPath;
@@ -36,7 +36,7 @@ public class RecentActivityFilterShowTest extends BaseTest {
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormSaveAndCloseElementId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		createFormExpandAll= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformexpandall");
@@ -84,11 +84,11 @@ public class RecentActivityFilterShowTest extends BaseTest {
 			// click necessary to validate all fields required
 			this.driverManager.scrollUp();
 			this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormExpandAll)
 				.click();
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElement)
 				.click();
 		});
 	}
@@ -119,11 +119,12 @@ public class RecentActivityFilterShowTest extends BaseTest {
 			// click necessary to validate all fields required
 			this.driverManager.scrollUp();
 			this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormExpandAll)
+				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormExpandAll)
 				.click();
 
 			// save and close
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", createFormSaveAndCloseElementId)
+
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath", createFormSaveAndCloseElement)
 				.click();
 		});
 	}
