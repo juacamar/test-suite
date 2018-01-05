@@ -32,6 +32,10 @@ public class UsersPage {
 
 	private String deleteYesButtonXpath;
 
+	private String deleteUsersRowsXpath;
+
+	private String deleteNonAdminUserIconXpath;
+
 	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
@@ -47,6 +51,10 @@ public class UsersPage {
 		crafterLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.crafterlogo");
 		deleteYesButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.deleteyesbutton");
+		deleteUsersRowsXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deleteusersrows");
+		deleteNonAdminUserIconXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deletenonadminrow");
 
 	}
 
@@ -149,7 +157,7 @@ public class UsersPage {
 
 	public void deleteAllUsersExceptAdmin() {
 		List<WebElement> usersListitem = this.driverManager.getDriver()
-				.findElements(By.xpath(".//td[@class='remove']/a"));
+				.findElements(By.xpath(deleteUsersRowsXpath));
 
 		for (int i = 1; i < usersListitem.size(); i++) {
 
@@ -158,7 +166,7 @@ public class UsersPage {
 
 			// get the delete button element
 			WebElement element = this.driverManager.waitUntilElementIsClickable("xpath",
-					".//tbody/tr[2]//td[@class='remove']/a");
+					deleteNonAdminUserIconXpath);
 			// click on the delete button
 			element.click();
 
