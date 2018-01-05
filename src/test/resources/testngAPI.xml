@@ -281,6 +281,12 @@
 				name="org.craftercms.studio.test.cases.apitestcases.GetDependantItemsAPITest" />
 		</classes>
 	</test>
+	<test name="Get Dependencies" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetDependenciesAPITest" />
+		</classes>
+	</test>
 	<test name="Get Simple Dependencies" preserve-order="true">
 		<classes>
 			<class
