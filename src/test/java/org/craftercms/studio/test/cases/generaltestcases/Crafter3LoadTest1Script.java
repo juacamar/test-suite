@@ -264,7 +264,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		try {
 			this.driverManager.waitUntilElementIsDisplayed("xpath", actionsHeaderXpath);
 		} catch (TimeoutException e) {
-			this.driverManager.takeScreenshot();
+			this.driverManager.takeScreenshot("HistoryDialogNotCompletedRendered");
 			logger.warn("History dialog is not completely rendered, and the buttons can't be clicked");
 		}
 
@@ -563,7 +563,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			this.driverManager.waitForAnimation();
 			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
 		} catch (TimeoutException e) {
-			this.driverManager.takeScreenshot();
+			this.driverManager.takeScreenshot("FolderIconMissed");
 			logger.warn("Something went wrong, the folder is not opened or the icon is missing");
 		}
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", mytestFolderLocator);
@@ -576,7 +576,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			this.driverManager.waitForAnimation();
 			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
 		} catch (TimeoutException e) {
-			this.driverManager.takeScreenshot();
+			this.driverManager.takeScreenshot("FolderIconMissed");
 			logger.warn("Something went wrong, the folder is not opened or the icon is missing");
 		}
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestFolderLocator);
@@ -589,7 +589,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 			this.driverManager.waitForAnimation();
 			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
 		} catch (TimeoutException e) {
-			this.driverManager.takeScreenshot();
+			this.driverManager.takeScreenshot("FolderIconMissed");
 			logger.warn("Something went wrong, the folder is not opened or the icon is missing");
 		}
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",

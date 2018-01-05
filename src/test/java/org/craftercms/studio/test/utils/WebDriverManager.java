@@ -649,11 +649,11 @@ public class WebDriverManager {
 		}
 	}
 
-	public void takeScreenshot() {
+	public void takeScreenshot(String screenShotName) {
 		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(screenshot, new File(FilesLocations.SCREENSHOTSFOLDEPATH, screenshot.getName()));
-			logger.info("Screenshot saved: {}", screenshot.getName());
+			FileUtils.copyFile(screenshot, new File(FilesLocations.SCREENSHOTSFOLDEPATH, screenShotName+screenshot.getName()));
+			logger.info("Screenshot saved: {}", screenShotName+screenshot.getName());
 		} catch (IOException e) {
 			logger.warn("Couldn't take screenshot", e);
 		}
@@ -663,7 +663,7 @@ public class WebDriverManager {
 		try {
 			this.waitUntilAttributeContains("xpath", elementIconLocator, "class", "undefined live");
 		} catch (TimeoutException e) {
-			this.takeScreenshot();
+			this.takeScreenshot("PageNotPublished");
 			logger.warn("Content page is not published yet, it does not have published icon on pages structure");
 		}
 	}
