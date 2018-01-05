@@ -104,7 +104,7 @@ public class SitesPerPageTest extends BaseTest{
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", topNavSitesOption).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavSitesOption).click();
 	}
 
 	public void filters() {
@@ -162,7 +162,6 @@ public class SitesPerPageTest extends BaseTest{
 		
 		// Refresh the site
 		driverManager.getDriver().navigate().refresh();
-		//this.driverManager.waitForPageLoad(driverManager.getDriver());
 	}
 
 	@Test(priority = 0)

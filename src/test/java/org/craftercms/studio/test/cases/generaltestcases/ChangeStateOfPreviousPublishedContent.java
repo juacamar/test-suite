@@ -66,7 +66,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	private String newUserUserNameCreatedXpath;
 	private String articleContentCreatedName;
 	private String gearImageXpath;
-	private String homeContent;
 	private static Logger logger = LogManager.getLogger(ChangeStateOfPreviousPublishedContent.class);
 
 	@BeforeMethod
@@ -161,8 +160,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.getProperty("general.testingcontentitem");
 		gearImageXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.gearimagexpath");
-		homeContent = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.home_Content_Page");
 	}
 
 	public void addNewUser() {

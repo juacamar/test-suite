@@ -84,7 +84,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 		WebElement From = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				controlsSectionFromSection);
 
-		WebElement To = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", contentFormName);
+		WebElement To = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", contentFormName);
 
 		Actions builder = new Actions(driverManager.getDriver());
 
@@ -143,7 +143,7 @@ public class EditContentThroughDashboardEditOptionTest extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
 
 		// Mark Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyCheckCss)
 				.click();
 		// save
 		siteConfigPage.saveDragAndDropProcess();

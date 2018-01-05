@@ -103,7 +103,7 @@ public class UsersPage {
 
 	// edit User
 	public void clickEditOptionCreated() {
-		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", editUserOption);
+		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editUserOption);
 		edit.click();
 	}
 
