@@ -96,7 +96,7 @@ public class CutPasteContentTest extends BaseTest {
 
 		// Body not required
 		logger.debug("Disable RTE for the selected content");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", entryContentTypeBodyCheckCss)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyCheckCss)
 				.click();
 
 		// save

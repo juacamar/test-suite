@@ -67,7 +67,7 @@ public class DependenciesOptionTest extends BaseTest {
 
 		// Assert
 		String historyPage = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", dependeciesDialogTitle).getText();
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", dependeciesDialogTitle).getText();
 		Assert.assertEquals(historyPage, "Dependencies");
 
 	}

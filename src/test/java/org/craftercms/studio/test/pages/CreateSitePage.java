@@ -209,7 +209,7 @@ public class CreateSitePage {
 	// Press on settings option
 	public void clickSettings() {
 		this.driverManager.isElementPresentAndClickableByXpath(settingsOption);
-		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+		WebElement settings = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				settingsOption);
 		settings.click();
 	}

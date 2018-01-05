@@ -173,6 +173,7 @@ public class SiteConfigPage {
                 WebElement notification = this.driverManager.waitUntilElementIsDisplayed("xpath",
                         contentTypeSavedNotification);
                 this.driverManager.waitUntilContentTypeNotificationIsNotDisplayed("xpath", "div", notification);
+                this.driverManager.waitForAnimation();
                 break;
             } catch (TimeoutException e) {
                 logger.warn("Click on Save button didn't work, trying again");

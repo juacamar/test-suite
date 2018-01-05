@@ -57,7 +57,7 @@ public class UsersPerPageTest extends BaseTest{
 		usersRowsXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersrows");
 		lastNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.pagination.lastnumberelement");
+				.getProperty("general.users.pagination.lastnumberelement");
 	}
 
 	public void createUserRandom() {

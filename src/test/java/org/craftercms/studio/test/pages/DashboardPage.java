@@ -403,8 +403,8 @@ public class DashboardPage {
 
 	// Click on save and close button
 	public void clickSaveDraft() {
-		this.driverManager.isElementPresentAndClickableById(saveDraft1);
-		WebElement saveDraftButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+		this.driverManager.isElementPresentAndClickableByXpath(saveDraft1);
+		WebElement saveDraftButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				saveDraft1);
 		saveDraftButton.click();
 	}
@@ -574,7 +574,7 @@ public class DashboardPage {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyComponent, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement copyComponentToNewFolder = this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", copyContent);
+					.driverWaitUntilElementIsPresentAndDisplayed("xpath", copyContent);
 			copyComponentToNewFolder.click();
 		});
 	}
@@ -592,7 +592,7 @@ public class DashboardPage {
 		this.getDriverManager().contextClick(this.getDriverManager().getDriver(), copyNewContent, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement copyNewContentToNewFolder = this.driverManager
-					.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", this.copyContent);
+					.driverWaitUntilElementIsPresentAndDisplayed("xpath", this.copyContent);
 			copyNewContentToNewFolder.click();
 		});
 	}
@@ -841,13 +841,13 @@ public class DashboardPage {
 	}
 
 	public void clickCloseButton() {
-		WebElement closeButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement closeButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				closeButtonLocator);
 		closeButton.click();
 	}
 
 	public void clickHistoryCloseButton() {
-		WebElement historyCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id",
+		WebElement historyCloseButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				historyCloseButtonLocator);
 		historyCloseButton.click();
 	}
@@ -871,7 +871,7 @@ public class DashboardPage {
 
 	public void clickApproveAndPublishSubmitButton() {
 		this.driverManager.isElementPresentAndClickableById(approveAndPublishPublishButtonLocator);
-		WebElement submitButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id",
+		WebElement submitButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				approveAndPublishPublishButtonLocator);
 		submitButton.click();
 		this.driverManager.waitForAnimation();
