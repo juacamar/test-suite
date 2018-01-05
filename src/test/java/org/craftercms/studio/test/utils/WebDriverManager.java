@@ -467,6 +467,14 @@ public class WebDriverManager {
 		waitUntilElementIsRemoved(element);
 	}
 
+	public void waitUntilPublishMaskedModalCloses() {
+		logger.debug("Waiting for publish dialog to close");
+		this.waitForAnimation();
+		new WebDriverWait(this.driver, defaultTimeOut)
+				.until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+		this.waitForAnimation();
+	}
+
 	public void waitUntilDeleteSiteModalCloses() {
 		logger.debug("Waiting for delete site dialog to close");
 		new WebDriverWait(this.driver, defaultTimeOut)
@@ -648,6 +656,15 @@ public class WebDriverManager {
 			logger.info("Screenshot saved: {}", screenshot.getName());
 		} catch (IOException e) {
 			logger.warn("Couldn't take screenshot", e);
+		}
+	}
+
+	public void waitUntilElementHasPublishedIcon(String elementIconLocator) {
+		try {
+			this.waitUntilAttributeContains("xpath", elementIconLocator, "class", "undefined live");
+		} catch (TimeoutException e) {
+			this.takeScreenshot();
+			logger.warn("Content page is not published yet, it does not have published icon on pages structure");
 		}
 	}
 }
