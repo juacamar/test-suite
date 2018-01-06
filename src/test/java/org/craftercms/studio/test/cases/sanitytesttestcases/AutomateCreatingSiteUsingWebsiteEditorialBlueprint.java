@@ -97,7 +97,6 @@ public class AutomateCreatingSiteUsingWebsiteEditorialBlueprint extends BaseTest
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);	
 
 		//Assert Page is displayed
-		
 		//Move to the content frame
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 		
