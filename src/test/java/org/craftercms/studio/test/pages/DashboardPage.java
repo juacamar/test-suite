@@ -834,7 +834,7 @@ public class DashboardPage {
 					compareButtonByXpath);
 			compareButton.click();
 		} catch (WebDriverException e) {
-			this.driverManager.takeScreenshot();
+			this.driverManager.takeScreenshot("CompareButtonNotClickable");
 			logger.warn("Compare button can't be clicked, The History dialog is not completely rendered");
 		}
 		
