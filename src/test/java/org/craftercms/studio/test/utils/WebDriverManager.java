@@ -489,6 +489,7 @@ public class WebDriverManager {
 
 	public void waitUntilDeleteSiteModalCloses() {
 		logger.debug("Waiting for delete site dialog to close");
+		this.waitForAnimation();
 		if ((webBrowserProperty.toLowerCase().equalsIgnoreCase("edge"))
 				|| (webBrowserProperty.toLowerCase().equalsIgnoreCase("ie"))) {
 			new WebDriverWait(this.driver, defaultTimeOut).until(

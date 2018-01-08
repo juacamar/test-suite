@@ -172,6 +172,7 @@ public class UsersPage {
 
 			// confirm and wait
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
+			
 			this.driverManager.waitUntilDeleteSiteModalCloses();
 			this.driverManager.waitForAnimation();
 			this.driverManager.waitUntilElementIsRemoved(element);
