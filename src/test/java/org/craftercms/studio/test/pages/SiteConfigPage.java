@@ -178,7 +178,7 @@ public class SiteConfigPage {
             } catch (TimeoutException e) {
                 logger.warn("Click on Save button didn't work, trying again");
             } catch (WebDriverException exception) {
-                driverManager.takeScreenshot();
+                driverManager.takeScreenshot("ErrorDialogWasDisplayed");
                 WebElement error = this.driverManager.waitUntilElementIsDisplayed("xpath",
                         ".//div[@class='bd']");
                 logger.warn("Error dialog was displayed, the error is: {}", error.getText());        

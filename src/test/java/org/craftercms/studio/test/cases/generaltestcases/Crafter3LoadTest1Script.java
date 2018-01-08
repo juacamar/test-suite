@@ -264,7 +264,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		try {
 			this.driverManager.waitUntilElementIsDisplayed("xpath", actionsHeaderXpath);
 		} catch (TimeoutException e) {
-			this.driverManager.takeScreenshot();
+			this.driverManager.takeScreenshot("HistoryDialogNotCompletedRendered");
 			logger.warn("History dialog is not completely rendered, and the buttons can't be clicked");
 		}
 
@@ -339,7 +339,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		driverManager.elementHasChildsByXPath(folderLocator + "/../../../../../div/div/table/tbody/tr/td/span");
 
 		// Switch to the form
-		driverManager.getDriver().navigate().refresh();
+		//driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitForAnimation();
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// The xpath bellow is a dynamic xpath according with folder name of the
@@ -354,9 +355,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
-
-		// refreshing
-		this.driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitUntilPublishMaskedModalCloses();
+		this.driverManager.waitUntilElementHasPublishedIcon(firstChild + "//span/span[2]");
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// The xpath bellow is a dynamic xpath according with folder name of the
@@ -371,9 +371,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
-
-		// refreshing
-		this.driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitUntilPublishMaskedModalCloses();
+		this.driverManager.waitUntilElementHasPublishedIcon(secondChild + "//span/span[2]");
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// The xpath bellow is a dynamic xpath according with folder name of the
@@ -388,9 +387,8 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		});
 		// moving to the publish dialog, clicking on Submit and confirm action
 		this.confirmPublishAction();
-
-		// refreshing
-		this.driverManager.getDriver().navigate().refresh();
+		this.driverManager.waitUntilPublishMaskedModalCloses();
+		this.driverManager.waitUntilElementHasPublishedIcon(thirdChild + "//span/span[2]");
 		driverManager.getDriver().switchTo().defaultContent();
 
 	}
@@ -525,7 +523,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step11() {
 		// Step11
-
 		driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestFolderLocator);
@@ -560,33 +557,46 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 	public void step12() {
 		// Step12
+		// Wait for a while until harness folder is opened after publish actions
 		try {
 			driverManager.waitUntilSidebarOpens();
 			this.driverManager.waitForAnimation();
 			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", mytestFolderLocator);
-			dashboardPage.rightClickDeleteAFolder(mytestFolderLocator);
-			this.confirmDeleteAction();
-
-			driverManager.waitUntilSidebarOpens();
-			this.driverManager.waitForAnimation();
-			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-					anotherTestFolderLocator);
-			dashboardPage.rightClickDeleteAFolder(anotherTestFolderLocator);
-			this.confirmDeleteAction();
-
-			driverManager.waitUntilSidebarOpens();
-			this.driverManager.waitForAnimation();
-			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-					bigTree2BigTree1ChildFolderLocator);
-			dashboardPage.rightClickDeleteAFolder(bigTree2BigTree1ChildFolderLocator);
-			this.confirmDeleteAction();
 		} catch (TimeoutException e) {
-			this.driverManager.takeScreenshot();
+			this.driverManager.takeScreenshot("FolderIconMissed");
 			logger.warn("Something went wrong, the folder is not opened or the icon is missing");
 		}
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", mytestFolderLocator);
+		dashboardPage.rightClickDeleteAFolder(mytestFolderLocator);
+		this.confirmDeleteAction();
+
+		// Wait for a while until harness folder is opened after publish actions
+		try {
+			driverManager.waitUntilSidebarOpens();
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
+		} catch (TimeoutException e) {
+			this.driverManager.takeScreenshot("FolderIconMissed");
+			logger.warn("Something went wrong, the folder is not opened or the icon is missing");
+		}
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", anotherTestFolderLocator);
+		dashboardPage.rightClickDeleteAFolder(anotherTestFolderLocator);
+		this.confirmDeleteAction();
+
+		// Wait for a while until harness folder is opened after publish actions
+		try {
+			driverManager.waitUntilSidebarOpens();
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilFolderOpens("xpath", harnessFolderLocator);
+		} catch (TimeoutException e) {
+			this.driverManager.takeScreenshot("FolderIconMissed");
+			logger.warn("Something went wrong, the folder is not opened or the icon is missing");
+		}
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				bigTree2BigTree1ChildFolderLocator);
+		dashboardPage.rightClickDeleteAFolder(bigTree2BigTree1ChildFolderLocator);
+		this.confirmDeleteAction();
+
 	}
 
 	public void crafter3LoadTest() {
@@ -629,8 +639,6 @@ public class Crafter3LoadTest1Script extends BaseTest {
 
 		// Step7
 		this.step7();
-
-		// go to dashboard
 		this.driverManager.getDriver().navigate().refresh();
 
 		// Step8
@@ -643,9 +651,11 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		this.step10();
 
 		// Step11
+		driverManager.getDriver().navigate().refresh();
 		this.step11();
 
 		// Step12
+		driverManager.getDriver().navigate().refresh();
 		this.step12();
 	}
 

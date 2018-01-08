@@ -175,7 +175,7 @@ public class PublishingSiteTest extends BaseTest {
 				this.driverManager.waitUntilAttributeContains("xpath", topNavStatusIcon, "class", "undefined live");
 				break;
 			} catch (TimeoutException e) {
-				this.driverManager.takeScreenshot();
+				this.driverManager.takeScreenshot("PageNotPublishedOnTopNavBar");
 				logger.warn("Content page is not published yet, checking again if it has published icon on top bar");
 				driverManager.getDriver().navigate().refresh();
 			}

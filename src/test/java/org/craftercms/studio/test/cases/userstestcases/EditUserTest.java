@@ -8,14 +8,13 @@ import org.testng.annotations.Test;
 import java.util.List;
 import org.craftercms.studio.test.cases.BaseTest;
 
-
 /**
  * 
  * @author Gustavo Andrei Ortiz Alfaro
  *
  */
 
-public class EditUserTest extends BaseTest{
+public class EditUserTest extends BaseTest {
 
 	private String userName;
 	private String password;
@@ -28,7 +27,6 @@ public class EditUserTest extends BaseTest{
 	private String newUserButtonXpath;
 	private String newUserNewPasswordId;
 	private String newUserLastNameCellXpath;
-	private String deleteYesButtonXpath;
 	private String usersRowsXpath;
 
 	@BeforeMethod
@@ -52,8 +50,6 @@ public class EditUserTest extends BaseTest{
 				.getProperty("general.users.newpassword");
 		newUserLastNameCellXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.newuserlastnamecell");
-		deleteYesButtonXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.users.deleteyesbutton");
 		usersRowsXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.usersrows");
 	}
@@ -65,7 +61,8 @@ public class EditUserTest extends BaseTest{
 		// Follow the form
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserFirstNameId).sendKeys("Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId)
+				.sendKeys("Last Name");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId)
 				.sendKeys("email@email.com");
@@ -79,7 +76,6 @@ public class EditUserTest extends BaseTest{
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
-	
 
 	}
 
@@ -96,7 +92,8 @@ public class EditUserTest extends BaseTest{
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId).sendKeys("Test");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId).clear();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId).sendKeys("Test@email.com");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId)
+				.sendKeys("Test@email.com");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserNewPasswordId).clear();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserNewPasswordId)
@@ -114,9 +111,9 @@ public class EditUserTest extends BaseTest{
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
-		//Wait for login page to close
+		// Wait for login page to close
 		driverManager.waitUntilLoginCloses();
-		
+
 		// click On Users option
 		createSitePage.clickOnUsersOption();
 
@@ -130,23 +127,23 @@ public class EditUserTest extends BaseTest{
 		editingUser();
 
 		this.driverManager.waitUntilModalCloses();
-				
+
 		String nameElementText = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameCellXpath).getText();
 
 		Assert.assertEquals(nameElementText, "Test");
 
 		// Click on delete user
-		usersPage.clickOnDeleteUserCreated();
+		usersPage.deleteAllUsersExceptAdmin();
 
-		// Confirmation to delete user 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", deleteYesButtonXpath).click();
-		
-		this.driverManager.waitUntilModalCloses();
-	
+		// Assert new users created is deleted
+		this.driverManager.waitForAnimation();
+		driverManager.getDriver().navigate().refresh();
 		// Assert new users created is deleted
 		Assert.assertTrue(this.driverManager.elementHasChildsByXPath(usersRowsXpath));
 
+		this.driverManager.waitForAnimation();
+		driverManager.getDriver().navigate().refresh();
 		List<WebElement> usersList = this.driverManager.getDriver().findElements(By.xpath(usersRowsXpath));
 		Assert.assertTrue(usersList.size() == 1);
 
