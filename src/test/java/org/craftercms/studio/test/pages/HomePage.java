@@ -171,7 +171,6 @@ public class HomePage {
 		List<WebElement> siteListitem = this.driverManager.getDriver()
 				.findElements(By.xpath(deleteIconsListXpath));
 
-		siteListitem.size();
 		for (int i = 0; i < siteListitem.size(); i++) {
 			this.driverManager.waitForAnimation();
 			this.driverManager.waitUntilPageLoad();		
