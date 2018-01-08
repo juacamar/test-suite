@@ -81,7 +81,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		selectAllCategoriesCheckBox = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.select_All_Categories_CheckBox");
 		siteconfigGroupsOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("siteconfig.groups_option");
+				.getProperty("adminconsole.groups_option");
 		userOptions = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.user_options");
 		userOptionsLogout = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.user_options_logout");
