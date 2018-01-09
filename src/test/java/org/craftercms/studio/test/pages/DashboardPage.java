@@ -191,9 +191,9 @@ public class DashboardPage {
 		addCloseGearImageButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.article_addclose_gear_image");
 		editRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.myrecentactivty.editoption");
+				.getProperty("dashboard.myrecentactivity.editoption");
 		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.myrecentactivty.viewpage");
+				.getProperty("dashboard.myrecentactivity.viewpage");
 
 	}
 

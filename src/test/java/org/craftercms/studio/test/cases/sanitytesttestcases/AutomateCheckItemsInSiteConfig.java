@@ -136,18 +136,10 @@ public class AutomateCheckItemsInSiteConfig extends BaseTest{
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteConfigGroupsOption);
 		
-//		//Verify that there are no error messages displayed and that the following items are listed:
-//			- Content Types
-//			- Configuration
-//			- Groups
-//			- Audit
-//			- Bulk Operations
-//			- Workflow States
-//			- Logging Levels
-//			- Log Console
-//			- Preview Sync           
-//			- Sync From Repository
-		
+//		Verify that there are no error messages displayed and that the following items are listed:
+//			- Content Types - Configuration - Groups - Audit - Bulk Operations - Workflow States
+//			- Logging Levels - Log Console
+
 		Assert.assertTrue(driverManager.isElementPresentByXpath(siteConfigcontentTypesOption),
 				"ERROR: Content Types option is not present");
 		
