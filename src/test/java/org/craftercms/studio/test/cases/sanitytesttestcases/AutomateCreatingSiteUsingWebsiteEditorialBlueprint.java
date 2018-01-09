@@ -93,7 +93,6 @@ public class AutomateCreatingSiteUsingWebsiteEditorialBlueprint extends BaseTest
 		//Verify No error messages after clicking on the Create button
 		
 		Assert.assertFalse(driverManager.isElementPresentByXpath(createSiteErrorNotificationWindow));
-		
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);	
 
 		//Assert Page is displayed

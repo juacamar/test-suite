@@ -8,6 +8,10 @@
 				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateLoginInToStudio" />
 			<class
 				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateCreatingSiteUsingWebsiteEditorialBlueprint" />
+			<class
+				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateOpeningStudioInActualBrowser" />
+			<class
+				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateCheckItemsInSiteConfig" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
