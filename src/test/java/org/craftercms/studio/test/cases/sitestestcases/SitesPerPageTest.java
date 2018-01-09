@@ -2,7 +2,7 @@ package org.craftercms.studio.test.cases.sitestestcases;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.cases.BaseTest;
@@ -66,7 +66,7 @@ public class SitesPerPageTest extends BaseTest{
 
 	}
 
-	@AfterClass
+	@AfterMethod
 	public void afterTest() {
 		// Delete Created site 1
 		deleteSite();
@@ -74,7 +74,6 @@ public class SitesPerPageTest extends BaseTest{
 		deleteSite();
 		// Delete Created site 3
 		deleteSite();
-		driverManager.closeConnection();
 	}
 
 	public void createSitesRandom() {

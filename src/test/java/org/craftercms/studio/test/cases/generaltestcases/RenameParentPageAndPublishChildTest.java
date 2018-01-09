@@ -3,8 +3,7 @@
  */
 package org.craftercms.studio.test.cases.generaltestcases;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.craftercms.studio.test.pages.DashboardPage;
@@ -48,7 +47,7 @@ public class RenameParentPageAndPublishChildTest {
 	private String homeExpansorXpath;
 	private String createFormArticleMainTitleElementXPath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		this.driverManager = new WebDriverManager();
 		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
@@ -90,11 +89,6 @@ public class RenameParentPageAndPublishChildTest {
 				.getProperty("complexscenarios.general.saveandclosebutton");
 		homeExpansorXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.homeexpansor");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void loginAndGoToSiteContentPagesStructure() {

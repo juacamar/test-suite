@@ -1,7 +1,7 @@
 package org.craftercms.studio.test.cases.dashboardtestcases;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.By;
@@ -19,7 +19,7 @@ public class ShowHideSiteContentTest extends BaseTest {
 	private String password;
 	private String adminConsoleXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");

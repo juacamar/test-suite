@@ -222,12 +222,13 @@ public class DashboardPage {
 	public void clickGlobalEntryContent() {
 		this.driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitForAnimation();
-		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				homeTree);
-
+		
 		// Verify if the home tree is already expanded
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
 		if (!home.getAttribute("class").contains("open")) {
+			WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					homeTree);
+
 			globalEntry.click();
 		}
 	}
