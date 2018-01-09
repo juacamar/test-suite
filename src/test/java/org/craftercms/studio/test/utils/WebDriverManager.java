@@ -449,8 +449,8 @@ public class WebDriverManager {
 		logger.debug("Waiting for login dialog to close");
 		if ((webBrowserProperty.toLowerCase().equalsIgnoreCase("edge"))
 				|| (webBrowserProperty.toLowerCase().equalsIgnoreCase("ie"))) {
-			new WebDriverWait(this.driver, defaultTimeOut).until(
-					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
+			new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions
+					.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
 		} else {
 			new WebDriverWait(this.driver, defaultTimeOut).until(
 					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
@@ -479,8 +479,8 @@ public class WebDriverManager {
 		this.waitForAnimation();
 		if ((webBrowserProperty.toLowerCase().equalsIgnoreCase("edge"))
 				|| (webBrowserProperty.toLowerCase().equalsIgnoreCase("ie"))) {
-			new WebDriverWait(this.driver, defaultTimeOut).until(
-					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
+			new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions
+					.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
 		} else {
 			new WebDriverWait(this.driver, defaultTimeOut).until(
 					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
@@ -492,8 +492,8 @@ public class WebDriverManager {
 		this.waitForAnimation();
 		if ((webBrowserProperty.toLowerCase().equalsIgnoreCase("edge"))
 				|| (webBrowserProperty.toLowerCase().equalsIgnoreCase("ie"))) {
-			new WebDriverWait(this.driver, defaultTimeOut).until(
-					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
+			new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions
+					.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
 		} else {
 			new WebDriverWait(this.driver, defaultTimeOut).until(
 					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
