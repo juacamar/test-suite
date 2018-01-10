@@ -36,7 +36,8 @@ public class GetItemsAPITest {
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
 		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
-		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
+		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId(), "site/website/folder1");
+		clipboardAPI.testCopyItem(siteManagementAPI.getSiteId());
 	}
 
 	@Test(priority = 1)
