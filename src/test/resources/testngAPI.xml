@@ -273,12 +273,42 @@
 				name="org.craftercms.studio.test.cases.apitestcases.StopPublisherAPITest" />
 		</classes>
 	</test>
-	
+<!--     Clipboard -->
+	<test name="Copy Item" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CopyItemAPITest" />
+		</classes>
+	</test>
+	<test name="Cut Item" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CutItemAPITest" />
+		</classes>
+	</test>
+	<test name="Get Items" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetItemsAPITest" />
+		</classes>
+	</test>
+	<test name="Paste Item" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.PasteItemAPITest" />
+		</classes>
+	</test>
 <!--	 Dependency -->
 	<test name="Get Dependant Items" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.apitestcases.GetDependantItemsAPITest" />
+		</classes>
+	</test>
+	<test name="Get Dependencies" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetDependenciesAPITest" />
 		</classes>
 	</test>
 	<test name="Get Simple Dependencies" preserve-order="true">

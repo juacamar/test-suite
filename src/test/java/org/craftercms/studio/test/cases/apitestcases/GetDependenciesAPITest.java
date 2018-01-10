@@ -1,47 +1,47 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
 import org.craftercms.studio.test.api.objects.ContentAssetAPI;
+import org.craftercms.studio.test.api.objects.DependencyAPI;
 import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class ReorderContentItemsAPITest {
+public class GetDependenciesAPITest {
 	
-	private SiteManagementAPI siteManagementAPI;
 	private SecurityAPI securityAPI;
+	private SiteManagementAPI siteManagementAPI;
+	private DependencyAPI dependencyAPI;
 	private ContentAssetAPI contentAssetAPI;
-
-	public ReorderContentItemsAPITest() {
+	
+	public GetDependenciesAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
-    	securityAPI = new SecurityAPI(api, apiConnectionManager);
-    	contentAssetAPI = new ContentAssetAPI(api, apiConnectionManager);
-    	siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
+		securityAPI = new SecurityAPI(api, apiConnectionManager);
+		siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
+		dependencyAPI = new DependencyAPI(api, apiConnectionManager);
+		contentAssetAPI = new ContentAssetAPI(api, apiConnectionManager);
+		
 	}
-	
+
 	@BeforeTest
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
 		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
-		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId(),"site/website/testfolder1");
-		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId(),"site/website/testfolder2");
+		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 1)
-	public void testReorderContentItems() {
-		
-		contentAssetAPI.testReorderContentItems(siteManagementAPI.getSiteId(),
-				contentAssetAPI.getContentPath()+"/testfolder1/index.xml",
-				contentAssetAPI.getContentPath()+"/testfolder2/index.xml");
+	@Test(priority = 1,groups={"getDependencies"})
+	public void testGetDependencies() {
+		dependencyAPI.testGetDependencies(siteManagementAPI.getSiteId());
 	}
-	
-	@AfterTest
-	public void afterTest(){
+
+	@AfterGroups(groups={"getDependencies"})
+	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteManagementAPI.getSiteId());
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
