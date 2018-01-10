@@ -280,7 +280,7 @@
 				name="org.craftercms.studio.test.cases.apitestcases.CopyItemAPITest" />
 		</classes>
 	</test>
-	<test name="Curt Item" preserve-order="true">
+	<test name="Cut Item" preserve-order="true">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.apitestcases.CutItemAPITest" />

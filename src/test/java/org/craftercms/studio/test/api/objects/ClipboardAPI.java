@@ -60,22 +60,4 @@ public class ClipboardAPI extends BaseAPI {
 		
 		return json;
 	}
-	/*
-	 *
-{
-  "item":
-    [
-      {
-        "uri":"/site/website/folder1",
-        "children":
-          [
-          	{
-          	  "uri":"/site/website/folder1/index.xml"
-          	}
-          ]
-       }
-    ]
-}
-	 * 
-	 */
 }
