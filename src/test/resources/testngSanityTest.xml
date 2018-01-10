@@ -12,6 +12,8 @@
 				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateOpeningStudioInActualBrowser" />
 			<class
 				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateCheckItemsInSiteConfig" />
+			<class
+				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateCheckingNoErrorsDisplayedInTheDashboard" />	
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
