@@ -102,7 +102,7 @@ public class PreviewPage {
 		dependenciesCloseButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dependencies.close_button");
 		siteconfigBulkOperationsoption = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("siteconfig.bulk_operations_option");
+				.getProperty("adminconsole.bulk_operations_option");
 		bulkOperationsPathToPublishInput = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("bulkoperations.path_to_publish_input");
 		bulkoperationsPublishButton = UIElementsPropertiesManager.getSharedUIElementsLocators()

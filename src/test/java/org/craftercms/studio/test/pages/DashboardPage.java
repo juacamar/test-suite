@@ -191,9 +191,9 @@ public class DashboardPage {
 		addCloseGearImageButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.article_addclose_gear_image");
 		editRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.myrecentactivty.editoption");
+				.getProperty("dashboard.myrecentactivity.editoption");
 		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.myrecentactivty.viewpage");
+				.getProperty("dashboard.myrecentactivity.viewpage");
 
 	}
 
@@ -222,13 +222,12 @@ public class DashboardPage {
 	public void clickGlobalEntryContent() {
 		this.driverManager.waitUntilSidebarOpens();
 		this.driverManager.waitForAnimation();
-		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				homeTree);
-
+		
 		// Verify if the home tree is already expanded
 		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
 		if (!home.getAttribute("class").contains("open")) {
-			globalEntry.click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+					homeTree).click();
 		}
 	}
 

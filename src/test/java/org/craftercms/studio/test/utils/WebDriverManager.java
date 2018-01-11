@@ -37,6 +37,7 @@ public class WebDriverManager {
 	WebDriver driver;
 	private ConstantsPropertiesManager constantsPropertiesManager;
 	private int defaultTimeOut;
+	private String webBrowserProperty;
 
 	@SuppressWarnings("deprecation")
 	public void openConnection() {
@@ -48,7 +49,7 @@ public class WebDriverManager {
 			final Properties envProperties = new Properties();
 			try {
 				envProperties.load(new FileInputStream(enviromentPropertiesPath));
-				String webBrowserProperty = envProperties.getProperty("webBrowser");
+				webBrowserProperty = envProperties.getProperty("webBrowser");
 				DesiredCapabilities capabilities;
 				switch (webBrowserProperty.toLowerCase()) {
 				case "phantomjs":
@@ -446,8 +447,14 @@ public class WebDriverManager {
 
 	public void waitUntilLoginCloses() {
 		logger.debug("Waiting for login dialog to close");
-		new WebDriverWait(this.driver, defaultTimeOut)
-				.until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+		if ((webBrowserProperty.toLowerCase().equalsIgnoreCase("edge"))
+				|| (webBrowserProperty.toLowerCase().equalsIgnoreCase("ie"))) {
+			new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions
+					.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
+		} else {
+			new WebDriverWait(this.driver, defaultTimeOut).until(
+					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+		}
 	}
 
 	public void waitUntilSidebarOpens() {
@@ -470,15 +477,27 @@ public class WebDriverManager {
 	public void waitUntilPublishMaskedModalCloses() {
 		logger.debug("Waiting for publish dialog to close");
 		this.waitForAnimation();
-		new WebDriverWait(this.driver, defaultTimeOut)
-				.until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
-		this.waitForAnimation();
+		if ((webBrowserProperty.toLowerCase().equalsIgnoreCase("edge"))
+				|| (webBrowserProperty.toLowerCase().equalsIgnoreCase("ie"))) {
+			new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions
+					.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
+		} else {
+			new WebDriverWait(this.driver, defaultTimeOut).until(
+					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+		}
 	}
 
 	public void waitUntilDeleteSiteModalCloses() {
 		logger.debug("Waiting for delete site dialog to close");
-		new WebDriverWait(this.driver, defaultTimeOut)
-				.until(ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+		this.waitForAnimation();
+		if ((webBrowserProperty.toLowerCase().equalsIgnoreCase("edge"))
+				|| (webBrowserProperty.toLowerCase().equalsIgnoreCase("ie"))) {
+			new WebDriverWait(this.driver, defaultTimeOut).until(ExpectedConditions
+					.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "iewarning")));
+		} else {
+			new WebDriverWait(this.driver, defaultTimeOut).until(
+					ExpectedConditions.refreshed(ExpectedConditions.attributeToBe(By.tagName("body"), "class", "")));
+		}
 	}
 
 	public void waitUntilFolderOpens(String selectorType, String selectorValue) {
@@ -652,8 +671,9 @@ public class WebDriverManager {
 	public void takeScreenshot(String screenShotName) {
 		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(screenshot, new File(FilesLocations.SCREENSHOTSFOLDEPATH, screenShotName+screenshot.getName()));
-			logger.info("Screenshot saved: {}", screenShotName+screenshot.getName());
+			FileUtils.copyFile(screenshot,
+					new File(FilesLocations.SCREENSHOTSFOLDEPATH, screenShotName + screenshot.getName()));
+			logger.info("Screenshot saved: {}", screenShotName + screenshot.getName());
 		} catch (IOException e) {
 			logger.warn("Couldn't take screenshot", e);
 		}
