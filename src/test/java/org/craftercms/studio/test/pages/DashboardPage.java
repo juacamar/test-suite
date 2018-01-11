@@ -79,6 +79,8 @@ public class DashboardPage {
 	private String editRecentActivity;
 	private String seeThePageEdited;
 	private String copyContentButton;
+	private String componentsTree;
+	private String componentsSubTree;
 	private static Logger logger = LogManager.getLogger(DashboardPage.class);
 
 	/**
@@ -194,6 +196,10 @@ public class DashboardPage {
 				.getProperty("dashboard.myrecentactivity.editoption");
 		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.myrecentactivity.viewpage");
+		componentsTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.expand_components_tree");
+		componentsSubTree = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.expand_components_subtree");
 
 	}
 
@@ -210,12 +216,48 @@ public class DashboardPage {
 			driverManager.waitUntilFolderOpens("xpath", pagesTree);
 		}
 	}
+	
+	// Expand components tree
+	public void clickComponentsTree() {
+		this.driverManager.waitUntilSidebarOpens();
+		WebElement expandComponentsTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", componentsTree);
+		if (!expandComponentsTree.getAttribute("class").contains("open")) {
+			expandComponentsTree.click();
+			driverManager.waitUntilFolderOpens("xpath", componentsTree);
+		}
+	}
+	
+	// Expand components Sub-tree
+	public void clickComponentsSubTree() {
+		this.driverManager.waitUntilSidebarOpens();
+		WebElement expandComponentsSubTree = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", componentsSubTree);
+		if (!expandComponentsSubTree.getAttribute("class").contains("open")) {
+			expandComponentsSubTree.click();
+			driverManager.waitUntilFolderOpens("xpath", componentsSubTree);
+		}
+	}
+	
 
 	public void expandPagesTree() {
 		// Expand pages tree
 		logger.info("Expanding Pages tree");
 		this.clickPagesTree();
 	}
+	
+	public void expandComponentsTree() {
+		// Expand components 
+		logger.info("Expanding Components tree");
+		this.clickComponentsTree();
+	}
+	
+	public void expandComponentsSubTree() {
+		// Expand components 
+		logger.info("Expanding Components Sub-tree");
+		this.clickComponentsSubTree();
+	}
+	
+	
+	
 
 	// Expand global entry content
 
