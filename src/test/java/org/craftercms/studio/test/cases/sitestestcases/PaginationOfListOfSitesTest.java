@@ -67,7 +67,6 @@ public class PaginationOfListOfSitesTest extends BaseTest{
 
 	@AfterMethod
 	public void afterTest() {
-
 		// Delete Site 1
 		deleteSite();
 		// Delete Site 2
