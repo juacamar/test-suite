@@ -1,6 +1,7 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
 import org.craftercms.studio.test.api.objects.ClipboardAPI;
+import org.craftercms.studio.test.api.objects.ContentAssetAPI;
 import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
@@ -18,6 +19,7 @@ public class CopyItemAPITest {
 	private SecurityAPI securityAPI;
 	private SiteManagementAPI siteManagementAPI;
 	private ClipboardAPI clipboardAPI;
+	private ContentAssetAPI contentAssetAPI;
 	
 	public CopyItemAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
@@ -26,12 +28,14 @@ public class CopyItemAPITest {
 		securityAPI = new SecurityAPI(api, apiConnectionManager);
 		siteManagementAPI = new SiteManagementAPI(api, apiConnectionManager);
 		clipboardAPI = new ClipboardAPI(api, apiConnectionManager);
+		contentAssetAPI = new ContentAssetAPI(api, apiConnectionManager);
 	}
 	
 	@BeforeTest
 	public void beforeTest() {
 		securityAPI.logInIntoStudioUsingAPICall();
 		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
+		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId(), "site/website/folder1");
 	}
 
 	@Test(priority = 1)
