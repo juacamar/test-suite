@@ -14,6 +14,8 @@
 				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateCheckItemsInSiteConfig" />
 			<class
 				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateCheckingNoErrorsDisplayedInTheDashboard" />	
+			<class
+				name="org.craftercms.studio.test.cases.sanitytesttestcases.AutomateVerifyingNoErrorsPresentInWebsiteEditorialBPHomePage" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
