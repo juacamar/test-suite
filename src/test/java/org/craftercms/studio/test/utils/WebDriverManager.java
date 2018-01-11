@@ -416,6 +416,10 @@ public class WebDriverManager {
 	public void scrollDown() {
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,2000)");
 	}
+	
+	public void scrollDownPx(int px) {
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,"+px+")");
+	}
 
 	public ConstantsPropertiesManager getConstantsPropertiesManager() {
 		return constantsPropertiesManager;
