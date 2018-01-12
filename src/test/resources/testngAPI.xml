@@ -273,6 +273,15 @@
 				name="org.craftercms.studio.test.cases.apitestcases.StopPublisherAPITest" />
 		</classes>
 	</test>
+	
+<!--     Activity -->
+	<test name="Get User Activity" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetUserActivityAPITest" />
+		</classes>
+	</test>
+	
 <!--     Clipboard -->
 	<test name="Copy Item" preserve-order="true">
 		<classes>
@@ -480,4 +489,11 @@
 		</classes>
 	</test> 
 	
+<!-- 	 Workflow -->
+	<test name="Create Jobs" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CreateJobsAPITest" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->
