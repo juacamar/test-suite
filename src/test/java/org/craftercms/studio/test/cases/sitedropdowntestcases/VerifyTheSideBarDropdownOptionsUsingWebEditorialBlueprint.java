@@ -34,6 +34,7 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprint extends B
 	private String scriptsTreeLink;
 	private String siteConfigLink;
 	private LinkedList<String> siteDropdownItemsInExpectedOrder;
+	private String siteDropdownItemsXpath;
 	
 	@BeforeMethod
 	public void beforeTest() {
@@ -59,6 +60,8 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprint extends B
 		.getProperty("dashboard.expand_scripts_tree");
 		siteConfigLink = uiElementsPropertiesManager.getSharedUIElementsLocators()
 		.getProperty("general.adminconsole");
+		siteDropdownItemsXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.sitebar.dropdown.items");
 		
 		siteDropdownItemsInExpectedOrder = new LinkedList<String>();
 		siteDropdownItemsInExpectedOrder.add(0,"Dashboard");
@@ -173,8 +176,7 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprint extends B
 				"ERROR: Site Config link is not present");
 		
 		List<WebElement> siteDropdownItems = this.driverManager.getDriver()
-				.findElements(By.xpath(".//div[@id='acn-dropdown-menu']//a"));
-
+				.findElements(By.xpath(siteDropdownItemsXpath));
 		int currentIndex = 0;
 		for(WebElement element:siteDropdownItems){
 			this.driverManager.waitForAnimation();
