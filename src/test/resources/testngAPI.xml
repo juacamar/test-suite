@@ -496,4 +496,16 @@
 				name="org.craftercms.studio.test.cases.apitestcases.CreateJobsAPITest" />
 		</classes>
 	</test>
+	<test name="Get Go Live Items" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetGoLiveItemsAPITest" />
+		</classes>
+	</test>
+	<test name="Get Workflow Affected Paths" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetWorkflowAffectedPathsAPITest" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->

@@ -30,4 +30,23 @@ public class WorkflowAPI extends BaseAPI{
 		.execute().status(200)
 		.debug();
 	}
+	
+	public void testGetGoLiveItems(String siteId) {
+		
+		api.get("/studio/api/1/services/api/1/workflow/get-go-live-items.json")
+		.urlParam("site", siteId)
+		.urlParam("sort","eventDate")
+		.urlParam("ascending","true")
+		.urlParam("includeInProgress","true")
+		.execute().status(200)
+		.debug();
+	}
+	
+	public void testGetWorkflowAffectedPaths(String siteId) {
+		api.get("/studio/api/1/services/api/1/workflow/get-workflow-affected-paths.json")
+		.urlParam("site", siteId)
+		.urlParam("path","/site/website/index.xml")
+		.execute().status(200)
+		.debug();
+	}
 }
