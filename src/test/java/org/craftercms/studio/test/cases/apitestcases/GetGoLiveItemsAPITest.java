@@ -35,7 +35,7 @@ public class GetGoLiveItemsAPITest {
 	}
 
 	@Test(priority = 1)
-	public void testCreateJobs() {
+	public void testGetGoLiveItems() {
 		workflowAPI.testGetGoLiveItems(siteManagementAPI.getSiteId());
 	}
 	

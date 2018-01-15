@@ -508,4 +508,16 @@
 				name="org.craftercms.studio.test.cases.apitestcases.GetWorkflowAffectedPathsAPITest" />
 		</classes>
 	</test>
+	<test name="Go Delete" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GoDeleteAPITest" />
+		</classes>
+	</test>
+	<test name="Go Live" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GoLiveAPITest" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->

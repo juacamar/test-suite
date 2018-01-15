@@ -49,4 +49,54 @@ public class WorkflowAPI extends BaseAPI{
 		.execute().status(200)
 		.debug();
 	}
+	
+	public void testGoDelete(String siteId) {
+		
+		Map<String, Object> json = new HashMap<>();
+		String[] items = new String[1];
+		items[0] = "/site/website/folder1/index.xml";
+		json.put("items", items);
+		
+		api.post("/studio/api/1/services/api/1/workflow/go-delete.json")
+		.urlParam("site", siteId)
+		.urlParam("user", "admin")
+		.json(json)
+		.execute().status(200)
+		.debug();
+	}
+	
+	public void testGoLive(String siteId) {
+		
+		Map<String, Object> json = new HashMap<>();
+		String[] items = new String[1];
+		items[0] = "/site/website/folder1/index.xml";
+		json.put("schedule", "now");
+		json.put("submissionComment", " ");
+		json.put("publishOptionComment", " ");
+		json.put("publishChannel", "Live");
+		json.put("items", items);
+		
+		api.post("/studio/api/1/services/api/1/workflow/go-live.json")
+		.urlParam("site", siteId)
+		.json(json)
+		.execute().status(200)
+		.debug();
+	}
+	
+	public void testReject(String siteId) {
+		
+		Map<String, Object> json = new HashMap<>();
+		String[] items = new String[1];
+		items[0] = "/site/website/index.xml";
+		json.put("reason", "Not approved");
+		json.put("scheduledDate", "now");
+		json.put("items", items);
+		
+		api.post("/studio/api/1/services/api/1/workflow/reject.json")
+		.urlParam("site", siteId)
+		.urlParam("user", "admin")
+		.json(json)
+		.execute().status(200)
+		.debug();
+	}
 }

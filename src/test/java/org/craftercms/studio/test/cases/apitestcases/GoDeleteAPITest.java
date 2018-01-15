@@ -10,14 +10,14 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class GetWorkflowAffectedPathsAPITest {
+public class GoDeleteAPITest {
 	
 	private SecurityAPI securityAPI;
 	private SiteManagementAPI siteManagementAPI;
 	private WorkflowAPI workflowAPI;
 	private ContentAssetAPI contentAssetAPI;
 	
-	public GetWorkflowAffectedPathsAPITest() {
+	public GoDeleteAPITest() {
 		APIConnectionManager apiConnectionManager = new APIConnectionManager();
 		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
 				apiConnectionManager.getPort());
@@ -32,11 +32,12 @@ public class GetWorkflowAffectedPathsAPITest {
 		securityAPI.logInIntoStudioUsingAPICall();
 		siteManagementAPI.testCreateSite(siteManagementAPI.getSiteId());
 		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId());
+		contentAssetAPI.testWriteContent(siteManagementAPI.getSiteId(), "site/website/folder1");
 	}
 
 	@Test(priority = 1)
-	public void testWorkflowAffectedPaths() {
-		workflowAPI.testGetWorkflowAffectedPaths(siteManagementAPI.getSiteId());
+	public void testGoDelete() {
+		workflowAPI.testGoDelete(siteManagementAPI.getSiteId());
 	}
 	
 	@AfterTest
