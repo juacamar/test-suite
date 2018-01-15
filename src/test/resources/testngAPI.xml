@@ -273,6 +273,15 @@
 				name="org.craftercms.studio.test.cases.apitestcases.StopPublisherAPITest" />
 		</classes>
 	</test>
+	
+<!--     Activity -->
+	<test name="Get User Activity" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetUserActivityAPITest" />
+		</classes>
+	</test>
+	
 <!--     Clipboard -->
 	<test name="Copy Item" preserve-order="true">
 		<classes>
@@ -480,4 +489,35 @@
 		</classes>
 	</test> 
 	
+<!-- 	 Workflow -->
+	<test name="Create Jobs" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.CreateJobsAPITest" />
+		</classes>
+	</test>
+	<test name="Get Go Live Items" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetGoLiveItemsAPITest" />
+		</classes>
+	</test>
+	<test name="Get Workflow Affected Paths" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetWorkflowAffectedPathsAPITest" />
+		</classes>
+	</test>
+	<test name="Go Delete" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GoDeleteAPITest" />
+		</classes>
+	</test>
+	<test name="Go Live" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GoLiveAPITest" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->
