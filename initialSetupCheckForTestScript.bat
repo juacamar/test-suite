@@ -6,19 +6,19 @@ cls
 echo [INFO] moving out from craftercms / src / test-suite folder
 cd ../../..
 
-IF EXIST temp (
-    @rem temp folder already exists, deleting temporal folder
-	echo [INFO] temp folder already exists, deleting the temporal folder
-	rd /s /q temp
+IF EXIST crafter_cms_temp (
+    @rem crafter_cms_temp folder already exists, deleting temporary folder
+	echo [INFO] crafter_cms_temp folder already exists, deleting the temporary folder
+	rd /s /q crafter_cms_temp
 ) 
 
-@rem creating temporal folder
-echo [INFO] creating temp folder to test installation of craftercms
-mkdir temp
+@rem creating temporary folder
+echo [INFO] creating crafter_cms_temp folder to test installation of craftercms
+mkdir crafter_cms_temp
 
-@rem moving to temporal folder
-echo [INFO] moving from temporal folder
-cd temp
+@rem moving to temporary folder
+echo [INFO] moving to temporary folder
+cd crafter_cms_temp
 
 @rem Cloning the craftercms repo to local
 echo [INFO] cloning the craftercms to local
@@ -69,13 +69,13 @@ echo [ERROR] the stop process failed
 echo [INFO] executed gradlew stop process with success
 )
 
-@rem moving out of temporal
-echo [INFO] moving out from temporal
+@rem moving out of temporary folder
+echo [INFO] moving out from temporary folder
 cd ..
 
-@rem deleting temporal folder
-echo [INFO] deleting the temporal folder
-rd /s /q temp
+@rem deleting temporary folder
+echo [INFO] deleting the temporary folder
+rd /s /q crafter_cms_temp
 
 
 
