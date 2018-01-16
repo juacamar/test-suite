@@ -561,10 +561,22 @@
 				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
 		</classes>
 	</test>
-		<test name="Verify that the application displays the proper set of dropdown (Sidebar) components/options on the Site Dropdown panel Test Case">
+		<test name="Verify that the application displays the proper set of dropdown (Sidebar) components/options on the Site Dropdown panel Test Case With Admin User">
 		<classes>
 			<class
-				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprint" />
+				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithAdminUser" />
+		</classes>
+	</test>
+		<test name="Verify that the application displays the proper set of dropdown (Sidebar) components/options on the Site Dropdown panel Test Case With Author User">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithAuthorUser" />
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
+			<class
+				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
 		</classes>
 	</test>
 </suite> <!-- Suite -->

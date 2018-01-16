@@ -19,7 +19,7 @@ import org.openqa.selenium.WebElement;
  *
  */
 //Test Case ID:89
-public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprint extends BaseTest{
+public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithAdminUser extends BaseTest{
 
 	private String userName;
 	private String password;
