@@ -615,7 +615,7 @@
 				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
 		</classes>
 	</test>
-		<test name="Verify that the application displays the proper set of dropdown (Sidebar) components/options on the Site Dropdown panel Test Case With Admin User">
+		<test name="Verify that the application redirects to the “Site Config” page when the “Site Config” option is clicked">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyTheApplicationRedirectstoTheSiteConfigPageWhenTheSiteConfigOptionIsClicked" />
