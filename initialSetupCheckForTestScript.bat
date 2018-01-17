@@ -69,8 +69,8 @@ echo [ERROR] the stop process failed
 echo [INFO] executed gradlew stop process with success
 )
 
-@rem moving out of temporal
-echo [INFO] moving out from temporal
+@rem moving out of temporary
+echo [INFO] moving out from temporary
 cd ../..
 
 @rem deleting temporary folder
