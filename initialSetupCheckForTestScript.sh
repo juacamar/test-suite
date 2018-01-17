@@ -5,18 +5,18 @@ clear
 echo "[INFO] moving out from craftercms / src / test-suite folder"
 cd ../../..
 
-if [ -d "temp" ]; then
-    #deleting temporal folder
-        echo "[INFO] temp folder already exists, deleting temporal folder"
-        rm -rf temp
+if [ -d "crafter_cms_temp" ]; then
+    #deleting temporary folder
+        echo "[INFO] crafter_cms_temp folder already exists, deleting temporary folder"
+        rm -rf crafter_cms_temp
 fi
 
-#creating temporal folder
-    echo "[INFO] creating temp folder to test installation of craftercms"
-    mkdir temp
-#moving to temporal folder
-    echo "[INFO] moving from temporal folder"
-    cd temp
+#creating temporary folder
+    echo "[INFO] creating temporary folder to test installation of craftercms"
+    mkdir crafter_cms_temp
+#moving to temporary folder
+    echo "[INFO] moving to temporary folder"
+    cd crafter_cms_temp
 #Cloning the craftercms repo to local
     echo "[INFO] cloning the craftercms to local"
     git clone https://github.com/craftercms/craftercms.git
@@ -57,10 +57,11 @@ if [ $? -eq 0 ]; then
    else 
    echo "[ERROR] the stop proccess failed"
 fi
+
 #moving out from temporal
 echo "[INFO] moving out from temporal"
 cd ../..
 
-#deleting temporal folder
-echo "[INFO] deleting the temporal folder"
-rm -rf temp
+#deleting temporary folder
+echo "[INFO] deleting the temporary folder"
+rm -rf crafter_cms_temp
