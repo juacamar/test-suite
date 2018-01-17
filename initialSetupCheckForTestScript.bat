@@ -32,13 +32,13 @@ cd craftercms
 echo [INFO] moving to develop branch
 git checkout develop
 
-@rem executing the .\gradlew.bat init 
+@rem executing the gradlew.bat init 
 echo [INFO] executing gradlew init process
-gradlew.bat init 
+call gradlew.bat init -P"crafter.git.shallowClone=true"
 
-@rem executing the .\gradlew.bat init
+@rem executing the gradlew.bat build and deploy
 echo [INFO] executing gradlew build and deploy processes, using smtp port=2525
-gradlew.bat build deploy -P"authoring.studio.smtp.port=2525" 
+call gradlew.bat build deploy -P"authoring.studio.smtp.port=2525" 
 
 @rem here we need to check if the output was success 
 IF /I "%ERRORLEVEL%" NEQ "0" (
@@ -49,7 +49,7 @@ echo [INFO] executed gradlew build and deploy processes with success
 
 @rem executing the start up of the both envs delivery env and authoring env
 echo [INFO] executing gradlew startup process
-gradlew.bat start
+call gradlew.bat start
 
 @rem here we need to check if the output was success
 IF /I "%ERRORLEVEL%" NEQ "0" (
@@ -60,7 +60,7 @@ echo [INFO] executed gradlew start process with success
 
 @rem executing the stop of the both envs delivery env and authoring env
 echo [INFO] executing gradlew stop process
-gradlew.bat stop
+call gradlew.bat stop
 
 @rem here we need to check if the output was success
 IF /I "%ERRORLEVEL%" NEQ "0" (
@@ -69,9 +69,9 @@ echo [ERROR] the stop process failed
 echo [INFO] executed gradlew stop process with success
 )
 
-@rem moving out of temporary folder
-echo [INFO] moving out from temporary folder
-cd ..
+@rem moving out of temporary
+echo [INFO] moving out from temporary
+cd ../..
 
 @rem deleting temporary folder
 echo [INFO] deleting the temporary folder

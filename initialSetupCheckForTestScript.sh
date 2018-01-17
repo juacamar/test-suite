@@ -57,9 +57,10 @@ if [ $? -eq 0 ]; then
    else 
    echo "[ERROR] the stop proccess failed"
 fi
-#moving out from temporary folder
-echo "[INFO] moving out from temporary folder"
-cd ..
+
+#moving out from temporary
+echo "[INFO] moving out from temporary"
+cd ../..
 
 #deleting temporary folder
 echo "[INFO] deleting the temporary folder"
