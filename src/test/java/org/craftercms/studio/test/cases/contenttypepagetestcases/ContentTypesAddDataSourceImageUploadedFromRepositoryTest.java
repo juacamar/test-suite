@@ -41,7 +41,7 @@ public class ContentTypesAddDataSourceImageUploadedFromRepositoryTest extends Ba
 	}
 
 	public void dragAndDrop() {
-
+		this.driverManager.scrollDownPx(1000);
 		// Getting the ChildContent for drag and drop action
 		WebElement FromDataSourceImageUploadedFromRepoElement = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
