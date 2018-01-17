@@ -58,24 +58,18 @@ public class WebDriverManager {
 					driver = new PhantomJSDriver(capabilities);
 					break;
 				case "firefox":
-					capabilities = DesiredCapabilities.firefox();
-					FirefoxOptions firefoxOptions = new FirefoxOptions(capabilities);
+					FirefoxOptions firefoxOptions = new FirefoxOptions();
 					System.setProperty("webdriver.gecko.driver", envProperties.getProperty("firefox.driver.path"));
 					driver = new FirefoxDriver(firefoxOptions);
 					break;
 				case "edge":
-					capabilities = DesiredCapabilities.edge();
 					System.setProperty("webdriver.edge.driver", envProperties.getProperty("edge.driver.path"));
 					EdgeOptions options = new EdgeOptions();
 					options.setPageLoadStrategy("eager");
-					driver = new EdgeDriver();
+					driver = new EdgeDriver(options);
 					break;
 				case "ie":
-					capabilities = DesiredCapabilities.internetExplorer();
-					capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-							true);
-					InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions(capabilities);
-
+					InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
 					System.setProperty("webdriver.ie.driver", envProperties.getProperty("ie.driver.path"));
 					driver = new InternetExplorerDriver(internetExplorerOptions);
 					break;
