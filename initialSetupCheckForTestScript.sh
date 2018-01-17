@@ -59,7 +59,7 @@ if [ $? -eq 0 ]; then
 fi
 #moving out from temporal
 echo "[INFO] moving out from temporal"
-cd ..
+cd ../..
 
 #deleting temporal folder
 echo "[INFO] deleting the temporal folder"
