@@ -519,6 +519,14 @@ public class WebDriverManager {
 		input.sendKeys(text);
 		waitUntilAttributeIs(selectorType, selectorValue, "value", text);
 	}
+	
+//	public void sendTextOnInput(String selectorType, String selectorValue, String text) {
+//		logger.debug("Filling element {}, {} with value {}", selectorType, selectorValue, text);
+//		WebElement input = waitUntilElementIsPresent(selectorType, selectorValue);
+//		input.clear();
+//		input.sendKeys(text);
+//		waitUntilAttributeIs(selectorType, selectorValue, "value", text);
+//	}
 
 	public void usingContextMenu(Runnable actions) {
 		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";

@@ -31,7 +31,7 @@ public class SitesPerPageTest extends BaseTest{
 	public void beforeTest() {
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-
+		
 		sitesPerPageInputXpath= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.sitesperpageinput");
 		firstSiteXpath= uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -68,12 +68,8 @@ public class SitesPerPageTest extends BaseTest{
 
 	@AfterMethod
 	public void afterTest() {
-		// Delete Created site 1
-		deleteSite();
-		// Delete Created site 2
-		deleteSite();
-		// Delete Created site 3
-		deleteSite();
+		// Delete all sites
+		deleteSites();
 	}
 
 	public void createSitesRandom() {
@@ -150,17 +146,11 @@ public class SitesPerPageTest extends BaseTest{
 		driverManager.getDriver().navigate().refresh();
 	}
 
-	public void deleteSite() {
+	public void deleteSites() {
 
-		// Click on Delete icon
+		//delete all the sites present
 		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
-		homePage.clickOnDeleteSiteIcon();
-
-		// Click on YES to confirm the delete.
-		homePage.clickOnYesToDeleteSite();
-		
-		// Refresh the site
-		driverManager.getDriver().navigate().refresh();
+		homePage.deleteAllSites();
 	}
 
 	@Test(priority = 0)

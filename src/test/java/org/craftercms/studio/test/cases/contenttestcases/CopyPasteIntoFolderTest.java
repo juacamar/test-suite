@@ -137,10 +137,10 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 		
 		this.driverManager.waitForAnimation();
 		this.driverManager.waitUntilAttributeContains("xpath", myRecentActivityBodyXpath, "style", "display: block;");
-		
+		this.driverManager.waitForAnimation();
 		this.driverManager.waitUntilPageLoad();
 		this.driverManager.waitForAnimation();
-		
+			
 		Assert.assertTrue(this.driverManager.waitUntilElementIsDisplayed("xpath", firstCopiedElementXPath).getText()
 				.contains("/foldertocopy/test1-"));
 		Assert.assertTrue(this.driverManager.waitUntilElementIsDisplayed("xpath", secondCopiedElementXPath).getText()

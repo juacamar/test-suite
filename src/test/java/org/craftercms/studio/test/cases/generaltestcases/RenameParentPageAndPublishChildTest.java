@@ -6,11 +6,10 @@ package org.craftercms.studio.test.cases.generaltestcases;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.Assert;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.craftercms.studio.test.pages.DashboardPage;
 import org.craftercms.studio.test.pages.HomePage;
 import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.NoSuchElementException;
@@ -20,7 +19,7 @@ import org.openqa.selenium.WebElement;
  * @author luishernandez
  *
  */
-public class RenameParentPageAndPublishChildTest {
+public class RenameParentPageAndPublishChildTest extends BaseTest{
 
 	private WebDriverManager driverManager;
 	private LoginPage loginPage;
@@ -49,15 +48,6 @@ public class RenameParentPageAndPublishChildTest {
 
 	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-
 		this.parentPageName = "1";
 		this.childPage1Name = "2";
 		this.childPage2Name = "3";
