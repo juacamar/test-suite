@@ -30,15 +30,15 @@ cd craftercms
 
 @rem moving to develop branch
 echo [INFO] moving to develop branch
-git checkout develop
+call git checkout develop
 
 @rem executing the .\gradlew.bat init 
 echo [INFO] executing gradlew init process
-gradlew.bat init 
+call gradlew.bat init -P"crafter.git.shallowClone=true"
 
 @rem executing the .\gradlew.bat init
 echo [INFO] executing gradlew build and deploy processes, using smtp port=2525
-gradlew.bat build deploy -P"authoring.studio.smtp.port=2525" 
+call gradlew.bat build deploy -P"authoring.studio.smtp.port=2525"
 
 @rem here we need to check if the output was success 
 IF /I "%ERRORLEVEL%" NEQ "0" (
@@ -49,34 +49,55 @@ echo [INFO] executed gradlew build and deploy processes with success
 
 @rem executing the start up of the both envs delivery env and authoring env
 echo [INFO] executing gradlew startup process
-gradlew.bat start
+call gradlew.bat start
 
-@rem here we need to check if the output was success
-IF /I "%ERRORLEVEL%" NEQ "0" (
-echo [ERROR] the startup process failed
-) ELSE (
-echo [INFO] executed gradlew start process with success
-)
+
+timeout 180
+
+netstat -o -n -a | findstr "0.0.0.0:8080"
+IF %ERRORLEVEL% NEQ 0 echo [ERROR] the startup process failed Port 8080 (Tomcat) is not up after 3 minutes
+
+
+netstat -o -n -a | findstr "0.0.0.0:8694"
+IF %ERRORLEVEL% NEQ 0 echo [ERROR] the startup process failed Port 8694 (Solr) is not up after 3 minutes
+
+
+netstat -o -n -a | findstr "0.0.0.0:33306"
+IF %ERRORLEVEL% NEQ 0  echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 3 minutes
+
+netstat -o -n -a | findstr "0.0.0.0:9191"
+IF %ERRORLEVEL% NEQ 0  echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 3 minutes
+
+netstat -o -n -a | findstr "0.0.0.0:27020"
+IF %ERRORLEVEL% NEQ 0  echo [WARN] the startup process failed Port 27020 (MongoDB) is not up after 3 minutes
 
 @rem executing the stop of the both envs delivery env and authoring env
 echo [INFO] executing gradlew stop process
-gradlew.bat stop
+call gradlew.bat stop
 
-@rem here we need to check if the output was success
-IF /I "%ERRORLEVEL%" NEQ "0" (
-echo [ERROR] the stop process failed
-) ELSE (
-echo [INFO] executed gradlew stop process with success
-)
+timeout 180
+
+netstat -o -n -a | findstr "0.0.0.0:8080"
+IF %ERRORLEVEL% equ 0  echo [ERROR] the startup process failed Port 8080 (Tomcat) is not up after 3 minutes
+
+netstat -o -n -a | findstr "0.0.0.0:8694"
+IF %ERRORLEVEL% equ 0 echo [ERROR] the startup process failed Port 8694 (Solr) is not up after 3 minutes
+
+netstat -o -n -a | findstr "0.0.0.0:33306"
+IF %ERRORLEVEL% equ 0 echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 3 minutes
+
+netstat -o -n -a | findstr "0.0.0.0:9191"
+IF %ERRORLEVEL% equ 0 echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 3 minutes
+
+netstat -o -n -a | findstr "0.0.0.0:27020"
+IF %ERRORLEVEL% equ 0 echo [WARN] the startup process failed Port 27020 (MongoDB) is not up after 3 minutes
 
 @rem moving out of temporary folder
 echo [INFO] moving out from temporary folder
-cd ..
+cd ../..
 
+echo "Please close all terminal windows (but this one) to continue
+pause
 @rem deleting temporary folder
 echo [INFO] deleting the temporary folder
 rd /s /q crafter_cms_temp
-
-
-
-
