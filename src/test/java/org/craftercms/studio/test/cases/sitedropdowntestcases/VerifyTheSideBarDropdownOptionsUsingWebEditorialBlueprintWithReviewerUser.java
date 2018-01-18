@@ -20,8 +20,8 @@ import org.openqa.selenium.WebElement;
  * @author Juan Camacho A
  *
  */
-// Test Case ID:92
-public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDeveloperUser extends BaseTest {
+// Test Case ID:94
+public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithReviewerUser extends BaseTest {
 
 	private String userName;
 	private String password;
@@ -49,7 +49,7 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 	private String adminConsole;
 	private String siteconfigGroupsOption;
 	private String addTouserIframe;
-	private String editDeveloperGroupOption;
+	private String editReviewerGroupOption;
 	private String groupsAddNewMembersCheckbox;
 	private String groupsAddNewMembersInput;
 	private String groupsAddNewMembersAutocompleteOption1;
@@ -57,9 +57,8 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 	private String navigationSitebarNameId;
 	private String userOptions;
 	private String userOptionsLogout;
-	private String siteConfigLink;
 	private static Logger logger = LogManager
-			.getLogger(VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDeveloperUser.class);
+			.getLogger(VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithReviewerUser.class);
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -88,7 +87,7 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 		createSiteButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("home.createsitebutton");
 		newUserUserNameCreatedXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.users.developerusernamecreated");
+				.getProperty("general.users.reviewerusernamecreated");
 		crafterLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.crafterlogo");
 		newUserFirstNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.users.firstname");
@@ -108,8 +107,8 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 				.getProperty("adminconsole.groups_option");
 		addTouserIframe = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.adduser.iframe");
-		editDeveloperGroupOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("groups.edit_developer_group_option");
+		editReviewerGroupOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.edit_reviewer_group_option");
 		groupsAddNewMembersCheckbox = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("groups.add_new_members_checkbox");
 		groupsAddNewMembersInput = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -123,8 +122,6 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 		userOptions = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.user_options");
 		userOptionsLogout = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.user_options_logout");
-		siteConfigLink = uiElementsPropertiesManager.getSharedUIElementsLocators()
-		.getProperty("general.adminconsole");
 
 		siteDropdownItemsInExpectedOrder = new LinkedList<String>();
 		siteDropdownItemsInExpectedOrder.add(0, "Dashboard");
@@ -134,8 +131,6 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 		siteDropdownItemsInExpectedOrder.add(4, "Static Assets");
 		siteDropdownItemsInExpectedOrder.add(5, "Templates");
 		siteDropdownItemsInExpectedOrder.add(6, "Scripts");
-		siteDropdownItemsInExpectedOrder.add(7,"Site Config");
-
 	}
 
 	public void deleteSite() {
@@ -200,20 +195,20 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 		usersPage.clickOnNewUser();
 
 		// Follow the form
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserFirstNameId).sendKeys("DeveloperName");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserFirstNameId).sendKeys("ReviewerName");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId)
-				.sendKeys("Developer Last Name");
+				.sendKeys("Reviewer Last Name");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId)
-				.sendKeys("developer@email.com");
+				.sendKeys("reviewer@email.com");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserUserNameId).sendKeys("developer");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserUserNameId).sendKeys("reviewer");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordId).sendKeys("developer");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordId).sendKeys("reviewer");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordVerificationId)
-				.sendKeys("developer");
+				.sendKeys("reviewer");
 
 		// Save Button
 		usersPage.clickOnSaveNewUser();
@@ -239,7 +234,7 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 				crafterLogo).click();
 	}
 
-	public void addUserToDeveloperGroup() {
+	public void addUserToReviewerGroup() {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", adminConsole);
 
@@ -268,11 +263,11 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 
-				editDeveloperGroupOption);
+				editReviewerGroupOption);
 
 		this.driverManager
 
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editDeveloperGroupOption)
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editReviewerGroupOption)
 
 				.click();
 
@@ -296,7 +291,7 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 
 				.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersInput)
 
-				.sendKeys("developer");
+				.sendKeys("reviewer");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 
@@ -344,7 +339,7 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 	}
 
 	@Test(priority = 0)
-	public void verifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithWithDeveloperUser() {
+	public void verifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithReviewerUser() {
 
 		this.login(userName, password);
 
@@ -362,17 +357,17 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 
 		this.driverManager.waitUntilSidebarOpens();
 
-		logger.info("Add previous created user to Developer Group");
+		logger.info("Add previous created user to Reviewer Group");
 
-		this.addUserToDeveloperGroup();
+		this.addUserToReviewerGroup();
 
 		// logout from Crafter
 		logger.info("logout from Crafter");
 		this.logoutFromCrafter();
 
-		// login to application with developer user
-		logger.info("login to application with developer user");
-		loginPage.loginToCrafter("developer", "developer");
+		// login to application with reviewer user
+		logger.info("login to application with reviewer user");
+		loginPage.loginToCrafter("reviewer", "reviewer");
 
 		logger.info("Go to Preview Page");
 		this.homePage.goToPreviewPage();
@@ -412,11 +407,6 @@ public class VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithDevelo
 		WebElement scriptsTreeLinkElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				scriptsTreeLink);
 		Assert.assertTrue(scriptsTreeLinkElement.isDisplayed(), "ERROR: Scripts Tree link is not present");
-		
-		WebElement siteConfigLinkElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteConfigLink);
-		Assert.assertTrue(siteConfigLinkElement.isDisplayed(),
-				"ERROR: Site Config link is not present");
 
 		List<WebElement> siteDropdownItems = this.driverManager.getDriver()
 				.findElements(By.xpath(siteDropdownItemsXpath));

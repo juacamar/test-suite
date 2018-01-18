@@ -214,6 +214,7 @@ public class DashboardPage {
 		if (!expandPagesTree.getAttribute("class").contains("open")) {
 			expandPagesTree.click();
 			driverManager.waitUntilFolderOpens("xpath", pagesTree);
+			this.driverManager.waitForAnimation();
 		}
 	}
 	
@@ -266,8 +267,7 @@ public class DashboardPage {
 		this.driverManager.waitForAnimation();
 		
 		// Verify if the home tree is already expanded
-		WebElement home = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent);
-		if (!home.getAttribute("class").contains("open")) {
+		if (!(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent).getAttribute("class").contains("open"))) {
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					homeTree).click();
 		}
