@@ -204,7 +204,13 @@ public class WebDriverManager {
 
 	public void waitUntilPopupIsHidden() {
 		logger.debug("Waiting for Popup to be hidden");
-		WebElement popupElement = driverWaitUntilElementIsPresentAndDisplayed("id", "cstudio-wcm-popup-div_mask");
+		WebElement popupElement = null;
+		try {
+			popupElement = driverWaitUntilElementIsPresentAndDisplayed("id", "cstudio-wcm-popup-div_mask");
+		} catch (TimeoutException e) {
+			logger.info("Popup is already closed");
+			return;
+		}
 		waitUntilElementIsHidden(popupElement);
 	}
 

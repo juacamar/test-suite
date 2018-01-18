@@ -41,7 +41,7 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest extend
 	}
 
 	public void dragAndDrop() {
-
+		this.driverManager.scrollDownPx(3000);
 		// Getting the ChildContent for drag and drop action
 		WebElement FromDataSourceImageUploadedFromRepoElement = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
