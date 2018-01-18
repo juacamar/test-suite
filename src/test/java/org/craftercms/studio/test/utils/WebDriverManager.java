@@ -204,7 +204,13 @@ public class WebDriverManager {
 
 	public void waitUntilPopupIsHidden() {
 		logger.debug("Waiting for Popup to be hidden");
-		WebElement popupElement = driverWaitUntilElementIsPresentAndDisplayed("id", "cstudio-wcm-popup-div_mask");
+		WebElement popupElement = null;
+		try {
+			popupElement = driverWaitUntilElementIsPresentAndDisplayed("id", "cstudio-wcm-popup-div_mask");
+		} catch (TimeoutException e) {
+			logger.info("Popup is already closed");
+			return;
+		}
 		waitUntilElementIsHidden(popupElement);
 	}
 
@@ -519,14 +525,6 @@ public class WebDriverManager {
 		input.sendKeys(text);
 		waitUntilAttributeIs(selectorType, selectorValue, "value", text);
 	}
-	
-//	public void sendTextOnInput(String selectorType, String selectorValue, String text) {
-//		logger.debug("Filling element {}, {} with value {}", selectorType, selectorValue, text);
-//		WebElement input = waitUntilElementIsPresent(selectorType, selectorValue);
-//		input.clear();
-//		input.sendKeys(text);
-//		waitUntilAttributeIs(selectorType, selectorValue, "value", text);
-//	}
 
 	public void usingContextMenu(Runnable actions) {
 		String selector = "div.yui-module.yui-overlay.yuimenu.wcm-root-folder-context-menu.visible";
