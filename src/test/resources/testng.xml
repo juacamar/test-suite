@@ -591,4 +591,34 @@
 				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
 		</classes>
 	</test>
+		<test name="Verify that the application displays the proper set of dropdown (Sidebar) components/options on the Site Dropdown panel Test Case With Publisher User">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithPublisherUser" />
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
+			<class
+				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
+		</classes>
+	</test>
+		<test name="Verify that the application displays the proper set of dropdown (Sidebar) components/options on the Site Dropdown panel Test Case With Reviewer User">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
+			<class
+				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyTheSideBarDropdownOptionsUsingWebEditorialBlueprintWithReviewerUser" />
+			<class
+				name="org.craftercms.studio.test.cases.sitestestcases.DeleteSiteTest" />
+			<class
+				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
+		</classes>
+	</test>
+		<test name="Verify that the application redirects to the “Site Config” page when the “Site Config” option is clicked">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyTheApplicationRedirectstoTheSiteConfigPageWhenTheSiteConfigOptionIsClicked" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->

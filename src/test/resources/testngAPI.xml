@@ -326,6 +326,32 @@
 				name="org.craftercms.studio.test.cases.apitestcases.GetSimpleDependenciesAPITest" />
 		</classes>
 	</test>
+
+<!--	 Deployment -->	
+	<test name="Bulk Go Live" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.BulkGoLiveAPITest" />
+		</classes>
+	</test>
+	<test name="Get Available Publishing Channels" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetAvailablePublishingChannelsAPITest" />
+		</classes>
+	</test>
+	<test name="Get Deployment History" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetDeploymentHistoryAPITest" />
+		</classes>
+	</test>
+	<test name="Get Scheduled Items" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.GetScheduledItemsAPITest" />
+		</classes>
+	</test>
 	
 <!--	 Preview -->
 	<test name="Preview Sync" preserve-order="true">
