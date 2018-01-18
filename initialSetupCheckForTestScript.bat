@@ -32,11 +32,11 @@ cd craftercms
 echo [INFO] moving to develop branch
 call git checkout develop
 
-@rem executing the .\gradlew.bat init 
+@rem executing the gradlew.bat init 
 echo [INFO] executing gradlew init process
 call gradlew.bat init -P"crafter.git.shallowClone=true"
 
-@rem executing the .\gradlew.bat init
+@rem executing the gradlew.bat build and deploy
 echo [INFO] executing gradlew build and deploy processes, using smtp port=2525
 call gradlew.bat build deploy -P"authoring.studio.smtp.port=2525"
 

@@ -69,7 +69,7 @@ public class AutomateVerifyingNoErrorsPresentInWebsiteEditorialBPHomePage extend
 	}
 
 	@Test(priority = 0)
-	public void automateCheckingNoErrorsDisplayedInTheDashboard() {
+	public void automateVerifyingNoErrorsPresentInWebsiteEditorialBPHomePage() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
