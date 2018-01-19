@@ -281,6 +281,12 @@
 				name="org.craftercms.studio.test.cases.apitestcases.GetUserActivityAPITest" />
 		</classes>
 	</test>
+	<test name="Post Activity" preserve-order="true">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.apitestcases.PostActivityAPITest" />
+		</classes>
+	</test>
 	
 <!--     Clipboard -->
 	<test name="Copy Item" preserve-order="true">
