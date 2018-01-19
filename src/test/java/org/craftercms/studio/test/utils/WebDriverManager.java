@@ -229,6 +229,14 @@ public class WebDriverManager {
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions
 				.attributeContains(getSelector(selectorType, selectorValue), attributeName, attributeValue)));
 	}
+	
+	public void waitUntilTextIs(String selectorType, String selectorValue,
+			String textValue) {
+		logger.debug("Waiting for element {}, {} to have the text {}", selectorType, selectorValue,
+				textValue);
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions
+				.textToBe(getSelector(selectorType, selectorValue),textValue)));
+	}
 
 	public void waitUntilElementIsRemoved(WebElement element) {
 		logger.debug("Waiting for element to be removed: {}", element);

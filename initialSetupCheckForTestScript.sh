@@ -28,7 +28,7 @@ fi
     git checkout develop
 #executing the ./gradlew init
     echo "[INFO] executing gradlew init process"
-    ./gradlew init
+    ./gradlew init -Pcrafter.git.shallowClone=true
 #executing the ./gradlew init and build and deploy
     echo "[INFO] executing gradlew build&deploy process, using smtp port=2525"
     ./gradlew build deploy -Pauthoring.studio.smtp.port=2525
