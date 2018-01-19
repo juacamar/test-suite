@@ -136,7 +136,6 @@ public class CopyPasteIntoFolderTest extends BaseTest {
 		dashboardPage.rightClickToPasteToNewFolder();
 		
 		this.driverManager.waitForAnimation();
-		driverManager.getDriver().navigate().refresh();
 		this.driverManager.waitUntilPageLoad();
 		
 		this.driverManager.waitForAnimation();
