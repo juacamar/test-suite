@@ -13,7 +13,7 @@ import org.craftercms.studio.test.cases.BaseTest;
  */
 
 public class DesignOfPreviewToolsPanelTest extends BaseTest {
-	
+
 	private String userName;
 	private String password;
 
@@ -21,7 +21,7 @@ public class DesignOfPreviewToolsPanelTest extends BaseTest {
 
 	@BeforeMethod
 	public void beforeTest() {
-		
+
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		previewToolsPanel = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -32,28 +32,32 @@ public class DesignOfPreviewToolsPanelTest extends BaseTest {
 	public void verifyTheDesignOfPreviewToolsSectionTest() {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
-		
-		//Wait for login page to close
+
+		// Wait for login page to close
 		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
 		homePage.goToPreviewPage();
-		
+
 		// Click on Preview Tools icon (show)
 		previewPage.clickOnPreviewTools();
 
 		// Assert
-		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", previewToolsPanel);
-		Assert.assertTrue(previewToolsShow.isDisplayed(), "ERROR: Preview tools panel is not displayed");
-
+		WebElement previewToolsShow = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				previewToolsPanel);
+		Assert.assertTrue(previewToolsShow.getAttribute("style").contains("visibility: visible"),
+				"ERROR: Preview tools panel is not displayed");
+		this.driverManager.waitForAnimation();
 		// Click on Preview Tools icon (hide)
 		previewPage.clickOnPreviewTools();
-		
-		driverManager.getDriver().navigate().refresh();
-		
+
+		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilAttributeContains("xpath", previewToolsPanel, "style", "visibility: hidden");
+
 		// Assert
-		Assert.assertFalse(this.driverManager.isElementPresentByXpath(previewToolsPanel),
+		this.driverManager.waitForAnimation();
+		Assert.assertTrue(this.driverManager.waitUntilElementIsPresent("xpath", previewToolsPanel)
+				.getAttribute("style").contains("visibility: hidden"),
 				"ERROR: Preview tools panel should not be displayed");
 
 	}
