@@ -1,16 +1,11 @@
 package org.craftercms.studio.test.cases.sitestestcases;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.CreateSitePage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
+
 
 /**
  * 
@@ -18,16 +13,11 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class PaginationOfListOfSitesTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-
+public class PaginationOfListOfSitesTest extends BaseTest{
+	
 	private String userName;
 	private String password;
 
-	private CreateSitePage createSitePage;
 	private String sitesPerPageInputXpath;
 	private String lastNumberOfPaginationXpath;
 	private String firstNumberOfPaginationXpath;
@@ -37,46 +27,39 @@ public class PaginationOfListOfSitesTest {
 	private String topNavDeleteOption;
 	private String topNavEditOption;
 	private String topNavSitesOption;
-	private String createSiteButtonXpath;
-
-	@BeforeClass
+	private String createSiteButton;
+	
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-
+		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		sitesPerPageInputXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		sitesPerPageInputXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.sitesperpageinput");
-		lastNumberOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		lastNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagination.lastnumberelement");
-		firstNumberOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		firstNumberOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagination.firstnumberelement");
-		lastArrowOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		lastArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagination.lastarrowelement");
-		firstArrowOfPaginationXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		firstArrowOfPaginationXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.pagination.firstarrowelement");
-		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		topNavDeleteOption = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavDeleteOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.deletetopnavoption");
-		topNavEditOption= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavEditOption= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.edittopnavoption");
-		topNavSitesOption= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		topNavSitesOption= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.preview.sitesoption");
-		createSiteButtonXpath= uIElementsPropertiesManager.getSharedUIElementsLocators()
+		createSiteButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sites.createsitebutton");
-
+		
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
+		
 		// Create Site 1
 		createSitesRandom();
 		// Create Site 2
@@ -85,17 +68,10 @@ public class PaginationOfListOfSitesTest {
 		createSitesRandom();
 	}
 
-	@AfterClass
+	@AfterMethod
 	public void afterTest() {
-
-		// Delete Site 1
-		deleteSite();
-		// Delete Site 2
-		deleteSite();
-		// Delete Site 3
-		deleteSite();
-		
-		driverManager.closeConnection();
+		// Delete All the sites
+		deleteSites();
 	}
 
 	public void createSitesRandom() {
@@ -120,13 +96,12 @@ public class PaginationOfListOfSitesTest {
 
 		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
 		
-		//this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavDeleteOption);
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavEditOption);
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", topNavSitesOption).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", topNavSitesOption).click();
 	}
 
 	public void navigationOfPage() {
@@ -156,17 +131,11 @@ public class PaginationOfListOfSitesTest {
 		
 	}
 
-	public void deleteSite() {
+	public void deleteSites() {
 
-		// Click on Delete icon
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-		homePage.clickOnDeleteSiteIcon();
-
-		// Click on YES to confirm the delete.
-		homePage.clickOnYesToDeleteSite();
-		
-		//Refresh the page
-		driverManager.getDriver().navigate().refresh();
+		//delete all the sites present
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
+		homePage.deleteAllSites();
 
 	}
 

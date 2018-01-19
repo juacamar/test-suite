@@ -1,17 +1,10 @@
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
@@ -19,13 +12,8 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
+public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest extends BaseTest {
 
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private SiteConfigPage siteConfigPage;
-	
 	private String userName;
 	private String password;
 	private String contentTypeContainerLocator;
@@ -34,44 +22,26 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.dataSourceSectionImageUploadedFromCMISRepositoryLocator = uIElementsPropertiesManager
+		this.dataSourceSectionImageUploadedFromCMISRepositoryLocator = uiElementsPropertiesManager
 				.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.datasourceimageuploadedfromCMISrepository");
-		this.contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator = uIElementsPropertiesManager
+		this.contentTypeContainerImageUploadedFromCMISRepositoryTitleLocator = uiElementsPropertiesManager
 				.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerimageuploadedfromCMISrepositorytitle");
-		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
-		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
-
 	public void dragAndDrop() {
-
+		this.driverManager.scrollDownPx(3000);
 		// Getting the ChildContent for drag and drop action
 		WebElement FromDataSourceImageUploadedFromRepoElement = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
@@ -97,6 +67,9 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		// login to application
 		loginPage.loginToCrafter(
 				userName,password);
+		
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
@@ -122,7 +95,7 @@ public class ContentTypesAddDataSourceImageUploadedFromCMISRepositoryTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerLocator);
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickDataSourceImageUploadedFromCMISRepositorySection();
 
 		// Asserts that fields are not empty.

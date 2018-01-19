@@ -27,7 +27,7 @@ public class SiteManagementAPI extends BaseAPI {
 				.header("Location",
 						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
 				.json("$.message", is("OK")).debug();
-		this.setSiteId(siteId);;
+		this.setSiteId(siteId);
 	}
 
 	public void testCreateSiteInvalidParameters() {
@@ -51,12 +51,31 @@ public class SiteManagementAPI extends BaseAPI {
 						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
 				.json("$.message", is("Site already exists")).debug();
 	}
+	
+	public void testCreateSiteUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("site_id", siteId);
+		json.put("description", description);
+		json.put("blueprint", blueprint);
+		api.post("/studio/api/1/services/api/1/site/create.json").json(json).execute().status(401)
+				.header("Location",
+						is(headerLocationBase + "/studio/api/1/services/api/1/site/get.json?site_id=" + siteId))
+				.debug();
+	}
+
 
 	public void testDeleteSite(String siteId) {
 		Map<String, Object> json = new HashMap<>();
 		json.put("siteId", siteId);
 		api.post("/studio/api/1/services/api/1/site/delete-site.json").json(json).execute().status(200);
-				//.json("$", is(true)).debug();
+				
+	}
+	
+	public void testDeleteSiteUnauthorized(String siteId) {
+		Map<String, Object> json = new HashMap<>();
+		json.put("siteId", siteId);
+		api.post("/studio/api/1/services/api/1/site/delete-site.json").json(json).execute().status(401);
+				
 	}
 
 	public void testClearConfigurationCache() {
@@ -68,6 +87,18 @@ public class SiteManagementAPI extends BaseAPI {
 		api.get("/studio/api/1/services/api/1/site/exists.json").urlParam("site", this.siteId).execute().status(200);
 	}
 
+	public void testGetAvailableBlueprints() {
+		api.get("/studio/api/1/services/api/1/site/get-available-blueprints.json").execute().status(200);
+	}
+	
+	public void testGetCannedMessage(String siteId) {
+		api.get("/studio/api/1/services/api/1/site/get-canned-message.json")
+		.urlParam("site", siteId)
+		.urlParam("locale", "en")
+		.urlParam("type", "NotApproved")
+		.execute().status(200);
+	}
+	
 	public void testGetConfigurationOfSite() {
 		api.get("/studio/api/1/services/api/1/site/get-configuration.json")
 		.urlParam("site", this.siteId)
@@ -79,6 +110,19 @@ public class SiteManagementAPI extends BaseAPI {
 		.urlParam("site_id", siteId).execute()
 		.status(200)
 		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id="+ siteId));
+   	}
+	
+	public void testGetSiteUnauthorized() {
+		api.get("/studio/api/1/services/api/1/site/get.json")
+		.urlParam("site_id", siteId).execute()
+		.status(401)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get.json?site_id="+ siteId));
+   	}
+	
+	public void testGetSiteInvalidParameters() {
+		api.get("/studio/api/1/services/api/1/site/get.json")
+		.urlParam("site_idnonvalid", siteId).execute()
+		.status(400);
    	}
 	
 	public void testGetSiteSiteNotFound() {
@@ -107,6 +151,13 @@ public class SiteManagementAPI extends BaseAPI {
 		.status(404);
    	}
 	
+	public void testGetSitesPerUserUnauthorized(String userName) {
+		api.get("/studio/api/1/services/api/1/site/get-per-user.json")
+		.urlParam("username", userName).execute()
+		.status(401)
+		.header("Location", is(headerLocationBase+"/studio/api/1/services/api/1/site/get-per-user.json?username="+ userName+"&start=0&number=25"));
+   	}
+	
 	public String getSiteId() {
 		return siteId;
 	}
@@ -114,5 +165,4 @@ public class SiteManagementAPI extends BaseAPI {
 	public void setSiteId(String siteId) {
 		this.siteId = siteId;
 	}
-
 }

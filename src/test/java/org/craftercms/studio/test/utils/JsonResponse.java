@@ -80,4 +80,14 @@ public class JsonResponse {
 		return this;
 	}
 
+	public String getRaw(){
+
+		try {
+			 return IOUtils.toString(raw);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "";
+	}
 }

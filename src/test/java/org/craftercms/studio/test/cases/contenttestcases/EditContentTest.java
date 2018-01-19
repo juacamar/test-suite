@@ -1,17 +1,9 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 
 /**
  * 
@@ -19,63 +11,33 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class EditContentTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private DashboardPage dashboardPage;
-	private PreviewPage previewPage;
+public class EditContentTest extends BaseTest {
 
 	private String userName;
 	private String password;
 	private String createFormFrameElementCss;
-	private String createFormExpandAll;
 	private String createFormMainTitleElementXPath;
-	private String createFormSaveAndCloseElementId;
-	private String homeElementXPath;
-	private String createFormTitle;
+	private String createFormSaveAndCloseElement;
 	private String myRecentActivityTestingItem;
-	
+	private String randomURL;
+	private String randomInternalName;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.createformTitle");
-		createFormExpandAll= UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("complexscenarios.general.createformexpandall");
-		createFormSaveAndCloseElementId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		homeElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.home");
-		createFormTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.createformfiletitle");
-		myRecentActivityTestingItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		myRecentActivityTestingItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.testingcontentitemedited.myrecentactivity");
 
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
+		randomURL = "Test1";
+		randomInternalName = "Testing1";
 	}
 
 	public void changeBodyToNotRequiredOnEntryContent() {
@@ -83,66 +45,45 @@ public class EditContentTest {
 	}
 
 	public void createNewContent() {
-
 		// right click to see the the menu
 
 		dashboardPage.rightClickToSeeMenu();
 
 		// Select Entry Content Type
-
 		dashboardPage.clickEntryCT();
 
 		// Confirm the Content Type selected
-
 		dashboardPage.clickOKButton();
 
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
-		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// creating random values for URL field and InternalName field
 
-		// Set basics fields of the new content created
-		dashboardPage.setBasicFieldsOfNewContent("Test1", "Testing1");
+			// Set basics fields of the new content created
+			dashboardPage.setBasicFieldsOfNewContent(randomURL, randomInternalName);
 
-		// Expand all fields
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormExpandAll)
-				.click();
+			// Set the title of main content
+			driverManager.sendText("xpath", createFormMainTitleElementXPath, "MainTitle");
 
-		// Set Main Content
-		// Set the title of main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormMainTitleElementXPath)
-				.sendKeys("MainTitle");
+			// save and close
 
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", createFormSaveAndCloseElement)
+					.click();
+		});
 
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
-
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
+		this.driverManager.waitUntilSidebarOpens();
 	}
 
 	public void editingContentRecentlyCreated() {
 
 		dashboardPage.rightClickToSelectEditOption();
 
-		// Switch to the iframe
-		driverManager.getDriver().switchTo().defaultContent();
-		driverManager.getDriver().switchTo().frame(this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", createFormFrameElementCss));
-		this.driverManager.isElementPresentAndClickableBycssSelector(createFormFrameElementCss);
+		this.driverManager.waitForAnimation();
 
-		// edit internal title
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",createFormTitle)
-				.sendKeys("EDITED");
+		driverManager.usingCrafterForm("cssSelector", createFormFrameElementCss, () -> {
+			// edit internal name
+			dashboardPage.editInternalName("Edited");
+		});
 
-		// save and close
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("id", createFormSaveAndCloseElementId).click();
-
-		this.driverManager.isElementPresentByXpath(homeElementXPath);
-		// Switch back to the dashboard page
-		driverManager.getDriver().switchTo().defaultContent();
 	}
 
 	@Test(priority = 0)
@@ -150,6 +91,9 @@ public class EditContentTest {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+
+		// Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
@@ -174,10 +118,8 @@ public class EditContentTest {
 
 		editingContentRecentlyCreated();
 
-		// reload page
-		driverManager.getDriver().navigate().refresh();
-
-		Assert.assertTrue(this.driverManager.isElementPresentByXpath(myRecentActivityTestingItem));
+		Assert.assertNotNull(driverManager.waitUntilElementIsDisplayed("xpath", myRecentActivityTestingItem),
+				"Content page is not displayed on the My Recent Activity Widget");
 	}
 
 }

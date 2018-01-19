@@ -6,7 +6,7 @@ import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.api.objects.UserManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -40,33 +40,37 @@ public class RemoveUserFromGroupAPITest {
 		groupManagementAPI.testAddUserToGroup01(userManagementAPI.getNewusername(), siteManagementAPI.getSiteId());
 	}
 	
-	@Test(priority=4)
+	@Test(priority=4,groups={"removeUserFromGroup"})
 	public void testRemoveUserFromGroup() {
 		groupManagementAPI.testRemoveUserFromGroup(userManagementAPI.getNewusername(),siteManagementAPI.getSiteId());
 	}
 	
-	@Test(priority=1)
+	@Test(priority=1,groups={"removeUserFromGroup"})
 	public void testInvalidParameters() {
 		groupManagementAPI.testRemoveUserFromGroupInvalidParameters(userManagementAPI.getNewusername(),siteManagementAPI.getSiteId());
 	}
 	
 	
-	@Test(priority=2)
+	@Test(priority=2,groups={"removeUserFromGroup"})
 	public void testGroupNotFound() {
 		groupManagementAPI.testRemoveUserFromGroupGroupNotFound(userManagementAPI.getNewusername(),siteManagementAPI.getSiteId());
 	}
 	
-	@Test(priority=3)
+	@Test(priority=3,groups={"removeUserFromGroup"})
 	public void testUserNotFound() {
 		groupManagementAPI.testRemoveUserFromGroupUserNotFound(userManagementAPI.getNewusername(),siteManagementAPI.getSiteId());
 	}
 	
-	@AfterTest
+	@AfterGroups(groups={"removeUserFromGroup"})
 	public void afterTest() {
 		userManagementAPI.testDeleteUser();
 		siteManagementAPI.testDeleteSite(siteId);
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 	
+	@Test(dependsOnGroups={"removeUserFromGroup"})
+	public void testRemoveUserFromGroupUnauthorized(){
+		groupManagementAPI.testRemoveUserFromGroupUnauthorized(userManagementAPI.getNewusername(), siteManagementAPI.getSiteId());
+	}
 	
 }

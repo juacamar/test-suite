@@ -15,7 +15,6 @@ public class MyRecentActivityPage {
 	private WebDriverManager driverManager;
     private String expandDefaultSection;
     private String tittleField1;
-    private String saveCloseButton;
    
     /**
      * 
@@ -26,12 +25,11 @@ public class MyRecentActivityPage {
 
         expandDefaultSection = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.expand_Default_Section");
         tittleField1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.tittle_Field1");
-        saveCloseButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame1.save_Close_Button");
     }
 	// Expand default section
 
 	public void clickExpandOption() {
-		WebElement expandOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", expandDefaultSection);
+		WebElement expandOpt = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath", expandDefaultSection);
 		expandOpt.click();
 	}
 
@@ -63,14 +61,4 @@ public class MyRecentActivityPage {
 		this.typeNewTextOnBodyField(newText1);
 	}
 
-	// Save and close
-	public void saveAndClose() {
-		WebElement clearTitleField = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "id", saveCloseButton);
-		clearTitleField.click();
-	}
-
-	public void clickOnSaveAndCloseButton() {
-		// Save and close
-		this.saveAndClose();
-	}
 }

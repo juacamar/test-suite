@@ -1,7 +1,11 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
+import org.craftercms.studio.test.api.objects.MonitoringAPI;
+import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
@@ -10,20 +14,30 @@ import org.testng.annotations.Test;
 
 public class StatusAPITest {
 
-    private JsonTester api;
-
+    private MonitoringAPI monitoringAPI;
+    private SecurityAPI securityAPI;
+    
     public StatusAPITest(){
     	APIConnectionManager apiConnectionManager = new APIConnectionManager();
-		api = new JsonTester(apiConnectionManager.getProtocol()
-				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
+		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+				apiConnectionManager.getPort());
+    	
+		securityAPI = new SecurityAPI(api, apiConnectionManager);
+    	monitoringAPI = new MonitoringAPI(api, apiConnectionManager);
     }
+    
+    @BeforeTest
+	public void beforeTest() {
+		securityAPI.logInIntoStudioUsingAPICall();
+	}
 
-    @Test
+    @Test(priority=1)
     public void testStatus(){
-		api.get("/studio/api/1/services/api/1/monitor/status.json").execute().status(200);
-		//.json("$.message", is("OK")).debug();
+    	monitoringAPI.testStatus();
     }
-
-
- 
+    
+    @AfterTest
+	public void afterTest() {
+		securityAPI.logOutFromStudioUsingAPICall();
+	}
 }

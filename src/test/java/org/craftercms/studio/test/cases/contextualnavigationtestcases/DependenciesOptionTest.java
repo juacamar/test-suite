@@ -1,17 +1,11 @@
 package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
-import org.openqa.selenium.WebDriver;
+
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
+
 
 /**
  * 
@@ -19,15 +13,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class DependenciesOptionTest {
-
-	WebDriver driver;
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private PreviewPage previewPage;
+public class DependenciesOptionTest extends BaseTest {
 
 	private String userName;
 	private String password;
@@ -35,40 +21,27 @@ public class DependenciesOptionTest {
 	private String homeXpath;
 	private String dependeciesDialogTitle;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		siteDropdownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
-		homeXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		homeXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.home");
-		dependeciesDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		dependeciesDialogTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.dependeciesdialogtitle");
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
-
 	@Test(priority = 0)
-
 	public void dependenciesOptionTest() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
@@ -94,7 +67,7 @@ public class DependenciesOptionTest {
 
 		// Assert
 		String historyPage = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", dependeciesDialogTitle).getText();
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", dependeciesDialogTitle).getText();
 		Assert.assertEquals(historyPage, "Dependencies");
 
 	}

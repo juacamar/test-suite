@@ -1,17 +1,10 @@
 package org.craftercms.studio.test.cases.contextualnavigationtestcases;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.pages.PreviewPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
+
 
 /**
  * 
@@ -19,14 +12,7 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class HistoryOptionTest {
-
-	WebDriver driver;
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private PreviewPage previewPage;
+public class HistoryOptionTest extends BaseTest{
 
 	private String userName;
 	private String password;
@@ -35,36 +21,21 @@ public class HistoryOptionTest {
 	private String historyDialogTitle;
 	private String studioLogo;
 
-	@BeforeClass
-	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-	
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
 
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.previewPage = new PreviewPage(driverManager, UIElementsPropertiesManager);
+	@BeforeMethod
+	public void beforeTest() {
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		siteDropdownXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
-		homeXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		homeXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.home");
-		historyDialogTitle = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		historyDialogTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.historydialogtitle");
-		studioLogo = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		studioLogo = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.studiologo");
 		
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)
@@ -73,7 +44,9 @@ public class HistoryOptionTest {
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 		
-        this.driverManager.waitUntilPageLoad();
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
+		
 		// go to preview page
 		homePage.goToPreviewPage();
 
@@ -84,20 +57,20 @@ public class HistoryOptionTest {
 		// expand pages folder
 		previewPage.expandPagesTree();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("id", studioLogo);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", studioLogo);
 		
 		// expand home content
 		previewPage.expandHomeTree();
 
-		driverManager.waitUntilPageLoad();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", homeXpath).click();
 
 		// click on history option
 		previewPage.clickOnHistoryOption();
 
 		// Assert
+		this.driverManager.waitForAnimation();
 		String historyPage = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", historyDialogTitle).getText();
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", historyDialogTitle).getText();
 		
 		Assert.assertEquals(historyPage, "Version History");
 

@@ -3,28 +3,17 @@
  */
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
-import org.craftercms.studio.test.pages.SiteConfigPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * @author luishernandez
  *
  */
-public class ContentTypesAddDateTimeTest {
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private SiteConfigPage siteConfigPage;
+public class ContentTypesAddDateTimeTest extends BaseTest{
 	
 	private String userName;
 	private String password;
@@ -36,45 +25,28 @@ public class ContentTypesAddDateTimeTest {
 	private String contentTypeContainerDateTimeTitleLocator;
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
+	
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		
+				
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		
-		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.controlsSectionFormSectionLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
-		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.controlsSectionDateTimeLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.controlsSectionDateTimeLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlsdatetime");
-		this.contentTypeContainerFormSectionContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerFormSectionContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
-		this.contentTypeContainerDateTimeTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerDateTimeTitleLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerdatetimetitle");
-		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
-		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
-
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void dragAndDrop() {
@@ -112,6 +84,9 @@ public class ContentTypesAddDateTimeTest {
 		// login to application
 		loginPage.loginToCrafter(
 				userName,password);
+		
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
@@ -135,8 +110,9 @@ public class ContentTypesAddDateTimeTest {
 		// Confirm the content type selected
 		siteConfigPage.confirmContentTypeSelected();
 
-		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+		// Click on input section to can view the properties	
+		driverManager.waitUntilPopupIsHidden();
+		
 		siteConfigPage.clickDateTimeSection();
 
 		// Asserts that fields are not empty.

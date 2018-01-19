@@ -1,18 +1,11 @@
 package org.craftercms.studio.test.cases.sitestestcases;
 
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.CreateSitePage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 
 /**
  * 
@@ -21,71 +14,41 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CancelCreateSiteProcessTest {
+public class CancelCreateSiteProcessTest extends BaseTest{
 
-	WebDriver driver;
-
-	LoginPage objLogin;
-
-	HomePage objHomePage;
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private CreateSitePage createSitePage;
-	
 	private String userName;
 	private String password;
-
 	private String sitesPageTitleLocator;
 	
 	
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-		sitesPageTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.sites.pagetitle");
+		sitesPageTitleLocator = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("sites.pagetitle");
 
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)
-
-	public void cancel_create_site_process() {
+	public void verifyTheCancellationOfTheCreateSiteProcessTest() {
 
 		// login to application
 		loginPage.loginToCrafter(
 				userName,password);
 
-		// Click on the create site button
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
+		// Click on the create site button
 		homePage.clickOnCreateSiteButton();
 
 		// Filling the name of site
-
 		createSitePage.fillSiteName();
 
 		// Filling the Id of the site
-
 		createSitePage.fillIdSite("");
 
 		// Filling the description of the site
-
 		createSitePage.fillDescription("Description");
 
 		// Open blueprint combo
@@ -93,11 +56,9 @@ public class CancelCreateSiteProcessTest {
 		createSitePage.openBlueprintCombo();
 
 		// Click on Cancel button
-
 		createSitePage.clickOnCancelButtonOfTheCreateSiteProcess();
 
 		// Assert
-
 		WebElement siteName = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				sitesPageTitleLocator);
 

@@ -1,7 +1,12 @@
 package org.craftercms.studio.test.pages;
 
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,45 +20,39 @@ public class HomePage {
 
 	private WebDriverManager driverManager;
 	private WebDriver driver;
-	private String previewSite1;
-	private String dashboardSite2;
-	private String editRecentActivity;
-	private String seeThePageEdited;
+	private String previewSite;
+	private String dashboardSite;
 	private String createSiteButton;
 	private String deleteSiteIcon;
 	private String yesDeleteButton;
 	private String logOutLink;
 	private String signOutLink;
 	private String usersContextualNavigationOption;
+	private String deleteIconsListXpath;
+	private static Logger logger = LogManager.getLogger(HomePage.class);
 
 	public HomePage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
 
-		UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.create_site_button");
-		previewSite1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.preview_link");
-		dashboardSite2 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.dashboard_link");
-		editRecentActivity = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.edit_my_recent_activty");
-		seeThePageEdited = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.see_page_recent_activity");
+		previewSite = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.previewlink");
+		dashboardSite = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.dashboardlink");
 		createSiteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.create_site_button");
-		deleteSiteIcon = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.delete_site_icon");
-		yesDeleteButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("home.confirm_to_delete");
-		logOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.expand_account");
-		signOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.sign_out");
+				.getProperty("home.createsitebutton");
+		deleteSiteIcon = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.deletesiteicon");
+		yesDeleteButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.confirmtodelete");
+		logOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.expandaccount");
+		signOutLink = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("home.signout");
 		usersContextualNavigationOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("home.userscontextualnavigationoption");
-
+		deleteIconsListXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("home.deletesiteiconlist");
 	}
 
 	// Click on preview link
 	public void clickPreviewOption() {
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", previewSite1);
 		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				previewSite1);
+				previewSite);
 		previewLink.click();
 	}
 
@@ -65,41 +64,15 @@ public class HomePage {
 	// Click on dashboard link
 
 	public void clickDashboardOption() {
-		this.driverManager.isElementPresentAndClickableByXpath(dashboardSite2);
+		this.driverManager.isElementPresentAndClickableByXpath(dashboardSite);
 		WebElement dashboardLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				dashboardSite2);
+				dashboardSite);
 		dashboardLink.click();
 	}
 
 	public void goToDashboardPage() {
-		// Click on dashboard
+		logger.debug("Go to Dashboard Page");
 		this.clickDashboardOption();
-	}
-
-	// Click on edit option of my recent activity senction
-
-	public void clickEditOptionOfRecentActivitySection() {
-		WebElement editOptionMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				editRecentActivity);
-		editOptionMyRecentActivity.click();
-	}
-
-	public void clickOnEditOptionRecentActivity() {
-		// Click on edit option of my recent activity senction
-		this.clickEditOptionOfRecentActivitySection();
-	}
-
-	// See the page edited
-
-	public void displayPageEdited() {
-		WebElement seeThePageMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				seeThePageEdited);
-		seeThePageMyRecentActivity.click();
-	}
-
-	public void seeThePageEdited() {
-		// See the page edited
-		this.displayPageEdited();
 	}
 
 	public WebDriverManager getDriverManager() {
@@ -133,7 +106,6 @@ public class HomePage {
 
 	// Click on Delete icon to the site
 	public void clickDeleteSiteIcon() {
-		this.driverManager.isElementPresentAndClickableByXpath(deleteSiteIcon);
 		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				deleteSiteIcon);
 		deleteIcon.click();
@@ -146,10 +118,11 @@ public class HomePage {
 
 	// Click on YES button
 	public void clickYesButton() {
-		this.driverManager.isElementPresentAndClickableBycssSelector(yesDeleteButton);
-		WebElement yesButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
+		this.driverManager.isElementPresentAndClickableByXpath(yesDeleteButton);
+		WebElement yesButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				yesDeleteButton);
 		yesButton.click();
+		this.driverManager.waitForAnimation();
 	}
 
 	public void clickOnYesToDeleteSite() {
@@ -166,7 +139,7 @@ public class HomePage {
 	}
 
 	public void clickSignOut() {
-		WebElement signOut = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", signOutLink);
+		WebElement signOut = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", signOutLink);
 		signOut.click();
 	}
 
@@ -192,5 +165,25 @@ public class HomePage {
 		this.clickOnDeleteSiteIcon();
 		// Click on YES to confirm the delete.
 		this.clickOnYesToDeleteSite();
+	}
+
+	public void deleteAllSites() {
+		List<WebElement> siteListitem = this.driverManager.getDriver()
+				.findElements(By.xpath(deleteIconsListXpath));
+
+		for (int i = 0; i < siteListitem.size(); i++) {
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilPageLoad();		
+			// get the delete button element
+			WebElement element = this.driverManager.waitUntilElementIsClickable("xpath", deleteIconsListXpath);
+			// click on the delete button
+			element.click();
+			// confirm and wait
+			this.clickOnYesToDeleteSite();
+			
+			this.driverManager.waitUntilDeleteSiteModalCloses();	
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilElementIsRemoved(element);
+		}
 	}
 }

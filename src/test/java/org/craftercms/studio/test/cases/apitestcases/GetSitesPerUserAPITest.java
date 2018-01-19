@@ -4,7 +4,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -32,25 +32,29 @@ public class GetSitesPerUserAPITest {
 		siteManagementAPI.testCreateSite(siteId);
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups={"getSitesPerUser"})
 	public void testGetSitesPerUser() {
 		siteManagementAPI.testGetSitesPerUser(securityAPI.getUserName());
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2,groups={"getSitesPerUser"})
 	public void testGetSitesPerUserUserNotFound() {
 		siteManagementAPI.testGetSitesPerUserUserNotFound(securityAPI.getUserName());
 	}
 	
-	@Test(priority = 3)
+	@Test(priority = 3,groups={"getSitesPerUser"})
 	public void testGetSitesPerUserInvalidParameters() {
 		siteManagementAPI.testGetSitesPerUserInvalidParameter(securityAPI.getUserName());
 	}
 
-	@AfterTest
+	@AfterGroups(groups={"getSitesPerUser"})
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 
+	@Test(dependsOnGroups={"getSitesPerUser"})
+	public void testGetSitesPerUserUnauthorized() {
+		siteManagementAPI.testGetSitesPerUserUnauthorized(securityAPI.getUserName());
+	}
 }

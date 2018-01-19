@@ -5,7 +5,7 @@ import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -35,26 +35,24 @@ public class UpdateGroupAPITest {
 		groupManagementAPI.testCreateStudioGroup01(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups={"updateGroup"})
 	public void testUpdateGroup() {
 		groupManagementAPI.testUpdateGroup(siteManagementAPI.getSiteId());
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2,groups={"updateGroup"})
 	public void testInvalidParameters() {
 		groupManagementAPI.testUpdateGroupInvalidParameters(siteManagementAPI.getSiteId());
 	}
 
-	//TODO: Pending to review the response code for this because it returns 500
-//	@Test(priority = 3)
-//	public void testGroupNotFound() {
-//		groupManagementAPI.testUpdateGroupGroupNotFound(siteManagementAPI.getSiteId());
-//	}
-
-	@AfterTest
+	@AfterGroups(groups={"updateGroup"})
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 
+	@Test(dependsOnGroups={"updateGroup"})
+	public void testUpdateGroupUnauthorized(){
+		groupManagementAPI.testUpdateGroupUnauthorized(siteManagementAPI.getSiteId());
+	}
 }

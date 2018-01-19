@@ -3,28 +3,17 @@
  */
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
-import org.craftercms.studio.test.pages.SiteConfigPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  * @author luishernandez
  *
  */
-public class ContentTypesAddRichTextEditorTest {
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private SiteConfigPage siteConfigPage;
+public class ContentTypesAddRichTextEditorTest extends BaseTest{
 	
 	private String userName;
 	private String password;
@@ -36,44 +25,29 @@ public class ContentTypesAddRichTextEditorTest {
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		
-		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.controlsSectionFormSectionLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
-		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.controlsSectionRichTextEditorLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.controlsSectionRichTextEditorLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlsrte");
-		this.contentTypeContainerFormSectionContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerFormSectionContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
-		this.contentTypeContainerRTETitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerRTETitleLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerrtetitle");
-		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
-		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
 
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
 
 	public void dragAndDrop() {
 
@@ -107,6 +81,9 @@ public class ContentTypesAddRichTextEditorTest {
 		loginPage.loginToCrafter(
 				userName,password);
 
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
+
 		// go to preview page
 		homePage.goToPreviewPage();
 
@@ -129,11 +106,10 @@ public class ContentTypesAddRichTextEditorTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickRTESection();
 		
 		// Asserts that fields are not empty.
-		this.driverManager.isElementPresentByXpath(contentTypeContainerRTETitleLocator);
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",contentTypeContainerRTETitleLocator)
 				.getText();
 

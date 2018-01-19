@@ -2,15 +2,9 @@ package org.craftercms.studio.test.cases.dashboardtestcases;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 
 /**
  * 
@@ -19,104 +13,66 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class RecentActivityItemTypesSectionTest {
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
+public class RecentActivityItemTypesSectionTest extends BaseTest{
 
 	private String userName;
 	private String password;
 
 	private String navigationPageItem;
-
 	private String floatingPageItem;
-
 	private String componentItem;
-
 	private String templateScriptItem;
-
 	private String taxonomyItem;
-
 	private String imageItem;
-
 	private String videoItem;
-
 	private String cssItem;
-
 	private String fontItem;
-
 	private String pdfItem;
-
 	private String msPowerPointItem;
-
 	private String msWordItem;
-
 	private String msExcelItem;
-
 	private String zipItem;
-
 	private String groovyItem;
-
 	private String otherItem;
-
 	private String itemsTypePanel;
-
-	@BeforeClass
+	
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-
+		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		navigationPageItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		navigationPageItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.navigationpage");
-		floatingPageItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		floatingPageItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.floatingpage");
-		componentItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		componentItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.component");
-		templateScriptItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		templateScriptItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.templatescript");
-		taxonomyItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		taxonomyItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.taxonomy");
-		imageItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		imageItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.image");
-		videoItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		videoItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.video");
-		cssItem = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.workflowpanel.css");
-		fontItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		cssItem = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.workflowpanel.css");
+		fontItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.font");
-		pdfItem = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.workflowpanel.pdf");
-		msPowerPointItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		pdfItem = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.workflowpanel.pdf");
+		msPowerPointItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.mspowerpoint");
-		msWordItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		msWordItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.msword");
-		msExcelItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		msExcelItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.msexcel");
-		zipItem = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.workflowpanel.Zip");
-		groovyItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		zipItem = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.workflowpanel.Zip");
+		groovyItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.Groovy");
-		otherItem = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		otherItem = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.workflowpanel.Other");
-		itemsTypePanel = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		itemsTypePanel = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.itemtypespanel");
 
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	public void verifyAllItemTypesOnIconGuide() {
@@ -204,6 +160,9 @@ public class RecentActivityItemTypesSectionTest {
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to close
+		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
 		homePage.goToDashboardPage();

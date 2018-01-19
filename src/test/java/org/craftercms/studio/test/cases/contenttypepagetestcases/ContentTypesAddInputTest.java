@@ -2,16 +2,9 @@ package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 
 /**
  * 
@@ -19,16 +12,10 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class ContentTypesAddInputTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private SiteConfigPage siteConfigPage;
-
+public class ContentTypesAddInputTest extends BaseTest{
+	
 	private String userName;
 	private String password;
-
 	private String controlsSectionFormSectionLocator;
 	private String contentTypeContainerLocator;
 	private String controlsSectionInputLocator;
@@ -37,44 +24,28 @@ public class ContentTypesAddInputTest {
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		
-
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
 
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
-		this.controlsSectionFormSectionLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.controlsSectionFormSectionLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlssectionformsection");
-		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.controlsSectionInputLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.controlsSectionInputLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.controlsinput");
-		this.contentTypeContainerFormSectionContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerFormSectionContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerformsectioncontainer");
-		this.contentTypeContainerInputTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerInputTitleLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerinputtitle");
-		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitedropdown");
-		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.adminconsole");
 	}
 
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
-	}
 
 	public void dragAndDrop() {
 
@@ -110,6 +81,9 @@ public class ContentTypesAddInputTest {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
+		
+		//Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
@@ -135,12 +109,10 @@ public class ContentTypesAddInputTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerFormSectionContainerLocator);
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickInputSection();
 
 		// Asserts that fields are not empty.
-		this.driverManager.isElementPresentByXpath(contentTypeContainerInputTitleLocator);
-		
 		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
 				contentTypeContainerInputTitleLocator).getText();
 

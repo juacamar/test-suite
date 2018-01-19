@@ -1,10 +1,9 @@
 package org.craftercms.studio.test.cases.apitestcases;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.craftercms.studio.test.api.objects.SecurityAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 /**
@@ -13,27 +12,31 @@ import org.testng.annotations.Test;
 
 public class LoginAPITest {
 
-    private JsonTester api;
-    private String username = "admin";
-	private String password = "admin";
+    private SecurityAPI securityAPI;
 	
     public LoginAPITest(){
     	APIConnectionManager apiConnectionManager = new APIConnectionManager();
+		JsonTester api = new JsonTester(apiConnectionManager.getProtocol(), apiConnectionManager.getHost(),
+				apiConnectionManager.getPort());
+    	
+    	securityAPI = new SecurityAPI(api, apiConnectionManager);
 		api = new JsonTester(apiConnectionManager.getProtocol()
 				, apiConnectionManager.getHost(),apiConnectionManager.getPort());
     }
 
-    @Test
-    public void login(){
-    	Map<String, Object> json = new HashMap<>();
-		json.put("username", username);
-		json.put("password", password);
-		api.post("/studio/api/1/services/api/1/security/login.json")
-		//.urlParam("username", username)
-		//.urlParam("password", password)
-		.json(json).execute().status(200);
+    @Test(priority = 2)
+    public void testLoginUnauthorized(){
+    	securityAPI.testLogInUnauthorized();
+    }
+    
+    @Test(priority = 2)
+    public void testLogin(){
+    	securityAPI.logInIntoStudioUsingAPICall();
     }
 
-
+    @AfterTest
+    public void afterTest(){
+    	securityAPI.logOutFromStudioUsingAPICall();
+    }
  
 }

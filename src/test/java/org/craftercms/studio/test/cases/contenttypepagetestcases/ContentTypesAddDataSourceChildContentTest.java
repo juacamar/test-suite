@@ -1,17 +1,10 @@
 package org.craftercms.studio.test.cases.contenttypepagetestcases;
 
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.SiteConfigPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
@@ -19,13 +12,8 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class ContentTypesAddDataSourceChildContentTest {
+public class ContentTypesAddDataSourceChildContentTest extends BaseTest {
 
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private SiteConfigPage siteConfigPage;
-	
 	private String userName;
 	private String password;
 	private String contentTypeContainerLocator;
@@ -34,50 +22,33 @@ public class ContentTypesAddDataSourceChildContentTest {
 	private String siteDropdownXpath;
 	private String adminConsoleXpath;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-	
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.siteConfigPage = new SiteConfigPage(driverManager, uIElementsPropertiesManager);
-		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		this.contentTypeContainerLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainer");
-		this.dataSourceSectionChildContentLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.dataSourceSectionChildContentLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.datasourcechildcontent");
-		this.contentTypeContainerChildContentTitleLocator = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.contentTypeContainerChildContentTitleLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("adminconsole.contenttype.entry.contenttypecontainerchildcontenttitle");
-		siteDropdownXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sitedropdown");
-		adminConsoleXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.adminconsole");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
+		siteDropdownXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general" + ".sitedropdown");
+		adminConsoleXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general" + ".adminconsole");
 	}
 
 	public void dragAndDrop() {
-
+		this.driverManager.scrollDownPx(3000);
 		// Getting the ChildContent for drag and drop action
-		WebElement FromDataSourceChildContentElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", dataSourceSectionChildContentLocator);
+		WebElement FromDataSourceChildContentElement = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", dataSourceSectionChildContentLocator);
 
 		// Getting the Content Type Container for drag and drop action
 		// (destination)
-		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
+		WebElement ToContentTypeContainer = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				contentTypeContainerLocator);
-		
+
 		driverManager.dragAndDropElement(FromDataSourceChildContentElement, ToContentTypeContainer);
 
 		// Complete the input fields basics
@@ -91,20 +62,20 @@ public class ContentTypesAddDataSourceChildContentTest {
 	public void verifyThatStudioAllowsToAddADataSourceChildToExistingContentTypeTest() {
 
 		// login to application
-		loginPage.loginToCrafter(
-			userName,password);
+		loginPage.loginToCrafter(userName, password);
+
+		// Wait for login page to closes
+		driverManager.waitUntilLoginCloses();
 
 		// go to preview page
 		homePage.goToPreviewPage();
-	
+
 		// Show site content panel
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				siteDropdownXpath).click();
-	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownXpath).click();
+
 		// Show admin console page
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				adminConsoleXpath).click();
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsoleXpath).click();
+
 		// Select the content type to the test
 		siteConfigPage.selectEntryContentTypeFromAdminConsole();
 
@@ -118,14 +89,15 @@ public class ContentTypesAddDataSourceChildContentTest {
 		siteConfigPage.confirmContentTypeSelected();
 
 		// Click on input section to can view the properties
-		this.driverManager.isElementPresentAndClickableByXpath(contentTypeContainerLocator);
+		driverManager.waitUntilPopupIsHidden();
 		siteConfigPage.clickDataSourceChildContentSection();
 
 		// Asserts that fields are not empty.
 		this.driverManager.isElementPresentByXpath(contentTypeContainerChildContentTitleLocator);
-		
-		String titleText = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed( "xpath",
-				contentTypeContainerChildContentTitleLocator).getText();
+
+		String titleText = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", contentTypeContainerChildContentTitleLocator)
+				.getText();
 		Assert.assertTrue(titleText.contains("TestTitle"));
 
 	}

@@ -1,7 +1,12 @@
 package org.craftercms.studio.test.pages;
 
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -13,30 +18,43 @@ import org.openqa.selenium.WebElement;
 
 public class UsersPage {
 
+	private static final Logger logger = LogManager.getLogger(UsersPage.class);
+
 	private WebDriverManager driverManager;
 	private WebDriver driver;
 	private String deleteUserOption;
 	private String newUserOption;
 	private String saveNewUserOption;
-	private String deleteUserOption2;
+	private String deleteUserOptionNonAdmin;
 	private String editUserOption;
 	private String usersPageTitle;
 	private String crafterLogo;
 
-	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager
-			 ) {
+	private String deleteYesButtonXpath;
+
+	private String deleteUsersRowsXpath;
+
+	private String deleteNonAdminUserIconXpath;
+
+	public UsersPage(WebDriverManager driverManager, UIElementsPropertiesManager UIElementsPropertiesManager) {
 		this.driverManager = driverManager;
 		this.driver = this.driverManager.getDriver();
-		
+
 		deleteUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.delete_option");
 		newUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.new_user");
 		saveNewUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("users.save_new_user");
-		deleteUserOption2 = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("users.delete_option2");
+		deleteUserOptionNonAdmin = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("users.delete_option_nonadminuser");
 		editUserOption = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.edit_option");
 		usersPageTitle = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.page_title");
 		crafterLogo = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.crafterlogo");
+		deleteYesButtonXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deleteyesbutton");
+		deleteUsersRowsXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deleteusersrows");
+		deleteNonAdminUserIconXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.deletenonadminrow");
 
 	}
 
@@ -47,8 +65,9 @@ public class UsersPage {
 	// Try to delete the user connected
 
 	public void clickDeleteOption() {
-		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", deleteUserOption);
+		logger.info("Deleting user");
+		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				deleteUserOption);
 		previewLink.click();
 	}
 
@@ -60,8 +79,8 @@ public class UsersPage {
 
 	// Click on New User Button
 	public void clickNewUserButton() {
-		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", newUserOption);
+		WebElement newUserButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				newUserOption);
 		newUserButton.click();
 	}
 
@@ -73,9 +92,8 @@ public class UsersPage {
 
 	// Click on Save New User Button
 	public void clickSaveNewUserButton() {
-		this.driverManager.isElementPresentBycssSelector(saveNewUserOption);
-		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", saveNewUserOption);
+		WebElement saveNewUser = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				saveNewUserOption);
 		saveNewUser.click();
 	}
 
@@ -87,9 +105,9 @@ public class UsersPage {
 
 	// Delete User
 	public void clickDeleteOptionCreated() {
-		WebElement previewLink = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", deleteUserOption2);
-		previewLink.click();
+		WebElement deleteIcon = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				deleteUserOptionNonAdmin);
+		deleteIcon.click();
 	}
 
 	// Delete User
@@ -100,8 +118,8 @@ public class UsersPage {
 
 	// edit User
 	public void clickEditOptionCreated() {
-		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"cssSelector", editUserOption);
+		WebElement edit = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				editUserOption);
 		edit.click();
 	}
 
@@ -128,12 +146,36 @@ public class UsersPage {
 	}
 
 	public Boolean isUsersPageTitlePresent() {
-		return this.driverManager.isElementPresentByXpath( usersPageTitle);
+		return this.driverManager.isElementPresentByXpath(usersPageTitle);
 	}
 
 	public void clickOnCrafterLogo() {
-		WebElement crafterLogoWebElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed( "xpath", crafterLogo);
+		WebElement crafterLogoWebElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				crafterLogo);
 		crafterLogoWebElement.click();
+	}
+
+	public void deleteAllUsersExceptAdmin() {
+		List<WebElement> usersListitem = this.driverManager.getDriver()
+				.findElements(By.xpath(deleteUsersRowsXpath));
+
+		for (int i = 1; i < usersListitem.size(); i++) {
+
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilPageLoad();
+
+			// get the delete button element
+			WebElement element = this.driverManager.waitUntilElementIsClickable("xpath",
+					deleteNonAdminUserIconXpath);
+			// click on the delete button
+			element.click();
+
+			// confirm and wait
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", deleteYesButtonXpath).click();
+			
+			this.driverManager.waitUntilDeleteSiteModalCloses();
+			this.driverManager.waitForAnimation();
+			this.driverManager.waitUntilElementIsRemoved(element);
+		}
 	}
 }

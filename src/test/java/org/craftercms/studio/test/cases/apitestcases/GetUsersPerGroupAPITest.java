@@ -6,7 +6,7 @@ import org.craftercms.studio.test.api.objects.SiteManagementAPI;
 import org.craftercms.studio.test.api.objects.UserManagementAPI;
 import org.craftercms.studio.test.utils.APIConnectionManager;
 import org.craftercms.studio.test.utils.JsonTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -42,22 +42,30 @@ public class GetUsersPerGroupAPITest {
 	}
 
 	
-	@Test(priority=1)
+	@Test(priority=1,groups={"getUsersPerGroup"})
 	public void testGetUsersPerGroup() {
 		groupManagementAPI.testGetUsersPerGroup(siteManagementAPI.getSiteId());
 	}
 	
+	@Test(priority=2,groups={"getUsersPerGroup"})
+	public void testGetUsersPerGroupInvalidParameters() {
+		groupManagementAPI.testGetUsersPerGroupInvalidParameters(siteManagementAPI.getSiteId());
+	}
 	
-	@Test(priority=2)
-	public void testSiteNotFound() {
+	@Test(priority=3,groups={"getUsersPerGroup"})
+	public void testGetUsersSiteNotFound() {
 		groupManagementAPI.testGetUsersPerGroupSiteNotFound(siteManagementAPI.getSiteId());
 	}
 	
-	@AfterTest
+	@AfterGroups(groups={"getUsersPerGroup"})
 	public void afterTest() {
 		siteManagementAPI.testDeleteSite(siteId);
 		userManagementAPI.testDeleteUser();
 		securityAPI.logOutFromStudioUsingAPICall();
 	}
 	
+	@Test(dependsOnGroups={"getUsersPerGroup"})
+	public void testGetUsersPerGroupUnauthorized(){
+		groupManagementAPI.testGetUsersPerGroupUnauthorized(siteManagementAPI.getSiteId());
+	}
 }

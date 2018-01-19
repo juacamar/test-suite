@@ -1,17 +1,9 @@
 package org.craftercms.studio.test.cases.contenttestcases;
 
-import org.openqa.selenium.WebDriver;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
@@ -19,60 +11,34 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class AddNewFolderTest {
-
-	WebDriver driver;
-
-	private WebDriverManager driverManager;
-
-	private LoginPage loginPage;
-
-	private HomePage homePage;
-
-	private DashboardPage dashboardPage;
+public class AddNewFolderTest extends BaseTest {
 
 	private String userName;
 	private String password;
-
 	private String siteDropdownElementXPath;
-
 	private String newFolderXpath;
+	private String homeTree;
 
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager UIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, UIElementsPropertiesManager);
-
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		newFolderXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		newFolderXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.newfolder");
-
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
+		homeTree = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.home_Content_Page");
 	}
 
 	@Test(priority = 0)
-
 	public void createANewFolderUsingContextualClickOptionTest() {
 
 		// login to application
 
 		loginPage.loginToCrafter(userName, password);
+
+		driverManager.waitUntilLoginCloses();
 
 		// go to dashboard page
 
@@ -83,19 +49,24 @@ public class AddNewFolderTest {
 
 		// expand pages folder
 		dashboardPage.expandPagesTree();
+
 		
-		driverManager.waitUntilPageLoad();
 		// right click to see the the menu
 		dashboardPage.rightClickToFolderOnHome();
 
 		// Set the name of the folder
 		dashboardPage.setFolderName("addnewfolder");
 
-		// Create folder button
-		dashboardPage.clickCreateButton();
-
-		// Assert find the new folder created
-		this.driverManager.isElementPresentByXpath(newFolderXpath);
+		this.driverManager.waitUntilPageLoad();
+		this.driverManager.waitUntilSidebarOpens();
+		
+		dashboardPage.expandHomeTree();
+		
+		this.driverManager.waitUntilFolderOpens("xpath", homeTree);
+		
+		// Assert find the new folder created	
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", newFolderXpath);
+		
 		Assert.assertTrue(this.driverManager.isElementPresentByXpath(newFolderXpath));
 
 	}

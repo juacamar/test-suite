@@ -1,16 +1,9 @@
 package org.craftercms.studio.test.cases.sitestestcases;
 
+import org.craftercms.studio.test.cases.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.craftercms.studio.test.pages.CreateSitePage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
 
 /**
  * 
@@ -19,57 +12,28 @@ import org.craftercms.studio.test.utils.WebDriverManager;
  *
  */
 
-public class CreateSiteEmptyTest {
-
-	LoginPage objLogin;
-	HomePage objHomePage;
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private HomePage homePage;
-	private CreateSitePage createSitePage;
+public class CreateSiteEmptyTest extends BaseTest {
 
 	private String userName;
 	private String password;
 	private String siteDropdownElementXPath;
-	private String createSiteButtonXpath;
 
-
-	@BeforeClass
+	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		UIElementsPropertiesManager uIElementsPropertiesManager = new UIElementsPropertiesManager(
-				FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-
-		this.loginPage = new LoginPage(driverManager, uIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, uIElementsPropertiesManager);
-		this.createSitePage = new CreateSitePage(driverManager, uIElementsPropertiesManager);
-
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
-		siteDropdownElementXPath = uIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		createSiteButtonXpath = uIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.sites.createsitebutton");
-	}
-
-	@AfterClass
-	public void afterTest() {
-		driverManager.closeConnection();
 	}
 
 	@Test(priority = 0)
-
 	public void createSiteEmpty() {
 
 		// login to application
 		loginPage.loginToCrafter(userName, password);
 
-		this.driverManager.isElementPresentAndClickableByXpath(createSiteButtonXpath);
-
+		driverManager.waitUntilLoginCloses();
+		
 		// Click on the create site button
 		homePage.clickOnCreateSiteButton();
 
@@ -86,17 +50,9 @@ public class CreateSiteEmptyTest {
 		createSitePage.selectEmptyBluePrintOption();
 
 		// Click on Create button
-
 		createSitePage.clickOnCreateSiteButton();
 
-		this.driverManager.waitWhileElementIsDisplayedAndClickableByXpath(siteDropdownElementXPath);
-		
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteDropdownElementXPath);
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-//				topNavDeleteOption);
-//		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable( "xpath",
-//				topNavEditOption);
-
+		this.driverManager.waitUntilElementIsClickable("xpath", siteDropdownElementXPath);
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 	}
