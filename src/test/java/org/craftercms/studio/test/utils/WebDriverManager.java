@@ -204,7 +204,13 @@ public class WebDriverManager {
 
 	public void waitUntilPopupIsHidden() {
 		logger.debug("Waiting for Popup to be hidden");
-		WebElement popupElement = driverWaitUntilElementIsPresentAndDisplayed("id", "cstudio-wcm-popup-div_mask");
+		WebElement popupElement = null;
+		try {
+			popupElement = driverWaitUntilElementIsPresentAndDisplayed("id", "cstudio-wcm-popup-div_mask");
+		} catch (TimeoutException e) {
+			logger.info("Popup is already closed");
+			return;
+		}
 		waitUntilElementIsHidden(popupElement);
 	}
 
@@ -222,6 +228,14 @@ public class WebDriverManager {
 				attributeName, attributeValue);
 		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions
 				.attributeContains(getSelector(selectorType, selectorValue), attributeName, attributeValue)));
+	}
+	
+	public void waitUntilTextIs(String selectorType, String selectorValue,
+			String textValue) {
+		logger.debug("Waiting for element {}, {} to have the text {}", selectorType, selectorValue,
+				textValue);
+		new WebDriverWait(driver, defaultTimeOut).until(ExpectedConditions.refreshed(ExpectedConditions
+				.textToBe(getSelector(selectorType, selectorValue),textValue)));
 	}
 
 	public void waitUntilElementIsRemoved(WebElement element) {

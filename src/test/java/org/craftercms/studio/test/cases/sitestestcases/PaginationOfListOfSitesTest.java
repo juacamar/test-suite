@@ -27,6 +27,7 @@ public class PaginationOfListOfSitesTest extends BaseTest{
 	private String topNavDeleteOption;
 	private String topNavEditOption;
 	private String topNavSitesOption;
+	private String createSiteButton;
 	
 	@BeforeMethod
 	public void beforeTest() {
@@ -51,7 +52,9 @@ public class PaginationOfListOfSitesTest extends BaseTest{
 				.getProperty("general.edittopnavoption");
 		topNavSitesOption= uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.preview.sitesoption");
-
+		createSiteButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sites.createsitebutton");
+		
 		loginPage.loginToCrafter(userName, password);
 		
 		//Wait for login page to close
@@ -67,12 +70,8 @@ public class PaginationOfListOfSitesTest extends BaseTest{
 
 	@AfterMethod
 	public void afterTest() {
-		// Delete Site 1
-		deleteSite();
-		// Delete Site 2
-		deleteSite();
-		// Delete Site 3
-		deleteSite();
+		// Delete All the sites
+		deleteSites();
 	}
 
 	public void createSitesRandom() {
@@ -132,16 +131,11 @@ public class PaginationOfListOfSitesTest extends BaseTest{
 		
 	}
 
-	public void deleteSite() {
+	public void deleteSites() {
 
-		// Click on Delete icon
-		homePage.clickOnDeleteSiteIcon();
-
-		// Click on YES to confirm the delete.
-		homePage.clickOnYesToDeleteSite();
-		
-		//Refresh the page
-		driverManager.getDriver().navigate().refresh();
+		//delete all the sites present
+		this.driverManager.isElementPresentAndClickableByXpath(createSiteButton);
+		homePage.deleteAllSites();
 
 	}
 

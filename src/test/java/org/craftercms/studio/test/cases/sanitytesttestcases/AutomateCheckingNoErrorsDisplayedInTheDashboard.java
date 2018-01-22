@@ -31,7 +31,6 @@ public class AutomateCheckingNoErrorsDisplayedInTheDashboard extends BaseTest {
 	private String itemsWaitingForApprovalShowInProgressItemsButton;
 	private String itemsWaitingForApprovalItemsCheckbox;
 	private String itemsWaitingForApprovalItemNameTitle;
-	//private String itemsWaitingForApprovalViewTitle;
 	private String itemsWaitingForApprovalEdittitle;
 	private String itemsWaitingForApprovalUrlTitle;
 	private String itemsWaitingForApprovalPublishDateTimeTitle;
