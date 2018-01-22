@@ -247,7 +247,7 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 	}
 	
 	@Test(priority = 0)
-	public void verifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClickIsPerformedOnAnyElementOfThePagesStructureWithAdminUser() {
+	public void verifyTheProperOptionAreDisplayedForPagesStructureAdminUSer() {
 
 		// login to application
 		loginPage.loginToCrafter(
