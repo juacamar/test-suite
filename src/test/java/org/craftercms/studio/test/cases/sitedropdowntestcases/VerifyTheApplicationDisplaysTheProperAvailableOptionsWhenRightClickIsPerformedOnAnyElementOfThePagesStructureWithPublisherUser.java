@@ -2,10 +2,11 @@ package org.craftercms.studio.test.cases.sitedropdowntestcases;
 
 import org.testng.annotations.Test;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -14,35 +15,56 @@ import org.openqa.selenium.WebElement;
  * @author Juan Camacho A
  *
  */
-// Test Case ID:96
-public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClickIsPerformedOnAnyElementOfThePagesStructureWithAdminUser
+// Test Case ID:100
+public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClickIsPerformedOnAnyElementOfThePagesStructureWithPublisherUser
 		extends BaseTest {
 
 	private String userName;
 	private String password;
 	private String siteDropdownElementXPath;
-	private String menuSitesButton;
 	private String pagesTreeLink;
 	private String pagesTree;
 	private String homeContent;
+	
+	private String newUserFirstNameId;
+	private String newUserLastNameId;
+	private String newUserEmailId;
+	private String newUserUserNameId;
+	private String newUserPasswordId;
+	private String newUserPasswordVerificationId;
+	private String newUserUserNameCreatedXpath;
+	private String crafterLogo;
+	private String expandPagesTree;
+	private String createSiteButton;
+	private String adminConsole;
+	private String siteconfigGroupsOption;
+	private String addTouserIframe;
+	private String editPublisherGroupOption;
+	private String groupsAddNewMembersCheckbox;
+	private String groupsAddNewMembersInput;
+	private String groupsAddNewMembersAutocompleteOption1;
+	private String groupsAddNewMembersButton;
+	private String navigationSitebarNameId;
+	private String userOptions;
+	private String userOptionsLogout;
 
 	private String rightclickEditOption;
 	private String rightclickViewOption;
 	private String rightclickNewContentOption;
 	private String rightclickNewFolderOption;
 	private String rightclickDeleteOption;
-	private String rightclickChangeTemplateOption;
 	private String rightclickCutOption;
 	private String rightclickCopyOption;
 	private String rightclickDependenciesOption;
 	private String rightclickHistoryOption;
 	private String technologyLandingpage;
 	private String rightclickDuplicateOption;
-	private String rightclickRenameFolderOption;
 	private String articlesFolder;
 	private String articlesFolder2017;
 	private String articlesFolder1;
 	private String articlesFolderMenStylesForWinter;
+	private static Logger logger = LogManager
+			.getLogger(VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClickIsPerformedOnAnyElementOfThePagesStructureWithPublisherUser.class);
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -50,8 +72,6 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdownmenuinnerxpath");
-		menuSitesButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("preview.sites.menu.button");
 		pagesTreeLink = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.sitecontent.expandpages");
 		pagesTree = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -69,8 +89,6 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 				.getProperty("rightclick.new.folder.option");
 		rightclickDeleteOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("rightclick.delete.option");
-		rightclickChangeTemplateOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("rightclick.change.template.option");
 		rightclickCutOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("rightclick.cut.option");
 		rightclickCopyOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -83,8 +101,6 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 				.getProperty("dashboard.pagestree.technology.landingpage");
 		rightclickDuplicateOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("rightclick.duplicate.option");
-		rightclickRenameFolderOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("rightclick.rename.folder.option");
 		articlesFolder = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.articlesfolder");
 		articlesFolder2017 = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -93,29 +109,45 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 				.getProperty("dashboard.articles.folder.2017.1");
 		articlesFolderMenStylesForWinter = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.articles.folder.2017.1.menstylesforwinter");
+		newUserFirstNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.firstname");
+		newUserLastNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.lastname");
+		newUserEmailId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.users.email");
+		newUserUserNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.username");
+		newUserPasswordId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.password");
+		newUserPasswordVerificationId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.passwordVerification");
+		newUserUserNameCreatedXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.users.publisherusernamecreated");
+		crafterLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.crafterlogo");
+		expandPagesTree = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.expand_Pages_Tree");
+		adminConsole = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.adminconsole");
+		siteconfigGroupsOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("adminconsole.groups_option");
+		createSiteButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("home.createsitebutton");
+		addTouserIframe = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.adduser.iframe");
+		editPublisherGroupOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.edit_publisher_group_option");
+		groupsAddNewMembersCheckbox = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.add_new_members_checkbox");
+		groupsAddNewMembersInput = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.add_new_members_input");
+		groupsAddNewMembersAutocompleteOption1 = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.add_new_members_autocomplete_option1");
+		groupsAddNewMembersButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.add_new_members_button");
+		navigationSitebarNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.navigation_sitebar_name_id");
+		userOptions = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.user_options");
+		userOptionsLogout = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("dashboard.user_options_logout");
 
-	}
-
-	public void deleteSite() {
-
-		this.driverManager.getDriver().switchTo().defaultContent();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", menuSitesButton).click();
-
-		// Click on Delete icon
-		homePage.clickOnDeleteSiteIcon();
-
-		// Click on YES to confirm the delete.
-		homePage.clickOnYesToDeleteSite();
-
-		// Refresh the page
-		driverManager.getDriver().navigate().refresh();
-
-	}
-
-	@AfterMethod
-	public void afterTest() {
-		deleteSite();
 	}
 
 	public void rightClickHome() {
@@ -195,14 +227,7 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 		Assert.assertTrue(rightclickDeleteOptionElement.isDisplayed(),
 				"ERROR: Right click Delete Option is not present on right click of " + section);
 	}
-
-	public void verifyChangeTemplateOptionIsPresent(String section) {
-		WebElement rightclickChangeTemplateOptionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath", rightclickChangeTemplateOption);
-		Assert.assertTrue(rightclickChangeTemplateOptionElement.isDisplayed(),
-				"ERROR: Right click Change Template Option is not present on right click of " + section);
-	}
-
+	
 	public void verifyCutOptionIsPresent(String section) {
 		WebElement rightclickCutOptionElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				rightclickCutOption);
@@ -238,35 +263,6 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 				"ERROR: Right click Duplicate Option is not present on right click of " + section);
 	}
 
-	public void verifyRenameFolderOptionIsPresent(String section) {
-		WebElement rightclickRenameFolderOptionElement = this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath", rightclickRenameFolderOption);
-		Assert.assertTrue(rightclickRenameFolderOptionElement.isDisplayed(),
-				"ERROR: Right click Rename Folder Option is not present on right click of " + section);
-	}
-
-	public void createWebEditorialSite() {
-
-		// Wait for login page to close
-		driverManager.waitUntilLoginCloses();
-
-		// Click on the create site button
-		homePage.clickOnCreateSiteButton();
-
-		// Filling the name of site
-		createSitePage.fillSiteName();
-
-		// Filling the description of the site
-		createSitePage.fillDescription("Description");
-
-		// Open blueprint combo
-		// Select blueprint
-		createSitePage.selectWebSiteEditorialBluePrintOption();
-
-		// Click on Create button
-		createSitePage.clickOnCreateSiteButton();
-	}
-
 	public void step4() {
 		// Step 4 Right Right click on "Home" and verify options
 		this.rightClickHome();
@@ -279,8 +275,6 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 			verifyViewOptionIsPresent(section);
 			verifyNewContentOptionIsPresent(section);
 			verifyNewFolderOptionIsPresent(section);
-			verifyDeleteOptionIsPresent(section);
-			verifyChangeTemplateOptionIsPresent(section);
 			verifyCutOptionIsPresent(section);
 			verifyCopyOptionIsPresent(section);
 			verifyDependenciesOptionIsPresent(section);
@@ -304,7 +298,6 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 			verifyNewContentOptionIsPresent(section);
 			verifyNewFolderOptionIsPresent(section);
 			verifyDeleteOptionIsPresent(section);
-			verifyChangeTemplateOptionIsPresent(section);
 			verifyCutOptionIsPresent(section);
 			verifyCopyOptionIsPresent(section);
 			verifyDuplicateOptionIsPresent(section);
@@ -326,27 +319,8 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 		this.driverManager.waitUntilFolderOpens("xpath", articlesFolder2017);
 	}
 
-	public void step9() {
-		// Step 9 Right click on folder 1 and verify options
-		this.rightClickArticlesFolder1();
 
-		driverManager.usingContextMenu(() -> {
-
-			String section = "Step 9 Right click on folder articles -2017- 1;";
-
-			verifyNewContentOptionIsPresent(section);
-			verifyNewFolderOptionIsPresent(section);
-			verifyRenameFolderOptionIsPresent(section);
-			verifyDeleteOptionIsPresent(section);
-			verifyCutOptionIsPresent(section);
-			verifyCopyOptionIsPresent(section);
-			verifyHistoryOptionIsPresent(section);
-
-			this.driverManager.getDriver().navigate().refresh();
-			this.driverManager.waitForAnimation();
-		});
-	}
-	public void step11() {
+	public void step10() {
 		// Step 11 Right click on any of the article (Men Styles For Winter)
 		this.driverManager.waitForAnimation();
 
@@ -361,7 +335,6 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 			verifyNewContentOptionIsPresent(section);
 			verifyNewFolderOptionIsPresent(section);
 			verifyDeleteOptionIsPresent(section);
-			verifyChangeTemplateOptionIsPresent(section);
 			verifyCutOptionIsPresent(section);
 			verifyCopyOptionIsPresent(section);
 			verifyDuplicateOptionIsPresent(section);
@@ -373,22 +346,226 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 		});
 		
 	}
-
-	@Test(priority = 0)
-	public void verifyProperOptionDisplayedOnPagesStructureWithAdminUser() {
+	
+	public void login(String user, String loginpassword) {
 
 		// login to application
-		loginPage.loginToCrafter(userName, password);
+		loginPage.loginToCrafter(user, loginpassword);
 
-		this.createWebEditorialSite();
+		// Wait for login page to close
+		driverManager.waitUntilLoginCloses();
+	}
+	
+	public void addNewUser() {
 
-		// Expand the site bar Step 2
+		// click On Users option
+
+		createSitePage.clickOnUsersOption();
+
+		// click on new user button
+
+		usersPage.clickOnNewUser();
+
+		// Follow the form
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserFirstNameId).sendKeys("publisher");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId)
+				.sendKeys("Last Name");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId)
+				.sendKeys("publisher@email.com");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserUserNameId).sendKeys("publisher");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordId).sendKeys("publisher");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordVerificationId)
+				.sendKeys("publisher");
+
+		// Save Button
+		usersPage.clickOnSaveNewUser();
+
+		// Assert new users created is present
+		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				newUserUserNameCreatedXpath);
+
+		Assert.assertTrue(newUserCreated.isDisplayed(), "ERROR: Recently created user is not displayed");
+
+		// Switch to the form
+
+		driverManager.getDriver().navigate().refresh();
+
+		driverManager.getDriver().switchTo().defaultContent();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+
+				crafterLogo);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+
+				crafterLogo).click();
+	}
+	
+	private void goToSiteContentPagesStructure() {
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+				createSiteButton);
+		
+		this.driverManager.waitForAnimation();
+		homePage.goToPreviewPage();
+
+		if (this.driverManager.isElementPresentByXpath(siteDropdownElementXPath))
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath).click();
+		else
+			throw new NoSuchElementException(
+					"Site creation process is taking too long time and the element was not found");
+	}
+	
+	public void addUserToAuthorGroup() {
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", adminConsole);
+
+		WebElement siteConfigButton = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				adminConsole);
+
+		siteConfigButton.click();
+
+		this.driverManager.waitForAnimation();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteconfigGroupsOption);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteconfigGroupsOption)
+
+				.click();
+
+		driverManager.getDriver().switchTo().defaultContent();
+
+		this.driverManager.getDriver().switchTo()
+
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addTouserIframe));
+
+		this.driverManager.isElementPresentAndClickableByXpath(addTouserIframe);
+
+		this.driverManager.getDriver().switchTo().activeElement();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+
+				editPublisherGroupOption);
+
+		this.driverManager
+
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editPublisherGroupOption)
+
+				.click();
+
+		driverManager.getDriver().switchTo().defaultContent();
+
+		this.driverManager.getDriver().switchTo()
+
+				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addTouserIframe));
+
+		this.driverManager.isElementPresentAndClickableByXpath(addTouserIframe);
+
+		this.driverManager.getDriver().switchTo().activeElement();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersCheckbox);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersCheckbox)
+
+				.click();
+
+		this.driverManager
+
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersInput)
+
+				.sendKeys("publisher");
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+
+				groupsAddNewMembersAutocompleteOption1);
+
+		this.driverManager
+
+				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+
+						groupsAddNewMembersAutocompleteOption1)
+
+				.click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+
+				groupsAddNewMembersButton);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+
+				groupsAddNewMembersButton).click();
+
+		driverManager.getDriver().switchTo().defaultContent();
+
+		this.driverManager.getDriver().switchTo().activeElement();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", navigationSitebarNameId);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", navigationSitebarNameId)
+				.click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", adminConsole);
+	}
+	
+	private void logoutFromCrafter() {
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", userOptions);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", userOptions).click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", userOptionsLogout);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", userOptionsLogout).click();
+
+	}
+
+	@Test(priority = 0)
+	public void verifyProperOptionDisplayedOnPagesStructureWithPublisherUser() {
+		
+		this.login(userName, password);
+
+		logger.info("Adding New User");
+
+		this.addNewUser();
+
+		this.driverManager.getDriver().navigate().refresh();
+
+		logger.info("Go to Site Preview");
+
+		this.goToSiteContentPagesStructure();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", expandPagesTree);
+
+		this.driverManager.waitUntilSidebarOpens();
+
+		logger.info("Add previous created user to Publisher Group");
+
+		this.addUserToAuthorGroup();
+
+		// logout from Crafter
+		logger.info("logout from Crafter");
+		this.logoutFromCrafter();
+
+		// login to application with publisher user
+		logger.info("login to application with publisher user");
+		loginPage.loginToCrafter("publisher", "publisher");
+
+		logger.info("Go to Preview Page");
+		this.homePage.goToPreviewPage();
+
+		this.driverManager.waitForAnimation();
+
+		// Expand the site bar
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath);
-		WebElement sidebar = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				siteDropdownElementXPath);
-		sidebar.click();
+		
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
-
+		
+		// Step 2 Expand the site bar Step No needed
 		// Step 3 Click on Pages tree
 		WebElement pagesTreeLinkElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				pagesTreeLink);
@@ -415,14 +592,11 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 		// Step 8 Click on the + of folder 2017
 		this.step8();
 
-		// Step 9 Right click on folder 1 and verify options
-		this.step9();
-
-		// Step 10 Click on the + of folder "1"
+		// Step 9 Click on the + of folder "1"
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder1).click();
 		this.driverManager.waitUntilFolderOpens("xpath", articlesFolder1);
 
-		// Step 11 Right click on any of the article (Men Styles For Winter)
-		this.step11();
+		// Step 10 Right click on any of the article (Men Styles For Winter)
+		this.step10();
 	}
 }
