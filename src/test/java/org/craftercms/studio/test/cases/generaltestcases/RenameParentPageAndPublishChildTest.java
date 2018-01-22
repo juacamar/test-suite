@@ -6,13 +6,7 @@ package org.craftercms.studio.test.cases.generaltestcases;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.Assert;
-import org.craftercms.studio.test.pages.DashboardPage;
-import org.craftercms.studio.test.pages.HomePage;
-import org.craftercms.studio.test.pages.LoginPage;
-import org.craftercms.studio.test.utils.ConstantsPropertiesManager;
-import org.craftercms.studio.test.utils.FilesLocations;
-import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
-import org.craftercms.studio.test.utils.WebDriverManager;
+import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
@@ -20,13 +14,7 @@ import org.openqa.selenium.WebElement;
  * @author luishernandez
  *
  */
-public class RenameParentPageAndPublishChildTest {
-
-	private WebDriverManager driverManager;
-	private LoginPage loginPage;
-	private UIElementsPropertiesManager UIElementsPropertiesManager;
-	private HomePage homePage;
-	private DashboardPage dashboardPage;
+public class RenameParentPageAndPublishChildTest extends BaseTest{
 
 	private String userName;
 	private String password;
@@ -49,45 +37,37 @@ public class RenameParentPageAndPublishChildTest {
 
 	@BeforeMethod
 	public void beforeTest() {
-		this.driverManager = new WebDriverManager();
-		this.UIElementsPropertiesManager = new UIElementsPropertiesManager(FilesLocations.UIELEMENTSPROPERTIESFILEPATH);
-		ConstantsPropertiesManager constantsPropertiesManager = new ConstantsPropertiesManager(
-				FilesLocations.CONSTANTSPROPERTIESFILEPATH);
-		this.driverManager.setConstantsPropertiesManager(constantsPropertiesManager);
-		this.loginPage = new LoginPage(driverManager, this.UIElementsPropertiesManager);
-		this.homePage = new HomePage(driverManager, this.UIElementsPropertiesManager);
-		this.dashboardPage = new DashboardPage(driverManager, this.UIElementsPropertiesManager);
-
 		this.parentPageName = "1";
 		this.childPage1Name = "2";
 		this.childPage2Name = "3";
 		this.parentPageNewName = "11";
+		
 		userName = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.username");
 		password = constantsPropertiesManager.getSharedExecutionConstants().getProperty("crafter.password");
 
-		homeContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		homeContent = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.home_Content_Page");
-		this.parentPageLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.parentPageLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.parentfolder") + this.parentPageName + "')]";
-		this.childPage1Locator = this.parentPageLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.childPage1Locator = this.parentPageLocator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage1Name + "')]";
-		this.childPage2Locator = this.childPage1Locator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.childPage2Locator = this.childPage1Locator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage2Name + "')]";
-		this.parentPageNewLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.parentPageNewLocator = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.parentfolder") + this.parentPageNewName + "')]";
-		siteDropdownElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		siteDropdownElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.sitedropdown");
-		approveSubmitId = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		approveSubmitId = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.renameparentpageandpublishchildtest.approvesubmitid");
-		unselectAllCheckBox = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		unselectAllCheckBox = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.renameparentpageandpublishchildtest.unselectallcheckbox");
-		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
-		createFormArticleMainTitleElementXPath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormArticleMainTitleElementXPath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformMainTitle");
-		createFormSaveAndCloseElement = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		createFormSaveAndCloseElement = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.saveandclosebutton");
-		homeExpansorXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		homeExpansorXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.homeexpansor");
 	}
 
@@ -220,11 +200,11 @@ public class RenameParentPageAndPublishChildTest {
 		this.driverManager.waitUntilSidebarOpens();
 		this.renamePage(parentPageLocator, parentPageNewName);
 
-		this.childPage1Locator = this.parentPageNewLocator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.childPage1Locator = this.parentPageNewLocator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage1Name + "')]";
 
 
-		this.childPage2Locator = this.childPage1Locator + UIElementsPropertiesManager.getSharedUIElementsLocators()
+		this.childPage2Locator = this.childPage1Locator + uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.crafter3loadtest.childfolder") + this.childPage2Name + "')]";
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", childPage2Locator).click();

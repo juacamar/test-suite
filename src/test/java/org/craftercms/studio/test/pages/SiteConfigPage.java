@@ -456,6 +456,7 @@ public class SiteConfigPage {
 
 	public void completeDataSourcesFieldsBasics(String strTitle) {
 		// Fill title
+		this.driverManager.waitForAnimation();
 		this.setTitle(strTitle);
 	}
 
