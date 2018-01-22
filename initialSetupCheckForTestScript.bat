@@ -51,46 +51,57 @@ echo [INFO] executed gradlew build and deploy processes with success
 echo [INFO] executing gradlew startup process
 call gradlew.bat start
 
+@rem waiting for 5 minutes until the studio is totally up
+echo [INFO] waiting until studio is totally up. The Waitime is 5 minutes
+timeout 300
 
-timeout 180
-
+echo [INFO] verifying that the port 8080 (Tomcat) is listened
 netstat -o -n -a | findstr "0.0.0.0:8080"
-IF %ERRORLEVEL% NEQ 0 echo [ERROR] the startup process failed Port 8080 (Tomcat) is not up after 3 minutes
+IF %ERRORLEVEL% NEQ 0 echo [ERROR] the startup process failed Port 8080 (Tomcat) is not up after 5 minutes
 
-
+echo [INFO] verifying that the port 8694 (Solr) is listened
 netstat -o -n -a | findstr "0.0.0.0:8694"
-IF %ERRORLEVEL% NEQ 0 echo [ERROR] the startup process failed Port 8694 (Solr) is not up after 3 minutes
+IF %ERRORLEVEL% NEQ 0 echo [ERROR] the startup process failed Port 8694 (Solr) is not up after 5 minutes
 
-
+echo [INFO] verifying that the port 33306 (MariaDB) is listened
 netstat -o -n -a | findstr "0.0.0.0:33306"
-IF %ERRORLEVEL% NEQ 0  echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 3 minutes
+IF %ERRORLEVEL% NEQ 0  echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 5 minutes
 
+echo [INFO] verifying that the port 9191 (MariaDB) is listened
 netstat -o -n -a | findstr "0.0.0.0:9191"
-IF %ERRORLEVEL% NEQ 0  echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 3 minutes
+IF %ERRORLEVEL% NEQ 0  echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 5 minutes
 
+echo [INFO] verifying that the port 27020 (MongoDB) is listened
 netstat -o -n -a | findstr "0.0.0.0:27020"
-IF %ERRORLEVEL% NEQ 0  echo [WARN] the startup process failed Port 27020 (MongoDB) is not up after 3 minutes
+IF %ERRORLEVEL% NEQ 0  echo [WARN] the startup process failed Port 27020 (MongoDB) is not up after 5 minutes
 
 @rem executing the stop of the both envs delivery env and authoring env
 echo [INFO] executing gradlew stop process
 call gradlew.bat stop
 
-timeout 180
+@rem waiting for 5 minutes until the studio is totally down
+echo [INFO] waiting until studio is totally down. The Waitime is 5 minutes
+timeout 300
 
+echo [INFO] verifying that the port 8080 (Tomcat) is not listened
 netstat -o -n -a | findstr "0.0.0.0:8080"
-IF %ERRORLEVEL% equ 0  echo [ERROR] the startup process failed Port 8080 (Tomcat) is not up after 3 minutes
+IF %ERRORLEVEL% equ 0  echo [ERROR] the stop process failed Port 8080 (Tomcat) is not down after 5 minutes
 
+echo [INFO] verifying that the port 8694 (Solr) is not listened
 netstat -o -n -a | findstr "0.0.0.0:8694"
-IF %ERRORLEVEL% equ 0 echo [ERROR] the startup process failed Port 8694 (Solr) is not up after 3 minutes
+IF %ERRORLEVEL% equ 0 echo [ERROR] the stop process failed Port 8694 (Solr) is not down after 5 minutes
 
+echo [INFO] verifying that the port 33306 (MariaDB) is not listened
 netstat -o -n -a | findstr "0.0.0.0:33306"
-IF %ERRORLEVEL% equ 0 echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 3 minutes
+IF %ERRORLEVEL% equ 0 echo [ERROR] the stop process failed Port 33306 (MariaDB) is not down after 5 minutes
 
+echo [INFO] verifying that the port 9191 (MariaDB) is not listened
 netstat -o -n -a | findstr "0.0.0.0:9191"
-IF %ERRORLEVEL% equ 0 echo [ERROR] the startup process failed Port 33306 (MariaDB) is not up after 3 minutes
+IF %ERRORLEVEL% equ 0 echo [ERROR] the stop process failed Port 33306 (MariaDB) is not down after 5 minutes
 
+echo [INFO] verifying that the port 27020 (MongoDB) is not listened
 netstat -o -n -a | findstr "0.0.0.0:27020"
-IF %ERRORLEVEL% equ 0 echo [WARN] the startup process failed Port 27020 (MongoDB) is not up after 3 minutes
+IF %ERRORLEVEL% equ 0 echo [WARN] the stop process failed Port 27020 (MongoDB) is not down after 5 minutes
 
 @rem moving out of temporary folder
 echo [INFO] moving out from temporary folder
