@@ -446,6 +446,7 @@ public class PreviewPage {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// select main content
+		this.driverManager.waitUntilSiteConfigMaskedModalCloses();
 		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
 

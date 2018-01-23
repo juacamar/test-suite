@@ -236,6 +236,7 @@ public class DashboardPage {
 			expandComponentsSubTree.click();
 			driverManager.waitUntilFolderOpens("xpath", componentsSubTree);
 		}
+		driverManager.waitUntilFolderOpens("xpath", componentsSubTree);
 	}
 	
 
