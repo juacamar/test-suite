@@ -49,13 +49,14 @@ public class PreviewPage {
 	private String siteDropdownElementXPath;
 	private String adminConsoleXpath;
 	private String entryContentTypeBodyXpath;
-	private String entryContentTypeBodyCheckCss;
+	private String entryContentTypeBodyCheckXpath;
 	private String createFormFrameElementCss;
 	private String articleContentCreatedName;
 	private String generalDeleteOption;
 	private String generalEditOption;
 	private String siteStatusIcon;
 	private String siteContentXpath;
+	private String articlesContentTypeRepeatingGroup;
 	
 	/**
 	 * 
@@ -118,7 +119,7 @@ public class PreviewPage {
 				.getProperty("general.adminconsole");
 		entryContentTypeBodyXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.entrycontenttype.body");
-		entryContentTypeBodyCheckCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
+		entryContentTypeBodyCheckXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.entrycontenttype.bodyrequiredcheck");
 		createFormFrameElementCss = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
@@ -132,6 +133,8 @@ public class PreviewPage {
 				.getProperty("general.statustopbaricon");
 		siteContentXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.site_content");
+		articlesContentTypeRepeatingGroup = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.edit.articles.content.type.sections.repeating.group");
 	
 	}
 
@@ -443,12 +446,13 @@ public class PreviewPage {
 		driverManager.getDriver().switchTo().defaultContent();
 
 		// select main content
+		this.driverManager.waitUntilSiteConfigMaskedModalCloses();
 		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyXpath).click();
 
 		// Mark Body not required
 		this.driverManager.waitForAnimation();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyCheckCss)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", entryContentTypeBodyCheckXpath)
 				.click();
 		
 		// save
@@ -493,11 +497,13 @@ public class PreviewPage {
 		this.driverManager.scrollDown();
 
 		// select main content
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "//*[@id='yui-gen19']/span[1]").click();
+		this.driverManager.waitForAnimation();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", articlesContentTypeRepeatingGroup).click();
 
 		// Mark Body not required
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector",
-				"div.property-wrapper:nth-child(21) > div:nth-child(2) > input").click();
+		this.driverManager.waitForAnimation();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				entryContentTypeBodyCheckXpath).click();
 
 		// save
 		siteConfigPage.saveDragAndDropProcess();
@@ -505,7 +511,7 @@ public class PreviewPage {
 		this.driverManager.getDriver().switchTo().defaultContent();
 
 		// go to dashboard
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("cssSelector", "#cstudio-logo").click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", studioLogo).click();
 
 	}
 

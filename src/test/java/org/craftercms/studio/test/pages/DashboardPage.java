@@ -97,9 +97,9 @@ public class DashboardPage {
 		homeContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.home_Content_Page");
 		addNewContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.add_New_Content");
+				.getProperty("rightclick.new.Content.option");
 		addNewFolder = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.add_New_Folder");
+				.getProperty("rightclick.new.folder.option");
 		selectEntryCT = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.entry_Content_Type");
 		okButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.ok_Button");
@@ -110,15 +110,15 @@ public class DashboardPage {
 		saveDraft1 = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("frame2.save_Draft");
 		createButton = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.create_Button");
 		setFolderName = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.folder_name");
-		copyContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.copyoption");
+		copyContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.copy.option");
 		copyContentButton = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.copy_contentButton");
 		aboutUSContentPage = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.aboutuscontentpage");
-		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.pasteoption");
+		pasteContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.paste.option");
 		deleteContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.delete_content");
-		cutContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.cutoption");
+				.getProperty("rightclick.delete.option");
+		cutContent = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("rightclick.cut.option");
 		newContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.new_content");
 		clickOnSiteContent = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -128,9 +128,9 @@ public class DashboardPage {
 		submittalCompleteOK = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.submitall.ok");
 		editParentOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("rightclick.editoption");
+				.getProperty("rightclick.edit.option");
 		editRecentlyContentCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.edit_recently_content_created");
+				.getProperty("rightclick.edit.option");
 		folderCreated = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.folder_created");
 		previewDuplicate = UIElementsPropertiesManager.getSharedUIElementsLocators().getProperty("dashboard.duplicate");
@@ -147,13 +147,13 @@ public class DashboardPage {
 		categoriesLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.categoriesdropdownlist");
 		copyOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickcopyoption");
+				.getProperty("rightclick.copy.option");
 		copyButonOnTreeSelector = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.treeselectorcopybutton");
 		pasteOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickpasteoption");
+				.getProperty("rightclick.paste.option");
 		cutOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickcutoption");
+				.getProperty("rightclick.cut.option");
 		contextualNavigationEditLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("general.edittopnavoption");
 		contextualNavigationHistoryLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -165,21 +165,21 @@ public class DashboardPage {
 		historyCloseButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.historyClosebutton");
 		publishOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickpublish");
+				.getProperty("rightclick.approveandpublish.option");
 		approveAndPublishPublishButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.approveandpublishsubmitbutton");
 		deleteOptionLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickdeleteoption");
+				.getProperty("rightclick.delete.option");
 		deleteDeletButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.deletedeletebutton");
 		addNewFolderOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickaddnewfolderoption");
+				.getProperty("rightclick.new.folder.option");
 		addNewContentOption = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickaddnewcontentoption");
+				.getProperty("rightclick.new.Content.option");
 		deleteOKButtonLocator = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.deleteOkbutton");
 		copyOptionLocatorForContentPage = UIElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("dashboard.rightclickcopyoptionforcontentpage");
+				.getProperty("rightclick.copy.option");
 		articlesSubjectInput = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("frame2.article_subject_input");
 		articlesAuthorInput = UIElementsPropertiesManager.getSharedUIElementsLocators()
@@ -236,6 +236,7 @@ public class DashboardPage {
 			expandComponentsSubTree.click();
 			driverManager.waitUntilFolderOpens("xpath", componentsSubTree);
 		}
+		driverManager.waitUntilFolderOpens("xpath", componentsSubTree);
 	}
 	
 

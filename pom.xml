@@ -4,10 +4,10 @@
 	<groupId>org.craftercms</groupId>
 	<artifactId>studio-test-suite</artifactId>
 	<packaging>jar</packaging>
-	<version>2.5.2-SNAPSHOT</version>
+	<version>3.1.0-SNAPSHOT</version>
 	<name>studio-test-suite</name>
-	<description></description>
-	<url>https://github.com/craftercms/core</url>
+	<description>Crafter CMS Integration Test Suite</description>
+	<url>https://github.com/craftercms/test-suite</url>
 
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -31,16 +31,6 @@
 
 
 	<developers>
-		<developer>
-			<id>sumerjabri</id>
-			<name>Sumer Jabri</name>
-			<email>sumer.jabri@craftercms.org</email>
-		</developer>
-		<developer>
-			<id>avasquez</id>
-			<name>Alfonso Vásquez</name>
-			<email>alfonso.vasquez@craftersoftware.com</email>
-		</developer>
 		<developer>
 			<id>luishernandez</id>
 			<name>Luis Hernandez Monge</name>
