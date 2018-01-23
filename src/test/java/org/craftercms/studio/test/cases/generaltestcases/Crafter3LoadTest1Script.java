@@ -475,6 +475,7 @@ public class Crafter3LoadTest1Script extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", mytestFolderLocator);
 		dashboardPage.expandParentFolder(mytestFolderLocator);
 
+		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				myTestBigTreeChildFolderLocator);
 		dashboardPage.rightClickCutAFolder(myTestBigTreeChildFolderLocator);
