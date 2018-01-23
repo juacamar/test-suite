@@ -627,7 +627,7 @@
 				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClickIsPerformedOnAnyElementOfThePagesStructureWithAdminUser" />
 		</classes>
 	</test>
-			<test name="Verify that the application displays the proper set of dropdown Sidebar components options on the Site Dropdown panel Test Case With Author User">
+			<test name="Verify that the application displays the proper set of available options when the right click is performed on any element of the Pages structure with Admin user">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
@@ -639,7 +639,7 @@
 				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
 		</classes>
 	</test>
-				<test name="Verify that the application displays the proper set of dropdown Sidebar components options on the Site Dropdown panel Test Case With Developer User">
+				<test name="Verify that the application displays the proper set of available options when the right click is performed on any element of the Pages structure with Developer user">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
@@ -651,7 +651,7 @@
 				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
 		</classes>
 	</test>
-				<test name="Verify that the application displays the proper set of dropdown Sidebar components options on the Site Dropdown panel Test Case With Publisher User">
+				<test name="Verify that the application displays the proper set of available options when the right click is performed on any element of the Pages structure with Publisher user">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
@@ -663,7 +663,7 @@
 				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
 		</classes>
 	</test>
-				<test name="Verify that the application displays the proper set of dropdown Sidebar components options on the Site Dropdown panel Test Case With Reviewer User">
+				<test name="Verify that the application displays the proper set of available options when the right click is performed on any element of the Pages structure with Reviewer user">
 		<classes>
 			<class
 				name="org.craftercms.studio.test.cases.sitestestcases.CreateSiteWithWebSiteEditorialBluePrintTest" />
@@ -675,4 +675,13 @@
 				name="org.craftercms.studio.test.cases.userstestcases.DeleteUserTest" />
 		</classes>
 	</test>
+			<test name="Verify The Application Displays The Proper Options Using Righ Click When Any Element Of The Pages Structure Is Edited Using Admin User">
+		<classes>
+			<class
+				name="org.craftercms.studio.test.cases.sitedropdowntestcases.VerifyAppDisplaysTheProperOptionsUsingRighClickWhenAnyElementOfThePagesStructureIsEditedUsingAdminUser" />
+		</classes>
+	</test>
+	
+	
+	
 </suite> <!-- Suite -->
