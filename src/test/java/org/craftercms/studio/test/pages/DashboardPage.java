@@ -955,6 +955,7 @@ public class DashboardPage {
 	}
 
 	public void rightClickCutAFolder(String parentWebElementLocator) {
+		this.getDriverManager().waitForAnimation();
 		this.getDriverManager().contextClick("xpath", parentWebElementLocator, false);
 		driverManager.usingContextMenu(() -> {
 			WebElement cutOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
