@@ -387,7 +387,7 @@ public class VerifyAppDisplaysTheProperOptionsUsingRighClickWhenAnyElementOfTheP
 
 			// creating random values for URL field and InternalName field
 
-			String randomInternalName = "HomePageEdited";;
+			String randomInternalName = "HomePageEdited";
 
 			// Set basics fields of the new content created
 
@@ -407,7 +407,7 @@ public class VerifyAppDisplaysTheProperOptionsUsingRighClickWhenAnyElementOfTheP
 
 			// creating random values for URL field and InternalName field
 
-			String randomInternalName = "StylePageEdited";;
+			String randomInternalName = "StylePageEdited";
 
 			// Set basics fields of the new content created
 
@@ -427,7 +427,7 @@ public class VerifyAppDisplaysTheProperOptionsUsingRighClickWhenAnyElementOfTheP
 
 			// creating random values for URL field and InternalName field
 
-			String randomInternalName = "MenStylesForWinterEdited";;
+			String randomInternalName = "MenStylesForWinterEdited";
 
 			// Set basics fields of the new content created
 
