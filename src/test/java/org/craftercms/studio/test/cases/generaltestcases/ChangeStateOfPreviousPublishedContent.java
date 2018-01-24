@@ -533,12 +533,9 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.homePage.goToPreviewPage();
 
 		this.driverManager.waitForAnimation();
-
-		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				homeTree);
-		if (!(this.driverManager.isElementPresentAndClickableByXpath(articlesFolder))) {
-			globalEntry.click();
-		}
+		this.driverManager.waitUntilFolderOpens("xpath", expandPagesTree);
+		
+		this.dashboardPage.expandHomeTree();
 
 		this.driverManager.waitForAnimation();
 
@@ -645,18 +642,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 			}
 		}
 
-		// int maxNumberofTries = 10;
-		// while ((!(isLifeContent.contains("undefined live")) && (maxNumberofTries !=
-		// 0))) {
-		// this.driverManager.waitForAnimation();
-		// isLifeContent = this.driverManager.getDriver()
-		// .findElement(By.xpath(pageStatus)).getAttribute("class").toString();
-		// driverManager.getDriver().navigate().refresh();
-		// this.driverManager.waitForAnimation();
-		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-		// gearImageXpath).click();
-		// maxNumberofTries--;
-		// }
 		Assert.assertTrue(this.driverManager.getDriver().findElement(By.xpath(pageStatus)).getAttribute("class")
 				.contains("undefined live"));
 	}
