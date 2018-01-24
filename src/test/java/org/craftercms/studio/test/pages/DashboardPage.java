@@ -269,6 +269,7 @@ public class DashboardPage {
 		
 		// Verify if the home tree is already expanded
 		if (!(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", homeContent).getAttribute("class").contains("open"))) {
+			this.driverManager.waitForAnimation();
 			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 					homeTree).click();
 		}
@@ -1046,6 +1047,7 @@ public class DashboardPage {
 	}
 
 	public void clickEditOptionOfRecentActivitySection() {
+		this.driverManager.waitForAnimation();
 		WebElement editOptionMyRecentActivity = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				editRecentActivity);
 		editOptionMyRecentActivity.click();
