@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.cases.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -558,10 +559,11 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		
 		this.driverManager.waitUntilContentTooltipIsHidden();
 		
+		this.driverManager.waitForAnimation();
 		WebElement articlesFolderElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				articlesFolder);
 		
-		if (!(articlesFolderElement.getAttribute("class").contains("acn-expanded-tree-node-label open"))) {
+		if (!(articlesFolderElement.getAttribute("class").contains("open"))) {
 			articlesFolderElement.click();
 		}
 		
@@ -651,19 +653,34 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				dependenciesMenuOption);
 
-		String isLifeContent = "";
-		int maxNumberofTries = 10;
-		while ((!(isLifeContent.contains("undefined live")) && (maxNumberofTries != 0))) {
-			this.driverManager.waitForAnimation();
-			isLifeContent = this.driverManager.getDriver()
-			.findElement(By.xpath(pageStatus)).getAttribute("class").toString();
-			driverManager.getDriver().navigate().refresh();
-			this.driverManager.waitForAnimation();
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-					gearImageXpath).click();
-			maxNumberofTries--;
+		//String isLifeContent = "";
+		for (int i = 0; i < 4; i++) {
+			try {
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", pageStatus)
+						.click();
+				this.driverManager.waitUntilAttributeContains("xpath", pageStatus, "class", "undefined live");
+				break;
+			} catch (TimeoutException e) {
+				this.driverManager.takeScreenshot("PageNotPublishedOnTopNavBar");
+				logger.warn("Content page is not published yet, checking again if it has published icon on top bar");	
+				this.driverManager.waitForAnimation();
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+						gearImageXpath).click();
+				driverManager.getDriver().navigate().refresh();
 			}
+		}
 		
+//		int maxNumberofTries = 10;
+//		while ((!(isLifeContent.contains("undefined live")) && (maxNumberofTries != 0))) {
+//			this.driverManager.waitForAnimation();
+//			isLifeContent = this.driverManager.getDriver()
+//			.findElement(By.xpath(pageStatus)).getAttribute("class").toString();
+//			driverManager.getDriver().navigate().refresh();
+//			this.driverManager.waitForAnimation();
+//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+//					gearImageXpath).click();
+//			maxNumberofTries--;
+//			}
 		Assert.assertTrue(this.driverManager.getDriver()
 				.findElement(By.xpath(pageStatus))
 				.getAttribute("class").contains("undefined live"));
