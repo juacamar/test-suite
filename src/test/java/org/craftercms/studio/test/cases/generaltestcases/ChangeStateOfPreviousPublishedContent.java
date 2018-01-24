@@ -196,29 +196,19 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		Assert.assertTrue(newUserCreated.isDisplayed(), "ERROR: Recently created user is not displayed");
 
 		// Switch to the form
-
 		driverManager.getDriver().navigate().refresh();
 
 		driverManager.getDriver().switchTo().defaultContent();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", crafterLogo);
 
-				crafterLogo);
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-
-				crafterLogo).click();
-
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", crafterLogo).click();
 	}
 
 	public void login(String user, String loginpassword) {
-
 		// login to application
-
 		loginPage.loginToCrafter(user, loginpassword);
-
 		// Wait for login page to close
-
 		driverManager.waitUntilLoginCloses();
 
 	}
@@ -255,10 +245,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 	}
 
 	public void changeBodyToNotRequiredOnPageArticleContent() {
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", generalSiteDropdown)
-
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", generalSiteDropdown).click();
 
 		previewPage.changeBodyOfArticlePageToNotRequired();
 
@@ -278,33 +265,24 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteconfigGroupsOption);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteconfigGroupsOption)
-
 				.click();
 
 		driverManager.getDriver().switchTo().defaultContent();
 
 		this.driverManager.getDriver().switchTo()
-
 				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addTouserIframe));
 
 		this.driverManager.isElementPresentAndClickableByXpath(addTouserIframe);
 
 		this.driverManager.getDriver().switchTo().activeElement();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editAuthorGroupOption);
 
-				editAuthorGroupOption);
-
-		this.driverManager
-
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editAuthorGroupOption)
-
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", editAuthorGroupOption)
 				.click();
-
 		driverManager.getDriver().switchTo().defaultContent();
 
 		this.driverManager.getDriver().switchTo()
-
 				.frame(this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", addTouserIframe));
 
 		this.driverManager.isElementPresentAndClickableByXpath(addTouserIframe);
@@ -313,35 +291,18 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersCheckbox);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersCheckbox)
-
-				.click();
-
-		this.driverManager
-
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersInput)
-
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersCheckbox).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersInput)
 				.sendKeys("author");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersAutocompleteOption1);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-
-				groupsAddNewMembersAutocompleteOption1);
-
-		this.driverManager
-
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-
-						groupsAddNewMembersAutocompleteOption1)
-
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", groupsAddNewMembersAutocompleteOption1)
 				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", groupsAddNewMembersButton);
 
-				groupsAddNewMembersButton);
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-
-				groupsAddNewMembersButton).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", groupsAddNewMembersButton)
+				.click();
 
 		driverManager.getDriver().switchTo().defaultContent();
 
@@ -429,13 +390,11 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", requestPublishButton);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", requestPublishButton)
-
 				.click();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", publishSubmitButton);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", publishSubmitButton)
-
 				.click();
 
 	}
@@ -501,11 +460,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption).click();
 
-		this.driverManager
-
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
-
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption).click();
 
 		this.driverManager.waitUntilSidebarOpens();
 
@@ -532,19 +487,17 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		logger.info("Go to Preview Page");
 		this.homePage.goToPreviewPage();
 
+		driverManager.getDriver().navigate().refresh();
 		this.driverManager.waitForAnimation();
 		this.driverManager.waitUntilFolderOpens("xpath", expandPagesTree);
-		
-		this.dashboardPage.expandHomeTree();
+
+		// this.dashboardPage.expandHomeTree();
 
 		this.driverManager.waitForAnimation();
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", generalEditOption);
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder);
 
 		this.driverManager.waitUntilContentTooltipIsHidden();
-
 		this.driverManager.waitForAnimation();
 		WebElement articlesFolderElement = this.driverManager
 				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder);
@@ -575,11 +528,13 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		// Open dependencies for the previous created element
 		this.driverManager.waitForAnimation();
+		this.driverManager.waitUntilPublishMaskedModalCloses();
+
 		logger.info("Open dependencies for the previous created element");
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", generalEditOption);
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesMenuOption);
 
+		this.driverManager.waitForAnimation();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesMenuOption)
 				.click();
 
@@ -626,7 +581,6 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.click();
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesMenuOption);
 
-		// String isLifeContent = "";
 		for (int i = 0; i < 4; i++) {
 			try {
 				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", pageStatus).click();

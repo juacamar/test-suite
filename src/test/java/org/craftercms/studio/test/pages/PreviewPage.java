@@ -2,9 +2,12 @@ package org.craftercms.studio.test.pages;
 
 import static org.testng.Assert.assertTrue;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
 import org.craftercms.studio.test.utils.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -57,7 +60,9 @@ public class PreviewPage {
 	private String siteStatusIcon;
 	private String siteContentXpath;
 	private String articlesContentTypeRepeatingGroup;
+	private String gearItemXpath;
 	
+	private static Logger logger = LogManager.getLogger(PreviewPage.class);
 	/**
 	 * 
 	 */
@@ -135,6 +140,8 @@ public class PreviewPage {
 				.getProperty("dashboard.site_content");
 		articlesContentTypeRepeatingGroup = UIElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.edit.articles.content.type.sections.repeating.group");
+		gearItemXpath = UIElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.gearlocator");
 	
 	}
 
@@ -579,9 +586,9 @@ public class PreviewPage {
 				this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", dependenciesSelector));
 		categoriesDropDown.selectByValue("depends-on-me");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", "(//TD[text()='1-gear.png'])[1]");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", gearItemXpath);
 
-		assertTrue(this.getDriverManager().isElementPresentByXpath("(//TD[text()='1-gear.png'])[1]"));
+		assertTrue(this.getDriverManager().isElementPresentByXpath(gearItemXpath));
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesCloseButton)
 				.click();
@@ -647,26 +654,26 @@ public class PreviewPage {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				generalDeleteOption);
-
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				generalEditOption);
-
-		String isLifeContent = this.driverManager.getDriver()
-				.findElement(By.xpath(siteStatusIcon))
-				.getAttribute("class").toString();
-		int maxNumberofTries = 8;
-		while ((!(isLifeContent.contains("undefined live")) && (maxNumberofTries != 0))) {
-			isLifeContent = this.driverManager.getDriver()
-					.findElement(By.xpath(siteStatusIcon))
-					.getAttribute("class").toString();
-			driverManager.getDriver().navigate().refresh();
-			this.dashboardPage.expandHomeTree();
-			maxNumberofTries--;
+		
+		for (int i = 0; i < 3; i++) {
+			try {
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteStatusIcon).click();
+				this.driverManager.waitUntilAttributeContains("xpath", siteStatusIcon, "class", "undefined live");
+				break;
+			} catch (TimeoutException e) {
+				this.driverManager.takeScreenshot("PageNotPublishedOnTopNavBar");
+				logger.warn("Content page is not published yet, checking again if it has published icon on top bar");
+				driverManager.getDriver().navigate().refresh();
+				this.driverManager.waitForAnimation();
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+						articleContentCreatedName).click();
+			}
 		}
 
-		Assert.assertTrue(this.driverManager.getDriver()
-				.findElement(By.xpath(siteStatusIcon))
-				.getAttribute("class").contains("undefined live"));
+		Assert.assertTrue(this.driverManager.getDriver().findElement(By.xpath(siteStatusIcon)).getAttribute("class")
+				.contains("undefined live"));
 
 	}
 }
