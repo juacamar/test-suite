@@ -96,34 +96,32 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.getProperty("preview.static_assets_button");
 		homeTree = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("dashboard.expand_GlobalEntry_Tree");
-		sidebarMenuOption = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"complexscenarios.general.sitedropdownmenuinnerxpath");
-		dependenciesMenuOption = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"general.dependenciestopnavoption");
-		staticAssetsChildFolder = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"preview.static_assets_child_folder");
-		staticAssetsImagesChildFolder = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"preview.static_assets_images_child_folder");
-		editAuthorGroupOption = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"groups.edit_author_group_option");
-		groupsAddNewMembersCheckbox = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"groups.add_new_members_checkbox");
-		groupsAddNewMembersInput = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"groups.add_new_members_input");
-		groupsAddNewMembersAutocompleteOption1 = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"groups.add_new_members_autocomplete_option1");
-		groupsAddNewMembersButton = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"groups.add_new_members_button");
-		navigationSitebarNameId = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"general.navigation_sitebar_name_id");
-		crafterLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"users.crafterlogo");
-		generalSiteDropdown = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"general.sitedropdown");
-		pageStatus = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"general.pageStatus");
-		staticAssetsGearImageXpath = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty(
-				"preview.staticassets.gear.image.xpath");
+		sidebarMenuOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("complexscenarios.general.sitedropdownmenuinnerxpath");
+		dependenciesMenuOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.dependenciestopnavoption");
+		staticAssetsChildFolder = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("preview.static_assets_child_folder");
+		staticAssetsImagesChildFolder = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("preview.static_assets_images_child_folder");
+		editAuthorGroupOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.edit_author_group_option");
+		groupsAddNewMembersCheckbox = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.add_new_members_checkbox");
+		groupsAddNewMembersInput = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.add_new_members_input");
+		groupsAddNewMembersAutocompleteOption1 = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.add_new_members_autocomplete_option1");
+		groupsAddNewMembersButton = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("groups.add_new_members_button");
+		navigationSitebarNameId = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.navigation_sitebar_name_id");
+		crafterLogo = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("users.crafterlogo");
+		generalSiteDropdown = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("general.sitedropdown");
+		pageStatus = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.pageStatus");
+		staticAssetsGearImageXpath = uiElementsPropertiesManager.getSharedUIElementsLocators()
+				.getProperty("preview.staticassets.gear.image.xpath");
 		createFormFrameElementCss = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.createformframe");
 		generalEditOption = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -132,8 +130,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				.getProperty("dashboard.expand_Pages_Tree");
 		editedPageArticleName = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.editedarticlename");
-		adminConsole = uiElementsPropertiesManager.getSharedUIElementsLocators()
-				.getProperty("general.adminconsole");
+		adminConsole = uiElementsPropertiesManager.getSharedUIElementsLocators().getProperty("general.adminconsole");
 		articleTitle = uiElementsPropertiesManager.getSharedUIElementsLocators()
 				.getProperty("complexscenarios.general.cssarticletitle");
 		expandAllId = uiElementsPropertiesManager.getSharedUIElementsLocators()
@@ -176,7 +173,8 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		// Follow the form
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserFirstNameId).sendKeys("Name");
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId).sendKeys("Last Name");
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserLastNameId)
+				.sendKeys("Last Name");
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserEmailId)
 				.sendKeys("email@email.com");
@@ -187,7 +185,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", newUserPasswordVerificationId)
 				.sendKeys("author");
-		
+
 		// Save Button
 		usersPage.clickOnSaveNewUser();
 
@@ -195,7 +193,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		WebElement newUserCreated = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
 				newUserUserNameCreatedXpath);
 
-		Assert.assertTrue(newUserCreated.isDisplayed(),"ERROR: Recently created user is not displayed");
+		Assert.assertTrue(newUserCreated.isDisplayed(), "ERROR: Recently created user is not displayed");
 
 		// Switch to the form
 
@@ -238,15 +236,13 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 			dashboardPage.updateFieldsOfPageArticleContent(randomInternalName, pageName);
 
 			// Set the title of main content
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", articleTitle).clear();
 
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", articleTitle)
-
-					.sendKeys(pageName);
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", articleTitle).sendKeys(pageName);
 
 			this.driverManager.scrollUp();
 
-			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", expandAllId)
-					.click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", expandAllId).click();
 
 			// save and close
 
@@ -276,7 +272,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 				adminConsole);
 
 		siteConfigButton.click();
-		
+
 		this.driverManager.waitForAnimation();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", siteconfigGroupsOption);
@@ -499,15 +495,11 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.getDriver().navigate().refresh();
 
 		// Open dependencies for the previous created element
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articlesFolder);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articlesFolder).click();
-		
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption)
-				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder).click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", sidebarMenuOption).click();
 
 		this.driverManager
 
@@ -521,11 +513,9 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		logger.info("Executing bulk publish");
 		previewPage.bulkPublish();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articlesFolder);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articlesFolder).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder).click();
 
 		// Verify Article is published
 		logger.info("Verify Article is published");
@@ -541,44 +531,41 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		logger.info("Go to Preview Page");
 		this.homePage.goToPreviewPage();
-		
+
 		this.driverManager.waitForAnimation();
-		
+
 		WebElement globalEntry = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
 				homeTree);
 		if (!(this.driverManager.isElementPresentAndClickableByXpath(articlesFolder))) {
 			globalEntry.click();
 		}
-		
+
 		this.driverManager.waitForAnimation();
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", generalEditOption);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articlesFolder);
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder);
+
 		this.driverManager.waitUntilContentTooltipIsHidden();
-		
+
 		this.driverManager.waitForAnimation();
-		WebElement articlesFolderElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articlesFolder);
-		
+		WebElement articlesFolderElement = this.driverManager
+				.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articlesFolder);
+
 		if (!(articlesFolderElement.getAttribute("class").contains("open"))) {
 			articlesFolderElement.click();
 		}
-		
+
 		this.driverManager.waitForAnimation();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articleContentCreatedName);
-		
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleContentCreatedName);
+
 		this.driverManager.waitUntilContentTooltipIsHidden();
-		
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				articleContentCreatedName).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", articleContentCreatedName)
+				.click();
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",articleContentCreatedName);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", articleContentCreatedName);
 
 		// Edit content Page with the Author User
 		logger.info("Edit content Page with the Author User");
@@ -592,14 +579,12 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		// Open dependencies for the previous created element
 		this.driverManager.waitForAnimation();
 		logger.info("Open dependencies for the previous created element");
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				generalEditOption);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", generalEditOption);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				dependenciesMenuOption);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesMenuOption);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				dependenciesMenuOption).click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesMenuOption)
+				.click();
 
 		// check dependencies are listed
 		logger.info("Check Listed Dependencies");
@@ -607,8 +592,7 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 
 		// Cancel the Workflow and Edit again the Page Article Content
 		newPageArticleName = "Testing1Edited2";
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				editedPageArticleName);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", editedPageArticleName);
 
 		logger.info("Edit again the Page Article Page");
 
@@ -631,60 +615,52 @@ public class ChangeStateOfPreviousPublishedContent extends BaseTest {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsButton);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsButton).click();
-		
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				staticAssetsChildFolder);
 
-		this.driverManager
-				.driverWaitUntilElementIsPresentAndDisplayed("xpath", staticAssetsChildFolder)
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", staticAssetsChildFolder);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", staticAssetsChildFolder).click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", staticAssetsImagesChildFolder);
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", staticAssetsImagesChildFolder).click();
+
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsGearImageXpath);
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", staticAssetsGearImageXpath)
 				.click();
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesMenuOption);
 
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", staticAssetsImagesChildFolder);
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed(
-				"xpath", staticAssetsImagesChildFolder)
-				.click();
-
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				staticAssetsGearImageXpath);
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				staticAssetsGearImageXpath).click();
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-				dependenciesMenuOption);
-
-		//String isLifeContent = "";
+		// String isLifeContent = "";
 		for (int i = 0; i < 4; i++) {
 			try {
-				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", pageStatus)
-						.click();
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", pageStatus).click();
 				this.driverManager.waitUntilAttributeContains("xpath", pageStatus, "class", "undefined live");
 				break;
 			} catch (TimeoutException e) {
 				this.driverManager.takeScreenshot("PageNotPublishedOnTopNavBar");
-				logger.warn("Content page is not published yet, checking again if it has published icon on top bar");	
+				logger.warn("Content page is not published yet, checking again if it has published icon on top bar");
 				this.driverManager.waitForAnimation();
-				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-						gearImageXpath).click();
+				this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", gearImageXpath)
+						.click();
 				driverManager.getDriver().navigate().refresh();
 			}
 		}
-		
-//		int maxNumberofTries = 10;
-//		while ((!(isLifeContent.contains("undefined live")) && (maxNumberofTries != 0))) {
-//			this.driverManager.waitForAnimation();
-//			isLifeContent = this.driverManager.getDriver()
-//			.findElement(By.xpath(pageStatus)).getAttribute("class").toString();
-//			driverManager.getDriver().navigate().refresh();
-//			this.driverManager.waitForAnimation();
-//			this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
-//					gearImageXpath).click();
-//			maxNumberofTries--;
-//			}
-		Assert.assertTrue(this.driverManager.getDriver()
-				.findElement(By.xpath(pageStatus))
-				.getAttribute("class").contains("undefined live"));
+
+		// int maxNumberofTries = 10;
+		// while ((!(isLifeContent.contains("undefined live")) && (maxNumberofTries !=
+		// 0))) {
+		// this.driverManager.waitForAnimation();
+		// isLifeContent = this.driverManager.getDriver()
+		// .findElement(By.xpath(pageStatus)).getAttribute("class").toString();
+		// driverManager.getDriver().navigate().refresh();
+		// this.driverManager.waitForAnimation();
+		// this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath",
+		// gearImageXpath).click();
+		// maxNumberofTries--;
+		// }
+		Assert.assertTrue(this.driverManager.getDriver().findElement(By.xpath(pageStatus)).getAttribute("class")
+				.contains("undefined live"));
 	}
+
 	@Test
 	public void changeStateOfPreviousPublishedContent() {
 
