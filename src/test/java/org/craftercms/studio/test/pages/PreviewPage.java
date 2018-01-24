@@ -1,7 +1,5 @@
 package org.craftercms.studio.test.pages;
 
-import static org.testng.Assert.assertTrue;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.craftercms.studio.test.utils.UIElementsPropertiesManager;
@@ -588,7 +586,7 @@ public class PreviewPage {
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", gearItemXpath);
 
-		assertTrue(this.getDriverManager().isElementPresentByXpath(gearItemXpath));
+		Assert.assertTrue(this.getDriverManager().isElementPresentByXpath(gearItemXpath));
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", dependenciesCloseButton)
 				.click();
@@ -631,7 +629,7 @@ public class PreviewPage {
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", bulkoperationsAcceptWarning)
 				.click();
 
-		assertTrue(this.driverManager.isElementPresentByXpath(bulkoperationsMessage));
+		Assert.assertTrue(this.driverManager.isElementPresentByXpath(bulkoperationsMessage));
 
 		// Switch back to the dashboard page
 		driverManager.getDriver().switchTo().defaultContent();
