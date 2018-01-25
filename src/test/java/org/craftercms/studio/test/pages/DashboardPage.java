@@ -357,11 +357,11 @@ public class DashboardPage {
 
 	// Press right click select new folder
 	public void rightClickNewFolderOnAPresentFolder(String parentWebElementLocator) {
+		this.driverManager.waitForAnimation();
 		this.getDriverManager().contextClick("xpath", parentWebElementLocator, false);
 		driverManager.usingContextMenu(() -> {
-			WebElement addFolderOption = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-					addNewFolderOption);
-			addFolderOption.click();
+			this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+					addNewFolderOption).click();
 		});
 	}
 
