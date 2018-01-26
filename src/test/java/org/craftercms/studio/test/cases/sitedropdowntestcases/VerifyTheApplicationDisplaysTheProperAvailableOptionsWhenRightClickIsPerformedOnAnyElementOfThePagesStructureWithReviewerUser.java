@@ -231,7 +231,7 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 		driverManager.usingContextMenu(() -> {
 			
 			logger.info("Checking that only the expected options are listed");
-			rightClickOptionsListInHomePage = new LinkedList<String>();;
+			rightClickOptionsListInHomePage = new LinkedList<String>();
 			rightClickOptionsListInHomePage.add(0, "View");
 			rightClickOptionsListInHomePage.add(1, "Copy");
 			rightClickOptionsListInHomePage.add(2, "Dependencies");
