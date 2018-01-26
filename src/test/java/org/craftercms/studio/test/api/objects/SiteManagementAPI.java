@@ -2,12 +2,6 @@ package org.craftercms.studio.test.api.objects;
 
 import static org.hamcrest.Matchers.is;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
