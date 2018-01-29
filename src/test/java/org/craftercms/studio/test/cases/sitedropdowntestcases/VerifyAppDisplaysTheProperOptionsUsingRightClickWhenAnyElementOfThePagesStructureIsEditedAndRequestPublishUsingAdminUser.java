@@ -301,6 +301,7 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 
 	public void step4() {
 		// Step 4 Right Right click on "Home" and verify options
+		logger.info("Step 4 Right click on the Edited and Requested Publish Home Page To verify options");
 		this.rightClickHomePage();
 
 		driverManager.usingContextMenu(() -> {
@@ -352,6 +353,8 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 
 	public void step6() {
 		// Step 6 Right click on any Category Landing page and verify options
+		logger.info(
+				"Step 6 Right click on the Edited and Requested Publish Category Landing Page (Style) Page To verify options");
 		this.rightClickCategoryLandingPage();
 
 		driverManager.usingContextMenu(() -> {
@@ -415,6 +418,8 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 
 	public void step10() {
 		// Step 10 Right click on any of the article (Men Styles For Winter)
+		logger.info(
+				"Step 10 Right click on the Edited and Requested Publish article Men Styles For Winter Page To verify options");
 		this.driverManager.waitForAnimation();
 
 		this.rightClickArticlesFolderMenStylesForWinter();
@@ -709,7 +714,8 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 	}
 
 	private void logoutFromCrafter() {
-
+		logger.info("logout from Crafter");
+		
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", userOptions);
 
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", userOptions).click();
@@ -719,16 +725,26 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 		this.driverManager.driverWaitUntilElementIsPresentAndDisplayedAndClickable("xpath", userOptionsLogout).click();
 
 	}
+	public void expandPagesTree(){
+		// Expand the site bar
+		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath);
+
+		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
+
+		// Click on Pages tree
+		WebElement pagesTreeLinkElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
+				pagesTreeLink);
+		pagesTreeLinkElement.click();
+		this.driverManager.waitUntilFolderOpens("xpath", pagesTreeLink);
+	}
 
 	@Test(priority = 0)
 	public void verifyProperOptionDisplayedOnPagesStructureWhenPagesAreEditedAndRequestPublishWithAdminUser() {
 
 		this.login(userName, password);
-
 		logger.info("Adding New User");
 
 		this.addNewUser();
-
 		this.driverManager.getDriver().navigate().refresh();
 
 		logger.info("Go to Site Preview");
@@ -744,7 +760,6 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 		this.addUserToAuthorGroup();
 
 		// logout from Crafter
-		logger.info("logout from Crafter");
 		this.logoutFromCrafter();
 
 		// login to application with author user
@@ -753,19 +768,11 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 
 		logger.info("Go to Preview Page");
 		this.homePage.goToPreviewPage();
-
+		
 		this.driverManager.waitForAnimation();
-
-		// Expand the site bar
-		this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath", siteDropdownElementXPath);
-
-		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
-
-		// Click on Pages tree
-		WebElement pagesTreeLinkElement = this.driverManager.driverWaitUntilElementIsPresentAndDisplayed("xpath",
-				pagesTreeLink);
-		pagesTreeLinkElement.click();
-		this.driverManager.waitUntilFolderOpens("xpath", pagesTreeLink);
+		
+		// Expand the site bar and Pages Tree
+		this.expandPagesTree();
 
 		logger.info("Edit the home page");
 		this.editHomePage();
@@ -809,10 +816,8 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 		logger.info("Request Publish for the Men Styles For Winter under articles/2017/1 folders");
 		rightClickArticlesFolderMenStylesForWinter();
 		dashboardPage.requestPublish();
-		this.driverManager.waitForAnimation();
-
+	
 		// logout from Crafter
-		logger.info("logout the author user from Crafter");
 		this.logoutFromCrafter();
 
 		// login to application with admin user
@@ -828,15 +833,10 @@ public class VerifyAppDisplaysTheProperOptionsUsingRightClickWhenAnyElementOfThe
 
 		Assert.assertTrue(this.driverManager.isElementPresentAndClickableByXpath(siteDropdownElementXPath));
 
-		logger.info("Step 4 Right click on the Edited and Requested Publish Home Page To verify options");
 		this.step4();
 
-		logger.info(
-				"Step 6 Right click on the Edited and Requested Publish Category Landing Page (Style) Page To verify options");
 		this.step6();
-
-		logger.info(
-				"Step 10 Right click on the Edited and Requested Publish article Men Styles For Winter Page To verify options");
+		
 		this.step10();
 	}
 }

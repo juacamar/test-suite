@@ -537,6 +537,7 @@ public class DashboardPage {
 				this.requestPublishSubmitButton);
 		requestPublishSubmitButtonElement.click();
 		
+		this.driverManager.waitForAnimation();
 	}
 
 	public void rightClickToCopyOptionAboutUs() {
