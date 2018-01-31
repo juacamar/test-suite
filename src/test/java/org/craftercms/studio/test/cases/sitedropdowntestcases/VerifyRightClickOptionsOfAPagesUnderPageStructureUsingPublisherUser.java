@@ -20,8 +20,8 @@ import org.openqa.selenium.WebElement;
  * @author Juan Camacho A
  *
  */
-// Test Case ID:100
-public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClickIsPerformedOnAnyElementOfThePagesStructureWithPublisherUser
+//Test Case Studio- Site Dropdown ID:12
+public class VerifyRightClickOptionsOfAPagesUnderPageStructureUsingPublisherUser
 		extends BaseTest {
 
 	private String userName;
@@ -73,7 +73,7 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 	private LinkedList<String> rightClickOptionsListInMenStylesForWinterPage;
 	private String rightClickOptions;
 	private static Logger logger = LogManager
-			.getLogger(VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClickIsPerformedOnAnyElementOfThePagesStructureWithPublisherUser.class);
+			.getLogger(VerifyRightClickOptionsOfAPagesUnderPageStructureUsingPublisherUser.class);
 
 	@BeforeMethod
 	public void beforeTest() {
@@ -611,7 +611,7 @@ public class VerifyTheApplicationDisplaysTheProperAvailableOptionsWhenRightClick
 	}
 
 	@Test(priority = 0)
-	public void verifyProperOptionDisplayedOnPagesStructureWithPublisherUser() {
+	public void verifyRightClickOptionsOfAPagesUnderPageStructureUsingPublisherUser() {
 		
 		this.login(userName, password);
 
